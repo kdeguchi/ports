@@ -48,6 +48,11 @@ LICENSE_NAME_NAISTL=	Nara Institute of Science and Technology License
 LICENSE_PERMS_NAISTL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_FILE_NAISTL=	${WRKSRC}/src/data/dictionary_oss/README.txt
 LICENSE_DISTFILES_NAISTL=${DISTNAME}${EXTRACT_SUFX}
+
+OPTIONS_DEFINE=	UTDIC
+
+UTDIC_DESC=	Additional UT Dictionary
+
 .elif ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
 USES+=		qt:5 gnome
 USE_GNOME=	glib20 gtk20
@@ -139,9 +144,11 @@ GYP_OPTIONS+=	--noqt
 GYP_DEFINES+=	use_libibus=0 \
 		enable_gtk_renderer=0
 
-UT_VERSION=	20200624.1
+.if ${PORT_OPTIONS:MUTDIC}
+UT_VERSION=20200624.1
 MASTER_SITES+=	OSDN/users/26/26486/:ut
 DISTFILES+=	mozcdic-ut-${UT_VERSION}.tar.bz2:ut
+.endif
 
 PLIST_FILES+=	bin/mozc \
 		bin/mozc_server \
@@ -151,10 +158,12 @@ SUB_FILES+=	mozc
 post-extract-mozc_server:
 	${MV} ${WRKSRC_udic}/usage_dict.txt \
 	    ${BUILD_WRKSRC}/third_party/japanese_usage_dictionary
+.if ${PORT_OPTIONS:MUTDIC}
 	#	ut dictionary
 	cd ${WRKDIR}/${DISTFILES:M*\:ut:C/\.tar\.bz2\:ut//} && \
 		${CAT} mozcdic-*-${UT_VERSION}.txt \
 			>> ${BUILD_WRKSRC}/data/dictionary_oss/dictionary00.txt
+.endif
 
 post-extract: post-extract-mozc_server
 
