@@ -1,0 +1,20 @@
+#!/bin/sh
+IFS='
+'
+inode_orig=
+filename_orig=
+list=$( %%FIND%% $1 -type f -name '*.gz' -ls | %%AWK%% ' { print $1, $11; } ' | %%SORT%% )
+for i in ${list}; do
+    inode=$( %%ECHO_CMD%% $i | %%CUT%% -d ' ' -f 1 )
+    filename=$( %%ECHO_CMD%% $i | %%CUT%% -d ' ' -f 2 )
+    if [ ${inode_orig} -eq ${inode} ]; then
+        %%ECHO_CMD%% "link ${filename} -> ${filename_orig}"
+        %%LN%% -f ${filename_orig} ${filename}
+    else
+        %%ECHO_CMD%% "encode from EUC-JP to UTF-8 ${filename}"
+        %%GZCAT%% ${filename} | %%ICONV_CMD%% -f EUC-JP-MS -t UTF-8 > ${filename%.gz}
+        %%GZIP_CMD%% ${filename%.gz}
+    fi
+    inode_orig=${inode}
+    filename_orig=${filename}
+done

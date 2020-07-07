@@ -1,0 +1,11 @@
+--- configure.ac.orig	2017-10-03 05:07:05 UTC
++++ configure.ac
+@@ -117,7 +117,7 @@ COMPIZ_REQUIRES="x11 xcomposite xext xfi
+ PKG_CHECK_MODULES(COMPIZ, [$COMPIZ_REQUIRES])
+ 
+ AC_SUBST([COMPIZ_REQUIRES])
+-LIBS="$LIBS -lm -ldl"
++LIBS="$LIBS -lm"
+ 
+ DECORATION_REQUIRES="xrender"
+ 

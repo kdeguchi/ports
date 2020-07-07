@@ -1,0 +1,16 @@
+--- ./Makefile.in.orig	2010-10-30 12:54:30.000000000 +0900
++++ ./Makefile.in	2012-08-22 01:05:13.000000000 +0900
+@@ -795,6 +795,12 @@
+ 	$(AM_V_GEN)$(GZIP) -c < $< > $@
+ 
+ encodings.dir: $(DATA_FILES)
++	mkdir -p tmp large/tmp
++	mv *.enc tmp
++	mv large/*.enc large/tmp
+-	$(AM_V_GEN)$(MKFONTSCALE) -b -s -l -n -r -p $(encodingsdir) -e . -e large .
++	$(AM_V_GEN)$(MKFONTSCALE) -b -s -l -n -p $(encodingsdir)/ -e . -e large .
++	mv large/tmp/*.enc large
++	mv tmp/*.enc .
++	rmdir tmp large/tmp
+ 
+ .PHONY: ChangeLog INSTALL

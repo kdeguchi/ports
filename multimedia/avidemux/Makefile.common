@@ -1,0 +1,291 @@
+# $FreeBSD: multimedia/avidemux/Makefile.common 2597 2020-07-06 04:04:20Z  $
+
+AVIDEMUX_VERSION=	2.7.4
+MASTER_SITES=	\
+		SF/avidemux/avidemux/${PORTVERSION}
+DISTNAME=	avidemux_${PORTVERSION}
+
+BUILD_DEPENDS+=	yasm:devel/yasm \
+		bash:shells/bash
+LIB_DEPENDS+=	libmad.so:audio/libmad \
+		libpng.so:graphics/png
+
+LICENSE=	GPLv2
+
+USE_GNOME=	libxml2
+
+OPTIONS_FILE=	${PORT_DBDIR}/${OPTIONS_NAME:C/-.*//}/options
+
+USES=		cmake:noninja pkgconfig iconv gmake compiler:features sqlite
+USES+=		dos2unix
+DOS2UNIX_FILES=	cmake/admCheckMiscLibs.cmake \
+		avidemux_core/ADM_coreVideoCodec/include/ADM_coreVideoCodec6_export.h \
+		avidemux_core/ADM_coreVideoCodec/include/ADM_ffmp43.h
+CMAKE_ARGS+=	-DGNUMAKE_EXECUTABLE=gmake
+CMAKE_ARGS+=	-DAVIDEMUX_PACKAGER=none
+CMAKE_OFF+=	GTK
+CMAKE_OFF+=	ESD
+CXXFLAGS+=	-I${LOCALBASE}/include
+MAKE_JOBS_UNSAFE=	yes
+NOPRECIOUSMAKEVARS=	yes # ARCH
+
+BUILD_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
+CONFIGURE_ENV+=	COMPILER_PATH=${LOCALBASE}/bin
+MAKE_ENV+=	COMPILER_PATH=${LOCALBASE}/bin
+
+OPTIONS_DEFINE=	CLI FREETYPE FONTCONFIG OSS JACK PULSEAUDIO \
+		XVIDEO FAAC FRIBIDI OPUS TWOLAME \
+		FAAD X264 X265 VPX XVID AMR VORBIS NLS LAME VAAPI VDPAU \
+		DCA FDK QT5 TINYPY VAPOURSYNTH
+OPTIONS_DEFAULT=	FREETYPE FONTCONFIG OSS XVIDEO VPX XVID \
+			FAAD VDPAU VORBIS DCA FDK QT5 TINYPY VAPOURSYNTH \
+			PULSEAUDIO
+
+OPTIONS_SUB=	yes
+CLI_DESC=	Build CLI tool
+FDK_DESC=	FDK AAC codec support
+TINYPY_DESC=	Python scripting support via TinyPy
+VAPOURSYNTH_DESC=	VapourSynth video manipulation support
+
+FRIBIDI_CMAKE_OFF=	-DFRIBIDI:BOOL=OFF
+FRIBIDI_LIB_DEPENDS=	libfribidi.so:converters/fribidi
+OPUS_CMAKE_OFF=		-DOPUS:BOOL=OFF -DOPUS_ENCODER:BOOL=OFF
+OPUS_LIB_DEPENDS=	libopus.so:audio/opus
+TWOLAME_CMAKE_OFF=	-DTWOLAME:BOOL=OFF
+TWOLAME_LIB_DEPENDS=	libtwolame.so:audio/twolame
+
+.if !defined(PACKAGE_BUILDING)
+OPTIONS_DEFAULT+=	LAME FAAC AMR X264
+.endif
+
+.include <bsd.port.options.mk>
+
+.if ${PORT_OPTIONS:MNLS}
+USES+=		gettext
+.else
+CMAKE_ON+=	NO_NLS
+.endif
+
+# for libexecinfo: (so that __builtin_frame_address() finds the top
+# of the stack)
+.if ${ARCH} == amd64
+CFLAGS+=	-fno-omit-frame-pointer
+#MAKE_ENV+=	ARCH=x86_64
+#CONFIGURE_ENV+=	ARCH=x86_64
+.endif
+CMAKE_ARGS+=	-DLIBEXECINFO_INCLUDE_DIR=/usr/include
+CMAKE_ARGS+=	-DLIBEXECINFO_LIBRARY_DIR=-lexecinfo
+
+# We haven't ALSA(Never) & Aften(Yet) on FreeBSD
+CMAKE_OFF+=	ARTS ALSA AFTEN
+
+.if empty(PORT_OPTIONS:MQT5)
+CMAKE_OFF+=	X11
+.else
+USE_GNOME+=	libxslt
+.endif
+
+.if ${PORT_OPTIONS:MQT5}
+USES+=		desktop-file-utils gl qt:5 xorg
+USE_GL=		gl glu
+USE_QT=		core gui network widgets \
+		qmake_build buildtools_build linguist_build
+USE_XORG=	x11
+CMAKE_ON+=	ENABLE_QT5
+PLIST_SUB+=	QT5=""
+.else
+CMAKE_OFF+=	QT4
+PLIST_SUB+=	QT5="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MCLI}
+PLIST_SUB+=	CLI=""
+.else
+PLIST_SUB+=	CLI="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MOSS}
+CMAKE_ON+=	OSS OSS_SUPPORT
+.else
+CMAKE_OFF+=	OSS OSS_SUPPORT
+.endif
+
+.if ${PORT_OPTIONS:MJACK}
+LIB_DEPENDS+=	libjack.so:audio/jack
+PLIST_SUB+=	JACK=""
+.else
+CMAKE_OFF+=	JACK
+PLIST_SUB+=	JACK="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MPULSEAUDIO}
+LIB_DEPENDS+=	libpulse.so:audio/pulseaudio
+PLIST_SUB+=	PULSEAUDIO=""
+.else
+CMAKE_OFF+=	PULSEAUDIOSIMPLE
+PLIST_SUB+=	PULSEAUDIO="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MFDK}
+LIB_DEPENDS+=	libfdk-aac.so:audio/fdk-aac
+PLIST_SUB+=	FDK=""
+.else
+CMAKE_OFF+=	FDK_AAC
+PLIST_SUB+=	FDK="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MFREETYPE}
+LIB_DEPENDS+=	libfreetype.so:print/freetype2
+.else
+CMAKE_OFF+=	FREETYPE2
+.endif
+
+.if ${PORT_OPTIONS:MFONTCONFIG}
+LIB_DEPENDS+=	libfontconfig.so:x11-fonts/fontconfig
+.else
+CMAKE_OFF+=	FONTCONFIG
+.endif
+
+.if ${PORT_OPTIONS:MXVIDEO}
+#LIB_DEPENDS+=	Xv:x11/libXv
+USES+=		xorg
+USE_XORG+=	xv
+.else
+CMAKE_OFF+=	XVIDEO
+.endif
+
+.if ${PORT_OPTIONS:MFAAC}
+LIB_DEPENDS+=	libfaac.so:audio/faac
+PLIST_SUB+=	FAAC=""
+.else
+CMAKE_OFF+=	FAAC
+PLIST_SUB+=	FAAC="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MLAME}
+LIB_DEPENDS+=	libmp3lame.so:audio/lame
+PLIST_SUB+=	LAME=""
+.else
+CMAKE_OFF+=	LAME
+PLIST_SUB+=	LAME="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MFAAD}
+LIB_DEPENDS+=	libfaad.so:audio/faad
+PLIST_SUB+=	FAAD=""
+.else
+CMAKE_OFF+=	FAAD NeAAC
+PLIST_SUB+=	FAAD="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MX264}
+LIB_DEPENDS+=	libx264.so:multimedia/libx264
+PLIST_SUB+=	X264=""
+.else
+CMAKE_OFF+=	X264
+PLIST_SUB+=	X264="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MX265}
+LIB_DEPENDS+=	libx265.so:multimedia/x265
+PLIST_SUB+=	X265=""
+.else
+CMAKE_OFF+=	X265
+PLIST_SUB+=	X265="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MVPX}
+LIB_DEPENDS+=	libvpx.so:multimedia/libvpx
+.else
+CMAKE_OFF+=	VPXDEC
+.endif
+
+.if ${PORT_OPTIONS:MXVID}
+LIB_DEPENDS+=	libxvidcore.so:multimedia/xvid
+PLIST_SUB+=	XVID=""
+.else
+CMAKE_OFF+=	XVID
+PLIST_SUB+=	XVID="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MTINYPY}
+PLIST_SUB+=	TINYPY=""
+.else
+CMAKE_OFF+=	TINYPY
+PLIST_SUB+=	TINYPY="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MDCA}
+LIB_DEPENDS+=	libdca.so:multimedia/libdca
+PLIST_SUB+=	DCA=""
+.else
+CMAKE_OFF+=	LIBDCA
+PLIST_SUB+=	DCA="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MVAPOURSYNTH}
+LIB_DEPENDS+=	libvapoursynth.so:multimedia/vapoursynth
+PLIST_SUB+=	VAPOURSYNTH=""
+.else
+CMAKE_OFF+=	VAPOURSYNTH
+PLIST_SUB+=	VAPOURSYNTH="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MVAAPI}
+LIB_DEPENDS+=	libva.so:multimedia/libva
+PLIST_SUB+=	VAAPI=""
+.else
+CMAKE_OFF+=	VAAPI LIBVA
+PLIST_SUB+=	VAAPI="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MVDPAU}
+LIB_DEPENDS+=	libvdpau.so:multimedia/libvdpau
+PLIST_SUB+=	VDPAU=""
+.else
+CMAKE_OFF+=	VDPAU
+PLIST_SUB+=	VDPAU="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MVORBIS}
+LIB_DEPENDS+=	libvorbis.so:audio/libvorbis
+PLIST_SUB+=	VORBIS=""
+.else
+CMAKE_OFF+=	LIBVORBIS VORBIS
+PLIST_SUB+=	VORBIS="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MAMR}
+LIB_DEPENDS+=	libopencore-amrnb.so:audio/opencore-amr
+PLIST_SUB+=	AMRNB=""
+PLIST_SUB+=	AMRWB=""
+.else
+CMAKE_OFF+=	OPENCORE_AMRNB
+PLIST_SUB+=	AMRNB="@comment "
+CMAKE_OFF+=	OPENCORE_AMRWB
+PLIST_SUB+=	AMRWB="@comment "
+.endif
+
+.include <bsd.port.pre.mk>
+
+# is this kosher?  the result seems to run tho...  (see ports/185997)
+.if $(COMPILER_FEATURES:Mlibc++)
+LDFLAGS+=	-lc++
+.endif
+
+#.if ${COMPILER_TYPE} == clang
+USE_GCC=	yes
+#.endif
+
+NOT_FOR_ARCHS=		aarch64 powerpc powerpc64 powerpcspe sparc64
+NOT_FOR_ARCHS_REASON=	cmake/admDetermineSystem.cmake:78: CPU not supported
+
+post-patch:
+	@${MKDIR} ${CONFIGURE_WRKSRC}/config
+	@${LN} -s ${LOCALBASE}/include/iconv.h ${CONFIGURE_WRKSRC}/config
+	@${REINPLACE_CMD} 's|-ldl||' ${WRKSRC}/avidemux_core/CMakeLists.txt
+	@${REINPLACE_CMD} 's|Categories=AudioVideo|Categories=Application;AudioVideo;Player;|' ${WRKSRC}/avidemux/qt4/xdg_data/org.avidemux.Avidemux.desktop
+
+post-configure-common:
+	@${FIND} ${CONFIGURE_WRKSRC} -name link.txt -print0 | \
+		${XARGS} -0 ${REINPLACE_CMD} 's|-ldl||g'

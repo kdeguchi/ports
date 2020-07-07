@@ -1,0 +1,11 @@
+--- src/Makefile.am.orig	2017-04-18 08:22:55 UTC
++++ src/Makefile.am
+@@ -9,7 +9,7 @@ AM_CPPFLAGS =			     \
+ 
+ bin_PROGRAMS = compiz
+ 
+-compiz_LDADD = @COMPIZ_LIBS@ @GL_LIBS@ -lm -ldl
++compiz_LDADD = @COMPIZ_LIBS@ @GL_LIBS@ -lm
+ compiz_LDFLAGS = -export-dynamic -pthread
+ compiz_SOURCES =   \
+ 	main.c	   \

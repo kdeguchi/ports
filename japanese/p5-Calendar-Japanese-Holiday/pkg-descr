@@ -1,0 +1,4 @@
+Calendar::Japanese::Holiday is-a Date::Simple, and calculates Japanese
+Holiday.
+
+WWW: http://search.cpan.org/dist/Calendar-Japanese-Holiday/

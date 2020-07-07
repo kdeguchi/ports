@@ -1,0 +1,11 @@
+--- src/screensaver/Makefile.am.orig	2017-10-03 05:26:22 UTC
++++ src/screensaver/Makefile.am
+@@ -3,7 +3,7 @@ PFLAGS=-module -avoid-version -no-undefi
+ 
+ if SCREENSAVER_PLUGIN
+ libscreensaver_la_LDFLAGS = $(PFLAGS)
+-libscreensaver_la_LIBADD = @COMPIZ_LIBS@ -lXss -lstdc++
++libscreensaver_la_LIBADD = @COMPIZ_LIBS@ -lXss
+ nodist_libscreensaver_la_SOURCES = screensaver_options.c screensaver_options.h
+ dist_libscreensaver_la_SOURCES = effect.cpp \
+ 			effect.h                    \

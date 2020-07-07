@@ -1,0 +1,13 @@
+--- doc/docs.xml.orig	2019-01-08 01:26:24 UTC
++++ doc/docs.xml
+@@ -140,8 +140,8 @@
+     <para>Default configuration file location is
+     <filename>~/.config/conky/conky.conf</filename>&#160;or
+     <filename>${sysconfdir}/conky/conky.conf</filename>. On most systems,
+-    sysconfdir is /etc, and you can find the sample config file there in
+-    <filename>/etc/conky/conky.conf</filename>.</para>
++    sysconfdir is LOCALBASE/etc, and you can find the sample config file there in
++    <filename>LOCALBASE/etc/conky/conky.conf</filename>.</para>
+     <para>You might want to copy it to
+     <filename>~/.config/conky/conky.conf</filename>&#160;and then start modifying
+     it. Other configs can be found at

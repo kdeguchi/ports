@@ -1,0 +1,1 @@
+/usr/ports/japanese/Makefile.inc

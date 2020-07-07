@@ -1,0 +1,12 @@
+etc/fonts/conf.avail/20-unhint-epson.conf
+etc/fonts/conf.avail/62-fonts-epson.conf
+etc/fonts/conf.d/20-unhint-epson.conf
+etc/fonts/conf.d/62-fonts-epson.conf
+%%FONTSDIR%%/EPGYOBLD.TTF
+%%FONTSDIR%%/EPGYOSHO.TTF
+%%FONTSDIR%%/EPKAISHO.TTF
+%%FONTSDIR%%/EPKGOBLD.TTF
+%%FONTSDIR%%/EPKYOUKA.TTF
+%%FONTSDIR%%/EPMARUGO.TTF
+%%FONTSDIR%%/EPMGOBLD.TTF
+%%FONTSDIR%%/EPMINBLD.TTF

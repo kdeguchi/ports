@@ -1,0 +1,13 @@
+etc/compizconfig/config
+include/compizconfig/ccs-backend.h
+include/compizconfig/ccs.h
+lib/compiz/libccp.a
+lib/compiz/libccp.so
+lib/compizconfig/backends/libini.a
+lib/compizconfig/backends/libini.so
+lib/libcompizconfig.a
+lib/libcompizconfig.so
+lib/libcompizconfig.so.0
+lib/libcompizconfig.so.0.0.0
+libdata/pkgconfig/libcompizconfig.pc
+share/compiz/ccp.xml
