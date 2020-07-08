@@ -52,6 +52,7 @@ OPTIONS_DEFINE=	NLS EXECINFO THUNAR
 OPTIONS_DEFAULT=EXECINFO
 OPTIONS_SUB=	yes
 EXECINFO_DESC=	Build with libexecinfo support
+THUNAR_DESC=	Build with thunar support
 
 NLS_USES=	gettext-runtime
 NLS_CONFIGURE_ENABLE=	nls
