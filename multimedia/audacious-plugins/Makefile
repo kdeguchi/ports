@@ -36,8 +36,7 @@ gtk2_RUN_DEPENDS=	audacious:multimedia/audacious@gtk2
 gtk2_BUILD_DEPENDS=	audacious:multimedia/audacious@gtk2
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-console --enable-hotkey \
-		--enable-gnomeshortcuts
+CONFIGURE_ARGS=	--disable-console
 
 .if ${FLAVOR} == qt5
 CONFIGURE_ARGS+=	--enable-qt --disable-gtk
@@ -51,7 +50,7 @@ PLIST_SUB=		QT5="@comment " GTK2=""
 .endif
 
 OPTIONS_DEFINE=	AAC AMIDI BS2B CDDA CUE FFMPEG FLAC LAME LIRC \
-		MMS MODPLUG MPRIS NEON NLS NOTIFY SAMPLERATE \
+		MMS MODPLUG MPRIS NEON NLS NOTIFY OPENMPT SAMPLERATE \
 		SCROBBLER SID SNDFILE SOXR SPEEDPITCH VORBIS WAVPACK
 OPTIONS_MULTI=		OUTPUT
 OPTIONS_MULTI_OUTPUT=	ALSA FILEWRITER JACK OSS PULSEAUDIO SDL SNDIO
@@ -70,6 +69,7 @@ BS2B_DESC=	BS2B effect
 FILEWRITER_DESC=File writer
 MPRIS_DESC=	NPRIS plugin
 NEON_DESC=	Neon plugin
+OPENMPT_DESC=	OpenMPT plugin
 SCROBBLER_DESC=	Scrobbler decoder
 SID_DESC=	Sound chip emulator of Commodore
 SPEEDPITCH_DESC=Speed and Pitch plugin
@@ -118,6 +118,8 @@ NOTIFY_CONFIGURE_ENABLE=notify
 OPENGL_USES=		gl xorg
 OPENGL_USE=		xorg=x11 gl=gl
 OPENGL_CONFIGURE_ENABLE=glspectrum
+OPENMPT_CONFIGURE_ENABLE=openmpt
+OPENMPT_LIB_DEPENDS=	libopenmpt.so:audio/libopenmpt
 OSS_CONFIGURE_ENABLE=	oss4
 PULSEAUDIO_LIB_DEPENDS=	libpulse-mainloop-glib.so:audio/pulseaudio
 PULSEAUDIO_CONFIGURE_ENABLE=	pulse

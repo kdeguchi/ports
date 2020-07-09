@@ -55,6 +55,7 @@ lib/libaudtag.so.3.0.0
 libdata/pkgconfig/audacious.pc
 man/man1/audacious.1.gz
 man/man1/audtool.1.gz
+%%THUNAR%%share/Thunar/sendto/thunar-sendto-audacious-playlist.desktop
 share/appdata/audacious.appdata.xml
 share/applications/audacious.desktop
 %%DATADIR%%/AUTHORS
