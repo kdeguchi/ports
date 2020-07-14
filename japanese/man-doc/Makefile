@@ -19,7 +19,7 @@ EXTRACT_AFTER_ARGS=	-C ${WRKSRC} \
 		--exclude +MTREE_DIRS \
 		-s '|/usr|${PREFIX}|gs'
 
-DISTINFO_FILE=	${.CURDIR}/distinfo.${ARCH}
+#DISTINFO_FILE=	${.CURDIR}/distinfo.${ARCH}
 PLIST=	${.CURDIR}/pkg-plist
 
 SUB_FILES=	eucjp2utf8.sh
@@ -29,15 +29,13 @@ SUB_LIST=	AWK="${AWK}" CUT="${CUT}" ECHO_CMD="${ECHO_CMD}" FIND="${FIND}" \
 
 NO_BUILD=	yes
 
-#.include <bsd.port.pre.mk>
-
 pre-extract:
 	${MKDIR} ${WRKSRC}
 
 do-install:
-	${TAR} -cf - -C ${WRKSRC}${DATADIR} . | ${TAR} -xpf - -C ${STAGEDIR}${MANPREFIX}/man
-	${SH} ${WRKDIR}/eucjp2utf8.sh ${STAGEDIR}${MANPREFIX}/man
-	cd ${STAGEDIR}${MANPREFIX}/man && \
+	${TAR} -cf - -C ${WRKSRC}${DATADIR} . | ${TAR} -xpf - -C ${STAGEDIR}${MANPREFIX}/share/man
+	${SH} ${WRKDIR}/eucjp2utf8.sh ${STAGEDIR}${MANPREFIX}/share/man
+	cd ${STAGEDIR}${MANPREFIX}/share/man && \
 		${LN} -s ja ja_JP.UTF-8 && \
 		${LN} -s ja ja.UTF-8
 
@@ -47,5 +45,4 @@ post-install:
 
 compress-man:
 
-#.include <bsd.port.post.mk>
 .include <bsd.port.mk>
