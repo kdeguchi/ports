@@ -1,5 +1,5 @@
---- emulators/virtualbox-ose/work/VirtualBox-5.2.34/src/VBox/Devices/Audio/DrvHostOSSAudio.cpp.orig	2019-10-10 11:09:31.000000000 -0700
-+++ emulators/virtualbox-ose/work/VirtualBox-5.2.34/src/VBox/Devices/Audio/DrvHostOSSAudio.cpp	2020-07-11 17:50:06.963665000 -0700
+--- src/VBox/Devices/Audio/DrvHostOSSAudio.cpp.orig	2019-10-10 11:09:31.000000000 -0700
++++ src/VBox/Devices/Audio/DrvHostOSSAudio.cpp	2020-07-11 17:50:06.963665000 -0700
 @@ -248,11 +248,11 @@
                  break;
  
