@@ -120,6 +120,10 @@ USE_XORG+=	xorgproto
 USE_XORG+=	xorgproto
 .endif
 
+.if ${.CURDIR:M*/graphics/aalib}
+USE_XORG+=	xorgproto
+.endif
+
 .if ${.CURDIR:M*/devel/qt5-core}
 RUN_DEPENDS:=	${RUN_DEPENDS:S@etc_os-release>0:sysutils/etc_os-release@@}
 .endif

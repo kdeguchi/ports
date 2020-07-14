@@ -25,7 +25,7 @@ USES:=	${USES:S@c++11-lang@openmp@}
 .endif
 
 .if ${.CURDIR:M*/multimedia/libxine}
-USES:=	${USES:S@compiler@compiler:openmp@}
+USES:=	${USES:S@compiler @compiler:openmp @W}
 .endif
 
 .if ${.CURDIR:M*/devel/p5-ExtUtils-PkgConfig}
