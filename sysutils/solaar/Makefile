@@ -36,7 +36,8 @@ post-patch:
 		${WRKSRC}/lib/logitech_receiver/listener.py
 	@${REINPLACE_CMD} 's|[[:<:]]cmd[[:>:]]|action|' \
 		${WRKSRC}/lib/solaar/cli/__init__.py
-	@${REINPLACE_CMD} -e 's@/etc/xdg/autostart@${PREFIX}/etc/xdg/autostart@' -e '/yield .\/etc\/udev\/rules.*/d' \
+	@${REINPLACE_CMD} -e 's@/etc/xdg/autostart@${PREFIX}/etc/xdg/autostart@' \
+		-e '/yield .\/etc\/udev\/rules\.d.*/d' \
 		${WRKSRC}/setup.py
 
 post-build:
