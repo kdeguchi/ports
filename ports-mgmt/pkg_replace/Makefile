@@ -2,7 +2,7 @@
 # $FreeBSD: head/ports-mgmt/pkg_replace/Makefile 540625 2020-06-27 17:29:36Z lwhsu $
 
 PORTNAME=	pkg_replace
-PORTVERSION=	20200623
+PORTVERSION=	20200717
 CATEGORIES=	ports-mgmt
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
