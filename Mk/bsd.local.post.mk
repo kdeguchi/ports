@@ -97,7 +97,6 @@ LIB_DEPENDS:=	${LIB_DEPENDS:S@libavcodec.so:multimedia/ffmpeg@@}
 .endif
 
 .if ${.CURDIR:M*/devel/qt5-core}
-LIB_DEPENDS+=	libdouble-conversion.so:devel/double-conversion
 RUN_DEPENDS:=	${RUN_DEPENDS:S@etc_os-release>0:sysutils/etc_os-release@@}
 .endif
 
