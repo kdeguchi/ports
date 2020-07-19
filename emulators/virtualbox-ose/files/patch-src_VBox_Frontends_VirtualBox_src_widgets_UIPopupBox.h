@@ -1,10 +1,10 @@
---- src/VBox/Frontends/VirtualBox/src/widgets/UIPopupBox.h.orig	2020-05-18 14:53:03 UTC
+--- src/VBox/Frontends/VirtualBox/src/widgets/UIPopupBox.h.orig	2020-07-09 18:04:54 UTC
 +++ src/VBox/Frontends/VirtualBox/src/widgets/UIPopupBox.h
-@@ -20,6 +20,7 @@
-
- /* Global includes: */
+@@ -23,6 +23,7 @@
+ 
+ /* Qt includes: */
  #include <QIcon>
 +#include <QPainterPath>
  #include <QWidget>
-
- /* Forward declarations: */
+ 
+ /* GUI includes: */
