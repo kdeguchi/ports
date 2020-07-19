@@ -1,8 +1,7 @@
 # $FreeBSD: security/clamav/Makefile 2592 2020-07-03 21:49:12Z  $
 
 PORTNAME=	clamav
-PORTVERSION=	0.102.3
-PORTREVISION=	1
+PORTVERSION=	0.102.4
 PORTEPOCH=	1
 CATEGORIES=	security
 MASTER_SITES=	https://www.clamav.net/downloads/production/
