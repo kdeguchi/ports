@@ -7,7 +7,7 @@ PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ericbsd@FreeBSD.org
-COMMENT=	A slick-looking LightDM greeter
+COMMENT=	Slick-looking LightDM greeter
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING

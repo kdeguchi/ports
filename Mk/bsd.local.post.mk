@@ -96,35 +96,8 @@ RUN_DEPENDS:=	${RUN_DEPENDS:C@gcc[0-9]+:lang/gcc[0-9]+@@}
 LIB_DEPENDS:=	${LIB_DEPENDS:S@libavcodec.so:multimedia/ffmpeg@@}
 .endif
 
-.if ${.CURDIR:M*/x11/libXdmcp}
-USE_XORG:=	${USE_XORG:S@xorgproto:both@xorgproto@}
-.endif
-
-.if defined(BUILD_DEPENDS) && ${BUILD_DEPENDS:M*x11/libXdmcp}
-USE_XORG+=	xorgproto
-.endif
-
-.if defined(LIB_DEPENDS) && ${LIB_DEPENDS:M*x11/libXdmcp}
-USE_XORG+=	xorgproto
-.endif
-
-.if defined(RUN_DEPENDS) && ${RUN_DEPENDS:M*x11/libXdmcp}
-USE_XORG+=	xorgproto
-.endif
-
-.if ${.CURDIR:M*/audio/audacity}
-USE_XORG+=	xorgproto
-.endif
-
-.if ${.CURDIR:M*/devel/pygobject3-common}
-USE_XORG+=	xorgproto
-.endif
-
-.if ${.CURDIR:M*/graphics/aalib}
-USE_XORG+=	xorgproto
-.endif
-
 .if ${.CURDIR:M*/devel/qt5-core}
+LIB_DEPENDS+=	libdouble-conversion.so:devel/double-conversion
 RUN_DEPENDS:=	${RUN_DEPENDS:S@etc_os-release>0:sysutils/etc_os-release@@}
 .endif
 
