@@ -38,7 +38,7 @@ X11_VARS=	GLIB_SCHEMAS=org.cpu-x.gschema.xml INSTALLS_ICONS=yes
 post-patch:
 	@${REINPLACE_CMD} -e 's, -Wno-unused-result,,' ${WRKSRC}/CMakeLists.txt
 	@${REINPLACE_CMD} -e '23s,^,#include <sys/wait.h>,' ${WRKSRC}/src/gui_gtk.c
-	${REINPLACE_CMD} -E -e 's,(/run/cpu-x),/var\1,' ${WRKSRC}/src/ipc.h
+	@${REINPLACE_CMD} -E -e 's,(/run/cpu-x),/var\1,' ${WRKSRC}/src/ipc.h
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
