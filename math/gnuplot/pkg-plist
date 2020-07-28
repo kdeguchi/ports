@@ -38,3 +38,4 @@ bin/gnuplot
 %%DATADIR%%/5.4/js/textzoom.png
 %%DATADIR%%/5.4/lua/gnuplot-tikz.lua
 share/man/man1/gnuplot.1.gz
+share/man/ja/man1/gnuplot.1.gz

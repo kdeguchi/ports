@@ -94,11 +94,9 @@ post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	cd ${WRKSRC}/demo && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR}
 	@${MKDIR} ${STAGEDIR}${MANPREFIX}/man/ja/man1
-	cd ${STAGEDIR}${MANPREFIX}/man/man1 && \
-		${CAT} gnuplot-ja.1 | ${ICONV_CMD} -f EUC-JP -t UTF-8 > gnuplot-ja.utf8.1 && \
-		${MV} ${STAGEDIR}${MANPREFIX}/man/man1/gnuplot-ja.utf8.1 \
-			${STAGEDIR}${MANPREFIX}/man/ja/man1/gnuplot.1 && \
-		${RM} ${STAGEDIR}${MANPREFIX}/man/man1/gnuplot-ja.1
+	cd ${WRKSRC}/man && \
+		${INSTALL_MAN} ${PORTNAME}-ja_JP.UTF-8 \
+			${STAGEDIR}${MANPREFIX}/man/ja/man1/${PORTNAME}.1
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}/psdoc
