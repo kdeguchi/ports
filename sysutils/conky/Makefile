@@ -5,6 +5,7 @@ PORTNAME=	conky
 PORTVERSION=	1.11.6
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
+PKGNAMEPREFIX=	${LUA_PKGNAMEPREFIX}
 
 MAINTAINER=	madpilot@FreeBSD.org
 COMMENT?=	Advanced, highly configurable system monitor for X11
@@ -30,7 +31,6 @@ CMAKE_ARGS=	-DAPP_SED=${LOCALBASE}/bin/gsed
 CONFLICTS?=	conky-awesome-[0-9]*
 
 SLAVEDIRS=	sysutils/conky-awesome
-PORTDOCS=	html/config_settings.html html/docs.html html/lua.html html/variables.html
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	brndnmtthws
@@ -103,7 +103,7 @@ RSS_USE=		gnome=glib20,libxml2
 RSS_IMPLIES=		CURL
 
 X11_USES=		xorg
-X11_USE=		xorg=x11,xext,xdamage,xfixes
+X11_USE=		xorg=ice,sm,x11,xext,xdamage,xfixes
 X11_CMAKE_BOOL=		BUILD_X11 OWN_WINDOW
 X11_VARS=		EXAMPLE_CONF_FILE=${WRKSRC}/data/conky.conf INSTALLS_ICONS=yes
 X11_VARS_OFF=		EXAMPLE_CONF_FILE=${WRKSRC}/data/conky_no_x11.conf
