@@ -24,26 +24,25 @@ CMAKE_OFF=	BUILD_PORT_MONITORS \
 		BUILD_IBM \
 		BUILD_HDDTEMP \
 		BUILD_IOSTATS \
-		BUILD_AUDACIOUS \
-		BUILD_DOCS
+		BUILD_AUDACIOUS
+#		BUILD_DOCS
 CMAKE_ARGS=	-DAPP_SED=${LOCALBASE}/bin/gsed
 CONFLICTS?=	conky-awesome-[0-9]*
 
 SLAVEDIRS=	sysutils/conky-awesome
-PLIST_FILES=	bin/conky share/man/man1/conky.1.gz
-PORTEXAMPLES=	conky.conf conky_no_x11.conf convert.lua
 PORTDOCS=	html/config_settings.html html/docs.html html/lua.html html/variables.html
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	brndnmtthws
 
-OPTIONS_DEFINE=	APCUPSD CURL DOCS EXAMPLES IPV6 METAR MOC MPD NCURSES RSS \
+OPTIONS_DEFINE=	APCUPSD CURL DOCS IPV6 MANPAGES METAR MOC MPD NCURSES RSS \
 		X11 XMMS2
 
 OPTIONS_GROUP?=	X11
 OPTIONS_GROUP_X11=	ARGB DOUBLE_BUFFER IMLIB2 LUA_CAIRO LUA_IMLIB2 LUA_RSVG \
 		XFT XINERAMA XSHAPE
 OPTIONS_DEFAULT?=	ARGB DOUBLE_BUFFER LUA_CAIRO X11 XFT
+OPTIONS_SUB=	yes
 
 APCUPSD_DESC=		Monitor APCUPSD
 APCUPSD_CMAKE_BOOL=	BUILD_APCUPSD
@@ -69,20 +68,19 @@ LUA_CAIRO_DESC=		Lua-Cairo binding
 LUA_CAIRO_CMAKE_BOOL=	BUILD_LUA_CAIRO
 LUA_CAIRO_USES=	gnome
 LUA_CAIRO_USE=		gnome=cairo
-LUA_CAIRO_PLIST_FILES=	lib/conky/libcairo.so
 LUA_CAIRO_IMPLIES=	X11
 
 LUA_IMLIB2_DESC=	Lua-Imlib2 binding
 LUA_IMLIB2_CMAKE_BOOL=	BUILD_LUA_IMLIB2
-LUA_IMLIB2_PLIST_FILES=	lib/conky/libimlib2.so
 LUA_IMLIB2_IMPLIES=	IMLIB2 X11
 
 LUA_RSVG_DESC=		Lua-rsvg binding
 LUA_RSVG_CMAKE_BOOL=	BUILD_LUA_RSVG
 LUA_RSVG_USES=		gnome
 LUA_RSVG_USE=		gnome=librsvg2
-LUA_RSVG_PLIST_FILES=	lib/conky/librsvg.so
 LUA_RSVG_IMPLIES=	X11
+
+MANPAGES_CMAKE_BOOL=	BUILD_DOCS
 
 METAR_DESC=		Display METAR weather reports
 METAR_CMAKE_BOOL=	BUILD_WEATHER_METAR
@@ -109,8 +107,6 @@ X11_USE=		xorg=x11,xext,xdamage,xfixes
 X11_CMAKE_BOOL=		BUILD_X11 OWN_WINDOW
 X11_VARS=		EXAMPLE_CONF_FILE=${WRKSRC}/data/conky.conf INSTALLS_ICONS=yes
 X11_VARS_OFF=		EXAMPLE_CONF_FILE=${WRKSRC}/data/conky_no_x11.conf
-X11_PLIST_FILES=	share/applications/conky.desktop \
-		share/icons/hicolor/scalable/apps/conky-logomark-violet.svg
 
 XFT_CMAKE_BOOL=		BUILD_XFT
 XFT_USE=		xorg=xft
@@ -129,10 +125,6 @@ XSHAPE_CMAKE_BOOL=	BUILD_XSHAPE
 XSHAPE_IMPLIES=	X11
 
 .include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MLUA_CAIRO} && ${PORT_OPTIONS:MLUA_IMLIB2}
-PLIST_FILES+=		lib/conky/libcairo_imlib2_helper.so
-.endif
 
 # disable apm on non-x86 archs
 .if ${ARCH} != amd64 && ${ARCH} != i386
@@ -154,5 +146,14 @@ post-patch:
 
 post-build:
 	(cd ${WRKSRC}/doc && ${SH} docgen.sh)
+
+post-install:
+	@${MKDIR} ${STAGEDIR}${ETCDIR}
+
+post-install-X11-on:
+	${INSTALL_DATA} ${WRKSRC}/data/conky.conf ${STAGEDIR}${ETCDIR}/conky.conf.sample
+
+post-install-X11-off:
+	${INSTALL_DATA} ${WRKSRC}/data/conky_no_x11.conf ${STAGEDIR}${ETCDIR}/conky.conf.sample
 
 .include <bsd.port.mk>

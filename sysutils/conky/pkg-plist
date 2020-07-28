@@ -1,0 +1,13 @@
+bin/conky
+%%LUA_CAIRO%%lib/conky/libcairo.so
+%%LUA_CAIRO%%%%LUA_IMLIB2%%lib/conky/libcairo_imlib2_helper.so
+%%LUA_IMLIB2%%lib/conky/libimlib2.so
+%%LUA_RSVG%%lib/conky/librsvg.so
+%%X11%%share/applications/conky.desktop
+%%PORTDOCS%%%%DOCSDIR%%/html/config_settings.html
+%%PORTDOCS%%%%DOCSDIR%%/html/docs.html
+%%PORTDOCS%%%%DOCSDIR%%/html/lua.html
+%%PORTDOCS%%%%DOCSDIR%%/html/variables.html
+%%X11%%share/icons/hicolor/scalable/apps/conky-logomark-violet.svg
+%%MANPAGES%%share/man/man1/conky.1.gz
+@sample %%ETCDIR%%/conky.conf.sample
