@@ -80,9 +80,9 @@ CFLAGS+=	-Qunused-arguments
 CONFIGURE_ARGS+=	--with-utempter
 .endif
 
-#.if ${.CURDIR:M*/math/gnuplot}
-#USE_WX:=	${USE_WX:S/2.8/3.0/}
-#.endif
+.if ${.CURDIR:M*/databases/mariadb*-server}
+SUB_LIST+=	MARIADB_GROUP="${MARIADB_GROUP}"
+.endif
 
 .if ${.CURDIR:M*/sysutils/fusefs-lkl}
 RUN_DEPENDS:=	${RUN_DEPENDS:C@gcc[0-9]+:lang/gcc[0-9]+@@}
