@@ -3,7 +3,6 @@
 
 PORTNAME=	conky
 PORTVERSION=	1.11.6
-#PORTREVISION=	3
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
 
@@ -37,7 +36,6 @@ PORTDOCS=	html/config_settings.html html/docs.html html/lua.html html/variables.
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	brndnmtthws
-GH_TAGNAME=	5651cf1
 
 OPTIONS_DEFINE=	APCUPSD CURL DOCS EXAMPLES IPV6 METAR MOC MPD NCURSES RSS \
 		X11 XMMS2
