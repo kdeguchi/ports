@@ -108,6 +108,10 @@ RUN_DEPENDS:=	${RUN_DEPENDS:S@/mono/wine-mono-4.9.4.msi@/mono/wine-mono-5.1.0-x8
 USE_WX:=	${USE_WX:S@3.0@3.1@}
 .endif
 
+.if ${.CURDIR:M*/www/webkit2-gtk3}
+CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON_CMD}
+.endif
+
 .if defined(PREFIX) && ${PREFIX} == /usr/local
 POST_PLIST+=	post-generate-plist
 .if !target(post-generate-plist)
