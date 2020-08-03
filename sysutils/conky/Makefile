@@ -5,7 +5,7 @@ PORTNAME=	conky
 PORTVERSION=	1.11.6
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
-PKGNAMEPREFIX=	${LUA_PKGNAMEPREFIX}
+PKGNAMESUFFIX=	-${LUA_FLAVOR}
 
 MAINTAINER=	madpilot@FreeBSD.org
 COMMENT?=	Advanced, highly configurable system monitor for X11
