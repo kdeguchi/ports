@@ -23,6 +23,7 @@ USES=		compiler:c11 desktop-file-utils gettext-tools gmake gnome \
 		libtool pathfix perl5 pkgconfig tar:bzip2 xfce xorg
 USE_GNOME=	cairo gdkpixbuf2 glib20 gtk30 intltool
 USE_LDCONFIG=	yes
+USE_PERL5=	build
 USE_XFCE=	libexo
 USE_XORG=	ice sm x11
 
