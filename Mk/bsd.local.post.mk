@@ -116,8 +116,8 @@ CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON_CMD}
 OPTIONS_DEFINE+=	TEST
 .endif
 
-.if ${.CURDIR:M*/devel/glib20} || ${.CURDIR:M*/graphics/inkscape}
-USES:=	${USES:S@:wchar_t@@}
+.if ${.CURDIR:M*/net/samba*}
+LIB_DEPENDS:=	${LIB_DEPENDS:S@libiconv.so:converters/libiconv@@}
 .endif
 
 .if defined(PREFIX) && ${PREFIX} == /usr/local

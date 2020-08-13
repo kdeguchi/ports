@@ -28,3 +28,8 @@ USES+=	pkgconfig
 .if defined(RUN_DEPENDS) && ${RUN_DEPENDS:M*devel/p5-Glib2}
 USES+=	pkgconfig
 .endif
+
+.if ${.CURDIR:M*/devel/glib20} || ${.CURDIR:M*/graphics/inkscape} || \
+	${.CURDIR:M*/comms/hidapi}
+USES:=	${USES:S@:wchar_t@@}
+.endif
