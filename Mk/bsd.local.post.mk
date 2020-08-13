@@ -112,8 +112,12 @@ USE_WX:=	${USE_WX:S@3.0@3.1@}
 CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON_CMD}
 .endif
 
-.if ${.CURDIR:M*devel/py-setuptools_scm}
+.if ${.CURDIR:M*/devel/py-setuptools_scm}
 OPTIONS_DEFINE+=	TEST
+.endif
+
+.if ${.CURDIR:M*/devel/glib20} || ${.CURDIR:M*/graphics/inkscape}
+USES:=	${USES:S@:wchar_t@@}
 .endif
 
 .if defined(PREFIX) && ${PREFIX} == /usr/local
