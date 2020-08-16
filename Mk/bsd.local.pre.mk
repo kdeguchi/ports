@@ -33,3 +33,8 @@ USES+=	pkgconfig
 	${.CURDIR:M*/comms/hidapi}
 USES:=	${USES:S@:wchar_t@@}
 .endif
+
+.if ${.CURDIR:M*/sysutils/libcdio-paranoia}
+USES+=	iconv
+.endif
+
