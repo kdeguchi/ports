@@ -2,7 +2,7 @@
 # $FreeBSD: mail/sylpheed-autoenc-plugin/Makefile 2203 2019-11-19 22:37:56Z  $
 
 PORTNAME=	sylpheed-autoenc-plugin
-PORTVERSION=	1.0.1
+PORTVERSION=	1.0.2
 CATEGORIES=	mail
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -23,7 +23,7 @@ USE_GNOME=	atk cairo gdkpixbuf2 glib20 gtk20 pango
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	y-hiroyu
-GH_TAGNAME=	68ef748
+GH_TAGNAME=	0f2b2ed
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
