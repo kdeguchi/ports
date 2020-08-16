@@ -1,9 +1,0 @@
-TIMESTAMP = 1595464070
-SHA256 (mozcdic-ut-20200718.1.tar.bz2) = fad003a7e0bcc2653d6467eb935509ae1829e1d67730a6143aa3ff46bc515499
-SIZE (mozcdic-ut-20200718.1.tar.bz2) = 21390996
-SHA256 (hrs-allbsd-mozc-v2.23.2815.102.00_GH0.tar.gz) = 9e9415c4dcd261308177592d944a5e6d72fc75cef8e28384072966a1ba4446fc
-SIZE (hrs-allbsd-mozc-v2.23.2815.102.00_GH0.tar.gz) = 36711684
-SHA256 (hiroyuki-komatsu-japanese-usage-dictionary-e5b3425_GH0.tar.gz) = 2af954cd844c6a3113449d7dca37e36b769ecb2b49d3a54318a3bdee1a75af56
-SIZE (hiroyuki-komatsu-japanese-usage-dictionary-e5b3425_GH0.tar.gz) = 71050
-SHA256 (e-kato-macuim-v0.6.16.2.1_GH0.tar.gz) = ae999a2f02379bd049484a22684c37be5eb1f4db9763fa79885c4981502336e9
-SIZE (e-kato-macuim-v0.6.16.2.1_GH0.tar.gz) = 324549
