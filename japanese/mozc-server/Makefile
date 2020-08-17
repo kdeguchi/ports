@@ -207,6 +207,8 @@ do-install-mozc_tool:
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
 	    ${STAGEDIR}${DATADIR}/icons/update_uptodate.png
+	${INSTALL_DATA} ${BUILD_WRKSRC}/data/installer/credits_en.html \
+	    ${STAGEDIR}${DATADIR}
 .endif
 
 # ibus_mozc
