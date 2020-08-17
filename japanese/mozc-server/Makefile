@@ -105,7 +105,7 @@ post-extract:	# XXX: do not activate fcitx5
 	${RM} -r ${WRKSRC}/src/unix/fcitx5
 post-patch:
 	${FIND} ${BUILD_WRKSRC} \( -name '*.gyp' -o -name '*.gypi' \) -exec \
-	    ${REINPLACE_CMD} "s,'python','${PYTHON_CMD}',g;s,'/usr/lib/mozc','${PREFIX}/bin',g;s,'/usr/lib/mozc/documents','${DATADIR}',g" {} \;
+	    ${REINPLACE_CMD} "s,'python','${PYTHON_CMD}',g;s,'/usr/lib/mozc','${PREFIX}/libexec',g;s,'/usr/lib/mozc/documents','${DATADIR}',g" {} \;
 .if ${BUILD_MOZC_LIST:Mfcitx_mozc} == "fcitx_mozc"
 	${REINPLACE_CMD} 's,/po/mo},%po}mo,g' \
 	    ${BUILD_WRKSRC}/unix/fcitx/gen_fcitx_mozc_i18n.sh
@@ -351,7 +351,7 @@ do-install-fcitx_mozc:
 	    ${STAGEDIR}${PREFIX}/lib/fcitx \
 	    ${STAGEDIR}${PREFIX}/share/fcitx/addon \
 	    ${STAGEDIR}${PREFIX}/share/fcitx/inputmethod
-	${INSTALL_LIB} \
+	${INSTALL_PROGRAM} \
 	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/fcitx-mozc.so \
 	    ${STAGEDIR}${PREFIX}/lib/fcitx/fcitx-mozc.so
 	${INSTALL_DATA} \
