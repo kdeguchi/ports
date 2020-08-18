@@ -104,7 +104,7 @@ BUILD_GYP_CMD=	${SETENV} ${MAKE_ENV} ${LOCALBASE}/bin/gyp
 post-extract:	# XXX: do not activate fcitx5
 	${RM} -r ${WRKSRC}/src/unix/fcitx5
 post-patch:
-	${FIND} ${BUILD_WRKSRC} \( -name '*.gyp' -o -name '*.gypi' \) -exec \
+	${FIND} ${BUILD_WRKSRC} \( -name '*.gyp' -o -name '*.gypi' -o -name '*.cc' -o -name '*.h' \) -exec \
 	    ${REINPLACE_CMD} "s,'python','${PYTHON_CMD}',g;s,'/usr/lib/mozc','${PREFIX}/libexec',g;s,'/usr/lib/mozc/documents','${DATADIR}',g" {} \;
 .if ${BUILD_MOZC_LIST:Mfcitx_mozc} == "fcitx_mozc"
 	${REINPLACE_CMD} 's,/po/mo},%po}mo,g' \
