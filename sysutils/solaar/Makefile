@@ -1,8 +1,7 @@
 # $FreeBSD: head/sysutils/solaar/Makefile 522870 2020-01-13 09:38:12Z tobik $
 
 PORTNAME=	solaar
-DISTVERSION=	1.0.2
-#PORTREVISION=	1
+DISTVERSION=	1.0.3
 CATEGORIES=	sysutils
 
 MAINTAINER=	tobik@FreeBSD.org
@@ -22,10 +21,12 @@ USE_PYTHON=	autoplist concurrent distutils optsuffix
 
 NO_ARCH=	yes
 
-OPTIONS_DEFINE=	GUI
+OPTIONS_DEFINE=	GUI NLS
 
 GUI_USES=	gnome
 GUI_USE=	GNOME=pygobject3:run
+
+NLS_USES=	gettext
 
 post-patch:
 	@${CP} ${FILESDIR}/hidapi.py ${WRKSRC}/lib/hidapi/udev.py
@@ -37,8 +38,14 @@ post-patch:
 	@${REINPLACE_CMD} 's|[[:<:]]cmd[[:>:]]|action|' \
 		${WRKSRC}/lib/solaar/cli/__init__.py
 	@${REINPLACE_CMD} -e 's@/etc/xdg/autostart@${PREFIX}/etc/xdg/autostart@' \
-		-e '/yield .\/etc\/udev\/rules\.d.*/d' \
+		-e '/yield .share\/solaar\/udev-rules\.d.*/d' \
 		${WRKSRC}/setup.py
+	@${REINPLACE_CMD} -e 's@mkdir --parents@mkdir -p@;s@/usr/bin/msgfmt@${PREFIX}/bin/msgfmt@' \
+		${WRKSRC}/tools/po-compile.sh
+	@${CP} ${FILESDIR}/ja.po ${WRKSRC}/po
+
+pre-build-NLS-on:
+	cd ${WRKSRC} && ${SH} tools/po-compile.sh
 
 post-build:
 	${AWK} -f ${FILESDIR}/devd-solaar.awk \
