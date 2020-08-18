@@ -44,8 +44,8 @@ post-patch:
 		${WRKSRC}/tools/po-compile.sh
 	@${CP} ${FILESDIR}/ja.po ${WRKSRC}/po
 
-pre-build-NLS-on:
-	cd ${WRKSRC} && ${SH} tools/po-compile.sh
+post-patch-NLS-on:
+	@cd ${WRKSRC} && ${SH} tools/po-compile.sh
 
 post-build:
 	${AWK} -f ${FILESDIR}/devd-solaar.awk \
