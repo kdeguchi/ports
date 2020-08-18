@@ -38,7 +38,7 @@ post-patch:
 	@${REINPLACE_CMD} 's|[[:<:]]cmd[[:>:]]|action|' \
 		${WRKSRC}/lib/solaar/cli/__init__.py
 	@${REINPLACE_CMD} -e 's@/etc/xdg/autostart@${PREFIX}/etc/xdg/autostart@' \
-		-e '/yield .share\/solaar\/udev-rules\.d.*/d' \
+		-e "s@yield 'share/solaar/udev-rules\.d.*@yield 'etc/xdg/autostart', ['share/autostart/solaar.desktop']@" \
 		${WRKSRC}/setup.py
 	@${REINPLACE_CMD} -e 's@mkdir --parents@mkdir -p@;s@/usr/bin/msgfmt@${PREFIX}/bin/msgfmt@' \
 		${WRKSRC}/tools/po-compile.sh
