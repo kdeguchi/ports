@@ -44,13 +44,13 @@ post-patch:
 		${WRKSRC}/tools/po-compile.sh
 	@${CP} ${FILESDIR}/ja.po ${WRKSRC}/po
 
-post-patch-NLS-on:
-	@cd ${WRKSRC} && ${SH} tools/po-compile.sh
-
 post-build:
 	${AWK} -f ${FILESDIR}/devd-solaar.awk \
 		${WRKSRC}/rules.d/42-logitech-unify-permissions.rules \
 		> ${WRKDIR}/solaar.conf.sample
+
+post-build-NLS-on:
+	@cd ${WRKSRC} && ${SH} tools/po-compile.sh
 
 post-install:
 	${INSTALL_DATA} ${WRKDIR}/solaar.conf.sample \
