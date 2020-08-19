@@ -83,19 +83,19 @@ msgstr  ""
 
 #: lib/logitech_receiver/i18n.py:60 lib/solaar/ui/window.py:555
 msgid   "Firmware"
-msgstr  "ファームウェア"
+msgstr  ""
 
 #: lib/logitech_receiver/i18n.py:61
 msgid   "Bootloader"
-msgstr  "ブートローダ"
+msgstr  ""
 
 #: lib/logitech_receiver/i18n.py:62
 msgid   "Hardware"
-msgstr  "ハードウェア"
+msgstr  ""
 
 #: lib/logitech_receiver/i18n.py:63
 msgid   "Other"
-msgstr  "その他"
+msgstr  ""
 
 #: lib/logitech_receiver/notifications.py:75
 msgid   "pairing lock is closed"
@@ -115,11 +115,11 @@ msgstr  "電源オン"
 
 #: lib/logitech_receiver/receiver.py:130 lib/solaar/ui/window.py:661
 msgid   "unknown"
-msgstr  "不明"
+msgstr  ""
 
 #: lib/logitech_receiver/settings_templates.py:213
 msgid   "Hand Detection"
-msgstr  "手を検出"
+msgstr  ""
 
 #: lib/logitech_receiver/settings_templates.py:213
 msgid   "Turn on illumination when the hands hover over the keyboard."
@@ -361,7 +361,7 @@ msgstr  "レシーバーが詳細なしにエラーを返しました。"
 #: lib/solaar/ui/about.py:38
 msgid   "Shows status of devices connected\n"
         "through wireless Logitech receivers."
-msgstr  "Logitechレシーバーのワイヤレス接続で\n"
+msgstr  "Logitechレシーバーでワイヤレス\n"
         "接続されたデバイスの状態を見る。"
 
 #: lib/solaar/ui/about.py:47
@@ -549,7 +549,7 @@ msgstr  ""
 
 #: lib/solaar/ui/window.py:560
 msgid   "Notifications"
-msgstr  "通知"
+msgstr  ""
 
 #: lib/solaar/ui/window.py:597
 msgid   "No device paired."
