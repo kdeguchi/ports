@@ -67,7 +67,7 @@ msgstr  "温度エラー"
 
 #: lib/logitech_receiver/i18n.py:54
 msgid   "device timeout"
-msgstr  ""
+msgstr  "デバイスタイムアウト"
 
 #: lib/logitech_receiver/i18n.py:55
 msgid   "device not supported"
@@ -155,11 +155,11 @@ msgstr  "HID++ スクロール"
 
 #: lib/logitech_receiver/settings_templates.py:227
 msgid   "Effectively turns off wheel scrolling in Linux."
-msgstr  ""
+msgstr  "Linuxでホイールスクロールを効果的にオフにする"
 
 #: lib/logitech_receiver/settings_templates.py:227
 msgid   "HID++ mode for vertical scroll with the wheel."
-msgstr  ""
+msgstr  "ホイールで垂直スクロールするためのHID++モード"
 
 #: lib/logitech_receiver/settings_templates.py:230
 msgid   "High Resolution Wheel Invert"
@@ -167,7 +167,7 @@ msgstr  "ホイールを逆にする"
 
 #: lib/logitech_receiver/settings_templates.py:231
 msgid   "High-sensitivity wheel invert direction for vertical scroll."
-msgstr  "垂直スクロールの方向を逆にする"
+msgstr  "好感度ホイールの垂直スクロールの方向を逆にする"
 
 #: lib/logitech_receiver/settings_templates.py:233
 msgid   "Wheel Resolution"
@@ -175,7 +175,7 @@ msgstr  "ホイールの解像度"
 
 #: lib/logitech_receiver/settings_templates.py:235
 msgid   "Swap Fx function"
-msgstr  ""
+msgstr  "Fx functionを入れ替え"
 
 #: lib/logitech_receiver/settings_templates.py:237
 msgid   "When set, the F1..F12 keys will activate their special function,\n"
@@ -207,7 +207,8 @@ msgstr  "スマートシフト"
 msgid   "Automatically switch the mouse wheel between ratchet and freespin "
         "mode.\n"
         "The mouse wheel is always free at 0, and always locked at 50"
-msgstr  ""
+msgstr  "マウスホイールのラチェットモードとフリースピンモードを自動的に切り替える。\n"
+        "0でマウスホイールは常にフリーモード、50で常にロック"
 
 #: lib/logitech_receiver/settings_templates.py:255
 msgid   "Backlight"
@@ -260,19 +261,19 @@ msgstr  "HID++ サムスクロール"
 
 #: lib/logitech_receiver/settings_templates.py:265
 msgid   "Effectively turns off thumb scrolling in Linux."
-msgstr  ""
+msgstr  "Linuxでサムスクロールを効果的にオフにする"
 
 #: lib/logitech_receiver/settings_templates.py:265
 msgid   "HID++ mode for horizontal scroll with the thumb wheel."
-msgstr  ""
+msgstr  "サムホイールを水平スクロールとして使うためのHID++モード"
 
 #: lib/logitech_receiver/settings_templates.py:267
 msgid   "Invert thumb scroll direction."
-msgstr  "親指スクロールの方向を逆にする"
+msgstr  "サムスクロールの方向を逆にする"
 
 #: lib/logitech_receiver/settings_templates.py:267
 msgid   "Thumb Scroll Invert"
-msgstr  "親指スクロール逆"
+msgstr  "サムスクロールを逆にする"
 
 #: lib/logitech_receiver/status.py:106
 msgid   "No paired devices."
@@ -312,12 +313,13 @@ msgstr  "電池: %(percent)d%% (%(status)s)"
 
 #: lib/solaar/gtk.py:143
 msgid   "Solaar depends on a udev file that is not present"
-msgstr  ""
+msgstr  "Solaarは存在してないudevに依存する"
 
 #: lib/solaar/gtk.py:146
 msgid   "For more information see the Solaar installation directions\n"
         "at https://pwr-solaar.github.io/Solaar/installation"
-msgstr  ""
+msgstr  "Solaarをインストールする方法の詳しい情報は、\n"
+        "https://pwr-solaar.github.io/Solaar/installation"
 
 #: lib/solaar/listener.py:97
 msgid   "The receiver was unplugged."
@@ -326,22 +328,22 @@ msgstr  "レシーバーが接続されていません"
 #: lib/solaar/listener.py:189
 #, python-format
 msgid   "Unexpected device number (%s) in notification %s."
-msgstr  ""
+msgstr  "通知 %s で予想外のデバイス番号(%s)"
 
 #: lib/solaar/ui/__init__.py:49
 msgid   "Permissions error"
-msgstr  ""
+msgstr  "パーミッションエラー"
 
 #: lib/solaar/ui/__init__.py:51
 #, python-format
 msgid   "Found a Logitech Receiver (%s), but did not have permission to open "
         "it."
-msgstr  ""
+msgstr  "Logitechレシーバー(%s)が見つかりましたが、開くことを許可されていません。"
 
 #: lib/solaar/ui/__init__.py:52
 msgid   "If you've just installed Solaar, try removing the receiver and "
         "plugging it back in."
-msgstr  ""
+msgstr  "Solaarをインストールしたら、レシーバーを抜き、挿し直します。"
 
 #: lib/solaar/ui/__init__.py:55
 msgid   "Unpairing failed"
@@ -350,16 +352,17 @@ msgstr  "ペアリング解除失敗"
 #: lib/solaar/ui/__init__.py:57
 #, python-brace-format
 msgid   "Failed to unpair %{device} from %{receiver}."
-msgstr  ""
+msgstr  "%{receiver}から%{device}をペアリング解除するのに失敗しました。"
 
 #: lib/solaar/ui/__init__.py:58
 msgid   "The receiver returned an error, with no further details."
-msgstr  ""
+msgstr  "レシーバーが詳細なしにエラーを返しました。"
 
 #: lib/solaar/ui/about.py:38
 msgid   "Shows status of devices connected\n"
         "through wireless Logitech receivers."
-msgstr  ""
+msgstr  "Logitechレシーバーのワイヤレス接続で\n"
+        "接続されたデバイスの状態を見る。"
 
 #: lib/solaar/ui/about.py:47
 msgid   "GUI design"
@@ -388,7 +391,7 @@ msgstr  "動作中"
 
 #: lib/solaar/ui/config_panel.py:183
 msgid   "Read/write operation failed."
-msgstr  ""
+msgstr  "読み書き操作が失敗しました。"
 
 #: lib/solaar/ui/notify.py:121
 msgid   "connected"
@@ -406,21 +409,21 @@ msgstr  "ペアリング失敗"
 #: lib/solaar/ui/pair_window.py:136
 msgid   "Make sure your device is within range, and has a decent battery "
         "charge."
-msgstr  ""
+msgstr  "あなたのデバイスが充電量を知ることができるか確認してください。"
 
 #: lib/solaar/ui/pair_window.py:138
 msgid   "A new device was detected, but it is not compatible with this "
         "receiver."
-msgstr  ""
+msgstr  "新しいデバイスが検出されましたが、このレシーバーと互換性がありません。"
 
 #: lib/solaar/ui/pair_window.py:140
 #, python-format
 msgid   "The receiver only supports %d paired device(s)."
-msgstr  ""
+msgstr  "そのレシーバーは %d つまでのデバイスのみサポートします。"
 
 #: lib/solaar/ui/pair_window.py:142
 msgid   "No further details are available about the error."
-msgstr  ""
+msgstr  "エラーについての詳細がありません。"
 
 #: lib/solaar/ui/pair_window.py:156
 msgid   "Found a new device:"
@@ -437,27 +440,30 @@ msgstr  ""
 
 #: lib/solaar/ui/pair_window.py:206
 msgid   "If the device is already turned on, turn if off and on again."
-msgstr  ""
+msgstr  "デバイスの電源が入っているなら、電源を切ってからもう一度入れてください。"
 
 #: lib/solaar/ui/pair_window.py:208
 #, python-format
 msgid   "\n"
         "\n"
         "This receiver has %d pairing(s) remaining."
-msgstr  ""
+msgstr  "\n"
+        "\n"
+        "このレシーバーはあと %d つのペアリングができます。"
 
 #: lib/solaar/ui/pair_window.py:209
 msgid   "\n"
         "Cancelling at this point will not use up a pairing."
-msgstr  ""
+msgstr  "\n"
+        "この時点でのキャンセルはペアリングを使い果たさないでしょう。"
 
 #: lib/solaar/ui/pair_window.py:212
 msgid   "Turn on the device you want to pair."
-msgstr  "ペアリングしたいデバイスの電源を入れてください"
+msgstr  "ペアリングしたいデバイスの電源を入れてください。"
 
 #: lib/solaar/ui/tray.py:59
 msgid   "No Logitech receiver found"
-msgstr  ""
+msgstr  "Logitechレシーバーは見つかりませんでした"
 
 #: lib/solaar/ui/tray.py:66 lib/solaar/ui/window.py:322
 msgid   "Quit"
@@ -485,11 +491,11 @@ msgstr  "ワイヤレス接続"
 
 #: lib/solaar/ui/window.py:143
 msgid   "Lighting"
-msgstr  ""
+msgstr  "点灯"
 
 #: lib/solaar/ui/window.py:175
 msgid   "Show Technical Details"
-msgstr  ""
+msgstr  "技術的詳細を見る"
 
 #: lib/solaar/ui/window.py:191
 msgid   "Pair new device"
@@ -535,7 +541,7 @@ msgstr  ""
 
 #: lib/solaar/ui/window.py:539
 msgid   "Polling rate"
-msgstr  ""
+msgstr  "ポーリングレート"
 
 #: lib/solaar/ui/window.py:559
 msgid   "none"
@@ -543,7 +549,7 @@ msgstr  ""
 
 #: lib/solaar/ui/window.py:560
 msgid   "Notifications"
-msgstr  ""
+msgstr  "通知"
 
 #: lib/solaar/ui/window.py:597
 msgid   "No device paired."
