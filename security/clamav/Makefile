@@ -1,4 +1,4 @@
-# $FreeBSD: security/clamav/Makefile 2592 2020-07-03 21:49:12Z  $
+# $FreeBSD: head/security/clamav/Makefile 545517 2020-08-20 09:54:34Z lwhsu $
 
 PORTNAME=	clamav
 PORTVERSION=	0.102.4
@@ -91,6 +91,8 @@ LHA_RUN_DEPENDS=	lha:archivers/lha
 MILTER_CONFIGURE_WITH=	sendmail=/usr/sbin/sendmail
 MILTER_CONFIGURE_ENABLE=milter
 .if !exists(/usr/lib/libmilter.so)
+MILTER_CFLAGS=		-I${LOCALBASE}/include
+MILTER_LDFLAGS=		-L${LOCALBASE}/lib
 MILTER_LIB_DEPENDS+=	libmilter.so:mail/libmilter
 .endif
 MILTER_USE=		RC_SUBR=clamav-milter
