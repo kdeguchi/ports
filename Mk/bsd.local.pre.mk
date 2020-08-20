@@ -38,3 +38,7 @@ USES:=	${USES:S@:wchar_t@@}
 USES+=	iconv
 .endif
 
+#.if ${.CURDIR:M*/devel/py-setuptools_scm}
+#OPTIONS_DEFINE+=	TEST
+#TEST_RUN_DEPENDS=	${TEST_DEPENDS}
+#.endif

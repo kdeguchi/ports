@@ -167,7 +167,7 @@ msgstr  "ホイールを逆にする"
 
 #: lib/logitech_receiver/settings_templates.py:231
 msgid   "High-sensitivity wheel invert direction for vertical scroll."
-msgstr  "好感度ホイールの垂直スクロールの方向を逆にする"
+msgstr  "垂直スクロールに関する高感度ホイールの方向を逆にする"
 
 #: lib/logitech_receiver/settings_templates.py:233
 msgid   "Wheel Resolution"

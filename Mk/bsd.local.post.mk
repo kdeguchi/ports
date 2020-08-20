@@ -112,9 +112,9 @@ USE_WX:=	${USE_WX:S@3.0@3.1@}
 CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON_CMD}
 .endif
 
-.if ${.CURDIR:M*/devel/py-setuptools_scm}
-OPTIONS_DEFINE+=	TEST
-.endif
+#.if ${.CURDIR:M*/devel/py-setuptools_scm}
+#TEST_DEPENDS=
+#.endif
 
 .if ${.CURDIR:M*/net/samba*}
 LIB_DEPENDS:=	${LIB_DEPENDS:S@libiconv.so:converters/libiconv@@}
