@@ -22,7 +22,6 @@ RUN_DEPENDS:=	${RUN_DEPENDS:C@notification-daemon>0:deskutils/notification-daemo
 LIB_DEPENDS:=	${LIB_DEPENDS:C@libMagick(.*)-6.Q16.so@libMagick\1-6.Q16*.so@}
 RUN_DEPENDS:=	${RUN_DEPENDS:C@p5-Gtk>@p5-Gtk-Perl>@}
 RUN_DEPENDS:=	${RUN_DEPENDS:C@/p5-Gtk$@/p5-Gtk-Perl@}
-#RUN_DEPENDS:=	${RUN_DEPENDS:C@roundcube(.*):mail/roundcube@ja-roundcube\1:japanese/roundcube@}
 
 .if ${CC:M/usr/bin/clang}
 CC=	clang

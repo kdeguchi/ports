@@ -14,8 +14,8 @@ Local_Pre_Include=	bsd.overlay.mk
 # time should live.
 #
 
-.if exists(/home/deguchi/data/work/my_local_ports/Mk/bsd.local.pre.mk)
-.include "/home/deguchi/data/work/my_local_ports/Mk/bsd.local.pre.mk"
+.if exists(/home/deguchi/data/work/github/ports/Mk/bsd.local.pre.mk)
+.include "/home/deguchi/data/work/github/ports/Mk/bsd.local.pre.mk"
 .endif
 
 .endif # !defined(_POSTMKINCLUDED) && !defined(Local_Pre_Include)
@@ -29,8 +29,8 @@ Local_Post_Include=	bsd.overlay.mk
 # time should live.
 #
 
-.if exists(/home/deguchi/data/work/my_local_ports/Mk/bsd.local.post.mk)
-.include "/home/deguchi/data/work/my_local_ports/Mk/bsd.local.post.mk"
+.if exists(/home/deguchi/data/work/github/ports/Mk/bsd.local.post.mk)
+.include "/home/deguchi/data/work/github/ports/Mk/bsd.local.post.mk"
 .endif
 
 .endif # defined(_POSTMKINCLUDED) && !defined(Local_Post_Include)
