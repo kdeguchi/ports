@@ -15,9 +15,7 @@ BUILD_DEPENDS=	bash:shells/bash \
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	keeferrourke
-
-#NO_BUILD=	yes
-#NO_WRKSUBDIR=	yes
+GH_TAGNAME=	f6281e8
 
 do-build:
 	cd ${WRKSRC} && \
