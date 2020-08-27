@@ -100,7 +100,7 @@ RUN_DEPENDS:=	${RUN_DEPENDS:S@etc_os-release>0:sysutils/etc_os-release@@}
 .endif
 
 .if ${.CURDIR:M*/emulators/i386-wine-devel}
-RUN_DEPENDS:=	${RUN_DEPENDS:S@/mono/wine-mono-4.9.4.msi@/mono/wine-mono-5.1.0-x86.msi@}
+MONO_RUN_DEPENDS:=	${MONO_RUN_DEPENDS:S@/mono/wine-mono-4.9.4.msi@/mono/wine-mono-5.1.0-x86.msi@}
 .endif
 
 .if ${.CURDIR:M*/math/wxmaxima}
