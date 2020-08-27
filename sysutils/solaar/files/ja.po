@@ -115,7 +115,7 @@ msgstr  "電源オン"
 
 #: lib/logitech_receiver/receiver.py:130 lib/solaar/ui/window.py:661
 msgid   "unknown"
-msgstr  ""
+msgstr  "不明"
 
 #: lib/logitech_receiver/settings_templates.py:213
 msgid   "Hand Detection"
@@ -229,7 +229,8 @@ msgstr  "キーあるいはボタンの動作変更"
 #: lib/logitech_receiver/settings_templates.py:258
 msgid   "Changing important actions (such as for the left mouse button) can "
         "result in an unusable system."
-msgstr  ""
+msgstr  "重要な動作(マウスの左ボタンのような)を変更することは"
+        "使用不能なシステムとなる結果を招きます。"
 
 #: lib/logitech_receiver/settings_templates.py:260
 msgid   "Disable keys"
