@@ -2,8 +2,7 @@
 # $FreeBSD: sysutils/dsbmc/Makefile 2253 2020-01-14 03:03:49Z  $
 
 PORTNAME=	dsbmc
-DISTVERSION=	1.0
-PORTREVISION=	1
+DISTVERSION=	1.1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://freeshell.de/~mk/download/
 
