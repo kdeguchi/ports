@@ -28,9 +28,9 @@ PORTDOCS=	HISTORY README
 USE_XORG=	x11 xext xt sm ice
 
 DESKTOP_ENTRIES=	"Tgif" \
-		"Xlib-based two-dimensional drawing tool and hyper-object browser" \
+		"" \
 		"tgificon" \
-		"${PORTNAME} %f" \
+		"${PORTNAME}" \
 		"Graphics;VectorGraphics;" \
 		""
 
