@@ -1,0 +1,10 @@
+--- Tgif.tmpl-freebsd.orig	2011-06-28 02:04:59 UTC
++++ Tgif.tmpl-freebsd
+@@ -55,4 +55,6 @@ DEPLIBS		= $(DEPXLIB)
+ LOCAL_LIBRARIES	= $(XLIB)
+ XCOMM LOCAL_LIBRARIES	= $(XMULIB) $(XTOOLLIB) $(XLIB)
+ XCOMM SYS_LIBRARIES	= -ldl -lm -lz
+-SYS_LIBRARIES	= -lm -lz
++SYS_LIBRARIES	= -lm -lz -lpthread
++
++#include "Tgif.tmpl-freebsdports"
