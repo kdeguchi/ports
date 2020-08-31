@@ -110,7 +110,7 @@ LIB_DEPENDS+=	libXaw3d.so:x11-toolkits/Xaw3d
 USES+=		xorg
 USE_XORG=	x11 xext xmu xt sm ice xpm
 
-DESKTOP_ENTRIES="XawMidi" "" "" "${LINK}" "AudioVideo;Audio;Midi;" ""
+DESKTOP_ENTRIES="XawMidi" "X Athena Widget Interface for TiMidity++" "timidity" "${LINK}" "AudioVideo;Audio;Midi;" ""
 .endif
 
 .if ${INTERFACE} == "xskin"
