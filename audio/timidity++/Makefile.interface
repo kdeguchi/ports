@@ -160,6 +160,9 @@ post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/X11/${EUCJP_LOCALE}/app-defaults
 	cd ${INSTALL_WRKSRC} && ${INSTALL_DATA} TiMidity-uj.ad \
 		${STAGEDIR}${PREFIX}/lib/X11/${EUCJP_LOCALE}/app-defaults/TiMidity
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/X11/ja_JP.UTF-8/app-defaults
+	cd ${STAGEDIR}${PREFIX}/lib/X11 && \
+		${ICONV_CMD} -f euc-jp -t utf-8 ja_JP.eucJP/app-defaults/TiMidity > ja_JP.UTF-8/app-defaults/TiMidity
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	(cd ${WRKSRC}/doc/C && ${INSTALL_DATA} README.xaw \
 		${STAGEDIR}${DOCSDIR})

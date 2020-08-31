@@ -20,7 +20,7 @@ LIB_DEPENDS+=	libvorbis.so:audio/libvorbis \
 RUN_DEPENDS=	eawpats>0:audio/eawpats
 .endif
 
-USES=		gmake iconv localbase tar:bzip2
+USES=		gmake iconv:build localbase tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	SHLD="${CC} -shared"
 
@@ -77,11 +77,11 @@ post-install:
 		${INSTALL_MAN} timidity.cfg.5 ${STAGEDIR}${MANPREFIX}/man/ja/man5
 	cd ${STAGEDIR}${MANPREFIX}/man/ja/man1 && \
 		${CAT} timidity.1 | \
-			${ICONV_CMD} -f EUC-JP -t UTF-8 > timidity.1.utf-8 && \
+			${ICONV_CMD} -f euc-jp -t utf-8 > timidity.1.utf-8 && \
 		${MV} -f timidity.1.utf-8 timidity.1
 	cd ${STAGEDIR}${MANPREFIX}/man/ja/man5 && \
 		${CAT} timidity.cfg.5 | \
-			${ICONV_CMD} -f EUC-JP -t UTF-8 > timidity.cfg.5.utf-8 && \
+			${ICONV_CMD} -f euc-jp -t utf-8 > timidity.cfg.5.utf-8 && \
 		${MV} -f timidity.cfg.5.utf-8 timidity.cfg.5
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	(cd ${WRKSRC}/doc/C && ${INSTALL_DATA} ${DOCFILES} \
