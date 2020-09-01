@@ -1,1 +1,0 @@
-/usr/ports/Mk/Scripts/ports_env.sh

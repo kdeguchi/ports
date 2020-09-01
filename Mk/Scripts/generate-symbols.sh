@@ -1,1 +1,0 @@
-/usr/ports/Mk/Scripts/generate-symbols.sh

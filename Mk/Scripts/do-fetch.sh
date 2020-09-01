@@ -1,1 +1,0 @@
-/usr/ports/Mk/Scripts/do-fetch.sh

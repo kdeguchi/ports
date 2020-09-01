@@ -1,1 +1,0 @@
-/usr/ports/Mk/Scripts/sed_checked.sh

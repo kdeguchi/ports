@@ -1,1 +1,0 @@
-/usr/ports/Mk/Scripts/rust-compat11-canary.sh
