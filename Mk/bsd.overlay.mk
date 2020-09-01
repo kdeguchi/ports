@@ -32,7 +32,7 @@ Local_Post_Include=	bsd.overlay.mk
 
 .if exists(/home/deguchi/data/work/github/ports/Mk/bsd.local.post.mk)
 .include "/home/deguchi/data/work/github/ports/Mk/bsd.local.post.mk"
-SCRIPTSDIR=	/home/deguchi/data/work/github/ports/Mk/Scripts
+SCRIPTSDIR?=	/home/deguchi/data/work/github/ports/Mk/Scripts
 .endif
 
 .endif # defined(_POSTMKINCLUDED) && !defined(Local_Post_Include)
