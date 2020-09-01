@@ -1,0 +1,1 @@
+/usr/ports/Mk/Scripts/smart_makepatch.sh

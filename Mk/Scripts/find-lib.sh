@@ -1,0 +1,1 @@
+/usr/ports/Mk/Scripts/find-lib.sh

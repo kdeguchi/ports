@@ -1,0 +1,1 @@
+/usr/ports/Mk/Scripts/check-stagedir.sh

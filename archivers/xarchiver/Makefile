@@ -1,23 +1,24 @@
 # Created by: Andreev Maxim
-# $FreeBSD: archivers/xarchiver/Makefile 2411 2020-03-11 01:11:57Z  $
+# $FreeBSD: head/archivers/xarchiver/Makefile 547171 2020-08-31 12:25:08Z danilo $
 
 PORTNAME=	xarchiver
-PORTVERSION=	0.5.4.7
-PORTREVISION=	1
+PORTVERSION=	0.5.4.15
 CATEGORIES=	archivers
 
 MAINTAINER=	danilo@FreeBSD.org
-COMMENT=	Desktop-agnostic GTK+2 frontend to various archiving tools
+COMMENT=	Desktop-agnostic GTK frontend to various archiving tools
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
-RUN_DEPENDS=	xdg-open:devel/xdg-utils \
-		7zr:archivers/p7zip \
-		zip:archivers/zip \
-		zipinfo:archivers/unzip
+RUN_DEPENDS=	7zr:archivers/p7zip \
+		gtar:archivers/gtar \
+		gzip:archivers/gzip \
+		${LOCALBASE}/bin/unzip:archivers/unzip \
+		xdg-open:devel/xdg-utils \
+		zip:archivers/zip
 
 USES=		desktop-file-utils gmake gnome pkgconfig
 
@@ -33,7 +34,7 @@ OPTIONS_GROUP=	FORMATS
 OPTIONS_GROUP_FORMATS=	ARJ LZO RAR
 OPTIONS_SINGLE=		GTK
 OPTIONS_SINGLE_GTK=	GTK2 GTK3
-OPTIONS_DEFAULT=	GTK2
+OPTIONS_DEFAULT=	GTK3
 OPTIONS_SUB=	yes
 
 FORMATS_DESC=	Additional compression formats support
@@ -46,6 +47,8 @@ LZO_RUN_DEPENDS=	lzop:archivers/lzop
 RAR_RUN_DEPENDS=	unrar:archivers/unrar \
 			rar:archivers/rar
 
+DOCS_USE=		GNOME=libxslt
+
 GTK2_CONFIGURE_ENABLE=	gtk2
 GTK2_USE=		GNOME=gtk20
 GTK3_USE=		GNOME=gtk30
@@ -53,8 +56,12 @@ GTK3_USE=		GNOME=gtk30
 NLS_USES=	gettext localbase
 NLS_USES_OFF=	gettext-tools
 
+post-patch:
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+		${WRKSRC}/src/main.c
+
 post-patch-DOCS-off:
-	@${REINPLACE_CMD} -e 's|doc||g' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e 's| doc ||g' ${WRKSRC}/Makefile.in
 
 post-patch-NLS-off:
 	@${REINPLACE_CMD} -e 's| po | |g' ${WRKSRC}/Makefile.in
