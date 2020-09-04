@@ -2,8 +2,8 @@
 # $FreeBSD: x11/slick-greeter/Makefile 2532 2020-05-23 04:54:08Z  $
 
 PORTNAME=	slick-greeter
-PORTVERSION=	1.3.0
-PORTREVISION=	1
+PORTVERSION=	1.4.0
+#PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ericbsd@FreeBSD.org
