@@ -26,7 +26,7 @@ USES=		autoreconf desktop-file-utils gettext-tools gmake gnome \
 		iconv localbase pkgconfig python xorg
 
 USE_GITHUB=	yes
-GH_TAGNAME=	818bac8
+GH_TAGNAME=	88efbe3
 
 USE_GNOME=	atk glib20 gtk20 intltool pango pygobject3
 USE_PYTHON=	autoplist flavors py3kplist
