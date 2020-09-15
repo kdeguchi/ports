@@ -24,3 +24,4 @@
 /Mk/Scripts/security-check.awk
 /Mk/Scripts/sed_checked.sh
 /Mk/Scripts/smart_makepatch.sh
+*/Makefile.inc
