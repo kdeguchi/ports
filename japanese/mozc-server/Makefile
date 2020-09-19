@@ -37,7 +37,7 @@ BUILD_MOZC_LIST?=	mozc_server
 PKGNAMEPREFIX=	ja-
 PKGNAMESUFFIX=	-server
 
-LICENSE=		APACHE20 BSD3CLAUSE CC-BY-SA-3.0 GPLv2 NAISTL
+LICENSE=		BSD3CLAUSE NAISTL
 LICENSE_COMB=		multi
 LICENSE_FILE_BSD3CLAUSE=	${WRKSRC}/LICENSE
 LICENSE_DISTFILES_BSD3CLAUSE=	${DISTNAME}${EXTRACT_SUFX}
@@ -142,8 +142,9 @@ GYP_DEFINES+=	use_libibus=0 \
 		enable_gtk_renderer=0
 
 .if ${PORT_OPTIONS:MUTDIC}
-UT_VERSION=20200718.1
-MASTER_SITES+=	OSDN_CHAMBER/26/26524:ut
+LICENSE+=	APACHE20 BSD3CLAUSE CC-BY-SA-3.0 GPLv2 NAISTL
+UT_VERSION=20200821.1
+MASTER_SITES+=	OSDN_CHAMBER/26/26575:ut
 DISTFILES+=	mozcdic-ut-${UT_VERSION}.tar.bz2:ut
 .endif
 
@@ -302,7 +303,7 @@ do-build-uim_mozc:
 
 do-install-uim_mozc:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/uim/plugin
-	${INSTALL_PROGRAM} \
+	${INSTALL_LIB} \
 	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/libuim-mozc.so \
 	    ${STAGEDIR}${PREFIX}/lib/uim/plugin
 	${MKDIR} ${STAGEDIR}${DATADIR}
@@ -352,7 +353,7 @@ do-install-fcitx_mozc:
 	    ${STAGEDIR}${PREFIX}/lib/fcitx \
 	    ${STAGEDIR}${PREFIX}/share/fcitx/addon \
 	    ${STAGEDIR}${PREFIX}/share/fcitx/inputmethod
-	${INSTALL_PROGRAM} \
+	${INSTALL_LIB} \
 	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/fcitx-mozc.so \
 	    ${STAGEDIR}${PREFIX}/lib/fcitx/fcitx-mozc.so
 	${INSTALL_DATA} \
