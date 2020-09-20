@@ -27,7 +27,7 @@ GH_ACCOUNT=	hrs-allbsd
 GH_TUPLE=	hiroyuki-komatsu:japanese-usage-dictionary:e5b3425:udic
 
 USES=		compiler:c++11-lang pkgconfig gmake \
-		tar:bzip2 python:3.5+,build shebangfix
+		tar:bzip2 python:3.6+,build shebangfix
 SHEBANG_FILES=	src/build_mozc.py
 BUILD_WRKSRC=	${WRKSRC}/src
 
