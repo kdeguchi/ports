@@ -44,7 +44,7 @@
  
 -    pMemFreeBSD->pObject = vm_object_allocate(OBJT_PHYS, cPages);
 +    pMemFreeBSD->pObject = vm_pager_allocate(OBJT_PHYS, NULL,
-+      pMemFreeBSD->Core.cb, VM_PROT_ALL, 0, curthread->td_ucred);
++        pMemFreeBSD->Core.cb, VM_PROT_ALL, 0, curthread->td_ucred);
  
      /* No additional object reference for auto-deallocation upon unmapping. */
  #if __FreeBSD_version >= 1000055
@@ -145,7 +145,7 @@
  
 -    pMemFreeBSD->pObject = vm_object_allocate(OBJT_PHYS, atop(cb));
 +    pMemFreeBSD->pObject = vm_pager_allocate(OBJT_PHYS, NULL,
-+       pMemFreeBSD->Core.cb, VM_PROT_ALL, 0, curthread->td_ucred);
++        pMemFreeBSD->Core.cb, VM_PROT_ALL, 0, curthread->td_ucred);
  
      if (PhysHighest != NIL_RTHCPHYS)
          VmPhysAddrHigh = PhysHighest;
