@@ -31,8 +31,6 @@ INSTALLS_ICONS=	yes
 
 GLIB_SCHEMAS=	x.dm.slick-greeter.gschema.xml
 
-#OPTIONS_DEFINE=	DOCS
-
 SHEBANG_FILES=	files/usr/bin/*
 
 post-patch:
