@@ -1,7 +1,7 @@
 # $FreeBSD: japanese/cat-doc/Makefile 680 2014-03-12 20:57:16Z  $
 
 PORTNAME=	cat
-PORTVERSION=	13.0.20200825
+PORTVERSION=	13.0.20200925
 CATEGORIES=	japanese
 MASTER_SITES=	ftp://ftp.koganemaru.co.jp/pub/jmanc/
 PKGNAMESUFFIX=	-doc
