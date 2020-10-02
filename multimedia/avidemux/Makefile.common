@@ -295,7 +295,7 @@ post-patch:
 	@${MKDIR} ${CONFIGURE_WRKSRC}/config
 	@${LN} -s ${LOCALBASE}/include/iconv.h ${CONFIGURE_WRKSRC}/config
 	@${REINPLACE_CMD} 's|-ldl||' ${WRKSRC}/avidemux_core/CMakeLists.txt
-	@${REINPLACE_CMD} 's|Categories=AudioVideo|Categories=Application;AudioVideo;Player;|' ${WRKSRC}/avidemux/qt4/xdg_data/org.avidemux.Avidemux.desktop
+	@${REINPLACE_CMD} 's|Categories=AudioVideo;|Categories=Application;AudioVideo;Player;|' ${WRKSRC}/avidemux/qt4/xdg_data/org.avidemux.Avidemux.desktop
 	@${FIND} ${WRKSRC}/cmake -name '*.cmake.orig' -delete
 
 post-configure-common:
