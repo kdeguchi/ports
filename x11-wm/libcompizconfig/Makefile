@@ -45,7 +45,7 @@ post-patch:
 		${WRKSRC}/src/ini.c			\
 		${WRKSRC}/backend/ini.c
 
-post-patch-INOTIFY-off:
-	@${REINPLACE_CMD} -e 's|sys/inotify.h||' ${WRKSRC}/configure
+#post-patch-INOTIFY-off:
+#	@${REINPLACE_CMD} -e 's|sys/inotify.h||' ${WRKSRC}/configure
 
 .include <bsd.port.mk>
