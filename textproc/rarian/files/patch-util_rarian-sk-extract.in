@@ -1,0 +1,29 @@
+--- util/rarian-sk-extract.in.orig	2008-09-01 14:40:21.000000000 -0400
++++ util/rarian-sk-extract.in	2013-05-12 10:11:27.075659034 -0400
+@@ -1,4 +1,4 @@
+-#!@BASH@
++#!/bin/sh
+ 
+ # Wrapper around xsltproc to mimic scrollkeeper-extract.
+ #
+@@ -11,7 +11,7 @@
+   echo -e "`basename $0` <xml file> <stylesheet 1> <output file 1> <stylesheet 2> <output file 2> ..."
+ }
+ 
+-if [[ $# < 2 ]]
++if [ $# -lt 2 ]
+ then
+   print_usage
+   exit 0
+@@ -24,8 +24,8 @@
+   xsltproc --xinclude --xincludestyle $1 $infile > $2
+   #echo "xml: $infile style: $1 out: $2"
+   shift 2
+-  if [[ $# < 2 ]];
++  if [ $# -lt 2 ];
+   then
+     break
+   fi
+-done
+\ No newline at end of file
++done

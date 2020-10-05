@@ -1,0 +1,45 @@
+# Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
+# $FreeBSD: head/textproc/rarian/Makefile 551466 2020-10-04 21:35:55Z 0mp $
+#   $MCom: ports/textproc/rarian/Makefile,v 1.12 2008/03/09 21:41:22 mezz Exp $
+
+PORTNAME=	rarian
+PORTVERSION=	0.8.1
+PORTREVISION=	4
+CATEGORIES=	textproc gnome
+MASTER_SITES=	GNOME
+
+MAINTAINER=	gnome@FreeBSD.org
+COMMENT=	OMF help system based on the Freedesktop specification
+
+BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:textproc/docbook-xsl \
+		docbook-xml>0:textproc/docbook-xml
+RUN_DEPENDS=	${LOCALBASE}/bin/getopt:misc/getopt \
+		${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:textproc/docbook-xsl \
+		docbook-xml>0:textproc/docbook-xml
+
+USES=		gmake gnome libtool localbase pathfix python tar:bzip2
+USE_GNOME=	libxslt
+USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--localstatedir=/var \
+		--with-convert-dir=${LOCALBASE}/share/omf
+
+INSTALL_TARGET=	install-strip
+
+CONFLICTS=	scrollkeeper-[0-9]*
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|/lib/rarian|/db/rarian|' \
+		${WRKSRC}/util/Makefile.in
+	@${REINPLACE_CMD} -e 's|@localstatedir@/lib/rarian|@localstatedir@/db/rarian|g ; \
+		s|getopt|${LOCALBASE}/bin/getopt|' \
+		${WRKSRC}/util/rarian-sk-config.in \
+		${WRKSRC}/util/rarian-sk-extract.in \
+		${WRKSRC}/util/rarian-sk-rebuild.in \
+		${WRKSRC}/util/rarian-sk-update.in
+	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' \
+		${WRKSRC}/librarian/rarian-main.c \
+		${WRKSRC}/librarian/rarian-man.c \
+		${WRKSRC}/librarian/rarian-info.c
+
+.include <bsd.port.mk>
