@@ -22,7 +22,7 @@ RUN_DEPENDS=	glxinfo:graphics/mesa-demos \
 RUN_DEPENDS_amd64=	nvidia-settings:x11/nvidia-settings
 RUN_DEPENDS_i386=	nvidia-settings:x11/nvidia-settings
 
-USES=		autoreconf gl gmake gnome iconv libtool localbase pathfix \
+USES=		autoreconf:build gl gmake gnome iconv libtool localbase pathfix \
 		pkgconfig shebangfix xorg
 USE_GL=		gl glu
 USE_GNOME=	cairo glib20 intltool
@@ -41,7 +41,7 @@ GL_COMMIT=	ae031701f5f8b43cf6a03262fbabc779bd35ad80
 INSTALL_TARGET=	install-strip
 INSTALL_ICONS=	yes
 
-#HAS_CONFIGURE=	yes
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-menu-entries --disable-dependency-tracking
 
 OPTIONS_DEFINE=	DBUS FUSE INOTIFY MATE NLS SVG
@@ -88,7 +88,7 @@ INOTIFY_LIB_DEPENDS=	libinotify.so:devel/libinotify
 MATE_CONFIGURE_ENABLE=	mate
 
 NLS_CONFIGURE_ENABLE=	nls
-NLS_USES=	gettext-runtime gettext-tools
+NLS_USES=	gettext
 
 SVG_CONFIGURE_ENABLE=	librsvg
 SVG_USE=	gnome=librsvg2
@@ -96,8 +96,8 @@ SVG_USE=	gnome=librsvg2
 post-patch:
 	cd ${WRKSRC} && ${REINPLACE_CMD} -E 's@\[\[@[@g;s@\]\]@]@g;' ${SHEBANG_FILES}
 
-do-configure:
-	@cd ${WRKSRC} && ${SH} autogen.sh ${CONFIGURE_ARGS}
+pre-configure:
+	@cd ${WRKSRC} && ${SETENV} NOCONFIGURE=yes ${SH} autogen.sh ${CONFIGURE_ARGS}
 
 post-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/compiz-manager ${STAGEDIR}${PREFIX}/bin/compiz-manager
