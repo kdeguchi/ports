@@ -1,9 +1,9 @@
 # Created by: Eduard Martinescu
-# $FreeBSD: sysutils/smartmontools/Makefile 2388 2020-03-02 03:02:05Z  $
+# $FreeBSD: head/sysutils/smartmontools/Makefile 552052 2020-10-11 11:30:50Z mandree $
 
 PORTNAME=	smartmontools
 PORTVERSION=	7.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	sysutils
 MASTER_SITES=	SF
 
