@@ -35,15 +35,15 @@ CXX=	clang++
 CPP=	clang-cpp
 .endif
 
-.if ${CC:M/usr/local/bin/clang${LLVM_DEFAULT}}
+.if ${CC:M${PREFIX}/bin/clang${LLVM_DEFAULT}}
 CC=	clang${LLVM_DEFAULT}
 .endif
 
-.if ${CXX:M/usr/local/bin/clang++${LLVM_DEFAULT}}
+.if ${CXX:M${PREFIX}/bin/clang++${LLVM_DEFAULT}}
 CXX=	clang++${LLVM_DEFAULT}
 .endif
 
-.if ${CPP:M/usr/local/bin/clang-cpp${LLVM_DEFAULT}}
+.if ${CPP:M${PREFIX}/bin/clang-cpp${LLVM_DEFAULT}}
 CPP=	clang-cpp${LLVM_DEFAULT}
 .endif
 
@@ -113,6 +113,15 @@ CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON_CMD}
 
 .if ${.CURDIR:M*/net/samba*}
 LIB_DEPENDS:=	${LIB_DEPENDS:S@libiconv.so:converters/libiconv@@}
+.endif
+
+.if ${.CURDIR:M*/www/firefox}
+.if defined(CONFIGURE_ENV) && ${CONFIGURE_ENV:N*${PREFIX}/libexec/ccache}
+CONFIGURE_ENV:=	${CONFIGURE_ENV:S@PATH=@PATH=${PREFIX}/libexec/ccache:@}
+.endif
+.if defined(MAKE_ENV) && ${MAKE_ENV:N*${PREFIX}/libexec/ccache}
+MAKE_ENV:=	${MAKE_ENV:S@PATH=@PATH=${PREFIX}/libexec/ccache:@}
+.endif
 .endif
 
 .if defined(PREFIX) && ${PREFIX} == /usr/local
