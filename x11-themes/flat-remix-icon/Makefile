@@ -1,7 +1,7 @@
 # $FreeBSD: x11-themes/flat-remix-icon/Makefile 2588 2020-06-30 23:26:45Z  $
 
 PORTNAME=	flat-remix
-PORTVERSION=	20201009
+PORTVERSION=	20201017
 CATEGORIES=	x11-themes
 PKGNAMESUFFIX=	-icon
 
