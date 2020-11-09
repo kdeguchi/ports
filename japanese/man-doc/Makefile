@@ -1,7 +1,7 @@
 # $FreeBSD: japanese/man-doc/Makefile 828 2014-06-05 06:43:01Z  $
 
 PORTNAME=	man
-PORTVERSION=	${OSREL}.20191105
+PORTVERSION=	${OSREL}.20201029
 CATEGORIES=	japanese
 MASTER_SITES=	ftp://ftp.koganemaru.co.jp/pub/jman${OSREL:C@\.[0-9]+@@}/
 PKGNAMESUFFIX=	-doc
