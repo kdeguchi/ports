@@ -1,6 +1,6 @@
-TIMESTAMP = 1602230455
-SHA256 (mozcdic-ut-20200924.1.tar.bz2) = 479236504ed1d1a3c9aff3a5b4cb67b97a0ef4af01acba4e0a07acfe226ba6dc
-SIZE (mozcdic-ut-20200924.1.tar.bz2) = 21638272
+TIMESTAMP = 1606793113
+SHA256 (mozcdic-ut-20201129.1.tar.bz2) = 0c4f5fa4733010843b7a61ea18a7bb474265525489dcdeb55b11e6e11b32a738
+SIZE (mozcdic-ut-20201129.1.tar.bz2) = 19682238
 SHA256 (hrs-allbsd-mozc-v2.23.2815.102.01_GH0.tar.gz) = 05da136f52230aa8f7d0b96e8c3aaf4a2367a44bc1026bd4b23d22b46c6687b6
 SIZE (hrs-allbsd-mozc-v2.23.2815.102.01_GH0.tar.gz) = 36712681
 SHA256 (hiroyuki-komatsu-japanese-usage-dictionary-e5b3425_GH0.tar.gz) = 2af954cd844c6a3113449d7dca37e36b769ecb2b49d3a54318a3bdee1a75af56
