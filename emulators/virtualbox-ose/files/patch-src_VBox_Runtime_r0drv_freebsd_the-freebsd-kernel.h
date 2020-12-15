@@ -1,6 +1,6 @@
---- src/VBox/Runtime/r0drv/freebsd/the-freebsd-kernel.h.orig	2020-07-10 03:05:45.000000000 +0900
-+++ src/VBox/Runtime/r0drv/freebsd/the-freebsd-kernel.h	2020-09-23 08:35:32.093262000 +0900
-@@ -88,6 +88,7 @@
+--- src/VBox/Runtime/r0drv/freebsd/the-freebsd-kernel.h.orig	2020-07-09 16:57:38 UTC
++++ src/VBox/Runtime/r0drv/freebsd/the-freebsd-kernel.h
+@@ -60,6 +60,7 @@
  #include <sys/smp.h>
  #include <sys/sleepqueue.h>
  #include <sys/sx.h>
@@ -8,7 +8,7 @@
  #include <vm/vm.h>
  #include <vm/pmap.h>            /* for vtophys */
  #include <vm/vm_map.h>
-@@ -95,10 +96,10 @@
+@@ -67,10 +68,10 @@
  #include <vm/vm_kern.h>
  #include <vm/vm_param.h>        /* KERN_SUCCESS ++ */
  #include <vm/vm_page.h>
@@ -20,7 +20,7 @@
  #include <sys/resourcevar.h>
  #include <machine/cpu.h>
  
-@@ -156,6 +157,24 @@
+@@ -114,6 +115,24 @@
   */
  #if 0 /** @todo Not available yet. */
  # define USE_KMEM_ALLOC_PROT
@@ -44,4 +44,4 @@
 +# define IPRT_FREEBSD_RESTORE_EFL_ONLY_AC_EX(f) do { } while (0)
  #endif
  
- #endif /* !IPRT_INCLUDED_SRC_r0drv_freebsd_the_freebsd_kernel_h */
+ #endif

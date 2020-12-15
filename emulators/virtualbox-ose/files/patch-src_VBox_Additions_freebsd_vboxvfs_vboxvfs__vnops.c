@@ -1,18 +1,6 @@
---- src/VBox/Additions/freebsd/vboxvfs/vboxvfs_vnops.c.orig	2020-07-09 16:50:11 UTC
+--- src/VBox/Additions/freebsd/vboxvfs/vboxvfs_vnops.c.orig	2019-01-25 18:12:34 UTC
 +++ src/VBox/Additions/freebsd/vboxvfs/vboxvfs_vnops.c
-@@ -1,10 +1,6 @@
--/* $Id: vboxvfs_vnops.c $ */
--/** @file
-- * Description.
-- */
--
- /*
-  * Copyright (C) 2008-2019 Oracle Corporation
-+ * Copyright (C) 2017 Mahdi Mokhtari
-  *
-  * This file is part of VirtualBox Open Source Edition (OSE), as
-  * available from http://www.virtualbox.org. This file is free software;
-@@ -14,228 +10,1347 @@
+@@ -14,228 +10,1334 @@
   * VirtualBox OSE distribution. VirtualBox OSE is distributed in the
   * hope that it will be useful, but WITHOUT ANY WARRANTY of any kind.
   */
@@ -47,10 +35,6 @@
 +#include <vm/uma.h>
  
 +#include "vboxvfs.h"
-+
-+#if __FreeBSD_version < 1300063
-+#define	VN_IS_DOOMED(vp)	 (((vp)->v_iflag & VI_DOOMED) != 0)
-+#endif
 +
  /*
   * Prototypes for VBOXVFS vnode operations
@@ -254,7 +238,7 @@
 +		MPASS((node->sf_vpstate & VBOXFS_VNODE_DOOMED) == 0);
 +		VI_LOCK(vp);
 +		if ((node->sf_type == VDIR && node->sf_parent == NULL) ||
-+		    (VN_IS_DOOMED(vp) &&
++		    ((vp->v_iflag & VI_DOOMED) != 0 &&
 +		    (lkflag & LK_NOWAIT) != 0)) {
 +			VI_UNLOCK(vp);
 +			VBOXFS_NODE_UNLOCK(node);
@@ -262,7 +246,7 @@
 +			vp = NULL;
 +			goto out;
 +		}
-+		if (VN_IS_DOOMED(vp)) {
++		if ((vp->v_iflag & VI_DOOMED) != 0) {
 +			VI_UNLOCK(vp);
 +			node->sf_vpstate |= VBOXFS_VNODE_WRECLAIM;
 +			while ((node->sf_vpstate & VBOXFS_VNODE_WRECLAIM) != 0) {
@@ -272,11 +256,7 @@
 +			goto loop1;
 +		}
 +		VBOXFS_NODE_UNLOCK(node);
-+#if __FreeBSD_version < 1300109
 +		error = vget(vp, lkflag | LK_INTERLOCK, curthread);
-+#else
-+		error = vget(vp, lkflag | LK_INTERLOCK);
-+#endif
 +		if (error == ENOENT)
 +			goto loop;
 +		if (error != 0) {
@@ -506,13 +486,8 @@
 +		error = vsfnode_update_stat_cache(node);
 +	m = (error == 0) ? node->sf_stat.sf_mode : 0;
 +
-+#if __FreeBSD_version < 1300105
 +	return (vaccess(vp->v_type, m, node->vboxfsmp->sf_uid,
 +	    node->vboxfsmp->sf_gid, accmode, ap->a_cred, NULL));
-+#else
-+	return (vaccess(vp->v_type, m, node->vboxfsmp->sf_uid,
-+	    node->vboxfsmp->sf_gid, accmode, ap->a_cred));
-+#endif
  }
  
 -static int vboxvfs_link(struct vop_link_args *ap)
