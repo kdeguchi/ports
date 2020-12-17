@@ -1,8 +1,9 @@
 # Created by: Andreev Maxim
-# $FreeBSD: head/archivers/xarchiver/Makefile 547171 2020-08-31 12:25:08Z danilo $
+# $FreeBSD: head/archivers/xarchiver/Makefile 552416 2020-10-15 13:47:54Z danilo $
 
 PORTNAME=	xarchiver
 PORTVERSION=	0.5.4.15
+PORTREVISION=	1
 CATEGORIES=	archivers
 
 MAINTAINER=	danilo@FreeBSD.org
@@ -20,7 +21,7 @@ RUN_DEPENDS=	7zr:archivers/p7zip \
 		xdg-open:devel/xdg-utils \
 		zip:archivers/zip
 
-USES=		desktop-file-utils gmake gnome pkgconfig
+USES=		autoreconf desktop-file-utils gmake gnome libtool:build pkgconfig
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	ib
@@ -48,6 +49,7 @@ RAR_RUN_DEPENDS=	unrar:archivers/unrar \
 			rar:archivers/rar
 
 DOCS_USE=		GNOME=libxslt
+DOCS_CONFIGURE_ENABLE=	doc
 
 GTK2_CONFIGURE_ENABLE=	gtk2
 GTK2_USE=		GNOME=gtk20
@@ -55,13 +57,14 @@ GTK3_USE=		GNOME=gtk30
 
 NLS_USES=	gettext localbase
 NLS_USES_OFF=	gettext-tools
+NLS_CONFIGURE_ENABLE=	nls
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/src/main.c
 
 post-patch-DOCS-off:
-	@${REINPLACE_CMD} -e 's| doc ||g' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e 's|doc||g' ${WRKSRC}/Makefile.in
 
 post-patch-NLS-off:
 	@${REINPLACE_CMD} -e 's| po | |g' ${WRKSRC}/Makefile.in
