@@ -1,13 +1,12 @@
 # Created by: Adam Weinberger <adamw@FreeBSD.org>
-# $FreeBSD: head/devel/glibmm/Makefile 517048 2019-11-08 11:39:00Z tobik $
+# $FreeBSD: head/devel/glibmm/Makefile 550477 2020-09-29 08:12:39Z bapt $
 
 PORTNAME=	glibmm
-PORTVERSION=	2.56.0
-PORTREVISION=	2
+PORTVERSION=	2.64.2
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	C++ interfaces for glib2
