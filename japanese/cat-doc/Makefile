@@ -1,17 +1,18 @@
 # $FreeBSD: japanese/cat-doc/Makefile 680 2014-03-12 20:57:16Z  $
 
 PORTNAME=	cat
-PORTVERSION=	13.0.20200925
+PORTVERSION=	13.0.20201125
 CATEGORIES=	japanese
 MASTER_SITES=	ftp://ftp.koganemaru.co.jp/pub/jmanc/
 PKGNAMESUFFIX=	-doc
 DISTNAME=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-${PORTVERSION}
-EXTRACT_SUFX=	.txz
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Japanese translation of FreeBSD cat manual pages
 
-USES=	iconv tar:xz
+LICENSE=	BSD
+
+USES=	iconv tar:txz
 
 EXTRACT_BEFORE_ARGS=	-pxf
 EXTRACT_AFTER_ARGS=	-C ${WRKSRC} \
@@ -26,6 +27,14 @@ SUB_LIST=	AWK="${AWK}" CUT="${CUT}" ECHO_CMD="${ECHO_CMD}" FIND="${FIND}" \
 		LN="${LN}" SORT="${SORT}"
 
 NO_BUILD=	yes
+
+.include <bsd.port.pre.mk>
+
+.if defined(ARCH) && ${ARCH} == "amd64"
+DISTNAME:=	${DISTNAME}.${ARCH}
+PLIST=	${MASTERDIR}/pkg-plist.${ARCH}
+DISTINFO_FILE=	${MASTERDIR}/distinfo.${ARCH}
+.endif
 
 pre-extract:
 	${MKDIR} ${WRKSRC}
@@ -43,4 +52,4 @@ post-install:
 
 compress-man:
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
