@@ -75,6 +75,10 @@ CPP=	cpp
 CFLAGS+=	-Qunused-arguments
 .endif
 
+.if ${.CURDIR:M*/chinese/fcitx}
+USE_KDE:=	${USE_KDE:S@ecm@ecm_build@}
+.endif
+
 .if ${.CURDIR:M*/x11/xfce4-terminal}
 CONFIGURE_ARGS+=	--with-utempter
 .endif

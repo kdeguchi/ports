@@ -1,9 +1,10 @@
 #!/bin/sh
-# $FreeBSD: head/Mk/Scripts/install-desktop-entries.sh 460160 2018-01-28 08:25:06Z mat $
+# $FreeBSD: head/Mk/Scripts/install-desktop-entries.sh 554893 2020-11-11 13:29:52Z mat $
 #
 # MAINTAINER: portmgr@FreeBSD.org
 
 set -e
+set -o pipefail
 
 . "${dp_SCRIPTSDIR}/functions.sh"
 
