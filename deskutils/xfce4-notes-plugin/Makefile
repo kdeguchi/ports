@@ -2,26 +2,31 @@
 # $FreeBSD: head/deskutils/xfce4-notes-plugin/Makefile 512378 2019-09-19 23:46:33Z madpilot $
 
 PORTNAME=	xfce4-notes-plugin
-PORTVERSION=	1.8.1
-PORTREVISION=	3
+PORTVERSION=	1.9.0
+#PORTREVISION=	3
 CATEGORIES=	deskutils xfce
-MASTER_SITES=	XFCE/panel-plugins
-DIST_SUBDIR=	xfce4
+#MASTER_SITES=	XFCE/panel-plugins
+#DIST_SUBDIR=	xfce4
 
 MAINTAINER=	xfce@FreeBSD.org
 COMMENT=	Notes plugin for the Xfce panel
 
 LICENSE=	GPLv2
 
+BUILD_DEPENDS=	xdt-autogen:devel/xfce4-dev-tools
 LIB_DEPENDS=	libunique-1.0.so:x11-toolkits/unique \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
 
-USES=		compiler:c11 gettext-tools gmake gnome libtool pkgconfig \
-		tar:bzip2 xfce:gtk2 xorg
-USE_GNOME=	cairo glib20 gtk20 intltool
+USES=		autoreconf:build compiler:c11 gettext-tools gmake gnome libtool pkgconfig \
+		tar:bzip2 xfce xorg
+USE_GNOME=	cairo glib20 gtk30 intltool
 USE_XFCE=	panel
 USE_XORG=	ice sm x11
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	xfce-mirror
+GH_TAGNAME=	3fb993e
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
@@ -32,5 +37,11 @@ OPTIONS_SUB=		yes
 
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext-runtime
+
+do-configure:
+	cd ${WRKSRC} && ./autogen.sh ${CONFIGURE_ARGS}
+
+post-install-NLS-off:
+	${RM} -r ${STAGEDIR}${PREFIX}/share/locale
 
 .include <bsd.port.mk>
