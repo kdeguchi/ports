@@ -1,7 +1,7 @@
 # $FreeBSD: japanese/cat-doc/Makefile 680 2014-03-12 20:57:16Z  $
 
 PORTNAME=	cat
-PORTVERSION=	13.0.20201125
+PORTVERSION=	13.0.20201225
 CATEGORIES=	japanese
 MASTER_SITES=	ftp://ftp.koganemaru.co.jp/pub/jmanc/
 PKGNAMESUFFIX=	-doc
@@ -32,7 +32,6 @@ NO_BUILD=	yes
 
 .if defined(ARCH) && ${ARCH} == "amd64"
 DISTNAME:=	${DISTNAME}.${ARCH}
-PLIST=	${MASTERDIR}/pkg-plist.${ARCH}
 DISTINFO_FILE=	${MASTERDIR}/distinfo.${ARCH}
 .endif
 
@@ -43,8 +42,8 @@ do-install:
 	${TAR} -cf - -C ${WRKSRC}${MANPREFIX}/share/man . | ${TAR} -xpf - -C ${STAGEDIR}${MANPREFIX}/share/man
 	${SH} ${WRKDIR}/eucjp2utf8.sh ${STAGEDIR}${MANPREFIX}/share/man
 	cd ${STAGEDIR}${MANPREFIX}/share/man && \
-		${LN} -s ja ja_JP.UTF-8 && \
-		${LN} -s ja ja.UTF-8
+		${LN} -s ja ja.UTF-8 && \
+		${LN} -s ja ja_JP.UTF-8
 
 post-install:
 	@${FIND} ${STAGEDIR}${PREFIX} -not -type d | ${SORT} | \
