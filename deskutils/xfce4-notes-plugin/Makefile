@@ -3,17 +3,15 @@
 
 PORTNAME=	xfce4-notes-plugin
 PORTVERSION=	1.9.0
-#PORTREVISION=	3
 CATEGORIES=	deskutils xfce
-#MASTER_SITES=	XFCE/panel-plugins
-#DIST_SUBDIR=	xfce4
 
 MAINTAINER=	xfce@FreeBSD.org
 COMMENT=	Notes plugin for the Xfce panel
 
 LICENSE=	GPLv2
 
-BUILD_DEPENDS=	xdt-autogen:devel/xfce4-dev-tools
+BUILD_DEPENDS=	xdt-autogen:devel/xfce4-dev-tools \
+		valac:lang/vala
 LIB_DEPENDS=	libunique-1.0.so:x11-toolkits/unique \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
@@ -39,7 +37,7 @@ NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext-runtime
 
 do-configure:
-	cd ${WRKSRC} && ./autogen.sh ${CONFIGURE_ARGS}
+	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ./autogen.sh ${CONFIGURE_ARGS}
 
 post-install-NLS-off:
 	${RM} -r ${STAGEDIR}${PREFIX}/share/locale
