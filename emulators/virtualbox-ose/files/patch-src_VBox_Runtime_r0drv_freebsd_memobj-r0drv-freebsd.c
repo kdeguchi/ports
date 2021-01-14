@@ -315,10 +315,12 @@
  
      if ((fProt & RTMEM_PROT_NONE) == RTMEM_PROT_NONE)
          ProtectionFlags = VM_PROT_NONE;
-@@ -816,6 +872,7 @@
+@@ -815,7 +871,8 @@
+     if ((fProt & RTMEM_PROT_EXEC) == RTMEM_PROT_EXEC)
          ProtectionFlags |= VM_PROT_EXECUTE;
  
-     int krc = vm_map_protect(pVmMap, AddrStart, AddrEnd, ProtectionFlags, FALSE);
+-    int krc = vm_map_protect(pVmMap, AddrStart, AddrEnd, ProtectionFlags, FALSE);
++    int krc = vm_map_protect(pVmMap, AddrStart, AddrEnd, ProtectionFlags, ProtectionFlags, FALSE);
 +    IPRT_FREEBSD_RESTORE_EFL_AC();
      if (krc == KERN_SUCCESS)
          return VINF_SUCCESS;
