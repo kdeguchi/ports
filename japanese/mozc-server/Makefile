@@ -142,11 +142,16 @@ GYP_DEFINES+=	use_libibus=0 \
 		enable_gtk_renderer=0
 
 .if ${PORT_OPTIONS:MUTDIC}
-LICENSE+=	APACHE20 BSD3CLAUSE CC-BY-SA-3.0 GPLv2 NAISTL
+LICENSE+=	APACHE20 CC-BY-SA-3.0 GPLv2
 UT_VERSION=20201229.1
 MASTER_SITES+=	OSDN_CHAMBER/27/27013:ut
 DISTFILES+=	mozcdic-ut-${UT_VERSION}.tar.bz2:ut
 .endif
+
+MASTER_SITES+=	LOCAL/kuriyama:zipcode
+DISTFILES+= \
+	ken_all-20200430.zip:zipcode \
+	jigyosyo-20200430.zip:zipcode
 
 PLIST_FILES+=	bin/mozc \
 		bin/mozc_server \
@@ -154,6 +159,15 @@ PLIST_FILES+=	bin/mozc \
 SUB_FILES+=	mozc
 
 post-patch-mozc_server:
+	@for F in ${DISTFILES:M*\:zipcode:C/\:zipcode//}; do \
+		${UNZIP_NATIVE_CMD} -L -d ${BUILD_WRKSRC}/data/dictionary_oss \
+		    ${DISTDIR}/$$F; \
+	done
+	cd ${BUILD_WRKSRC}/data/dictionary_oss && \
+	    ${SETENV} PYTHONPATH=${BUILD_WRKSRC} \
+		${PYTHON_CMD} ${BUILD_WRKSRC}/dictionary/gen_zip_code_seed.py \
+		--zip_code=ken_all.csv --jigyosyo=jigyosyo.csv \
+	    >> dictionary09.txt
 	${MV} ${WRKSRC_udic}/usage_dict.txt \
 	    ${BUILD_WRKSRC}/third_party/japanese_usage_dictionary
 .if ${PORT_OPTIONS:MUTDIC}
