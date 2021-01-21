@@ -29,7 +29,7 @@ GLIB_SCHEMAS=	apps.gecko-mediaplayer.preferences.gschema.xml \
 INSTALLS_ICONS=	yes
 USE_XORG=	x11 xscrnsaver
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS= --disable-nautilus \
+CONFIGURE_ARGS=	--disable-nautilus \
 		--disable-nemo \
 		--disable-schemas-install \
 		--without-libgda \
