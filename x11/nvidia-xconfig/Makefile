@@ -2,7 +2,7 @@
 # $FreeBSD: head/x11/nvidia-xconfig/Makefile 540871 2020-06-30 08:42:18Z danfe $
 
 PORTNAME=	nvidia-xconfig
-PORTVERSION=	450.80.02
+PORTVERSION=	450.102.04
 CATEGORIES=	x11
 
 MAINTAINER=	x11@FreeBSD.org

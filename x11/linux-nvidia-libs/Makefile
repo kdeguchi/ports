@@ -1,7 +1,7 @@
 # $FreeBSD: head/x11/linux-nvidia-libs/Makefile 541339 2020-07-06 12:15:42Z danfe $
 
 PORTNAME=	nvidia-libs
-DISTVERSION?=	450.80.02
+DISTVERSION?=	450.102.04
 # Always try to set PORTREVISION as it can be overridden by the slave ports
 PORTREVISION?=	0
 CATEGORIES=	x11 linux
@@ -118,8 +118,9 @@ LINUX32_LINKS+=	libGLESv1_CM_nvidia.so.${PORTVERSION} libGLESv1_CM_nvidia.so.1 \
 LINUX_LIBS+=	libGLESv1_CM_nvidia.so.${PORTVERSION} \
 		libGLESv2_nvidia.so.${PORTVERSION} \
 		libGLX_nvidia.so.${PORTVERSION} \
-		libnvidia-fatbinaryloader.so.${PORTVERSION} \
 		libnvidia-ptxjitcompiler.so.${PORTVERSION}
+#		libnvidia-fatbinaryloader.so.${PORTVERSION} \
+#
 LINUX_LINKS+=	libGLESv1_CM_nvidia.so.${PORTVERSION} libGLESv1_CM_nvidia.so.1 \
 		libGLESv2_nvidia.so.${PORTVERSION} libGLESv2_nvidia.so.2 \
 		libGLX_nvidia.so.${PORTVERSION} libGLX_nvidia.so.0 \
@@ -129,8 +130,9 @@ LINUX_LINKS+=	libGLESv1_CM_nvidia.so.${PORTVERSION} libGLESv1_CM_nvidia.so.1 \
 LINUX32_LIBS+=	libGLESv1_CM_nvidia.so.${PORTVERSION} \
 		libGLESv2_nvidia.so.${PORTVERSION} \
 		libGLX_nvidia.so.${PORTVERSION} \
-		libnvidia-fatbinaryloader.so.${PORTVERSION} \
 		libnvidia-ptxjitcompiler.so.${PORTVERSION}
+#		libnvidia-fatbinaryloader.so.${PORTVERSION} \
+#
 LINUX32_LINKS+=	libGLESv1_CM_nvidia.so.${PORTVERSION} libGLESv1_CM_nvidia.so.1 \
 		libGLESv2_nvidia.so.${PORTVERSION} libGLESv2_nvidia.so.2 \
 		libGLX_nvidia.so.${PORTVERSION} libGLX_nvidia.so.0 \
@@ -140,8 +142,9 @@ LINUX32_LINKS+=	libGLESv1_CM_nvidia.so.${PORTVERSION} libGLESv1_CM_nvidia.so.1 \
 .else
 PLIST_RE+=	'\,${LINUXBASE}.*libGLESv(1_CM|2)_nvidia\.so,d' \
 		'\,${LINUXBASE}.*libGLX_(nvidia|indirect)\.so,d' \
-		'\,${LINUXBASE}.*libnvidia-fatbinaryloader\.so,d' \
 		'\,${LINUXBASE}.*libnvidia-ptxjitcompiler\.so,d'
+#		'\,${LINUXBASE}.*libnvidia-fatbinaryloader\.so,d' \
+#
 .endif
 .if ${NVVERSION} >= 440.026
 LINUX_LIBS+=	libnvidia-egl-wayland.so.1.1.4

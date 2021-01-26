@@ -315,7 +315,7 @@
  
      if ((fProt & RTMEM_PROT_NONE) == RTMEM_PROT_NONE)
          ProtectionFlags = VM_PROT_NONE;
-@@ -815,7 +871,8 @@
+@@ -815,7 +871,11 @@
      if ((fProt & RTMEM_PROT_EXEC) == RTMEM_PROT_EXEC)
          ProtectionFlags |= VM_PROT_EXECUTE;
  
@@ -324,11 +324,10 @@
 +#else
      int krc = vm_map_protect(pVmMap, AddrStart, AddrEnd, ProtectionFlags, FALSE);
 +#endif
-+    IPRT_FREEBSD_RESTORE_EFL_AC();
      if (krc == KERN_SUCCESS)
          return VINF_SUCCESS;
  
-@@ -840,11 +897,19 @@
+@@ -840,11 +900,19 @@
  
              vm_offset_t pb = (vm_offset_t)pMemFreeBSD->Core.pv + ptoa(iPage);
  
@@ -352,7 +351,7 @@
          }
  
          case RTR0MEMOBJTYPE_MAPPING:
-@@ -853,11 +918,15 @@
+@@ -853,11 +921,15 @@
  
              if (pMemFreeBSD->Core.u.Mapping.R0Process != NIL_RTR0PROCESS)
              {
@@ -369,7 +368,7 @@
              }
              return vtophys(pb);
          }
-@@ -868,9 +937,11 @@
+@@ -868,9 +940,11 @@
          {
              RTHCPHYS addr;
  
