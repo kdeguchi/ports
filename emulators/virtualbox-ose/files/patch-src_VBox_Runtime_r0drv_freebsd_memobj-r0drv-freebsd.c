@@ -319,8 +319,11 @@
      if ((fProt & RTMEM_PROT_EXEC) == RTMEM_PROT_EXEC)
          ProtectionFlags |= VM_PROT_EXECUTE;
  
--    int krc = vm_map_protect(pVmMap, AddrStart, AddrEnd, ProtectionFlags, FALSE);
-+    int krc = vm_map_protect(pVmMap, AddrStart, AddrEnd, ProtectionFlags, ProtectionFlags, FALSE);
++#if __FreeBSD_version >= 1300135
++    int krc = vm_map_protect(pVmMap, AddrStart, AddrEnd, ProtectionFlags, 0, VM_MAP_PROTECT_SET_PROT);
++#else
+     int krc = vm_map_protect(pVmMap, AddrStart, AddrEnd, ProtectionFlags, FALSE);
++#endif
 +    IPRT_FREEBSD_RESTORE_EFL_AC();
      if (krc == KERN_SUCCESS)
          return VINF_SUCCESS;
