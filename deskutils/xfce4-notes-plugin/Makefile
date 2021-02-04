@@ -24,7 +24,7 @@ USE_XORG=	ice sm x11
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	xfce-mirror
-GH_TAGNAME=	3fb993e
+GH_TAGNAME=	083aeb7
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
