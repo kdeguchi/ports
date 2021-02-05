@@ -1,0 +1,9 @@
+@@ -16,7 +16,7 @@
+  #endif
+  
+  
+-@@ -250,7 +252,7 @@ struct nvkms_ref_ptr {
++@@ -276,7 +278,7 @@ struct nvkms_ref_ptr {
+  
+  struct nvkms_ref_ptr* NVKMS_API_CALL nvkms_alloc_ref_ptr(void *ptr)
+  {
