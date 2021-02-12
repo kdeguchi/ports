@@ -1,0 +1,7 @@
+TIMESTAMP = 1613100995
+SHA256 (centos/gstreamer1-1.10.4-2.el7.i686.rpm) = be6282fb01e5d33faf7bd8dd6ca98020957de1146bcbf5e89911bd93cacc1998
+SIZE (centos/gstreamer1-1.10.4-2.el7.i686.rpm) = 1208148
+SHA256 (centos/gstreamer1-1.10.4-2.el7.x86_64.rpm) = 9872adb788c6bdfa195a8dfd42d5f2334578a6afa7cd71db318d1c70be991dc9
+SIZE (centos/gstreamer1-1.10.4-2.el7.x86_64.rpm) = 1206332
+SHA256 (centos/gstreamer1-1.10.4-2.el7.src.rpm) = c203b3162a071b25337d3172ff095df28b1cc23303222d320a5ec522aa94c7e5
+SIZE (centos/gstreamer1-1.10.4-2.el7.src.rpm) = 3812132

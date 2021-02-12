@@ -1,0 +1,7 @@
+TIMESTAMP = 1613103783
+SHA256 (centos/libproxy-0.4.11-11.el7.i686.rpm) = 32e4be0064558f01e4440d45769c6b7903b660f4aeb5e6f3e2b6505bdcbac980
+SIZE (centos/libproxy-0.4.11-11.el7.i686.rpm) = 66532
+SHA256 (centos/libproxy-0.4.11-11.el7.x86_64.rpm) = 76f13d79bcf3253f47053edcdc6282774303ee29166ab3bcf0b8b077d1976e5b
+SIZE (centos/libproxy-0.4.11-11.el7.x86_64.rpm) = 66044
+SHA256 (centos/libproxy-0.4.11-11.el7.src.rpm) = c36b72b078e828ab849ed259bad311aeece4b1618cc2e1920706d09660f2b6b0
+SIZE (centos/libproxy-0.4.11-11.el7.src.rpm) = 111083

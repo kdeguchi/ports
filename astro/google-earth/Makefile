@@ -19,7 +19,7 @@ NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
 PLIST_SUB=	LINUXBASE=${LINUXBASE}
 USES=		desktop-file-utils linux
-USE_LINUX=	dri xorglibs
+USE_LINUX=	dri gstreamer1-plugins libmodman libproxy sqlite3 xorglibs
 
 post-patch:
 	@${SED} -i '' 's/^Exec=[^[:space:]]*/Exec=googleearth/' \
