@@ -6,7 +6,6 @@ PORTNAME=	rarian
 PORTVERSION=	0.8.1
 PORTREVISION=	6
 CATEGORIES=	textproc gnome
-MASTER_SITES=	GNOME
 
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	OMF help system based on the Freedesktop specification
@@ -40,8 +39,6 @@ CONFIGURE_ARGS=	--localstatedir=/var \
 		--with-metadata-dir=${DOCSDIR}
 
 INSTALL_TARGET=	install-strip
-
-CONFLICTS=	scrollkeeper-[0-9]*
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/lib/rarian|/db/rarian|' \

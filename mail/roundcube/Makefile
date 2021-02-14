@@ -1,7 +1,7 @@
 # $FreeBSD: mail/roundcube/Makefile 2551 2020-06-10 11:23:19Z  $
 
 PORTNAME=	roundcube
-DISTVERSION=	1.4.10
+DISTVERSION=	1.4.11
 PORTEPOCH=	1
 CATEGORIES?=	mail www
 MASTER_SITES=	https://github.com/roundcube/roundcubemail/releases/download/${DISTVERSION}/
