@@ -2,10 +2,10 @@
 # Local_Post_Include
 
 .if defined(_UNRAR_ICONV) && exists(${PORTSDIR}/archivers/unrar-iconv)
-EXTRACT_DEPENDS:=	${EXTRACT_DEPENDS:S@archivers/unrar@archivers/unrar-iconv@}
-BUILD_DEPENDS:=		${BUILD_DEPENDS:S@archivers/unrar@archivers/unrar-iconv@}
-LIB_DEPENDS:=		${LIB_DEPENDS:S@archivers/unrar@archivers/unrar-iconv@}
-RUN_DEPENDS:=		${RUN_DEPENDS:S@archivers/unrar@archivers/unrar-iconv@}
+EXTRACT_DEPENDS:=	${EXTRACT_DEPENDS:S@archivers/unrar$@archivers/unrar-iconv@}
+BUILD_DEPENDS:=		${BUILD_DEPENDS:S@archivers/unrar$@archivers/unrar-iconv@}
+LIB_DEPENDS:=		${LIB_DEPENDS:S@archivers/unrar$@archivers/unrar-iconv@}
+RUN_DEPENDS:=		${RUN_DEPENDS:S@archivers/unrar$@archivers/unrar-iconv@}
 .endif
 
 .if defined(_LV) && exists(${PORTSDIR}/misc/lv)

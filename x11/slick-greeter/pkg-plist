@@ -122,6 +122,7 @@ share/locale/uz/LC_MESSAGES/slick-greeter.mo
 share/locale/vec/LC_MESSAGES/slick-greeter.mo
 share/locale/vi/LC_MESSAGES/slick-greeter.mo
 share/locale/wae/LC_MESSAGES/slick-greeter.mo
+share/locale/zgh/LC_MESSAGES/slick-greeter.mo
 share/locale/zh_CN/LC_MESSAGES/slick-greeter.mo
 share/locale/zh_HK/LC_MESSAGES/slick-greeter.mo
 share/locale/zh_TW/LC_MESSAGES/slick-greeter.mo
@@ -184,6 +185,7 @@ share/xgreeters/slick-greeter.desktop
 %%DATADIR%%/badges/fvwm-crystal.png
 %%DATADIR%%/badges/fvwm.png
 %%DATADIR%%/badges/fvwm1.png
+%%DATADIR%%/badges/fynedesk.svg
 %%DATADIR%%/badges/gnome-bluetile.svg
 %%DATADIR%%/badges/gnome-classic.svg
 %%DATADIR%%/badges/gnome-flashback-compiz.svg

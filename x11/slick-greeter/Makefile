@@ -2,8 +2,7 @@
 # $FreeBSD: x11/slick-greeter/Makefile 2532 2020-05-23 04:54:08Z  $
 
 PORTNAME=	slick-greeter
-PORTVERSION=	1.4.1
-#PORTREVISION=	1
+PORTVERSION=	1.5.2
 CATEGORIES=	x11
 
 MAINTAINER=	ericbsd@FreeBSD.org
@@ -36,8 +35,8 @@ SHEBANG_FILES=	files/usr/bin/*
 post-patch:
 	cd ${WRKSRC} && \
 		${REINPLACE_CMD} -E \
-			's@"/etc@"%%PREFIX%%/etc@g;s@"/usr@"%%PREFIX%%@g;s@%%PREFIX%%@${PREFIX}@g' \
-			files/usr/bin/* src/*.vala && \
+			's@/etc@%%PREFIX%%/etc@g;s@/usr@%%PREFIX%%@g;s@%%PREFIX%%@${PREFIX}@g' \
+			files/usr/bin/* src/*.vala data/${PORTNAME}.8 && \
 		${MKDIR} files${PREFIX} && \
 		${MV} files/usr/bin files/usr/share files${PREFIX}
 
