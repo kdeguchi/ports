@@ -2,8 +2,7 @@
 # $FreeBSD: head/x11-toolkits/libXt/Makefile 476013 2018-07-31 18:41:30Z zeising $
 
 PORTNAME=	libXt
-PORTVERSION=	1.2.0
-PORTREVISION=	1
+DISTVERSION=	1.2.1
 PORTEPOCH=	1
 CATEGORIES=	x11-toolkits
 
