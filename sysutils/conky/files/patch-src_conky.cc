@@ -22,11 +22,11 @@
 @@ -587,14 +592,16 @@ void human_readable(long long num, char *buf, int size
    }
    if (short_units.get(*state)) {
-     width = 5;
+     width = 6;
 -    format = "%.*f %.1s";
 +    format = "%.*f%s%.1s";
    } else {
-     width = 7;
+     width = 8;
 -    format = "%.*f %-.3s";
 +    format = "%.*f%s%-.3s";
    }

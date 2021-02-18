@@ -35,7 +35,7 @@ SLAVEDIRS=	sysutils/conky-awesome
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	brndnmtthws
-GH_TAGNAME=	e2869ac
+GH_TAGNAME=	88fce68
 
 OPTIONS_DEFINE=	APCUPSD CURL DOCS IPV6 MANPAGES METAR MOC MPD NCURSES RSS \
 		X11 XMMS2
@@ -62,15 +62,15 @@ DOUBLE_BUFFER_IMPLIES=	X11
 
 HSV_DESC=	Generate gradient in HSV color space
 HSV_CMAKE_BOOL=	BUILD_HSV_GRADIENT
-HSV_EXTRA_PATCHES+=	${PATCHDIR}/HSV-patch-cmake_ConkyBuildOptions.cmake \
-	${PATCHDIR}/HSV-patch-cmake_config.h.in \
-	${PATCHDIR}/HSV-patch-src_CMakeLists.txt \
-	${PATCHDIR}/HSV-patch-src_colours.cc \
-	${PATCHDIR}/HSV-patch-src_colours.h \
-	${PATCHDIR}/HSV-patch-src_conky.cc \
-	${PATCHDIR}/HSV-patch-src_hsv__gradient.cc \
-	${PATCHDIR}/HSV-patch-src_hsv__gradient.h \
-	${PATCHDIR}/HSV-patch-src_main.cc \
+#HSV_EXTRA_PATCHES+=	${PATCHDIR}/HSV-patch-cmake_ConkyBuildOptions.cmake \
+#	${PATCHDIR}/HSV-patch-cmake_config.h.in \
+#	${PATCHDIR}/HSV-patch-src_CMakeLists.txt \
+#	${PATCHDIR}/HSV-patch-src_colours.cc \
+#	${PATCHDIR}/HSV-patch-src_colours.h \
+#	${PATCHDIR}/HSV-patch-src_conky.cc \
+#	${PATCHDIR}/HSV-patch-src_hsv__gradient.cc \
+#	${PATCHDIR}/HSV-patch-src_hsv__gradient.h \
+#	${PATCHDIR}/HSV-patch-src_main.cc \
 
 IMLIB2_CMAKE_BOOL=	BUILD_IMLIB2
 IMLIB2_LIB_DEPENDS=	libImlib2.so:graphics/imlib2
