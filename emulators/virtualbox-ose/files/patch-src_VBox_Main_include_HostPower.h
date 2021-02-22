@@ -1,4 +1,4 @@
---- src/VBox/Main/include/HostPower.h.orig	2020-05-14 18:26:16 UTC
+--- src/VBox/Main/include/HostPower.h.orig	2021-01-07 15:41:38 UTC
 +++ src/VBox/Main/include/HostPower.h
 @@ -31,7 +31,7 @@
  

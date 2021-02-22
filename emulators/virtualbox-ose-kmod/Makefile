@@ -1,10 +1,10 @@
 # Created by: Bernhard Froehlich <decke@bluelife.at>
-# $FreeBSD: emulators/virtualbox-ose-kmod/Makefile 2523 2020-05-18 00:45:31Z  $
+# $FreeBSD: head/emulators/virtualbox-ose-kmod/Makefile 560502 2021-01-06 11:54:14Z nc $
 
 PORTNAME=	virtualbox-ose
-PORTVERSION=	6.0.24
+PORTVERSION=	6.1.18
 CATEGORIES=	emulators
-MASTER_SITES=	https://download.oracle.com/virtualbox/${PORTVERSION}/
+MASTER_SITES=	https://download.virtualbox.org/virtualbox/${PORTVERSION}/
 PKGNAMESUFFIX=	-kmod
 DISTNAME=	VirtualBox-${PORTVERSION}
 
@@ -20,7 +20,6 @@ CPE_VENDOR=	oracle
 CPE_PRODUCT=	vm_virtualbox
 
 USES=		cpe kmod tar:bzip2
-DISTINFO_FILE=	${.CURDIR}/../${PORTNAME}/distinfo
 PATCHDIR=	${.CURDIR}/../${PORTNAME}/files
 WRKSRC=		${WRKDIR}/VirtualBox-${PORTVERSION}
 USE_RC_SUBR=	vboxnet

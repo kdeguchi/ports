@@ -1,6 +1,6 @@
---- src/VBox/Runtime/r0drv/freebsd/alloc-r0drv-freebsd.c.orig	2020-05-14 18:26:45 UTC
+--- src/VBox/Runtime/r0drv/freebsd/alloc-r0drv-freebsd.c.orig	2021-01-07 15:42:08 UTC
 +++ src/VBox/Runtime/r0drv/freebsd/alloc-r0drv-freebsd.c
-@@ -79,6 +79,7 @@ MALLOC_DEFINE(M_IPRTCONT, "iprtcont", "IPRT - contiguo
+@@ -78,6 +78,7 @@ MALLOC_DEFINE(M_IPRTCONT, "iprtcont", "IPRT - contiguo
  
  DECLHIDDEN(int) rtR0MemAllocEx(size_t cb, uint32_t fFlags, PRTMEMHDR *ppHdr)
  {
@@ -8,7 +8,7 @@
      size_t      cbAllocated = cb;
      PRTMEMHDR   pHdr        = NULL;
  
-@@ -101,8 +102,10 @@ DECLHIDDEN(int) rtR0MemAllocEx(size_t cb, uint32_t fFl
+@@ -100,8 +101,10 @@ DECLHIDDEN(int) rtR0MemAllocEx(size_t cb, uint32_t fFl
          cbAllocated = RT_ALIGN_Z(cb + sizeof(*pHdr), PAGE_SIZE);
  
          pVmObject = vm_object_allocate(OBJT_DEFAULT, cbAllocated >> PAGE_SHIFT);
@@ -20,7 +20,7 @@
  
          /* Addr contains a start address vm_map_find will start searching for suitable space at. */
  #if __FreeBSD_version >= 1000055
-@@ -139,6 +142,8 @@ DECLHIDDEN(int) rtR0MemAllocEx(size_t cb, uint32_t fFl
+@@ -138,6 +141,8 @@ DECLHIDDEN(int) rtR0MemAllocEx(size_t cb, uint32_t fFl
                                   fFlags & RTMEMHDR_FLAG_ZEROED ? M_NOWAIT | M_ZERO : M_NOWAIT);
      }
  
@@ -29,7 +29,7 @@
      if (RT_UNLIKELY(!pHdr))
          return VERR_NO_MEMORY;
  
-@@ -154,6 +159,8 @@ DECLHIDDEN(int) rtR0MemAllocEx(size_t cb, uint32_t fFl
+@@ -153,6 +158,8 @@ DECLHIDDEN(int) rtR0MemAllocEx(size_t cb, uint32_t fFl
  
  DECLHIDDEN(void) rtR0MemFree(PRTMEMHDR pHdr)
  {
@@ -38,7 +38,7 @@
      pHdr->u32Magic += 1;
  
  #ifdef RT_ARCH_AMD64
-@@ -166,11 +173,14 @@ DECLHIDDEN(void) rtR0MemFree(PRTMEMHDR pHdr)
+@@ -165,11 +172,14 @@ DECLHIDDEN(void) rtR0MemFree(PRTMEMHDR pHdr)
      else
  #endif
          free(pHdr, M_IPRTHEAP);
@@ -53,7 +53,7 @@
      void *pv;
  
      /*
-@@ -195,6 +205,7 @@ RTR0DECL(void *) RTMemContAlloc(PRTCCPHYS pPhys, size_
+@@ -194,6 +204,7 @@ RTR0DECL(void *) RTMemContAlloc(PRTCCPHYS pPhys, size_
          *pPhys = vtophys(pv);
          Assert(!(*pPhys & PAGE_OFFSET_MASK));
      }
@@ -61,7 +61,7 @@
      return pv;
  }
  
-@@ -204,7 +215,9 @@ RTR0DECL(void) RTMemContFree(void *pv, size_t cb)
+@@ -203,7 +214,9 @@ RTR0DECL(void) RTMemContFree(void *pv, size_t cb)
      if (pv)
      {
          AssertMsg(!((uintptr_t)pv & PAGE_OFFSET_MASK), ("pv=%p\n", pv));

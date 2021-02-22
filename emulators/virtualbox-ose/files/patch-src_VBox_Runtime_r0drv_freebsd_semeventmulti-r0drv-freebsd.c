@@ -1,6 +1,6 @@
---- src/VBox/Runtime/r0drv/freebsd/semeventmulti-r0drv-freebsd.c.orig	2020-05-14 18:26:45 UTC
+--- src/VBox/Runtime/r0drv/freebsd/semeventmulti-r0drv-freebsd.c.orig	2021-01-07 15:42:08 UTC
 +++ src/VBox/Runtime/r0drv/freebsd/semeventmulti-r0drv-freebsd.c
-@@ -121,7 +121,9 @@ RTDECL(int)  RTSemEventMultiCreateEx(PRTSEMEVENTMULTI 
+@@ -120,7 +120,9 @@ RTDECL(int)  RTSemEventMultiCreateEx(PRTSEMEVENTMULTI 
      PRTSEMEVENTMULTIINTERNAL pThis;
  
      AssertReturn(!(fFlags & ~RTSEMEVENTMULTI_FLAGS_NO_LOCK_VAL), VERR_INVALID_PARAMETER);
@@ -10,7 +10,7 @@
      if (pThis)
      {
          pThis->u32Magic     = RTSEMEVENTMULTI_MAGIC;
-@@ -177,10 +179,12 @@ RTDECL(int)  RTSemEventMultiDestroy(RTSEMEVENTMULTI hE
+@@ -176,10 +178,12 @@ RTDECL(int)  RTSemEventMultiDestroy(RTSEMEVENTMULTI hE
      /*
       * Invalidate it and signal the object just in case.
       */
@@ -23,7 +23,7 @@
      return VINF_SUCCESS;
  }
  
-@@ -189,6 +193,7 @@ RTDECL(int)  RTSemEventMultiSignal(RTSEMEVENTMULTI hEv
+@@ -188,6 +192,7 @@ RTDECL(int)  RTSemEventMultiSignal(RTSEMEVENTMULTI hEv
  {
      uint32_t fNew;
      uint32_t fOld;
@@ -31,7 +31,7 @@
  
      /*
       * Validate input.
-@@ -215,12 +220,15 @@ RTDECL(int)  RTSemEventMultiSignal(RTSEMEVENTMULTI hEv
+@@ -214,12 +219,15 @@ RTDECL(int)  RTSemEventMultiSignal(RTSEMEVENTMULTI hEv
  
      rtR0SemBsdBroadcast(pThis);
      rtR0SemEventMultiBsdRelease(pThis);
@@ -47,7 +47,7 @@
      /*
       * Validate input.
       */
-@@ -237,6 +245,7 @@ RTDECL(int)  RTSemEventMultiReset(RTSEMEVENTMULTI hEve
+@@ -236,6 +244,7 @@ RTDECL(int)  RTSemEventMultiReset(RTSEMEVENTMULTI hEve
      ASMAtomicAndU32(&pThis->fStateAndGen, ~RTSEMEVENTMULTIBSD_STATE_MASK);
  
      rtR0SemEventMultiBsdRelease(pThis);
@@ -55,7 +55,7 @@
      return VINF_SUCCESS;
  }
  
-@@ -253,6 +262,7 @@ RTDECL(int)  RTSemEventMultiReset(RTSEMEVENTMULTI hEve
+@@ -252,6 +261,7 @@ RTDECL(int)  RTSemEventMultiReset(RTSEMEVENTMULTI hEve
  static int rtR0SemEventMultiBsdWait(PRTSEMEVENTMULTIINTERNAL pThis, uint32_t fFlags, uint64_t uTimeout,
                                      PCRTLOCKVALSRCPOS pSrcPos)
  {
@@ -63,7 +63,7 @@
      uint32_t    fOrgStateAndGen;
      int         rc;
  
-@@ -312,6 +322,7 @@ static int rtR0SemEventMultiBsdWait(PRTSEMEVENTMULTIIN
+@@ -311,6 +321,7 @@ static int rtR0SemEventMultiBsdWait(PRTSEMEVENTMULTIIN
      }
  
      rtR0SemEventMultiBsdRelease(pThis);

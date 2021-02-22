@@ -1,4 +1,4 @@
---- include/iprt/string.h.orig	2020-05-14 18:16:35 UTC
+--- include/iprt/string.h.orig	2021-01-07 15:31:33 UTC
 +++ include/iprt/string.h
 @@ -46,6 +46,11 @@
  #elif defined(RT_OS_FREEBSD) && defined(_KERNEL)

@@ -1,4 +1,4 @@
---- src/VBox/Runtime/r3/posix/process-creation-posix.cpp.orig	2020-05-14 18:26:51 UTC
+--- src/VBox/Runtime/r3/posix/process-creation-posix.cpp.orig	2021-01-07 15:42:15 UTC
 +++ src/VBox/Runtime/r3/posix/process-creation-posix.cpp
 @@ -30,7 +30,7 @@
  *********************************************************************************************************************************/
@@ -18,7 +18,7 @@
  /* While Solaris has posix_spawn() of course we don't want to use it as
   * we need to have the child in a different process contract, no matter
   * whether it is started detached or not. */
-@@ -363,7 +363,7 @@ static int rtCheckCredentials(const char *pszUser, con
+@@ -372,7 +372,7 @@ static int rtCheckCredentials(const char *pszUser, con
      if (pPwd->pw_passwd && *pPwd->pw_passwd)
  # endif
      {

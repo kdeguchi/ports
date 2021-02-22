@@ -1,4 +1,4 @@
---- src/VBox/Additions/common/VBoxService/VBoxServiceVMInfo.cpp.orig	2020-05-14 18:18:49 UTC
+--- src/VBox/Additions/common/VBoxService/VBoxServiceVMInfo.cpp.orig	2021-01-07 15:34:20 UTC
 +++ src/VBox/Additions/common/VBoxService/VBoxServiceVMInfo.cpp
 @@ -67,8 +67,8 @@
  # include <net/if.h>

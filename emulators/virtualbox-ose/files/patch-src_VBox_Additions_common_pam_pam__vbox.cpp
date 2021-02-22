@@ -1,4 +1,4 @@
---- src/VBox/Additions/common/pam/pam_vbox.cpp.orig	2020-05-14 18:18:51 UTC
+--- src/VBox/Additions/common/pam/pam_vbox.cpp.orig	2021-01-07 15:34:21 UTC
 +++ src/VBox/Additions/common/pam/pam_vbox.cpp
 @@ -104,7 +104,7 @@ static void pam_vbox_writesyslog(char *pszBuf)
      openlog("pam_vbox", LOG_PID, LOG_AUTHPRIV);

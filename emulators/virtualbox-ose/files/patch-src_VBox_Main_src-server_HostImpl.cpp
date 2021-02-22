@@ -1,6 +1,6 @@
---- src/VBox/Main/src-server/HostImpl.cpp.orig	2020-05-14 18:26:20 UTC
+--- src/VBox/Main/src-server/HostImpl.cpp.orig	2021-01-07 15:41:42 UTC
 +++ src/VBox/Main/src-server/HostImpl.cpp
-@@ -290,7 +290,7 @@ HRESULT Host::init(VirtualBox *aParent)
+@@ -286,7 +286,7 @@ HRESULT Host::init(VirtualBox *aParent)
  
  #if defined(RT_OS_WINDOWS)
      m->pHostPowerService = new HostPowerServiceWin(m->pParent);
