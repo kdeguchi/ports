@@ -2,8 +2,7 @@
 # $FreeBSD: head/multimedia/audacious-plugins/Makefile 541716 2020-07-08 20:05:07Z madpilot $
 
 PORTNAME=	audacious-plugins
-PORTVERSION=	4.0.5
-PORTREVISION=	4
+PORTVERSION=	4.1
 CATEGORIES=	multimedia audio
 MASTER_SITES=	http://distfiles.audacious-media-player.org/
 
