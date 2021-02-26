@@ -30,22 +30,7 @@ start_cmd="${name}_start"
 
 lightdm_start()
 {
-	local iter
-	if ! checkyesno lightdm_enable ; then
-		return 0
-	fi
-	echo "Starting ${name}."
-
-	( iter=0
-	while ! pgrep -qf "/usr/libexec/getty "; do
-		if [ ${iter} -eq 60 ]; then
-			break
-		fi
-		sleep 1
-		iter=$(expr ${iter} + 1)
-	done
-	sleep 1
-	su -c ${_login_class} root -c "${_fib:+setfib -F $_fib } ${_env:+env $_env } /usr/sbin/daemon -f ${command} ${rc_flags} ${command_args}" ) &
+	su -c ${_login_class} root -c "${_fib:+setfib -F $_fib } ${_env:+env $_env } /usr/sbin/daemon -f ${command} ${rc_flags} ${command_args}"
 }
 
 run_rc_command "$1"
