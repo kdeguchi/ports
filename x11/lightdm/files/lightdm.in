@@ -30,6 +30,7 @@ start_cmd="${name}_start"
 
 lightdm_start()
 {
+	echo "Starting ${name}."
 	su -c ${_login_class} root -c "${_fib:+setfib -F $_fib } ${_env:+env $_env } /usr/sbin/daemon -f ${command} ${rc_flags} ${command_args}"
 }
 
