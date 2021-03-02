@@ -35,7 +35,7 @@ SHEBANG_FILES=	files/usr/bin/*
 post-patch:
 	cd ${WRKSRC} && \
 		${REINPLACE_CMD} -E \
-			's@/etc@%%PREFIX%%/etc@g;s@/usr@%%PREFIX%%@g;s@%%PREFIX%%@${PREFIX}@g' \
+			's@/usr/local@/usr@g;s@/etc@%%PREFIX%%/etc@g;s@/usr@%%PREFIX%%@g;s@%%PREFIX%%@${PREFIX}@g' \
 			files/usr/bin/* src/*.vala data/${PORTNAME}.8 && \
 		${MKDIR} files${PREFIX} && \
 		${MV} files/usr/bin files/usr/share files${PREFIX}
