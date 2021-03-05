@@ -15,6 +15,8 @@ LICENSE_COMB=	multi
 LICENSE_FILE_GPLv2=	${WRKSRC}/COPYING
 LICENSE_FILE_LGPL20=	${WRKSRC}/COPYING.LIB
 
+#BUILD_DEPENDS=	xdt-autogen:devel/xfce4-dev-tools \
+#	gtkdocize:textproc/gtk-doc
 LIB_DEPENDS=	libtumbler-1.so:deskutils/xfce4-tumbler
 RUN_DEPENDS=	pkexec:sysutils/polkit
 
@@ -26,6 +28,10 @@ USE_PERL5=	build
 USE_XFCE=	libexo
 USE_XORG=	ice sm x11
 
+#USE_GITHUB=	yes
+#GH_ACCOUNT=	xfce-mirror
+#GH_TAGNAME=	1c846d8
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-gio-unix
 INSTALLS_ICONS=	yes
@@ -33,6 +39,7 @@ INSTALL_TARGET=	install-strip
 
 PORTSCOUT=	limitw:1,even
 
+#OPTIONS_DEFINE=		DOCS GIR GUDEV NLS NOTIFY
 OPTIONS_DEFINE=		GIR GUDEV NLS NOTIFY
 OPTIONS_GROUP=		PLUGINS
 OPTIONS_GROUP_PLUGINS=	PLUG_APR PLUG_SBR PLUG_TPA PLUG_UCA PLUG_WALL
@@ -48,6 +55,9 @@ PLUG_SBR_DESC=	Simple Builtin Renamers plugin
 PLUG_TPA_DESC=	Trash Panel Applet plugin
 PLUG_UCA_DESC=	User Customizable Actions plugin
 PLUG_WALL_DESC=	Wallpaper plugin
+
+#DOCS_CONFIGURE_ENABLE=	gtk-doc
+#CONFIGURE_ARGS+=	--disable-gtk-doc-html --disable-gtk-doc-pdf
 
 GIR_USE=			gnome=introspection:build
 GIR_CONFIGURE_ON=		--enable-introspection=yes
@@ -77,6 +87,9 @@ PLUG_WALL_CONFIGURE_ENABLE=	wallpaper-plugin
 post-patch:
 	@${REINPLACE_CMD} -e 's|mail-send|emblem-mail|' \
 		${WRKSRC}/plugins/thunar-sendto-email/thunar-sendto-email.desktop.in.in
+
+#do-configure:
+#	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ./autogen.sh ${CONFIGURE_ARGS}
 
 post-install:
 	${RM} ${STAGEDIR}${PREFIX}/lib/systemd/user/thunar.service
