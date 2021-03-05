@@ -139,7 +139,7 @@ post-generate-plist:
 			${MKDIR} share/$${_F%/*}; \
 			${MV} $${_F} share/$${_F}; \
 		done; \
-		${REINPLACE_CMD} -E 's|^man/|share/man/|;s| man/| share/man/|' ${TMPPLIST}; \
+		${REINPLACE_CMD} -E 's|^man/|share/man/|;s| man/| share/man/|;s|%%MANPAGES%%man/|%%MANPAGES%%share/man/|' ${TMPPLIST}; \
 	) || exit 0
 .endif
 .endif
