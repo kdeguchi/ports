@@ -1,5 +1,5 @@
 # Created by: Bernhard Froehlich <decke@bluelife.at>
-# $FreeBSD: head/emulators/virtualbox-ose/Makefile 552134 2020-10-12 15:31:44Z arrowd $
+# $FreeBSD: madpilot-test/emulators/virtualbox-ose/Makefile 11344 2021-03-04 11:59:28Z mad $
 
 PORTNAME=	virtualbox-ose
 PORTVERSION=	6.1.18
@@ -27,7 +27,7 @@ CPE_VENDOR=	oracle
 CPE_PRODUCT=	vm_virtualbox
 
 WRKSRC=		${WRKDIR}/VirtualBox-${PORTVERSION}
-ONLY_FOR_ARCHS=	i386 amd64
+ONLY_FOR_ARCHS=	amd64
 USES=		compiler:c++14-lang cpe gnome iconv pkgconfig ssl tar:bzip2
 USE_GNOME=	libidl libxml2
 
@@ -124,6 +124,7 @@ _ELF32!=	kldstat -q -m elf32 && echo yes || echo no
 .if ${PORT_OPTIONS:MDEBUG}
 KMK_BUILDTYPE=	debug
 KMK_FLAGS+=	BUILD_TYPE=debug
+WITH_DEBUG=	yes
 .else
 KMK_BUILDTYPE=	release
 .endif
@@ -152,7 +153,7 @@ USES+=		python:build
 .if ${PORT_OPTIONS:MQT5}
 CONFIGURE_ARGS+=	--enable-qt5
 PLIST_SUB+=	QT=""
-USES+=		gl qmake:no_env qt:5
+USES+=		gl qmake:no_env qt:5 xorg
 USE_GL=		gl glu
 USE_QT=		buildtools_build core dbus gui linguisttools_build opengl
 USE_QT+=	printsupport widgets x11extras
@@ -174,7 +175,7 @@ VBOX_UTILS+=	vboxwebsrv webtest
 .endif
 
 .if ${PORT_OPTIONS:MX11}
-USES+=		sdl
+USES+=		sdl xorg
 USE_SDL=	sdl
 USE_XORG+=	xorgproto x11 xcursor xext xinerama xmu xt
 VBOX_PROGS+=	VBoxSDL
@@ -202,18 +203,17 @@ KMK_FLAGS+=	-j${MAKE_JOBS_NUMBER}
 
 .include <bsd.port.pre.mk>
 
-.if ${COMPILER_TYPE} == clang
-.if ${COMPILER_VERSION} == 80
-# XXX PR236616: Clang 8.0 caused runtime problems.
-BUILD_DEPENDS+=	${LOCALBASE}/bin/clang${VBOX_LLVM_VER}:devel/llvm${VBOX_LLVM_VER}
+.if ${CHOSEN_COMPILER_TYPE} == clang
+# llvm10 in FreeBSD before r364284 miscompiles virtualbox 6.1 causing errors.
+# force llvm11 from ports
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1300109
+BUILD_DEPENDS+=	clang11:devel/llvm${VBOX_LLVM_VER}
 CC=		${LOCALBASE}/bin/clang${VBOX_LLVM_VER}
 CXX=		${LOCALBASE}/bin/clang++${VBOX_LLVM_VER}
-VBOX_LLVM_VER?=	80
+VBOX_LLVM_VER?=	11
 .endif
 PATCH_DEPENDS+=	${LOCALBASE}/share/kBuild/tools/GXX3.kmk:devel/kBuild
 EXTRA_PATCHES+=	${PATCHDIR}/extrapatch-src-VBox-Devices-PC-ipxe-Makefile.kmk
-#EXTRA_PATCHES+=	${PATCHDIR}/extrapatch-Config.kmk \
-		${PATCHDIR}/extrapatch-src-VBox-Devices-PC-ipxe-Makefile.kmk
 .endif
 
 .if ${PYTHON_MAJOR_VER} >= 3
@@ -292,7 +292,7 @@ post-patch:
 .if empty(PORT_OPTIONS:MX11)
 	@${ECHO} 'VBOX_WITH_VMSVGA3D =' >> ${WRKSRC}/LocalConfig.kmk
 .endif
-.if ${COMPILER_TYPE} == clang
+.if ${CHOSEN_COMPILER_TYPE} == clang
 	@${REINPLACE_CMD} -e 's| -finline-limit=8000||' \
 	    -e 's| -mpreferred-stack-boundary=2||' ${WRKSRC}/Config.kmk
 	@${REINPLACE_CMD} -e 's| -fpermissive||' ${WRKSRC}/Config.kmk \

@@ -14,7 +14,7 @@ COMMENT=	VirtualBox additions for FreeBSD guests
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-ONLY_FOR_ARCHS=	amd64 i386
+ONLY_FOR_ARCHS=	amd64
 USES=		compiler:c++11-lang cpe iconv kmod tar:bzip2
 USE_RC_SUBR=	vboxguest vboxservice
 
@@ -25,9 +25,9 @@ BUILD_DEPENDS=	yasm:devel/yasm \
 CPE_VENDOR=	oracle
 CPE_PRODUCT=	vm_virtualbox
 
-PATCHDIR=	${.CURDIR}/../${PORTNAME}/fileo
+PATCHDIR=	${.CURDIR}/../${PORTNAME}/files
 WRKSRC=		${WRKDIR}/VirtualBox-${PORTVERSION}
-#MAKE_JOBS_UNSAFE=	yes
+MAKE_JOBS_UNSAFE=	yes
 
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--disable-alsa \
