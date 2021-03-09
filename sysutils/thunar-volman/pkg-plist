@@ -1,9 +1,12 @@
 bin/thunar-volman
 bin/thunar-volman-settings
 share/applications/thunar-volman-settings.desktop
-share/icons/hicolor/48x48/apps/tvm-burn-cd.png
-share/icons/hicolor/48x48/apps/tvm-dev-pocketpc.png
-share/icons/hicolor/scalable/apps/tvm-burn-cd.svg
+share/icons/hicolor/128x128/apps/org.xfce.volman.png
+share/icons/hicolor/16x16/apps/org.xfce.volman.png
+share/icons/hicolor/24x24/apps/org.xfce.volman.png
+share/icons/hicolor/32x32/apps/org.xfce.volman.png
+share/icons/hicolor/48x48/apps/org.xfce.volman.png
+share/icons/hicolor/scalable/apps/org.xfce.volman.svg
 %%NLS%%share/locale/am/LC_MESSAGES/thunar-volman.mo
 %%NLS%%share/locale/ar/LC_MESSAGES/thunar-volman.mo
 %%NLS%%share/locale/ast/LC_MESSAGES/thunar-volman.mo
@@ -17,6 +20,7 @@ share/icons/hicolor/scalable/apps/tvm-burn-cd.svg
 %%NLS%%share/locale/en_AU/LC_MESSAGES/thunar-volman.mo
 %%NLS%%share/locale/en_GB/LC_MESSAGES/thunar-volman.mo
 %%NLS%%share/locale/es/LC_MESSAGES/thunar-volman.mo
+%%NLS%%share/locale/et/LC_MESSAGES/thunar-volman.mo
 %%NLS%%share/locale/eu/LC_MESSAGES/thunar-volman.mo
 %%NLS%%share/locale/fi/LC_MESSAGES/thunar-volman.mo
 %%NLS%%share/locale/fr/LC_MESSAGES/thunar-volman.mo
@@ -25,6 +29,7 @@ share/icons/hicolor/scalable/apps/tvm-burn-cd.svg
 %%NLS%%share/locale/hr/LC_MESSAGES/thunar-volman.mo
 %%NLS%%share/locale/hu/LC_MESSAGES/thunar-volman.mo
 %%NLS%%share/locale/hy_AM/LC_MESSAGES/thunar-volman.mo
+%%NLS%%share/locale/hye/LC_MESSAGES/thunar-volman.mo
 %%NLS%%share/locale/id/LC_MESSAGES/thunar-volman.mo
 %%NLS%%share/locale/ie/LC_MESSAGES/thunar-volman.mo
 %%NLS%%share/locale/is/LC_MESSAGES/thunar-volman.mo

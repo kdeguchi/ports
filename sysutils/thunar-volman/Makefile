@@ -1,7 +1,7 @@
 # $FreeBSD: sysutils/thunar-volman/Makefile 2418 2020-03-11 08:13:08Z  $
 
 PORTNAME=	thunar-volman
-DISTVERSION=	0.9.5
+DISTVERSION=	4.16.0
 CATEGORIES=	sysutils x11-fm xfce
 MASTER_SITES=	XFCE
 DIST_SUBDIR=	xfce4
