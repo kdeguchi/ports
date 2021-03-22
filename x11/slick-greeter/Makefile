@@ -24,6 +24,7 @@ USE_XORG=	x11
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxmint
+GH_TAGNAME=	dcbb38a
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
