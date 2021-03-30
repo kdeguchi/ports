@@ -28,6 +28,7 @@ CPE_PRODUCT=	webmail
 CPE_VENDOR=	roundcube
 
 USE_PHP=	pcre mbstring session iconv dom xml json intl zip filter openssl fileinfo exif ctype
+IGNORE_WITH_PHP=80
 
 OPTIONS_DEFINE=	LDAP GD PSPELL NSC DOCS EXAMPLES IMAGEMAGICK
 OPTIONS_MULTI=	DB
