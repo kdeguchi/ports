@@ -1,4 +1,4 @@
-# $FreeBSD: head/Mk/Uses/linux.mk 546935 2020-08-29 18:53:24Z tijl $
+# $FreeBSD$
 #
 # Ports Linux compatibility framework
 #
@@ -34,7 +34,7 @@ linux_ARGS=		${LINUX_DEFAULT}
 .endif
 
 .if ${linux_ARGS} == c7
-LINUX_DIST_VER?=	7.8.2003
+LINUX_DIST_VER?=	7.9.2009
 .else
 IGNORE=			Invalid Linux distribution: ${linux_ARGS}
 .endif
@@ -74,8 +74,8 @@ _linux_${linux_ARGS}_gdkpixbuf2=	linux-${linux_ARGS}-gdk-pixbuf2>0:graphics/linu
 _linux_${linux_ARGS}_gnutls=		linux-${linux_ARGS}-gnutls>0:security/linux-${linux_ARGS}-gnutls
 _linux_c7_graphite2=			linux-c7-graphite2>0:graphics/linux-c7-graphite2
 _linux_c7_gsm=				linux-c7-gsm>0:audio/linux-c7-gsm
-_linux_c7_gstreamer1=				linux-c7-gstreamer1>0:multimedia/linux-c7-gstreamer1
-_linux_c7_gstreamer1-plugins=				linux-c7-gstreamer1-plugins>0:multimedia/linux-c7-gstreamer1-plugins
+_linux_c7_gstreamer1=			linux-c7-gstreamer1>0:multimedia/linux-c7-gstreamer1
+_linux_c7_gstreamer1-plugins=		linux-c7-gstreamer1-plugins>0:multimedia/linux-c7-gstreamer1-plugins
 _linux_${linux_ARGS}_gtk2=		linux-${linux_ARGS}-gtk2>0:x11-toolkits/linux-${linux_ARGS}-gtk2
 _linux_c7_gtk3=				linux-c7-gtk3>0:x11-toolkits/linux-c7-gtk3
 _linux_c7_harfbuzz=			linux-c7-harfbuzz>0:print/linux-c7-harfbuzz
@@ -96,7 +96,7 @@ _linux_${linux_ARGS}_libgpg-error=	linux-${linux_ARGS}-libgpg-error>0:security/l
 _linux_${linux_ARGS}_libmodman=	linux-${linux_ARGS}-libmodman>0:devel/linux-${linux_ARGS}-libmodman
 _linux_${linux_ARGS}_libogg=		linux-${linux_ARGS}-libogg>0:audio/linux-${linux_ARGS}-libogg
 _linux_${linux_ARGS}_libpciaccess=	linux-${linux_ARGS}-libpciaccess>0:devel/linux-${linux_ARGS}-libpciaccess
-_linux_${linux_ARGS}_libproxy=	linux-${linux_ARGS}-libproxy>0:net/linux-${linux_ARGS}-libproxy
+_linux_${linux_ARGS}_libproxy=		linux-${linux_ARGS}-libproxy>0:net/linux-${linux_ARGS}-libproxy
 _linux_c7_librsvg2=			linux-c7-librsvg2>0:graphics/linux-c7-librsvg2
 _linux_${linux_ARGS}_libsndfile=	linux-${linux_ARGS}-libsndfile>0:audio/linux-${linux_ARGS}-libsndfile
 _linux_${linux_ARGS}_libssh2=		linux-${linux_ARGS}-libssh2>0:security/linux-${linux_ARGS}-libssh2
@@ -119,7 +119,7 @@ _linux_${linux_ARGS}_openal-soft=	linux-${linux_ARGS}-openal-soft>0:audio/linux-
 _linux_${linux_ARGS}_openldap=		linux-${linux_ARGS}-openldap>0:net/linux-${linux_ARGS}-openldap
 _linux_c7_openmotif=			linux-c7-motif>0:x11-toolkits/linux-c7-openmotif
 _linux_c7_openssl=			${_linux_c7_base}
-_linux_c7_orc=			linux-c7-orc>0:devel/linux-c7-orc
+_linux_c7_orc=				linux-c7-orc>0:devel/linux-c7-orc
 _linux_c7_p11-kit=			linux-c7-p11-kit>0:security/linux-c7-p11-kit
 _linux_${linux_ARGS}_pango=		linux-${linux_ARGS}-pango>0:x11-toolkits/linux-${linux_ARGS}-pango
 _linux_${linux_ARGS}_pixman=		linux-${linux_ARGS}-pixman>0:x11/linux-${linux_ARGS}-pixman
@@ -141,6 +141,7 @@ _linux_${linux_ARGS}_tk85=		linux-${linux_ARGS}-tk85>0:x11-toolkits/linux-${linu
 _linux_c7_trousers=			linux-c7-trousers>0:security/linux-c7-trousers
 _linux_${linux_ARGS}_userspace-rcu=	linux-${linux_ARGS}-userspace-rcu>0:sysutils/linux-${linux_ARGS}-userspace-rcu
 _linux_c7_wayland=			linux-c7-wayland>0:graphics/linux-c7-wayland
+_linux_c7_xcb-util=			linux-c7-xcb-util>0:x11/linux-c7-xcb-util
 _linux_c7_xorglibs=			linux-c7-xorg-libs>=7.7_7:x11/linux-c7-xorg-libs
 
 USE_LINUX?=		base

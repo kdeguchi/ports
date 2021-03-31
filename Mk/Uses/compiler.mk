@@ -1,4 +1,4 @@
-# $FreeBSD: head/Mk/Uses/compiler.mk 562226 2021-01-21 17:47:55Z jrm $
+# $FreeBSD$
 #
 # Allows to determine the compiler being used
 #

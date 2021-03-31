@@ -1,5 +1,5 @@
 #!/bin/sh
-# $FreeBSD: head/Mk/Scripts/install-desktop-entries.sh 554893 2020-11-11 13:29:52Z mat $
+# $FreeBSD$
 #
 # MAINTAINER: portmgr@FreeBSD.org
 
