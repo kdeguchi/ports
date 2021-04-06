@@ -2,8 +2,7 @@
 # $FreeBSD: graphics/gimp-app/Makefile 2559 2020-06-15 23:39:32Z  $
 
 PORTNAME?=	gimp-app
-PORTVERSION=	2.10.22
-PORTREVISION=	3
+PORTVERSION=	2.10.24
 PORTEPOCH?=	1
 CATEGORIES?=	graphics gnome
 MASTER_SITES=	GIMP/gimp/v${PORTVERSION:R}
