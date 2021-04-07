@@ -1,5 +1,4 @@
 # Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-# $FreeBSD: head/multimedia/linux-c7-libtheora/Makefile 503741 2019-06-08 15:59:46Z tijl $
 
 PORTNAME=	gstreamer1
 PORTVERSION=	1.10.4

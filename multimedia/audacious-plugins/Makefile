@@ -1,5 +1,4 @@
 # Created by: Zastupov Stepan [RedChrom] <redchrom@mail.ru>
-# $FreeBSD: head/multimedia/audacious-plugins/Makefile 541716 2020-07-08 20:05:07Z madpilot $
 
 PORTNAME=	audacious-plugins
 PORTVERSION=	4.1

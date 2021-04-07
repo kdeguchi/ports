@@ -1,4 +1,3 @@
-# $FreeBSD: sysutils/thunar-volman/Makefile 2418 2020-03-11 08:13:08Z  $
 
 PORTNAME=	thunar-volman
 DISTVERSION=	4.16.0

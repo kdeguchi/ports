@@ -1,5 +1,4 @@
 # Created by: Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
-# $FreeBSD: head/multimedia/gstreamer1-plugins/Makefile 563995 2021-02-04 06:04:50Z bapt $
 
 PORTNAME=	gstreamer1-plugins
 PORTVERSION=	1.10.4

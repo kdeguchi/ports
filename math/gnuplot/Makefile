@@ -1,4 +1,3 @@
-# $FreeBSD: math/gnuplot/Makefile 2582 2020-06-27 11:45:20Z  $
 
 PORTNAME=	gnuplot
 PORTVERSION=	5.4.1

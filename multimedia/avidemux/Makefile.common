@@ -1,5 +1,3 @@
-# $FreeBSD: multimedia/avidemux/Makefile.common 2597 2020-07-06 04:04:20Z  $
-
 AVIDEMUX_VERSION=	2.7.6
 MASTER_SITES=	\
 		SF/avidemux/avidemux/${PORTVERSION}

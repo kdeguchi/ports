@@ -1,4 +1,3 @@
-# $FreeBSD: math/p5-Math-RungeKutta/Makefile 453 2013-10-09 22:01:50Z  $
 
 PORTNAME=	Math-RungeKutta
 PORTVERSION=	1.07

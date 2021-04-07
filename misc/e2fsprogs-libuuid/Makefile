@@ -1,5 +1,4 @@
 # Created by: Matthias Andree <matthias.andree@gmx.de>
-# $FreeBSD: head/misc/e2fsprogs-libuuid/Makefile 497209 2019-03-29 21:49:03Z mandree $
 
 PORTREVISION=	0
 CATEGORIES=	misc devel

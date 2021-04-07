@@ -1,4 +1,3 @@
-# $FreeBSD: head/sysutils/solaar/Makefile 522870 2020-01-13 09:38:12Z tobik $
 
 PORTNAME=	solaar
 DISTVERSION=	1.0.3

@@ -1,4 +1,3 @@
-# $FreeBSD: multimedia/avidemux-qt5/Makefile 2581 2020-06-23 23:00:12Z  $
 
 PORTNAME=	avidemux
 PORTVERSION=	${AVIDEMUX_VERSION}

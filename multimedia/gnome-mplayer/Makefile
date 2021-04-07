@@ -1,5 +1,4 @@
 # Created by: Alexander Logvinov <ports@logvinov.com>
-# $FreeBSD: head/multimedia/gnome-mplayer/Makefile 476025 2018-07-31 22:00:53Z jhale $
 
 PORTNAME=	gnome-mplayer
 PORTVERSION=	1.0.9

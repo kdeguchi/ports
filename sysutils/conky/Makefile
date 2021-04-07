@@ -1,5 +1,4 @@
 # Created by: Roman Bogorodskiy <novel@FreeBSD.org>
-# $FreeBSD: head/sysutils/conky/Makefile 460469 2018-01-31 12:46:44Z madpilot $
 
 PORTNAME=	conky
 PORTVERSION=	1.12.1

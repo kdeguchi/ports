@@ -1,5 +1,4 @@
 # Created by: Securedog <securedog@users.sourceforge.jp>
-# $FreeBSD: head/ports-mgmt/pkg_replace/Makefile 540625 2020-06-27 17:29:36Z lwhsu $
 
 PORTNAME=	pkg_replace
 PORTVERSION=	20200821

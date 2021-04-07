@@ -1,5 +1,4 @@
 # Created by: Anish Mistry (with help from mean)
-# $FreeBSD: head/multimedia/avidemux-plugins/Makefile 550292 2020-09-27 17:49:35Z tcberner $
 
 PORTNAME=	avidemux
 PORTVERSION=	${AVIDEMUX_VERSION}

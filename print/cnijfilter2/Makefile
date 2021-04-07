@@ -1,4 +1,3 @@
-# $FreeBSD: print/cnijfilter2/Makefile 2489 2020-05-06 00:32:21Z  $
 PORTNAME=	cnijfilter2
 PORTVERSION=	5.20
 CATEGORIES=	print

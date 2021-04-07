@@ -1,4 +1,3 @@
-# $FreeBSD: head/multimedia/avidemux-cli/Makefile 526907 2020-02-23 09:04:44Z tcberner $
 
 PORTNAME=	avidemux
 PORTVERSION=	${AVIDEMUX_VERSION}
