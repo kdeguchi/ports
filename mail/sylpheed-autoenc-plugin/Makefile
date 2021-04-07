@@ -1,5 +1,4 @@
 # Created by: shigeri <shigeri@m10.alpha-net.ne.jp>
-# $FreeBSD: mail/sylpheed-autoenc-plugin/Makefile 2203 2019-11-19 22:37:56Z  $
 
 PORTNAME=	sylpheed-autoenc-plugin
 PORTVERSION=	1.0.2

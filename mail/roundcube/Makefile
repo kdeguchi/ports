@@ -1,4 +1,3 @@
-# $FreeBSD: mail/roundcube/Makefile 2551 2020-06-10 11:23:19Z  $
 
 PORTNAME=	roundcube
 DISTVERSION=	1.4.11
@@ -8,7 +7,7 @@ MASTER_SITES=	https://github.com/roundcube/roundcubemail/releases/download/${DIS
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 DISTNAME=	${PORTNAME}mail-${DISTVERSION}-complete
 
-MAINTAINER?=	ale@FreeBSD.org
+MAINTAINER=	ale@FreeBSD.org
 COMMENT=	Fully skinnable XHTML/CSS webmail written in PHP
 
 LICENSE=	GPLv3+

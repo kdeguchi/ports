@@ -1,4 +1,3 @@
-# $FreeBSD: mail/targrey/Makefile 482 2013-11-05 07:51:15Z  $
 
 PKGNAMEPREFIX=	targrey-0.31-
 
