@@ -1,5 +1,4 @@
 # Created by: Mita Yoshio <mita@jp.FreeBSD.org>
-# $FreeBSD: head/japanese/tgif/Makefile 521790 2020-01-02 02:10:05Z jbeich $
 
 PORTNAME=	tgif
 PORTVERSION=	4.2.2

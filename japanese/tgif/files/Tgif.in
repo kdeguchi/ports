@@ -1,4 +1,3 @@
-! $FreeBSD: head/japanese/tgif/files/Tgif.in 340872 2014-01-24 00:14:07Z mat $
 Tgif.UseNKF:			true
 Tgif.CopyAndPasteJIS:		true
 Tgif.GridSystem:		Metric

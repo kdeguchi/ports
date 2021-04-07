@@ -1,5 +1,4 @@
 # Created by: Daichi GOTO <daichi@FreeBSD.org>
-# $FreeBSD: head/japanese/mozc-server/Makefile 544906 2020-08-15 01:21:00Z hrs $
 
 PORTNAME=	mozc
 PORTVERSION=	2.23.2815.102.01

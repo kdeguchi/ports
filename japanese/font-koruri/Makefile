@@ -1,5 +1,4 @@
 # Created by: Koichiro IWAO <meta@FreeBSD.org>
-# $FreeBSD: head/japanese/font-koruri/Makefile 482822 2018-10-23 09:27:15Z meta $
 
 PORTNAME=	koruri
 PORTVERSION=	20180915

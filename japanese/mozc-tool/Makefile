@@ -1,5 +1,4 @@
 # Created by: Daichi GOTO <daichi@FreeBSD.org>
-# $FreeBSD: head/japanese/mozc-tool/Makefile 494682 2019-03-05 07:05:53Z hrs $
 
 PKGNAMESUFFIX=	-tool
 

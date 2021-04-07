@@ -1,5 +1,4 @@
 # Created by: Yoichi Asai <yatt@luna2.org>
-# $FreeBSD: audio/timidity++/Makefile 2389 2020-03-02 23:50:15Z  $
 
 PORTNAME=	timidity++
 PORTVERSION=	2.15.0

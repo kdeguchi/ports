@@ -1,5 +1,3 @@
-#$FreeBSD: audio/timidity++/Makefile.interface 2190 2019-11-06 09:44:17Z  $
-
 # Shared by timidity++ interface ports
 
 BUILD_DEPENDS+=	libarc>0:archivers/libarc

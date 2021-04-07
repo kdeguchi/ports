@@ -1,4 +1,3 @@
-# $FreeBSD: head/japanese/font-rounded-mgenplus/Makefile 419177 2016-07-27 15:05:03Z ume $
 
 PORTNAME=	rounded-x-mplus
 PORTVERSION=	20150529

@@ -1,4 +1,3 @@
-# $FreeBSD: japanese/font-epson/Makefile 2236 2020-01-08 07:53:58Z  $
 
 PORTNAME=	epson
 PORTVERSION=	3.1e

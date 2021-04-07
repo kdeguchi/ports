@@ -1,5 +1,4 @@
 # Created by: Yoichi Asai <yatt@luna2.org>
-# $FreeBSD: audio/timidity++-xaw/Makefile 2482 2020-05-03 21:35:50Z  $
 
 PKGNAMESUFFIX=	-xaw
 

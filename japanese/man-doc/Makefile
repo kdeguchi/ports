@@ -1,4 +1,3 @@
-# $FreeBSD: japanese/man-doc/Makefile 828 2014-06-05 06:43:01Z  $
 
 PORTNAME=	man
 PORTVERSION=	${OSREL}.20201029

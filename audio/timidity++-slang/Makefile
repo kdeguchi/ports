@@ -1,5 +1,4 @@
 # Created by: Yoichi Asai <yatt@msc.biglobe.ne.jp>
-# $FreeBSD: audio/timidity++-slang/Makefile 2482 2020-05-03 21:35:50Z  $
 
 PKGNAMESUFFIX=	-slang
 
