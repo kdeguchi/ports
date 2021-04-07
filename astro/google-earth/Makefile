@@ -1,4 +1,3 @@
-# $FreeBSD: head/astro/google-earth/Makefile 432956 2017-01-31 20:51:04Z tijl $
 
 PORTNAME=	google-earth
 PORTVERSION=	7.3.3
