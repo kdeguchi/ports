@@ -1,5 +1,4 @@
 # Created by: Ben Woods <woodsb02@FreeBSD.org>
-# $FreeBSD: x11/lightdm-gtk-greeter/Makefile 2546 2020-06-08 03:51:50Z  $
 
 PORTNAME=	lightdm-gtk-greeter
 PORTVERSION=	2.0.8

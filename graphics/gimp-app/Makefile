@@ -1,5 +1,4 @@
 # Created by: erich@FreeBSD.org
-# $FreeBSD: graphics/gimp-app/Makefile 2559 2020-06-15 23:39:32Z  $
 
 PORTNAME?=	gimp-app
 PORTVERSION=	2.10.24
