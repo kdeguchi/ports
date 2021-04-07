@@ -1,4 +1,3 @@
-# $FreeBSD: x11-themes/emerald-themes/Makefile 2512 2020-05-14 23:46:56Z  $
 
 PORTNAME=	emerald-themes
 PORTVERSION=	0.8.18

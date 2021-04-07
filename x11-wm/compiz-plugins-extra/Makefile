@@ -1,4 +1,3 @@
-# $FreeBSD: x11-wm/compiz-plugins-extra/Makefile 827 2014-06-04 01:12:55Z  $
 
 PORTNAME=	compiz-plugins-extra
 PORTVERSION=	0.8.18

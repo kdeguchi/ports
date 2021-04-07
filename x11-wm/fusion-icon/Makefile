@@ -1,4 +1,3 @@
-# $FreeBSD: x11-wm/fusion-icon/Makefile 2548 2020-06-08 04:01:12Z  $
 
 PORTNAME=	fusion-icon
 PORTVERSION=	0.2.4

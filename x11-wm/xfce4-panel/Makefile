@@ -1,5 +1,4 @@
 # Created by: James Earl <jdearl@telus.net>
-# $FreeBSD: head/x11-wm/xfce4-panel/Makefile 559953 2021-01-02 16:36:33Z madpilot $
 
 PORTNAME=	xfce4-panel
 PORTVERSION=	4.16.2

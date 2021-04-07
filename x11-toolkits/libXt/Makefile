@@ -1,5 +1,4 @@
 # Created by: Eric Anholt <anholt@FreeBSD.org>
-# $FreeBSD: head/x11-toolkits/libXt/Makefile 476013 2018-07-31 18:41:30Z zeising $
 
 PORTNAME=	libXt
 DISTVERSION=	1.2.1

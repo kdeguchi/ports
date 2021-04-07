@@ -1,4 +1,3 @@
-# $FreeBSD: x11-themes/capitaine-cursors/Makefile 2526 2020-05-18 04:43:01Z  $
 
 PORTNAME=	capitaine-cursors
 PORTVERSION=	r4

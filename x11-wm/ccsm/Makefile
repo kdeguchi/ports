@@ -1,5 +1,4 @@
 # Created by: Robert Noland <rnoland@FreeBSD.org>
-# $FreeBSD: x11-wm/ccsm/Makefile 2511 2020-05-14 23:42:52Z  $
 
 PORTNAME=	ccsm
 PORTVERSION=	0.8.18

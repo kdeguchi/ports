@@ -1,5 +1,4 @@
 # Created by: Oliver Lehmann <oliver@FreeBSD.org>
-# $FreeBSD: x11-fm/thunar/Makefile 2537 2020-05-25 08:07:26Z  $
 
 PORTNAME=	thunar
 DISTVERSION=	4.16.6
