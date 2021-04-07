@@ -1,4 +1,3 @@
-
 PORTNAME=	google-earth
 PORTVERSION=	7.3.3
 #PORTREVISION=	1

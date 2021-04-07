@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	orc
 PORTVERSION=	0.4.26
 DISTVERSIONSUFFIX=	-1.el7

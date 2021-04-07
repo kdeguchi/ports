@@ -1,4 +1,3 @@
-
 PKGNAMEPREFIX=	targrey-0.31-
 
 #PATCH_SITES=	http://k2net.hakuba.jp/pub/

@@ -1,4 +1,3 @@
-
 PORTNAME=	epson
 PORTVERSION=	3.1e
 CATEGORIES=	japanese x11-fonts

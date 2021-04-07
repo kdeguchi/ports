@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	libmodman
 PORTVERSION=	2.0.1
 DISTVERSIONSUFFIX=	-8.el7
