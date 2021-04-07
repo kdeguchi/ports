@@ -1,4 +1,3 @@
-# $FreeBSD: x11-wm/compiz-fusion/Makefile 827 2014-06-04 01:12:55Z  $
 
 PORTNAME=	compiz-reloaded
 PORTVERSION=	0.8.18
