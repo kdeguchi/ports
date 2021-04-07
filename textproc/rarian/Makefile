@@ -1,6 +1,4 @@
 # Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
-# $FreeBSD: head/textproc/rarian/Makefile 551466 2020-10-04 21:35:55Z 0mp $
-#   $MCom: ports/textproc/rarian/Makefile,v 1.12 2008/03/09 21:41:22 mezz Exp $
 
 PORTNAME=	rarian
 PORTVERSION=	0.8.1

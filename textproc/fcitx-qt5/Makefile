@@ -1,4 +1,3 @@
-# $FreeBSD: head/textproc/fcitx-qt5/Makefile 544016 2020-08-03 03:12:50Z yuri $
 
 PORTNAME=	fcitx-qt5
 DISTVERSION=	1.2.5
