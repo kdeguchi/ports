@@ -1,4 +1,3 @@
-
 PORTNAME=	compiz-reloaded
 PORTVERSION=	0.8.18
 CATEGORIES=	x11-wm

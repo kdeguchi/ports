@@ -1,4 +1,3 @@
-
 PORTNAME=	capitaine-cursors
 PORTVERSION=	r4
 CATEGORIES=	x11-themes

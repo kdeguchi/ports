@@ -1,4 +1,3 @@
-
 PORTNAME=	emerald-themes
 PORTVERSION=	0.8.18
 CATEGORIES=	x11-themes

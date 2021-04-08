@@ -1,4 +1,3 @@
-
 PORTNAME=	fusion-icon
 PORTVERSION=	0.2.4
 CATEGORIES=	x11-wm

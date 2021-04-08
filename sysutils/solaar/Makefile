@@ -1,4 +1,3 @@
-
 PORTNAME=	solaar
 DISTVERSION=	1.0.3
 CATEGORIES=	sysutils

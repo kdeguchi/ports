@@ -1,4 +1,3 @@
-
 PORTNAME=	libcompizconfig
 PORTVERSION=	0.8.18
 PORTREVISION=	1
