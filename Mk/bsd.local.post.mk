@@ -79,9 +79,9 @@ CFLAGS+=	-Qunused-arguments
 USE_KDE:=	${USE_KDE:S@ecm@ecm_build@}
 .endif
 
-.if ${.CURDIR:M*/x11/xfce4-terminal}
-CONFIGURE_ARGS+=	--with-utempter
-.endif
+#.if ${.CURDIR:M*/x11/xfce4-terminal}
+#CONFIGURE_ARGS+=	--with-utempter
+#.endif
 
 .if ${.CURDIR:M*/databases/mariadb*-server}
 SUB_LIST+=	MARIADB_GROUP="${MARIADB_GROUP}"
