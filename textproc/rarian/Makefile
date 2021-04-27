@@ -10,8 +10,8 @@ COMMENT=	OMF help system based on the Freedesktop specification
 
 LICENSE=	GPLv2+ LGPL21+ ZLIB
 LICENSE_COMB=	multi
-LICENSE_FILE_GPLv2+=	${WRKSRC}/COPYING.UTILS
-LICENSE_FILE_LGPL21+=	${WRKSRC}/COPYING.LIB
+LICENSE_FILE_GPLv2+ =	${WRKSRC}/COPYING.UTILS
+LICENSE_FILE_LGPL21+ =	${WRKSRC}/COPYING.LIB
 LICENSE_FILE_ZLIB=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:textproc/docbook-xsl \
@@ -47,9 +47,9 @@ post-patch:
 		${WRKSRC}/util/rarian-sk-extract.in \
 		${WRKSRC}/util/rarian-sk-rebuild.in \
 		${WRKSRC}/util/rarian-sk-update.in
-	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' \
-		${WRKSRC}/librarian/rarian-main.c \
-		${WRKSRC}/librarian/rarian-man.c \
-		${WRKSRC}/librarian/rarian-info.c
+#	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' \
+#		${WRKSRC}/librarian/rarian-main.c \
+#		${WRKSRC}/librarian/rarian-man.c \
+#		${WRKSRC}/librarian/rarian-info.c
 
 .include <bsd.port.mk>
