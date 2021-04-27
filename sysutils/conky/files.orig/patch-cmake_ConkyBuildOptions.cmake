@@ -1,6 +1,6 @@
---- cmake/ConkyBuildOptions.cmake.orig	2021-04-26 14:48:46 UTC
+--- cmake/ConkyBuildOptions.cmake.orig	2019-01-08 01:26:24 UTC
 +++ cmake/ConkyBuildOptions.cmake
-@@ -98,7 +98,7 @@ if(BUILD_I18N)
+@@ -100,7 +100,7 @@ if(BUILD_I18N)
  endif(BUILD_I18N)
  
  # Some standard options

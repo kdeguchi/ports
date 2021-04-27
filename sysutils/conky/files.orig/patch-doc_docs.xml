@@ -1,4 +1,4 @@
---- doc/docs.xml.orig	2021-04-26 14:48:46 UTC
+--- doc/docs.xml.orig	2019-01-08 01:26:24 UTC
 +++ doc/docs.xml
 @@ -140,8 +140,8 @@
      <para>Default configuration file location is

@@ -1,4 +1,4 @@
---- CMakeLists.txt.orig	2021-04-26 14:48:46 UTC
+--- CMakeLists.txt.orig	2019-07-23 15:06:00 UTC
 +++ CMakeLists.txt
 @@ -72,9 +72,12 @@ if(BUILD_TESTS)
  endif()

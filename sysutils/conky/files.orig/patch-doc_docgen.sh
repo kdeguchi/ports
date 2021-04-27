@@ -1,4 +1,4 @@
---- doc/docgen.sh.orig	2021-04-26 14:48:46 UTC
+--- doc/docgen.sh.orig	2016-07-20 16:53:48 UTC
 +++ doc/docgen.sh
 @@ -1,8 +1,11 @@
  #!/bin/sh

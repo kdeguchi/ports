@@ -1,4 +1,4 @@
---- cmake/Conky.cmake.orig	2021-04-26 14:48:46 UTC
+--- cmake/Conky.cmake.orig	2019-01-08 01:26:24 UTC
 +++ cmake/Conky.cmake
 @@ -18,7 +18,7 @@
  # along with this program.  If not, see <http://www.gnu.org/licenses/>.
