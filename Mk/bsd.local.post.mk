@@ -128,6 +128,12 @@ MAKE_ENV:=	${MAKE_ENV:S@PATH=@PATH=${PREFIX}/libexec/ccache:@}
 .endif
 .endif
 
+.if ${.CURDIR:M*/devel/ccache*}
+.if ${PORT_OPTIONS:MCLANGLINK}
+CLANG_COMPILERS+= 11 12
+.endif
+.endif
+
 .if defined(PREFIX) && ${PREFIX} == /usr/local
 POST_PLIST+=	post-generate-plist
 .if !target(post-generate-plist)
