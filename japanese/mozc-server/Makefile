@@ -24,6 +24,9 @@ BROKEN_sparc64=		fails to compile: segfault
 USE_GITHUB=	yes
 GH_ACCOUNT=	hrs-allbsd
 GH_TUPLE=	hiroyuki-komatsu:japanese-usage-dictionary:e5b3425:udic
+#GH_ACCOUNT=	fcitx
+#GH_PROJECT=	mozc
+#GH_TAGNAME=	67cba51
 
 USES=		compiler:c++11-lang pkgconfig gmake \
 		tar:bzip2 python:3.5+,build shebangfix
@@ -62,6 +65,9 @@ LIB_DEPENDS+=	libfontconfig.so:x11-fonts/fontconfig \
 USES+=		emacs
 .elif ${BUILD_MOZC_LIST:Mfcitx_mozc}
 USES+=		gettext-tools
+.elif ${BUILD_MOZC_LIST:Mfcitx5_mozc}
+USES+=		gettext-tools
+USES:=		${USES:S@compiler:c++11-lang@compiler:c++14-lang@g}
 .endif
 
 # Use GCC only when the stock clang does not have libc++.so.
@@ -84,7 +90,7 @@ GYP_DEFINES=	use_libprotobuf=1 \
 		ibus_mozc_icon_path='${LOCALBASE}/share/ibus-mozc/icons/product_icon.png' \
 		ibus_mozc_path='${PREFIX}/libexec/ibus-engine-mozc'
 BUILD_MODE=	Release
-BUILD_CMD=	${SETENV} ${MAKE_ENV} PATH=/bin:/usr/bin:${PATH} ${MAKE_CMD}
+BUILD_CMD=	${SETENV} ${MAKE_ENV} ${MAKE_CMD}
 BUILD_MOZC_CMD=	cd ${BUILD_WRKSRC} && \
 		${SETENV} BUILD_COMMAND="${BUILD_WRKSRC}/mozcmake" \
 		    PATH="${PATH}" \
@@ -101,17 +107,30 @@ BUILD_MOZC_CMD=	cd ${BUILD_WRKSRC} && \
 BUILD_MOZC_CMD_BUILD=	${BUILD_MOZC_CMD} build -c ${BUILD_MODE} ${_MAKE_JOBS}
 BUILD_GYP_CMD=	${SETENV} ${MAKE_ENV} ${LOCALBASE}/bin/gyp
 
-post-extract:	# XXX: do not activate fcitx5
-	${RM} -r ${WRKSRC}/src/unix/fcitx5
+#post-extract:	# XXX: do not activate fcitx5
+#	${RM} -r ${WRKSRC}/src/unix/fcitx5
 post-patch:
 	${FIND} ${BUILD_WRKSRC} \( -name '*.gyp' -o -name '*.gypi' -o -name '*.cc' -o -name '*.h' \) -exec \
 	    ${REINPLACE_CMD} "s,'python','${PYTHON_CMD}',g;s,'/usr/lib/mozc','${PREFIX}/libexec',g;s,'/usr/lib/mozc/documents','${DATADIR}',g" {} \;
+
 .if ${BUILD_MOZC_LIST:Mfcitx_mozc} == "fcitx_mozc"
+	${RM} -r ${WRKSRC}/src/unix/fcitx5
 	${REINPLACE_CMD} 's,/po/mo},%po}mo,g' \
 	    ${BUILD_WRKSRC}/unix/fcitx/gen_fcitx_mozc_i18n.sh
 	${REINPLACE_CMD} \
 	    "s,IconName=.*,IconName=${LOCALBASE:Q}/share/fcitx/mozc/icon/mozc.png," \
 	    ${BUILD_WRKSRC}/unix/fcitx/mozc.conf
+.endif
+
+.if ${BUILD_MOZC_LIST:Mfcitx5_mozc} == "fcitx5_mozc"
+	${RM} -r ${WRKSRC}/src/unix/fcitx
+	${REINPLACE_CMD} 's,/po/mo},%po}mo,g' \
+	    ${BUILD_WRKSRC}/unix/fcitx5/gen_fcitx_mozc_i18n.sh
+	${REINPLACE_CMD} \
+	    "s,IconName=.*,IconName=${LOCALBASE:Q}/share/fcitx5/mozc/icon/mozc.png," \
+	    ${BUILD_WRKSRC}/unix/fcitx5/mozc.conf
+	${REINPLACE_CMD} -e 's@string @std::string @g' \
+	    ${WRKSRC}/src/unix/fcitx5/*.cc ${WRKSRC}/src/unix/fcitx5/*.h
 .endif
 
 .if !${BUILD_MOZC_LIST:Mmozc_el}
@@ -390,7 +409,70 @@ do-install-fcitx_mozc:
 	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/gen/unix/fcitx/po/${L}.mo \
 	    ${STAGEDIR}${PREFIX}/share/locale/${L}/LC_MESSAGES/fcitx-mozc.mo
 .endfor
-.endif
+.endif #fcitx_mozc
+
+# fcitx5_mozc
+.if ${BUILD_MOZC_LIST:Mfcitx5_mozc} == "fcitx5_mozc"
+#GYP_OPTIONS+=	--noqt
+GYP_DEFINES+=	use_libibus=0 \
+		enable_gtk_renderer=0 \
+		use_fcitx5="YES"
+
+LIB_DEPENDS+=	libFcitx5Core.so:textproc/fcitx5
+RUN_DEPENDS+=	mozc_server:japanese/mozc-server \
+		mozc_tool:japanese/mozc-tool
+
+PLIST_FILES+=	lib/fcitx5/fcitx-mozc.so \
+		share/fcitx5/addon/fcitx5-mozc.conf \
+		share/fcitx5/inputmethod/mozc.conf \
+		%%DATADIR%%/icon/mozc.png \
+		%%DATADIR%%/icon/mozc-alpha_full.png \
+		%%DATADIR%%/icon/mozc-alpha_half.png \
+		%%DATADIR%%/icon/mozc-direct.png \
+		%%DATADIR%%/icon/mozc-hiragana.png \
+		%%DATADIR%%/icon/mozc-katakana_full.png \
+		%%DATADIR%%/icon/mozc-katakana_half.png \
+		%%DATADIR%%/icon/mozc-dictionary.png \
+		%%DATADIR%%/icon/mozc-properties.png \
+		%%DATADIR%%/icon/mozc-tool.png \
+		share/locale/ja/LC_MESSAGES/fcitx5-mozc.mo \
+		share/locale/zh_CN/LC_MESSAGES/fcitx5-mozc.mo \
+		share/locale/zh_TW/LC_MESSAGES/fcitx5-mozc.mo
+PLIST_DIRS+=	%%DATADIR%%/icon ${DATADIR_REL}
+
+do-build-fcitx5_mozc:
+	${BUILD_MOZC_CMD_BUILD} unix/fcitx5/fcitx5.gyp:fcitx5-mozc
+
+do-install-fcitx5_mozc:
+	@${MKDIR} \
+	    ${STAGEDIR}${PREFIX}/lib/fcitx5 \
+	    ${STAGEDIR}${PREFIX}/share/fcitx5/addon \
+	    ${STAGEDIR}${PREFIX}/share/fcitx5/inputmethod
+	${INSTALL_LIB} \
+	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/fcitx5-mozc.so \
+	    ${STAGEDIR}${PREFIX}/lib/fcitx5/fcitx5-mozc.so
+	${INSTALL_DATA} \
+	    ${BUILD_WRKSRC}/unix/fcitx5/fcitx5-mozc.conf \
+	    ${STAGEDIR}${PREFIX}/share/fcitx5/addon/fcitx5-mozc.conf
+	${INSTALL_DATA} \
+	    ${BUILD_WRKSRC}/unix/fcitx5/mozc.conf \
+	    ${STAGEDIR}${PREFIX}/share/fcitx5/inputmethod/mozc.conf
+	@${MKDIR} ${STAGEDIR}${DATADIR}/icon
+.for F in ui-alpha_full ui-alpha_half ui-dictionary ui-direct \
+	ui-hiragana ui-katakana_full ui-katakana_half ui-properties ui-tool
+	${INSTALL_DATA} \
+	    ${BUILD_WRKSRC}/data/images/unix/${F}.png \
+	    ${STAGEDIR}${DATADIR}/icon/${F:S,^ui-,mozc-,}.png
+.endfor
+	${INSTALL_DATA} \
+	    ${BUILD_WRKSRC}/data/images/product_icon_32bpp-128.png \
+	    ${STAGEDIR}${DATADIR}/icon/mozc.png
+.for L in ja zh_CN zh_TW
+	${INSTALL_DATA} \
+	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/gen/unix/fcitx5/po/${L}.mo \
+	    ${STAGEDIR}${PREFIX}/share/locale/${L}/LC_MESSAGES/fcitx5-mozc.mo
+.endfor
+.endif #fcitx5_mozc
 
 # mozc_el
 .if ${BUILD_MOZC_LIST:Mmozc_el} == "mozc_el"
