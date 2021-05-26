@@ -11,7 +11,9 @@ LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	liblightdm-gobject-1.so:x11/lightdm \
-		libcanberra-gtk3.so:audio/libcanberra-gtk3
+		libcanberra-gtk3.so:audio/libcanberra-gtk3 \
+		libcanberra.so:audio/libcanberra \
+		libfreetype.so:print/freetype2
 BUILD_DEPENDS=	valac:lang/vala
 
 USES=		autoreconf gettext gmake gnome localbase pkgconfig python \
@@ -19,7 +21,7 @@ USES=		autoreconf gettext gmake gnome localbase pkgconfig python \
 
 USE_GNOME=	cairo gdkpixbuf2 gtk30 intltool
 USE_PYTHON=	flavors
-USE_XORG=	x11
+USE_XORG=	pixman x11 xext
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxmint
