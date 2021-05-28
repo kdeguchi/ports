@@ -39,6 +39,7 @@ post-patch:
 		${REINPLACE_CMD} -E \
 			's@/usr/local@/usr@g;s@/etc@%%PREFIX%%/etc@g;s@/usr@%%PREFIX%%@g;s@%%PREFIX%%@${PREFIX}@g' \
 			files/usr/bin/* src/*.vala data/${PORTNAME}.8 && \
+		${REINPLACE_CMD} -E 's@type="d"@type="i"@' data/${GLIB_SCHEMAS} && \
 		${MKDIR} files${PREFIX} && \
 		${MV} files/usr/bin files/usr/share files${PREFIX}
 
