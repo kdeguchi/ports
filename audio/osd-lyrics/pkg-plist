@@ -19,6 +19,9 @@ lib/osdlyrics/daemon/lyrics.py
 lib/osdlyrics/daemon/lyricsource.py
 lib/osdlyrics/daemon/main.py
 lib/osdlyrics/daemon/player.py
+lib/osdlyrics/lyricsources/megalobiz/__pycache__/megalobiz%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+lib/osdlyrics/lyricsources/megalobiz/__pycache__/megalobiz%%PYTHON_EXT_SUFFIX%%.pyc
+lib/osdlyrics/lyricsources/megalobiz/megalobiz.py
 lib/osdlyrics/lyricsources/netease/__pycache__/netease%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
 lib/osdlyrics/lyricsources/netease/__pycache__/netease%%PYTHON_EXT_SUFFIX%%.pyc
 lib/osdlyrics/lyricsources/netease/netease.py
@@ -100,6 +103,7 @@ lib/osdlyrics/tools/create-lyricsource.py
 share/applications/osdlyrics.desktop
 share/dbus-1/services/org.osdlyrics.Config.service
 share/dbus-1/services/org.osdlyrics.Daemon.service
+share/dbus-1/services/org.osdlyrics.LyricSourcePlugin.megalobiz.service
 share/dbus-1/services/org.osdlyrics.LyricSourcePlugin.netease.service
 share/dbus-1/services/org.osdlyrics.LyricSourcePlugin.subtitles4songs.service
 share/dbus-1/services/org.osdlyrics.LyricSourcePlugin.xiami.service

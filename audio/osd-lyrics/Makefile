@@ -1,7 +1,7 @@
 # Created by: Alexey Dokuchaev <danfe@FreeBSD.org>
 
 PORTNAME=	osdlyrics
-PORTVERSION=	0.5.6
+PORTVERSION=	0.5.5
 CATEGORIES=	audio deskutils
 PKGNAMESUFFIX=	${PYTHON_PKGNAMESUFFIX}
 
@@ -25,7 +25,7 @@ USES=		autoreconf desktop-file-utils gettext-tools gmake gnome \
 		iconv localbase pkgconfig python xorg
 
 USE_GITHUB=	yes
-GH_TAGNAME=	b2678f5
+GH_TAGNAME=	8b93a7f
 
 USE_GNOME=	atk glib20 gtk20 intltool pango pygobject3
 USE_PYTHON=	autoplist flavors py3kplist
@@ -39,11 +39,14 @@ OPTIONS_SUB=	yes
 NLS_USES=	gettext-runtime
 NLS_CONFIGURE_ENABLE=	nls
 
+post-patch:
+	${REINPLACE_CMD} -E 's,AM_GNU_GETTEXT_VERSION,AM_GNU_GETTEXT_REQUIRE_VERSION,' ${WRKSRC}/configure.ac
+
 post-patch-NLS-on:
-	@${CP} ${FILESDIR}/ja.po ${WRKSRC}/po/
-	@${ECHO_CMD} ' ja' >> ${WRKSRC}/po/LINGUAS
+	${CP} ${FILESDIR}/ja.po ${WRKSRC}/po/
+	${REINPLACE_CMD} -E 's@it ms@it ja ms@' ${WRKSRC}/po/LINGUAS
 
 post-configure-NLS-off:
-	@${REINPLACE_CMD} -E -e 's,(USE_NLS=)yes,\1no,' ${WRKSRC}/configure
+	${REINPLACE_CMD} -E -e 's,(USE_NLS=)yes,\1no,' ${WRKSRC}/configure
 
 .include <bsd.port.mk>
