@@ -20,7 +20,6 @@ start_cmd="vboxnet_start"
 stop_cmd="vboxnet_stop"
 
 vboxnet_modules="vboxdrv vboxnetflt:ng_vboxnetflt vboxnetadp"
-required_modules="ng_ether"
 
 vboxnet_start()
 {
