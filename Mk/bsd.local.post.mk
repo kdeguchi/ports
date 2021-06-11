@@ -104,7 +104,9 @@ RUN_DEPENDS:=	${RUN_DEPENDS:S@etc_os-release>0:sysutils/etc_os-release@@}
 .endif
 
 .if ${.CURDIR:M*/emulators/i386-wine-devel}
-MONO_RUN_DEPENDS:=	${MONO_RUN_DEPENDS:S@/mono/wine-mono-4.9.4.msi@/mono/wine-mono-5.1.0-x86.msi@}
+FETCH_BINARY=	curl
+FETCH_ARGS=	--proxy socks5://localhost:1090 --fail --insecure --location --remote-time -O
+DISABLE_SIZE=	yes
 .endif
 
 .if ${.CURDIR:M*/math/wxmaxima}
