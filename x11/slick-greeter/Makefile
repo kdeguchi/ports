@@ -1,7 +1,7 @@
 # Created by: Eric Turgeon <ericbsd@FreeBSD.org>
 
 PORTNAME=	slick-greeter
-PORTVERSION=	1.5.2
+PORTVERSION=	1.5.3
 CATEGORIES=	x11
 
 MAINTAINER=	ericbsd@FreeBSD.org
@@ -25,7 +25,6 @@ USE_XORG=	pixman x11 xext
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxmint
-GH_TAGNAME=	dcbb38a
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
