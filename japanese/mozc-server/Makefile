@@ -3,7 +3,7 @@
 PORTNAME=	mozc
 PORTVERSION=	2.23.2815.102.01
 DISTVERSIONPREFIX=	v
-PORTREVISION=	2
+PORTREVISION?=	3
 CATEGORIES=	japanese
 
 MAINTAINER=	hrs@FreeBSD.org
@@ -28,8 +28,8 @@ GH_TUPLE=	hiroyuki-komatsu:japanese-usage-dictionary:e5b3425:udic
 #GH_PROJECT=	mozc
 #GH_TAGNAME=	67cba51
 
-USES=		compiler:c++11-lang pkgconfig gmake \
-		tar:bzip2 python:3.5+,build shebangfix
+USES=		compiler:c++11-lang gmake ninja:build pkgconfig \
+		python:3.5+,build shebangfix tar:bzip2
 SHEBANG_FILES=	src/build_mozc.py
 BUILD_WRKSRC=	${WRKSRC}/src
 
@@ -161,8 +161,8 @@ GYP_DEFINES+=	use_libibus=0 \
 
 .if ${PORT_OPTIONS:MUTDIC}
 LICENSE+=	APACHE20 CC-BY-SA-3.0 GPLv2
-UT_VERSION=20210421.1
-MASTER_SITES+=	OSDN_CHAMBER/30/30220:ut
+UT_VERSION=20210603
+MASTER_SITES+=	OSDN_CHAMBER/30/30562:ut
 DISTFILES+=	mozcdic-ut-${UT_VERSION}.tar.bz2:ut
 .endif
 
