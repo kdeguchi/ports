@@ -24,11 +24,8 @@ BROKEN_sparc64=		fails to compile: segfault
 USE_GITHUB=	yes
 GH_ACCOUNT=	hrs-allbsd
 GH_TUPLE=	hiroyuki-komatsu:japanese-usage-dictionary:e5b3425:udic
-#GH_ACCOUNT=	fcitx
-#GH_PROJECT=	mozc
-#GH_TAGNAME=	67cba51
 
-USES=		compiler:c++11-lang gmake ninja:build pkgconfig \
+USES=		compiler:c++17-lang gmake ninja:build pkgconfig \
 		python:3.5+,build shebangfix tar:bzip2
 SHEBANG_FILES=	src/build_mozc.py
 BUILD_WRKSRC=	${WRKSRC}/src
@@ -63,11 +60,15 @@ LIB_DEPENDS+=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
 .elif ${BUILD_MOZC_LIST:Mmozc_el} == "mozc_el"
 USES+=		emacs
-.elif ${BUILD_MOZC_LIST:Mfcitx_mozc}
+.elif ${BUILD_MOZC_LIST:Mfcitx_mozc} == "fcitx_mozc"
 USES+=		gettext-tools
-.elif ${BUILD_MOZC_LIST:Mfcitx5_mozc}
+#PATCH_SITES+=	OSDN_CHAMBER/28/28064:fcitx
+#PATCHFILES+=	fcitx-mozc-20210329.patch:-p1:fcitx
+.elif ${BUILD_MOZC_LIST:Mfcitx5_mozc} == "fcitx5_mozc"
 USES+=		gettext-tools
-USES:=		${USES:S@compiler:c++11-lang@compiler:c++14-lang@g}
+USES:=		${USES:S@c++11-lang@c++17-lang@}
+#PATCH_SITES+=	OSDN_CHAMBER/28/28063:fcitx5
+#PATCHFILES+=	fcitx5-mozc-20210329.patch:-p1:fcitx5
 .endif
 
 # Use GCC only when the stock clang does not have libc++.so.
@@ -104,11 +105,12 @@ BUILD_MOZC_CMD=	cd ${BUILD_WRKSRC} && \
 		    AR_host="${AR}" \
 		    ${MAKE_ENV} \
 		    ${PYTHON_CMD} build_mozc.py
-BUILD_MOZC_CMD_BUILD=	${BUILD_MOZC_CMD} build -c ${BUILD_MODE} ${_MAKE_JOBS}
+BUILD_MOZC_CMD_BUILD=	${BUILD_MOZC_CMD} build -c ${BUILD_MODE} #${_MAKE_JOBS}
 BUILD_GYP_CMD=	${SETENV} ${MAKE_ENV} ${LOCALBASE}/bin/gyp
 
-#post-extract:	# XXX: do not activate fcitx5
+#post-extract:
 #	${RM} -r ${WRKSRC}/src/unix/fcitx5
+
 post-patch:
 	${FIND} ${BUILD_WRKSRC} \( -name '*.gyp' -o -name '*.gypi' -o -name '*.cc' -o -name '*.h' \) -exec \
 	    ${REINPLACE_CMD} "s,'python','${PYTHON_CMD}',g;s,'/usr/lib/mozc','${PREFIX}/libexec',g;s,'/usr/lib/mozc/documents','${DATADIR}',g" {} \;
@@ -124,8 +126,8 @@ post-patch:
 
 .if ${BUILD_MOZC_LIST:Mfcitx5_mozc} == "fcitx5_mozc"
 	${RM} -r ${WRKSRC}/src/unix/fcitx
-	${REINPLACE_CMD} 's,/po/mo},%po}mo,g' \
-	    ${BUILD_WRKSRC}/unix/fcitx5/gen_fcitx_mozc_i18n.sh
+#	${REINPLACE_CMD} 's,/po/mo},%po}mo,g' \
+#	    ${BUILD_WRKSRC}/unix/fcitx5/gen_fcitx_mozc_i18n.sh
 	${REINPLACE_CMD} \
 	    "s,IconName=.*,IconName=${LOCALBASE:Q}/share/fcitx5/mozc/icon/mozc.png," \
 	    ${BUILD_WRKSRC}/unix/fcitx5/mozc.conf
@@ -186,6 +188,7 @@ post-patch-mozc_server:
 		${PYTHON_CMD} ${BUILD_WRKSRC}/dictionary/gen_zip_code_seed.py \
 		--zip_code=ken_all.csv --jigyosyo=jigyosyo.csv \
 	    >> dictionary09.txt
+	${MKDIR} ${WRKSRC}/src/third_party/japanese_usage_dictionary
 	${MV} ${WRKSRC_udic}/usage_dict.txt \
 	    ${BUILD_WRKSRC}/third_party/japanese_usage_dictionary
 .if ${PORT_OPTIONS:MUTDIC}
@@ -422,7 +425,7 @@ LIB_DEPENDS+=	libFcitx5Core.so:textproc/fcitx5
 RUN_DEPENDS+=	mozc_server:japanese/mozc-server \
 		mozc_tool:japanese/mozc-tool
 
-PLIST_FILES+=	lib/fcitx5/fcitx-mozc.so \
+PLIST_FILES+=	lib/fcitx5/fcitx5-mozc.so \
 		share/fcitx5/addon/fcitx5-mozc.conf \
 		share/fcitx5/inputmethod/mozc.conf \
 		%%DATADIR%%/icon/mozc.png \
@@ -452,7 +455,7 @@ do-install-fcitx5_mozc:
 	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/fcitx5-mozc.so \
 	    ${STAGEDIR}${PREFIX}/lib/fcitx5/fcitx5-mozc.so
 	${INSTALL_DATA} \
-	    ${BUILD_WRKSRC}/unix/fcitx5/fcitx5-mozc.conf \
+	    ${BUILD_WRKSRC}/unix/fcitx5/mozc-addon.conf \
 	    ${STAGEDIR}${PREFIX}/share/fcitx5/addon/fcitx5-mozc.conf
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/unix/fcitx5/mozc.conf \
