@@ -113,6 +113,10 @@ DISABLE_SIZE=	yes
 USE_WX:=	${USE_WX:S@3.0@3.1@}
 .endif
 
+.if ${.CURDIR:M*/math/maxima}
+NOUSERINIT_EXTRA_PATCHES_OFF=
+.endif
+
 .if ${.CURDIR:M*/www/webkit2-gtk3}
 CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON_CMD}
 .endif
