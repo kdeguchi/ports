@@ -117,6 +117,11 @@ USE_WX:=	${USE_WX:S@3.0@3.1@}
 NOUSERINIT_EXTRA_PATCHES_OFF=
 .endif
 
+#.if ${.CURDIR:M*/graphics/libetonyek01}
+#LIB_DEPENDS:=	${LIB_DEPENDS:S@libboost_filesystem.so:devel/boost-libs@@}
+#BUILD_DEPENDS+=	libboost_filesystem.so:devel/boost-libs
+#.endif
+
 .if ${.CURDIR:M*/www/webkit2-gtk3}
 CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON_CMD}
 .endif
