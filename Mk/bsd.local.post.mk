@@ -109,9 +109,9 @@ FETCH_ARGS=	--proxy socks5://localhost:1090 --fail --insecure --location --remot
 DISABLE_SIZE=	yes
 .endif
 
-.if ${.CURDIR:M*/math/wxmaxima}
-USE_WX:=	${USE_WX:S@3.0@3.1@}
-.endif
+#.if ${.CURDIR:M*/math/wxmaxima}
+#USE_WX:=	${USE_WX:S@3.0@3.1@}
+#.endif
 
 .if ${.CURDIR:M*/math/maxima}
 NOUSERINIT_EXTRA_PATCHES_OFF=
