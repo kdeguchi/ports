@@ -132,7 +132,10 @@ GH_TUPLE=	Azure:azure-pipeline-go:v0.2.3:azure_azure_pipeline_go/vendor/github.c
 
 _GITEA_TUPLE=	goftp:server:v0.4.1:vendor/goftp.io/server
 
-PLIST_FILES=	bin/rclone
+OPTIONS_DEFINE=	MANPAGES
+
+PLIST_FILES=	bin/${PORTNAME}
+MANPAGES_PLIST_FILES=	share/man/man1/${PORTNAME}.1.gz
 
 .include <bsd.port.pre.mk>
 
@@ -152,5 +155,8 @@ post-extract:
 	@${MKDIR} ${WRKSRC}/${subdir:H}
 	@${RLN} ${WRKDIR}/${project} ${WRKSRC}/${subdir}
 .endfor
+
+post-install-MANPAGES-on:
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/share/man/man1
 
 .include <bsd.port.post.mk>
