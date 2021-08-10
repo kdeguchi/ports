@@ -1,5 +1,4 @@
 # Created by: bmc@WillsCreek.COM
-# $FreeBSD: head/graphics/tgif/Makefile 516845 2019-11-05 22:16:14Z zeising $
 
 PORTNAME=	tgif
 PORTVERSION=	4.2.5
