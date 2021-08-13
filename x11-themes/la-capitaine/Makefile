@@ -15,6 +15,12 @@ GH_PROJECT=	${PORTNAME}-icon-theme
 GH_TAGNAME=	8370e7c
 
 OPTIONS_DEFINE=	DOCS
+OPTIONS_SINGLE=	THEME
+OPTIONS_SINGLE_THEME=	DARK LIGHT
+OPTIONS_DEFAULT=	LIGHT
+
+DARK_DESC=	Dark theme
+LIGHT_DESC=	Light theme
 
 NO_BUILD=	yes
 INSTALLS_ICONS=	yes
@@ -29,8 +35,18 @@ do-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
 
+do-install-DARK-on:
+.for i in actions devices panel places status
+	cd ${STAGEDIR}${PREFIX}/share/icons/${PORTNAME}/${i} && \
+		for j in `${LS} -d *-dark`; do \
+			${RM} $${j%-dark} && \
+			${LN} -sf $${j} $${j%-dark}; \
+		done
+.endfor
+
+
 post-install:
 	cd ${STAGEDIR}${PREFIX}/share/icons/${PORTNAME} && \
-		${RM} -r .git* .product COPYING LICENSE Credits.md README.md Thanks.md configure
+		${RM} -r .git* .product COPYING LICENSE Credits.md README.md Thanks.md configure scripts
 
 .include <bsd.port.mk>
