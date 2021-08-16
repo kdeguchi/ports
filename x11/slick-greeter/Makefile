@@ -3,7 +3,6 @@
 PORTNAME=	slick-greeter
 PORTVERSION=	1.5.4
 CATEGORIES=	x11
-PKGNAMEPREFIX=	lightdm-
 
 MAINTAINER=	woodsb02@FreeBSD.org
 COMMENT=	Slick-looking LightDM greeter
@@ -42,9 +41,5 @@ post-patch:
 	@${MKDIR} ${WRKSRC}/files/${PREFIX}
 	@${MV} ${WRKSRC}/files/stage/* ${WRKSRC}/files/${PREFIX}/
 	@${RMDIR} ${WRKSRC}/files/stage
-
-post-install:
-	${MV} ${STAGEDIR}${PREFIX}/share/xgreeters/slick-greeter.desktop \
-		${STAGEDIR}${PREFIX}/share/xgreeters/lightdm-slick-greeter.desktop
 
 .include <bsd.port.mk>

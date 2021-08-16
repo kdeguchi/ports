@@ -242,4 +242,4 @@ share/locale/zh_TW/LC_MESSAGES/slick-greeter.mo
 %%DATADIR%%/badges/xmonad.png
 %%DATADIR%%/badges/xterm.png
 %%DATADIR%%/badges/xubuntu.svg
-share/xgreeters/lightdm-slick-greeter.desktop
+share/xgreeters/slick-greeter.desktop
