@@ -34,11 +34,10 @@ bash_OLD_CMD=	/usr/bin/bash
 bash_CMD=	/bin/sh
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|"/usr|"${PREFIX}|g' \
+	@${REINPLACE_CMD} -e 's|"/usr|"${PREFIX}|g;s|/etc|${PREFIX}/etc|g' \
 		${WRKSRC}/files/usr/bin/slick-greeter-set-keyboard-layout \
-		${WRKSRC}/src/session-list.vala \
-		${WRKSRC}/src/slick-greeter.vala \
-		${WRKSRC}/src/user-list.vala
+		${WRKSRC}/data/*.8 \
+		${WRKSRC}/src/*.vala
 	@${MV} ${WRKSRC}/files/usr ${WRKSRC}/files/stage
 	@${MKDIR} ${WRKSRC}/files/${PREFIX}
 	@${MV} ${WRKSRC}/files/stage/* ${WRKSRC}/files/${PREFIX}/
