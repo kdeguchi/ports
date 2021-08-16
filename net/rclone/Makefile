@@ -9,7 +9,7 @@ COMMENT=	Sync files to and from various cloud services
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		go:modules
+USES=		cpe go:modules
 USE_GITHUB=	yes
 GH_ACCOUNT=	ncw
 GH_TAGNAME=	c0b2832
