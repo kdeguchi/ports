@@ -18,12 +18,13 @@ LIB_DEPENDS=	libcanberra.so:audio/libcanberra \
 RUN_DEPENDS=	numlockx>=0:x11/numlockx
 
 USES=		autoreconf gettext gmake gnome pkgconfig python:run shebangfix xorg
+USE_GNOME=	cairo dconf gdkpixbuf2 gtk30 intltool pygobject3
+
+USE_XORG=	pixman x11 xext
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxmint
-GH_PROJECT=	slick-greeter
-USE_GNOME=	cairo dconf gdkpixbuf2 gtk30 intltool pygobject3
-GLIB_SCHEMAS=	x.dm.slick-greeter.gschema.xml
-USE_XORG=	pixman x11 xext
+
 GNU_CONFIGURE=	yes
 SUB_FILES=	pkg-deinstall pkg-install
 SHEBANG_FILES=	files/usr/bin/slick-greeter-check-hidpi \
@@ -31,6 +32,8 @@ SHEBANG_FILES=	files/usr/bin/slick-greeter-check-hidpi \
 		makepot
 bash_OLD_CMD=	/usr/bin/bash
 bash_CMD=	/bin/sh
+
+GLIB_SCHEMAS=	x.dm.slick-greeter.gschema.xml
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|"/usr|"${PREFIX}|g;s|/etc|${PREFIX}/etc|g' \
