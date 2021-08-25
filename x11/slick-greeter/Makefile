@@ -4,17 +4,18 @@ PORTNAME=	slick-greeter
 PORTVERSION=	1.5.4
 CATEGORIES=	x11
 
-MAINTAINER=	woodsb02@FreeBSD.org
+MAINTAINER=	ericbsd@FreeBSD.org
 COMMENT=	Slick-looking LightDM greeter
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	valac:lang/vala
-LIB_DEPENDS=	libcanberra.so:audio/libcanberra \
+LIB_DEPENDS=	libcanberra-gtk3.so:audio/libcanberra-gtk3 \
+		libcanberra.so:audio/libcanberra \
 		libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz \
 		liblightdm-gobject-1.so:x11/lightdm
+BUILD_DEPENDS=	valac:lang/vala
 RUN_DEPENDS=	numlockx>=0:x11/numlockx
 
 USES=		autoreconf gettext gmake gnome pkgconfig python:run shebangfix xorg
@@ -27,6 +28,7 @@ GH_ACCOUNT=	linuxmint
 
 GNU_CONFIGURE=	yes
 SUB_FILES=	pkg-deinstall pkg-install
+INSTALLS_ICONS=	yes
 SHEBANG_FILES=	files/usr/bin/slick-greeter-check-hidpi \
 		files/usr/bin/slick-greeter-set-keyboard-layout \
 		makepot
@@ -36,13 +38,14 @@ bash_CMD=	/bin/sh
 GLIB_SCHEMAS=	x.dm.slick-greeter.gschema.xml
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|"/usr|"${PREFIX}|g;s|/etc|${PREFIX}/etc|g' \
+	@${REINPLACE_CMD} -e 's|"/usr|"${PREFIX}|g' \
+		-e 's|/etc|${PREFIX}/etc|g' \
 		${WRKSRC}/files/usr/bin/slick-greeter-set-keyboard-layout \
 		${WRKSRC}/data/*.8 \
 		${WRKSRC}/src/*.vala
-	@${MV} ${WRKSRC}/files/usr ${WRKSRC}/files/stage
+	@${RM} ${WRKSRC}/files/usr/bin/slick-greeter-set-keyboard-layout.bak
 	@${MKDIR} ${WRKSRC}/files/${PREFIX}
-	@${MV} ${WRKSRC}/files/stage/* ${WRKSRC}/files/${PREFIX}/
-	@${RMDIR} ${WRKSRC}/files/stage
+	@${MV} ${WRKSRC}/files/usr/bin ${WRKSRC}/files/${PREFIX}/bin
+	@${MV} ${WRKSRC}/files/usr/share ${WRKSRC}/files/${PREFIX}/share
 
 .include <bsd.port.mk>

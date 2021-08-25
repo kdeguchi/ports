@@ -1,3 +1,5 @@
+A slick-looking LightDM greeter.
+
 Features:
 - Slick-Greeter is cross-distribution and should work pretty much anywhere.
 - All panel applets are embedded. No external indicators are launched or loaded
