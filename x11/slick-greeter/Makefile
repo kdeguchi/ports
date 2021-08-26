@@ -27,13 +27,13 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	linuxmint
 
 GNU_CONFIGURE=	yes
-SUB_FILES=	pkg-deinstall pkg-install
 INSTALLS_ICONS=	yes
 SHEBANG_FILES=	files/usr/bin/slick-greeter-check-hidpi \
 		files/usr/bin/slick-greeter-set-keyboard-layout \
 		makepot
 bash_OLD_CMD=	/usr/bin/bash
 bash_CMD=	/bin/sh
+SUB_FILES=	pkg-deinstall pkg-install
 
 GLIB_SCHEMAS=	x.dm.slick-greeter.gschema.xml
 
