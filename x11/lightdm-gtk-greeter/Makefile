@@ -2,7 +2,7 @@
 
 PORTNAME=	lightdm-gtk-greeter
 PORTVERSION=	2.0.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 MASTER_SITES=	https://github.com/Xubuntu/${PORTNAME}/releases/download/${PORTNAME}-${PORTVERSION}/
 
@@ -21,11 +21,10 @@ USE_GNOME=	cairo gdkpixbuf2 gtk30 intltool
 USE_XORG=	x11
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--enable-at-spi-command=${PREFIX}/libexec/at-spi-bus-launcher
 INSTALLS_ICONS=	yes
+SUB_FILES=	pkg-deinstall pkg-install
 
-OPTIONS_DEFINE=	DOCS LIBINDICATOR NLS
-OPTIONS_SUB=	yes
+CONFIGURE_ARGS+=	--enable-at-spi-command=${LOCALBASE}/libexec/at-spi-bus-launcher
 
 LIBINDICATOR_DESC=	Desktop indicators support
 LIBINDICATOR_ENABLE=	libindicator
@@ -33,6 +32,9 @@ LIBINDICATOR_LIB_DEPENDS=	libindicator3.so:devel/libindicator
 
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=	gettext-runtime
+
+OPTIONS_DEFINE=	DOCS LIBINDICATOR NLS
+OPTIONS_SUB=	yes
 
 post-install:
 	(cd ${STAGEDIR}${PREFIX}/etc/lightdm && ${MV} lightdm-gtk-greeter.conf \

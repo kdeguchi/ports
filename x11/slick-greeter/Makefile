@@ -1,4 +1,4 @@
-# Created by: Ben Woods <woodsb02@FreeBSD.org>
+# Created by: Eric Turgeon <ericbsd@FreeBSD.org>
 
 PORTNAME=	slick-greeter
 PORTVERSION=	1.5.4
