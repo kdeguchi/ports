@@ -24,9 +24,9 @@ USES=		autoreconf:build gl gmake gnome iconv libtool localbase pathfix \
 		pkgconfig shebangfix xorg
 USE_GL=		gl glu
 USE_GNOME=	cairo glib20 intltool
+USE_LDCONFIG=	yes
 USE_XORG=	ice sm x11 xcomposite xdamage xext xfixes xinerama \
 		xorgproto xrandr xrender xcursor
-USE_LDCONFIG=	yes
 
 USE_GITLAB=	yes
 GL_ACCOUNT=	compiz
