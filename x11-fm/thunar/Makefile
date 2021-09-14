@@ -1,7 +1,7 @@
 # Created by: Oliver Lehmann <oliver@FreeBSD.org>
 
 PORTNAME=	thunar
-DISTVERSION=	4.16.8
+DISTVERSION=	4.16.9
 CATEGORIES=	x11-fm xfce
 MASTER_SITES=	XFCE
 DIST_SUBDIR=	xfce4
@@ -21,7 +21,6 @@ USES=		compiler:c11 cpe desktop-file-utils gettext-tools gmake gnome \
 		libtool pathfix perl5 pkgconfig tar:bzip2 xfce xorg
 USE_GNOME=	cairo gdkpixbuf2 glib20 gtk30 intltool
 USE_LDCONFIG=	yes
-#USE_PERL5=	build
 USE_XFCE=	libexo
 USE_XORG=	ice sm x11
 
