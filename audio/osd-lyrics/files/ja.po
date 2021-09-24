@@ -1,453 +1,442 @@
-# Spanish translation for osd-lyrics
-# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# Japanese translation for osd-lyrics
+# Copyright (C) 2021 Ken DEGUCHI
 # This file is distributed under the same license as the osd-lyrics package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+# Ken DEGUCHI <kdeguchi@sz.tokoha-u.ac.jp>, 2021
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: osd-lyrics\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-04 21:07+0800\n"
-"PO-Revision-Date: 2014-08-06 15:59+0900\n"
+"POT-Creation-Date: 2021-09-24 15:52+0900\n"
+"PO-Revision-Date: 2021-09-24 15:52+0900\n"
 "Last-Translator: Ken DEGUCHI <kdeguchi@sz.tokoha-u.ac.jp>\n"
 "Language-Team: Japanese <kdeguchi@sz.tokoha-u.ac.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-04 12:16+0000\n"
-"X-Generator: Launchpad (build 15353)\n"
 
-#: ../src/ol_menu.c:119
+#: ../src/ol_menu.c:129
 msgid "LRC files"
 msgstr "歌詞(LRC)ファイル"
 
-#: ../src/ol_menu.c:125
+#: ../src/ol_menu.c:135
 msgid "Choose LRC file to assign"
-msgstr "割り当てる歌詞ファイルを選択"
+msgstr "割り当てる歌詞(LRC)ファイルを選択"
 
-#: ../src/ol_main.c:61
-msgid "The level of debug messages to log, can be 'none', 'error', 'debug', or 'info'"
-msgstr "ログへのデバッグレベル、'none'、'error'、'debug'、あるいは、'info'"
+#: ../src/ol_main.c:60
+msgid ""
+"The level of debug messages to log, can be 'none', 'error', 'debug', or "
+"'info'"
+msgstr ""
+"ログへのデバッグレベル、'none','error','debug' あるいは、"
+"'info'"
 
-#: ../src/ol_main.c:63
+#: ../src/ol_main.c:62
 msgid "Show version information"
 msgstr "バージョン情報の表示"
 
-#: ../src/ol_main.c:153
-msgid "Download failed"
-msgstr "ダウンロード失敗"
+#: ../src/ol_main.c:209 ../src/ol_search_dialog.c:239
+msgid "Fail to download lyric"
+msgstr "歌詞のダウンロードに失敗しました"
 
-#: ../src/ol_main.c:168
+#: ../src/ol_main.c:226
+msgid "Downloading lyric"
+msgstr "歌詞をダウンロード中"
+
+#: ../src/ol_main.c:251
+msgid "Lyrics not found"
+msgstr "歌詞が見つかりませんでした"
+
+#: ../src/ol_main.c:266
 #, c-format
 msgid "Searching lyrics from %s"
-msgstr "%s から歌詞を検索"
+msgstr "%s から歌詞を検索中"
 
-#: ../src/ol_main.c:191
-msgid "Cannot create the lyric directory"
-msgstr "歌詞ファイルを入れるディレクトリの作成ができません"
-
-#: ../src/ol_main.c:207
-msgid "Lyrics not found"
-msgstr "歌詞は見つかりませんでした"
-
-#: ../src/ol_main.c:561
+#: ../src/ol_main.c:482
 #, c-format
-msgid "Player is not running. OSD Lyrics exits now.\n"
-msgstr "プレーヤーが起動していません。OSD Lyricsを終了します。\n"
+msgid "No supported player is running, exit.\n"
+msgstr "サポートされたプレーヤーが存在していません。\n"
 
-#: ../src/ol_main.c:710
-msgid "debug level should be one of ``none'', ``error'', ``debug'', or ``info''"
+#: ../src/ol_main.c:605
+msgid ""
+"debug level should be one of ``none'', ``error'', ``debug'', or ``info''"
 msgstr ""
+"デバッグレベルは、``none'', ``error'', ``debug'', ``info'' のいずれか1つでなければなりません。"
 
-#: ../src/ol_main.c:733
+#: ../src/ol_main.c:653
 msgid "Another OSD Lyrics is running, exit."
-msgstr "他のOSD Lyricsが動いています。終了します。"
+msgstr "他のOSD Lyricsが起動しています。終了します。"
 
-#: ../src/ol_trayicon.c:36
-#: ../src/ol_notify.c:26
+#: ../src/ol_trayicon.c:38 ../src/ol_notify.c:27
 msgid "Unknown title"
 msgstr "不明なタイトル"
 
-#: ../src/ol_trayicon.c:37
-#: ../src/ol_notify.c:27
+#: ../src/ol_trayicon.c:39 ../src/ol_notify.c:28
 msgid "Unknown artist"
 msgstr "不明なアーティスト"
 
-#: ../src/ol_trayicon.c:71
+#: ../src/ol_trayicon.c:75 ../data/osdlyrics.desktop.in.h:1
 msgid "OSD Lyrics"
 msgstr ""
 
-#: ../src/ol_option.c:1631
+#: ../src/ol_option.c:1633
 msgid "Choose on startup"
-msgstr "開始時に選択"
+msgstr "起動時に選択"
 
-#. gtk_list_store_append (liststore, &iter);
-#. gtk_list_store_set (liststore, &iter,
-#. 0, "Customize",
-#. 1, "",
-#. -1);
-#: ../src/ol_option.c:1651
-#: ../data/dialogs.glade.h:7
+#: ../src/ol_option.c:1651 ../data/dialogs.glade.h:6
 msgid "Customize"
 msgstr "カスタマイズ"
 
-#: ../src/ol_option.c:1713
+#: ../src/ol_option.c:1726
 msgid "Select a folder"
-msgstr "フォルダの選択"
+msgstr "フォルダーを選択"
 
-#: ../src/ol_lrc_fetch_ttplayer.c:276
-msgid "ttPlayer"
-msgstr ""
-
-#: ../src/ol_lrc_fetch_xiami.c:242
-msgid "Xiami"
-msgstr "Xiami"
-
-#: ../src/ol_lrc_candidate_list.c:43
+#: ../src/ol_lyric_candidate_list.c:47
 msgid "Title"
 msgstr "タイトル"
 
-#: ../src/ol_lrc_candidate_list.c:48
+#: ../src/ol_lyric_candidate_list.c:52
 msgid "Artist"
 msgstr "アーティスト"
 
-#: ../src/ol_search_dialog.c:31
+#: ../src/ol_lyric_candidate_list.c:57
+msgid "Album"
+msgstr "アルバム"
+
+#: ../src/ol_search_dialog.c:29
 #, c-format
 msgid "Searching lyrics from %s..."
 msgstr "%s から歌詞を検索中..."
 
-#: ../src/ol_search_dialog.c:32
+#: ../src/ol_search_dialog.c:30
 msgid "Ooops, no lyric found :("
-msgstr "歌詞が見つかりませんでした"
+msgstr "歌詞が見つかりません :("
 
-#: ../src/ol_search_dialog.c:33
+#: ../src/ol_search_dialog.c:31
 #, c-format
 msgid "%d lyrics found :)"
-msgstr "%d 歌詞が見つかりました"
+msgstr "%d 歌詞が見つかりました :)"
 
-#: ../src/ol_player_chooser.c:249
+#: ../src/ol_search_dialog.c:32
+msgid "Fail to search. Please check network connection"
+msgstr "検索に失敗しました。ネット−枠接続を確認してください。"
+
+#: ../src/ol_search_dialog.c:33
+msgid "Cancelled"
+msgstr "キャンセルされました"
+
+#: ../src/ol_search_dialog.c:96
+msgid "Downloading..."
+msgstr "ダウンロード中..."
+
+#: ../src/ol_search_dialog.c:228
+msgid "Download complete, but fail to assign to the track"
+msgstr "ダウンロードを完了しましたが、トラックへの関連付けに失敗しました。"
+
+#: ../src/ol_search_dialog.c:232
+msgid "Download complete"
+msgstr "ダウンロード完了"
+
+#: ../src/ol_player_chooser.c:269
 msgid "Supported players"
 msgstr "サポートされたプレーヤー"
 
-#: ../src/ol_player_chooser.c:250
+#: ../src/ol_player_chooser.c:270
 msgid "All players"
 msgstr "全てのプレーヤー"
 
-#: ../src/ol_player_chooser.c:254
-#: ../src/ol_player_chooser.c:326
+#: ../src/ol_player_chooser.c:274 ../src/ol_player_chooser.c:346
 msgid "Choose a player to launch"
-msgstr "起動時にプレーヤーを選択"
+msgstr "起動するプレーヤーを選択"
 
-#: ../src/ol_player_chooser.c:270
+#: ../src/ol_player_chooser.c:290
 msgid "Use command:"
-msgstr "ユーザーコマンド:"
+msgstr "コマンドを使用:"
 
-#: ../src/ol_player_chooser.c:275
+#: ../src/ol_player_chooser.c:295
 msgid "Launch"
 msgstr "起動"
 
-#: ../src/ol_player_chooser.c:288
+#: ../src/ol_player_chooser.c:308
 msgid "Remember my choice"
 msgstr "選択を記憶する"
 
-#: ../src/ol_player_chooser.c:440
+#: ../src/ol_player_chooser.c:460
 #, c-format
 msgid "Failed to launch %s"
-msgstr "%s の起動に失敗"
+msgstr "%s の起動に失敗しました"
 
-#: ../src/ol_player_chooser.c:450
+#: ../src/ol_player_chooser.c:470
 #, c-format
 msgid "Launching %s"
-msgstr "%s 起動中"
+msgstr "%s を起動中"
 
-#: ../src/ol_player_chooser.c:452
+#: ../src/ol_player_chooser.c:472
 #, c-format
-msgid "OSD Lyrics is trying to launch and connect to %s. Please wait for a second."
-msgstr "OSD Lyrics は、%s へ接続し、起動を試みています。しばらくお待ちください。"
-
-#: ../src/ol_player_chooser.c:563
-msgid "There is no supported player running"
-msgstr "サポートされたプレーヤーが動いていません"
-
-#: ../src/ol_player_chooser.c:564
-msgid "Please choose a player below to launch"
-msgstr "以下の中から起動するプレーヤーを選んでください"
-
-#: ../src/ol_player_chooser.c:568
-#, fuzzy, c-format
-msgid "Fail to launch %s"
-msgstr "%s の起動失敗"
-
-#: ../src/ol_player_chooser.c:570
-#, fuzzy, c-format
-msgid "%s is not supported by OSD Lyrics, or not running. Please launch another player."
-msgstr "%s は、OSD Lyrics にサポートされていないか、動いていません。他のプレーヤーを起動してください。"
-
-#: ../src/ol_player_chooser.c:580
-#, c-format
-msgid "Something wrong with %s"
-msgstr "%s はおかしいです"
+msgid ""
+"OSD Lyrics is trying to launch and connect to %s. Please wait for a second."
+msgstr ""
+"OSD Lyrics は %s に接続し起動を試みています。しばらくお待ちください。"
 
 #: ../src/ol_player_chooser.c:582
+msgid "There is no supported player running"
+msgstr "サポートされたプレーヤーが起動中ではありません"
+
+#: ../src/ol_player_chooser.c:583
+msgid "Please choose a player below to launch"
+msgstr "起動するプレーヤーを以下から選択してください"
+
+#: ../src/ol_player_chooser.c:587
 #, c-format
-msgid "It is possible that %s has crashed, or it refuse to connect with OSD Lyrics. Please try launching it again, or launch another player instead."
+msgid "Failed to connect to %s"
+msgstr "%s への接続に失敗しました"
+
+#: ../src/ol_player_chooser.c:589
+#, c-format
+msgid ""
+"%s is not supported by OSD Lyrics, or not running. Please launch another "
+"player"
+msgstr ""
+"%s はOSD Lyricsにサポートされていないか、起動中ではありません。他のプレーヤーを"
+"起動してください"
+
+#: ../src/ol_app_info.c:179 ../src/ol_app_info.c:189
+msgid "Unnamed"
 msgstr ""
 
-#: ../src/ol_app_info.c:179
-#: ../src/ol_app_info.c:189
-msgid "Unnamed"
-msgstr "名前なし"
-
-#: ../src/ol_scroll_window.c:52
+#: ../src/ol_scroll_window.c:48
 msgid ""
 "Drag to move the window\n"
 "Hold CTRL to seek"
 msgstr ""
-"ウィンドウを動かすにはドラッグ\n"
-"探すにはCTRLを押し続けてください"
+"ウィンドウを動かすにはドラッグしてください\n"
+"シークするためにCTRLを押したままにしてください"
 
-#: ../src/ol_scroll_window.c:53
+#: ../src/ol_scroll_window.c:49
 msgid "Drag to move the window"
-msgstr "ウィンドウを動かすにはドラッグ"
+msgstr "ウィンドウを動かすにはドラッグしてください"
 
 #: ../data/dialogs.glade.h:1
 msgid "Copyright 2009-2011 The OSD Lyrics project."
 msgstr ""
 
 #: ../data/dialogs.glade.h:2
-msgid "An OSD lyric show compatible with various media players and supports lyrics downloading.\n"
-msgstr "OSD Lyrics は様々なプレーヤと互換性があり、歌詞のダウンロードをサポートしています。\n"
+msgid ""
+"An OSD lyric show compatible with various media players and supports lyrics "
+"downloading.\n"
+msgstr ""
+"OSD Lyricsは様々なメディアプレーヤーと互換性があり、"
+"歌詞のダウンロードをサポートしています。\n"
 
 #: ../data/dialogs.glade.h:4
-msgid "http://code.google.com/p/osd-lyrics/"
-msgstr "http://code.google.com/p/osd-lyrics/"
+msgid "GPL v3"
+msgstr ""
 
 #: ../data/dialogs.glade.h:5
-msgid "GPL v3"
-msgstr "GPL v3"
-
-#: ../data/dialogs.glade.h:6
 msgid "translator-credits"
+msgstr "翻訳者のクレジット"
+
+#: ../data/dialogs.glade.h:7
+msgid "HTTP"
 msgstr ""
-"Launchpad Contributions:\n"
-"  51114u9 https://launchpad.net/~marcoantoniofrias\n"
-"  Albert Abril https://launchpad.net/~abrilc\n"
-"  Andrés Margffoy https://launchpad.net/~andfoy\n"
-"  DiegoJ https://launchpad.net/~diegojromerolopez\n"
-"  Feder Sáiz https://launchpad.net/~federsaiz-deactivatedaccount\n"
-"  Fitoschido https://launchpad.net/~fitoschido\n"
-"  Francisco Castillo https://launchpad.net/~panchokoster\n"
-"  Jonay https://launchpad.net/~jonay-santana\n"
-"  José A. Fuentes Santiago https://launchpad.net/~joanfusan\n"
-"  Juan L Rodas https://launchpad.net/~jlrodasr\n"
-"  Macafyc https://launchpad.net/~macafyc\n"
-"  Monkey https://launchpad.net/~monkey-libre\n"
-"  Paco Molinero https://launchpad.net/~franciscomol\n"
-"  Rodribuntu https://launchpad.net/~rajc-56\n"
-"  Tiger Soldier https://launchpad.net/~tigersoldi\n"
-"  alakran https://launchpad.net/~alakran-1\n"
-"  hhlp https://launchpad.net/~hhlp"
 
 #: ../data/dialogs.glade.h:8
-msgid "HTTP"
-msgstr "HTTP"
+msgid "SOCKS4"
+msgstr ""
 
 #: ../data/dialogs.glade.h:9
-msgid "SOCKS4"
-msgstr "SOCKS4"
+msgid "SOCKS5"
+msgstr ""
 
 #: ../data/dialogs.glade.h:10
-msgid "SOCKS5"
-msgstr "SOCKS5"
+msgid "Always"
+msgstr "いつも"
 
 #: ../data/dialogs.glade.h:11
-msgid "Always"
-msgstr "常に"
-
-#: ../data/dialogs.glade.h:12
 msgid "By lines"
 msgstr "行ごとに"
 
-#: ../data/dialogs.glade.h:13
+#: ../data/dialogs.glade.h:12
 msgid "Preferences"
 msgstr "設定"
 
-#: ../data/dialogs.glade.h:14
+#: ../data/dialogs.glade.h:13
 msgid "Display mode:"
 msgstr "表示モード:"
 
-#: ../data/dialogs.glade.h:15
+#: ../data/dialogs.glade.h:14
 msgid "OS_D"
-msgstr "OS_D"
+msgstr "OSD(_D)"
 
-#: ../data/dialogs.glade.h:16
+#: ../data/dialogs.glade.h:15
 msgid "Sc_rolling"
 msgstr "スクロール(_r)"
 
-#: ../data/dialogs.glade.h:17
+#: ../data/dialogs.glade.h:16
 msgid "Auto la_unch player:"
 msgstr "プレーヤーを自動起動(_u):"
 
-#: ../data/dialogs.glade.h:18
+#: ../data/dialogs.glade.h:17
 msgid "Pla_yer command:"
-msgstr "プレーヤーの実行コマンド(_y):"
+msgstr "プレーヤーのコマンド(_y):"
 
-#: ../data/dialogs.glade.h:19
+#: ../data/dialogs.glade.h:18
 msgid "Show _bubble notification"
 msgstr "通知を表示(_b)"
 
-#: ../data/dialogs.glade.h:20
+#: ../data/dialogs.glade.h:19
 msgid "_General"
 msgstr "一般(_G)"
 
-#: ../data/dialogs.glade.h:21
+#: ../data/dialogs.glade.h:20
 msgid "_Font:"
 msgstr "フォント(_F):"
 
 #. The outline width of text in OSD window
-#: ../data/dialogs.glade.h:23
+#: ../data/dialogs.glade.h:22
 msgid "Out_line:"
 msgstr "輪郭(_l):"
 
-#: ../data/dialogs.glade.h:24
+#: ../data/dialogs.glade.h:23
 msgid "_Blur:"
-msgstr "周囲をぼかす(_B):"
+msgstr "ぼやけ(_B):"
+
+#: ../data/dialogs.glade.h:24
+msgid "Weak"
+msgstr "弱い"
 
 #: ../data/dialogs.glade.h:25
-msgid "Weak"
-msgstr "弱"
+msgid "Strong"
+msgstr "強い"
 
 #: ../data/dialogs.glade.h:26
-msgid "Strong"
-msgstr "強"
+msgid "Lyric lines:"
+msgstr "歌詞の行:"
 
 #: ../data/dialogs.glade.h:27
-msgid "Lyric lines:"
-msgstr "歌詞の行数:"
-
-#: ../data/dialogs.glade.h:28
 msgid "Si_ngle line"
 msgstr "1行(_n)"
 
-#: ../data/dialogs.glade.h:29
+#: ../data/dialogs.glade.h:28
 msgid "_Double lines"
 msgstr "2行(_D)"
 
-#: ../data/dialogs.glade.h:30
+#: ../data/dialogs.glade.h:29
 msgid "Mode:"
 msgstr "モード:"
 
-#: ../data/dialogs.glade.h:31
+#: ../data/dialogs.glade.h:30
 msgid "Doc_k"
 msgstr "ドック(_k)"
 
-#: ../data/dialogs.glade.h:32
+#: ../data/dialogs.glade.h:31
 msgid "Nor_mal"
 msgstr "通常(_m)"
 
-#: ../data/dialogs.glade.h:33
+#: ../data/dialogs.glade.h:32
 msgid "T_ranslucent on mouse over"
-msgstr "マウスオーバーで透明化(_r)"
+msgstr "マウスオーバーで透明(_r)"
+
+#: ../data/dialogs.glade.h:33
+msgid "F_irst line:"
+msgstr "第1行(_i):"
 
 #: ../data/dialogs.glade.h:34
-msgid "F_irst line:"
-msgstr "最初の行(_i):"
+msgid "_Second line:"
+msgstr "第2行(_S):"
 
 #: ../data/dialogs.glade.h:35
-msgid "_Second line:"
-msgstr "２行目(_S)"
+msgid "<b>Lyric _Alignment</b>"
+msgstr "<b>歌詞の割当(_A)</b>"
 
 #: ../data/dialogs.glade.h:36
-msgid "<b>Lyric _Alignment</b>"
-msgstr "<b>歌詞の配置(_A)</b>"
+msgid "Color _Theme:"
+msgstr "テーマカラー(_T):"
 
 #: ../data/dialogs.glade.h:37
-msgid "Color _Theme:"
-msgstr "テーマの色(_T)"
+msgid "C_ustomize colors"
+msgstr "カスタマイズカラー(_u)"
 
 #: ../data/dialogs.glade.h:38
-msgid "C_ustomize colors"
-msgstr "色のカスタマイズ(_u)"
+msgid "Acti_ve lyrics:"
+msgstr "アクティブな歌詞(_v):"
 
 #: ../data/dialogs.glade.h:39
-msgid "Acti_ve lyrics:"
-msgstr "演奏中の歌詞(_v):"
-
-#: ../data/dialogs.glade.h:40
 msgid "top"
 msgstr "上"
 
-#: ../data/dialogs.glade.h:41
+#: ../data/dialogs.glade.h:40
 msgid "middle"
 msgstr "中"
 
-#: ../data/dialogs.glade.h:42
+#: ../data/dialogs.glade.h:41
 msgid "bottom"
 msgstr "下"
 
-#: ../data/dialogs.glade.h:43
+#: ../data/dialogs.glade.h:42
 msgid "Inactiv_e lyrics:"
-msgstr "演奏前の歌詞(_e):"
+msgstr "アクティブでない歌詞(_e):"
 
-#: ../data/dialogs.glade.h:44
+#: ../data/dialogs.glade.h:43
 msgid "<b>Lyric _Color</b>"
 msgstr "<b>歌詞の色(_C)</b>"
 
-#: ../data/dialogs.glade.h:45
+#: ../data/dialogs.glade.h:44
 msgid "_OSD"
-msgstr "_OSD"
+msgstr ""
+
+#: ../data/dialogs.glade.h:45
+msgid "Ac_tive color:"
+msgstr "アクティブな色(_t):"
 
 #: ../data/dialogs.glade.h:46
-msgid "Ac_tive color:"
-msgstr "選択時の色(_t):"
+msgid "_Inactive color:"
+msgstr "アクティブでない色(_I):"
 
 #: ../data/dialogs.glade.h:47
-msgid "_Inactive color:"
-msgstr "非選択時の色(_t)"
-
-#: ../data/dialogs.glade.h:48
 msgid "Scroll _mode:"
 msgstr "スクロールモード(_m):"
 
-#: ../data/dialogs.glade.h:49
+#: ../data/dialogs.glade.h:48
 msgid "<b>Lyrics</b>"
 msgstr "<b>歌詞</b>"
 
-#: ../data/dialogs.glade.h:50
+#: ../data/dialogs.glade.h:49
 msgid "Colo_r:"
 msgstr "色(_r):"
 
-#: ../data/dialogs.glade.h:51
+#: ../data/dialogs.glade.h:50
 msgid "O_pacity:"
-msgstr "透明度:"
+msgstr "不透明度(_p):"
 
-#: ../data/dialogs.glade.h:52
+#: ../data/dialogs.glade.h:51
 msgid "Transparent"
 msgstr "透明"
 
-#: ../data/dialogs.glade.h:53
+#: ../data/dialogs.glade.h:52
 msgid "Opaque"
 msgstr "不透明"
 
-#: ../data/dialogs.glade.h:54
+#: ../data/dialogs.glade.h:53
 msgid "<b>Background</b>"
 msgstr "<b>背景</b>"
 
-#: ../data/dialogs.glade.h:55
+#: ../data/dialogs.glade.h:54
 msgid "_Scrolling"
 msgstr "スクロール(_S)"
 
-#: ../data/dialogs.glade.h:57
+#: ../data/dialogs.glade.h:56
 #, no-c-format
 msgid "A single \"%\" means the directory where the playing music is."
-msgstr "単一の \"%\" は、演奏中の曲のあるディレクトリを表します。"
+msgstr "単一の \"%\" は演奏されている曲のディレクトリを意味します。"
 
-#: ../data/dialogs.glade.h:58
+#: ../data/dialogs.glade.h:57
 msgid "<b>_Path</b>"
-msgstr "<b>_Path</b>"
+msgstr "<b>パス(_P)</b>"
 
-#: ../data/dialogs.glade.h:60
+#: ../data/dialogs.glade.h:59
 #, no-c-format
 msgid ""
 "  %t - Title\n"
@@ -460,221 +449,249 @@ msgstr ""
 "  %p - アーティスト\n"
 "  %a - アルバム\n"
 "  %n - トラック番号\n"
-"  %f - ファイル名(拡張子なし)"
+"  %f - ファイル名 (拡張子なし)"
 
-#: ../data/dialogs.glade.h:65
+#: ../data/dialogs.glade.h:64
 msgid "<b>_Filename</b>"
 msgstr "<b>ファイル名(_F)</b>"
 
-#: ../data/dialogs.glade.h:66
+#: ../data/dialogs.glade.h:65
 msgid "_Lyric Location"
 msgstr "歌詞の場所(_L)"
 
-#: ../data/dialogs.glade.h:67
+#: ../data/dialogs.glade.h:66
 msgid "Lyric _sites:"
-msgstr "歌詞のあるサイト(_s):"
+msgstr "歌詞サイト(_s):"
 
 #. In preference/download, automately download the most matched lyric
-#: ../data/dialogs.glade.h:69
+#: ../data/dialogs.glade.h:68
 msgid "Do_wnload the first candidate"
-msgstr "最初の候補をダウンロード(_w)"
+msgstr "第1候補をダウンロードする(_w)"
 
-#: ../data/dialogs.glade.h:70
+#: ../data/dialogs.glade.h:69
 msgid "<b>Download</b>"
 msgstr "<b>ダウンロード</b>"
 
-#: ../data/dialogs.glade.h:71
+#: ../data/dialogs.glade.h:70
 msgid "No _proxy"
 msgstr "プロキシなし(_p)"
 
-#: ../data/dialogs.glade.h:72
+#: ../data/dialogs.glade.h:71
 msgid "Au_to-detect system settings"
 msgstr "システム設定を自動検出(_t)"
 
-#: ../data/dialogs.glade.h:73
+#: ../data/dialogs.glade.h:72
 msgid "Use _manual settings"
 msgstr "手動設定を使用(_m)"
 
-#: ../data/dialogs.glade.h:74
+#: ../data/dialogs.glade.h:73
 msgid "_Host:"
 msgstr "ホスト(_H):"
 
-#: ../data/dialogs.glade.h:75
+#: ../data/dialogs.glade.h:74
 msgid "Po_rt:"
-msgstr "ポート番号(_r):"
+msgstr "ポート(_r):"
 
-#: ../data/dialogs.glade.h:76
+#: ../data/dialogs.glade.h:75
 msgid "_Type:"
 msgstr "タイプ(_T):"
 
-#: ../data/dialogs.glade.h:77
+#: ../data/dialogs.glade.h:76
 msgid "_Username:"
 msgstr "ユーザ名(_U):"
 
-#: ../data/dialogs.glade.h:78
+#: ../data/dialogs.glade.h:77
 msgid "Passwo_rd:"
 msgstr "パスワード(_r):"
 
-#: ../data/dialogs.glade.h:79
+#: ../data/dialogs.glade.h:78
 msgid "Show passwor_d"
 msgstr "パスワードを表示(_d)"
 
-#: ../data/dialogs.glade.h:80
+#: ../data/dialogs.glade.h:79
 msgid "<b>Proxy</b>"
 msgstr "<b>プロキシ</b>"
 
-#: ../data/dialogs.glade.h:81
+#: ../data/dialogs.glade.h:80
 msgid "_Network"
 msgstr "ネットワーク(_N)"
+
+#: ../data/dialogs.glade.h:81
+msgid "Scrolling _mode"
+msgstr "スクロールモード(_m)"
 
 #: ../data/dialogs.glade.h:82
 msgid "OSD _mode"
 msgstr "OSDモード(_m)"
 
 #: ../data/dialogs.glade.h:83
-msgid "Scrolling _mode"
-msgstr "スクロールモード(_m)"
+msgid "If locked, you can't move OSD window by mouse"
+msgstr "ロックされていればOSDウィンドウはマウスで動かせません"
 
 #: ../data/dialogs.glade.h:84
-msgid "If locked, you can't move OSD window by mouse"
-msgstr "ウィンドウが固定されているときはマウスで動かせません。"
+msgid "_Lock OSD position"
+msgstr "OSDの位置をロック(_L)"
 
 #: ../data/dialogs.glade.h:85
-msgid "_Lock Position"
-msgstr "ウィンドウ位置を固定(_L)"
+msgid "Hide the OSD Window"
+msgstr "OSDウィンドウを隠す"
 
 #: ../data/dialogs.glade.h:86
-msgid "Hide the OSD Window"
-msgstr "OSDを隠す"
+msgid "_Hide OSD"
+msgstr "OSDを隠す(_H)"
 
 #: ../data/dialogs.glade.h:87
-msgid "_Hide"
-msgstr "隠す(_H)"
-
-#: ../data/dialogs.glade.h:88
 msgid "_Search lyric..."
 msgstr "歌詞を検索(_S)..."
 
-#: ../data/dialogs.glade.h:89
+#: ../data/dialogs.glade.h:88
 msgid "Search lyrics from Internet"
 msgstr "インターネットから歌詞を検索"
 
-#: ../data/dialogs.glade.h:90
+#: ../data/dialogs.glade.h:89
 msgid "_Assign lyric..."
-msgstr "歌詞を割り当てる(_A)..."
+msgstr "歌詞を割り当てます(_A)..."
+
+#: ../data/dialogs.glade.h:90
+msgid "Assign local LRC file to current music"
+msgstr "現在の曲にローカルにある歌詞を割り当てる"
 
 #: ../data/dialogs.glade.h:91
-msgid "Assign local LRC file to current music"
-msgstr "ローカルにある歌詞ファイルを現在の曲に割り当てる"
-
-#: ../data/dialogs.glade.h:92
 msgid "_No lyric"
 msgstr "歌詞なし(_N)"
 
-#: ../data/dialogs.glade.h:93
+#: ../data/dialogs.glade.h:92
 msgid "Don't assign lyric to this music"
-msgstr "この曲には歌詞を割り当てません"
+msgstr "この曲に歌詞を割り当てない"
+
+#: ../data/dialogs.glade.h:93
+msgid "Lyric delay -"
+msgstr "歌詞の遅れ -"
 
 #: ../data/dialogs.glade.h:94
-msgid "Lyric delay -"
-msgstr "歌詞を進める -"
+msgid "Adjust lyrics delay by -0.2 s"
+msgstr "歌詞の遅れを -0.2秒に調整する"
 
 #: ../data/dialogs.glade.h:95
-msgid "Adjust lyrics delay by -0.2 s"
-msgstr "0.2秒歌詞を進める"
+msgid "Lyric delay +"
+msgstr "歌詞の遅れ +"
 
 #: ../data/dialogs.glade.h:96
-msgid "Lyric delay +"
-msgstr "歌詞を遅らせる +"
+msgid "Adjust lyric delay by +0.2 s"
+msgstr "歌詞の遅れを +0.2秒に調整する"
 
 #: ../data/dialogs.glade.h:97
-msgid "Adjust lyric delay by +0.2 s"
-msgstr "0.2秒歌詞を遅らせる"
+msgid "Choose LRC file to download"
+msgstr "ダウンロードする歌詞(LRC)ファイルを選択"
 
 #: ../data/dialogs.glade.h:98
-msgid "Choose LRC file to download"
-msgstr "ダウンロードする歌詞ファイルを選択"
+msgid "D_on't ask me again"
+msgstr "再び尋ねない(_o)"
 
 #: ../data/dialogs.glade.h:99
-msgid "D_on't ask me again"
-msgstr "以後は確認しない(_o)"
+msgid ""
+"If there are more than one lrc files matched with the search condition, "
+"download the first one without prompting the user."
+msgstr ""
+"検索結果が1つ以上の歌詞ファイルに一致したら、"
+"ユーザーに確認せずに最初のものをダウンロードする。"
 
 #: ../data/dialogs.glade.h:100
-msgid "If there are more than one lrc files matched with the search condition, download the first one without prompting the user."
-msgstr "検索条件に一致する歌詞が複数あるなら、確認せずに最初の候補をダウンロードする。"
-
-#: ../data/dialogs.glade.h:101
 msgid "_Download"
 msgstr "ダウンロード(_D)"
 
-#: ../data/dialogs.glade.h:102
+#: ../data/dialogs.glade.h:101
 msgid "The title of the current track"
-msgstr "演奏中の曲のタイトル"
+msgstr "現在の曲のタイトル"
 
-#: ../data/dialogs.glade.h:104
+#: ../data/dialogs.glade.h:103
 #, no-c-format
 msgid "%t - Title"
 msgstr "%t - タイトル"
 
-#: ../data/dialogs.glade.h:105
+#: ../data/dialogs.glade.h:104
 msgid "The artist of the current track"
-msgstr "演奏中の曲のアーティスト"
+msgstr "現在の曲のアーティスト"
 
-#: ../data/dialogs.glade.h:107
+#: ../data/dialogs.glade.h:106
 #, no-c-format
 msgid "%p - Artist"
 msgstr "%p - アーティスト"
 
-#: ../data/dialogs.glade.h:108
+#: ../data/dialogs.glade.h:107
 msgid "The title of album of the current track"
-msgstr "演奏中の曲のアルバム名"
+msgstr "現在の曲のアルバム名"
 
-#: ../data/dialogs.glade.h:110
+#: ../data/dialogs.glade.h:109
 #, no-c-format
 msgid "%a - Album"
 msgstr "%a - アルバム"
 
-#: ../data/dialogs.glade.h:111
+#: ../data/dialogs.glade.h:110
 msgid "The number of the current track"
-msgstr "演奏中の曲のトラック番号"
+msgstr "現在の曲の番号"
 
-#: ../data/dialogs.glade.h:113
+#: ../data/dialogs.glade.h:112
 #, no-c-format
 msgid "%n - Track number"
 msgstr "%n - トラック番号"
 
-#: ../data/dialogs.glade.h:114
+#: ../data/dialogs.glade.h:113
 msgid "The filename of the current track"
-msgstr "演奏中の曲のファイル名"
+msgstr "現在の曲のファイル名"
 
-#: ../data/dialogs.glade.h:116
+#: ../data/dialogs.glade.h:115
 #, no-c-format
 msgid "%f - Filename"
 msgstr "%f - ファイル名"
 
-#: ../data/dialogs.glade.h:117
+#: ../data/dialogs.glade.h:116
 msgid "Search lyrics"
-msgstr "歌詞の検索"
+msgstr "歌詞を検索"
 
-#: ../data/dialogs.glade.h:118
+#: ../data/dialogs.glade.h:117
 msgid "_Title:"
 msgstr "タイトル(_T):"
 
-#: ../data/dialogs.glade.h:119
+#: ../data/dialogs.glade.h:118
 msgid "_Artist:"
 msgstr "アーティスト(_A):"
 
-#: ../data/dialogs.glade.h:120
+#: ../data/dialogs.glade.h:119
 msgid "_Search"
 msgstr "検索(_S)"
 
 #. From witch web site to search and download lyrics
-#: ../data/dialogs.glade.h:122
+#: ../data/dialogs.glade.h:121
 msgid "_From:"
-msgstr "ダウンロードする場所(_F):"
+msgstr "どこから(_F):"
 
-#~ msgid "No supported player is running, exit.\n"
-#~ msgstr "Ningún reproductor soportado está en ejecución, saliendo.\n"
+#: ../data/osdlyrics.desktop.in.h:2
+msgid "Lyrics Show"
+msgstr "歌詞を表示"
 
-#~ msgid "Failed to connect to %s"
-#~ msgstr "Falló al intentar conectarse con %s"
+#: ../data/osdlyrics.desktop.in.h:3
+msgid "Download and show lyrics for your favorite media player"
+msgstr "好みのメディアプレーヤーのためにダウンロードして歌詞を表示"
+
+#: ../lyricsources/megalobiz/megalobiz.py:57
+msgid "megalobiz"
+msgstr ""
+
+#: ../lyricsources/netease/netease.py:29
+#: ../lyricsources/netease_tr/netease_tr.py:29
+msgid "Netease"
+msgstr ""
+
+#: ../lyricsources/netease/netease.py:31
+#: ../lyricsources/netease_tr/netease_tr.py:31
+msgid "Netease (TR)"
+msgstr ""
+
+#: ../lyricsources/xiami/xiami.py:54
+msgid "Xiami"
+msgstr ""
+
+#: ../lyricsources/subtitles4songs/subtitles4songs.py:56
+msgid "subtitles4songs"
+msgstr ""
