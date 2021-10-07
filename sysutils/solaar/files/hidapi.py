@@ -3,7 +3,7 @@
 import ctypes as _C
 from struct import pack as _pack
 
-_native = _C.CDLL("libhidapi.so")
+_native = _C.CDLL("libhidapi-libusb.so")
 
 class _NativeDeviceInfo(_C.Structure):
 	pass
@@ -30,6 +30,8 @@ DeviceInfo = namedtuple('DeviceInfo', [
 	'release',
 	'manufacturer',
 	'product',
+	'usage_page',
+	'usage',
 	'interface',
 	'driver',
 ])
@@ -44,6 +46,8 @@ def _makeDeviceInfo(native_device_info):
 		release=hex(native_device_info.release)[2:],
 		manufacturer=native_device_info.manufacturer,
 		product=native_device_info.product,
+		usage_page=native_device_info.usage_page,
+		usage=native_device_info.usage,
 		interface=native_device_info.interface,
 		driver=None)
 
