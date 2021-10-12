@@ -9,7 +9,7 @@ LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 # libhidapi.so is only loaded at runtime via ctypes (dlopen)
-RUN_DEPENDS=	${LOCALBASE}/lib/libhidapi-libusb.so:comms/hidapi
+RUN_DEPENDS=	${LOCALBASE}/lib/libhidapi.so:comms/hidapi
 
 USES=		python
 USE_GITHUB=	yes

@@ -3,7 +3,7 @@
 import ctypes as _C
 from struct import pack as _pack
 
-_native = _C.CDLL("libhidapi-libusb.so")
+_native = _C.CDLL("libhidapi.so")
 
 class _NativeDeviceInfo(_C.Structure):
 	pass
