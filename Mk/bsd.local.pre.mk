@@ -18,10 +18,10 @@ USES+=	pkgconfig
 USES+=	pkgconfig
 .endif
 
-.if ${.CURDIR:M*/devel/glib20} || ${.CURDIR:M*/graphics/inkscape} || \
-	${.CURDIR:M*/comms/hidapi}
-USES:=	${USES:S@:wchar_t@@}
-.endif
+#.if ${.CURDIR:M*/devel/glib20} || ${.CURDIR:M*/graphics/inkscape} || \
+#	${.CURDIR:M*/comms/hidapi}
+#USES:=	${USES:S@:wchar_t@@}
+#.endif
 
 .if ${.CURDIR:M*/sysutils/libcdio-paranoia}
 USES+=	iconv
