@@ -16,6 +16,7 @@ LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 CONFLICTS_INSTALL?=	gnuplot-lite-[0-9]*
 
 USES+=		compiler:c++11-lang groff iconv localbase pkgconfig readline
+CPE_VENDOR=	gnuplot_project
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-readline=gnu \
 		--without-linux-vga \
