@@ -23,7 +23,6 @@ DARK_DESC=	Dark theme
 LIGHT_DESC=	Light theme
 
 NO_BUILD=	yes
-INSTALLS_ICONS=	yes
 
 PORTDOCS=	Credits.md README.md Thanks.md COPYING
 

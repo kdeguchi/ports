@@ -28,7 +28,6 @@ CPE_VENDOR=	xfce
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-gio-unix
-INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
 
 PORTSCOUT=	limitw:1,even

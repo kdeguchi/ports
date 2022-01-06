@@ -19,7 +19,6 @@ USE_GNOME=	glib20 gtk30 intltool pango
 USE_XFCE=	libexo libutil thunar xfconf
 
 GNU_CONFIGURE=	yes
-INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=		NLS NOTIFY
