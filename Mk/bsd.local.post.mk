@@ -75,7 +75,7 @@ CPP=	cpp
 CFLAGS+=	-Qunused-arguments
 .endif
 
-.if ${.CURDIR:M*/chinese/fcitx}
+.if ${.CURDIR:M*/chinese/fcitx} || ${.CURDIR:M*/textproc/fcitx-qt5}
 USE_KDE:=	${USE_KDE:S@ecm@ecm_build@}
 .endif
 

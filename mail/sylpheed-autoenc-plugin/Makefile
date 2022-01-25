@@ -13,7 +13,7 @@ LICENSE_COMB=	dual
 LIB_DEPENDS=	libsylpheed-plugin-0.so:mail/sylpheed \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
-RUN_DEPENDS=	7z:archivers/p7zip
+RUN_DEPENDS=	7zz:archivers/7-zip
 
 USES=		gettext gnome libtool localbase pkgconfig xorg
 USE_LDCONFIG=	yes
