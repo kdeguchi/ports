@@ -1,7 +1,7 @@
 # $FreeBSD: head/sysutils/solaar/Makefile 522870 2020-01-13 09:38:12Z tobik $
 
 PORTNAME=	solaar
-DISTVERSION=	1.0.4
+DISTVERSION=	1.1.1
 CATEGORIES=	sysutils
 
 MAINTAINER=	tobik@FreeBSD.org
@@ -12,6 +12,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 # libhidapi.so is only loaded at runtime via ctypes (dlopen)
 RUN_DEPENDS=	${LOCALBASE}/lib/libhidapi.so:comms/hidapi
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}yaml>=0:devel/py-yaml@${PY_FLAVOR}
 
 USES=		python
 USE_GITHUB=	yes
