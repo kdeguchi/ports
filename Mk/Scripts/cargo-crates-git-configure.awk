@@ -1,1 +1,0 @@
-/usr/ports/Mk/Scripts/cargo-crates-git-configure.awk
