@@ -1,3 +1,3 @@
 */Makefile.inc
-/Mk/Scripts/*.sh
+/Mk/Scripts/[a-hj-z]*.sh
 /Mk/Scripts/*.awk
