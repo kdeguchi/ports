@@ -79,23 +79,23 @@ msgstr  "デバイスが多すぎる"
 
 #: lib/logitech_receiver/i18n.py:57
 msgid   "sequence timeout"
-msgstr  ""
+msgstr  "連続した時間切れ"
 
 #: lib/logitech_receiver/i18n.py:60 lib/solaar/ui/window.py:555
 msgid   "Firmware"
-msgstr  ""
+msgstr  "ファームウェア"
 
 #: lib/logitech_receiver/i18n.py:61
 msgid   "Bootloader"
-msgstr  ""
+msgstr  "ブートローダ"
 
 #: lib/logitech_receiver/i18n.py:62
 msgid   "Hardware"
-msgstr  ""
+msgstr  "ハードウェア"
 
 #: lib/logitech_receiver/i18n.py:63
 msgid   "Other"
-msgstr  ""
+msgstr  "その他"
 
 #: lib/logitech_receiver/notifications.py:75
 msgid   "pairing lock is closed"
@@ -119,7 +119,7 @@ msgstr  "不明"
 
 #: lib/logitech_receiver/settings_templates.py:213
 msgid   "Hand Detection"
-msgstr  ""
+msgstr  "手の検出"
 
 #: lib/logitech_receiver/settings_templates.py:213
 msgid   "Turn on illumination when the hands hover over the keyboard."
@@ -143,7 +143,8 @@ msgstr  "水平スクロール"
 msgid   "When disabled, pushing the wheel sideways sends custom button "
         "events\n"
         "instead of the standard side-scrolling events."
-msgstr  ""
+msgstr  "不可能なとき、標準的な横スクロールイベントの代わりに\n"
+        "ホイールを押すとカスタムボタンイベントを送る。"
 
 #: lib/logitech_receiver/settings_templates.py:223
 msgid   "High Resolution Scrolling"
@@ -180,12 +181,14 @@ msgstr  "Fx functionを入れ替え"
 #: lib/logitech_receiver/settings_templates.py:237
 msgid   "When set, the F1..F12 keys will activate their special function,\n"
         "and you must hold the FN key to activate their standard function."
-msgstr  ""
+msgstr  "セットされていると、F1..F12キーは特別な機能を有効にし、\n"
+        "特別な機能を有効にするにはFNキーを押し続けなければならない。"
 
 #: lib/logitech_receiver/settings_templates.py:240
 msgid   "When unset, the F1..F12 keys will activate their standard function,\n"
         "and you must hold the FN key to activate their special function."
-msgstr  ""
+msgstr  "セットされていないと、F1..F12キーは特別な機能を有効にし、\n"
+        "特別な機能を有効にするにはFNキーを押し続けなければならない。"
 
 #: lib/logitech_receiver/settings_templates.py:244
 msgid   "Sensitivity (DPI)"
@@ -367,15 +370,15 @@ msgstr  "Logitechレシーバーでワイヤレス\n"
 
 #: lib/solaar/ui/about.py:47
 msgid   "GUI design"
-msgstr  ""
+msgstr  "GUIデザイン"
 
 #: lib/solaar/ui/about.py:49
 msgid   "Testing"
-msgstr  ""
+msgstr  "テスト中"
 
 #: lib/solaar/ui/about.py:56
 msgid   "Logitech documentation"
-msgstr  ""
+msgstr  "Logitech文書"
 
 #: lib/solaar/ui/action.py:70 lib/solaar/ui/window.py:325
 msgid   "About"
@@ -437,7 +440,7 @@ msgstr  "ワイヤレス接続は暗号化されていません"
 #: lib/solaar/ui/pair_window.py:199
 #, python-format
 msgid   "%(receiver_name)s: pair new device"
-msgstr  ""
+msgstr  "%(receiver_name)s: 新しいデバイスをペアリング"
 
 #: lib/solaar/ui/pair_window.py:206
 msgid   "If the device is already turned on, turn if off and on again."
@@ -508,28 +511,28 @@ msgstr  "デバイス選択"
 
 #: lib/solaar/ui/window.py:522
 msgid   "Path"
-msgstr  ""
+msgstr  "パス"
 
 #: lib/solaar/ui/window.py:524
 msgid   "USB id"
-msgstr  ""
+msgstr  "USB ID"
 
 #: lib/solaar/ui/window.py:527 lib/solaar/ui/window.py:529
 #: lib/solaar/ui/window.py:546 lib/solaar/ui/window.py:548
 msgid   "Serial"
-msgstr  ""
+msgstr  "シリアル"
 
 #: lib/solaar/ui/window.py:533
 msgid   "Index"
-msgstr  ""
+msgstr  "インデックス"
 
 #: lib/solaar/ui/window.py:534
 msgid   "Wireless PID"
-msgstr  ""
+msgstr  "ワイヤレスPID"
 
 #: lib/solaar/ui/window.py:536
 msgid   "Protocol"
-msgstr  ""
+msgstr  "プロトコル"
 
 #: lib/solaar/ui/window.py:536
 msgid   "Unknown"
@@ -550,7 +553,7 @@ msgstr  ""
 
 #: lib/solaar/ui/window.py:560
 msgid   "Notifications"
-msgstr  ""
+msgstr  "通知"
 
 #: lib/solaar/ui/window.py:597
 msgid   "No device paired."
@@ -582,7 +585,7 @@ msgstr  "充電中"
 
 #: lib/solaar/ui/window.py:683
 msgid   "last known"
-msgstr  ""
+msgstr  "最後に記憶したもの"
 
 #: lib/solaar/ui/window.py:690
 msgid   "not encrypted"
@@ -599,7 +602,14 @@ msgid   "The wireless link between this device and its receiver is not "
         "(keyboards, numpads),\n"
         "because typed text can be sniffed inconspicuously by 3rd parties "
         "within range."
-msgstr  ""
+msgstr  "このデバイスとそれのレシーバーの間のワイヤレス接続は暗号化されていません。\n"
+        "\n"
+        "ポインティングデバイス(マウス、トラックボール、トラックパッド)に関して、"
+        "これは重大でないセキュリティーの問題です。\n"
+        "\n"
+        "しかし、重大なセキュリティーの問題はテキスト入力デバイス(キーボード、数字入力パッド)であり、\n"
+        "到達距離内にあるサードパーティー製のデバイスにより、入力されるテキストは密かに覗かれる可能性があります。"
+        "\n"
 
 #: lib/solaar/ui/window.py:703
 msgid   "encrypted"
