@@ -43,6 +43,7 @@ CONFIGURE_ARGS+=--disable-x11-mbfonts \
 PLIST_SUB+=	X11="@comment "
 .else
 USES+=		gnome jpeg lua:53 ncurses xorg
+USE_TEX=	kpathsea
 USE_GNOME+=	atk cairo gtk30 gdkpixbuf2
 USE_WX=		3.1
 USE_XORG+=	x11
@@ -53,16 +54,15 @@ LIB_DEPENDS+=	libfontconfig.so:x11-fonts/fontconfig \
 		libpng.so:graphics/png \
 		libwebp.so:graphics/webp \
 		libtiff.so:graphics/tiff
-TEXLIVE_PATH=	${LOCALBASE}/texlive/2020
 CONFIGURE_ARGS+=--with-gd=${LOCALBASE} \
 		--with-gpic \
 		--with-mif \
 		--with-kpsexpand \
 		--with-latex \
-		ac_cv_prog_KPSEXPAND=${TEXLIVE_PATH}/bin/kpsexpand \
-		ac_cv_prog_PLAINTEX=${TEXLIVE_PATH}/bin/tex \
-		ac_cv_prog_LATEX=${TEXLIVE_PATH}/bin/latex \
-		ac_cv_prog_PDFLATEX=${TEXLIVE_PATH}/bin/pdflatex
+		ac_cv_prog_KPSEXPAND=${LOCALBASE}/bin/kpsexpand \
+		ac_cv_prog_PLAINTEX=${LOCALBASE}/bin/tex \
+		ac_cv_prog_LATEX=${LOCALBASE}/bin/latex \
+		ac_cv_prog_PDFLATEX=${LOCALBASE}/bin/pdflatex
 PLIST_SUB+=	X11=""
 .endif
 
