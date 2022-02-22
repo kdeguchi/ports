@@ -92,7 +92,8 @@ SVG_CONFIGURE_ENABLE=	librsvg
 SVG_USE=	gnome=librsvg2
 
 post-patch:
-	cd ${WRKSRC} && ${REINPLACE_CMD} -E 's@\[\[@[@g;s@\]\]@]@g;' ${SHEBANG_FILES}
+	cd ${WRKSRC} && ${REINPLACE_CMD} -E 's@\[\[@[@g;s@\]\]@]@g;' ${SHEBANG_FILES} && \
+		${REINPLACE_CMD} -E 's@librsvg-@rsvg-@;s@<librsvg/@<librsvg-2.0/librsvg/@' plugins/svg.c
 
 pre-configure:
 	@cd ${WRKSRC} && ${SETENV} NOCONFIGURE=yes ${SH} autogen.sh ${CONFIGURE_ARGS}
