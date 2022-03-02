@@ -143,9 +143,9 @@ MAKE_ENV:=	${MAKE_ENV:S@PATH=@PATH=${PREFIX}/libexec/ccache:@}
 .endif
 .endif
 
-.if defined(MASTER_SITES) && ${MASTER_SITES:M*/texlive/Source}
-MASTER_SITES:=	${MASTER_SITES:S@Source/@@g}
-.endif
+#.if defined(MASTER_SITES) && ${MASTER_SITES:M*/texlive/Source}
+#MASTER_SITES:=	${MASTER_SITES:S@Source/@@g}
+#.endif
 
 .if defined(PREFIX) && ${PREFIX} == /usr/local
 POST_PLIST+=	post-generate-plist
