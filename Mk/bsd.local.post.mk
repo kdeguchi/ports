@@ -23,10 +23,6 @@ LIB_DEPENDS:=	${LIB_DEPENDS:C@libMagick(.*)-6.Q16.so@libMagick\1-6.Q16*.so@}
 RUN_DEPENDS:=	${RUN_DEPENDS:C@p5-Gtk>@p5-Gtk-Perl>@}
 RUN_DEPENDS:=	${RUN_DEPENDS:C@/p5-Gtk$@/p5-Gtk-Perl@}
 
-.if ${.CURDIR:M*/devel/ccache*}
-CLANG_COMPILERS+=	${LLVM_DEFAULT}
-.endif
-
 .if ${CC:M/usr/bin/clang}
 CC=	clang
 .endif
