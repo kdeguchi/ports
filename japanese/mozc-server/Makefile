@@ -29,7 +29,7 @@ GH_TUPLE=	hiroyuki-komatsu:japanese-usage-dictionary:e5b3425:udic
 #GH_TAGNAME=	67cba51
 
 USES=		compiler:c++11-lang gmake ninja:build pkgconfig \
-		python:3.5+,build shebangfix tar:bzip2
+		python:3.7+,build shebangfix tar:bzip2
 SHEBANG_FILES=	src/build_mozc.py
 BUILD_WRKSRC=	${WRKSRC}/src
 
