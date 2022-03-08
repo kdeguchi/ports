@@ -16,7 +16,8 @@ LIB_DEPENDS=	libpopt.so:devel/popt \
 		libdbus-1.so:devel/dbus \
 		libical.so:devel/libical \
 		libfontconfig.so:x11-fonts/fontconfig \
-		libfreetype.so:print/freetype2
+		libfreetype.so:print/freetype2 \
+		libharfbuzz.so:print/harfbuzz
 
 USES=		autoreconf:build compiler:c++11-lang desktop-file-utils gettext gmake gnome \
 		libtool pkgconfig tar:bzip2 xfce xorg
@@ -26,7 +27,7 @@ GL_ACCOUNT=	apps
 GL_COMMIT=	1ddb535ab237c90a6c7ed05ed35f680ed67b8190
 USE_GNOME=	cairo gtk30 intltool
 USE_XFCE=	libmenu panel
-USE_XORG=	x11
+USE_XORG=	ice sm x11
 
 GNU_CONFIGURE=	yes
 CFLAGS+=	-I${LOCALBASE}/include/libical
