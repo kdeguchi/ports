@@ -79,10 +79,6 @@ CFLAGS+=	-Qunused-arguments
 USE_KDE:=	${USE_KDE:S@ecm@ecm_build@}
 .endif
 
-#.if ${.CURDIR:M*/x11/xfce4-terminal}
-#CONFIGURE_ARGS+=	--with-utempter
-#.endif
-
 .if ${.CURDIR:M*/databases/mariadb*-server}
 SUB_LIST+=	MARIADB_GROUP="${MARIADB_GROUP}"
 .endif
@@ -109,18 +105,9 @@ FETCH_ARGS=	--proxy socks5://localhost:1090 --fail --insecure --location --remot
 DISABLE_SIZE=	yes
 .endif
 
-#.if ${.CURDIR:M*/math/wxmaxima}
-#USE_WX:=	${USE_WX:S@3.0@3.1@}
-#.endif
-
 .if ${.CURDIR:M*/math/maxima}
 NOUSERINIT_EXTRA_PATCHES_OFF=
 .endif
-
-#.if ${.CURDIR:M*/graphics/libetonyek01}
-#LIB_DEPENDS:=	${LIB_DEPENDS:S@libboost_filesystem.so:devel/boost-libs@@}
-#BUILD_DEPENDS+=	libboost_filesystem.so:devel/boost-libs
-#.endif
 
 .if ${.CURDIR:M*/www/webkit2-gtk3}
 CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON_CMD}
@@ -139,9 +126,13 @@ MAKE_ENV:=	${MAKE_ENV:S@PATH=@PATH=${PREFIX}/libexec/ccache:@}
 .endif
 .endif
 
-#.if defined(MASTER_SITES) && ${MASTER_SITES:M*/texlive/Source}
-#MASTER_SITES:=	${MASTER_SITES:S@Source/@@g}
-#.endif
+.if defined(BUILD_DEPENDS) && ${BUILD_DEPENDS:M*xdvi\:print/tex-xdvik*}
+BUILD_DEPENDS:=	${BUILD_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvik@}
+.endif
+
+.if defined(RUN_DEPENDS) && ${RUN_DEPENDS:M*xdvi\:print/tex-xdvik*}
+RUN_DEPENDS:=	${RUN_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvik@}
+.endif
 
 .if defined(PREFIX) && ${PREFIX} == /usr/local
 POST_PLIST+=	post-generate-plist
