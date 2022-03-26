@@ -1,5 +1,6 @@
 PORTNAME=	compiz
 PORTVERSION=	0.8.18
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp

@@ -1,5 +1,6 @@
 PORTNAME=	compiz-plugins-extra
 PORTVERSION=	0.8.18
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 
 MAINTAINER=	freebsd-ports@dan.me.uk
