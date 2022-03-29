@@ -1,6 +1,5 @@
-PORTNAME=	la-capitaine
+PORTNAME=	la-capitaine-icon-theme
 PORTVERSION=	0.6.2
-PKGNAMESUFFIX=	-icons-theme
 CATEGORIES=	x11-themes
 
 MAINTAINER=	ports@FreeBSD.org
@@ -11,7 +10,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USE_GITHUB=	YES
 GH_ACCOUNT=	keeferrourke
-GH_PROJECT=	${PORTNAME}-icon-theme
 GH_TAGNAME=	8370e7c
 
 OPTIONS_DEFINE=	DOCS
@@ -25,10 +23,18 @@ NO_BUILD=	YES
 
 PORTDOCS=	Credits.md README.md Thanks.md COPYING
 
+post-extract:
+.for logo in kubuntu debian-logo configure-debian debian debian-plymouth-manager archlinux gnome-debian
+	${RM} ${WRKSRC}/apps/scalable/${logo}.svg
+.endfor
+	cd ${WRKSRC} && \
+		${RM} -r .git* .product
+
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine
 	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine
-	${RM} -r ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/scripts
+	cd ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine && \
+	${RM} -r COPYING Credits.md LICENSE README.md Thanks.md configure scripts
 
 do-install-DARK-on:
 	cd ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/actions && ${LN} -sfn 22x22-dark 22x22
@@ -41,9 +47,5 @@ do-install-DARK-on:
 do-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
-
-post-install:
-	cd ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine && \
-		${RM} -r .git* .product COPYING LICENSE Credits.md README.md Thanks.md configure
 
 .include <bsd.port.mk>

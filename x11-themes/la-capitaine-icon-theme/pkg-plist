@@ -1,3 +1,7 @@
+%%PORTDOCS%%%%DOCSDIR%%/COPYING
+%%PORTDOCS%%%%DOCSDIR%%/Credits.md
+%%PORTDOCS%%%%DOCSDIR%%/README.md
+%%PORTDOCS%%%%DOCSDIR%%/Thanks.md
 share/icons/La-Capitaine/actions/22x22
 share/icons/La-Capitaine/actions/22x22-dark/Info-amarok.svg
 share/icons/La-Capitaine/actions/22x22-dark/TeX_logo.svg
@@ -3570,7 +3574,6 @@ share/icons/La-Capitaine/apps/scalable/aptik.svg
 share/icons/La-Capitaine/apps/scalable/aptoncd.svg
 share/icons/La-Capitaine/apps/scalable/aqualung.svg
 share/icons/La-Capitaine/apps/scalable/archive-manager.svg
-share/icons/La-Capitaine/apps/scalable/archlinux.svg
 share/icons/La-Capitaine/apps/scalable/ardour.svg
 share/icons/La-Capitaine/apps/scalable/arduino-arduinoide.svg
 share/icons/La-Capitaine/apps/scalable/arduino-icon-small.svg
@@ -3875,7 +3878,6 @@ share/icons/La-Capitaine/apps/scalable/config-date.svg
 share/icons/La-Capitaine/apps/scalable/config-language.svg
 share/icons/La-Capitaine/apps/scalable/config-users.svg
 share/icons/La-Capitaine/apps/scalable/configuration_section.svg
-share/icons/La-Capitaine/apps/scalable/configure-debian.svg
 share/icons/La-Capitaine/apps/scalable/conky-manager.svg
 share/icons/La-Capitaine/apps/scalable/conky.svg
 share/icons/La-Capitaine/apps/scalable/contact-editor.svg
@@ -3970,9 +3972,6 @@ share/icons/La-Capitaine/apps/scalable/dde-file-manager.svg
 share/icons/La-Capitaine/apps/scalable/de.haeckerfelix.Fragments.svg
 share/icons/La-Capitaine/apps/scalable/de.haeckerfelix.gradio.svg
 share/icons/La-Capitaine/apps/scalable/deadbeef.svg
-share/icons/La-Capitaine/apps/scalable/debian-logo.svg
-share/icons/La-Capitaine/apps/scalable/debian-plymouth-manager.svg
-share/icons/La-Capitaine/apps/scalable/debian.svg
 share/icons/La-Capitaine/apps/scalable/decibel.svg
 share/icons/La-Capitaine/apps/scalable/deepin-appstore.svg
 share/icons/La-Capitaine/apps/scalable/deepin-boot-maker.svg
@@ -4267,7 +4266,6 @@ share/icons/La-Capitaine/apps/scalable/gnome-color-manager.svg
 share/icons/La-Capitaine/apps/scalable/gnome-commander.svg
 share/icons/La-Capitaine/apps/scalable/gnome-contacts.svg
 share/icons/La-Capitaine/apps/scalable/gnome-control-center.svg
-share/icons/La-Capitaine/apps/scalable/gnome-debian.svg
 share/icons/La-Capitaine/apps/scalable/gnome-desktop-config.svg
 share/icons/La-Capitaine/apps/scalable/gnome-desktop-item-edit.svg
 share/icons/La-Capitaine/apps/scalable/gnome-dev-removable-usb.svg
@@ -4727,7 +4725,6 @@ share/icons/La-Capitaine/apps/scalable/ktip.svg
 share/icons/La-Capitaine/apps/scalable/ktorrent.svg
 share/icons/La-Capitaine/apps/scalable/ktouch.svg
 share/icons/La-Capitaine/apps/scalable/ktp-contacts.svg
-share/icons/La-Capitaine/apps/scalable/kubuntu.svg
 share/icons/La-Capitaine/apps/scalable/kuickshow.svg
 share/icons/La-Capitaine/apps/scalable/kup.svg
 share/icons/La-Capitaine/apps/scalable/kuser.svg
