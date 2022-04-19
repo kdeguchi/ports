@@ -1,7 +1,7 @@
 # Created by: Oliver Lehmann <oliver@FreeBSD.org>
 
 PORTNAME=	thunar
-DISTVERSION=	4.16.10
+DISTVERSION=	4.16.11
 CATEGORIES=	x11-fm xfce
 MASTER_SITES=	XFCE
 DIST_SUBDIR=	xfce4
@@ -14,7 +14,8 @@ LICENSE_COMB=	multi
 LICENSE_FILE_GPLv2=	${WRKSRC}/COPYING
 LICENSE_FILE_LGPL20=	${WRKSRC}/COPYING.LIB
 
-LIB_DEPENDS=	libtumbler-1.so:deskutils/xfce4-tumbler
+LIB_DEPENDS=	libtumbler-1.so:deskutils/xfce4-tumbler \
+		libharfbuzz.so:print/harfbuzz
 RUN_DEPENDS=	pkexec:sysutils/polkit
 
 USES=		compiler:c11 cpe desktop-file-utils gettext-tools gmake gnome \
