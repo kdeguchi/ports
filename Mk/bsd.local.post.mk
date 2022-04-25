@@ -23,6 +23,10 @@ LIB_DEPENDS:=	${LIB_DEPENDS:C@libMagick(.*)-6.Q16.so@libMagick\1-6.Q16*.so@}
 RUN_DEPENDS:=	${RUN_DEPENDS:C@p5-Gtk>@p5-Gtk-Perl>@}
 RUN_DEPENDS:=	${RUN_DEPENDS:C@/p5-Gtk$@/p5-Gtk-Perl@}
 
+.if defined(BUILD_DEPENDS) && ! ${BUILD_DEPENDS:M*lang/rust}
+NO_SCCACHE=	yes
+.endif
+
 .if ${CC:M/usr/bin/clang}
 CC=	clang
 .endif
