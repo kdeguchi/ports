@@ -31,3 +31,7 @@ BUILD_DEPENDS+=	${LOCALBASE}/include/boost/container/small_vector.hpp:devel/boos
 LIB_DEPENDS:=	${LIB_DEPENDS:S@libboost_thread.so:devel/boost-libs@@}
 BUILD_DEPENDS+=	${LOCALBASE}/include/boost/container/small_vector.hpp:devel/boost-libs
 .endif
+
+.if defined(BUILD_DEPENDS) && ! ${BUILD_DEPENDS:M*\:lang/rust*}
+NO_SCCACHE=	yes
+.endif

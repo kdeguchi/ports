@@ -23,10 +23,6 @@ LIB_DEPENDS:=	${LIB_DEPENDS:C@libMagick(.*)-6.Q16.so@libMagick\1-6.Q16*.so@}
 RUN_DEPENDS:=	${RUN_DEPENDS:C@p5-Gtk>@p5-Gtk-Perl>@}
 RUN_DEPENDS:=	${RUN_DEPENDS:C@/p5-Gtk$@/p5-Gtk-Perl@}
 
-.if defined(BUILD_DEPENDS) && ! ${BUILD_DEPENDS:M*lang/rust}
-NO_SCCACHE=	yes
-.endif
-
 .if ${CC:M/usr/bin/clang}
 CC=	clang
 .endif
@@ -136,6 +132,11 @@ BUILD_DEPENDS:=	${BUILD_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvi
 
 .if defined(RUN_DEPENDS) && ${RUN_DEPENDS:M*xdvi\:print/tex-xdvik*}
 RUN_DEPENDS:=	${RUN_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvik@}
+.endif
+
+.if defined(BUILD_DEPENDS) && ! ${BUILD_DEPENDS:M*\:lang/rust*}
+_SCCACHE_OVERLAY_INCLUDED=	yes
+NO_SCCACHE=	yes
 .endif
 
 .if defined(PREFIX) && ${PREFIX} == /usr/local
