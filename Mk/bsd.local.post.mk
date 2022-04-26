@@ -134,15 +134,16 @@ BUILD_DEPENDS:=	${BUILD_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvi
 RUN_DEPENDS:=	${RUN_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvik@}
 .endif
 
-.if defined(BUILD_DEPENDS) && ! ${BUILD_DEPENDS:M*\:lang/rust*}
-_SCCACHE_OVERLAY_INCLUDED=	yes
+.if defined(BUILD_DEPENDS) && ! ${BUILD_DEPENDS:M*lang/rust}
 NO_SCCACHE=	yes
+_USES_configure:=	${_USE_configure:S/250:sccache-start//}
+_USES_stage:=	${_USE_stage:S/950:sccache-stats//}
 .endif
 
 .if defined(PREFIX) && ${PREFIX} == /usr/local
-POST_PLIST+=	post-generate-plist
-.if !target(post-generate-plist)
-post-generate-plist:
+_USES_stage+=	990:post-man-plist
+.if !target(post-man-plist)
+post-man-plist:
 	cd ${STAGEDIR}${PREFIX}; \
 	[ -d man ] && \
 	( _MANFILES=$$( ${FIND} man/ -type f -or -type l ); \
