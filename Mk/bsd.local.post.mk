@@ -136,12 +136,12 @@ RUN_DEPENDS:=	${RUN_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvik@}
 
 .if defined(BUILD_DEPENDS) && ! ${BUILD_DEPENDS:M*lang/rust}
 NO_SCCACHE=	yes
-_USES_configure:=	${_USE_configure:S/250:sccache-start//}
-_USES_stage:=	${_USE_stage:S/950:sccache-stats//}
+_USES_configure:=	${_USES_configure:S@250:sccache-start@@}
+_USES_stage:=	${_USES_stage:S@950:sccache-stats@@}
 .endif
 
 .if defined(PREFIX) && ${PREFIX} == /usr/local
-_USES_stage+=	990:post-man-plist
+POST_PLIST+=	post-man-plist
 .if !target(post-man-plist)
 post-man-plist:
 	cd ${STAGEDIR}${PREFIX}; \
