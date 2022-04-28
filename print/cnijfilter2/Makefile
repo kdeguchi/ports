@@ -8,8 +8,6 @@ DISTVERSIONSUFFIX=-1-rpm
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Caonon IJ Printer driver
 
-RUN_DEPENDS=	linux_libusb>0:devel/linux_libusb
-
 USES=	linux
 USE_LINUX=	avahi-libs cups-libs dbuslibs libxml2
 USE_LINUX_PREFIX=	yes
@@ -34,6 +32,7 @@ post-extract:
 do-install:
 	cd ${WRKSRC}/packages/${_ARCH} && \
 		${CP} -a usr ${STAGEDIR}${PREFIX} && \
+		${RM} ${STAGEDIR}${PREFIX}/usr/bin/cnijlgmon3 && \
 		${MKDIR} ${STAGEDIR}${LOCALBASE}/bin && \
 		for i in `ls ${STAGEDIR}${PREFIX}/usr/bin`; do \
 			${LN} -s ${PREFIX}/usr/bin/$${i} ${STAGEDIR}${LOCALBASE}/bin/; \
@@ -50,7 +49,6 @@ do-install:
 		for i in `ls ${STAGEDIR}${PREFIX}/usr/share/cups/model`; do \
 			${LN} -s ${PREFIX}/usr/share/cups/model/$${i} ${STAGEDIR}${LOCALBASE}/share/cups/model/; \
 		done
-		#${RM} ${STAGEDIR}${PREFIX}/usr/bin/cnijlgmon3 && \
 
 do-install-DOCS-off:
 	${RM} -r ${STAGEDIR}${PREFIX}/usr/share/doc
