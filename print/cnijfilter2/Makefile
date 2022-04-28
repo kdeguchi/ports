@@ -8,6 +8,8 @@ DISTVERSIONSUFFIX=-1-rpm
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Caonon IJ Printer driver
 
+RUN_DEPENDS=	linux_libusb>0:devel/linux_libusb
+
 USES=	linux
 USE_LINUX=	avahi-libs cups-libs dbuslibs libxml2
 USE_LINUX_PREFIX=	yes
@@ -20,12 +22,8 @@ OPTIONS_DEFINE=	DOCS
 
 .if defined(ARCH) && ${ARCH:Mamd64}
 _ARCH=	x86_64
-.elif defined(ARCH) && ${ARCH:Mi386}
-_ARCH=	i386
-.elif defined(ARCH) && ${ARCH:Maarch64}
-_ARCH=	aarch64
-.elif defined(ARCH) && ${ARCH:Mmips64el}
-_ARCH=	mips64el
+.else
+_ARCH=	${ARCH}
 .endif
 
 post-extract:
@@ -35,21 +33,24 @@ post-extract:
 
 do-install:
 	cd ${WRKSRC}/packages/${_ARCH} && \
-		${CP} -a usr ${STAGEDIR}${LINUXBASE} && \
+		${CP} -a usr ${STAGEDIR}${PREFIX} && \
 		${MKDIR} ${STAGEDIR}${LOCALBASE}/bin && \
+		for i in `ls ${STAGEDIR}${PREFIX}/usr/bin`; do \
+			${LN} -s ${PREFIX}/usr/bin/$${i} ${STAGEDIR}${LOCALBASE}/bin/; \
+		done
 		${MKDIR} ${STAGEDIR}${LOCALBASE}/libexec/cups/backend && \
+		for i in `ls ${STAGEDIR}${PREFIX}/usr/lib/cups/backend`; do \
+			${LN} -s ${PREFIX}/usr/lib/cups/backend/$${i} ${STAGEDIR}${LOCALBASE}/libexec/cups/backend/; \
+		done
 		${MKDIR} ${STAGEDIR}${LOCALBASE}/libexec/cups/filter && \
-		${MKDIR} ${STAGEDIR}${LOCALBASE}/share/cups/model
-.for i in tocanonij tocnpwg
-	${LN} -s ${LINUXBASE}${LOCALBASE}/bin/${i} ${STAGEDIR}${LOCALBASE}/bin/
-.endfor
-	${LN} -s ${LINUXBASE}/usr/lib/cups/backend/cnijbe2 ${STAGEDIR}${LOCALBASE}/libexec/cups/backend/
-.for i in cmdtocanonij2 cmdtocanonij3 rastertocanonij
-	${LN} -s ${LINUXBASE}/usr/lib/cups/filter/${i} ${STAGEDIR}${LOCALBASE}/libexec/cups/filter/
-.endfor
-	for i in `ls ${STAGEDIR}${LINUXBASE}/usr/share/cups/model`; do \
-		${LN} -s ${LINUXBASE}/usr/share/cups/model/$${i} ${STAGEDIR}${LOCALBASE}/share/cups/model/; \
-	done
+		for i in `ls ${STAGEDIR}${PREFIX}/usr/lib/cups/filter`; do \
+			${LN} -s ${PREFIX}/usr/lib/cups/filter/$${i} ${STAGEDIR}${LOCALBASE}/libexec/cups/filter/; \
+		done
+		${MKDIR} ${STAGEDIR}${LOCALBASE}/share/cups/model && \
+		for i in `ls ${STAGEDIR}${PREFIX}/usr/share/cups/model`; do \
+			${LN} -s ${PREFIX}/usr/share/cups/model/$${i} ${STAGEDIR}${LOCALBASE}/share/cups/model/; \
+		done
+		#${RM} ${STAGEDIR}${PREFIX}/usr/bin/cnijlgmon3 && \
 
 do-install-DOCS-off:
 	${RM} -r ${STAGEDIR}${PREFIX}/usr/share/doc
