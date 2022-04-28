@@ -155,3 +155,5 @@ post-man-plist:
 	) || exit 0
 .endif
 .endif
+
+SCRIPTSDIR=	/home/deguchi/data/work/github/ports/Mk/Scripts

@@ -31,3 +31,5 @@ BUILD_DEPENDS+=	${LOCALBASE}/include/boost/container/small_vector.hpp:devel/boos
 LIB_DEPENDS:=	${LIB_DEPENDS:S@libboost_thread.so:devel/boost-libs@@}
 BUILD_DEPENDS+=	${LOCALBASE}/include/boost/container/small_vector.hpp:devel/boost-libs
 .endif
+
+SCRITPTSDIR=	/home/deguchi/data/work/github/ports/Mk/Scripts
