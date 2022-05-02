@@ -1,0 +1,7 @@
+--- meson.build.orig	2022-04-28 12:34:15 UTC
++++ meson.build
+@@ -81,3 +81,4 @@ subdir('egg')
+ subdir('libsecret')
+ subdir('tool')
+ subdir('docs')
++subdir('bash-completion')
