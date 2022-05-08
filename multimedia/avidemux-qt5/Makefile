@@ -23,6 +23,6 @@ CMAKE_ARGS+=	-DAVIDEMUX_SOURCE_DIR=${WRKSRC} -DAVIDEMUX_INSTALL_PREFIX:PATH="${P
 post-configure: post-configure-common
 
 post-install:
-	@${CP} ${PATCHDIR}/avidemux_ja.qm ${STAGEDIR}${PREFIX}/share/avidemux6/qt5/i18n/
+	@${CP} ${.CURDIR}/files/avidemux_ja.qm ${STAGEDIR}${PREFIX}/share/avidemux6/qt5/i18n/
 
 .include <bsd.port.post.mk>
