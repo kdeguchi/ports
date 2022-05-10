@@ -161,7 +161,7 @@ GYP_DEFINES+=	use_libibus=0 \
 
 .if ${PORT_OPTIONS:MUTDIC}
 LICENSE+=	APACHE20 CC-BY-SA-3.0 GPLv2
-UT_VERSION=20220403
+UT_VERSION=20220423
 MASTER_SITES+=	https://osdn.net/users/utuhiro/pf/utuhiro/dl/:ut
 DISTFILES+=	mozcdic-ut-${UT_VERSION}.tar.bz2:ut
 FETCH_ARGS+=	--user-agent=curl/7.68.0
