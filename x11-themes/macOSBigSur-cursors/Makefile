@@ -1,5 +1,5 @@
 PORTNAME=	macOSBigSur-cursors
-PORTVERSION=	1.1.4
+PORTVERSION=	1.2.3
 CATEGORIES=	x11-themes
 MASTER_SITES=	https://github.com/ful1e5/apple_cursor/releases/download/v${PORTVERSION}/
 DISTNAME=	macOSBigSur
