@@ -3,7 +3,7 @@ PORTVERSION=	${OSREL}.20210525
 CATEGORIES=	japanese
 MASTER_SITES=	ftp://ftp.koganemaru.co.jp/pub/jman${OSREL:C@\.[0-9]+@@}/
 PKGNAMESUFFIX=	-doc
-DISTNAME=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-${PORTVERSION}.${ARCH}
+DISTNAME=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-${PORTVERSION}
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Japanese translation of FreeBSD manual pages
@@ -17,7 +17,11 @@ EXTRACT_AFTER_ARGS=	-C ${WRKSRC} \
 		--exclude +MTREE_DIRS \
 		-s '|/usr|${PREFIX}|gs'
 
-#DISTINFO_FILE=	${.CURDIR}/distinfo.${ARCH}
+.if defined(ARCH) && ${ARCH} == "amd64"
+DISTNAME:=	${DISTNAME}.${ARCH}
+DISTINFO_FILE=	${MASTERDIR}/distinfo.${ARCH}
+.endif
+
 PLIST=	${.CURDIR}/pkg-plist
 
 SUB_FILES=	eucjp2utf8.sh
