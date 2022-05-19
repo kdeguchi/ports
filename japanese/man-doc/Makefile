@@ -1,5 +1,5 @@
 PORTNAME=	man
-PORTVERSION=	${OSREL}.20210525
+PORTVERSION=	${OSREL}.20220512
 CATEGORIES=	japanese
 MASTER_SITES=	ftp://ftp.koganemaru.co.jp/pub/jman${OSREL:C@\.[0-9]+@@}/
 PKGNAMESUFFIX=	-doc
@@ -17,19 +17,19 @@ EXTRACT_AFTER_ARGS=	-C ${WRKSRC} \
 		--exclude +MTREE_DIRS \
 		-s '|/usr|${PREFIX}|gs'
 
-.if defined(ARCH) && ${ARCH} == "amd64"
-DISTNAME:=	${DISTNAME}.${ARCH}
-DISTINFO_FILE=	${MASTERDIR}/distinfo.${ARCH}
-.endif
-
-PLIST=	${.CURDIR}/pkg-plist
-
 SUB_FILES=	eucjp2utf8.sh
 SUB_LIST=	AWK="${AWK}" CUT="${CUT}" ECHO_CMD="${ECHO_CMD}" FIND="${FIND}" \
 		GZCAT="${GZCAT}" GZIP_CMD="${GZIP_CMD}" ICONV_CMD="${ICONV_CMD}" \
 		LN="${LN}" SORT="${SORT}"
 
 NO_BUILD=	yes
+
+.include <bsd.port.pre.mk>
+
+.if defined(ARCH) && ${ARCH} == "amd64"
+DISTNAME:=	${DISTNAME}.${ARCH}
+DISTINFO_FILE=	${MASTERDIR}/distinfo.${ARCH}
+.endif
 
 pre-extract:
 	${MKDIR} ${WRKSRC}
@@ -47,4 +47,4 @@ post-install:
 
 compress-man:
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
