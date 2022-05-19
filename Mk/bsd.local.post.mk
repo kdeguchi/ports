@@ -134,10 +134,6 @@ BUILD_DEPENDS:=	${BUILD_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvi
 RUN_DEPENDS:=	${RUN_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvik@}
 .endif
 
-.if ${.CURDIR:M*/devel/gettext-tools}
-CONFIGURE_ARGS:=	${CONFIGURE_ARGS:S@--disable-openmp@@}
-.endif
-
 .if defined(BUILD_DEPENDS) && ! ${BUILD_DEPENDS:M*lang/rust}
 NO_SCCACHE=	yes
 _USES_configure:=	${_USES_configure:S@250:sccache-start@@}
