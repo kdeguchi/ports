@@ -27,7 +27,7 @@ CMAKE_OFF=	BUILD_PORT_MONITORS \
 		BUILD_AUDACIOUS
 #		BUILD_DOCS
 CMAKE_ARGS=	-DAPP_SED=${LOCALBASE}/bin/gsed
-CONFLICTS?=	conky-awesome-[0-9]*
+CONFLICTS?=	conky-awesome
 
 SLAVEDIRS=	sysutils/conky-awesome
 
@@ -146,8 +146,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's,^set(INCLUDE_SEARCH_PATH \(.*\)),set(INCLUDE_SEARCH_PATH \1 ${LUA_INCDIR}),' \
 		-e 's/ -lbsd/ -lintl -linotify/' \
 		${WRKSRC}/cmake/ConkyPlatformChecks.cmake
-	@${REINPLACE_CMD} -e 's,LOCALBASE,${LOCALBASE},' \
-		-e 's|-Werror||' \
+	@${REINPLACE_CMD} -e 's,LOCALBASE,${LOCALBASE},' -e 's|-Werror||' \
 		${WRKSRC}/cmake/ConkyBuildOptions.cmake \
 		${WRKSRC}/doc/docgen.sh \
 		${WRKSRC}/doc/docs.xml
