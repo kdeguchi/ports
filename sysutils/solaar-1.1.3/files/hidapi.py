@@ -50,7 +50,7 @@ def _makeDeviceInfo(native_device_info):
 		interface=native_device_info.interface,
 		driver=None,
 		bus_id=None,
-		isDevice=True)
+		isDevice=isDevice)
 
 _native.hid_init.argtypes = None
 _native.hid_init.restype = _C.c_int
