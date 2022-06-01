@@ -121,7 +121,23 @@ def find_paired_node_wpid(receiver_path, index):
 def monitor_glib(callback, *device_filters):
 	pass
 
-def enumerate(usb_id):
+def enumerate(filterfn):
+	for dev in _Context().list_devices(subsystem='hidraw'):
+		dev_info = _match(dev, filterfn)
+		if dev_info:
+			yield dev_info
+
+def _match(dev, filterfn):
+	hid_device = device.find_parent('hid')
+	if not hid_device:
+		return
+	hid_id = hid_device.get('HID_ID')
+	if not hid_id:
+		return
+	bid, vid, pid = hid_id.split(':')
+	usb_id = filterfn(int(bid,16),  int(vid, 16), int(pid, 16))
+	if not usb_id:
+		return
 	vendor_id  = usb_id.get('vendor_id')
 	product_id = usb_id.get('product_id')
 	interface_number = usb_id.get('usb_interface')

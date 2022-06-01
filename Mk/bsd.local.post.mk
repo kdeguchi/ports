@@ -135,9 +135,11 @@ RUN_DEPENDS:=	${RUN_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvik@}
 .endif
 
 .if defined(BUILD_DEPENDS) && ! ${BUILD_DEPENDS:M*lang/rust}
+.if ! ${.CURDIR:M*/lang/rust}
 NO_SCCACHE=	yes
 _USES_configure:=	${_USES_configure:S@250:sccache-start@@}
 _USES_stage:=	${_USES_stage:S@950:sccache-stats@@}
+.endif
 .endif
 
 .if defined(PREFIX) && ${PREFIX} == /usr/local
