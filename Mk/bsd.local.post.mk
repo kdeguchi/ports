@@ -134,6 +134,10 @@ BUILD_DEPENDS:=	${BUILD_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvi
 RUN_DEPENDS:=	${RUN_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvik@}
 .endif
 
+.if ${.CURDIR:M*/math/wxmaxima}
+USE_WX=	3.1
+.endif
+
 .if defined(BUILD_DEPENDS) && ! ${BUILD_DEPENDS:M*lang/rust}
 .if ! ${.CURDIR:M*/lang/rust}
 NO_SCCACHE=	yes
