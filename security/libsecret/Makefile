@@ -14,7 +14,7 @@ LICENSE=	LGPL21
 USES=		gnome meson pkgconfig tar:xz
 USE_GNOME=	glib20 intltool
 
-OPTIONS_DEFINE=		BASH DOCS GCRYPT GIR MANPAGES NLS TPM2 VAPI
+OPTIONS_DEFINE=	BASH DOCS GCRYPT GIR MANPAGES NLS TPM2 VAPI
 OPTIONS_SUB=		yes
 OPTIONS_DEFAULT=	DOCS GCRYPT GIR MANPAGES NLS VAPI
 
@@ -32,12 +32,12 @@ GCRYPT_MESON_TRUE=	gcrypt
 
 GIR_DESC=		Build introspection data
 GIR_USE=		GNOME=introspection
-GIR_MESON_TRUE=		introspection
+GIR_MESON_TRUE=	introspection
 
 NLS_USES=		gettext-runtime
 NLS_MESON_ENABLED=	nls
 
-MANPAGES_BUILD_DEPENDS=	docbook-xsl>=0:textproc/docbook-xsl
+MANPAGES_BUILD_DEPENDS=docbook-xsl>=0:textproc/docbook-xsl
 MANPAGES_USE=		GNOME=libxslt:build
 MANPAGES_MESON_TRUE=	manpage
 
