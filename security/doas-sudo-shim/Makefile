@@ -1,4 +1,4 @@
-PORTNAME=	doas-sudo-shim
+PORTNAME=	doas-wrapper
 PORTVERSION=	0.1
 CATEGORIES=	security
 MASTER_SITES=	# none
@@ -6,7 +6,7 @@ DISTFILES=	# none
 EXTRACT_ONLY=	# none
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
-COMMENT=	doas shimulatets sudo
+COMMENT=	Wrapper script for doas
 
 NO_BUILD=	yes
 
