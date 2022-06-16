@@ -10,7 +10,7 @@ COMMENT=	doas shimulatets sudo
 
 NO_BUILD=	yes
 
-RUN_DEPENDS=	doas:secrity/doas
+RUN_DEPENDS=	doas:security/doas
 
 CONFLICTS_INSTALL= sudo
 
