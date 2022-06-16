@@ -6,7 +6,7 @@ MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Getting sensor values on FreeBSD
 
 LIB_DEPENDS=	libprotobuf.so:devel/protobuf \
-		libgflags.so:deve/gflags \
+		libgflags.so:devel/gflags \
 		libglog.so:devel/glog
 
 USES=		cmake:noninja
