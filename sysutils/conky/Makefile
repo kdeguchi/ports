@@ -15,7 +15,7 @@ BUILD_DEPENDS=	db2x_xsltproc:textproc/docbook2X \
 		xsltproc:textproc/libxslt \
 		gsed:textproc/gsed
 
-USES=		cpe cmake:noninja compiler:c++11-lib gettext-runtime iconv \
+USES=		cpe cmake:noninja compiler:c++11-lib gettext-runtime \
 		localbase lua:flavors pkgconfig tar:bzip2
 
 USE_LDCONFIG=	yes
