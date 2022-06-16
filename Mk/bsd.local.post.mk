@@ -139,7 +139,7 @@ USE_WX=	3.1
 .endif
 
 .if ${.CURDIR:M*/security/veracrypt}
-RUN_DEPENDS=
+RUN_DEPENDS=	sudo:security/doas-sudo-shim
 .if !target(pre-configure)
 pre-configure:
 	${REINPLACE_CMD} -e 's|Icon=VeraCrypt-16x16|Icon=VeraCrypt-256x256|g' ${WRKSRC}/src/Setup/FreeBSD/veracrypt.desktop

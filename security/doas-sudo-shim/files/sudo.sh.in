@@ -11,7 +11,6 @@ for ARG in $@; do
 	case ${ARG} in
 		-e)	DOAS=%%PREFIX%%/bin/doasedit ;;
 		-p)	continue ;;
-		-S)	continue ;;
 		*)	ARGS="${ARGS} ${ARG}" ;;
 	esac
 done
