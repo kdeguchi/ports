@@ -18,6 +18,10 @@ USES+=	pkgconfig
 USES+=	pkgconfig
 .endif
 
+.if ${.CURDIR:M*/chinese/fcitx} || ${.CURDIR:M*/textproc/fcitx-qt5}
+USE_KDE:=	${USE_KDE:S@ecm@ecm_build@}
+.endif
+
 .if ${.CURDIR:M*/sysutils/libcdio-paranoia}
 USES+=	iconv
 .endif

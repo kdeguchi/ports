@@ -138,8 +138,11 @@ RUN_DEPENDS:=	${RUN_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvik@}
 USE_WX=	3.1
 .endif
 
-.if ${.CURDIR:M*/security/veracrypt}
-RUN_DEPENDS=	sudo:security/doas-wrapper
+.if ${RUN_DEPENDS:M*sudo\:security/sudo}
+RUN_DEPENDS:=	${RUN_DEPENDS:S@sudo:security/sudo@sudo:security/doas-wrapper@}
+.endif
+
+.if ${RUN_DEPENDS:M*/security/veracrypt}
 .if !target(pre-configure)
 pre-configure:
 	${REINPLACE_CMD} -e 's|Icon=VeraCrypt-16x16|Icon=VeraCrypt-256x256|g' ${WRKSRC}/src/Setup/FreeBSD/veracrypt.desktop
