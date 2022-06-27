@@ -37,8 +37,8 @@ OPTIONS_SUB=	yes
 NLS_USES=	gettext-runtime
 NLS_CONFIGURE_ENABLE=	nls
 
-post-patch:
-	${REINPLACE_CMD} -E 's,AM_GNU_GETTEXT_VERSION,AM_GNU_GETTEXT_REQUIRE_VERSION,' ${WRKSRC}/configure.ac
+#post-patch:
+#	${REINPLACE_CMD} -E 's,AM_GNU_GETTEXT_VERSION,AM_GNU_GETTEXT_REQUIRE_VERSION,' ${WRKSRC}/configure.ac
 
 post-patch-NLS-on:
 	${CP} ${FILESDIR}/ja.po ${WRKSRC}/po/
