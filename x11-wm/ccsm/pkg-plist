@@ -15,7 +15,10 @@ bin/ccsm
 %%PYTHON_SITELIBDIR%%/ccm/Window.pyc
 %%PYTHON_SITELIBDIR%%/ccm/__init__.py
 %%PYTHON_SITELIBDIR%%/ccm/__init__.pyc
-%%PYTHON_SITELIBDIR%%/ccsm-%%PORTVERSION%%-py%%PYTHON_VER%%.egg-info
+%%PYTHON_SITELIBDIR%%/ccsm-%%PORTVERSION%%-py%%PYTHON_VER%%.egg-info/PKG-INFO
+%%PYTHON_SITELIBDIR%%/ccsm-%%PORTVERSION%%-py%%PYTHON_VER%%.egg-info/SOURCES.txt
+%%PYTHON_SITELIBDIR%%/ccsm-%%PORTVERSION%%-py%%PYTHON_VER%%.egg-info/dependency_links.txt
+%%PYTHON_SITELIBDIR%%/ccsm-%%PORTVERSION%%-py%%PYTHON_VER%%.egg-info/top_level.txt
 share/applications/ccsm.desktop
 %%DATADIR%%/images/ccsm-above.svg
 %%DATADIR%%/images/ccsm-below.svg
