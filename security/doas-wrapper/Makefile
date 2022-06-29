@@ -8,6 +8,7 @@ EXTRACT_ONLY=	# none
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Wrapper script for doas
 
+NO_ARCH=	yes
 NO_BUILD=	yes
 
 RUN_DEPENDS=	doas:security/doas
