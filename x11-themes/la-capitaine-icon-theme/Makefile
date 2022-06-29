@@ -19,6 +19,7 @@ LIGHT_DESC=	La Capitaine Light
 DARK_DESC=	La Capitaine Dark
 OPTIONS_DEFAULT=	LIGHT
 
+NO_ARCH=	yes
 NO_BUILD=	YES
 
 PORTDOCS=	Credits.md README.md Thanks.md COPYING

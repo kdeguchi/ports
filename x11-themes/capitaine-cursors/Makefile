@@ -15,6 +15,8 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	keeferrourke
 GH_TAGNAME=	f6281e8
 
+NO_ARCH=	yes
+
 do-build:
 	cd ${WRKSRC} && \
 		${PREFIX}/bin/bash ./build.sh -d xhd -t light && \

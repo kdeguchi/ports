@@ -19,4 +19,6 @@ GL_COMMIT=	b01e7ed2ccc839bdc9e58c41713021f413f9fa87
 SHEBANG_FILES=	themes/import.sh
 GNU_CONFIGURE=	yes
 
+NO_ARCH=	yes
+
 .include <bsd.port.mk>

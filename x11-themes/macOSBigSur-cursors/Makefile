@@ -9,6 +9,7 @@ COMMENT=	macOSBigSur Cursors
 
 LICENSE=	GPLv3
 
+NO_ARCH=	yes
 NO_BUILD=	yes
 
 do-install:
