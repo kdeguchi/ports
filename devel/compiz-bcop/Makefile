@@ -24,6 +24,8 @@ GL_COMMIT=	cbf12c741fd292ad86c6dd96329af515c2f054d6
 SHEBANG_FILES=	src/bcop.in
 bash_CMD=	${SH}
 
+NO_ARCH=	yes
+
 post-patch:
 	@${REINPLACE_CMD} \
 		-E -e 's|^function usage|usage()|' \
