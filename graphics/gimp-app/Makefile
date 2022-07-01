@@ -155,7 +155,4 @@ post-patch:
 		-e 's|x86_64|amd64|g' \
 		${WRKSRC}/configure
 
-#post-install-DOCS-off:
-#	${RM} -r ${STAGEDIR}${PREFIX}/share/doc/gimp
-
 .include <bsd.port.mk>
