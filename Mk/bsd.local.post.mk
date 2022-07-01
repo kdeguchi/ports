@@ -152,13 +152,16 @@ pre-configure:
 .if defined(BUILD_DEPENDS) && ! ${BUILD_DEPENDS:M*lang/rust}
 .if ! ${.CURDIR:M*/lang/rust}
 NO_SCCACHE=	yes
+.if defined(NO_CCACHE)
+SCCACHE_DIR!=	/usr/local/bin/ccache -p | awk ' /cache_dir = / { print $$4 } '
+.endif
 _USES_configure:=	${_USES_configure:S@250:sccache-start@@}
 _USES_stage:=	${_USES_stage:S@950:sccache-stats@@}
 .endif
 .endif
 
 .if defined(PREFIX) && ${PREFIX} == /usr/local
-POST_PLIST+=	post-man-plist
+POST_PLIST+=	post-man-plist remove-info-plist
 .if !target(post-man-plist)
 post-man-plist:
 	cd ${STAGEDIR}${PREFIX}; \
@@ -170,6 +173,13 @@ post-man-plist:
 		done; \
 		${REINPLACE_CMD} -E 's|^man/|share/man/|;s| man/| share/man/|;s|%%MANPAGES%%man/|%%MANPAGES%%share/man/|' ${TMPPLIST}; \
 	) || exit 0
+.endif
+.if !target(remove-info-plist)
+.undef INFO
+remove-info-plist:
+	cd ${STAGEDIR}${PREFIX} && \
+		${FIND} share/info/ -type f -or -type l -exec ${RM} -f {} + && \
+		${REINPLACE_CMD} -E '/share\/info\/.*$$/d' ${TMPPLIST} || exit 0
 .endif
 .endif
 
