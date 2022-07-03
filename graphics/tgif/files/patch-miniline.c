@@ -1,4 +1,4 @@
---- miniline.c.orig	2011-06-28 02:04:58 UTC
+--- miniline.c.orig	2011-06-28 02:04:58.000000000 +0000
 +++ miniline.c
 @@ -15,7 +15,7 @@
   * NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
@@ -27,7 +27,7 @@
  {
     char buf[MAXSTRING], font_str[MAXSTRING], real_font_str[MAXSTRING];
     char *ps_findfont_cmd=gPsCmd[PS_FINDFONT];
-@@ -5684,6 +5689,10 @@ void DumpSetFont(FP, font, font_name, double_byte, sty
+@@ -5684,6 +5689,10 @@ void DumpSetFont(FP, font, font_name, do
        strcpy(real_font_str, font_str);
        MapAliasedPSFontName(real_font_str, sizeof(real_font_str));
  
@@ -38,7 +38,7 @@
  #ifdef _PS_USE_EUC_FONT
        /* do not translate -- program constants */
        euc_font = (strstr(font_str, "-EUC-") != NULL);
-@@ -5755,6 +5764,7 @@ void DumpStrSeg(pStrSeg, just, x, baseline_y, FP, pBBo
+@@ -5755,6 +5764,7 @@ void DumpStrSeg(pStrSeg, just, x, baseli
     int font=pStrSeg->font, style=pStrSeg->style, sz_unit=pStrSeg->sz_unit;
     int double_byte=pStrSeg->double_byte, color_index=pStrSeg->color;
     int double_byte_mod_bytes=pStrSeg->double_byte_mod_bytes;
@@ -46,7 +46,7 @@
     int asc=(pStrSeg->read_only ? pStrSeg->orig_asc : pStrSeg->asc);
     char *font_name=pStrSeg->font_name;
  
-@@ -5779,10 +5789,13 @@ void DumpStrSeg(pStrSeg, just, x, baseline_y, FP, pBBo
+@@ -5779,10 +5789,13 @@ void DumpStrSeg(pStrSeg, just, x, baseli
        }
     }
     DumpIndentString(FP, indent);

@@ -1,6 +1,6 @@
---- cmake-proxies/CMakeLists.txt.orig	2021-12-23 00:35:36.000000000 +0900
-+++ cmake-proxies/CMakeLists.txt	2022-05-08 11:56:42.807920000 +0900
-@@ -103,7 +103,7 @@
+--- cmake-proxies/CMakeLists.txt.orig	2022-05-07 05:25:37 UTC
++++ cmake-proxies/CMakeLists.txt
+@@ -103,7 +103,7 @@ add_conan_lib(
     libmad
     libmad/0.15.2b@audacity/stable
     OPTION_NAME libmad
