@@ -15,7 +15,7 @@ LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 
 CONFLICTS_INSTALL?=	gnuplot-lite
 
-USES+=		compiler:c++11-lang groff iconv localbase pkgconfig readline
+USES+=		compiler:c++11-lang cpe groff iconv localbase pkgconfig readline
 CPE_VENDOR=	gnuplot_project
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-readline=gnu \
@@ -45,7 +45,7 @@ PLIST_SUB+=	X11="@comment "
 USES+=		gnome jpeg lua:53 ncurses xorg
 USE_TEX=	kpathsea
 USE_GNOME+=	atk cairo gtk30 gdkpixbuf2
-USE_WX=		3.1
+USE_WX=		3.1+
 USE_XORG+=	x11
 LIB_DEPENDS+=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
