@@ -7,9 +7,8 @@ COMMENT=	Simple bridge between colord and X
 
 LICENSE=	GPLv3
 
-LIB_DEPENDS=	libcolord.so:graphics/colord
-
-RUN_DEPENDS=	xrandr:x11/xrandr
+LIB_DEPENDS=	libcolord.so:graphics/colord \
+		libXrandr.so:x11/libXrandr
 
 USES=		autoreconf gnome
 USE_GNOME=	glib20
