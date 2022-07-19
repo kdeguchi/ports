@@ -1,0 +1,4 @@
+bin/xiccd
+etc/xdg/autostart/xiccd.desktop
+%%PORTDOCS%%%%DOCSDIR%%/README.md
+share/man/man8/xiccd.8.gz

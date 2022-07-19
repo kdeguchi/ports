@@ -1,0 +1,28 @@
+PORTNAME=	xiccd
+PORTVERSION=	0.3.0
+CATEGORIES=	graphics
+
+MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
+COMMENT=	Simple bridge between colord and X
+
+LICENSE=	GPLv3
+
+LIB_DEPENDS=	libcolord.so:graphics/colord
+
+RUN_DEPENDS=	xrandr:x11/xrandr
+
+USES=		autoreconf gnome
+USE_GNOME=	glib20
+USE_XORG=	x11
+GNU_CONFIGURE=	yes
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	agalakhov
+GH_TAGNAME=	b518820
+
+OPTIONS_DEFINE=	DOCS
+
+post-patch:
+	${REINPLACE_CMD} -E 's@sysconfigdir@sysconfdir@g' ${WRKSRC}/Makefile.am
+
+.include <bsd.port.mk>
