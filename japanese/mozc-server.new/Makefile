@@ -1,5 +1,3 @@
-# Created by: Daichi GOTO <daichi@FreeBSD.org>
-
 PORTNAME=	mozc
 PORTVERSION=	2.28.4800.102.${UT_VERSION}
 CATEGORIES=	japanese

@@ -1,5 +1,3 @@
-# Created by: Robert Noland <rnoland@FreeBSD.org>
-
 PORTNAME=	simple-ccsm
 PORTVERSION=	0.8.18
 CATEGORIES=	x11-wm

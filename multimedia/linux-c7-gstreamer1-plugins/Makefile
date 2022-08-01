@@ -1,5 +1,3 @@
-# Created by: Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
-
 PORTNAME=	gstreamer1-plugins
 PORTVERSION=	1.10.4
 DISTVERSIONPREFIX=	base-

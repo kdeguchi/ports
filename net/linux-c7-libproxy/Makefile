@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	libproxy
 PORTVERSION=	0.4.11
 DISTVERSIONSUFFIX=	-11.el7

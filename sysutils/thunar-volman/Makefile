@@ -1,4 +1,3 @@
-
 PORTNAME=	thunar-volman
 DISTVERSION=	4.16.0
 CATEGORIES=	sysutils x11-fm xfce

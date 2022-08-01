@@ -1,5 +1,3 @@
-# $FreeBSD$
-
 PORTNAME=	komorebi
 DISTVERSION=	1.1
 CATEGORIES=	misc

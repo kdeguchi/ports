@@ -1,5 +1,3 @@
-# Created by: Alexey Dokuchaev <danfe@FreeBSD.org>
-
 PORTNAME=	osdlyrics
 PORTVERSION=	0.5.10
 CATEGORIES=	audio deskutils

@@ -1,5 +1,3 @@
-# Created by: shigeri <shigeri@m10.alpha-net.ne.jp>
-
 PORTNAME=	sylpheed-autoenc-plugin
 PORTVERSION=	1.0.2
 CATEGORIES=	mail

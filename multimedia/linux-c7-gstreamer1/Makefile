@@ -1,5 +1,3 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
-
 PORTNAME=	gstreamer1
 PORTVERSION=	1.10.4
 DISTVERSIONSUFFIX=	-2.el7

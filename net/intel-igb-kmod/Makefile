@@ -1,5 +1,3 @@
-# Created by: Joshua Kinard <jkinard@kumba.dev>
-
 PORTNAME=	igb
 PORTVERSION=	2.5.21
 PORTREVISION=	0

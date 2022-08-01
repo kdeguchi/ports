@@ -1,5 +1,3 @@
-# Created by: Daichi GOTO <daichi@FreeBSD.org>
-
 PKGNAMEPREFIX=	ja-fcitx5-
 
 COMMENT=	Mozc engine for Fcitx

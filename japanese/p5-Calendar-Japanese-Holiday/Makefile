@@ -1,5 +1,3 @@
-# Created by: kdeguchi
-
 PORTNAME=	Calendar-Japanese-Holiday
 PORTVERSION=	0.07
 CATEGORIES=	japanese perl5
