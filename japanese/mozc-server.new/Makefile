@@ -1,12 +1,12 @@
 # Created by: Daichi GOTO <daichi@FreeBSD.org>
 
 PORTNAME=	mozc
-PORTVERSION=	2.26.4646.102
+PORTVERSION=	2.28.4800.102.${UT_VERSION}
 CATEGORIES=	japanese
-MASTER_SITES=	OSDN_CHAMBER/37/37721
-DISTFILES=	${PORTNAME}-${PORTVERSION}.tar.bz2
+MASTER_SITES=	https://osdn.net/users/utuhiro/pf/utuhiro/dl/:ut
+DISTFILES=	${DISTNAME}.tar.bz2:ut
 
-MAINTAINER=	hrs@FreeBSD.org
+MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT?=	Mozc Japanese Input Method, Server
 
 BUILD_DEPENDS=	ninja:devel/ninja \
@@ -25,12 +25,15 @@ MASTER_SITES+=	https://codeload.github.com/hiroyuki-komatsu/japanese-usage-dicti
 DISTFILES+=	hiroyuki-komatsu-japanese-usage-dictionary-e5b3425_GH0.tar.gz:udic
 WRKSRC_udic=	${WRKDIR}/japanese-usage-dictionary-e5b3425
 
-USES=		compiler:c++11-lang gmake ninja:build pkgconfig \
+USES=		compiler:c++11-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 SHEBANG_FILES=	src/build_mozc.py
 BUILD_WRKSRC=	${WRKSRC}/src
 
 BUILD_MOZC_LIST?=	mozc_server
+
+UT_VERSION=20220723
+FETCH_ARGS+=	--user-agent=curl/7.68.0
 
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
 PKGNAMEPREFIX=	ja-
@@ -101,14 +104,14 @@ BUILD_MOZC_CMD=	cd ${BUILD_WRKSRC} && \
 		    AR_host="${AR}" \
 		    ${MAKE_ENV} \
 		    ${PYTHON_CMD} build_mozc.py
-BUILD_MOZC_CMD_BUILD=	${BUILD_MOZC_CMD} build -c ${BUILD_MODE} ${_MAKE_JOBS}
+BUILD_MOZC_CMD_BUILD=	${BUILD_MOZC_CMD} build -c ${BUILD_MODE} #${_MAKE_JOBS}
 BUILD_GYP_CMD=	${SETENV} ${MAKE_ENV} ${LOCALBASE}/bin/gyp
 
 #post-extract:	# XXX: do not activate fcitx5
 #	${RM} -r ${WRKSRC}/src/unix/fcitx5
 post-patch:
 	${FIND} ${BUILD_WRKSRC} \( -name '*.gyp' -o -name '*.gypi' -o -name '*.cc' -o -name '*.h' \) -exec \
-	    ${REINPLACE_CMD} "s,'python','${PYTHON_CMD}',g;s,'/usr/lib/mozc','${PREFIX}/libexec',g;s,'/usr/lib/mozc/documents','${DATADIR}',g" {} \;
+	    ${REINPLACE_CMD} "s,'python','${PYTHON_CMD}',g;s,'/usr/lib/mozc','${PREFIX}/libexec',g;s,'/usr/lib/mozc/documents','${DATADIR}',g;s,OS==\"linux\",OS==\"linux\" or OS==\"freebsd\",g;s,target_platform==\"Linux\",target_platform==\"Linux\" or target_platform==\"FreeBSD\",g" {} \;
 
 .if ${BUILD_MOZC_LIST:Mfcitx_mozc} == "fcitx_mozc"
 	${RM} -r ${WRKSRC}/src/unix/fcitx5
@@ -140,15 +143,15 @@ post-configure: ${BUILD_WRKSRC}/mozcmake
 	${BUILD_MOZC_CMD} gyp \
 	    --gypdir=${LOCALBASE}/bin \
 	    --server_dir="${PREFIX}/bin" \
-	    --tool_dir="${PREFIX}/libexec" \
-	    --renderer_dir="${PREFIX}/libexec" \
-	    --localbase="${LOCALBASE}" \
-	    --ldflags="${LDFLAGS} -fstack-protector -L${LOCALBASE}/lib" \
-	    --cflags="${CFLAGS:Q}" \
-	    --cflags_cc="${CXXFLAGS:Q}" \
-	    --include_dirs="${LOCALBASE}/include" \
 	    ${GYP_OPTIONS}
 .endif
+#	    --include_dirs="${LOCALBASE}/include" \
+#	    --cflags_cc="${CXXFLAGS:Q}" \
+#	    --cflags="${CFLAGS:Q}" \
+#	    --ldflags="${LDFLAGS} -fstack-protector -L${LOCALBASE}/lib" \
+#	    --localbase="${LOCALBASE}" \
+#	    --renderer_dir="${PREFIX}/libexec" \
+#	    --tool_dir="${PREFIX}/libexec" \
 
 # mozc_server
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server" || make(makesum)
@@ -158,8 +161,6 @@ GYP_DEFINES+=	use_libibus=0 \
 
 .if ${PORT_OPTIONS:MUTDIC}
 LICENSE+=	APACHE20 CC-BY-SA-3.0 GPLv2
-UT_VERSION=20220216
-MASTER_SITES+=	OSDN_CHAMBER/37/37720:ut
 DISTFILES+=	mozcdic-ut-${UT_VERSION}.tar.bz2:ut
 .endif
 
@@ -174,7 +175,7 @@ PLIST_FILES+=	bin/mozc \
 SUB_FILES+=	mozc
 
 post-patch-mozc_server:
-	@for F in ${DISTFILES:M*\:zipcode:C/\:zipcode//}; do \
+	@for F in ${DISTFILES:M*\:zipcode:S/:zipcode//}; do \
 		${UNZIP_NATIVE_CMD} -L -d ${BUILD_WRKSRC}/data/dictionary_oss \
 		    ${DISTDIR}/$$F; \
 	done
@@ -185,9 +186,12 @@ post-patch-mozc_server:
 	    >> dictionary09.txt
 	${MV} ${WRKSRC_udic}/usage_dict.txt \
 	    ${BUILD_WRKSRC}/third_party/japanese_usage_dictionary
+#	${RM} -r ${WRKSRC}/src/unix/emacs
+	${RM} -r ${WRKSRC}/src/unix/fcitx5
+#	${RM} -r ${WRKSRC}/src/unix/ibus
 .if ${PORT_OPTIONS:MUTDIC}
 	# ut dictionary
-	cd ${WRKDIR}/${DISTFILES:M*\:ut:C/\.tar\.bz2\:ut//} && \
+	cd ${WRKDIR}/${DISTFILES:M*mozcdic-*\:ut:S/.tar.bz2:ut//} && \
 		${CAT} mozcdic-*-${UT_VERSION}.txt \
 			>> ${BUILD_WRKSRC}/data/dictionary_oss/dictionary00.txt
 .endif

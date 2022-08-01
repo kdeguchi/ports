@@ -117,7 +117,7 @@ CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON_CMD}
 LIB_DEPENDS:=	${LIB_DEPENDS:S@libiconv.so:converters/libiconv@@}
 .endif
 
-.if ${.CURDIR:M*/www/firefox}
+.if ${.CURDIR:M*/www/firefox} || ${.CURDIR:M*/mail/thunderbird}
 .if defined(CONFIGURE_ENV) && ${CONFIGURE_ENV:N*${PREFIX}/libexec/ccache}
 CONFIGURE_ENV:=	${CONFIGURE_ENV:S@PATH=@PATH=${PREFIX}/libexec/ccache:@}
 .endif
