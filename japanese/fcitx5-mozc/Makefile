@@ -4,7 +4,7 @@ COMMENT=	Mozc engine for Fcitx
 
 DATADIR=	${PREFIX}/share/fcitx5/${PORTNAME}
 
-MASTERDIR=	${.CURDIR}/../../japanese/mozc-server.new
+MASTERDIR=	${.CURDIR}/../../japanese/mozc-server
 FILESDIR=	${.CURDIR}/files
 SUB_FILES=	pkg-message
 
