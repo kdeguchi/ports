@@ -1,6 +1,6 @@
---- src/ipc/ipc_path_manager.cc.orig	2022-07-23 23:02:59.000000000 +0900
-+++ src/ipc/ipc_path_manager.cc	2022-08-04 13:23:50.692134000 +0900
-@@ -297,10 +297,12 @@
+--- src/ipc/ipc_path_manager.cc.orig	2022-07-23 14:02:59 UTC
++++ src/ipc/ipc_path_manager.cc
+@@ -297,10 +297,12 @@ bool IPCPathManager::GetPathName(std::string *ipc_name
    *ipc_name = kIPCPrefix;
  #endif  // OS_WIN
  

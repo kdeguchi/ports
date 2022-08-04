@@ -1,5 +1,0 @@
-new_local_repository(
-    name = "qt_linux",
-    path = "/usr/local",
-    build_file = "BUILD.qt_linux.bazel",
-)

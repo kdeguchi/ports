@@ -1,6 +1,6 @@
---- src/base/logging.cc.orig	2022-07-23 23:02:59.000000000 +0900
-+++ src/base/logging.cc	2022-08-04 13:24:44.542388000 +0900
-@@ -116,7 +116,7 @@
+--- src/base/logging.cc.orig	2022-07-23 14:02:59 UTC
++++ src/base/logging.cc
+@@ -116,7 +116,7 @@ std::string Logging::GetLogMessageHeader() {
  #elif defined(OS_LINUX)
    return absl::StrCat(timestamp, ::getpid(), " ",
                        // It returns unsigned long.
