@@ -1,7 +1,0 @@
-client/client_performance_test_main.cc
-rewriter/calculator/calculator.cc
-rewriter/calculator/calculator_test.cc
-base/number_util.cc
-composer/internal/typing_corrector.cc
-storage/existence_filter.cc
-prediction/dictionary_predictor.cc
