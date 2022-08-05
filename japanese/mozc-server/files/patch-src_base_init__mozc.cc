@@ -1,4 +1,4 @@
---- src/base/init_mozc.cc.orig	2022-02-16 08:01:21 UTC
+--- src/base/init_mozc.cc.orig	2022-07-23 14:02:59 UTC
 +++ src/base/init_mozc.cc
 @@ -34,6 +34,7 @@
  #endif  // OS_WIN

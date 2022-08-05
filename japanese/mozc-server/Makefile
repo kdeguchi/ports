@@ -47,9 +47,8 @@ OPTIONS_DEFINE=	UTDIC
 UTDIC_DESC=	Additional UT Dictionary
 
 .elif ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
-USES+=		gl qt:5 gnome
+USES+=		gl qt:5
 USE_GL=	gl
-USE_GNOME=	glib20 gtk20
 USE_QT=		buildtools_build core gui widgets
 
 .elif ${BUILD_MOZC_LIST:Mibus_mozc} == "ibus_mozc"
@@ -175,7 +174,7 @@ do-build-mozc_tool:
 
 do-install-mozc_tool:
 	${INSTALL_PROGRAM} \
-	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/mozc_tool \
+	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/gui/tool/mozc_tool \
 	    ${STAGEDIR}${PREFIX}/libexec
 	${INSTALL_SCRIPT} ${WRKDIR}/mozc_tool ${STAGEDIR}${PREFIX}/bin
 	@${MKDIR} ${STAGEDIR}${DATADIR}/icons

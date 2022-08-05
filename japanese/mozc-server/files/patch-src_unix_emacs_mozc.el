@@ -1,4 +1,4 @@
---- src/unix/emacs/mozc.el.orig	2022-02-16 08:01:22 UTC
+--- src/unix/emacs/mozc.el.orig	2022-07-23 14:02:59 UTC
 +++ src/unix/emacs/mozc.el
 @@ -1540,7 +1540,7 @@ Return the new value of `mozc-session-seq'."
  

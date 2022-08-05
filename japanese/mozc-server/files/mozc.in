@@ -1,5 +1,5 @@
 #!/bin/sh
-: ${MOZCDIR:="${HOME}/.mozc"}
+: ${MOZCDIR:="${XDG_CONFIG_HOME}/mozc"}
 
 # Mozc does not run by priviledged user.  Ignore silently.
 case $(id -u) in
