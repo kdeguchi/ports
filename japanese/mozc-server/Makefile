@@ -48,8 +48,7 @@ OPTIONS_DEFINE=	UTDIC
 UTDIC_DESC=	Additional UT Dictionary
 
 .elif ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
-USES+=		gl qt:5
-USE_GL=	gl
+USES+=		qt:5
 USE_QT=		buildtools_build core gui widgets
 EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src_pkg_config_repository.bzl
 
@@ -83,7 +82,7 @@ _CCTYPE=	gcc
 
 post-patch:
 	${FIND} ${BUILD_WRKSRC} -type f \( -name 'BUILD' -o -name '*.bzl' -o -name '*.cc' -o -name '*.h' \) \
-		-exec ${REINPLACE_CMD} -E "s,'python','${PYTHON_CMD}',g;s,/usr/bin/xdg-open,${PREFIX}/bin/xdg-open,g;s,/usr/lib/mozc,${PREFIX}/bin,g;s,LINUX_MOZC_SERVER_DIR \+ \"/documents\",\"${DATADIR}\",g;s,/usr/lib/mozc/documents,${DATADIR},g;s,/usr/share,${PREFIX}/share,g;s,/usr/lib,${PREFIX}/lib,g;s,OS==\"linux\",OS==\"linux\" or OS==\"freebsd\",g;s,target_platform==\"Linux\",target_platform==\"Linux\" or target_platform==\"FreeBSD\",g" {} \;
+		-exec ${REINPLACE_CMD} -E "s,'python','${PYTHON_CMD}',g;s,/usr/bin/xdg-open,${PREFIX}/bin/xdg-open,g;s,/usr/lib/mozc,${PREFIX}/libexec,g;s,LINUX_MOZC_SERVER_DIR \+ \"/documents\",\"${DATADIR}\",g;s,/usr/lib/mozc/documents,${DATADIR},g;s,/usr/share,${PREFIX}/share,g;s,/usr/lib,${PREFIX}/lib,g;s,OS==\"linux\",OS==\"linux\" or OS==\"freebsd\",g;s,target_platform==\"Linux\",target_platform==\"Linux\" or target_platform==\"FreeBSD\",g" {} \;
 	${REINPLACE_CMD} 's@path = \"/usr\"@path = \"${PREFIX}\"@g' \
 		${BUILD_WRKSRC}/WORKSPACE.bazel
 
@@ -99,12 +98,12 @@ post-patch:
 	${CP} ${BUILD_WRKSRC}/unix/fcitx/gen_fcitx_mozc_i18n.sh ${BUILD_WRKSRC}/unix/fcitx5/
 	${REINPLACE_CMD} 's,/po/mo},%po}mo,g' \
 	    ${BUILD_WRKSRC}/unix/fcitx5/gen_fcitx_mozc_i18n.sh
-	${REINPLACE_CMD} 's@^    linkopts@    srcs = glob([\"lib/libFcitx5*\"]),\n    linkopts@g' \
+	${REINPLACE_CMD} 's@^    linkopts@    srcs = glob(["lib/libFcitx5*.so"]),\n    linkopts@g' \
 		${BUILD_WRKSRC}/BUILD.fcitx5.bazel
 .endif
 
 .if ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
-	${REINPLACE_CMD} 's@\"Qt5Widgets\"\],@\"Qt5Widgets\"\],\n    includedirs = [\"${PREFIX}/include\"],\n    symlinks = [\"${PREFIX}/include/GL\"],@' ${BUILD_WRKSRC}/WORKSPACE.bazel
+	${REINPLACE_CMD} 's@"Qt5Widgets"],@"Qt5Widgets"],\n  includedirs = ["${PREFIX}/include"],\n  symlinks = ["${PREFIX}/include/GL"],@' ${BUILD_WRKSRC}/WORKSPACE.bazel
 .endif
 
 #################################################
@@ -121,7 +120,7 @@ DISTFILES+= \
 	ken_all-20200430.zip:zipcode \
 	jigyosyo-20200430.zip:zipcode
 PLIST_FILES+=	bin/mozc \
-		bin/mozc_server
+		libexec/mozc_server
 SUB_FILES+=	mozc
 
 post-patch-mozc_server:
@@ -151,7 +150,7 @@ do-build-mozc_server:
 do-install-mozc_server:
 	${INSTALL_PROGRAM} \
 	    ${BUILD_WRKSRC}/bazel-bin/server/mozc_server \
-	    ${STAGEDIR}${PREFIX}/bin
+	    ${STAGEDIR}${PREFIX}/libexec
 	${INSTALL_SCRIPT} \
 	    ${WRKDIR}/mozc ${STAGEDIR}/${PREFIX}/bin
 .endif
@@ -165,6 +164,7 @@ do-install-mozc_server:
 
 PLIST_FILES+=	libexec/mozc_tool \
 		bin/mozc_tool \
+		libexec/mozc_renderer \
 		%%DATADIR%%/credits_en.html \
 		%%DATADIR%%/icons/product_logo.png \
 		%%DATADIR%%/icons/update_uptodate.png
@@ -175,6 +175,9 @@ do-build-mozc_tool:
 		${BUILD_MOZC_CMD} gui/tool:mozc_tool
 
 do-install-mozc_tool:
+	${INSTALL_PROGRAM} \
+		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/renderer/mozc_renderer \
+			${STAGEDIR}${PREFIX}/libexec
 	${INSTALL_PROGRAM} \
 	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/gui/tool/mozc_tool \
 	    ${STAGEDIR}${PREFIX}/libexec
@@ -399,7 +402,7 @@ do-install-fcitx5_mozc:
 		${STAGEDIR}${PREFIX}/share/metainfo
 	${INSTALL_LIB} \
 		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/fcitx5/fcitx5-mozc.so \
-			${STAGEDIR}${PREFIX}/lib/fcitx5/fcitx5-mozc.so
+			${STAGEDIR}${PREFIX}/lib/fcitx5
 	${INSTALL_DATA} \
 		${BUILD_WRKSRC}/unix/fcitx5/mozc-addon.conf \
 			${STAGEDIR}${PREFIX}/share/fcitx5/addon/mozc.conf

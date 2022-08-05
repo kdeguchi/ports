@@ -6,6 +6,10 @@ case $(id -u) in
 0)	exit 0 ;;
 esac
 
+if [ -d ${HOME}/.mozc ]; then
+	MOZCDIR=${HOME}/.mozc
+fi
+
 mkdir -m 0700 -p "${MOZCDIR}"
 chmod 0700 "${MOZCDIR}"
 
@@ -30,7 +34,7 @@ check_lock()
 start_cmd()
 {
 	daemon -c -f -p "${MOZCDIR}/mozc_server.pid" \
-	    "%%PREFIX%%/bin/mozc_server"
+	    "%%PREFIX%%/libexec/mozc_server"
 }
 stop_server()
 {
