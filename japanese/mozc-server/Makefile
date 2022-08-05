@@ -51,6 +51,7 @@ UTDIC_DESC=	Additional UT Dictionary
 USES+=		gl qt:5
 USE_GL=	gl
 USE_QT=		buildtools_build core gui widgets
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src_pkg_config_repository.bzl
 
 .elif ${BUILD_MOZC_LIST:Mibus_mozc} == "ibus_mozc"
 USES+=		gettext-runtime gnome xorg
@@ -82,7 +83,7 @@ _CCTYPE=	gcc
 
 post-patch:
 	${FIND} ${BUILD_WRKSRC} -type f \( -name 'BUILD' -o -name '*.bzl' -o -name '*.cc' -o -name '*.h' \) \
-		-exec ${REINPLACE_CMD} -E "s,'python','${PYTHON_CMD}',g;s,/usr/bin/xdg-open,${PREFIX}/bin/xdg-open,g;s,/usr/lib/mozc,${PREFIX}/bin,g;s,LINUX_MOZC_SERVER_DIR + \"/documents\",\"${DATADIR}\",g;s,/usr/lib/mozc/documents,${DATADIR},g;s,/usr/share,${PREFIX}/share,g;s,/usr/lib,${PREFIX}/lib,g;s,OS==\"linux\",OS==\"linux\" or OS==\"freebsd\",g;s,target_platform==\"Linux\",target_platform==\"Linux\" or target_platform==\"FreeBSD\",g" {} \;
+		-exec ${REINPLACE_CMD} -E "s,'python','${PYTHON_CMD}',g;s,/usr/bin/xdg-open,${PREFIX}/bin/xdg-open,g;s,/usr/lib/mozc,${PREFIX}/bin,g;s,LINUX_MOZC_SERVER_DIR \+ \"/documents\",\"${DATADIR}\",g;s,/usr/lib/mozc/documents,${DATADIR},g;s,/usr/share,${PREFIX}/share,g;s,/usr/lib,${PREFIX}/lib,g;s,OS==\"linux\",OS==\"linux\" or OS==\"freebsd\",g;s,target_platform==\"Linux\",target_platform==\"Linux\" or target_platform==\"FreeBSD\",g" {} \;
 	${REINPLACE_CMD} 's@path = \"/usr\"@path = \"${PREFIX}\"@g' \
 		${BUILD_WRKSRC}/WORKSPACE.bazel
 
@@ -103,7 +104,7 @@ post-patch:
 .endif
 
 .if ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
-	${REINPLACE_CMD} 's@\[\"Qt5Core\"@[\"gl\", \"Qt5Core\"@' ${BUILD_WRKSRC}/WORKSPACE.bazel
+	${REINPLACE_CMD} 's@\"Qt5Widgets\"\],@\"Qt5Widgets\"\],\n    includedirs = [\"${PREFIX}/include\"],\n    symlinks = [\"${PREFIX}/include/GL\"],@' ${BUILD_WRKSRC}/WORKSPACE.bazel
 .endif
 
 #################################################
