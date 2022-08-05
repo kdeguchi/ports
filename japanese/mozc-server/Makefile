@@ -10,8 +10,9 @@ COMMENT?=	Mozc Japanese Input Method, Server
 BUILD_DEPENDS=	bazel:devel/bazel
 
 EXTRACT_DEPENDS=${PYTHON_CMD}:${PYTHON_PORTSDIR}
-LIB_DEPENDS=	libprotobuf.so:devel/protobuf \
-		libzinnia.so:japanese/zinnia
+LIB_DEPENDS=	libprotobuf.so:devel/protobuf
+#		libzinnia.so:japanese/zinnia
+
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
 
 MASTER_SITES+=	https://codeload.github.com/hiroyuki-komatsu/japanese-usage-dictionary/tar.gz/e5b3425?dummy=/:udic
@@ -159,7 +160,7 @@ do-install-mozc_server:
 # mozc_tool
 .if ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
 
-RUN_DEPENDS+=	${LOCALBASE}/share/tegaki/models/zinnia/handwriting-ja.model:japanese/tegaki-zinnia-japanese
+#RUN_DEPENDS+=	${LOCALBASE}/share/tegaki/models/zinnia/handwriting-ja.model:japanese/tegaki-zinnia-japanese
 
 PLIST_FILES+=	libexec/mozc_tool \
 		bin/mozc_tool \
