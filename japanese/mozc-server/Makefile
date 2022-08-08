@@ -11,7 +11,6 @@ BUILD_DEPENDS=	bazel:devel/bazel
 
 EXTRACT_DEPENDS=${PYTHON_CMD}:${PYTHON_PORTSDIR}
 LIB_DEPENDS=	libprotobuf.so:devel/protobuf
-#		libzinnia.so:japanese/zinnia
 
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
 
@@ -160,14 +159,13 @@ do-install-mozc_server:
 # mozc_tool
 .if ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
 
-#RUN_DEPENDS+=	${LOCALBASE}/share/tegaki/models/zinnia/handwriting-ja.model:japanese/tegaki-zinnia-japanese
-
 PLIST_FILES+=	libexec/mozc_tool \
-		bin/mozc_tool \
 		libexec/mozc_renderer \
+		bin/mozc_tool \
 		%%DATADIR%%/credits_en.html \
 		%%DATADIR%%/icons/product_logo.png \
 		%%DATADIR%%/icons/update_uptodate.png
+
 SUB_FILES+=	mozc_tool
 
 do-build-mozc_tool:
@@ -176,10 +174,10 @@ do-build-mozc_tool:
 
 do-install-mozc_tool:
 	${INSTALL_PROGRAM} \
-		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/renderer/mozc_renderer \
-			${STAGEDIR}${PREFIX}/libexec
-	${INSTALL_PROGRAM} \
 	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/gui/tool/mozc_tool \
+	    ${STAGEDIR}${PREFIX}/libexec
+	${INSTALL_PROGRAM} \
+	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/renderer/mozc_renderer \
 	    ${STAGEDIR}${PREFIX}/libexec
 	${INSTALL_SCRIPT} ${WRKDIR}/mozc_tool ${STAGEDIR}${PREFIX}/bin
 	@${MKDIR} ${STAGEDIR}${DATADIR}/icons
@@ -199,7 +197,7 @@ do-install-mozc_tool:
 .if ${BUILD_MOZC_LIST:Mibus_mozc} == "ibus_mozc"
 
 LIB_DEPENDS+=	libibus-1.0.so:textproc/ibus
-RUN_DEPENDS+=	mozc_server:japanese/mozc-server \
+RUN_DEPENDS+=	mozc:japanese/mozc-server \
 		mozc_tool:japanese/mozc-tool
 
 PLIST_FILES+=	libexec/mozc_renderer \
@@ -218,6 +216,8 @@ PLIST_FILES+=	libexec/mozc_renderer \
 PLIST_DIRS+=	%%DATADIR%%/icons ${DATADIR_REL}
 
 do-build-ibus_mozc:
+	cd ${BUILD_WRKSRC} && \
+		${BUILD_MOZC_CMD} unix/ibus:fcitx5-mozc.so; \
 
 do-install-ibus_mozc:
 	${INSTALL_PROGRAM} \
@@ -249,7 +249,7 @@ do-install-ibus_mozc:
 GH_TUPLE+=	e-kato:macuim:v0.6.16.2.1:MU
 
 LIB_DEPENDS+=	libuim.so:textproc/uim
-RUN_DEPENDS+=	mozc_server:japanese/mozc-server \
+RUN_DEPENDS+=	mozc:japanese/mozc-server \
 		mozc_tool:japanese/mozc-tool
 
 EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src-unix-uim-mozc.cc \
@@ -295,7 +295,7 @@ do-install-uim_mozc:
 .if ${BUILD_MOZC_LIST:Mfcitx_mozc} == "fcitx_mozc"
 
 LIB_DEPENDS+=	libfcitx-core.so:chinese/fcitx
-RUN_DEPENDS+=	mozc_server:japanese/mozc-server \
+RUN_DEPENDS+=	mozc:japanese/mozc-server \
 		mozc_tool:japanese/mozc-tool
 
 PLIST_FILES+=	lib/fcitx/fcitx-mozc.so \
@@ -355,7 +355,7 @@ do-install-fcitx_mozc:
 .if ${BUILD_MOZC_LIST:Mfcitx5_mozc} == "fcitx5_mozc"
 
 LIB_DEPENDS+=	libFcitx5Core.so:textproc/fcitx5
-RUN_DEPENDS+=	mozc_server:japanese/mozc-server \
+RUN_DEPENDS+=	mozc:japanese/mozc-server \
 		mozc_tool:japanese/mozc-tool
 
 PLIST_FILES+=	lib/fcitx5/fcitx5-mozc.so \
@@ -439,7 +439,7 @@ do-install-fcitx5_mozc:
 .if ${BUILD_MOZC_LIST:Mmozc_el} == "mozc_el"
 
 CATEGORIES+=	elisp
-RUN_DEPENDS+=	mozc_server:japanese/mozc-server
+RUN_DEPENDS+=	mozc:japanese/mozc-server
 
 NO_ARCH=	yes
 PLIST_FILES+=	${EMACS_VERSION_SITE_LISPDIR}/mozc/mozc.elc \
