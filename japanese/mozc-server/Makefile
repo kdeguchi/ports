@@ -10,7 +10,7 @@ COMMENT?=	Mozc Japanese Input Method, Server
 BUILD_DEPENDS=	bazel:devel/bazel
 
 EXTRACT_DEPENDS=${PYTHON_CMD}:${PYTHON_PORTSDIR}
-LIB_DEPENDS=	libprotobuf.so:devel/protobuf
+#LIB_DEPENDS=	libprotobuf.so:devel/protobuf
 
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
 
@@ -160,11 +160,12 @@ do-install-mozc_server:
 .if ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
 
 PLIST_FILES+=	libexec/mozc_tool \
-		libexec/mozc_renderer \
 		bin/mozc_tool \
 		%%DATADIR%%/credits_en.html \
 		%%DATADIR%%/icons/product_logo.png \
 		%%DATADIR%%/icons/update_uptodate.png
+
+#		libexec/mozc_renderer \
 
 SUB_FILES+=	mozc_tool
 
@@ -174,21 +175,21 @@ do-build-mozc_tool:
 
 do-install-mozc_tool:
 	${INSTALL_PROGRAM} \
-	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/gui/tool/mozc_tool \
-	    ${STAGEDIR}${PREFIX}/libexec
-	${INSTALL_PROGRAM} \
-	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/renderer/mozc_renderer \
-	    ${STAGEDIR}${PREFIX}/libexec
+		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/gui/tool/mozc_tool \
+			${STAGEDIR}${PREFIX}/libexec
+#	${INSTALL_PROGRAM} \
+#		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/renderer/mozc_renderer \
+#			${STAGEDIR}${PREFIX}/libexec
 	${INSTALL_SCRIPT} ${WRKDIR}/mozc_tool ${STAGEDIR}${PREFIX}/bin
 	@${MKDIR} ${STAGEDIR}${DATADIR}/icons
 	${INSTALL_DATA} \
-	    ${BUILD_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
-	    ${STAGEDIR}${DATADIR}/icons/product_logo.png
+		${BUILD_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
+			${STAGEDIR}${DATADIR}/icons/product_logo.png
 	${INSTALL_DATA} \
-	    ${BUILD_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
-	    ${STAGEDIR}${DATADIR}/icons/update_uptodate.png
+		${BUILD_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
+			${STAGEDIR}${DATADIR}/icons/update_uptodate.png
 	${INSTALL_DATA} ${BUILD_WRKSRC}/data/installer/credits_en.html \
-	    ${STAGEDIR}${DATADIR}
+		${STAGEDIR}${DATADIR}
 .endif
 #################################################
 
@@ -217,7 +218,7 @@ PLIST_DIRS+=	%%DATADIR%%/icons ${DATADIR_REL}
 
 do-build-ibus_mozc:
 	cd ${BUILD_WRKSRC} && \
-		${BUILD_MOZC_CMD} unix/ibus:fcitx5-mozc.so; \
+		${BUILD_MOZC_CMD} unix/ibus:ibus
 
 do-install-ibus_mozc:
 	${INSTALL_PROGRAM} \
@@ -393,7 +394,7 @@ do-build-fcitx5_mozc:
 	cd ${BUILD_WRKSRC}/unix/fcitx5 && ${SH} gen_fcitx_mozc_i18n.sh ./po
 
 do-install-fcitx5_mozc:
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/fcitx5 \
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/fcitx5 \
 		${STAGEDIR}${PREFIX}/share/fcitx5/addon \
 		${STAGEDIR}${PREFIX}/share/fcitx5/inputmethod \
 		${STAGEDIR}${PREFIX}/share/icons/hicolor/128x128/apps \
