@@ -1,0 +1,44 @@
+--- Imakefile.orig	2003-03-08 14:55:18 UTC
++++ Imakefile
+@@ -8,8 +8,6 @@ XCOMM For color pixmaps, define MULTIPLANE_PIXMAPS:
+ #undef MULTIPLANE_PIXMAPS
+ XCOMM For grayed stipple shadows, define GRAY_BLKWHT_STIPPLES:
+ #define GRAY_BLKWHT_STIPPLES
+-XCOMM For scrollbars with arrows, define ARROW_SCROLLBARS:
+-#undef ARROW_SCROLLBARS
+ 
+ #define DoNormalLib NormalLibXaw
+ #define DoSharedLib SharedLibXaw
+@@ -22,7 +20,7 @@ XCOMM For scrollbars with arrows, define ARROW_SCROLLB
+ #define IncSubSubdir Xaw3d
+ 
+ XCOMM When building outside an X11 source tree:
+-XCOMM EXTRA_INCLUDES = -I.
++EXTRA_INCLUDES = -I.
+ 
+ #ifdef SharedXawReqs
+ REQUIREDLIBS = SharedXawReqs
+@@ -119,13 +117,6 @@ XAW_GRAY_BLKWHT_STIPPLES = \
+ XAW_GRAY_BLKWHT_STIPPLES = \
+ 	-e 's/\/\* gray stipples \*\//\#undef XAW_GRAY_BLKWHT_STIPPLES/'
+ #endif
+-#ifdef ARROW_SCROLLBARS
+-XAW_ARROW_SCROLLBARS = \
+-	-e 's/\/\* arrow scrollbars \*\//\#define XAW_ARROW_SCROLLBARS/'
+-#else
+-XAW_ARROW_SCROLLBARS = \
+-	-e 's/\/\* arrow scrollbars \*\//\#undef XAW_ARROW_SCROLLBARS/'
+-#endif
+ 
+ depend:: laygram.c laygram.h laylex.c Xaw3dP.h
+ 
+@@ -148,8 +139,7 @@ laylex.c: laylex.l
+ 
+ Xaw3dP.h: Xaw3dP.h.sed
+ 	sed $(XAW_INTERNATIONALIZATION) $(XAW_MULTIPLANE_PIXMAPS) \
+-	$(XAW_GRAY_BLKWHT_STIPPLES) $(XAW_ARROW_SCROLLBARS) \
+-	Xaw3dP.h.sed > Xaw3dP.h
++	$(XAW_GRAY_BLKWHT_STIPPLES) Xaw3dP.h.sed > Xaw3dP.h
+ 
+ $(OBJS): Xaw3dP.h
+ 

@@ -1,107 +1,6 @@
-Index: ChangeLog
-===================================================================
-RCS file: ChangeLog
-diff -N ChangeLog
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ ChangeLog	4 Apr 2005 13:41:08 -0000	1.1
-@@ -0,0 +1,5 @@
-+2005-04-04  Stefan Monnier  <monnier@iro.umontreal.ca>
-+
-+	* Scrollbar.c (FractionLoc): Don't constrain to 0.0 ... 1.0.
-+	(MoveThumb): Rewrite the "picked" handling.
-+
-Index: Imakefile
-===================================================================
-RCS file: /u/monnier/cvsroot/Xaw3d/Imakefile,v
-retrieving revision 1.1.1.9
-retrieving revision 1.2
-diff -u -r1.1.1.9 -r1.2
---- Imakefile	25 Mar 2005 18:12:03 -0000	1.1.1.9
-+++ Imakefile	27 Mar 2005 13:53:38 -0000	1.2
-@@ -8,8 +8,6 @@
- #undef MULTIPLANE_PIXMAPS
- XCOMM For grayed stipple shadows, define GRAY_BLKWHT_STIPPLES:
- #define GRAY_BLKWHT_STIPPLES
--XCOMM For scrollbars with arrows, define ARROW_SCROLLBARS:
--#undef ARROW_SCROLLBARS
- 
- #define DoNormalLib NormalLibXaw
- #define DoSharedLib SharedLibXaw
-@@ -22,7 +20,7 @@
- #define IncSubSubdir Xaw3d
- 
- XCOMM When building outside an X11 source tree:
--XCOMM EXTRA_INCLUDES = -I.
-+EXTRA_INCLUDES = -I.
- 
- #ifdef SharedXawReqs
- REQUIREDLIBS = SharedXawReqs
-@@ -119,13 +117,6 @@
- XAW_GRAY_BLKWHT_STIPPLES = \
- 	-e 's/\/\* gray stipples \*\//\#undef XAW_GRAY_BLKWHT_STIPPLES/'
- #endif
--#ifdef ARROW_SCROLLBARS
--XAW_ARROW_SCROLLBARS = \
--	-e 's/\/\* arrow scrollbars \*\//\#define XAW_ARROW_SCROLLBARS/'
--#else
--XAW_ARROW_SCROLLBARS = \
--	-e 's/\/\* arrow scrollbars \*\//\#undef XAW_ARROW_SCROLLBARS/'
--#endif
- 
- depend:: laygram.c laygram.h laylex.c Xaw3dP.h
- 
-@@ -148,8 +139,7 @@
- 
- Xaw3dP.h: Xaw3dP.h.sed
- 	sed $(XAW_INTERNATIONALIZATION) $(XAW_MULTIPLANE_PIXMAPS) \
--	$(XAW_GRAY_BLKWHT_STIPPLES) $(XAW_ARROW_SCROLLBARS) \
--	Xaw3dP.h.sed > Xaw3dP.h
-+	$(XAW_GRAY_BLKWHT_STIPPLES) Xaw3dP.h.sed > Xaw3dP.h
- 
- $(OBJS): Xaw3dP.h
- 
-Index: README.XAW3D
-===================================================================
-RCS file: /u/monnier/cvsroot/Xaw3d/README.XAW3D,v
-retrieving revision 1.1.1.4
-retrieving revision 1.2
-diff -u -r1.1.1.4 -r1.2
---- README.XAW3D	25 Mar 2005 18:12:04 -0000	1.1.1.4
-+++ README.XAW3D	27 Mar 2005 13:53:38 -0000	1.2
-@@ -48,7 +48,6 @@
-        #define XAW_INTERNATIONALIZATION
-        #define XAW_MULTIPLANE_PIXMAPS
-        #define XAW_GRAY_BLKWHT_STIPPLES
--       #undef XAW_ARROW_SCROLLBARS
- 
-    Xaw3dP.h need not be included by the application source, as the public
-    headers that reference any 3D features include this header. The
-@@ -133,16 +132,6 @@
-    beNiceToColormap resource is True and 3) the display allows it. This
-    option was disabled in previous Xaw3d releases.
- 
--   The default Xaw3d does not use arrow scrollbars. At the top of this
--   distribution's Imakefile are the lines:
--
--       XCOMM For scrollbars with arrows, define ARROW_SCROLLBARS:
--       #undef ARROW_SCROLLBARS
--
--   If you want arrow-style scrollbars, change the "#undef" to "#define".
--   Note that the Scrollbar widget's translations and actions will change
--   accordingly.
--
-    Building Xaw3d within an X11 source tree:
-    -----------------------------------------
- 
-Index: Scrollbar.c
-===================================================================
-RCS file: /u/monnier/cvsroot/Xaw3d/Scrollbar.c,v
-retrieving revision 1.1.1.6
-retrieving revision 1.4
-diff -u -r1.1.1.6 -r1.4
---- Scrollbar.c	25 Mar 2005 18:12:04 -0000	1.1.1.6
-+++ Scrollbar.c	4 Apr 2005 16:06:04 -0000	1.4
-@@ -53,6 +53,11 @@
+--- Scrollbar.c.orig	2003-02-10 17:22:26 UTC
++++ Scrollbar.c
+@@ -53,6 +53,11 @@ SOFTWARE.
  
  ******************************************************************/
  
@@ -113,12 +12,12 @@ diff -u -r1.1.1.6 -r1.4
  /* ScrollBar.c */
  /* created by weissman, Mon Jul  7 13:20:03 1986 */
  /* converted by swick, Thu Aug 27 1987 */
-@@ -69,38 +74,48 @@
+@@ -69,38 +74,48 @@ SOFTWARE.
  
  /* Private definitions. */
  
 -#ifdef XAW_ARROW_SCROLLBARS
--static char defaultTranslations[] =
+ static char defaultTranslations[] =
 -    "<Btn1Down>:   NotifyScroll()\n\
 -     <Btn2Down>:   MoveThumb() NotifyThumb() \n\
 -     <Btn3Down>:   NotifyScroll()\n\
@@ -127,7 +26,7 @@ diff -u -r1.1.1.6 -r1.4
 -     <Btn2Motion>: MoveThumb() NotifyThumb() \n\
 -     <BtnUp>:      EndScroll()";
 -#else
- static char defaultTranslations[] =
+-static char defaultTranslations[] =
 +#ifdef XAW_SCROLL_WHEEL
 +    "<Btn4Down>:   StartScroll(Wheel, Backward) \n\
 +     <Btn5Down>:   StartScroll(Wheel, Forward) \n"
@@ -180,7 +79,7 @@ diff -u -r1.1.1.6 -r1.4
    {XtNscrollVCursor, XtCCursor, XtRCursor, sizeof(Cursor),
         Offset(scrollbar.verCursor), XtRString, "sb_v_double_arrow"},
    {XtNscrollHCursor, XtCCursor, XtRCursor, sizeof(Cursor),
-@@ -113,7 +128,6 @@
+@@ -113,7 +128,6 @@ static XtResource resources[] = {
         Offset(scrollbar.leftCursor), XtRString, "sb_left_arrow"},
    {XtNscrollRCursor, XtCCursor, XtRCursor, sizeof(Cursor),
         Offset(scrollbar.rightCursor), XtRString, "sb_right_arrow"},
@@ -188,7 +87,7 @@ diff -u -r1.1.1.6 -r1.4
    {XtNlength, XtCLength, XtRDimension, sizeof(Dimension),
         Offset(scrollbar.length), XtRImmediate, (XtPointer) 1},
    {XtNthickness, XtCThickness, XtRDimension, sizeof(Dimension),
-@@ -149,22 +163,16 @@
+@@ -149,22 +163,16 @@ static void Resize();
  static void Redisplay();
  static Boolean SetValues();
  
@@ -211,7 +110,7 @@ diff -u -r1.1.1.6 -r1.4
      {"MoveThumb",	MoveThumb},
      {"NotifyThumb",	NotifyThumb},
      {"NotifyScroll",	NotifyScroll},
-@@ -235,12 +243,11 @@
+@@ -235,12 +243,11 @@ static void ClassInitialize()
  		    (XtConvertArgList)NULL, (Cardinal)0 );
  }
  
@@ -229,7 +128,7 @@ diff -u -r1.1.1.6 -r1.4
  
  /* 
   The original Xaw Scrollbar's FillArea *really* relied on the fact that the 
-@@ -357,7 +364,6 @@
+@@ -357,7 +364,6 @@ static void PaintThumb (sbw, event)
      }
  }
  
@@ -237,7 +136,7 @@ diff -u -r1.1.1.6 -r1.4
  static void PaintArrows (sbw)
      ScrollbarWidget sbw;
  {
-@@ -453,7 +459,6 @@
+@@ -453,7 +459,6 @@ static void PaintArrows (sbw)
  	}
      }
  }
@@ -245,7 +144,7 @@ diff -u -r1.1.1.6 -r1.4
  
  /*	Function Name: Destroy
   *	Description: Called as the scrollbar is going away...
-@@ -464,10 +469,8 @@
+@@ -464,10 +469,8 @@ static void Destroy (w)
      Widget w;
  {
      ScrollbarWidget sbw = (ScrollbarWidget) w;
@@ -256,7 +155,7 @@ diff -u -r1.1.1.6 -r1.4
      XtReleaseGC (w, sbw->scrollbar.gc);
  }
  
-@@ -552,12 +555,8 @@
+@@ -552,12 +555,8 @@ static void Initialize( request, new, args, num_args )
  	    ? sbw->scrollbar.thickness : sbw->scrollbar.length;
  
      SetDimensions (sbw);
@@ -269,7 +168,7 @@ diff -u -r1.1.1.6 -r1.4
      sbw->scrollbar.topLoc = 0;
      sbw->scrollbar.shownLength = sbw->scrollbar.min_thumb;
  }
-@@ -568,19 +567,19 @@
+@@ -568,19 +567,19 @@ static void Realize (w, valueMask, attributes)
      XSetWindowAttributes *attributes;
  {
      ScrollbarWidget sbw = (ScrollbarWidget) w;
@@ -301,7 +200,7 @@ diff -u -r1.1.1.6 -r1.4
      /* 
       * The Simple widget actually stuffs the value in the valuemask. 
       */
-@@ -669,11 +668,9 @@
+@@ -669,11 +668,9 @@ static void Redisplay (w, event, region)
  	sbw->scrollbar.topLoc = -(sbw->scrollbar.length + 1);
  	PaintThumb (sbw, event); 
      }
@@ -316,7 +215,7 @@ diff -u -r1.1.1.6 -r1.4
  }
  
  
-@@ -776,7 +773,6 @@
+@@ -776,7 +773,6 @@ static void ExtractPosition (event, x, y)
      }
  }
  
@@ -324,7 +223,7 @@ diff -u -r1.1.1.6 -r1.4
  /* ARGSUSED */
  static void HandleThumb (w, event, params, num_params)
      Widget w;
-@@ -787,10 +783,14 @@
+@@ -787,10 +783,14 @@ static void HandleThumb (w, event, params, num_params)
      Position x,y;
      ScrollbarWidget sbw = (ScrollbarWidget) w;
  
@@ -340,7 +239,7 @@ diff -u -r1.1.1.6 -r1.4
  	(PICKLENGTH (sbw,x,y) >= sbw->scrollbar.topLoc &&
  	PICKLENGTH (sbw,x,y) <= sbw->scrollbar.topLoc + sbw->scrollbar.shownLength)){
  	XtCallActionProc(w, "MoveThumb", event, params, *num_params);
-@@ -805,12 +805,12 @@
+@@ -805,12 +805,12 @@ static void RepeatNotify (client_data, idp)
  #define A_FEW_PIXELS 5
      ScrollbarWidget sbw = (ScrollbarWidget) client_data;
      int call_data;
@@ -355,7 +254,7 @@ diff -u -r1.1.1.6 -r1.4
  	call_data = -call_data;
      XtCallCallbacks((Widget)sbw, XtNscrollProc, (XtPointer) call_data);
      sbw->scrollbar.timer_id = 
-@@ -820,12 +820,11 @@
+@@ -820,12 +820,11 @@ static void RepeatNotify (client_data, idp)
  		    client_data);
  }
  
@@ -369,7 +268,7 @@ diff -u -r1.1.1.6 -r1.4
      Cardinal *num_params;	/* we only support 1 */
  {
      ScrollbarWidget sbw = (ScrollbarWidget) w;
-@@ -833,11 +832,24 @@
+@@ -833,11 +832,24 @@ static void StartScroll (w, event, params, num_params 
      char direction;
  
      if (sbw->scrollbar.direction != 0) return; /* if we're already scrolling */
@@ -395,7 +294,7 @@ diff -u -r1.1.1.6 -r1.4
      sbw->scrollbar.direction = direction;
  
      switch (direction) {
-@@ -865,20 +877,17 @@
+@@ -865,20 +877,17 @@ static void StartScroll (w, event, params, num_params 
      XtVaSetValues (w, XtNcursor, cursor, NULL);
      XFlush (XtDisplay (w));
  }
@@ -416,7 +315,7 @@ diff -u -r1.1.1.6 -r1.4
  
  /*
   * Same as above, but for floating numbers. 
-@@ -891,7 +900,6 @@
+@@ -891,7 +900,6 @@ static float FloatInRange(num, small, big)
  }
  
  
@@ -424,20 +323,19 @@ diff -u -r1.1.1.6 -r1.4
  static void NotifyScroll (w, event, params, num_params)
      Widget w;
      XEvent *event;
-@@ -902,94 +910,94 @@
+@@ -902,94 +910,94 @@ static void NotifyScroll (w, event, params, num_params
      int call_data;
      Position x, y;
  
 -    if (sbw->scrollbar.scroll_mode == 2  /* if scroll continuous */
 -	|| LookAhead (w, event)) 
 -	return;
--
--    ExtractPosition (event, &x, &y);
 +    if (sbw->scrollbar.arrows) {
 +	if (sbw->scrollbar.direction == 'C' /* if scroll continuous */
 +	    || LookAhead (w, event)) 
 +	    return;
-+
+ 
+-    ExtractPosition (event, &x, &y);
 +	/* Old ARROW_SCROLLBAR bindings emulation:
 +	   NotifyScroll(Proportional) -> <nothing>  */
 +	if (num_params > 0 && (*params[0] == 'P' || *params[0] == 'p'))
@@ -486,32 +384,14 @@ diff -u -r1.1.1.6 -r1.4
 -    int call_data;
 -    char style;
 -    Position x, y;
--
++	ExtractPosition (event, &x, &y);
+ 
 -    if (sbw->scrollbar.direction == 0) return; /* if no StartScroll */
 -    if (LookAhead (w, event)) return;
 -    if (*num_params > 0) 
 -	style = *params[0];
 -    else
 -	style = 'P';
--
--    switch (style) {
--    case 'P':    /* Proportional */
--    case 'p':
- 	ExtractPosition (event, &x, &y);
--	call_data = 
--	    InRange (PICKLENGTH (sbw, x, y), 0, (int) sbw->scrollbar.length); 
--	break;
- 
--    case 'F':    /* FullLength */
--    case 'f':    
--	call_data = sbw->scrollbar.length; 
--	break;
--    }
--    switch (sbw->scrollbar.direction) {
--    case 'B':
--    case 'b':    
--	call_data = -call_data;
--	/* fall through */
 +	if (PICKLENGTH (sbw,x,y) < sbw->scrollbar.thickness) {
 +	    /* handle first arrow zone */
 +	    call_data = -MAX (A_FEW_PIXELS, sbw->scrollbar.length / 20);
@@ -545,9 +425,12 @@ diff -u -r1.1.1.6 -r1.4
 +    } else { /* XAW_ARROW_SCROLLBARS */
 +	char style;
  
--    case 'F':
--    case 'f':    
--	XtCallCallbacks (w, XtNscrollProc, (XtPointer)call_data);
+-    switch (style) {
+-    case 'P':    /* Proportional */
+-    case 'p':
+-	ExtractPosition (event, &x, &y);
+-	call_data = 
+-	    InRange (PICKLENGTH (sbw, x, y), 0, (int) sbw->scrollbar.length); 
 -	break;
 +	if (sbw->scrollbar.direction == 0)
 +	    /* Either we haven't yet done StartScoll, or w've already done
@@ -558,7 +441,17 @@ diff -u -r1.1.1.6 -r1.4
 +	    style = *params[0];
 +	else
 +	    style = 'P';
-+
+ 
+-    case 'F':    /* FullLength */
+-    case 'f':    
+-	call_data = sbw->scrollbar.length; 
+-	break;
+-    }
+-    switch (sbw->scrollbar.direction) {
+-    case 'B':
+-    case 'b':    
+-	call_data = -call_data;
+-	/* fall through */
 +	switch (style) {
 +	case 'P':    /* Proportional */
 +	case 'p':
@@ -566,7 +459,11 @@ diff -u -r1.1.1.6 -r1.4
 +	    call_data = 
 +		InRange (PICKLENGTH (sbw, x, y), 0, (int) sbw->scrollbar.length); 
 +	    break;
-+
+ 
+-    case 'F':
+-    case 'f':    
+-	XtCallCallbacks (w, XtNscrollProc, (XtPointer)call_data);
+-	break;
 +	/* case 'F':    /\* FullLength *\/
 +	 * case 'f':     */
 +	default:
@@ -601,7 +498,7 @@ diff -u -r1.1.1.6 -r1.4
  
  /* ARGSUSED */
  static void EndScroll(w, event, params, num_params )
-@@ -1000,23 +1008,18 @@
+@@ -1000,23 +1008,18 @@ static void EndScroll(w, event, params, num_params )
  {
      ScrollbarWidget sbw = (ScrollbarWidget) w;
  
@@ -628,7 +525,7 @@ diff -u -r1.1.1.6 -r1.4
      int margin;
      float   height, width;
  
-@@ -1025,8 +1028,7 @@
+@@ -1025,8 +1028,7 @@ static float FractionLoc (sbw, x, y)
      y -= margin;
      height = sbw->core.height - 2 * margin;
      width = sbw->core.width - 2 * margin;
@@ -638,7 +535,7 @@ diff -u -r1.1.1.6 -r1.4
  }
  
  
-@@ -1038,42 +1040,34 @@
+@@ -1038,42 +1040,34 @@ static void MoveThumb (w, event, params, num_params)
  {
      ScrollbarWidget sbw = (ScrollbarWidget) w;
      Position x, y;
@@ -695,7 +592,7 @@ diff -u -r1.1.1.6 -r1.4
      PaintThumb (sbw, event);
      XFlush (XtDisplay (w));	/* re-draw it before Notifying */
  }
-@@ -1089,9 +1083,8 @@
+@@ -1089,9 +1083,8 @@ static void NotifyThumb (w, event, params, num_params 
      register ScrollbarWidget sbw = (ScrollbarWidget) w;
      float top = sbw->scrollbar.top;
  
@@ -707,118 +604,16 @@ diff -u -r1.1.1.6 -r1.4
  
      if (LookAhead (w, event)) return;
  
-@@ -1152,12 +1145,6 @@
+@@ -1150,12 +1143,6 @@ void XawScrollbarSetThumb (w, top, shown)
+ #ifdef WIERD
+     fprintf(stderr,"< XawScrollbarSetThumb w=%p, top=%f, shown=%f\n", 
  	    w,top,shown);
- #endif
- 
+-#endif
+-
 -#ifdef XAW_ARROW_SCROLLBARS
 -    if (sbw->scrollbar.scroll_mode == (char) 2) return; /* if still thumbing */
 -#else
 -    if (sbw->scrollbar.direction == 'c') return; /* if still thumbing */
--#endif
--
+ #endif
+ 
      sbw->scrollbar.top = (top > 1.0) ? 1.0 :
- 				(top >= 0.0) ? top : sbw->scrollbar.top;
- 
-Index: Scrollbar.h
-===================================================================
-RCS file: /u/monnier/cvsroot/Xaw3d/Scrollbar.h,v
-retrieving revision 1.1.1.5
-retrieving revision 1.2
-diff -u -r1.1.1.5 -r1.2
---- Scrollbar.h	25 Mar 2005 18:08:51 -0000	1.1.1.5
-+++ Scrollbar.h	25 Mar 2005 22:41:01 -0000	1.2
-@@ -116,10 +116,12 @@
- #define XtCShown "Shown"
- #define XtCTopOfThumb "TopOfThumb"
- #define XtCPickTop "PickTop"
-+#define XtCArrowScrollbars "ArrowScrollbars"
- 
- #define XtNminimumThumb "minimumThumb"
- #define XtNtopOfThumb "topOfThumb"
- #define XtNpickTop "pickTop"
-+#define XtNarrowScrollbars "arrowScrollbars"
- 
- typedef struct _ScrollbarRec	  *ScrollbarWidget;
- typedef struct _ScrollbarClassRec *ScrollbarWidgetClass;
-Index: ScrollbarP.h
-===================================================================
-RCS file: /u/monnier/cvsroot/Xaw3d/ScrollbarP.h,v
-retrieving revision 1.1.1.6
-retrieving revision 1.2
-diff -u -r1.1.1.6 -r1.2
---- ScrollbarP.h	25 Mar 2005 18:12:04 -0000	1.1.1.6
-+++ ScrollbarP.h	25 Mar 2005 22:41:01 -0000	1.2
-@@ -70,14 +70,12 @@
-     XtCallbackList thumbProc;	/* jump (to position) scroll */
-     XtCallbackList jumpProc;	/* same as thumbProc but pass data by ref */
-     Pixmap	  thumb;	/* thumb color */
--#ifndef XAW_ARROW_SCROLLBARS
-     Cursor        upCursor;	/* scroll up cursor */
-     Cursor        downCursor;	/* scroll down cursor */
-     Cursor        leftCursor;	/* scroll left cursor */
-     Cursor        rightCursor;	/* scroll right cursor */
-     Cursor        verCursor;	/* scroll vertical cursor */
-     Cursor        horCursor;	/* scroll horizontal cursor */
--#endif
-     float	  top;		/* What percent is above the win's top */
-     float	  shown;	/* What percent is shown in the win */
-     Dimension	  length;	/* either height or width */
-@@ -87,18 +85,16 @@
- 				 * when scrolling starts */
- 
-      /* private */
--#ifdef XAW_ARROW_SCROLLBARS
--    XtIntervalId  timer_id;     /* autorepeat timer; remove on destruction */
--    char	  scroll_mode;	/* 0:none 1:up/back 2:track 3:down/forward */
--#else
-     Cursor        inactiveCursor; /* the normal cursor for scrollbar */
--    char          direction;	/* a scroll has started; which direction */
--#endif
-+    char          direction;	/* 0:none, C:drag, F:down/forw, B:up/back */
-     GC		  gc;		/* a (shared) gc */
-     Position	  topLoc;	/* Pixel that corresponds to top */
-     Dimension	  shownLength;	/* Num pixels corresponding to shown */
-     Boolean       pick_top;     /* pick thumb at top or anywhere*/
-+    Boolean       arrows;	/* Whether it has arrows at the end. */
- 
-+    /* Only used for arrow-scrollbars. */
-+    XtIntervalId  timer_id;     /* autorepeat timer; remove on destruction */
- } ScrollbarPart;
- 
- typedef struct _ScrollbarRec {
-Index: Text.c
-===================================================================
-RCS file: /u/monnier/cvsroot/Xaw3d/Text.c,v
-retrieving revision 1.1.1.10
-retrieving revision 1.2
-diff -u -r1.1.1.10 -r1.2
---- Text.c	25 Mar 2005 18:12:05 -0000	1.1.1.10
-+++ Text.c	27 Mar 2005 13:53:38 -0000	1.2
-@@ -1462,10 +1462,8 @@
-   if (height < 1)
-     height = 1;
-   nlines = (int) (lines * (int) ctx->text.lt.lines) / height;
--#ifdef XAW_ARROW_SCROLLBARS
-   if (nlines == 0 && lines != 0) 
-     nlines = lines > 0 ? 1 : -1;
--#endif
-   _XawTextPrepareToUpdate(ctx);
-   _XawTextVScroll(ctx, nlines);
-   _XawTextExecuteUpdate(ctx);
-Index: Xaw3dP.h.sed
-===================================================================
-RCS file: /u/monnier/cvsroot/Xaw3d/Xaw3dP.h.sed,v
-retrieving revision 1.1.1.1
-retrieving revision 1.2
-diff -u -r1.1.1.1 -r1.2
---- Xaw3dP.h.sed	25 Mar 2005 18:12:06 -0000	1.1.1.1
-+++ Xaw3dP.h.sed	27 Mar 2005 13:53:38 -0000	1.2
-@@ -36,7 +36,6 @@
- /* I18n support */
- /* XPM support */
- /* gray stipples */
--/* arrow scrollbars */
- 
- #ifndef XtX
- #define XtX(w)			(((RectObj)w)->rectangle.x)
