@@ -1,8 +1,7 @@
 PORTNAME=	lightdm
-PORTVERSION=	1.30.0
-PORTREVISION=	3
+PORTVERSION=	1.32.0
 CATEGORIES=	x11
-MASTER_SITES=	https://github.com/CanonicalLtd/${PORTNAME}/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
+MASTER_SITES=	https://github.com/canonical/${PORTNAME}/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
 
 MAINTAINER=	desktop@FreeBSD.org
 COMMENT=	Lightweight Display Manager
@@ -32,7 +31,6 @@ CONFLICTS_INSTALL=	sddm
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-tests \
-		--disable-liblightdm-qt \
 		--disable-liblightdm-qt5
 INSTALL_TARGET=	install-strip
 USERS=		lightdm
@@ -45,12 +43,14 @@ OPTIONS_DEFAULT=	NLS VAPI
 OPTIONS_SUB=	yes
 
 DOCS_BUILD_DEPENDS=	gtkdoc-check:textproc/gtk-doc
-DOCS_CONFIGURE_ENABLE=	gtk-doc gtk-doc-html
+DOCS_CONFIGURE_ON=	--enable-gtk-doc=yes --enable-gtk-doc-html=yes
+DOCS_CONFIGURE_OFF=	--enable-gtk-doc=no --enable-gtk-doc-html=no
 
 NLS_CONFIGURE_ENABLE=	nls
 
 VAPI_BUILD_DEPENDS=	vapigen:lang/vala
-VAPI_CONFIGURE_ENABLE=	vala introspection
+VAPI_CONFIGURE_ON=	--enable-vala=yes --enable-introspection=yes
+VAPI_CONFIGURE_OFF=	--enable-vala=no --enable-introspection=no
 VAPI_USE=	gnome=introspection:build
 
 post-patch:
@@ -69,5 +69,9 @@ post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/xgreeters
 	@(cd ${STAGEDIR}${PREFIX}/share/xgreeters && \
 		${LN} -sf lightdm-gtk-greeter.desktop default.desktop)
+
+#post-install-DOCS-off:
+#	${RM} -r ${STAGEDIR}${PREFIX}/share/help
+#	${RM} -r ${STAGEDIR}${PREFIX}/share/gtk-doc
 
 .include <bsd.port.mk>

@@ -1,8 +1,4 @@
 bin/dm-tool
-etc/apparmor.d/abstractions/lightdm
-etc/apparmor.d/abstractions/lightdm_chromium-browser
-etc/apparmor.d/lightdm-guest-session
-etc/dbus-1/system.d/org.freedesktop.DisplayManager.conf
 %%ETCDIR%%/Xsession
 @sample %%ETCDIR%%/keys.conf.sample
 @sample %%ETCDIR%%/lightdm.conf.sample
@@ -10,7 +6,6 @@ etc/dbus-1/system.d/org.freedesktop.DisplayManager.conf
 etc/pam.d/lightdm
 etc/pam.d/lightdm-autologin
 etc/pam.d/lightdm-greeter
-@comment etc/rc.d/lightdm
 include/lightdm-gobject-1/lightdm.h
 include/lightdm-gobject-1/lightdm/greeter.h
 include/lightdm-gobject-1/lightdm/language.h
@@ -33,24 +28,25 @@ share/accountsservice/interfaces/org.freedesktop.DisplayManager.AccountsService.
 share/bash-completion/completions/dm-tool
 share/bash-completion/completions/lightdm
 share/dbus-1/interfaces/org.freedesktop.DisplayManager.AccountsService.xml
+share/dbus-1/system.d/org.freedesktop.DisplayManager.conf
 %%VAPI%%share/gir-1.0/LightDM-1.gir
-share/help/C/lightdm/autologin.page
-share/help/C/lightdm/config.page
-share/help/C/lightdm/default-greeter.page
-share/help/C/lightdm/default-session.page
-share/help/C/lightdm/diagnostics.page
-share/help/C/lightdm/guest.page
-share/help/C/lightdm/index.page
-share/help/C/lightdm/legal.xml
-share/help/C/lightdm/local-sessions.page
-share/help/C/lightdm/remote-sessions.page
-share/help/C/lightdm/seat.page
-share/help/C/lightdm/standard-authentication.page
-share/help/C/lightdm/user-list.page
-share/help/C/lightdm/user-switching.page
-share/help/C/lightdm/vnc.page
-share/help/C/lightdm/write-greeter.page
-share/help/C/lightdm/xdmcp.page
+%%PORTDOCS%%share/help/C/lightdm/autologin.page
+%%PORTDOCS%%share/help/C/lightdm/config.page
+%%PORTDOCS%%share/help/C/lightdm/default-greeter.page
+%%PORTDOCS%%share/help/C/lightdm/default-session.page
+%%PORTDOCS%%share/help/C/lightdm/diagnostics.page
+%%PORTDOCS%%share/help/C/lightdm/guest.page
+%%PORTDOCS%%share/help/C/lightdm/index.page
+%%PORTDOCS%%share/help/C/lightdm/legal.xml
+%%PORTDOCS%%share/help/C/lightdm/local-sessions.page
+%%PORTDOCS%%share/help/C/lightdm/remote-sessions.page
+%%PORTDOCS%%share/help/C/lightdm/seat.page
+%%PORTDOCS%%share/help/C/lightdm/standard-authentication.page
+%%PORTDOCS%%share/help/C/lightdm/user-list.page
+%%PORTDOCS%%share/help/C/lightdm/user-switching.page
+%%PORTDOCS%%share/help/C/lightdm/vnc.page
+%%PORTDOCS%%share/help/C/lightdm/write-greeter.page
+%%PORTDOCS%%share/help/C/lightdm/xdmcp.page
 %%PORTDOCS%%share/gtk-doc/html/lightdm-gobject-1/LightDMGreeter.html
 %%PORTDOCS%%share/gtk-doc/html/lightdm-gobject-1/LightDMLanguage.html
 %%PORTDOCS%%share/gtk-doc/html/lightdm-gobject-1/LightDMLayout.html

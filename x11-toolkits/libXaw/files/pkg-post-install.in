@@ -1,0 +1,3 @@
+#!/bin/sh
+/usr/bin/install -l rs ${PKG_ROOTDIR}${PKG_PREFIX}/lib/.libXaw/* \
+	${PKG_ROOTDIR}${PKG_PREFIX}/lib/

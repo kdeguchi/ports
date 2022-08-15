@@ -1,0 +1,3 @@
+#!/bin/sh
+/usr/bin/install -l rs ${PKG_ROOTDIR}${PKG_PREFIX}/lib/.libxaw3dxft/* \
+	${PKG_ROOTDIR}${PKG_PREFIX}/lib/

@@ -142,6 +142,10 @@ USE_WX=	3.1
 RUN_DEPENDS:=	${RUN_DEPENDS:S@sudo:security/sudo@sudo:security/doas-wrapper@}
 .endif
 
+.if ${.CURDIR:M*/x11-toolkits/Xaw3d}
+PATH:=/usr/bin:${PATH}
+.endif
+
 .if ${RUN_DEPENDS:M*/security/veracrypt}
 .if !target(pre-configure)
 pre-configure:
@@ -178,7 +182,7 @@ post-man-plist:
 .undef INFO
 remove-info-plist:
 	cd ${STAGEDIR}${PREFIX} && \
-		${FIND} share/info/ -type f -or -type l -exec ${RM} -f {} + && \
+		${FIND} share/info/ \( -type f -or -type l \) -exec ${RM} -r {} + && \
 		${REINPLACE_CMD} -E '/share\/info\/.*$$/d' ${TMPPLIST} || exit 0
 .endif
 .endif
