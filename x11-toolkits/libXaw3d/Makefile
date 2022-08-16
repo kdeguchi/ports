@@ -1,40 +1,26 @@
-PORTNAME=	Xaw3d
-PORTVERSION=	1.5E
-PORTREVISION=	8
+PORTNAME=	libXaw3d
+PORTVERSION=	1.6.3
 CATEGORIES=	x11-toolkits
-MASTER_SITES=	http://slackware.cs.utah.edu/pub/slackware/slackware64-13.1/source/x/xaw3d/
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	3-D Athena Widget set that looks like Motif
 
 LICENSE=	MIT
 
-WRKSRC=		${WRKDIR}/xc/lib/Xaw3d
-USES=		gettext imake xorg
-USE_XORG=	x11 xext xmu xt sm ice xpm
+USES=		autoreconf gettext libtool pkgconfig xorg xorg-cat:lib
+USE_XORG=	ice sm x11 xext xmu xpm xt
 USE_LDCONFIG=	yes
 
 SUB_FILES=	pkg-message pkg-post-deinstall pkg-post-install
 PKGPOSTINSTALL=	${WRKDIR}/pkg-post-install
 PKGPOSTDEINSTALL=	${WRKDIR}/pkg-post-deinstall
-XAWVER=		8
-SUB_LIST=	XAWVER="${XAWVER}"
-PLIST_SUB=	PORTNAME=${PORTNAME}
 
 OPTIONS_DEFINE=	DOCS
-
-post-extract:
-	@${MKDIR} ${WRKSRC}/X11/Xaw3d
-	@cd ${WRKSRC}/X11/Xaw3d; ${LN} -sf ../../*.h .
 
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libXaw3d.so
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/.${PORTNAME}
 	${MV} ${STAGEDIR}${PREFIX}/lib/libXaw3d.* \
 		${STAGEDIR}${PREFIX}/lib/.${PORTNAME}
-
-post-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README.XAW3D ${STAGEDIR}${DOCSDIR}/
 
 .include <bsd.port.mk>

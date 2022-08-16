@@ -53,9 +53,6 @@ include/X11/Xaw3d/SmeThreeD.h
 include/X11/Xaw3d/SmeThreeDP.h
 include/X11/Xaw3d/StripCharP.h
 include/X11/Xaw3d/StripChart.h
-include/X11/Xaw3d/Template.c
-include/X11/Xaw3d/Template.h
-include/X11/Xaw3d/TemplateP.h
 include/X11/Xaw3d/Text.h
 include/X11/Xaw3d/TextP.h
 include/X11/Xaw3d/TextSink.h
@@ -76,7 +73,9 @@ include/X11/Xaw3d/ViewportP.h
 include/X11/Xaw3d/Xaw3dP.h
 include/X11/Xaw3d/XawImP.h
 include/X11/Xaw3d/XawInit.h
-lib/.Xaw3d/libXaw3d.a
-lib/.Xaw3d/libXaw3d.so
-lib/.Xaw3d/libXaw3d.so.8
-%%PORTDOCS%%share/doc/Xaw3d/README.XAW3D
+lib/.libXaw3d/libXaw3d.a
+lib/.libXaw3d/libXaw3d.so
+lib/.libXaw3d/libXaw3d.so.8
+lib/.libXaw3d/libXaw3d.so.8.0.0
+libdata/pkgconfig/xaw3d.pc
+%%PORTDOCS%%%%DOCSDIR%%/README.XAW3D
