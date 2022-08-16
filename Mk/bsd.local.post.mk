@@ -146,7 +146,7 @@ RUN_DEPENDS:=	${RUN_DEPENDS:S@sudo:security/sudo@sudo:security/doas-wrapper@}
 PATH:=/usr/bin:${PATH}
 .endif
 
-.if defined(LIB_DEPENDS) && ${LIB_DEPENDS:Mx11-toolkits/Xaw3d}
+.if defined(LIB_DEPENDS) && ${LIB_DEPENDS:M*\:x11-toolkits/Xaw3d}
 LIB_DEPENDS:=	${LIB_DEPENDS:S@x11-toolkits/Xaw3d@x11-toolkits/libXaw3d@}
 .endif
 
