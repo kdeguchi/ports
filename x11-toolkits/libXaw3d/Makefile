@@ -14,6 +14,8 @@ USE_LDCONFIG=	yes
 SUB_FILES=	pkg-message pkg-post-deinstall pkg-post-install
 PKGPOSTINSTALL=	${WRKDIR}/pkg-post-install
 PKGPOSTDEINSTALL=	${WRKDIR}/pkg-post-deinstall
+XAWVER=	8
+SUB_LIST=	XAWVER="${XAWVER}"
 
 OPTIONS_DEFINE=	DOCS
 
