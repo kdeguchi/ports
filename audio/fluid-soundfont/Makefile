@@ -20,6 +20,9 @@ PLIST_FILES=	share/sounds/sf2/FluidR3_GM.sf2 \
 		share/timidity/fluidr3_gs.cfg
 PORTDOCS=	README
 
+SUB_FILES=	fluidr3_gm.cfg fluidr3_gs.cfg
+SUB_LIST=	PREFIX=${PREFIX}
+
 OPTIONS_DEFINE=	DOCS
 
 do-install:
@@ -27,7 +30,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/FluidR3_G?.sf2 \
 		${STAGEDIR}${PREFIX}/share/sounds/sf2
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/timidity
-	${INSTALL_DATA} ${FILESDIR}/fluidr3_g?.cfg \
+	${INSTALL_DATA} ${WRKDIR}/fluidr3_g?.cfg \
 		${STAGEDIR}${PREFIX}/share/timidity
 
 do-install-DOCS-on:

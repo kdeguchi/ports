@@ -1,4 +1,4 @@
-dir /usr/local/share/sounds/sf2
+dir %%PREFIX%%/share/sounds/sf2
 
 bank 0
 0 %font "FluidR3_GM.sf2" 0 0 amp=29 pan=0
