@@ -38,7 +38,8 @@ post-install:
 	${MV} ${STAGEDIR}${PREFIX}/lib/libXaw3dxft* \
 		${STAGEDIR}${PREFIX}/lib/.${PORTNAME}
 .for i in libXaw.so libXaw.so.6 libXaw6.so libXaw6.so.6 libXaw6.so.6.0.1 \
-	libXaw.so.7 libXaw7.so libXaw7.so.7 libXaw7.so.7.0.0 libXaw3d.so libXaw3d.so.8 libXaw3d.so.8.0.0
+	libXaw.so.7 libXaw7.so libXaw7.so.7 libXaw7.so.7.0.0 \
+	libXaw3d.so libXaw3d.so.8 libXaw3d.so.8.0.0
 	${RLN} ${STAGEDIR}${PREFIX}/lib/.${PORTNAME}/libXaw3dxft.so \
 		${STAGEDIR}${PREFIX}/lib/.${PORTNAME}/${i}
 .endfor
