@@ -1,3 +1,5 @@
 #!/bin/sh
-/usr/bin/install -l rs ${PKG_ROOTDIR}${PKG_PREFIX}/lib/.libXaw/* \
-	${PKG_ROOTDIR}${PKG_PREFIX}/lib/
+if [ ! -f ${PKG_ROOTDIR}${PKG_PREFIX}/lib/.libXaw3d/libXaw3d.so || ! -f ${PKG_ROOTDIR}${PKG_PREFIX}/lib/.libxaw3dxft/libXaw3dxft.so ]; then
+	/usr/bin/install -l rs ${PKG_ROOTDIR}${PKG_PREFIX}/lib/.libXaw/* \
+		${PKG_ROOTDIR}${PKG_PREFIX}/lib/
+fi
