@@ -1,0 +1,889 @@
+dir %%PREFIX%%/share/sounds/sf2
+
+bank 0
+0 %font "Arachno SoundFont - Version 1.0.sf2" 0 0 amp=133 pan=60   #000:000 Grand Piano
+1 %font "Arachno SoundFont - Version 1.0.sf2" 0 1 amp=90 pan=0     #000:001 Bright Piano
+2 %font "Arachno SoundFont - Version 1.0.sf2" 0 2 amp=83 pan=0     #000:002 Rock Piano
+3 %font "Arachno SoundFont - Version 1.0.sf2" 0 3 amp=52 pan=0     #000:003 Honky-Tonk Piano
+4 %font "Arachno SoundFont - Version 1.0.sf2" 0 4 amp=72 pan=0     #000:004 Electric Piano
+5 %font "Arachno SoundFont - Version 1.0.sf2" 0 5 amp=51 pan=0     #000:005 Crystal Piano
+6 %font "Arachno SoundFont - Version 1.0.sf2" 0 6 amp=78 pan=0     #000:006 Harpsichord
+7 %font "Arachno SoundFont - Version 1.0.sf2" 0 7 amp=60 pan=0     #000:007 Clavinet
+8 %font "Arachno SoundFont - Version 1.0.sf2" 0 8 amp=63 pan=0     #000:008 Celesta
+9 %font "Arachno SoundFont - Version 1.0.sf2" 0 9 amp=66 pan=0     #000:009 Glockenspiel
+10 %font "Arachno SoundFont - Version 1.0.sf2" 0 10 amp=78 pan=0   #000:010 Music Box
+11 %font "Arachno SoundFont - Version 1.0.sf2" 0 11 amp=48 pan=0   #000:011 Vibraphone
+12 %font "Arachno SoundFont - Version 1.0.sf2" 0 12 amp=48 pan=0   #000:012 Marimba
+13 %font "Arachno SoundFont - Version 1.0.sf2" 0 13 amp=80 pan=0   #000:013 Xylophone
+14 %font "Arachno SoundFont - Version 1.0.sf2" 0 14 amp=71 pan=0   #000:014 Tubular Bells
+15 %font "Arachno SoundFont - Version 1.0.sf2" 0 15 amp=78 pan=0   #000:015 Dulcimer (Santur)
+16 %font "Arachno SoundFont - Version 1.0.sf2" 0 16 amp=123 pan=0  #000:016 DrawBar Organ
+17 %font "Arachno SoundFont - Version 1.0.sf2" 0 17 amp=81 pan=0   #000:017 Percussive Organ
+18 %font "Arachno SoundFont - Version 1.0.sf2" 0 18 amp=62 pan=0   #000:018 Rock Organ
+19 %font "Arachno SoundFont - Version 1.0.sf2" 0 19 amp=112 pan=0  #000:019 Church Organ
+20 %font "Arachno SoundFont - Version 1.0.sf2" 0 20 amp=69 pan=0   #000:020 Reed Organ
+21 %font "Arachno SoundFont - Version 1.0.sf2" 0 21 amp=52 pan=0   #000:021 Accordion
+22 %font "Arachno SoundFont - Version 1.0.sf2" 0 22 amp=48 pan=0   #000:022 Harmonica
+23 %font "Arachno SoundFont - Version 1.0.sf2" 0 23 amp=45 pan=0   #000:023 Bandoneon
+24 %font "Arachno SoundFont - Version 1.0.sf2" 0 24 amp=73 pan=0   #000:024 Nylon Guitar
+25 %font "Arachno SoundFont - Version 1.0.sf2" 0 25 amp=60 pan=0   #000:025 Steel String Guitar
+26 %font "Arachno SoundFont - Version 1.0.sf2" 0 26 amp=60 pan=0   #000:026 Jazz Guitar
+27 %font "Arachno SoundFont - Version 1.0.sf2" 0 27 amp=88 pan=0   #000:027 Clean Guitar
+28 %font "Arachno SoundFont - Version 1.0.sf2" 0 28 amp=64 pan=0   #000:028 Muted Guitar
+29 %font "Arachno SoundFont - Version 1.0.sf2" 0 29 amp=31 pan=0   #000:029 Overdrive Guitar
+30 %font "Arachno SoundFont - Version 1.0.sf2" 0 30 amp=20 pan=0   #000:030 Distortion Guitar
+31 %font "Arachno SoundFont - Version 1.0.sf2" 0 31 amp=57 pan=0   #000:031 Guitar Harmonics
+32 %font "Arachno SoundFont - Version 1.0.sf2" 0 32 amp=107 pan=0  #000:032 Acoustic Bass
+33 %font "Arachno SoundFont - Version 1.0.sf2" 0 33 amp=187 pan=0  #000:033 Fingered Bass
+34 %font "Arachno SoundFont - Version 1.0.sf2" 0 34 amp=109 pan=0  #000:034 Picked Bass
+35 %font "Arachno SoundFont - Version 1.0.sf2" 0 35 amp=134 pan=0  #000:035 Fretless Bass
+36 %font "Arachno SoundFont - Version 1.0.sf2" 0 36 amp=84 pan=0   #000:036 Slap Bass 1
+37 %font "Arachno SoundFont - Version 1.0.sf2" 0 37 amp=76 pan=0   #000:037 Slap Bass 2
+38 %font "Arachno SoundFont - Version 1.0.sf2" 0 38 amp=64 pan=0   #000:038 Synth Bass 1
+39 %font "Arachno SoundFont - Version 1.0.sf2" 0 39 amp=51 pan=0   #000:039 Synth Bass 2
+40 %font "Arachno SoundFont - Version 1.0.sf2" 0 40 amp=100 pan=0  #000:040 Violin
+41 %font "Arachno SoundFont - Version 1.0.sf2" 0 41 amp=142 pan=0  #000:041 Viola
+42 %font "Arachno SoundFont - Version 1.0.sf2" 0 42 amp=74 pan=0   #000:042 Cello
+43 %font "Arachno SoundFont - Version 1.0.sf2" 0 43 amp=54 pan=0   #000:043 ContraBass
+44 %font "Arachno SoundFont - Version 1.0.sf2" 0 44 amp=72 pan=0   #000:044 Tremolo Strings
+45 %font "Arachno SoundFont - Version 1.0.sf2" 0 45 amp=73 pan=0   #000:045 Pizzicato Strings
+46 %font "Arachno SoundFont - Version 1.0.sf2" 0 46 amp=64 pan=0   #000:046 Orchestral Harp
+47 %font "Arachno SoundFont - Version 1.0.sf2" 0 47 amp=98 pan=0   #000:047 Timpani
+48 %font "Arachno SoundFont - Version 1.0.sf2" 0 48 amp=142 pan=0  #000:048 Strings Ensemble 1
+49 %font "Arachno SoundFont - Version 1.0.sf2" 0 49 amp=74 pan=0   #000:049 Strings Ensemble 2
+50 %font "Arachno SoundFont - Version 1.0.sf2" 0 50 amp=118 pan=0  #000:050 Synth Strings 1
+51 %font "Arachno SoundFont - Version 1.0.sf2" 0 51 amp=97 pan=0   #000:051 Synth Strings 2
+52 %font "Arachno SoundFont - Version 1.0.sf2" 0 52 amp=180 pan=0  #000:052 Choir Aahs
+53 %font "Arachno SoundFont - Version 1.0.sf2" 0 53 amp=46 pan=0   #000:053 Voice Oohs
+54 %font "Arachno SoundFont - Version 1.0.sf2" 0 54 amp=60 pan=0   #000:054 Synth Voice
+55 %font "Arachno SoundFont - Version 1.0.sf2" 0 55 amp=62 pan=0   #000:055 Orchestra Hit
+56 %font "Arachno SoundFont - Version 1.0.sf2" 0 56 amp=106 pan=0  #000:056 Trumpet
+57 %font "Arachno SoundFont - Version 1.0.sf2" 0 57 amp=96 pan=0   #000:057 Trombone
+58 %font "Arachno SoundFont - Version 1.0.sf2" 0 58 amp=52 pan=0   #000:058 Tuba
+59 %font "Arachno SoundFont - Version 1.0.sf2" 0 59 amp=62 pan=0   #000:059 Muted Trumpet
+60 %font "Arachno SoundFont - Version 1.0.sf2" 0 60 amp=87 pan=0   #000:060 French Horns
+61 %font "Arachno SoundFont - Version 1.0.sf2" 0 61 amp=112 pan=0  #000:061 Brass Section
+62 %font "Arachno SoundFont - Version 1.0.sf2" 0 62 amp=46 pan=0   #000:062 Synth Brass 1
+63 %font "Arachno SoundFont - Version 1.0.sf2" 0 63 amp=74 pan=0   #000:063 Synth Brass 2
+64 %font "Arachno SoundFont - Version 1.0.sf2" 0 64 amp=57 pan=0   #000:064 Soprano Sax
+65 %font "Arachno SoundFont - Version 1.0.sf2" 0 65 amp=105 pan=0  #000:065 Alto Sax
+66 %font "Arachno SoundFont - Version 1.0.sf2" 0 66 amp=96 pan=0   #000:066 Tenor Sax
+67 %font "Arachno SoundFont - Version 1.0.sf2" 0 67 amp=46 pan=0   #000:067 Baritone Sax
+68 %font "Arachno SoundFont - Version 1.0.sf2" 0 68 amp=85 pan=0   #000:068 Oboe
+69 %font "Arachno SoundFont - Version 1.0.sf2" 0 69 amp=46 pan=0   #000:069 English Horns
+70 %font "Arachno SoundFont - Version 1.0.sf2" 0 70 amp=87 pan=0   #000:070 Bassoon
+71 %font "Arachno SoundFont - Version 1.0.sf2" 0 71 amp=96 pan=0   #000:071 Clarinet
+72 %font "Arachno SoundFont - Version 1.0.sf2" 0 72 amp=70 pan=0   #000:072 Piccolo
+73 %font "Arachno SoundFont - Version 1.0.sf2" 0 73 amp=64 pan=0   #000:073 Flute
+74 %font "Arachno SoundFont - Version 1.0.sf2" 0 74 amp=60 pan=0   #000:074 Recorder
+75 %font "Arachno SoundFont - Version 1.0.sf2" 0 75 amp=60 pan=0   #000:075 Pan Flute
+76 %font "Arachno SoundFont - Version 1.0.sf2" 0 76 amp=64 pan=0   #000:076 Blown Bottle
+77 %font "Arachno SoundFont - Version 1.0.sf2" 0 77 amp=45 pan=0   #000:077 Shakuhachi
+78 %font "Arachno SoundFont - Version 1.0.sf2" 0 78 amp=81 pan=0   #000:078 Whistle
+79 %font "Arachno SoundFont - Version 1.0.sf2" 0 79 amp=72 pan=0   #000:079 Ocarina
+80 %font "Arachno SoundFont - Version 1.0.sf2" 0 80 amp=38 pan=0   #000:080 Square Wave
+81 %font "Arachno SoundFont - Version 1.0.sf2" 0 81 amp=86 pan=0   #000:081 Saw Wave
+82 %font "Arachno SoundFont - Version 1.0.sf2" 0 82 amp=64 pan=0   #000:082 Synth Calliope
+83 %font "Arachno SoundFont - Version 1.0.sf2" 0 83 amp=101 pan=0  #000:083 Chiffer Lead
+84 %font "Arachno SoundFont - Version 1.0.sf2" 0 84 amp=60 pan=0   #000:084 Charang
+85 %font "Arachno SoundFont - Version 1.0.sf2" 0 85 amp=64 pan=0   #000:085 Solo Voice
+86 %font "Arachno SoundFont - Version 1.0.sf2" 0 86 amp=70 pan=0   #000:086 5th Saw Wave
+87 %font "Arachno SoundFont - Version 1.0.sf2" 0 87 amp=52 pan=0   #000:087 Bass & Lead
+88 %font "Arachno SoundFont - Version 1.0.sf2" 0 88 amp=50 pan=0 tune=12.25     #000:088 Fantasia (New Age)
+89 %font "Arachno SoundFont - Version 1.0.sf2" 0 89 amp=70 pan=0   #000:089 Warm Pad
+90 %font "Arachno SoundFont - Version 1.0.sf2" 0 90 amp=48 pan=0   #000:090 Poly Synth
+91 %font "Arachno SoundFont - Version 1.0.sf2" 0 91 amp=80 pan=0   #000:091 Space Voice
+92 %font "Arachno SoundFont - Version 1.0.sf2" 0 92 amp=56 pan=0   #000:092 Bowed Glass
+93 %font "Arachno SoundFont - Version 1.0.sf2" 0 93 amp=64 pan=0   #000:093 Metal Pad
+94 %font "Arachno SoundFont - Version 1.0.sf2" 0 94 amp=78 pan=0   #000:094 Halo Pad
+95 %font "Arachno SoundFont - Version 1.0.sf2" 0 95 amp=63 pan=0   #000:095 Sweep Pad
+96 %font "Arachno SoundFont - Version 1.0.sf2" 0 96 amp=60 pan=0   #000:096 Ice Rain
+97 %font "Arachno SoundFont - Version 1.0.sf2" 0 97 amp=75 pan=0   #000:097 Sound Track
+98 %font "Arachno SoundFont - Version 1.0.sf2" 0 98 amp=63 pan=0   #000:098 Crystal
+99 %font "Arachno SoundFont - Version 1.0.sf2" 0 99 amp=63 pan=0   #000:099 Atmosphere
+100 %font "Arachno SoundFont - Version 1.0.sf2" 0 100 amp=80 pan=0 #000:100 Brightness
+101 %font "Arachno SoundFont - Version 1.0.sf2" 0 101 amp=60 pan=0 #000:101 Goblin
+102 %font "Arachno SoundFont - Version 1.0.sf2" 0 102 amp=69 pan=0 #000:102 Echo Drops
+103 %font "Arachno SoundFont - Version 1.0.sf2" 0 103 amp=60 pan=0 #000:103 Star Theme
+104 %font "Arachno SoundFont - Version 1.0.sf2" 0 104 amp=62 pan=0 #000:104 Sitar
+105 %font "Arachno SoundFont - Version 1.0.sf2" 0 105 amp=78 pan=0 #000:105 Banjo
+106 %font "Arachno SoundFont - Version 1.0.sf2" 0 106 amp=93 pan=0 #000:106 Shamisen
+107 %font "Arachno SoundFont - Version 1.0.sf2" 0 107 amp=102 pan=0 #000:107 Koto
+108 %font "Arachno SoundFont - Version 1.0.sf2" 0 108 amp=64 pan=0 #000:108 Kalimba
+109 %font "Arachno SoundFont - Version 1.0.sf2" 0 109 amp=54 pan=0 #000:109 Bag Pipe
+110 %font "Arachno SoundFont - Version 1.0.sf2" 0 110 amp=66 pan=0 #000:110 Fiddle
+111 %font "Arachno SoundFont - Version 1.0.sf2" 0 111 amp=51 pan=0 #000:111 Shannai
+112 %font "Arachno SoundFont - Version 1.0.sf2" 0 112 amp=54 pan=0 #000:112 Tinkle Bell
+113 %font "Arachno SoundFont - Version 1.0.sf2" 0 113 amp=81 pan=0 #000:113 Agogo
+114 %font "Arachno SoundFont - Version 1.0.sf2" 0 114 amp=70 pan=0 #000:114 Steel Drums
+115 %font "Arachno SoundFont - Version 1.0.sf2" 0 115 amp=84 pan=0 #000:115 Wood Block
+116 %font "Arachno SoundFont - Version 1.0.sf2" 0 116 amp=62 pan=0 #000:116 Taiko Drum
+117 %font "Arachno SoundFont - Version 1.0.sf2" 0 117 amp=39 pan=0 #000:117 Melodic Tom
+118 %font "Arachno SoundFont - Version 1.0.sf2" 0 118 amp=48 pan=0 #000:118 Synth Drum
+119 %font "Arachno SoundFont - Version 1.0.sf2" 0 119 amp=54 pan=0 #000:119 Reverse Cymbal
+120 %font "Arachno SoundFont - Version 1.0.sf2" 0 120 amp=45 pan=0 #000:120 Guitar Fret Noise
+121 %font "Arachno SoundFont - Version 1.0.sf2" 0 121 amp=27 pan=0 #000:121 Breath Noise
+122 %font "Arachno SoundFont - Version 1.0.sf2" 0 122 amp=64 pan=0 #000:122 Sea Shore
+123 %font "Arachno SoundFont - Version 1.0.sf2" 0 123 amp=69 pan=0 #000:123 Bird Tweets
+124 %font "Arachno SoundFont - Version 1.0.sf2" 0 124 amp=57 pan=0 #000:124 Telephone
+125 %font "Arachno SoundFont - Version 1.0.sf2" 0 125 amp=62 pan=0 #000:125 Helicopter
+126 %font "Arachno SoundFont - Version 1.0.sf2" 0 126 amp=63 pan=0 #000:126 Applause
+127 %font "Arachno SoundFont - Version 1.0.sf2" 0 127 amp=83 pan=0 #000:127 Gun Shot
+
+
+
+drumset 0
+0 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 35 amp=340 pan=0
+1 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 35 amp=228 pan=0
+2 %font "Arachno SoundFont - Version 1.0.sf2" 128 1 35 amp=312 pan=0
+3 %font "Arachno SoundFont - Version 1.0.sf2" 128 1 35 amp=213 pan=0
+4 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 35 amp=165 pan=0
+5 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 35 amp=176 pan=0
+6 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 35 amp=147 pan=0
+7 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 35 amp=196 pan=0
+8 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 35 amp=411 pan=0
+9 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 35 amp=235 pan=0
+10 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 35 amp=142 pan=0
+11 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 36 amp=141 pan=0
+12 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 35 amp=142 pan=0
+13 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 36 amp=361 pan=0
+14 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 35 amp=97 pan=0
+15 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 36 amp=77 pan=0
+16 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 35 amp=99 pan=0
+26 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 26 amp=118 pan=0     #000:026  {S} Finger Snap
+27 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 27 amp=67 pan=-23     #000:027  {S} High Q
+28 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 28 amp=96 pan=31     #000:028  {S} Noise Slap
+29 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 29 amp=56 pan=-16     #000:029  {S} Scratch Push
+30 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 30 amp=58 pan=-16     #000:030  {S} Scratch Pull
+31 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 31 amp=121 pan=0      # Scratch Push(L) Scratch Push(R)    #000:031  {S} Sticks
+32 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 32 amp=143 pan=-16      # Scratch Pull(L) Scratch Pull(R)  #000:032  {S} Square Click
+33 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 33 amp=107 pan=0     #000:033  {S} Metronome Click
+34 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 34 amp=108 pan=0     #000:034  {S} Metronome Bell
+35 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 35 amp=134 pan=0     #000:035  {S} Deep Kick (R) {S} Deep Kick (L)
+36 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 35 amp=131 pan=0     #000:036  {S} Deep Kick (R) {S} Deep Kick (L)
+37 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 37 amp=131 pan=0     #000:037  {S} Rim Shot (R) {S} Rim Shot (L)
+38 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 38 amp=222 pan=50     #000:038  {S} Snare (L) {S} Snare (R)
+39 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 39 amp=128 pan=-16     #000:039  {S} Hand Clap (L) {S} Hand Clap (R)
+40 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 40 amp=240 pan=50     #000:040  {S} Snare (L) {S} Snare (R)
+41 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 41 amp=162 pan=-47     #000:041  {S} Low Tom (L) {S} Low Tom (R)
+42 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 42 amp=64 pan=31     #000:042  {S} Closed Hi-Hat {S} Closed Hi-Hat 3 {S} Closed Hi-Hat 2
+43 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 43 amp=160 pan=-28     #000:043  {S} Low Tom (L) {S} Low Tom (R)
+44 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 44 amp=67 pan=31     #000:044  {S} Pedal Hi-Hat
+45 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 45 amp=148 pan=-9     #000:045  {S} Medium Tom (L) {S} Medium Tom (R)
+46 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 46 amp=108 pan=31     #000:046  {S} Open Hi-Hat
+47 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 47 amp=140 pan=9     #000:047  {S} Medium Tom (L) {S} Medium Tom (R)
+48 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 48 amp=166 pan=28     #000:048  {S} High Tom (L) {S} High Tom (R)
+49 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 49 amp=143 pan=31     #000:049  {S} Crash Cymbal
+50 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 50 amp=170 pan=47     #000:050  {S} High Tom (L) {S} High Tom (R)
+51 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 51 amp=96 pan=-31     #000:051  {S} Ride Cymbal
+52 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 52 amp=108 pan=-31     #000:052  {S} Chinese Crash
+53 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 53 amp=76 pan=-31     #000:053  {S} Ride Bell Cymba {S} Ride Bell Cymba
+54 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 54 amp=127 pan=16     #000:054  {S} Tambourine
+55 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 55 amp=107 pan=-16     #000:055  {S} Splash Cymbal
+56 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 56 amp=127 pan=31     #000:056  {S} Cow Bell
+57 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 57 amp=108 pan=-31     #000:057  {S} Crash Cymbal 2
+58 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 58 amp=114 pan=-55     #000:058  {S} Vibra Slap
+59 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 59 amp=83 pan=-31     #000:059  {S} Ride Edge Cymba
+60 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 60 amp=127 pan=55     #000:060  {S} High Bongo
+61 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 61 amp=119 pan=55     #000:061  {S} Low Bongo
+62 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 62 amp=118 pan=-39     #000:062  {S} Mute High Conga
+63 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 63 amp=104 pan=-39     #000:063  {S} Open High Conga
+64 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 64 amp=121 pan=-31     #000:064  {S} Low Conga
+65 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 65 amp=155 pan=31     #000:065  {S} High Timbale
+66 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 66 amp=157 pan=31     #000:066  {S} Low Timbale
+67 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 67 amp=114 pan=-55     #000:067  {S} Agogo
+68 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 68 amp=118 pan=-55     #000:068  {S} Agogo
+69 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 69 amp=101 pan=-55     #000:069  {S} Cabasa
+70 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 70 amp=96 pan=-63     #000:070  {S} Maracas
+71 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 71 amp=96 pan=55     #000:071  {S} Whistle
+72 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 72 amp=102 pan=55     #000:072  {S} Whistle
+73 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 73 amp=119 pan=47     #000:073  {S} Short Guiro
+74 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 74 amp=108 pan=47     #000:074  {S} Long Guiro
+75 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 75 amp=131 pan=31     #000:075  {S} Claves {S} Claves 2
+76 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 76 amp=131 pan=55     #000:076  {S} High Wood Block
+77 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 77 amp=131 pan=55     #000:077  {S} Low Wood Block
+78 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 78 amp=96 pan=-31     #000:078  {S} Mute Cuica
+79 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 79 amp=102 pan=-31     #000:079  {S} Open Cuica
+80 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 80 amp=96 pan=-63     #000:080  {S} Mute Triangle
+81 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 81 amp=78 pan=-63     #000:081  {S} Open Triangle {S} Open Triangle
+82 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 82 amp=127 pan=47     #000:082  {S} Shaker (L) {S} Shaker (R)
+83 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 83 amp=134 pan=55     #000:083  {S} Jingle Bells
+84 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 84 amp=101 pan=63     #000:084  {S} Bell Tree
+85 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 85 amp=107 pan=-47     #000:085  {S} Castanets {S} Castanets
+86 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 86 amp=121 pan=-31     #000:086  {S} Mute Surdo
+87 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 87 amp=144 pan=-31     #000:087  {S} Open Surdo
+97 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 38 amp=178 pan=0
+98 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 40 amp=214 pan=0
+99 %font "Arachno SoundFont - Version 1.0.sf2" 128 1 38 amp=155 pan=0
+100 %font "Arachno SoundFont - Version 1.0.sf2" 128 1 40 amp=130 pan=0
+101 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 40 amp=363 pan=0
+102 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 38 amp=180 pan=0
+103 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 40 amp=264 pan=0
+104 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 38 amp=220 pan=0
+105 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 38 amp=145 pan=0
+106 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 40 amp=228 pan=0
+107 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 38 amp=123 pan=0
+108 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 40 amp=152 pan=0
+109 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 38 amp=122 pan=0
+110 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 40 amp=172 pan=0
+111 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 40 amp=125 pan=0
+112 %font "Arachno SoundFont - Version 1.0.sf2" 128 11 38 amp=110 pan=0
+113 %font "Arachno SoundFont - Version 1.0.sf2" 128 11 40 amp=165 pan=0
+114 %font "Arachno SoundFont - Version 1.0.sf2" 128 11 38 amp=117 pan=0
+115 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 40 amp=84 pan=0
+116 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 38 amp=163 pan=0
+117 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 38 amp=255 pan=0
+118 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 38 amp=64 pan=0
+119 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 38 amp=56 pan=0
+120 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 40 amp=55 pan=0
+121 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 38 amp=44 pan=0
+122 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 40 amp=79 pan=0
+123 %font "Arachno SoundFont - Version 1.0.sf2" 128 9 38 amp=130 pan=0
+124 %font "Arachno SoundFont - Version 1.0.sf2" 128 10 38 amp=96 pan=0
+125 %font "Arachno SoundFont - Version 1.0.sf2" 128 11 38 amp=187 pan=0
+126 %font "Arachno SoundFont - Version 1.0.sf2" 128 11 38 amp=128 pan=0
+127 %font "Arachno SoundFont - Version 1.0.sf2" 128 11 38 amp=145 pan=0
+
+drumset 8
+26 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 26 amp=89 pan=0     #008:026  {S} Finger Snap
+27 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 27 amp=69 pan=-23     #008:027  {E} High Q
+28 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 28 amp=89 pan=31     #008:028  {S} Noise Slap
+29 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 29 amp=73 pan=-16     #008:029  {S} Scratch Push
+30 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 30 amp=66 pan=-16     #008:030  {S} Scratch Pull {R} System Scratch {R} Zip Scratch
+31 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 31 amp=92 pan=0     #008:031  {S} Sticks
+32 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 32 amp=108 pan=-16     #008:032  {S} Square Click
+33 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 33 amp=81 pan=0     #008:033  {S} Metronome Click
+34 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 34 amp=79 pan=0     #008:034  {S} Metronome Bell {E} Carillon
+35 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 35 amp=86 pan=0     #008:035  {R} Deep Kick {P} Heavy Kick {R} SC-88 Pro Kick
+36 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 36 amp=69 pan=0     #008:036  {R} Kick {R} SC-88 Pro Kick
+37 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 37 amp=99 pan=0     #008:037  {R} Rim Shot
+38 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 38 amp=69 pan=0     #008:038  {E} Insane Snare {R} Mega Rock Snare {P} Heavy Snare 2 {R} SC-88 Pro Snare
+39 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 39 amp=97 pan=-16     #008:039  {E} Hand Clap
+40 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 40 amp=73 pan=0     #008:040  {E} Insane Snare {R} Mega Rock Snare {P} Heavy Snare 2 {R} SC-88 Pro Snare
+41 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 41 amp=81 pan=-47     #008:041  {R} Tom {R} Tom 2 {P} Heavy Tom Kick {R} Heavy Tom Mega Tom
+42 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 42 amp=62 pan=31     #008:042  {R} Closed Hi-Hat {R} Closed Hi-Hat 2 {R} Closed Hi-Hat 3
+43 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 43 amp=81 pan=-28     #008:043  {R} Tom {R} Tom 2 {P} Heavy Tom Kick {R} Heavy Tom Mega Tom
+44 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 44 amp=46 pan=31     #008:044  {R} Pedal Hi-Hat {R} Pedal Hi-Hat 2
+45 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 45 amp=79 pan=-9     #008:045  {R} Tom {R} Tom 2 {P} Heavy Tom Kick {R} Heavy Tom Mega Tom
+46 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 46 amp=70 pan=31     #008:046  {P} Open Hi-Hat
+47 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 47 amp=76 pan=9     #008:047  {R} Tom {R} Tom 2 {P} Heavy Tom Kick {R} Heavy Tom Mega Tom
+48 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 48 amp=92 pan=28     #008:048  {R} Tom {R} Tom 2 {P} Heavy Tom Kick {R} Heavy Tom Mega Tom
+49 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 49 amp=101 pan=31     #008:049  {P} Crash Cymbal
+50 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 50 amp=99 pan=47     #008:050  {R} Tom {R} Tom 2 {P} Heavy Tom Kick {R} Heavy Tom Mega Tom
+51 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 51 amp=73 pan=-31     #008:051  {P} Ride Cymbal
+52 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 52 amp=82 pan=-31     #008:052  {R} Chinese Crash
+53 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 53 amp=76 pan=-31     #008:053  {P} Ride Bell Cymba
+54 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 54 amp=92 pan=16     #008:054  {R} Tambourine {R} Brass Tambourin
+55 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 55 amp=81 pan=-16     #008:055  {P} Splash Cymbal
+56 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 56 amp=96 pan=31     #008:056  {R} Cow Bell
+57 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 57 amp=79 pan=-31     #008:057  {P} Crash Cymbal
+58 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 58 amp=89 pan=-55     #008:058  {S} Vibra Slap
+59 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 59 amp=66 pan=-31     #008:059  {P} Ride Cymbal
+60 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 60 amp=96 pan=55     #008:060  {P} High Bongo
+61 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 61 amp=97 pan=55     #008:061  {P} Low Bongo
+62 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 62 amp=90 pan=-39     #008:062  {R} Mute High Conga
+63 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 63 amp=79 pan=-39     #008:063  {R} Open High Conga
+64 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 64 amp=92 pan=-31     #008:064  {R} Low Conga
+65 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 65 amp=117 pan=31     #008:065  {R} High Timbale (L {R} High Timbale (R
+66 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 66 amp=119 pan=31     #008:066  {R} Low Timbale (L) {R} Low Timbale (R)
+67 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 67 amp=86 pan=-55     #008:067  {S} Agogo
+68 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 68 amp=89 pan=-55     #008:068  {S} Agogo
+69 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 69 amp=73 pan=-55     #008:069  {S} Cabasa
+70 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 70 amp=76 pan=-63     #008:070  {S} Maracas
+71 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 71 amp=73 pan=55     #008:071  {S} Whistle
+72 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 72 amp=77 pan=55     #008:072  {S} Whistle
+73 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 73 amp=88 pan=47     #008:073  {S} Short Guiro
+74 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 74 amp=92 pan=47     #008:074  {R} Long Guiro
+75 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 75 amp=96 pan=31     #008:075  {R} Claves
+76 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 76 amp=99 pan=55     #008:076  {S} High Wood Block
+77 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 77 amp=99 pan=55     #008:077  {S} Low Wood Block
+78 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 78 amp=73 pan=-31     #008:078  {S} Mute Cuica
+79 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 79 amp=77 pan=-31     #008:079  {S} Open Cuica
+80 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 80 amp=73 pan=-63     #008:080  {S} Mute Triangle
+81 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 81 amp=57 pan=-63     #008:081  {S} Open Triangle {S} Open Triangle
+82 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 82 amp=96 pan=47     #008:082  {S} Shaker (L) {S} Shaker (R)
+83 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 83 amp=106 pan=55     #008:083  {P} Jingle Bells
+84 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 84 amp=76 pan=63     #008:084  {S} Bell Tree
+85 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 85 amp=79 pan=-47     #008:085  {S} Castanets {S} Castanets
+86 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 86 amp=92 pan=-31     #008:086  {S} Mute Surdo
+87 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 87 amp=109 pan=-31     #008:087  {S} Open Surdo
+
+
+
+drumset 16
+26 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 26 amp=162 pan=0     #016:026  {S} Finger Snap
+27 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 27 amp=128 pan=-23     #016:027  {E} High Q
+28 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 28 amp=166 pan=31     #016:028  {T} Noise Slap
+29 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 29 amp=136 pan=-16     #016:029  {S} Scratch Push
+30 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 30 amp=123 pan=-16     #016:030  {S} Scratch Pull {R} System Scratch {R} Zip Scratch
+31 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 31 amp=173 pan=0     #016:031  {S} Sticks
+32 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 32 amp=204 pan=-16     #016:032  {S} Square Click
+33 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 33 amp=153 pan=0     #016:033  {E} Metronome Click
+34 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 34 amp=154 pan=0     #016:034  {S} Metronome Bell
+35 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 35 amp=144 pan=0     #016:035  {P} Deep Kick {P} Heavy Kick {R} SC-88 Pro Kick
+36 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 36 amp=168 pan=0     #016:036  {P} Kick {R} SC-88 Pro Kick
+37 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 37 amp=186 pan=0     #016:037  {P} Rim Shot (R) {P} Rim Shot (L)
+38 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 38 amp=168 pan=0     #016:038  {P} Snare {P} Heavy Snare 1
+39 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 39 amp=182 pan=-16     #016:039  {J} Hand Clap (L) {J} Hand Clap (R)
+40 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 40 amp=182 pan=0     #016:040  {P} Snare 2 {P} Heavy Snare 2
+41 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 41 amp=144 pan=-47     #016:041  {P} Low Tom {P} Heavy Tom Kick {R} Heavy Tom Mega Tom
+42 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 42 amp=111 pan=31     #016:042  {R} Closed Hi-Hat {R} Closed Hi-Hat 2 {R} Closed Hi-Hat 3
+43 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 43 amp=144 pan=-28     #016:043  {P} Low Tom {P} Heavy Tom Kick {R} Heavy Tom Mega Tom
+44 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 44 amp=86 pan=31     #016:044  {R} Pedal Hi-Hat {R} Pedal Hi-Hat 2
+45 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 45 amp=132 pan=-9     #016:045  {P} Medium Tom {P} Heavy Tom Kick {R} Heavy Tom Mega Tom
+46 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 46 amp=132 pan=31     #016:046  {P} Open Hi-Hat
+47 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 47 amp=130 pan=9     #016:047  {P} Medium Tom {P} Heavy Tom Kick {R} Heavy Tom Mega Tom
+48 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 48 amp=162 pan=28     #016:048  {P} High Tom {P} Heavy Tom Kick {R} Heavy Tom Mega Tom
+49 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 49 amp=186 pan=31     #016:049  {P} Crash Cymbal
+50 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 50 amp=165 pan=47     #016:050  {P} High Tom {P} Heavy Tom Kick {R} Heavy Tom Mega Tom
+51 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 51 amp=128 pan=-31     #016:051  {P} Ride Cymbal
+52 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 52 amp=154 pan=-31     #016:052  {R} Chinese Crash
+53 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 53 amp=147 pan=-31     #016:053  {P} Ride Bell Cymba
+54 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 54 amp=173 pan=16     #016:054  {R} Tambourine {R} Brass Tambourin
+55 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 55 amp=147 pan=-16     #016:055  {P} Splash Cymbal
+56 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 56 amp=178 pan=31     #016:056  {P} Cow Bell
+57 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 57 amp=154 pan=-31     #016:057  {P} Crash Cymbal
+58 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 58 amp=165 pan=-55     #016:058  {P} Vibra Slap
+59 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 59 amp=118 pan=-31     #016:059  {P} Ride Cymbal
+60 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 60 amp=178 pan=55     #016:060  {P} High Bongo
+61 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 61 amp=182 pan=55     #016:061  {P} Low Bongo
+62 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 62 amp=166 pan=-39     #016:062  {P} Mute High Conga
+63 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 63 amp=147 pan=-39     #016:063  {P} Open High Conga
+64 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 64 amp=173 pan=-31     #016:064  {P} Low Conga
+65 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 65 amp=218 pan=31     #016:065  {R} High Timbale (L {R} High Timbale (R
+66 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 66 amp=223 pan=31     #016:066  {R} Low Timbale (L) {R} Low Timbale (R)
+67 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 67 amp=162 pan=-55     #016:067  {S} Agogo
+68 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 68 amp=166 pan=-55     #016:068  {S} Agogo
+69 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 69 amp=136 pan=-55     #016:069  {S} Cabasa
+70 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 70 amp=132 pan=-63     #016:070  {S} Maracas
+71 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 71 amp=136 pan=55     #016:071  {S} Whistle
+72 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 72 amp=144 pan=55     #016:072  {S} Whistle
+73 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 73 amp=168 pan=47     #016:073  {S} Short Guiro
+74 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 74 amp=162 pan=47     #016:074  {R} Long Guiro
+75 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 75 amp=178 pan=31     #016:075  {R} Claves
+76 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 76 amp=186 pan=55     #016:076  {S} High Wood Block
+77 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 77 amp=186 pan=55     #016:077  {S} Low Wood Block
+78 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 78 amp=136 pan=-31     #016:078  {S} Mute Cuica
+79 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 79 amp=144 pan=-31     #016:079  {S} Open Cuica
+80 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 80 amp=136 pan=-63     #016:080  {S} Mute Triangle
+81 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 81 amp=111 pan=-63     #016:081  {S} Open Triangle {S} Open Triangle
+82 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 82 amp=178 pan=47     #016:082  {S} Shaker (L) {S} Shaker (R)
+83 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 83 amp=204 pan=55     #016:083  {P} Jingle Bells
+84 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 84 amp=143 pan=63     #016:084  {S} Bell Tree
+85 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 85 amp=162 pan=-47     #016:085  {S} Castanets {S} Castanets
+86 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 86 amp=173 pan=-31     #016:086  {S} Mute Surdo
+87 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 87 amp=206 pan=-31     #016:087  {S} Open Surdo
+
+
+drumset 24
+26 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 26 amp=133 pan=0     #024:026  {S} Finger Snap {E} Finger Snap 2
+27 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 27 amp=107 pan=-23     #024:027  {E} High Q
+28 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 28 amp=139 pan=31     #024:028  {E} Noise Slap
+29 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 29 amp=110 pan=-16     #024:029  {T} Scratch Push
+30 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 30 amp=113 pan=-16     #024:030  {T} Scratch Pull
+31 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 31 amp=144 pan=0     #024:031  {T} Sticks
+32 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 32 amp=167 pan=-16     #024:032  {S} Square Click
+33 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 33 amp=126 pan=0     #024:033  {E} Metronome Click
+34 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 34 amp=124 pan=0     #024:034  {E} Carillon {T} Metronome Click
+35 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 35 amp=130 pan=0     #024:035  {E} Kick {T} Mega 909 Kick
+36 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 36 amp=120 pan=0     #024:036  {E} Kick {T} Mega 909 Kick
+37 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 37 amp=154 pan=0     #024:037  {P} Rim Shot (R) {P} Rim Shot (L)
+38 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 38 amp=113 pan=0     #024:038  {E} Insane Snare {P} Snare 2 {P} Heavy Snare 2 {E} Korg X5 Ambient
+39 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 39 amp=150 pan=-16     #024:039  {E} Hand Clap
+40 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 40 amp=138 pan=0     #024:040  {E} Yamaha SD 1 (L) {E} Yamaha SD 1 (R) {E} Yamaha SD 1 (L) {E} Yamaha SD 1 (R) {E} Korg X5 Ambient
+41 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 41 amp=138 pan=-47     #024:041  {E} Tom {R} Tom 2 {R} Heavy Tom {E} Fairlight SynTo {E} Fairlight SynTo Mega Tom
+42 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 42 amp=77 pan=31     #024:042  {R} Closed Hi-Hat {R} Closed Hi-Hat 2 {R} Closed Hi-Hat 3
+43 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 43 amp=133 pan=-28     #024:043  {E} Tom {R} Tom 2 {R} Heavy Tom {E} Fairlight SynTo {E} Fairlight SynTo Mega Tom
+44 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 44 amp=65 pan=31     #024:044  {R} Pedal Hi-Hat {R} Pedal Hi-Hat 2
+45 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 45 amp=120 pan=-9     #024:045  {E} Tom {R} Tom 2 {R} Heavy Tom {E} Fairlight SynTo {E} Fairlight SynTo Mega Tom
+46 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 46 amp=113 pan=31     #024:046  {P} Open Hi-Hat
+47 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 47 amp=120 pan=9     #024:047  {E} Tom {R} Tom 2 {R} Heavy Tom {E} Fairlight SynTo {E} Fairlight SynTo Mega Tom
+48 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 48 amp=141 pan=28     #024:048  {E} Tom {R} Tom 2 {R} Heavy Tom {E} Fairlight SynTo {E} Fairlight SynTo Mega Tom
+49 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 49 amp=158 pan=31     #024:049  {P} Crash Cymbal
+50 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 50 amp=151 pan=47     #024:050  {E} Tom {R} Tom 2 {R} Heavy Tom {E} Fairlight SynTo {E} Fairlight SynTo Mega Tom
+51 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 51 amp=110 pan=-31     #024:051  {P} Ride Cymbal
+52 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 52 amp=130 pan=-31     #024:052  {R} Chinese Crash
+53 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 53 amp=124 pan=-31     #024:053  {P} Ride Bell Cymba
+54 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 54 amp=144 pan=16     #024:054  {R} Tambourine {R} Brass Tambourin
+55 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 55 amp=126 pan=-16     #024:055  {E} Splash Cymbal
+56 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 56 amp=150 pan=31     #024:056  {E} Cow Bell
+57 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 57 amp=133 pan=-31     #024:057  {P} Crash Cymbal
+58 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 58 amp=138 pan=-55     #024:058  {P} Vibra Slap
+59 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 59 amp=107 pan=-31     #024:059  {P} Ride Cymbal
+60 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 60 amp=150 pan=55     #024:060  {P} High Bongo
+61 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 61 amp=151 pan=55     #024:061  {P} Low Bongo
+62 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 62 amp=141 pan=-39     #024:062  {R} Mute High Conga
+63 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 63 amp=126 pan=-39     #024:063  {R} Open High Conga
+64 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 64 amp=144 pan=-31     #024:064  {S} Low Conga
+65 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 65 amp=183 pan=31     #024:065  {E} High Timbale
+66 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 66 amp=185 pan=31     #024:066  {E} Low Timbale
+67 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 67 amp=138 pan=-55     #024:067  {S} Agogo
+68 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 68 amp=141 pan=-55     #024:068  {S} Agogo
+69 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 69 amp=113 pan=-55     #024:069  {E} Cabasa
+70 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 70 amp=120 pan=-63     #024:070  {E} Maracas
+71 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 71 amp=113 pan=55     #024:071  {T} Short Whistle
+72 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 72 amp=120 pan=55     #024:072  {T} Long Whistle
+73 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 73 amp=138 pan=47     #024:073  {S} Short Guiro
+74 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 74 amp=141 pan=47     #024:074  {R} Long Guiro
+75 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 75 amp=150 pan=31     #024:075  {R} Claves
+76 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 76 amp=154 pan=55     #024:076  {S} High Wood Block
+77 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 77 amp=154 pan=55     #024:077  {S} Low Wood Block
+78 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 78 amp=113 pan=-31     #024:078  {S} Mute Cuica
+79 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 79 amp=120 pan=-31     #024:079  {S} Open Cuica
+80 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 80 amp=110 pan=-63     #024:080  {S} Mute Triangle
+81 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 81 amp=97 pan=-63     #024:081  {S} Open Triangle {S} Open Triangle
+82 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 82 amp=150 pan=47     #024:082  {S} Shaker (L) {S} Shaker (R)
+83 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 83 amp=160 pan=55     #024:083  {T} Jingle Bells
+84 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 84 amp=120 pan=63     #024:084  {T} Bell Tree
+85 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 85 amp=126 pan=-47     #024:085  {S} Castanets {S} Castanets
+86 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 86 amp=144 pan=-31     #024:086  {S} Mute Surdo
+87 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 87 amp=170 pan=-31     #024:087  {S} Open Surdo
+
+drumset 25
+26 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 26 amp=113 pan=0     #025:026  {S} Finger Snap
+27 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 27 amp=91 pan=-23     #025:027  {S} High Q
+28 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 28 amp=116 pan=31     #025:028  {T} Noise Slap
+29 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 29 amp=95 pan=-16     #025:029  {T} Scratch Push
+30 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 30 amp=95 pan=-16     #025:030  {T} Scratch Pull
+31 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 31 amp=121 pan=0     #025:031  {T} Sticks
+32 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 32 amp=138 pan=-16     #025:032  {S} Square Click
+33 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 33 amp=107 pan=0     #025:033  {T} Metronome Click
+34 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 34 amp=108 pan=0     #025:034  {T} Carillon
+35 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 35 amp=138 pan=0     #025:035  {T} 909 Bass Drum
+36 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 36 amp=121 pan=0     #025:036  {T} Mega 909 Kick {T} Kick
+37 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 37 amp=144 pan=0     #025:037  {T} 808 Rim Shot
+38 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 38 amp=142 pan=0     #025:038  {T} 909 Snare 1
+39 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 39 amp=127 pan=-16     #025:039  {T} 808 Hand Clap
+40 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 40 amp=146 pan=0     #025:040  {T} Mega 909 Snare
+41 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 41 amp=164 pan=-47     #025:041  {T} 909 Low Tom
+42 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 42 amp=78 pan=31     #025:042  {T} Closed Hi-Hat
+43 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 43 amp=156 pan=-28     #025:043  {T} 909 Low Tom
+44 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 44 amp=66 pan=31     #025:044  {T} Closed Hi-Hat
+45 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 45 amp=146 pan=-9     #025:045  {T} 909 Med Tom
+46 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 46 amp=115 pan=31     #025:046  {T} 808 Open Hi-Hat
+47 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 47 amp=138 pan=9     #025:047  {T} 909 Med Tom
+48 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 48 amp=160 pan=28     #025:048  {T} 909 Hi Tom
+49 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 49 amp=132 pan=31     #025:049  {T} 909 Crash Cymba
+50 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 50 amp=168 pan=47     #025:050  {T} 909 Hi Tom
+51 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 51 amp=92 pan=-31     #025:051  {T} 909 Ride Cymbal
+52 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 52 amp=108 pan=-31     #025:052  {R} Chinese Crash
+53 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 53 amp=103 pan=-31     #025:053  {S} Ride Bell Cymba
+54 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 54 amp=130 pan=16     #025:054  {T} Tambourine
+55 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 55 amp=103 pan=-16     #025:055  {E} Splash Cymbal
+56 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 56 amp=146 pan=31     #025:056  {T} 808 Cow Bell
+57 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 57 amp=113 pan=-31     #025:057  {P} Crash Cymbal
+58 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 58 amp=108 pan=-55     #025:058  {P} Vibra Slap
+59 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 59 amp=86 pan=-31     #025:059  {S} Ride Bell Cymba
+60 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 60 amp=125 pan=55     #025:060  {P} High Bongo
+61 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 61 amp=127 pan=55     #025:061  {P} Low Bongo
+62 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 62 amp=134 pan=-39     #025:062  {T} 808 High Conga
+63 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 63 amp=144 pan=-31     #025:063  {T} 808 Med Conga
+64 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 64 amp=138 pan=-23     #025:064  {T} 808 Low Conga
+65 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 65 amp=152 pan=31     #025:065  {E} High Timbale
+66 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 66 amp=156 pan=31     #025:066  {E} Low Timbale
+67 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 67 amp=115 pan=-55     #025:067  {T} High Agogo
+68 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 68 amp=116 pan=-55     #025:068  {T} Low Agogo
+69 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 69 amp=100 pan=-55     #025:069  {S} Cabasa
+70 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 70 amp=113 pan=-63     #025:070  {T} 808 Maracas
+71 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 71 amp=95 pan=55     #025:071  {T} Short Whistle
+72 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 72 amp=101 pan=55     #025:072  {T} Long Whistle
+73 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 73 amp=118 pan=47     #025:073  {T} Short Guiro
+74 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 74 amp=121 pan=47     #025:074  {S} Long Guiro
+75 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 75 amp=158 pan=31     #025:075  {T} 808 Claves
+76 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 76 amp=130 pan=55     #025:076  {S} High Wood Block
+77 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 77 amp=130 pan=55     #025:077  {S} Low Wood Block
+78 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 78 amp=95 pan=-31     #025:078  {S} Mute Cuica
+79 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 79 amp=101 pan=-31     #025:079  {S} Open Cuica
+80 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 80 amp=92 pan=-63     #025:080  {S} Mute Triangle
+81 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 81 amp=108 pan=-63     #025:081  {S} Open Triangle
+82 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 82 amp=125 pan=47     #025:082  {T} Shaker
+83 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 83 amp=142 pan=55     #025:083  {T} Jingle Bells
+84 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 84 amp=101 pan=63     #025:084  {T} Bell Tree
+85 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 85 amp=144 pan=-47     #025:085  {T} Castanets
+86 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 86 amp=121 pan=-31     #025:086  {S} Mute Surdo
+87 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 87 amp=143 pan=-31     #025:087  {S} Open Surdo
+
+drumset 32
+26 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 26 amp=116 pan=0     #032:026  {S} Finger Snap
+27 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 27 amp=89 pan=-23     #032:027  {S} High Q
+28 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 28 amp=86 pan=31     #032:028  {E} Noise Slap {E} Noise Slap
+29 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 29 amp=95 pan=-16     #032:029  {S} Scratch Push
+30 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 30 amp=95 pan=-16     #032:030  {S} Scratch Pull
+31 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 31 amp=121 pan=0     #032:031  {T} Sticks
+32 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 32 amp=142 pan=-16     #032:032  {S} Square Click
+33 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 33 amp=107 pan=0     #032:033  {S} Metronome Click
+34 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 34 amp=108 pan=0     #032:034  {O} Metronome Click
+35 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 35 amp=134 pan=0     #032:035  {S} Deep Kick (R) {S} Deep Kick (L)
+36 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 36 amp=127 pan=0     #032:036  {S} Deep Kick (R) {S} Deep Kick (L)
+37 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 37 amp=130 pan=0     #032:037  {P} Rim Shot (R)
+38 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 38 amp=142 pan=0     #032:038  {S} Snare (L) {S} Snare (R)
+39 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 39 amp=127 pan=-16     #032:039  {J} Hand Clap (L) {J} Hand Clap (R)
+40 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 40 amp=146 pan=0     #032:040  {S} Snare (L) {S} Snare (R)
+41 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 41 amp=142 pan=-47     #032:041  {J} Floor Tom (L) {J} Floor Tom (R)
+42 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 42 amp=74 pan=31     #032:042  {S} Closed Hi-Hat {S} Closed Hi-Hat 3
+43 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 43 amp=134 pan=-28     #032:043  {J} Floor Tom (L) {J} Floor Tom (R)
+44 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 44 amp=65 pan=31     #032:044  {S} Pedal Hi-Hat
+45 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 45 amp=125 pan=-9     #032:045  {J} Floor Tom (L) {J} Floor Tom (R)
+46 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 46 amp=107 pan=31     #032:046  {S} Open Hi-Hat
+47 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 47 amp=121 pan=9     #032:047  {J} Floor Tom (L) {J} Floor Tom (R)
+48 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 48 amp=142 pan=28     #032:048  {J} Floor Tom (L) {J} Floor Tom (R)
+49 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 49 amp=138 pan=31     #032:049  {S} Crash Cymbal
+50 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 50 amp=151 pan=47     #032:050  {J} Floor Tom (L) {J} Floor Tom (R)
+51 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 51 amp=92 pan=-31     #032:051  {S} Ride Cymbal
+52 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 52 amp=108 pan=-31     #032:052  {S} Chinese Crash
+53 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 53 amp=103 pan=-31     #032:053  {S} Ride Bell Cymba
+54 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 54 amp=127 pan=16     #032:054  {S} Tambourine
+55 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 55 amp=103 pan=-16     #032:055  {S} Splash Cymbal
+56 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 56 amp=125 pan=31     #032:056  {P} Cow Bell
+57 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 57 amp=108 pan=-31     #032:057  {S} Crash Cymbal 2
+58 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 58 amp=113 pan=-55     #032:058  {S} Vibra Slap
+59 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 59 amp=78 pan=-31     #032:059  {S} Ride Edge Cymba {B} Ride Edge 2
+60 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 60 amp=125 pan=55     #032:060  {S} High Bongo
+61 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 61 amp=127 pan=55     #032:061  {S} Low Bongo
+62 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 62 amp=116 pan=-39     #032:062  {S} Mute High Conga
+63 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 63 amp=103 pan=-39     #032:063  {S} Open High Conga
+64 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 64 amp=121 pan=-31     #032:064  {S} Low Conga
+65 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 65 amp=152 pan=31     #032:065  {S} High Timbale
+66 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 66 amp=156 pan=31     #032:066  {S} Low Timbale
+67 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 67 amp=113 pan=-55     #032:067  {S} Agogo
+68 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 68 amp=116 pan=-55     #032:068  {S} Agogo
+69 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 69 amp=95 pan=-55     #032:069  {S} Cabasa
+70 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 70 amp=95 pan=-63     #032:070  {S} Maracas
+71 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 71 amp=95 pan=55     #032:071  {S} Whistle
+72 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 72 amp=101 pan=55     #032:072  {S} Whistle
+73 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 73 amp=116 pan=47     #032:073  {S} Short Guiro
+74 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 74 amp=118 pan=47     #032:074  {R} Long Guiro
+75 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 75 amp=125 pan=31     #032:075  {S} Claves
+76 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 76 amp=130 pan=55     #032:076  {S} High Wood Block
+77 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 77 amp=130 pan=55     #032:077  {S} Low Wood Block
+78 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 78 amp=95 pan=-31     #032:078  {S} Mute Cuica
+79 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 79 amp=101 pan=-31     #032:079  {S} Open Cuica
+80 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 80 amp=92 pan=-63     #032:080  {S} Mute Triangle
+81 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 81 amp=78 pan=-63     #032:081  {S} Open Triangle {S} Open Triangle
+82 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 82 amp=118 pan=47     #032:082  {S} Shaker (L) {S} Shaker (R)
+83 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 83 amp=134 pan=55     #032:083  {S} Jingle Bells
+84 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 84 amp=101 pan=63     #032:084  {S} Bell Tree
+85 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 85 amp=144 pan=-47     #032:085  {J} Castanets
+86 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 86 amp=121 pan=-31     #032:086  {S} Mute Surdo
+87 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 87 amp=143 pan=-31     #032:087  {S} Open Surdo
+
+drumset 40
+26 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 26 amp=113 pan=0     #040:026  {S} Finger Snap
+27 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 27 amp=89 pan=-23     #040:027  {S} High Q
+28 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 28 amp=86 pan=31     #040:028  {E} Noise Slap {E} Noise Slap
+29 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 29 amp=95 pan=-16     #040:029  {S} Scratch Push
+30 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 30 amp=100 pan=-16     #040:030  {S} Scratch Pull
+31 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 31 amp=125 pan=0     #040:031  {T} Sticks
+32 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 32 amp=142 pan=-16     #040:032  {S} Square Click
+33 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 33 amp=107 pan=0     #040:033  {S} Metronome Click
+34 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 34 amp=108 pan=0     #040:034  {O} Metronome Click
+35 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 35 amp=134 pan=0     #040:035  {S} Deep Kick (R) {S} Deep Kick (L)
+37 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 37 amp=130 pan=0     #040:037  {P} Rim Shot (L) {P} Rim Shot (R)
+38 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 38 amp=130 pan=0     #040:038  {S} Snare (L) {B} Tap (R) {B} Tap (L)
+39 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 39 amp=101 pan=0     #040:039  {B} Slap (L) {B} Slap (L) {B} Slap (R)
+40 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 40 amp=144 pan=0     #040:040  {S} Snare (L) {B} Swirl (R) {B} Swirl (L)
+41 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 41 amp=142 pan=-47     #040:041  {J} Floor Tom (L) {J} Floor Tom (R) {S} Tambourine
+42 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 42 amp=80 pan=31     #040:042  {R} Closed Hi-Hat {R} Closed Hi-Hat 2
+43 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 43 amp=132 pan=-28     #040:043  {J} Floor Tom (L) {J} Floor Tom (R)
+44 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 44 amp=65 pan=31     #040:044  {R} Pedal Hi-Hat
+45 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 45 amp=125 pan=-9     #040:045  {J} Floor Tom (L) {J} Floor Tom (R)
+46 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 46 amp=91 pan=31     #040:046  {P} Open Hi-Hat
+47 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 47 amp=118 pan=9     #040:047  {J} Floor Tom (L) {J} Floor Tom (R)
+48 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 48 amp=142 pan=28     #040:048  {J} Floor Tom (L) {J} Floor Tom (R)
+49 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 49 amp=138 pan=31     #040:049  {S} Crash Cymbal {S} Vibra Slap
+50 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 50 amp=146 pan=47     #040:050  {J} Floor Tom (L) {J} Floor Tom (R) {S} Tambourine
+51 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 51 amp=86 pan=-31     #040:051  {S} Ride Cymbal {S} Vibra Slap
+52 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 52 amp=103 pan=-31     #040:052  {S} Chinese Crash
+53 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 53 amp=92 pan=-31     #040:053  {S} Ride Bell Cymba
+54 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 54 amp=116 pan=16     #040:054  {S} Tambourine {S} Tambourine
+55 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 55 amp=100 pan=-16     #040:055  {S} Splash Cymbal {S} Vibra Slap
+56 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 56 amp=116 pan=31     #040:056  {E} Cow Bell {S} Tambourine
+57 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 57 amp=91 pan=-31     #040:057  {S} Crash Cymbal 2 {S} Vibra Slap
+58 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 58 amp=115 pan=-55     #040:058  {S} Vibra Slap
+59 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 59 amp=74 pan=-31     #040:059  {S} Ride Edge Cymba {B} Ride Edge 2
+60 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 60 amp=125 pan=55     #040:060  {S} High Bongo
+61 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 61 amp=127 pan=55     #040:061  {S} Low Bongo
+62 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 62 amp=116 pan=-39     #040:062  {S} Mute High Conga
+63 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 63 amp=103 pan=-39     #040:063  {S} Open High Conga
+64 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 64 amp=121 pan=-31     #040:064  {S} Low Conga
+65 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 65 amp=152 pan=31     #040:065  {S} High Timbale
+66 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 66 amp=156 pan=31     #040:066  {S} Low Timbale
+67 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 67 amp=115 pan=-55     #040:067  {S} Agogo
+68 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 68 amp=116 pan=-55     #040:068  {S} Agogo
+69 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 69 amp=95 pan=-55     #040:069  {S} Cabasa
+70 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 70 amp=95 pan=-63     #040:070  {S} Maracas
+71 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 71 amp=95 pan=55     #040:071  {S} Whistle
+72 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 72 amp=101 pan=55     #040:072  {S} Whistle
+73 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 73 amp=116 pan=47     #040:073  {S} Short Guiro
+74 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 74 amp=116 pan=47     #040:074  {R} Long Guiro
+75 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 75 amp=125 pan=31     #040:075  {R} Claves
+76 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 76 amp=130 pan=55     #040:076  {S} High Wood Block
+77 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 77 amp=130 pan=55     #040:077  {S} Low Wood Block
+78 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 78 amp=95 pan=-31     #040:078  {S} Mute Cuica
+79 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 79 amp=101 pan=-31     #040:079  {S} Open Cuica
+80 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 80 amp=95 pan=-63     #040:080  {S} Mute Triangle
+81 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 81 amp=78 pan=-63     #040:081  {S} Open Triangle {S} Open Triangle
+82 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 82 amp=125 pan=47     #040:082  {S} Shaker (L) {S} Shaker (R)
+83 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 83 amp=138 pan=55     #040:083  {S} Jingle Bells
+84 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 84 amp=95 pan=63     #040:084  {S} Bell Tree
+85 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 85 amp=144 pan=-47     #040:085  {J} Castanets
+86 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 86 amp=121 pan=-31     #040:086  {S} Mute Surdo
+87 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 87 amp=143 pan=-31     #040:087  {S} Open Surdo
+
+drumset 48
+26 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 26 amp=115 pan=0     #048:026  {S} Finger Snap
+27 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 27 amp=91 pan=31     #048:027  {R} Closed Hi-Hat {R} Closed Hi-Hat 2 {R} Closed Hi-Hat 3
+28 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 28 amp=103 pan=31     #048:028  {R} Pedal Hi-Hat {R} Pedal Hi-Hat 2
+29 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 29 amp=95 pan=31     #048:029  {P} Open Hi-Hat
+30 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 30 amp=100 pan=-31     #048:030  {P} Ride Cymbal
+31 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 31 amp=121 pan=0     #048:031  {S} Sticks
+32 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 32 amp=142 pan=-16     #048:032  {S} Square Click
+33 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 33 amp=107 pan=0     #048:033  {E} Metronome Click
+34 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 34 amp=107 pan=0     #048:034  {O} Metronome Click
+35 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 35 amp=138 pan=0     #048:035  {O} Kick
+37 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 37 amp=130 pan=0     #048:037  {P} Rim Shot (R) {P} Rim Shot (L)
+38 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 38 amp=116 pan=-31     #048:038  {O} Snare {P} Heavy Snare 1
+39 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 39 amp=127 pan=-47     #048:039  {S} Castanets
+40 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 40 amp=121 pan=0     #048:040  {O} Snare {P} Heavy Snare 1
+41 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 41 amp=164 pan=-47     #048:041  {O} Roland Timpani
+43 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 43 amp=156 pan=-47     #048:043  {O} Roland Timpani
+49 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 49 amp=130 pan=-47     #048:049  {O} Roland Timpani
+54 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 54 amp=121 pan=16     #048:054  {R} Tambourine {R} Brass Tambourin
+55 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 55 amp=107 pan=-16     #048:055  {P} Splash Cymbal
+56 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 56 amp=125 pan=31     #048:056  {P} Cow Bell
+57 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 57 amp=108 pan=-31     #048:057  {O} Concert Cymbal
+58 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 58 amp=116 pan=-55     #048:058  {P} Vibra Slap
+59 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 59 amp=82 pan=-47     #048:059  {O} Concert Cymbal
+60 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 60 amp=125 pan=55     #048:060  {P} High Bongo
+61 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 61 amp=127 pan=55     #048:061  {P} Low Bongo
+62 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 62 amp=116 pan=-39     #048:062  {P} Mute High Conga
+63 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 63 amp=103 pan=-39     #048:063  {P} Open High Conga
+64 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 64 amp=121 pan=-31     #048:064  {P} Low Conga
+65 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 65 amp=152 pan=31     #048:065  {S} High Timbale
+66 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 66 amp=156 pan=31     #048:066  {S} Low Timbale
+67 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 67 amp=115 pan=-55     #048:067  {S} Agogo
+68 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 68 amp=116 pan=-55     #048:068  {S} Agogo
+69 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 69 amp=100 pan=-55     #048:069  {S} Cabasa
+70 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 70 amp=95 pan=-63     #048:070  {S} Maracas
+71 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 71 amp=95 pan=55     #048:071  {S} Whistle
+72 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 72 amp=101 pan=55     #048:072  {S} Whistle
+73 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 73 amp=115 pan=47     #048:073  {S} Short Guiro
+74 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 74 amp=107 pan=47     #048:074  {S} Long Guiro
+75 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 75 amp=125 pan=31     #048:075  {S} Claves
+76 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 76 amp=130 pan=55     #048:076  {S} High Wood Block
+77 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 77 amp=130 pan=55     #048:077  {S} Low Wood Block
+78 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 78 amp=95 pan=-31     #048:078  {S} Mute Cuica
+79 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 79 amp=101 pan=-31     #048:079  {S} Open Cuica
+80 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 80 amp=92 pan=-63     #048:080  {S} Mute Triangle
+81 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 81 amp=78 pan=-63     #048:081  {S} Open Triangle {S} Open Triangle
+82 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 82 amp=121 pan=47     #048:082  {S} Shaker (L) {S} Shaker (R)
+83 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 83 amp=134 pan=55     #048:083  {P} Jingle Bells
+84 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 84 amp=101 pan=63     #048:084  {S} Bell Tree
+85 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 85 amp=144 pan=-47     #048:085  {S} Castanets
+86 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 86 amp=121 pan=-31     #048:086  {S} Mute Surdo
+87 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 87 amp=143 pan=-31     #048:087  {S} Open Surdo
+
+drumset 49
+26 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 26 amp=116 pan=16   #049:026  {S} Finger Snap
+27 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 27 amp=89 pan=-47   #049:027  {E} High Q
+28 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 28 amp=116 pan=31   #049:028  {S} Noise Slap
+29 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 29 amp=95 pan=-31   #049:029  {S} Scratch Push
+30 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 30 amp=86 pan=-31   #049:030  {S} Scratch Pull {R} System Scratch {R} Zip Scratch
+31 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 31 amp=125 pan=-47   #049:031  {S} Sticks
+32 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 32 amp=142 pan=-63   #049:032  {S} Square Click
+33 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 33 amp=107 pan=55   #049:033  {S} Metronome Click
+34 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 34 amp=103 pan=63   #049:034  {S} Metronome Bell {E} Carillon
+35 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 35 amp=113 pan=-55   #049:035  {R} Deep Kick {P} Heavy Kick {R} SC-88 Pro Kick
+36 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 36 amp=91 pan=0   #049:036  {R} Kick {R} SC-88 Pro Kick
+37 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 37 amp=130 pan=0   #049:037  {R} Rim Shot
+38 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 38 amp=91 pan=-31   #049:038  {E} Insane Snare {R} Mega Rock Snare {P} Heavy Snare 2 {R} SC-88 Pro Snare
+39 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 39 amp=125 pan=63   #049:039  {E} Hand Clap
+40 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 40 amp=95 pan=63   #049:     #040  {E} Insane Snare {R} Mega Rock Snare {P} Heavy Snare 2 {R} SC-88 Pro Snare
+41 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 41 amp=107 pan=31   #049:041  {R} Tom {R} Tom 2 {P} Heavy Tom Kick {R} Heavy Tom Mega Tom
+42 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 42 amp=82 pan=47   #049:042  {R} Closed Hi-Hat {R} Closed Hi-Hat 2 {R} Closed Hi-Hat 3
+43 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 43 amp=107 pan=47   #049:043  {R} Tom {R} Tom 2 {P} Heavy Tom Kick {R} Heavy Tom Mega Tom
+44 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 44 amp=55 pan=63   #049:044  {R} Pedal Hi-Hat {R} Pedal Hi-Hat 2
+45 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 45 amp=103 pan=-78   #049:045  {R} Tom {R} Tom 2 {P} Heavy Tom Kick {R} Heavy Tom Mega Tom
+46 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 46 amp=107 pan=78   #049:046  {P} Open Hi-Hat
+47 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 47 amp=101 pan=39   #049:047  {R} Tom {R} Tom 2 {P} Heavy Tom Kick {R} Heavy Tom Mega Tom
+48 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 48 amp=121 pan=-63   #049:048  {R} Tom {R} Tom 2 {P} Heavy Tom Kick {R} Heavy Tom Mega Tom
+49 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 49 amp=130 pan=-47   #049:049  {P} Crash Cymbal
+50 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 50 amp=127 pan=31   #049:050  {R} Tom {R} Tom 2 {P} Heavy Tom Kick {R} Heavy Tom Mega Tom
+51 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 51 amp=89 pan=47   #049:051  {P} Ride Cymbal
+52 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 52 amp=108 pan=47   #049:052  {R} Chinese Crash
+53 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 53 amp=103 pan=55   #049:053  {P} Ride Bell Cymba
+54 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 54 amp=121 pan=23   #049:054  {R} Tambourine {R} Brass Tambourin
+55 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 55 amp=101 pan=47   #049:055  {P} Splash Cymbal
+56 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 56 amp=125 pan=47   #049:056  {R} Cow Bell
+57 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 57 amp=113 pan=-47   #049:057  {P} Crash Cymbal
+58 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 58 amp=116 pan=-47   #049:058  {S} Vibra Slap
+59 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 59 amp=89 pan=-47   #049:059  {P} Ride Cymbal
+60 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 60 amp=125 pan=-47   #049:060  {P} High Bongo
+61 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 61 amp=127 pan=-31   #049:061  {P} Low Bongo
+62 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 62 amp=116 pan=31   #049:062  {R} Mute High Conga
+63 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 63 amp=103 pan=31   #049:063  {R} Open High Conga
+64 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 64 amp=121 pan=-16   #049:064  {R} Low Conga
+65 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 65 amp=152 pan=-31   #049:065  {R} High Timbale (L {R} High Timbale (R
+66 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 66 amp=156 pan=-31   #049:066  {R} Low Timbale (L) {R} Low Timbale (R)
+67 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 67 amp=113 pan=31   #049:067  {S} Agogo
+68 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 68 amp=118 pan=39   #049:068  {S} Agogo
+69 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 69 amp=95 pan=39   #049:069  {S} Cabasa
+70 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 70 amp=92 pan=31   #049:070  {S} Maracas
+71 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 71 amp=95 pan=55   #049:071  {S} Whistle
+72 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 72 amp=101 pan=47   #049:072  {S} Whistle
+73 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 73 amp=118 pan=-31   #049:073  {S} Short Guiro
+74 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 74 amp=118 pan=-31   #049:074  {R} Long Guiro
+75 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 75 amp=125 pan=-39   #049:075  {R} Claves
+76 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 76 amp=130 pan=-39   #049:076  {S} High Wood Block
+77 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 77 amp=130 pan=-39   #049:077  {S} Low Wood Block
+78 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 78 amp=95 pan=-39   #049:078  {S} Mute Cuica
+79 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 79 amp=101 pan=63   #049:079  {S} Open Cuica
+80 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 80 amp=92 pan=63   #049:080  {S} Mute Triangle
+81 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 81 amp=78 pan=-31   #049:081  {S} Open Triangle {S} Open Triangle
+82 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 82 amp=125 pan=-31   #049:082  {S} Shaker (L) {S} Shaker (R)
+83 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 83 amp=142 pan=8   #049:083  {P} Jingle Bells
+84 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 84 amp=101 pan=-55   #049:084  {S} Bell Tree
+85 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 85 amp=103 pan=-55   #049:085  {S} Castanets {S} Castanets
+86 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 86 amp=121 pan=47   #049:086  {S} Mute Surdo
+87 %font "Arachno SoundFont - Version 1.0.sf2" 128 49 87 amp=143 pan=55   #049:087  {S} Open Surdo
+
+drumset 50
+25 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 36 amp=94 pan=0
+26 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 35 amp=110 pan=0
+27 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 36 amp=88 pan=0
+28 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 36 amp=98 pan=0
+29 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 36 amp=87 pan=0
+30 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 36 amp=122 pan=0
+31 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 35 amp=184 pan=0
+32 %font "Arachno SoundFont - Version 1.0.sf2" 128 9 35 amp=225 pan=0
+33 %font "Arachno SoundFont - Version 1.0.sf2" 128 9 35 amp=200 pan=0
+34 %font "Arachno SoundFont - Version 1.0.sf2" 128 10 35 amp=94 pan=0
+35 %font "Arachno SoundFont - Version 1.0.sf2" 128 10 35 amp=123 pan=0
+36 %font "Arachno SoundFont - Version 1.0.sf2" 128 11 35 amp=308 pan=0
+37 %font "Arachno SoundFont - Version 1.0.sf2" 128 11 35 amp=626 pan=0
+38 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 35 amp=194 pan=0
+39 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 35 amp=339 pan=0
+40 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 35 amp=213 pan=0
+41 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 35 amp=207 pan=0
+42 %font "Arachno SoundFont - Version 1.0.sf2" 128 1 35 amp=282 pan=0
+43 %font "Arachno SoundFont - Version 1.0.sf2" 128 1 35 amp=192 pan=0
+44 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 35 amp=234 pan=0
+45 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 35 amp=129 pan=0
+46 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 35 amp=240 pan=0
+47 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 35 amp=129 pan=0
+48 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 35 amp=141 pan=0
+49 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 35 amp=75 pan=0
+50 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 35 amp=116 pan=0
+51 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 35 amp=322 pan=0
+52 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 35 amp=210 pan=0
+53 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 36 amp=128 pan=0
+54 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 35 amp=129 pan=0
+55 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 36 amp=202 pan=0
+56 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 35 amp=93 pan=0
+57 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 35 amp=88 pan=0
+58 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 35 amp=102 pan=0
+59 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 35 amp=90 pan=0
+60 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 38 amp=162 pan=0
+61 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 40 amp=194 pan=0
+62 %font "Arachno SoundFont - Version 1.0.sf2" 128 1 38 amp=140 pan=0
+63 %font "Arachno SoundFont - Version 1.0.sf2" 128 1 40 amp=78 pan=0
+64 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 38 amp=159 pan=0
+65 %font "Arachno SoundFont - Version 1.0.sf2" 128 48 38 amp=291 pan=0
+66 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 38 amp=201 pan=0
+67 %font "Arachno SoundFont - Version 1.0.sf2" 128 32 40 amp=136 pan=0
+68 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 38 amp=114 pan=0
+69 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 40 amp=138 pan=0
+70 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 38 amp=170 pan=0
+71 %font "Arachno SoundFont - Version 1.0.sf2" 128 16 40 amp=154 pan=0
+72 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 40 amp=184 pan=0
+73 %font "Arachno SoundFont - Version 1.0.sf2" 128 11 38 amp=153 pan=0
+74 %font "Arachno SoundFont - Version 1.0.sf2" 128 11 40 amp=232 pan=0
+75 %font "Arachno SoundFont - Version 1.0.sf2" 128 11 38 amp=106 pan=0
+76 %font "Arachno SoundFont - Version 1.0.sf2" 128 11 40 amp=99 pan=0
+77 %font "Arachno SoundFont - Version 1.0.sf2" 128 8 38 amp=94 pan=0
+78 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 38 amp=150 pan=0
+79 %font "Arachno SoundFont - Version 1.0.sf2" 128 24 40 amp=224 pan=0
+80 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 38 amp=33 pan=0
+81 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 40 amp=50 pan=0
+82 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 38 amp=42 pan=0
+83 %font "Arachno SoundFont - Version 1.0.sf2" 128 25 40 amp=72 pan=0
+84 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 38 amp=28 pan=0
+85 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 38 amp=40 pan=0
+86 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 39 amp=118 pan=0
+87 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 39 amp=114 pan=0
+88 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 39 amp=152 pan=0
+89 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 40 amp=60 pan=0
+90 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 40 amp=56 pan=0
+91 %font "Arachno SoundFont - Version 1.0.sf2" 128 40 40 amp=72 pan=0
+92 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 38 amp=262 pan=0
+93 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 40 amp=396 pan=0
+94 %font "Arachno SoundFont - Version 1.0.sf2" 128 0 40 amp=456 pan=0
+95 %font "Arachno SoundFont - Version 1.0.sf2" 128 9 38 amp=118 pan=0
+96 %font "Arachno SoundFont - Version 1.0.sf2" 128 9 40 amp=81 pan=0
+97 %font "Arachno SoundFont - Version 1.0.sf2" 128 10 38 amp=87 pan=0
+98 %font "Arachno SoundFont - Version 1.0.sf2" 128 10 40 amp=105 pan=0
+99 %font "Arachno SoundFont - Version 1.0.sf2" 128 11 38 amp=84 pan=0
+
+drumset 127
+26 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 26 amp=80 pan=0     #127:026  {S} Finger Snap
+27 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 27 amp=63 pan=0     #127:027  {S} High Q
+28 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 28 amp=81 pan=0     #127:028  {T} Noise Slap
+29 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 29 amp=66 pan=0     #127:029  {T} Scratch Push
+30 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 30 amp=69 pan=0     #127:030  {T} Scratch Pull
+31 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 31 amp=82 pan=0     #127:031  {T} Sticks
+32 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 32 amp=98 pan=0     #127:032  {S} Square Click
+33 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 33 amp=74 pan=0     #127:033  {T} Metronome Click
+34 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 34 amp=75 pan=0     #127:034  {T} Carillon
+35 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 35 amp=96 pan=0     #127:035  {M} Bass Drum
+36 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 36 amp=92 pan=0     #127:036  {M} Bass Drum
+37 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 37 amp=92 pan=0     #127:037  {M} Rim Shot
+38 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 38 amp=98 pan=0     #127:038  {M} Acoustic Snare
+39 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 39 amp=90 pan=0     #127:039  {M} Hand Clap
+40 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 40 amp=106 pan=0     #127:040  {M} Electric Snare
+41 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 41 amp=114 pan=0     #127:041  {M} Low Tom
+42 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 42 amp=56 pan=0     #127:042  {M} Closed Hi-Hat
+43 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 43 amp=108 pan=0     #127:043  {M} Low Tom
+44 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 44 amp=46 pan=0     #127:044  {M} Pedal Hi-Hat
+45 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 45 amp=102 pan=0     #127:045  {M} Medium Tom
+46 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 46 amp=75 pan=0     #127:046  {M} Open Hi-Hat
+47 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 47 amp=98 pan=0     #127:047  {M} Medium Tom
+48 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 48 amp=111 pan=0     #127:048  {M} High Tom
+49 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 49 amp=90 pan=0     #127:049  {M} Crash Cymbal
+50 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 50 amp=116 pan=0     #127:050  {M} High Tom
+51 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 51 amp=69 pan=0     #127:051  {M} Ride Cymbal
+52 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 52 amp=75 pan=0     #127:052  {R} Chinese Crash
+53 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 53 amp=70 pan=0     #127:053  {S} Ride Bell Cymba
+54 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 54 amp=92 pan=0     #127:054  {M} Tambourine
+55 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 55 amp=74 pan=0     #127:055  {E} Splash Cymbal
+56 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 56 amp=87 pan=0     #127:056  {M} Cow Bell
+57 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 57 amp=78 pan=0     #127:057  {P} Crash Cymbal
+58 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 58 amp=81 pan=0     #127:058  {M} Vibra Slap / Qu
+59 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 59 amp=57 pan=0     #127:059  {S} Ride Bell Cymba
+60 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 60 amp=87 pan=0     #127:060  {M} High Bongo
+61 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 61 amp=88 pan=0     #127:061  {M} Low Bongo
+62 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 62 amp=81 pan=0     #127:062  {M} High Conga
+63 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 63 amp=72 pan=0     #127:063  {M} Medium Conga
+64 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 64 amp=84 pan=0     #127:064  {M} Low Conga
+65 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 65 amp=108 pan=0     #127:065  {M} High Timbale
+66 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 66 amp=114 pan=0     #127:066  {M} Low Timbale
+67 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 67 amp=78 pan=0     #127:067  {M} High Agogo
+68 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 68 amp=84 pan=0     #127:068  {M} Low Agogo
+69 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 69 amp=66 pan=0     #127:069  {M} Cabasa
+70 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 70 amp=70 pan=0     #127:070  {M} Maracas
+71 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 71 amp=66 pan=0     #127:071  {M} Short Whistle
+72 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 72 amp=70 pan=0     #127:072  {M} Long Whistle
+73 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 73 amp=81 pan=0     #127:073  {M} Vibra Slap / Qu
+74 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 74 amp=78 pan=0     #127:074  {S} Long Guiro
+75 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 75 amp=87 pan=0     #127:075  {M} Claves
+76 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 76 amp=90 pan=0     #127:076  {S} High Wood Block
+77 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 77 amp=90 pan=0     #127:077  {S} Low Wood Block
+78 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 78 amp=66 pan=0     #127:078  {S} Mute Cuica
+79 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 79 amp=70 pan=0     #127:079  {S} Open Cuica
+80 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 80 amp=66 pan=0     #127:080  {S} Mute Triangle
+81 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 81 amp=75 pan=0     #127:081  {S} Open Triangle
+82 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 82 amp=84 pan=0     #127:082  {T} Shaker
+83 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 83 amp=98 pan=0     #127:083  {T} Jingle Bells
+84 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 84 amp=66 pan=0     #127:084  {T} Bell Tree
+85 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 85 amp=100 pan=0     #127:085  {T} Castanets
+86 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 86 amp=84 pan=0     #127:086  {S} Mute Surdo
+87 %font "Arachno SoundFont - Version 1.0.sf2" 128 127 87 amp=100 pan=0     #127:087  {S} Open Surdo
