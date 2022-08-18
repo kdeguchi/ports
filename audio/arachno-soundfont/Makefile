@@ -11,7 +11,7 @@ RESTRICTED=	Manual download from https://www.dropbox.com/s/2rnpya9ecb9m4jh/arach
 
 LICENSE=	ARACHNO
 LICENSE_NAME=	arachno
-LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_FILE=	${WRKSRC}/Read\ Me.txt
 LICENSE_PERMS=	no-dist-mirror no-dist-sell no-pkg-mirror no-pkg-sell no-auto-accept
 
 NO_ARCH=	yes
@@ -28,7 +28,6 @@ SUB_LIST=	PREFIX=${PREFIX}
 post-extract:
 	@${MKDIR} ${WRKSRC}
 	cd ${WRKDIR} && ${MV} [A-Z]* sfArk ${WRKSRC}
-	cd ${WRKSRC} && ${CP} 'Read Me.txt' ${WRKSRC}/LICENSE
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/sounds/sf2
