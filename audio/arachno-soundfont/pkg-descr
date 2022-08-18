@@ -1,2 +1,14 @@
+Arachno SoundFont is a General MIDI-compliant bank of 128
+instruments ("presets") and 9 GM/GS drumkits, aimed at
+enhancing the realism of your MIDI files and arrangements.
 
-WWW: https://www.arachnosoft.com/main/home.php
+This bank includes many famous sounds from the best
+synthesizers by Roland (D-50, Sound Canvas...),
+Korg (M1, X5...), Yamaha (MU, Clavinova...),
+Fairlight (CMI), E-MU (Emulator), Ensoniq,
+and many others.
+
+It's meant to be used with a SoundFont 2.x-compatible
+MIDI synthesizer.
+
+WWW: https://www.arachnosoft.com/main/soundfont.php
