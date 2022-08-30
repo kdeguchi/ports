@@ -42,7 +42,7 @@ LINK=		gtkmidi
 USES+=		gnome pkgconfig
 USE_GNOME=	gtk20
 
-DESKTOP_ENTRIES="GtkMidi" "" "" "${LINK}" "GTK;AudioVideo;Audio;Midi;" ""
+DESKTOP_ENTRIES="GtkMidi" "GTK Interface for TiMidity++" "timidity" "${LINK}" "AudioVideo;Audio;Midi;" ""
 .endif
 
 .if ${INTERFACE} == "motif"
@@ -103,10 +103,10 @@ DESKTOP_ENTRIES="TkMidi" "" "" "${LINK}" "AudioVideo;Audio;Midi;" ""
 .if ${INTERFACE} == "xaw"
 LINK=		xawmidi
 
-LIB_DEPENDS+=	libXaw3d.so:x11-toolkits/Xaw3d
+LIB_DEPENDS+=	libXaw3dxft.so:x11-toolkits/libxaw3dxft
 
-USES+=		xorg
-USE_XORG=	x11 xext xmu xt sm ice xpm
+USES+=		pkgconfig xorg
+USE_XORG=	x11 xext xft xmu xt sm ice xpm
 
 DESKTOP_ENTRIES="XawMidi" "X Athena Widget Interface for TiMidity++" "timidity" "${LINK}" "AudioVideo;Audio;Midi;" ""
 .endif
@@ -139,6 +139,12 @@ post-patch:
 		's|in tcl.*;|in tcl${TCL_VER:S|.||};| ; \
 		 s|in tk.*;|in tk${TK_VER:S|.||};|' ${WRKSRC}/configure
 .endif
+.endif
+.if ${INTERFACE} == "xaw"
+	${REINPLACE_CMD} -e \
+		's@-lXaw3d@-lXaw3dxft@g;s@/Xaw3d/@/Xaw3dxft/@g' ${WRKSRC}/configure
+	${REINPLACE_CMD} -e \
+		's@/Xaw3d/@/Xaw3dxft/@' ${WRKSRC}/interface/xaw.h
 .endif
 
 post-install:

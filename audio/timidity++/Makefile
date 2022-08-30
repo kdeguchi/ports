@@ -33,10 +33,10 @@ EAWPLUS_DESC=		Collection of Gravis Ultrasound MIDI patches
 EAWPLUS_RUN_DEPENDS=	eawplus>0:audio/eawplus
 X11_LIB_DEPENDS=	libpng.so:graphics/png
 X11_USES=		xorg
-X11_USE=		xorg=x11,xext
-X11_CONFIGURE_ON=	--with-x --enable-spectrogram --enable-wrd \
+X11_USE=		xorg=x11,xext,xft
+X11_CONFIGURE_ON=	--with-x --enable-xft --enable-spectrogram --enable-wrd \
 			--enable-dynamic
-X11_CONFIGURE_OFF=	--without-x --disable-spectrogram --disable-wrd \
+X11_CONFIGURE_OFF=	--without-x --disable-xft --disable-spectrogram --disable-wrd \
 			--disable-dynamic
 X11_CPPFLAGS=		$$(libpng-config --I_opts)
 .endif
