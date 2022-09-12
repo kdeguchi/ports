@@ -33,6 +33,7 @@ do-install:
 	cd ${WRKSRC}/packages/${_ARCH} && \
 		${CP} -a usr ${STAGEDIR}${PREFIX} && \
 		${RM} ${STAGEDIR}${PREFIX}/usr/bin/cnijlgmon3 && \
+		${RM} -r ${STAGEDIR}${PREFIX}/usr/share/locale && \
 		${MKDIR} ${STAGEDIR}${LOCALBASE}/bin && \
 		for i in `ls ${STAGEDIR}${PREFIX}/usr/bin`; do \
 			${LN} -s ${PREFIX}/usr/bin/$${i} ${STAGEDIR}${LOCALBASE}/bin/; \

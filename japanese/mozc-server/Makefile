@@ -48,7 +48,7 @@ UTDIC_DESC=	Additional UT Dictionary
 
 .elif ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
 USES+=		qt:5
-USE_QT=		buildtools_build core gui widgets
+USE_QT=		buildtools:build core gui widgets
 EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src_pkg_config_repository.bzl
 
 .elif ${BUILD_MOZC_LIST:Mibus_mozc} == "ibus_mozc"
