@@ -8,6 +8,7 @@ DISTNAME=	${PORTNAME}_${PORTVERSION}${DISTVERSIONSUFFIX}
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	GNOME frontend for MPlayer
+WWW=		http://kdekorte.googlepages.com/gnomemplayer
 
 LICENSE=	GPLv2
 

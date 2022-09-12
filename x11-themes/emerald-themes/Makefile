@@ -4,6 +4,7 @@ CATEGORIES=	x11-themes
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Themes for the Emerald Window Decorator
+WWW=		https://github.com/compiz-reloaded
 
 BUILD_DEPENDS=	bash:shells/bash
 

@@ -4,6 +4,7 @@ CATEGORIES=	x11-themes
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Capitaine Cursors
+WWW=		https://github.com/keeferrourke/capitaine-cursors
 
 LICENSE=	GPLv3
 

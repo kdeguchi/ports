@@ -4,6 +4,7 @@ CATEGORIES=	x11-wm
 
 MAINTAINER=	freebsd-ports@dan.me.uk
 COMMENT=	Python bindings for the compizconfig library
+WWW=		https://github.com/compiz-reloaded
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING

@@ -5,6 +5,7 @@ PKGNAMESUFFIX=	${PYTHON_PKGNAMESUFFIX}
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	On-screen lyrics display program for various media players
+WWW=		https://github.com/osdlyrics/osdlyrics
 
 LICENSE=	GPLv3
 

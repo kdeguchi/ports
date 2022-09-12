@@ -5,6 +5,7 @@ CATEGORIES=	x11-wm
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Alternative configuration system for Compiz
+WWW=		https://github.com/compiz-reloaded
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING

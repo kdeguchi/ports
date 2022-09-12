@@ -4,6 +4,7 @@ CATEGORIES=	x11-wm
 
 MAINTAINER=	freebsd-ports@dan.me.uk
 COMMENT=	Metaport of compiz-reloaded
+WWW=		https://github.com/compiz-reloaded
 
 LICENSE=	GPLv2+ LGPL21+ MIT
 LICENSE_COMB=	multi

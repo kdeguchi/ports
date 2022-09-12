@@ -4,6 +4,7 @@ CATEGORIES=	x11-wm
 
 MAINTAINER=	freebsd-ports@dan.me.uk
 COMMENT=	Python/GTK based settings manager for CompizConfig
+WWW=		https://github.com/compiz-reloaded
 
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/compizconfig-python.pc:x11-wm/compizconfig-python
 

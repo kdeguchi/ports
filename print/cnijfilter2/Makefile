@@ -7,6 +7,7 @@ DISTVERSIONSUFFIX=-1-rpm
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Caonon IJ Printer driver
+WWW=		https://cweb.canon.jp/drv-upd/ij-mfp/linux-pd-20211h-630.html
 
 USES=	linux
 USE_LINUX=	avahi-libs cups-libs dbuslibs libxml2

@@ -4,6 +4,7 @@ CATEGORIES=	devel x11-wm
 
 MAINTAINER=	freebsd-ports@dan.me.uk
 COMMENT=	Code generator for Compiz Fusion Plugins
+WWW=		https://github.com/compiz-reloaded
 
 RUN_DEPENDS=	${LOCALBASE}/bin/getopt:misc/getopt
 

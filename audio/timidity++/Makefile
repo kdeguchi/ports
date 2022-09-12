@@ -4,8 +4,9 @@ CATEGORIES+=	audio
 MASTER_SITES=	SF/timidity/TiMidity%2B%2B/TiMidity%2B%2B-${PORTVERSION}
 DISTNAME=	TiMidity++-${PORTVERSION}
 
-MAINTAINER?=	ports@FreeBSD.org
+MAINTAINER?=	fuz@fuz.su
 COMMENT?=	Software MIDI player
+WWW=		http://timidity.sourceforge.net/
 
 LICENSE=	GPLv2+
 

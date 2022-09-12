@@ -5,6 +5,7 @@ CATEGORIES=	x11-wm
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Compiz Composite/Window Manager
+WWW=		https://github.com/compiz-reloaded
 
 LICENSE=		GPLv2+ LGPL21+ MIT
 LICENSE_COMB=		multi

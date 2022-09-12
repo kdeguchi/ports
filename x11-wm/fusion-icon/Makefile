@@ -4,6 +4,7 @@ CATEGORIES=	x11-wm
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Compiz tray (indicator) icon
+WWW=		https://github.com/compiz-reloaded
 
 LICENSE=	GPLv2+
 
