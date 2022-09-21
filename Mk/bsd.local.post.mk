@@ -75,8 +75,16 @@ CPP=	cpp
 CFLAGS+=	-Qunused-arguments
 .endif
 
-.if defined(USE_KDE) && ${USE_KDE:Mecm }
-USE_KDE:=	${USE_KDE:S@ecm@ecm_build@}
+.if defined(USE_KDE) && ${USE_KDE:Mecm}
+USE_KDE:=	${USE_KDE:S@ecm@ecm:build@}
+.endif
+
+.if defined(USE_KDE) && ${USE_KDE:Mkirigami2}
+USE_KDE:=	${USE_KDE:S@kirigami2@kirigami2:build@}
+.endif
+
+.if defined(USE_KDE) && ${USE_KDE:Mplasma-wayland-protocols}
+USE_KDE:=	${USE_KDE:S@plasma-wayland-protocols@plasma-wayland-protocols:build@}
 .endif
 
 .if ${.CURDIR:M*/databases/mariadb*-server}
