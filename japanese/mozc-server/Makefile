@@ -1,11 +1,12 @@
 PORTNAME=	mozc
-PORTVERSION=	2.28.4800.102.${UT_VERSION}
+PORTVERSION=	2.28.4830.102.${UT_VERSION}
 CATEGORIES=	japanese
 MASTER_SITES=	https://osdn.net/users/utuhiro/pf/utuhiro/dl/:ut
 DISTFILES=	${DISTNAME}.tar.bz2:ut
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT?=	Mozc Japanese Input Method, Server
+WWW=		https://github.com/google/mozc
 
 BUILD_DEPENDS=	bazel:devel/bazel
 
@@ -27,8 +28,8 @@ BUILD_MOZC_CMD=	${SETENV} PATH="${PREFIX}/openjdk11/bin:${PATH}" \
 
 BUILD_MOZC_LIST?=	mozc_server
 
-UT_VERSION=20220723
-FETCH_ARGS+=	--user-agent=curl/7.68.0
+UT_VERSION=20220904
+FETCH_ARGS+=	--user-agent=curl/7.85.0
 
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
 PKGNAMEPREFIX=	ja-
