@@ -7,6 +7,7 @@ DISTNAME=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-${PORTVERSION}
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Japanese translation of FreeBSD manual pages
+WWW=		http://www.koganemaru.co.jp/
 
 USES=		iconv tar:txz
 
