@@ -75,6 +75,32 @@ CPP=	cpp
 CFLAGS+=	-Qunused-arguments
 .endif
 
+.if ${.CURDIR:M*/graphics/ImageMagick*}
+USES:=	${USES:S@pkgconfig:both@pkgconfig@}
+.endif
+
+.if ${.CURDIR:M*/devel/p5-ExtUtils-PkgConfig}
+USES:=	${USES:S@pkgconfig:both@pkgconfig@}
+.endif
+
+.if defined(BUILD_DEPENDS) && ( ${BUILD_DEPENDS:M*graphics/ImageMagick*} || ${BUILD_DEPENDS:M*devel/p5-Glib2} || ${BUILD_DEPENDS:M*devel/p5-ExtUtils-PkgConfig} )
+. if ! ${USES:Mpkgconfig}
+USES+=	pkgconfig
+. endif
+.endif
+
+.if defined(LIB_DEPENDS) && ( ${LIB_DEPENDS:M*graphics/ImageMagick*} || ${LIB_DEPENDS:M*devel/p5-Glib2} || ${LIB_DEPENDS:M*devel/p5-ExtUtils-PkgConfig} )
+. if ! ${USES:Mpkgconfig}
+USES+=	pkgconfig
+. endif
+.endif
+
+.if defined(RUN_DEPENDS) && ( ${RUN_DEPENDS:M*graphics/ImageMagick*} || ${RUN_DEPENDS:M*devel/p5-Glib2} || ${RUN_DEPENDS:M*devel/p5-ExtUtils-PkgConfig} )
+. if ! ${USES:Mpkgconfig}
+USES+=	pkgconfig
+. endif
+.endif
+
 .if defined(USE_KDE) && ${USE_KDE:Mecm}
 USE_KDE:=	${USE_KDE:S@ecm@ecm:build@}
 .endif
@@ -150,6 +176,10 @@ USE_WX=	3.1
 RUN_DEPENDS:=	${RUN_DEPENDS:S@sudo:security/sudo@sudo:security/doas-wrapper@}
 .endif
 
+.if ${.CURDIR:M*/multimedia/libxine}
+CONFIGURE_ARGS:=	${CONFIGURE_ARGS:S/--enable-musepack//}
+.endif
+
 .if ${.CURDIR:M*/x11-toolkits/Xaw3d}
 PATH:=/usr/bin:${PATH}
 .endif
@@ -166,19 +196,19 @@ pre-configure:
 .endif
 
 .if defined(BUILD_DEPENDS) && ! ${BUILD_DEPENDS:M*lang/rust}
-.if ! ${.CURDIR:M*/lang/rust}
+. if ! ${.CURDIR:M*/lang/rust}
 NO_SCCACHE=	yes
-.if defined(NO_CCACHE)
+.  if defined(NO_CCACHE)
 SCCACHE_DIR!=	/usr/local/bin/ccache -p | awk ' /cache_dir = / { print $$4 } '
-.endif
+.  endif
 _USES_configure:=	${_USES_configure:S@250:sccache-start@@}
 _USES_stage:=	${_USES_stage:S@950:sccache-stats@@}
-.endif
+. endif
 .endif
 
 .if defined(PREFIX) && ${PREFIX} == /usr/local
 POST_PLIST+=	post-man-plist remove-info-plist
-.if !target(post-man-plist)
+. if !target(post-man-plist)
 post-man-plist:
 	cd ${STAGEDIR}${PREFIX}; \
 	[ -d man ] && \
@@ -189,14 +219,14 @@ post-man-plist:
 		done; \
 		${REINPLACE_CMD} -E 's|^man/|share/man/|;s| man/| share/man/|;s|%%MANPAGES%%man/|%%MANPAGES%%share/man/|' ${TMPPLIST}; \
 	) || exit 0
-.endif
-.if !target(remove-info-plist)
+. endif
+. if !target(remove-info-plist)
 .undef INFO
 remove-info-plist:
 	cd ${STAGEDIR}${PREFIX} && \
 		${FIND} share/info/ \( -type f -or -type l \) -exec ${RM} -r {} + && \
 		${REINPLACE_CMD} -E '/share\/info\/.*$$/d' ${TMPPLIST} || exit 0
-.endif
+. endif
 .endif
 
 SCRIPTSDIR=	/home/deguchi/data/work/github/ports/Mk/Scripts
