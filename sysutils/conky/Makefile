@@ -1,5 +1,5 @@
 PORTNAME=	conky
-PORTVERSION=	1.13.1
+PORTVERSION=	1.14.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
 PKGNAMESUFFIX=	-${LUA_FLAVOR}
@@ -9,10 +9,7 @@ COMMENT?=	Advanced, highly configurable system monitor for X11
 WWW=		https://github.com/brndnmtthws/conky
 
 LIB_DEPENDS=	libinotify.so:devel/libinotify
-BUILD_DEPENDS=	db2x_xsltproc:textproc/docbook2X \
-		docbook-xsl>=0:textproc/docbook-xsl \
-		xsltproc:textproc/libxslt \
-		gsed:textproc/gsed
+BUILD_DEPENDS=	gsed:textproc/gsed
 
 USES=		cpe cmake:noninja compiler:c++11-lib gettext-runtime \
 		localbase lua:flavors pkgconfig tar:bzip2
@@ -24,13 +21,13 @@ CMAKE_OFF=	BUILD_PORT_MONITORS \
 		BUILD_HDDTEMP \
 		BUILD_IOSTATS \
 		BUILD_AUDACIOUS
-#		BUILD_DOCS
 CMAKE_ARGS=	-DAPP_SED=${LOCALBASE}/bin/gsed
 CONFLICTS?=	conky-awesome
 
 SLAVEDIRS=	sysutils/conky-awesome
 
 PORTEXAMPLES=	conky.conf conky_no_x11.conf convert.lua
+PORTDOCS=	config_settings.yaml variables.yaml lua.yaml
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	brndnmtthws
@@ -41,7 +38,7 @@ OPTIONS_DEFINE=	APCUPSD CURL DOCS EXAMPLES ICONV IPV6 MANPAGES METAR MOC MPD \
 OPTIONS_GROUP?=	X11
 OPTIONS_GROUP_X11=	ARGB DOUBLE_BUFFER HSV IMLIB2 LUA_CAIRO LUA_IMLIB2 LUA_RSVG \
 		XFT XINERAMA XSHAPE
-OPTIONS_DEFAULT?=	ARGB DOUBLE_BUFFER LUA_CAIRO X11 XFT
+OPTIONS_DEFAULT?=	ARGB DOUBLE_BUFFER LUA_CAIRO MANPAGES X11 XFT
 OPTIONS_SUB=	yes
 
 APCUPSD_DESC=		Monitor APCUPSD
@@ -67,6 +64,7 @@ ICONV_USES=		iconv
 IMLIB2_CMAKE_BOOL=	BUILD_IMLIB2
 IMLIB2_LIB_DEPENDS=	libImlib2.so:graphics/imlib2
 IMLIB2_IMPLIES=		X11
+IMLIB2_USE=		xorg=ice,sm
 
 IPV6_CMAKE_BOOL=	BUILD_IPV6
 
@@ -86,6 +84,10 @@ LUA_RSVG_USES=		gnome
 LUA_RSVG_USE=		gnome=librsvg2
 LUA_RSVG_IMPLIES=	X11
 
+MANPAGES_BUILD_DEPENDS=	pandoc:textproc/hs-pandoc \
+			${PYTHON_PKGNAMEPREFIX}yaml>0:devel/py-yaml@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}Jinja2>=0:devel/py-Jinja2@${PY_FLAVOR}
+MANPAGES_USES=		python:3.7+,build
 MANPAGES_CMAKE_BOOL=	BUILD_DOCS
 
 METAR_DESC=		Display METAR weather reports
@@ -109,7 +111,7 @@ RSS_USE=		gnome=glib20,libxml2
 RSS_IMPLIES=		CURL
 
 X11_USES=		xorg
-X11_USE=		xorg=ice,sm,x11,xext,xdamage,xfixes
+X11_USE=		xorg=x11,xext,xdamage,xfixes
 X11_CMAKE_BOOL=	BUILD_X11 OWN_WINDOW
 X11_VARS=		EXAMPLE_CONF_FILE=${WRKSRC}/data/conky.conf
 X11_VARS_OFF=		EXAMPLE_CONF_FILE=${WRKSRC}/data/conky_no_x11.conf
@@ -138,19 +140,12 @@ EXTRA_PATCHES+=		${PATCHDIR}/extra-patch-src_CMakeLists.txt
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's/^#\(set(RELEASE true\)/\1/' \
-		-e 's/-D_POSIX_C_SOURCE=200809L/& -D__BSD_VISIBLE=1 -D_XOPEN_SOURCE=700/' \
+	@${REINPLACE_CMD} -e 's/^# \(set(RELEASE true\)/\1/' \
 		${WRKSRC}/cmake/Conky.cmake
 	@${REINPLACE_CMD} -e 's,^set(INCLUDE_SEARCH_PATH \(.*\)),set(INCLUDE_SEARCH_PATH \1 ${LUA_INCDIR}),' \
-		-e 's/ -lbsd/ -lintl -linotify/' \
 		${WRKSRC}/cmake/ConkyPlatformChecks.cmake
 	@${REINPLACE_CMD} -e 's,LOCALBASE,${LOCALBASE},' -e 's|-Werror||' \
-		${WRKSRC}/cmake/ConkyBuildOptions.cmake \
-		${WRKSRC}/doc/docgen.sh \
-		${WRKSRC}/doc/docs.xml
-
-post-build:
-	(cd ${WRKSRC}/doc && ${SH} docgen.sh)
+		${WRKSRC}/cmake/ConkyBuildOptions.cmake
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}
@@ -160,5 +155,11 @@ post-install-X11-on:
 
 post-install-X11-off:
 	${INSTALL_DATA} ${WRKSRC}/data/conky_no_x11.conf ${STAGEDIR}${ETCDIR}/conky.conf.sample
+
+post-install-DOCS-on:
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+.for FILE in ${PORTDOCS}
+	${INSTALL_MAN} ${WRKSRC}/doc/${FILE} ${STAGEDIR}${DOCSDIR}
+.endfor
 
 .include <bsd.port.mk>

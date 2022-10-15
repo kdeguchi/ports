@@ -25,7 +25,7 @@
    install(FILES logo/conky-logomark-violet.svg
            DESTINATION share/icons/hicolor/scalable/apps)
 -endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-+			endif(${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
++endif(${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
  
  if(CHECK_CODE_QUALITY)
    find_package(ClangTidy)
