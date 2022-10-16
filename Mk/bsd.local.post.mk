@@ -180,6 +180,10 @@ RUN_DEPENDS:=	${RUN_DEPENDS:S@sudo:security/sudo@sudo:security/doas-wrapper@}
 CONFIGURE_ARGS:=	${CONFIGURE_ARGS:S/--enable-musepack//}
 .endif
 
+.if ${.CURDIR:M*/x11/kitty}
+BUILD_DEPENDS:=	${BUILD_DEPENDS:S@openssl>0:security/openssl@@}
+.endif
+
 .if ${.CURDIR:M*/x11-toolkits/Xaw3d}
 PATH:=/usr/bin:${PATH}
 .endif
