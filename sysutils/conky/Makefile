@@ -139,8 +139,6 @@ EXTRA_PATCHES+=		${PATCHDIR}/extra-patch-src_CMakeLists.txt
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's/^# \(set(RELEASE true\)/\1/' \
-		${WRKSRC}/cmake/Conky.cmake
 	@${REINPLACE_CMD} -e 's,^set(INCLUDE_SEARCH_PATH \(.*\)),set(INCLUDE_SEARCH_PATH \1 ${LUA_INCDIR}),' \
 		${WRKSRC}/cmake/ConkyPlatformChecks.cmake
 	@${REINPLACE_CMD} -e 's,LOCALBASE,${LOCALBASE},' -e 's|-Werror||' \
