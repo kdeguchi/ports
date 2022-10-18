@@ -1,5 +1,6 @@
 PORTNAME=	lightdm
 PORTVERSION=	1.32.0
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	https://github.com/canonical/${PORTNAME}/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
 
@@ -49,10 +50,10 @@ DOCS_CONFIGURE_OFF=	--enable-gtk-doc=no --enable-gtk-doc-html=no
 
 NLS_CONFIGURE_ENABLE=	nls
 
-VAPI_BUILD_DEPENDS=	vapigen:lang/vala
+VAPI_USES=		vala:build
 VAPI_CONFIGURE_ON=	--enable-vala=yes --enable-introspection=yes
 VAPI_CONFIGURE_OFF=	--enable-vala=no --enable-introspection=no
-VAPI_USE=	gnome=introspection:build
+VAPI_USE=		gnome=introspection:build
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,%%PREFIX%%,${PREFIX},' \
