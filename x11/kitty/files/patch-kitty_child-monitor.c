@@ -16,15 +16,7 @@
      INCREF_CHILD(add_queue[add_queue_count]);
      add_queue_count++;
      children_mutex(unlock);
-@@ -478,6 +480,7 @@ mark_child_for_close(ChildMonitor *self, id_type windo
-     for (size_t i = 0; i < self->count; i++) {
-         if (children[i].id == window_id) {
-             children[i].needs_removal = true;
-+            utempter_remove_record(children[i].fd);
-             break;
-         }
-     }
-@@ -1185,6 +1188,7 @@ hangup(pid_t pid) {
+@@ -1185,6 +1187,7 @@ hangup(pid_t pid) {
  
  static void
  cleanup_child(ssize_t i) {
