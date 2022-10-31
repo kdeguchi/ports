@@ -1,5 +1,5 @@
 PORTNAME=	slick-greeter
-PORTVERSION=	1.5.6
+PORTVERSION=	1.5.9
 CATEGORIES=	x11
 
 MAINTAINER=	ericbsd@FreeBSD.org
@@ -14,10 +14,10 @@ LIB_DEPENDS=	libcanberra-gtk3.so:audio/libcanberra-gtk3 \
 		libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz \
 		liblightdm-gobject-1.so:x11/lightdm
-BUILD_DEPENDS=	valac:lang/vala
 RUN_DEPENDS=	numlockx>=0:x11/numlockx
 
-USES=		autoreconf gettext gmake gnome localbase pkgconfig python:run shebangfix xorg
+USES=		autoreconf gettext gmake gnome localbase pkgconfig python:run shebangfix \
+		vala:build xorg
 USE_GNOME=	cairo dconf gdkpixbuf2 gtk30 intltool pygobject3
 
 USE_XORG=	pixman x11 xext
@@ -37,7 +37,7 @@ GLIB_SCHEMAS=	x.dm.slick-greeter.gschema.xml
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|"/usr|"${PREFIX}|g' \
-		-e 's|/etc|${PREFIX}/etc|g' \
+		-e 's|"/etc|"${PREFIX}/etc|g' \
 		${WRKSRC}/files/usr/bin/slick-greeter-set-keyboard-layout \
 		${WRKSRC}/data/*.8 \
 		${WRKSRC}/src/*.vala
