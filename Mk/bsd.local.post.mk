@@ -168,9 +168,9 @@ BUILD_DEPENDS:=	${BUILD_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvi
 RUN_DEPENDS:=	${RUN_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvik@}
 .endif
 
-.if ${.CURDIR:M*/math/wxmaxima}
-USE_WX=	3.1
-.endif
+#.if ${.CURDIR:M*/math/wxmaxima}
+#USE_WX=	3.2+
+#.endif
 
 .if ${RUN_DEPENDS:M*sudo\:security/sudo}
 RUN_DEPENDS:=	${RUN_DEPENDS:S@sudo:security/sudo@sudo:security/doas-wrapper@}
@@ -224,12 +224,14 @@ post-man-plist:
 		${REINPLACE_CMD} -E 's|^man/|share/man/|;s| man/| share/man/|;s|%%MANPAGES%%man/|%%MANPAGES%%share/man/|' ${TMPPLIST}; \
 	) || exit 0
 . endif
-. if !target(remove-info-plist)
+. if ! ${.CURDIR:M*/math/maxima}
+.  if !target(remove-info-plist)
 .undef INFO
 remove-info-plist:
 	cd ${STAGEDIR}${PREFIX} && \
 		${FIND} share/info/ \( -type f -or -type l \) -exec ${RM} -r {} + && \
 		${REINPLACE_CMD} -E '/share\/info\/.*$$/d' ${TMPPLIST} || exit 0
+.  endif
 . endif
 .endif
 

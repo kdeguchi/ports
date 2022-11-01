@@ -388,7 +388,7 @@ PLIST_FILES+=	lib/fcitx5/fcitx5-mozc.so \
 
 do-build-fcitx5_mozc:
 	cd ${BUILD_WRKSRC} && \
-		${BUILD_MOZC_CMD} unix/fcitx5:fcitx5-mozc.so; \
+		${BUILD_MOZC_CMD} unix/fcitx5:fcitx5-mozc.so unix:icons; \
 		msgfmt --xml -d unix/fcitx5/po/ \
 			--template unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml.in \
 			-o unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml
