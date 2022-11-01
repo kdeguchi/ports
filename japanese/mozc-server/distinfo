@@ -1,10 +1,10 @@
-TIMESTAMP = 1663751175
-SHA256 (mozc-2.28.4830.102.20220904.tar.bz2) = 641731d1b60ed59f9acb12510372f01cfe3d7845ea18daa64b36c885c5c3e726
-SIZE (mozc-2.28.4830.102.20220904.tar.bz2) = 43345149
+TIMESTAMP = 1667263787
+SHA256 (mozc-2.28.4880.102.20221022.tar.bz2) = e5ff06e34c78996cb0b2468acdec4123d491cc97f264eeabcda4bcde795e2b20
+SIZE (mozc-2.28.4880.102.20221022.tar.bz2) = 43366047
 SHA256 (hiroyuki-komatsu-japanese-usage-dictionary-e5b3425_GH0.tar.gz) = 2af954cd844c6a3113449d7dca37e36b769ecb2b49d3a54318a3bdee1a75af56
 SIZE (hiroyuki-komatsu-japanese-usage-dictionary-e5b3425_GH0.tar.gz) = 71050
-SHA256 (mozcdic-ut-20220904.tar.bz2) = a662c109cc3666c8abce5d4f8d892f891219a327d4cf9ae9112780043c6e86d5
-SIZE (mozcdic-ut-20220904.tar.bz2) = 19860957
+SHA256 (mozcdic-ut-20221022.tar.bz2) = 1012b6cf1e8e0e23e60910f0b9c0ca857836e70408ad6edaabba9803fb274b10
+SIZE (mozcdic-ut-20221022.tar.bz2) = 19919715
 SHA256 (ken_all-20200430.zip) = b60b5becaf5af4315cc1b4204e0a8bbd61b8848beb5b9437f917c22ef7a85e96
 SIZE (ken_all-20200430.zip) = 1690470
 SHA256 (jigyosyo-20200430.zip) = 2f42b3780f1cecdbb8bc295389f349b12f6ec872542f42333bbac971f47e5f27

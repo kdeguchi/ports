@@ -1,5 +1,5 @@
 PORTNAME=	mozc
-PORTVERSION=	2.28.4830.102.${UT_VERSION}
+PORTVERSION=	2.28.4880.102.${UT_VERSION}
 CATEGORIES=	japanese
 MASTER_SITES=	https://osdn.net/users/utuhiro/pf/utuhiro/dl/:ut
 DISTFILES=	${DISTNAME}.tar.bz2:ut
@@ -28,7 +28,7 @@ BUILD_MOZC_CMD=	${SETENV} PATH="${PREFIX}/openjdk11/bin:${PATH}" \
 
 BUILD_MOZC_LIST?=	mozc_server
 
-UT_VERSION=20220904
+UT_VERSION=20221022
 FETCH_ARGS+=	--user-agent=curl/7.85.0
 
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
