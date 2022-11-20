@@ -1,4 +1,4 @@
---- kitty/child-monitor.c.orig	2022-10-17 02:48:51 UTC
+--- kitty/child-monitor.c.orig	2022-11-07 10:06:42 UTC
 +++ kitty/child-monitor.c
 @@ -22,6 +22,7 @@
  #include <sys/socket.h>
@@ -16,7 +16,7 @@
      INCREF_CHILD(add_queue[add_queue_count]);
      add_queue_count++;
      children_mutex(unlock);
-@@ -1185,6 +1187,7 @@ hangup(pid_t pid) {
+@@ -1190,6 +1192,7 @@ hangup(pid_t pid) {
  
  static void
  cleanup_child(ssize_t i) {
