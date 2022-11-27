@@ -24,11 +24,11 @@ USES=		compiler:c++11-lang gmake localbase ninja:build pkgconfig \
 
 BUILD_WRKSRC=	${WRKSRC}/src
 BUILD_MOZC_CMD=	${SETENV} PATH="${PREFIX}/openjdk11/bin:${PATH}" \
-			bazel build -c opt --copt=-fPIC --host_linkopt=-lm --verbose_failures --sandbox_debug --config oss_linux
+		bazel build -c opt --copt=-fPIC --host_linkopt=-lm --verbose_failures --sandbox_debug --config oss_linux
 
 BUILD_MOZC_LIST?=	mozc_server
 
-UT_VERSION=20221022
+UT_VERSION=	20221022
 FETCH_ARGS+=	--user-agent=curl/7.85.0
 
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
