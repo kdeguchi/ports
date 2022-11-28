@@ -160,13 +160,13 @@ MAKE_ENV:=	${MAKE_ENV:S@PATH=@PATH=${PREFIX}/libexec/ccache:@}
 .endif
 .endif
 
-.if defined(BUILD_DEPENDS) && ${BUILD_DEPENDS:M*xdvi\:print/tex-xdvik*}
-BUILD_DEPENDS:=	${BUILD_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvik@}
-.endif
+#.if defined(BUILD_DEPENDS) && ${BUILD_DEPENDS:M*xdvi\:print/tex-xdvik*}
+#BUILD_DEPENDS:=	${BUILD_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvik@}
+#.endif
 
-.if defined(RUN_DEPENDS) && ${RUN_DEPENDS:M*xdvi\:print/tex-xdvik*}
-RUN_DEPENDS:=	${RUN_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvik@}
-.endif
+#.if defined(RUN_DEPENDS) && ${RUN_DEPENDS:M*xdvi\:print/tex-xdvik*}
+#RUN_DEPENDS:=	${RUN_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvik@}
+#.endif
 
 #.if ${.CURDIR:M*/math/wxmaxima}
 #USE_WX=	3.2+
