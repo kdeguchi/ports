@@ -1,4 +1,4 @@
-bin/bsdsensors
+%%SUID%%bin/bsdsensors
 include/bsdsensors/address.h
 include/bsdsensors/chip.h
 include/bsdsensors/chip_info.h
