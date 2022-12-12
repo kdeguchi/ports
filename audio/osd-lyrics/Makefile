@@ -1,7 +1,7 @@
 PORTNAME=	osdlyrics
 PORTVERSION=	0.5.10
 CATEGORIES=	audio deskutils
-PKGNAMESUFFIX=	${PYTHON_PKGNAMESUFFIX}
+#PKGNAMESUFFIX=	${PYTHON_PKGNAMESUFFIX}
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	On-screen lyrics display program for various media players
