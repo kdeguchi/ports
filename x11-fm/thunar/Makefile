@@ -1,5 +1,5 @@
 PORTNAME=	thunar
-DISTVERSION=	4.16.11
+DISTVERSION=	4.18.0
 CATEGORIES=	x11-fm xfce
 MASTER_SITES=	XFCE
 DIST_SUBDIR=	xfce4
@@ -14,7 +14,8 @@ LICENSE_FILE_GPLv2=	${WRKSRC}/COPYING
 LICENSE_FILE_LGPL20=	${WRKSRC}/COPYING.LIB
 
 LIB_DEPENDS=	libtumbler-1.so:deskutils/xfce4-tumbler \
-		libharfbuzz.so:print/harfbuzz
+		libharfbuzz.so:print/harfbuzz \
+		libpcre2-8.so:devel/pcre2
 RUN_DEPENDS=	pkexec:sysutils/polkit
 
 USES=		compiler:c11 cpe desktop-file-utils gettext-tools gmake gnome \
@@ -32,7 +33,7 @@ INSTALL_TARGET=	install-strip
 
 PORTSCOUT=	limitw:1,even
 
-OPTIONS_DEFINE=		GIR GUDEV NLS NOTIFY
+OPTIONS_DEFINE=		GIR GTKDOC GUDEV NLS NOTIFY
 OPTIONS_GROUP=		PLUGINS
 OPTIONS_GROUP_PLUGINS=	PLUG_APR PLUG_SBR PLUG_TPA PLUG_UCA PLUG_WALL
 OPTIONS_DEFAULT=	NOTIFY PLUG_APR PLUG_SBR PLUG_TPA PLUG_UCA PLUG_WALL
