@@ -1,14 +1,14 @@
---- plugins/pager/pager.c.orig	2020-04-29 06:30:30 UTC
+--- plugins/pager/pager.c.orig	2022-12-15 08:38:30 UTC
 +++ plugins/pager/pager.c
-@@ -74,6 +74,7 @@ static void     pager_plugin_mode_changed             
- static void     pager_plugin_configure_workspace_settings (GtkWidget         *button);
+@@ -75,6 +75,7 @@ static void     pager_plugin_configure_workspace_setti
  static void     pager_plugin_configure_plugin             (XfcePanelPlugin   *panel_plugin);
+ static gpointer pager_plugin_get_master_plugin            (PagerPlugin       *plugin);
  static void     pager_plugin_screen_layout_changed        (PagerPlugin       *plugin);
 +static void     pager_plugin_get_ratio                    (PagerPlugin       *plugin);
  static void     pager_plugin_get_preferred_width          (GtkWidget           *widget,
                                                             gint                *minimum_width,
                                                             gint                *natural_width);
-@@ -328,8 +328,18 @@ pager_plugin_scroll_event (GtkWidget      *widget,
+@@ -393,8 +394,18 @@ pager_plugin_scroll_event (GtkWidget      *widget,
    gint                n_workspaces;
    GdkScrollDirection  scrolling_direction;
  
@@ -27,7 +27,7 @@
    /* leave when scrolling is not enabled */
    if (plugin->scrolling == FALSE)
      return TRUE;
-@@ -350,35 +361,85 @@ pager_plugin_scroll_event (GtkWidget      *widget,
+@@ -415,35 +426,85 @@ pager_plugin_scroll_event (GtkWidget      *widget,
        return TRUE;
      }
  
@@ -136,17 +136,7 @@
    return TRUE;
  }
  
-@@ -438,9 +439,6 @@ pager_plugin_screen_layout_changed (PagerPlugin *plugi
-         g_message ("Setting the pager rows returned false. Maybe the setting is not applied.");
- 
-       wnck_pager_set_orientation (WNCK_PAGER (plugin->pager), orientation);
--G_GNUC_BEGIN_IGNORE_DEPRECATIONS
--      plugin->ratio = (gfloat) gdk_screen_width () / (gfloat) gdk_screen_height ();
--G_GNUC_END_IGNORE_DEPRECATIONS
-       g_signal_connect_after (G_OBJECT (plugin->pager), "drag-begin",
-                               G_CALLBACK (pager_plugin_drag_begin_event), plugin);
-       g_signal_connect_after (G_OBJECT (plugin->pager), "drag-end",
-@@ -706,6 +702,26 @@ pager_plugin_configure_plugin (XfcePanelPlugin *panel_
+@@ -869,6 +930,26 @@ pager_plugin_configure_plugin (XfcePanelPlugin *panel_
  
  
  static void
@@ -173,7 +163,7 @@
  pager_plugin_get_preferred_width (GtkWidget *widget,
                                    gint      *minimum_width,
                                    gint      *natural_width)
-@@ -727,6 +743,9 @@ pager_plugin_get_preferred_width (GtkWidget *widget,
+@@ -890,6 +971,9 @@ pager_plugin_get_preferred_width (GtkWidget *widget,
      {
        n_workspaces = wnck_screen_get_workspace_count (plugin->wnck_screen);
        n_cols = MAX (1, (n_workspaces + plugin->rows - 1) / plugin->rows);
@@ -183,7 +173,7 @@
        min_width = nat_width = (gint) (xfce_panel_plugin_get_size (XFCE_PANEL_PLUGIN (plugin)) / plugin->rows * plugin->ratio * n_cols);
      }
  
-@@ -758,6 +777,9 @@ pager_plugin_get_preferred_height (GtkWidget *widget,
+@@ -921,6 +1005,9 @@ pager_plugin_get_preferred_height (GtkWidget *widget,
      {
        n_workspaces = wnck_screen_get_workspace_count (plugin->wnck_screen);
        n_cols = MAX (1, (n_workspaces + plugin->rows - 1) / plugin->rows);
