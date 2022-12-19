@@ -75,6 +75,18 @@ CPP=	cpp
 CFLAGS+=	-Qunused-arguments
 .endif
 
+########################################
+# xorgproto
+########################################
+.if defined(USES) && ${USES:Mxorg}
+. if defined(USE_XORG) && ! ${USE_XORG:Mxorgproto}
+USE_XORG+=	xorgproto
+. endif
+.endif
+
+########################################
+# pkgconf
+########################################
 .if ${.CURDIR:M*/graphics/ImageMagick*}
 USES:=	${USES:S@pkgconfig:both@pkgconfig@}
 .endif
