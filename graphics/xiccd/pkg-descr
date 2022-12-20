@@ -8,5 +8,3 @@ A simple bridge between colord and X. It does the following tasks:
 The primary goal of xiccd is providing color profile support for
 desktop environments other than Gnome and KDE (Xfce, LXDE, and
 probably others) that don't support native color management yet.
-
-WWW: https://github.com/agalakhov/xiccd

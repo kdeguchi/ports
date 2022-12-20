@@ -4,6 +4,7 @@ CATEGORIES=	graphics
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Simple bridge between colord and X
+WWW=	https://github.com/agalakhov/xiccd
 
 LICENSE=	GPLv3
 
