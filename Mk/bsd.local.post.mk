@@ -113,6 +113,9 @@ USES+=	pkgconfig
 . endif
 .endif
 
+########################################
+# KDE
+########################################
 .if defined(USE_KDE) && ${USE_KDE:Mecm}
 USE_KDE:=	${USE_KDE:S@ecm@ecm:build@}
 .endif
@@ -125,6 +128,9 @@ USE_KDE:=	${USE_KDE:S@kirigami2@kirigami2:build@}
 USE_KDE:=	${USE_KDE:S@plasma-wayland-protocols@plasma-wayland-protocols:build@}
 .endif
 
+########################################
+# misc
+########################################
 .if ${.CURDIR:M*/databases/mariadb*-server}
 SUB_LIST+=	MARIADB_GROUP="${MARIADB_GROUP}"
 .endif
@@ -182,6 +188,11 @@ MAKE_ENV:=	${MAKE_ENV:S@PATH=@PATH=${PREFIX}/libexec/ccache:@}
 
 #.if ${.CURDIR:M*/math/wxmaxima}
 #USE_WX=	3.2+
+#.endif
+
+#.if empty(NO_CCACHE) && empty(.CURDIR:M*ports-mgmt/pkg) && empty(.CURDIR:M*devel/ccache*) && empty(.CURDIR:M*databases/libmemcached)
+#NO_CCACHE_DEPEND=	yes
+#BUILD_DEPENDS+=	${CCACHE_BIN}:devel/ccache-memcached
 #.endif
 
 .if ${RUN_DEPENDS:M*sudo\:security/sudo}
