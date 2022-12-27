@@ -1,5 +1,5 @@
 PORTNAME=	conky
-PORTVERSION=	1.15.0
+PORTVERSION=	1.16.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
 
@@ -10,7 +10,7 @@ WWW=		https://github.com/brndnmtthws/conky
 LIB_DEPENDS=	libinotify.so:devel/libinotify
 BUILD_DEPENDS=	gsed:textproc/gsed
 
-USES=		cpe cmake:noninja compiler:c++11-lib gettext-runtime \
+USES=		cpe cmake compiler:c++11-lib gettext-runtime \
 		localbase lua:flavors pkgconfig tar:bzip2
 
 USE_LDCONFIG=	yes
@@ -83,15 +83,15 @@ LUA_RSVG_USES=		gnome
 LUA_RSVG_USE=		gnome=librsvg2
 LUA_RSVG_IMPLIES=	X11
 
+METAR_DESC=		Display METAR weather reports
+METAR_CMAKE_BOOL=	BUILD_WEATHER_METAR
+METAR_IMPLIES=		CURL
+
 MANPAGES_BUILD_DEPENDS=	pandoc:textproc/hs-pandoc \
 			${PYTHON_PKGNAMEPREFIX}yaml>0:devel/py-yaml@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}Jinja2>=0:devel/py-Jinja2@${PY_FLAVOR}
 MANPAGES_USES=		python:3.7+,build
 MANPAGES_CMAKE_BOOL=	BUILD_DOCS
-
-METAR_DESC=		Display METAR weather reports
-METAR_CMAKE_BOOL=	BUILD_WEATHER_METAR
-METAR_IMPLIES=		CURL
 
 MOC_DESC=		Control MOC (Music On Console)
 MOC_CMAKE_BOOL=		BUILD_MOC
