@@ -10,7 +10,6 @@ LICENSE=	CC0-1.0
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	kdeguchi
-GH_TAGNAME=	cc17613
 
 NO_ARCH=	yes
 NO_BUILD=	yes
