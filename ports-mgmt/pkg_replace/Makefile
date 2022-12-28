@@ -1,5 +1,5 @@
 PORTNAME=	pkg_replace
-PORTVERSION=	20221222
+PORTVERSION=	20221228
 CATEGORIES=	ports-mgmt
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -10,6 +10,7 @@ LICENSE=	CC0-1.0
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	kdeguchi
+GH_TAGNAME=	cc17613
 
 NO_ARCH=	yes
 NO_BUILD=	yes

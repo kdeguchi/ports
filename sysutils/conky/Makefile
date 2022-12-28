@@ -1,7 +1,11 @@
 PORTNAME=	conky
 PORTVERSION=	1.16.1
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	sysutils
+
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	3fb6534eff30.patch:-p1 # https://github.com/brndnmtthws/conky/pull/1349
 
 MAINTAINER=	madpilot@FreeBSD.org
 COMMENT?=	Advanced, highly configurable system monitor for X11
@@ -32,12 +36,12 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	brndnmtthws
 
 OPTIONS_DEFINE=	APCUPSD CURL DOCS EXAMPLES ICONV IPV6 MANPAGES METAR MOC MPD \
-		NCURSES RSS X11 XMMS2
+		NCURSES RSS WAYLAND X11 XMMS2
 
 OPTIONS_GROUP?=	X11
 OPTIONS_GROUP_X11=	ARGB DOUBLE_BUFFER HSV IMLIB2 LUA_CAIRO LUA_IMLIB2 LUA_RSVG \
 		XFT XINERAMA XSHAPE
-OPTIONS_DEFAULT?=	ARGB DOUBLE_BUFFER LUA_CAIRO MANPAGES X11 XFT
+OPTIONS_DEFAULT?=	ARGB DOUBLE_BUFFER LUA_CAIRO MANPAGES WAYLAND X11 XFT
 OPTIONS_SUB=	yes
 
 APCUPSD_DESC=		Monitor APCUPSD
@@ -108,6 +112,16 @@ RSS_CMAKE_BOOL=		BUILD_RSS
 RSS_USES=		gnome
 RSS_USE=		gnome=glib20,libxml2
 RSS_IMPLIES=		CURL
+
+WAYLAND_CATEGORIES=	wayland
+WAYLAND_BUILD_DEPENDS=	wayland-protocols>=1.13:graphics/wayland-protocols
+WAYLAND_LIB_DEPENDS=	libepoll-shim.so:devel/libepoll-shim \
+			libwayland-client.so:graphics/wayland \
+			libfontconfig.so:x11-fonts/fontconfig
+WAYLAND_USES=		gnome
+WAYLAND_USE=		gnome=cairo,pango
+WAYLAND_CMAKE_BOOL=	BUILD_WAYLAND
+WAYLAND_LDFLAGS=	-Wl,--as-needed # pangoft2 deps: glib20, freetype2, harfbuzz
 
 X11_USES=		xorg
 X11_USE=		xorg=x11,xext,xdamage,xfixes

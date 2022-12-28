@@ -80,7 +80,9 @@ CFLAGS+=	-Qunused-arguments
 ########################################
 .if defined(USES) && ${USES:Mxorg}
 . if defined(USE_XORG) && ! ${USE_XORG:Mxorgproto}
+.  if ! ${.CURDIR:M*x11/xorgproto}
 USE_XORG+=	xorgproto
+.  endif
 . endif
 .endif
 
@@ -188,11 +190,6 @@ MAKE_ENV:=	${MAKE_ENV:S@PATH=@PATH=${PREFIX}/libexec/ccache:@}
 
 #.if ${.CURDIR:M*/math/wxmaxima}
 #USE_WX=	3.2+
-#.endif
-
-#.if empty(NO_CCACHE) && empty(.CURDIR:M*ports-mgmt/pkg) && empty(.CURDIR:M*devel/ccache*) && empty(.CURDIR:M*databases/libmemcached)
-#NO_CCACHE_DEPEND=	yes
-#BUILD_DEPENDS+=	${CCACHE_BIN}:devel/ccache-memcached
 #.endif
 
 .if ${RUN_DEPENDS:M*sudo\:security/sudo}
