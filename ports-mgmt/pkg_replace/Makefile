@@ -1,5 +1,5 @@
 PORTNAME=	pkg_replace
-PORTVERSION=	20230103
+PORTVERSION=	20230104
 CATEGORIES=	ports-mgmt
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
