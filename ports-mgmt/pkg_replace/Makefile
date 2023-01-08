@@ -7,6 +7,7 @@ COMMENT=	Utility for upgrading installed packages
 WWW=		https://github.com/kdeguchi/pkg_replace
 
 LICENSE=	CC0-1.0
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	kdeguchi
