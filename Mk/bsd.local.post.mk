@@ -78,7 +78,7 @@ CFLAGS+=	-Qunused-arguments
 ########################################
 # xorgproto
 ########################################
-.if defined(USES) && ${USES:M*xorg}
+.if defined(USES) && ( ${USES:M*xorg} || ${USES:M*gl} )
 . if defined(USE_XORG)
 .  if ! ${.CURDIR:M*x11/xorgproto}
 USE_XORG+=	xorgproto
