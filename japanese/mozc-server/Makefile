@@ -117,8 +117,8 @@ DISTFILES+=	mozcdic-ut-${UT_VERSION}.tar.bz2:ut
 
 MASTER_SITES+=	LOCAL/kuriyama:zipcode
 DISTFILES+= \
-	ken_all-20200430.zip:zipcode \
-	jigyosyo-20200430.zip:zipcode
+	ken_all-20221228.zip:zipcode \
+	jigyosyo-20221228.zip:zipcode
 PLIST_FILES+=	bin/mozc \
 		libexec/mozc_server
 SUB_FILES+=	mozc
