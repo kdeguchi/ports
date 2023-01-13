@@ -1,6 +1,6 @@
---- main.c.orig	Sun Mar 14 00:00:00 1999
-+++ main.c	Sun Feb 13 15:51:22 2000
-@@ -228,7 +228,7 @@
+--- main.c.orig	2023-01-13 08:21:06 UTC
++++ main.c
+@@ -228,7 +228,7 @@ void errprint(const char *func, int level, const char 
  
  	va_start(ap, fmt);
  

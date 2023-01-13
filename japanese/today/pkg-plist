@@ -1,7 +1,7 @@
 bin/today
 bin/calendar-today
 bin/dayinfo
-etc/today.cnf
+@sample etc/today.cnf.sample
 %%PORTDOCS%%%%DOCSDIR%%/today.doc
 %%DATADIR%%/birthday.tbl
 %%DATADIR%%/event01.tbl

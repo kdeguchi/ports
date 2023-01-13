@@ -1,10 +1,10 @@
---- version.c.orig	Sun Mar 14 00:00:00 1999
-+++ version.c	Sun Feb 13 16:07:25 2000
-@@ -42,7 +42,7 @@
+--- version.c.orig	2023-01-13 08:21:06 UTC
++++ version.c
+@@ -47,7 +47,7 @@ const char	UseLanguage[] =
  #endif
  
  #ifdef TRANS
--const char	Modify[] = "Modified for æ©Ÿç¨®å/OSå by ç§»æ¤è€…å";
+-const char	Modify[] = "Modified for µ¡¼ïÌ¾/OSÌ¾ by °Ü¿¢¼ÔÌ¾";
 +const char	Modify[] = "Modified for FreeBSD2.0.5R by pcs51674@asciinet.or.jp";
  #endif
  

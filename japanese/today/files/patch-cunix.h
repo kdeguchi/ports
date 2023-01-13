@@ -1,5 +1,5 @@
---- cunix.h.orig	2015-11-23 17:47:06.000000000 +0900
-+++ cunix.h	2015-11-23 17:49:27.000000000 +0900
+--- cunix.h.orig	2023-01-13 08:21:06 UTC
++++ cunix.h
 @@ -29,6 +29,10 @@
  #include <termcap.h>
  #endif
@@ -8,19 +8,19 @@
 +#include <sys/endian.h>
 +#endif
 +
- #define _T_EUC	/* EUC æ¼¢å­—ã‚³ãƒ¼ãƒ‰ */
+ #define _T_EUC	/* EUC ´Á»ú¥³¡¼¥É */
  
- #define _T_MAXROWS			24				/* ç”»é¢è¡Œæ•° */
+ #define _T_MAXROWS			24				/* ²èÌÌ¹Ô¿ô */
 @@ -40,7 +44,9 @@
- #define _T_TMPENV			"TEMP"			/* temporary ç’°å¢ƒå¤‰æ•°å */
- #define _T_TMPENV2			"TMPDIR"		/* temporary ç’°å¢ƒå¤‰æ•°å */
+ #define _T_TMPENV			"TEMP"			/* temporary ´Ä¶­ÊÑ¿ôÌ¾ */
+ #define _T_TMPENV2			"TMPDIR"		/* temporary ´Ä¶­ÊÑ¿ôÌ¾ */
  #define _T_TMPDIR			"/tmp"			/* temporary directory */
 +#if 0
  #define _T_SEARCH_DEFPATHS	"/usr/local/lib/today:/opt/local/lib/today:/usr/local/share/today:/opt/local/share/today:/usr/lib/today:/opt/lib/today:/usr/share/today:/opt/share/today:/usr/local/lib:/opt/local/lib:/usr/lib:/opt/lib"
 +#endif
  											/* default search path list */
- #define _T_HOMEENV			"HOME"			/* home ç’°å¢ƒå¤‰æ•° */
- #define _T_PATHENV			"PATH"			/* path ç’°å¢ƒå¤‰æ•°å */
+ #define _T_HOMEENV			"HOME"			/* home ´Ä¶­ÊÑ¿ô */
+ #define _T_PATHENV			"PATH"			/* path ´Ä¶­ÊÑ¿ôÌ¾ */
 @@ -50,6 +56,15 @@
  											/* path name of executed command */
  #define _T_EXECCMDPATH		"ExecCmdPath"	/* $ExecCmdPath => search_cmdpath */

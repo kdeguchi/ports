@@ -1,6 +1,6 @@
---- calendar.c.orig	Sun Mar 14 00:00:00 1999
-+++ calendar.c	Sun Feb 13 15:43:52 2000
-@@ -848,7 +848,7 @@
+--- calendar.c.orig	2023-01-13 08:21:06 UTC
++++ calendar.c
+@@ -877,7 +877,7 @@ void errprint(const char *func, int level, const char 
  
  	va_start(ap, fmt);
  

@@ -1,6 +1,6 @@
---- misc.c.orig	Sun Mar 14 00:00:00 1999
-+++ misc.c	Sun Feb 13 15:55:51 2000
-@@ -1188,7 +1188,11 @@
+--- misc.c.orig	2023-01-13 08:21:06 UTC
++++ misc.c
+@@ -1177,7 +1177,11 @@ store_2num:
  				pb = pbuf + strlen(pbuf) - 5;
  #endif
  #if defined(_T_MSDOS) || defined(_T_UNIX)

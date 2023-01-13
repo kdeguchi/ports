@@ -26,11 +26,11 @@ post-extract:
 	@(cd ${WRKSRC}; lha xqf tbl.lzh )
 	@${ECHO_MSG} "===>  Converting Kanji code for ${DISTNAME}"
 	@(cd ${WRKSRC}; \
-	for i in *.c *.h *.doc *.cnf birthday.tbl event*.tbl flower.tbl \
+	for i in *.c *.h *.doc *.cnf *.rc birthday.tbl event*.tbl flower.tbl \
 		gengo.tbl hist??.tbl history.tbl holiday.tbl magazine.tbl \
 		monthly.tbl schedule.tbl suffix.tbl week.tbl; \
 	do \
-		nkf -Sw $$i | ${TR} -d '\015' > $$i.tmp ;\
+		nkf -Se $$i | ${TR} -d '\015' > $$i.tmp ;\
 		${MV} -f $$i.tmp $$i ; \
 	done)
 
