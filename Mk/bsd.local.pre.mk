@@ -48,4 +48,9 @@ BUILD_DEPENDS+=	${LOCALBASE}/include/boost/container/small_vector.hpp:devel/boos
 USES:=	${USES:S/lua:53/lua:54/}
 .endif
 
+.if ${.CURDIR:M*/graphics/libjxl}
+USES+=	xorg
+USE_XORG=	xorgproto
+.endif
+
 SCRITPTSDIR=	/home/deguchi/data/work/github/ports/Mk/Scripts
