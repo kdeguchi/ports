@@ -1,0 +1,54 @@
+--- src/WORKSPACE.bazel.orig	2023-01-23 19:19:19 UTC
++++ src/WORKSPACE.bazel
+@@ -18,33 +18,34 @@ android_repository(name = "android_repository")
+ load("@android_repository//:setup.bzl", "android_ndk_setup")
+ android_ndk_setup()
+ 
+-local_repository(
++#local_repository(
++#    name = "com_google_absl",
++#    path = "third_party/abseil-cpp",
++#)
++
++load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
++# This git_repository rule is an alternative for the above rule.
++git_repository(
+     name = "com_google_absl",
+-    path = "third_party/abseil-cpp",
++    remote = "https://github.com/abseil/abseil-cpp.git",
++    tag = "20211102.0"  # 2021-11-04
+ )
+ 
+-# This git_repository rule is an alternative for the above rule.
+-# git_repository(
+-#     name = "com_google_absl",
+-#     remote = "https://github.com/abseil/abseil-cpp.git",
+-#     tag = "20211102.0"  # 2021-11-04
+-# )
++#local_repository(
++#    name = "com_google_protobuf",
++#    path = "third_party/protobuf",
++#)
+ 
+-local_repository(
++# This git_repository rule is an alternative for the above rule.
++git_repository(
+     name = "com_google_protobuf",
+-    path = "third_party/protobuf",
++    remote = "https://github.com/google/protobuf.git",
++    tag = "v3.19.3",  # 2022-01-11
+ )
+ 
+ load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
+ 
+ protobuf_deps()
+-
+-# This git_repository rule is an alternative for the above rule.
+-# git_repository(
+-#     name = "com_google_protobuf",
+-#     remote = "https://github.com/google/protobuf.git",
+-#     tag = "v3.19.3",  # 2022-01-11
+-# )
+ 
+ # Gtest
+ new_local_repository(

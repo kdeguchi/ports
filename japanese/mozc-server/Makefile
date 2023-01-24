@@ -1,35 +1,31 @@
 PORTNAME=	mozc
-PORTVERSION=	2.28.4880.102.${UT_VERSION}
+PORTVERSION=	2.28.4990.100.${UT_VERSION}
 CATEGORIES=	japanese
-MASTER_SITES=	https://osdn.net/users/utuhiro/pf/utuhiro/dl/:ut
-DISTFILES=	${DISTNAME}.tar.bz2:ut
+
+EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT?=	Mozc Japanese Input Method, Server
 WWW=		https://github.com/google/mozc
 
+PATCH_DEPENDS=${PYTHON_CMD}:${PYTHON_PORTSDIR}
 BUILD_DEPENDS=	bazel:devel/bazel
-
-EXTRACT_DEPENDS=${PYTHON_CMD}:${PYTHON_PORTSDIR}
-#LIB_DEPENDS=	libprotobuf.so:devel/protobuf
-
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
-
-MASTER_SITES+=	https://codeload.github.com/hiroyuki-komatsu/japanese-usage-dictionary/tar.gz/e5b3425?dummy=/:udic
-DISTFILES+=	hiroyuki-komatsu-japanese-usage-dictionary-e5b3425_GH0.tar.gz:udic
-WRKSRC_udic=	${WRKDIR}/japanese-usage-dictionary-e5b3425
 
 USES=		compiler:c++11-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
+
+USE_GITHUB=	yes
+GH_TUPLE=	fcitx:mozc:d42831f \
+		hiroyuki-komatsu:japanese-usage-dictionary:e5b3425:udic
+
+UT_VERSION=	20230115
 
 BUILD_WRKSRC=	${WRKSRC}/src
 BUILD_MOZC_CMD=	${SETENV} PATH="${PREFIX}/openjdk11/bin:${PATH}" \
 		bazel build -c opt --copt=-fPIC --host_linkopt=-lm --verbose_failures --sandbox_debug --config oss_linux
 
 BUILD_MOZC_LIST?=	mozc_server
-
-UT_VERSION=	20221022
-FETCH_ARGS+=	--user-agent=curl/7.85.0
 
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
 PKGNAMEPREFIX=	ja-
@@ -45,7 +41,21 @@ LICENSE_FILE_NAISTL=	${WRKSRC}/src/data/dictionary_oss/README.txt
 LICENSE_DISTFILES_NAISTL=${DISTNAME}${EXTRACT_SUFX}
 
 OPTIONS_DEFINE=	UTDIC
+
 UTDIC_DESC=	Additional UT Dictionary
+UTDIC_USES=	ruby:build
+UTDIC_PATCH_DEPENDS=	rubygem-nkf>0:net/rubygem-nkf \
+		rubygem-zlib>0:devel/rubygem-zlib
+UTDIC_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:49fe923:neologd \
+		utuhiro78:mozcdic-ut-jawiki:1ebd9f6:jawiki \
+		utuhiro78:mozcdic-ut-personal-names:ca6f125:personal \
+		utuhiro78:mozcdic-ut-place-names:54771db:place \
+		utuhiro78:mozcdic-ut-sudachidict:677b9bd:sudachi \
+		utuhiro78:merge-ut-dictionaries:672c51a:ut
+UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:jawikilatest \
+		id.def:iddef
+UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:jawikilatest \
+		https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/:iddef
 
 .elif ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
 USES+=		qt:5
@@ -112,13 +122,11 @@ post-patch:
 
 .if ${PORT_OPTIONS:MUTDIC}
 LICENSE+=	APACHE20 CC-BY-SA-3.0 GPLv2
-DISTFILES+=	mozcdic-ut-${UT_VERSION}.tar.bz2:ut
 .endif
 
 MASTER_SITES+=	LOCAL/kuriyama:zipcode
-DISTFILES+= \
-	ken_all-20221228.zip:zipcode \
-	jigyosyo-20221228.zip:zipcode
+DISTFILES+=	ken_all-20221228.zip:zipcode \
+		jigyosyo-20221228.zip:zipcode
 PLIST_FILES+=	bin/mozc \
 		libexec/mozc_server
 SUB_FILES+=	mozc
@@ -136,8 +144,20 @@ post-patch-mozc_server:
 		${BUILD_WRKSRC}/third_party/japanese_usage_dictionary
 .if ${PORT_OPTIONS:MUTDIC}
 	# ut dictionary
-	cd ${WRKDIR}/${DISTFILES:M*mozcdic-*\:ut:S/.tar.bz2:ut//} && \
-		${CAT} mozcdic-*-${UT_VERSION}.txt \
+	${REINPLACE_CMD} -e 's@coding:@encoding:@g;s@`wget @#`wget @' ${WRKDIR}/merge-ut-dictionaries-*/src/*.rb
+	${REINPLACE_CMD} -e "s@^require 'open-uri'@#require 'open-uri'@g;" \
+		-e 's@^url = "https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/id.def"@id_def = File.new("id.def", "r")@g;s@^id_mozc = URI.open(url)@id_mozc = id_def@g;' \
+		${WRKDIR}/merge-ut-dictionaries-*/src/remove_duplicate_ut_entries.rb
+	cd ${WRKDIR}/merge-ut-dictionaries-*/src && \
+		${CP} ${DISTDIR}/jawiki-latest-all-titles-in-ns0.gz ${DISTDIR}/id.def . && \
+		${CP} ../../mozcdic-ut-*/mozcdic-ut-*.txt.tar.bz2 . && \
+		for f in mozcdic-ut-*.txt.tar.bz2; do ${TAR} xf $$f; done && \
+		${CAT} *.txt > ${WRKDIR}/mozcdic-ut.txt && \
+		${MV} ${WRKDIR}/mozcdic-ut.txt . && \
+		ruby -Ku remove_duplicate_ut_entries.rb mozcdic-ut.txt && \
+		ruby -Ku count_word_hits.rb && \
+		ruby -Ku apply_word_hits.rb mozcdic-ut.txt && \
+		${CAT} mozcdic-ut.txt \
 			>> ${BUILD_WRKSRC}/data/dictionary_oss/dictionary00.txt
 .endif
 

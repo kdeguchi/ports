@@ -1,6 +1,6 @@
---- src/data/symbol/symbol.tsv.orig	2022-07-23 23:02:59.000000000 +0900
-+++ src/data/symbol/symbol.tsv	2022-08-12 08:04:36.786102000 +0900
-@@ -45,6 +45,7 @@
+--- src/data/symbol/symbol.tsv.orig	2023-01-23 19:19:19 UTC
++++ src/data/symbol/symbol.tsv
+@@ -45,6 +45,7 @@ POS	CHAR	Reading (space separated)	description	additio
  記号	＼	ばっくすらっしゅ ぎゃくしゃせん ・ / ／ \ ＼ ¥ ￥ きごう しゃせん すらっしゅ ななめ	バックスラッシュ		GENERAL
  記号	\	ばっくすらっしゅ ぎゃくしゃせん ・ / ／ \ ＼ ¥ ￥ きごう しゃせん すらっしゅ ななめ	バックスラッシュ		GENERAL
  記号	〜	にょろ なみ から ー - ~ きごう より	波ダッシュ		GENERAL

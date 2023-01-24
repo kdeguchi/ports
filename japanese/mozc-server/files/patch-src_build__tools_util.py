@@ -1,6 +1,6 @@
---- src/build_tools/util.py.orig	2022-07-23 14:02:59 UTC
+--- src/build_tools/util.py.orig	2023-01-23 19:19:19 UTC
 +++ src/build_tools/util.py
-@@ -53,7 +53,7 @@ def IsMac():
+@@ -51,7 +51,7 @@ def IsMac():
  
  def IsLinux():
    """Returns true if the platform is Linux."""

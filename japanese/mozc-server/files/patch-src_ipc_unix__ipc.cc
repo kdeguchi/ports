@@ -1,4 +1,4 @@
---- src/ipc/unix_ipc.cc.orig	2022-07-23 14:02:59 UTC
+--- src/ipc/unix_ipc.cc.orig	2023-01-23 19:19:19 UTC
 +++ src/ipc/unix_ipc.cc
 @@ -40,6 +40,9 @@
  #include <sys/time.h>
@@ -47,7 +47,7 @@
  
    return true;
  }
-@@ -278,7 +304,12 @@ void IPCClient::Init(const std::string &name, const st
+@@ -274,7 +300,12 @@ void IPCClient::Init(const std::string &name, const st
      address.sun_family = AF_UNIX;
      ::memcpy(address.sun_path, server_address.data(), server_address_length);
      address.sun_path[server_address_length] = '\0';
@@ -60,7 +60,7 @@
      pid_t pid = 0;
      if (::connect(socket_, reinterpret_cast<const sockaddr *>(&address),
                    sun_len) != 0 ||
-@@ -390,7 +421,12 @@ IPCServer::IPCServer(const std::string &name, int32_t 
+@@ -385,7 +416,12 @@ IPCServer::IPCServer(const std::string &name, int32_t 
    int on = 1;
    ::setsockopt(socket_, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<char *>(&on),
                 sizeof(on));
