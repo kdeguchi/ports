@@ -151,7 +151,7 @@ post-patch-mozc_server:
 	cd ${WRKDIR}/merge-ut-dictionaries-*/src && \
 		${CP} ${DISTDIR}/jawiki-latest-all-titles-in-ns0.gz ${DISTDIR}/id.def . && \
 		${CP} ../../mozcdic-ut-*/mozcdic-ut-*.txt.tar.bz2 . && \
-		for f in mozcdic-ut-*.txt.tar.bz2; do ${TAR} xf $$f; done && \
+		for f in mozcdic-ut-*.txt.tar.bz2; do ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} $$f ${EXTRACT_AFTER_ARGS}; done && \
 		${CAT} *.txt > ${WRKDIR}/mozcdic-ut.txt && \
 		${MV} ${WRKDIR}/mozcdic-ut.txt . && \
 		ruby -Ku remove_duplicate_ut_entries.rb mozcdic-ut.txt && \
@@ -493,5 +493,8 @@ do-install-mozc_el:
 
 do-build: ${BUILD_MOZC_LIST:S/^/do-build-/}
 do-install: ${BUILD_MOZC_LIST:S/^/do-install-/}
+
+post-install:
+	cd ${BUILD_WRKSRC} && bazel shutdown
 
 .include <bsd.port.post.mk>
