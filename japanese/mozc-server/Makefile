@@ -1,5 +1,5 @@
 PORTNAME=	mozc
-PORTVERSION=	2.28.4990.100.${UT_VERSION}
+PORTVERSION=	2.28.4990.100
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -18,8 +18,6 @@ USES=		compiler:c++11-lang gmake localbase ninja:build pkgconfig \
 USE_GITHUB=	yes
 GH_TUPLE=	fcitx:mozc:d42831f \
 		hiroyuki-komatsu:japanese-usage-dictionary:e5b3425:udic
-
-UT_VERSION=	20230115
 
 BUILD_WRKSRC=	${WRKSRC}/src
 BUILD_MOZC_CMD=	${SETENV} PATH="${PREFIX}/openjdk11/bin:${PATH}" \
@@ -50,8 +48,9 @@ UTDIC_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:49fe923:neologd \
 		utuhiro78:mozcdic-ut-jawiki:1ebd9f6:jawiki \
 		utuhiro78:mozcdic-ut-personal-names:ca6f125:personal \
 		utuhiro78:mozcdic-ut-place-names:54771db:place \
-		utuhiro78:mozcdic-ut-sudachidict:677b9bd:sudachi \
 		utuhiro78:merge-ut-dictionaries:672c51a:ut
+#		utuhiro78:mozcdic-ut-sudachidict:677b9bd:sudachi \
+
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:jawikilatest \
 		id.def:iddef
 UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:jawikilatest \
