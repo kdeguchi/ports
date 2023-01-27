@@ -1,5 +1,5 @@
 PORTNAME=	mozc
-PORTVERSION=	2.28.4990.100
+PORTVERSION=	2.28.4990.102
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -39,17 +39,40 @@ LICENSE_FILE_NAISTL=	${WRKSRC}/src/data/dictionary_oss/README.txt
 LICENSE_DISTFILES_NAISTL=${DISTNAME}${EXTRACT_SUFX}
 
 OPTIONS_DEFINE=	UTDIC
+OPTIONS_GROUP=	UTDIC
+OPTIONS_GROUP_UTDIC=	ALTCANNADIC EDICT2 JAWIKI SKKJISYO SUDACHIDICT
 
 UTDIC_DESC=	Additional UT Dictionary
+
 UTDIC_USES=	ruby:build
 UTDIC_PATCH_DEPENDS=	rubygem-nkf>0:net/rubygem-nkf \
 		rubygem-zlib>0:devel/rubygem-zlib
-UTDIC_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:49fe923:neologd \
-		utuhiro78:mozcdic-ut-jawiki:1ebd9f6:jawiki \
-		utuhiro78:mozcdic-ut-personal-names:ca6f125:personal \
-		utuhiro78:mozcdic-ut-place-names:54771db:place \
-		utuhiro78:merge-ut-dictionaries:672c51a:ut
-#		utuhiro78:mozcdic-ut-sudachidict:677b9bd:sudachi \
+
+# APACHE20 multi
+UTDIC_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:b942640:personal \
+		utuhiro78:mozcdic-ut-place-names:88f49c2:place \
+		utuhiro78:mozcdic-ut-neologd:f881c1c:neologd \
+		utuhiro78:merge-ut-dictionaries:37499de:ut
+
+# GPLv2
+ALTCANNADIC_DESC=	Dictionary from Alt-Cannadic
+ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:f59287e:altcannadic
+
+# CC-BY-SA-4.0
+EDICT2_DESC=	Dictionary from EDICT2
+EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:99b4f5a:edict2
+
+# CC-BY-SA-3.0
+JAWIKI_DESC=	Dictionary from Japanese Wikipedia
+JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:86480c1:jawiki
+
+# APACHE20 GPLv2
+SKKJISYO_DESC=	Dictionary from from SKK-JISYO
+SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:2cbf5b4:skkjisyo
+
+# APACHE20
+SUDACHIDICT_DESC=	Dictionary from SudachiDict
+SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:18b1a77:sudachi
 
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:jawikilatest \
 		id.def:iddef
@@ -120,7 +143,16 @@ post-patch:
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server" || make(makesum)
 
 .if ${PORT_OPTIONS:MUTDIC}
-LICENSE+=	APACHE20 CC-BY-SA-3.0 GPLv2
+LICENSE+=	APACHE20
+.endif
+.if ${PORT_OPTIONS:MJAWIKI}
+LICENSE+=	CC-BY-SA-3.0
+.endif
+.if ${PORT_OPTIONS:MEDICT2}
+LICENSE+=	CC-BY-SA-4.0
+.endif
+.if ${PORT_OPTIONS:MALTCANNADIC} || ${PORT_OPTIONS:MSKKJISYO}
+LICENSE+=	GPLv2
 .endif
 
 MASTER_SITES+=	LOCAL/kuriyama:zipcode
