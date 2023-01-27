@@ -25,6 +25,12 @@ _ARCH=	x86_64
 _ARCH=	${ARCH}
 .endif
 
+#LICENSE=	CANON
+#LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+#LICENSE_NAME=	Canon Inc.
+#LICENSE_FILE=	${WRKSRC}/documents/LICENSE-cnijfilter-6.30EN.txt
+#LICENSE_DISTFILES=	${DISTFILES}
+
 post-extract:
 	cd ${WRKSRC}/packages && \
 		${MKDIR} ${_ARCH} && \
