@@ -1,5 +1,5 @@
 PORTNAME=	mozc
-PORTVERSION=	2.28.4990.102
+PORTVERSION=	2.28.5000.102
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -16,7 +16,7 @@ USES=		compiler:c++11-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:d42831f \
+GH_TUPLE=	fcitx:mozc:7bafa6c \
 		hiroyuki-komatsu:japanese-usage-dictionary:e5b3425:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
@@ -49,10 +49,10 @@ UTDIC_PATCH_DEPENDS=	rubygem-nkf>0:net/rubygem-nkf \
 		rubygem-zlib>0:devel/rubygem-zlib
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:b942640:personal \
-		utuhiro78:mozcdic-ut-place-names:88f49c2:place \
+UTDIC_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:9e3056c:personal \
+		utuhiro78:mozcdic-ut-place-names:0297d6a:place \
 		utuhiro78:mozcdic-ut-neologd:f881c1c:neologd \
-		utuhiro78:merge-ut-dictionaries:37499de:ut
+		utuhiro78:merge-ut-dictionaries:ffaf40e:ut
 
 # GPLv2
 ALTCANNADIC_DESC=	Dictionary from Alt-Cannadic
@@ -99,6 +99,7 @@ USES+=		gettext-tools
 
 .elif ${BUILD_MOZC_LIST:Mfcitx5_mozc}
 USES+=		gettext-tools
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src_pkg_config_repository.bzl
 
 .endif
 
@@ -130,8 +131,8 @@ post-patch:
 	${CP} ${BUILD_WRKSRC}/unix/fcitx/gen_fcitx_mozc_i18n.sh ${BUILD_WRKSRC}/unix/fcitx5/
 	${REINPLACE_CMD} 's,/po/mo},%po}mo,g' \
 	    ${BUILD_WRKSRC}/unix/fcitx5/gen_fcitx_mozc_i18n.sh
-	${REINPLACE_CMD} 's@^    linkopts@    srcs = glob(["lib/libFcitx5*.so"]),\n    linkopts@g' \
-		${BUILD_WRKSRC}/BUILD.fcitx5.bazel
+#	${REINPLACE_CMD} 's@^    linkopts@    srcs = glob(["lib/libFcitx5*.so"]),\n    linkopts@g' \
+#		${BUILD_WRKSRC}/BUILD.fcitx5.bazel
 .endif
 
 .if ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"

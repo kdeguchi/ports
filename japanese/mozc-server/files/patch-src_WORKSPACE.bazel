@@ -16,7 +16,7 @@
      name = "com_google_absl",
 -    path = "third_party/abseil-cpp",
 +    remote = "https://github.com/abseil/abseil-cpp.git",
-+    tag = "20211102.0"  # 2021-11-04
++    tag = "20220623.1"  # 2022-06-23
  )
  
 -# This git_repository rule is an alternative for the above rule.
