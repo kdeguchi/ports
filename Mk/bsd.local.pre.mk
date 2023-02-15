@@ -48,9 +48,15 @@ BUILD_DEPENDS+=	${LOCALBASE}/include/boost/container/small_vector.hpp:devel/boos
 USES:=	${USES:S/lua:53/lua:54/}
 .endif
 
-.if ${.CURDIR:M*/graphics/libjxl}
+########################################
+# xorgproto
+########################################
+.if defined(USES)&& ( ${USES:M*pkgconfig} || ${USES:M*xorg} || ${USES:M*gl} || ${USES:M*gnome})
+. if ! ${.CURDIR:M*x11/xorgproto}
 USES+=	xorg
-USE_XORG=	xorgproto
+USE_XORG+=	xorgproto
+USE_XORG:=	${USE_XORG:S@xorgproto:both@xorgproto@}
+. endif
 .endif
 
 SCRITPTSDIR=	/home/deguchi/data/work/github/ports/Mk/Scripts
