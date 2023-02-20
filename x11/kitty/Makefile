@@ -1,5 +1,5 @@
 PORTNAME=	kitty
-DISTVERSION=	0.26.5
+DISTVERSION=	0.27.1
 CATEGORIES=	x11 wayland
 MASTER_SITES=	https://github.com/kovidgoyal/${PORTNAME}/releases/download/v${DISTVERSION}/
 
@@ -28,7 +28,7 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libwayland-cursor.so:graphics/wayland \
 		libxkbcommon.so:x11/libxkbcommon
 
-USES=		compiler:c11 cpe desktop-file-utils gettext-runtime gl gmake \
+USES=		compiler:c11 cpe desktop-file-utils gettext-runtime gl gmake go:1.20,modules \
 		pkgconfig python:3.5+ shebangfix ssl tar:xz terminfo xorg
 CPE_VENDOR=	kitty_project
 USE_GL=		gl
@@ -56,6 +56,9 @@ _STRIP_TARGETS=	lib/kitty/kitty/fast_data_types.so lib/kitty/kitty/glfw-x11.so \
 		lib/kitty/kittens/transfer/rsync.so
 
 _EMPTY_DIRS=	kittens/choose kittens/diff kittens/unicode_input kittens kitty
+
+OPTIONS_DEFINE=	DOCS
+OPTIONS_SUB=	yes
 
 .include <bsd.port.options.mk>
 
