@@ -10,24 +10,27 @@
  #endif /* BUILD_X11 */
  #ifdef BUILD_NCURSES
  #include <ncurses.h>
-@@ -1705,6 +1708,22 @@ void main_loop() {
+@@ -1705,6 +1708,25 @@ void main_loop() {
    sigaddset(&newmask, SIGTERM);
    sigaddset(&newmask, SIGUSR1);
  #endif
++
 +#ifdef BUILD_X11
 +#ifdef BUILD_XSHAPE
-+       /* allow only decorated windows to be given mouse input */
-+       int major_version, minor_version;
-+       if (!XShapeQueryVersion(display, &major_version, &minor_version)) {
-+               NORM_ERR("Input shapes are not supported");
-+       } else {
-+               if (own_window.get(*state) &&
-+                   (own_window_type.get(*state) != TYPE_NORMAL ||
-+                    (TEST_HINT(own_window_hints.get(*state), HINT_UNDECORATED)))) {
-+                       XShapeCombineRectangles(display, window.window, ShapeInput, 0, 0,
-+                          NULL, 0, ShapeSet, Unsorted);
-+              }
-+      }
++        /* allow only decorated windows to be given mouse input */
++        int major_version;
++        int minor_version;
++        if (XShapeQueryVersion(display, &major_version, &minor_version) == 0) {
++          NORM_ERR("Input shapes are not supported");
++        } else {
++          if (own_window.get(*state) &&
++              (own_window_type.get(*state) != TYPE_NORMAL ||
++               ((TEST_HINT(own_window_hints.get(*state), HINT_UNDECORATED)) !=
++                0))) {
++            XShapeCombineRectangles(display, window.window, ShapeInput, 0, 0,
++                                    nullptr, 0, ShapeSet, Unsorted);
++          }
++        }
 +#endif /* BUILD_XSHAPE */
 +#endif /* BUILD_X11 */
  
