@@ -1,4 +1,4 @@
---- src/x11.cc.orig	2023-02-18 14:34:53 UTC
+--- src/x11.cc.orig	2019-07-23 15:06:00 UTC
 +++ src/x11.cc
 @@ -55,9 +55,6 @@
  #ifdef BUILD_XINERAMA
@@ -7,22 +7,14 @@
 -#ifdef BUILD_XSHAPE
 -#include <X11/extensions/shape.h>
 -#endif /* BUILD_XSHAPE */
- #ifdef BUILD_XFIXES
- #include <X11/extensions/Xfixes.h>
- #endif /* BUILD_XFIXES */
-@@ -620,32 +617,6 @@ void x11_init_window(lua::state &l __attribute__((unus
+ 
+ #ifdef BUILD_ARGB
+ bool have_argb_visual;
+@@ -769,24 +766,6 @@ static void init_window(lua::state &l __attribute__((u
        wmHint.flags = InputHint | StateHint;
        /* allow decorated windows to be given input focus by WM */
        wmHint.input = TEST_HINT(hints, HINT_UNDECORATED) ? False : True;
 -#ifdef BUILD_XSHAPE
--#ifdef BUILD_XFIXES
--      if (own_window_type.get(l) == TYPE_UTILITY) {
--        XRectangle rect;
--        XserverRegion region = XFixesCreateRegion(display, &rect, 1);
--        XFixesSetWindowShapeRegion(display, window.window, ShapeInput, 0, 0, region);
--        XFixesDestroyRegion(display, region);
--      }
--#endif /* BUILD_XFIXES */
 -      if (!wmHint.input) {
 -        /* allow only decorated windows to be given mouse input */
 -        int major_version;
