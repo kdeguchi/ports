@@ -1,5 +1,5 @@
 PORTNAME=	mozc
-PORTVERSION=	2.28.5000.102
+PORTVERSION=	2.28.5017.102
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
