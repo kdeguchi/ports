@@ -1,0 +1,176 @@
+PORTNAME=	conky
+PORTVERSION=	1.17.0
+DISTVERSIONPREFIX=	v
+CATEGORIES=	sysutils
+
+MAINTAINER=	madpilot@FreeBSD.org
+COMMENT?=	Advanced, highly configurable system monitor for X11
+WWW=		https://github.com/brndnmtthws/conky
+
+LIB_DEPENDS=	libinotify.so:devel/libinotify
+BUILD_DEPENDS=	gsed:textproc/gsed
+
+USES=		cpe cmake compiler:c++11-lib gettext-runtime \
+		localbase lua:flavors pkgconfig tar:bzip2
+
+USE_LDCONFIG=	yes
+
+CMAKE_OFF=	BUILD_PORT_MONITORS \
+		BUILD_IBM \
+		BUILD_HDDTEMP \
+		BUILD_IOSTATS \
+		BUILD_AUDACIOUS
+CMAKE_ARGS=	-DAPP_SED=${LOCALBASE}/bin/gsed
+CONFLICTS?=	conky-awesome
+
+SLAVEDIRS=	sysutils/conky-awesome
+
+PORTEXAMPLES=	conky.conf conky_no_x11.conf convert.lua
+PORTDOCS=	config_settings.yaml variables.yaml lua.yaml
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	brndnmtthws
+
+OPTIONS_DEFINE=	APCUPSD CURL DOCS EXAMPLES ICONV IPV6 MANPAGES METAR MOC MPD \
+		NCURSES RSS WAYLAND X11 XMMS2
+
+OPTIONS_GROUP?=	X11
+OPTIONS_GROUP_X11=	ARGB DOUBLE_BUFFER HSV IMLIB2 LUA_CAIRO LUA_IMLIB2 LUA_RSVG \
+		MOUSE_EVENTS XFT XINERAMA XSHAPE
+OPTIONS_DEFAULT?=	ARGB DOUBLE_BUFFER LUA_CAIRO MANPAGES MOUSE_EVENTS WAYLAND X11 XFT
+OPTIONS_SUB=	yes
+
+APCUPSD_DESC=		Monitor APCUPSD
+APCUPSD_CMAKE_BOOL=	BUILD_APCUPSD
+
+ARGB_DESC=		Use an ARGB visual to draw on X11
+ARGB_CMAKE_BOOL=	BUILD_ARGB
+ARGB_IMPLIES=		X11
+
+CURL_CMAKE_BOOL=	BUILD_CURL
+CURL_LIB_DEPENDS=	libcurl.so:ftp/curl
+
+DOUBLE_BUFFER_DESC=	X11 double buffering
+DOUBLE_BUFFER_CMAKE_BOOL=BUILD_XDBE
+DOUBLE_BUFFER_IMPLIES=	X11
+
+HSV_DESC=		Generate gradient in HSV color space
+HSV_CMAKE_BOOL=	BUILD_HSV_GRADIENT
+
+ICONV_CMAKE_BOOL=	BUILD_ICONV
+ICONV_USES=		iconv
+
+IMLIB2_CMAKE_BOOL=	BUILD_IMLIB2
+IMLIB2_LIB_DEPENDS=	libImlib2.so:graphics/imlib2
+IMLIB2_IMPLIES=		X11
+IMLIB2_USE=		xorg=ice,sm
+
+IPV6_CMAKE_BOOL=	BUILD_IPV6
+
+LUA_CAIRO_DESC=		Lua-Cairo binding
+LUA_CAIRO_CMAKE_BOOL=	BUILD_LUA_CAIRO
+LUA_CAIRO_USES=	gnome
+LUA_CAIRO_USE=		gnome=cairo
+LUA_CAIRO_IMPLIES=	X11
+
+LUA_IMLIB2_DESC=	Lua-Imlib2 binding
+LUA_IMLIB2_CMAKE_BOOL=	BUILD_LUA_IMLIB2
+LUA_IMLIB2_IMPLIES=	IMLIB2 X11
+
+LUA_RSVG_DESC=		Lua-rsvg binding
+LUA_RSVG_CMAKE_BOOL=	BUILD_LUA_RSVG
+LUA_RSVG_USES=		gnome
+LUA_RSVG_USE=		gnome=librsvg2
+LUA_RSVG_IMPLIES=	X11
+
+METAR_DESC=		Display METAR weather reports
+METAR_CMAKE_BOOL=	BUILD_WEATHER_METAR
+METAR_IMPLIES=		CURL
+
+MANPAGES_BUILD_DEPENDS=	pandoc:textproc/hs-pandoc \
+			${PYTHON_PKGNAMEPREFIX}yaml>0:devel/py-yaml@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}Jinja2>=0:devel/py-Jinja2@${PY_FLAVOR}
+MANPAGES_USES=		python:3.7+,build
+MANPAGES_CMAKE_BOOL=	BUILD_DOCS
+
+MOC_DESC=		Control MOC (Music On Console)
+MOC_CMAKE_BOOL=		BUILD_MOC
+
+MOUSE_EVENTS_DESC=	Support generating mouse events
+MOUSE_EVENTS_CMAKE_BOOL=	BUILD_MOUSE_EVENTS
+MOUSE_EVENTS_IMPLIES=	X11
+
+MPD_DESC=		Control MPD (Music Player Daemon)
+MPD_CMAKE_BOOL=		BUILD_MPD
+
+NCURSES_DESC=		Use ncurses to draw on terminals
+NCURSES_CMAKE_BOOL=	BUILD_NCURSES
+NCURSES_USES=		ncurses:port
+
+RSS_DESC=		Display RSS feeds
+RSS_CMAKE_BOOL=		BUILD_RSS
+RSS_USES=		gnome
+RSS_USE=		gnome=glib20,libxml2
+RSS_IMPLIES=		CURL
+
+WAYLAND_CATEGORIES=	wayland
+WAYLAND_BUILD_DEPENDS=	wayland-protocols>=1.13:graphics/wayland-protocols
+WAYLAND_LIB_DEPENDS=	libepoll-shim.so:devel/libepoll-shim \
+			libwayland-client.so:graphics/wayland \
+			libfontconfig.so:x11-fonts/fontconfig
+WAYLAND_USES=		gnome
+WAYLAND_USE=		gnome=cairo,pango
+WAYLAND_CMAKE_BOOL=	BUILD_WAYLAND
+WAYLAND_LDFLAGS=	-Wl,--as-needed # pangoft2 deps: glib20, freetype2, harfbuzz
+
+X11_USES=		xorg
+X11_USE=		xorg=x11,xext,xdamage,xfixes
+X11_CMAKE_BOOL=	BUILD_X11 OWN_WINDOW
+X11_VARS=		EXAMPLE_CONF_FILE=${WRKSRC}/data/conky.conf
+X11_VARS_OFF=		EXAMPLE_CONF_FILE=${WRKSRC}/data/conky_no_x11.conf
+
+XFT_CMAKE_BOOL=		BUILD_XFT
+XFT_USE=		xorg=xft
+XFT_IMPLIES=		X11
+
+XINERAMA_CMAKE_BOOL=	BUILD_XINERAMA
+XINERAMA_USE=		xorg=xinerama
+XINERAMA_IMPLIES=	X11
+
+XMMS2_DESC=		Control XMMS2 media player
+XMMS2_CMAKE_BOOL=	BUILD_XMMS2
+XMMS2_LIB_DEPENDS=	libxmmsclient.so:audio/xmms2
+
+XSHAPE_DESC=		Xshape support
+XSHAPE_CMAKE_BOOL=	BUILD_XSHAPE
+XSHAPE_IMPLIES=	X11
+
+.include <bsd.port.options.mk>
+
+# disable apm on non-x86 archs
+.if ${ARCH} != amd64 && ${ARCH} != i386
+EXTRA_PATCHES+=		${PATCHDIR}/extra-patch-src_CMakeLists.txt
+.endif
+
+post-patch:
+	@${REINPLACE_CMD} -e 's,^set(INCLUDE_SEARCH_PATH \(.*\)),set(INCLUDE_SEARCH_PATH \1 ${LUA_INCDIR}),' \
+		${WRKSRC}/cmake/ConkyPlatformChecks.cmake
+	@${REINPLACE_CMD} -e 's,LOCALBASE,${LOCALBASE},' -e 's|-Werror||' \
+		${WRKSRC}/cmake/ConkyBuildOptions.cmake
+
+post-install:
+	@${MKDIR} ${STAGEDIR}${ETCDIR}
+
+post-install-X11-on:
+	${INSTALL_DATA} ${WRKSRC}/data/conky.conf ${STAGEDIR}${ETCDIR}/conky.conf.sample
+
+post-install-X11-off:
+	${INSTALL_DATA} ${WRKSRC}/data/conky_no_x11.conf ${STAGEDIR}${ETCDIR}/conky.conf.sample
+
+post-install-DOCS-on:
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+.for FILE in ${PORTDOCS}
+	${INSTALL_MAN} ${WRKSRC}/doc/${FILE} ${STAGEDIR}${DOCSDIR}
+.endfor
+
+.include <bsd.port.mk>
