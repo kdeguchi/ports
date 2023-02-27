@@ -1,5 +1,5 @@
 PORTNAME=	conky
-PORTVERSION=	1.17.0
+PORTVERSION=	1.18.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
 
@@ -11,7 +11,7 @@ LIB_DEPENDS=	libinotify.so:devel/libinotify
 BUILD_DEPENDS=	gsed:textproc/gsed
 
 USES=		cpe cmake compiler:c++11-lib gettext-runtime \
-		localbase lua:flavors pkgconfig tar:bzip2
+	localbase:ldflags lua:flavors pkgconfig tar:bzip2
 
 USE_LDCONFIG=	yes
 
