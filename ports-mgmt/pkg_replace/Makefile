@@ -1,5 +1,5 @@
 PORTNAME=	pkg_replace
-PORTVERSION=	20230206
+PORTVERSION=	20230228
 CATEGORIES=	ports-mgmt
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -11,7 +11,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	kdeguchi
-GH_TAGNAME=	e8b4ee0
+GH_TAGNAME=	74bd4c2
 
 NO_ARCH=	yes
 NO_BUILD=	yes
