@@ -2,9 +2,9 @@
 +++ src/base/logging.cc
 @@ -115,8 +115,12 @@ std::string Logging::GetLogMessageHeader() {
                        static_cast<unsigned int>(pthread_self());
- #elif defined(OS_LINUX)
+ #elif defined(__linux__)
    return absl::StrCat(timestamp, ::getpid(), " ",
-+#if defined(OS_FREEBSD)
++#if defined(__FreeBSD__)
 +                      reinterpret_cast<long>(pthread_self()));
 +#else
                        // It returns unsigned long.

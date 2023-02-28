@@ -4,17 +4,17 @@
  #include <sys/time.h>
  #include <sys/types.h>
  #include <sys/un.h>
-+#if defined(OS_MACOSX) || defined(OS_FREEBSD)
++#if defined(__APPLE__) || defined(__FreeBSD__)
 +#include <sys/ucred.h>
 +#endif
- #include <sys/wait.h>
  #include <unistd.h>
  
+ #include <cerrno>
 @@ -125,6 +128,28 @@ bool IsWriteTimeout(int socket, int timeout) {
  bool IsPeerValid(int socket, pid_t *pid) {
    *pid = 0;
  
-+#if defined(OS_MACOSX) || defined(OS_FREEBSD)
++#if defined(__APPLE__) || defined(__FreeBSD__)
 +  // If the OS is MAC, we should validate the peer by using LOCAL_PEERCRED.
 +  struct xucred peer_cred;
 +  socklen_t peer_cred_len = sizeof(struct xucred);
@@ -35,7 +35,7 @@
 +  *pid = 0;
 +#endif
 +
-+#if defined(OS_LINUX) && !defined(OS_FREEBSD)
++#if defined(__linux__) && !defined(__FreeBSD__)
    // On ARM Linux, we do nothing and just return true since the platform
    // sometimes doesn't support the getsockopt(sock, SOL_SOCKET, SO_PEERCRED)
    // system call.
@@ -51,7 +51,7 @@
      address.sun_family = AF_UNIX;
      ::memcpy(address.sun_path, server_address.data(), server_address_length);
      address.sun_path[server_address_length] = '\0';
-+#if defined(OS_MACOSX) || defined(OS_FREEBSD)
++#if defined(__APPLE__) || defined(__FreeBSD__)
 +    address.sun_len = SUN_LEN(&address);
 +    const size_t sun_len = sizeof(address);
 +#else
@@ -64,7 +64,7 @@
    int on = 1;
    ::setsockopt(socket_, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<char *>(&on),
                 sizeof(on));
-+#if defined(OS_MACOSX) || defined(OS_FREEBSD)
++#if defined(__APPLE__) || defined(__FreeBSD__)
 +  addr.sun_len = SUN_LEN(&addr);
 +  const size_t sun_len = sizeof(addr);
 +#else

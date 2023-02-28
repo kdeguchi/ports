@@ -1,5 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.28.5017.102
+PORTREVISION=	1
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -16,8 +17,8 @@ USES=		compiler:c++11-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:7bafa6c \
-		hiroyuki-komatsu:japanese-usage-dictionary:e5b3425:udic
+GH_TUPLE=	fcitx:mozc:34f5c88 \
+		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
 BUILD_MOZC_CMD=	${SETENV} PATH="${PREFIX}/openjdk11/bin:${PATH}" \
@@ -49,7 +50,7 @@ UTDIC_PATCH_DEPENDS=	rubygem-nkf>0:net/rubygem-nkf \
 		rubygem-zlib>0:devel/rubygem-zlib
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:9e3056c:personal \
+UTDIC_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:cff76d9:personal \
 		utuhiro78:mozcdic-ut-place-names:0297d6a:place \
 		utuhiro78:mozcdic-ut-neologd:f881c1c:neologd \
 		utuhiro78:merge-ut-dictionaries:ffaf40e:ut
@@ -60,11 +61,11 @@ ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:f59287e:altcannadic
 
 # CC-BY-SA-4.0
 EDICT2_DESC=	Dictionary from EDICT2
-EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:99b4f5a:edict2
+EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:58648b1:edict2
 
 # CC-BY-SA-3.0
 JAWIKI_DESC=	Dictionary from Japanese Wikipedia
-JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:86480c1:jawiki
+JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:c6738c3:jawiki
 
 # APACHE20 GPLv2
 SKKJISYO_DESC=	Dictionary from from SKK-JISYO
@@ -115,7 +116,7 @@ _CCTYPE=	gcc
 
 post-patch:
 	${FIND} ${BUILD_WRKSRC} -type f \( -name 'BUILD' -o -name '*.bzl' -o -name '*.cc' -o -name '*.h' \) \
-		-exec ${REINPLACE_CMD} -E "s,'python','${PYTHON_CMD}',g;s,/usr/bin/xdg-open,${PREFIX}/bin/xdg-open,g;s,/usr/lib/mozc,${PREFIX}/libexec,g;s,LINUX_MOZC_SERVER_DIR \+ \"/documents\",\"${DATADIR}\",g;s,/usr/lib/mozc/documents,${DATADIR},g;s,/usr/share,${PREFIX}/share,g;s,/usr/lib,${PREFIX}/lib,g;s,OS==\"linux\",OS==\"linux\" or OS==\"freebsd\",g;s,target_platform==\"Linux\",target_platform==\"Linux\" or target_platform==\"FreeBSD\",g" {} \;
+		-exec ${REINPLACE_CMD} -E "s,'python','${PYTHON_CMD}',g;s,/usr/bin/xdg-open,${PREFIX}/bin/xdg-open,g;s,/usr/lib/mozc,${PREFIX}/libexec,g;s,LINUX_MOZC_SERVER_DIR \+ \"/documents\",\"${DATADIR}\",g;s,/usr/lib/mozc/documents,${DATADIR},g;s,/usr/share,${PREFIX}/share,g;s,/usr/lib,${PREFIX}/lib,g;s,OS==\"linux\",OS==\"linux\" or OS==\"freebsd\",g;s,target_platform==\"Linux\",target_platform==\"Linux\" or target_platform==\"FreeBSD\",g;s,defined\(__linux__\),defined(__linux__) || defined(__FreeBSD__),g;s,#ifdef __linux__,#if defined(__linux__) || defined(__FreeBSD__),;s,#ifdef __linux,#if defined(__linux__) || defined(__FreeBSD__)," {} \;
 	${REINPLACE_CMD} 's@path = \"/usr\"@path = \"${PREFIX}\"@g' \
 		${BUILD_WRKSRC}/WORKSPACE.bazel
 
