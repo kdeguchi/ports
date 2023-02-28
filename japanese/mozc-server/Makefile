@@ -116,7 +116,7 @@ _CCTYPE=	gcc
 
 post-patch:
 	${FIND} ${BUILD_WRKSRC} -type f \( -name 'BUILD' -o -name '*.bzl' -o -name '*.cc' -o -name '*.h' \) \
-		-exec ${REINPLACE_CMD} -E "s,'python','${PYTHON_CMD}',g;s,/usr/bin/xdg-open,${PREFIX}/bin/xdg-open,g;s,/usr/lib/mozc,${PREFIX}/libexec,g;s,LINUX_MOZC_SERVER_DIR \+ \"/documents\",\"${DATADIR}\",g;s,/usr/lib/mozc/documents,${DATADIR},g;s,/usr/share,${PREFIX}/share,g;s,/usr/lib,${PREFIX}/lib,g;s,OS==\"linux\",OS==\"linux\" or OS==\"freebsd\",g;s,target_platform==\"Linux\",target_platform==\"Linux\" or target_platform==\"FreeBSD\",g;s,defined\(__linux__\),defined(__linux__) || defined(__FreeBSD__),g;s,#ifdef __linux__,#if defined(__linux__) || defined(__FreeBSD__),;s,#ifdef __linux,#if defined(__linux__) || defined(__FreeBSD__)," {} \;
+		-exec ${REINPLACE_CMD} -E "s,'python','${PYTHON_CMD}',g;s,/usr/bin/xdg-open,${PREFIX}/bin/xdg-open,g;s,/usr/lib/mozc,${PREFIX}/libexec,g;s,LINUX_MOZC_SERVER_DIR \+ \"/documents\",\"${DATADIR}\",g;s,/usr/lib/mozc/documents,${DATADIR},g;s,/usr/share,${PREFIX}/share,g;s,/usr/lib,${PREFIX}/lib,g;s,OS==\"linux\",OS==\"linux\" or OS==\"freebsd\",g;s,target_platform==\"Linux\",target_platform==\"Linux\" or target_platform==\"FreeBSD\",g;s,defined\(__linux__\),defined(__linux__) || defined(__FreeBSD__),g;s,^#ifdef __linux__$$,#if defined(__linux__) || defined(__FreeBSD__),;s,^#ifdef __linux$$,#if defined(__linux__) || defined(__FreeBSD__)," {} \;
 	${REINPLACE_CMD} 's@path = \"/usr\"@path = \"${PREFIX}\"@g' \
 		${BUILD_WRKSRC}/WORKSPACE.bazel
 
