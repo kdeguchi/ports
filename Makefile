@@ -1,4 +1,4 @@
-check-old:
+all:
 	@${ECHO_MSG} Checking different ports...
 	@for i in $$(${FIND} [a-z]*/* -depth 0 -type d); do \
 		my=$$( cd $${i} && ${MAKE} -V PKGNAME ) || continue; \
