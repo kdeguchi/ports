@@ -15,12 +15,12 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-HAS_CONFIGURE=	yes
 USES=	autoreconf desktop-file-utils gl gmake gnome libtool localbase \
 		pathfix pkgconfig shared-mime-info xorg
 USE_GL=		gl
 USE_GNOME=	cairo gtk30 intltool libwnck3 pango
 USE_XORG=	x11 xrender
+GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
 USE_GITLAB=	yes
@@ -47,8 +47,5 @@ post-patch:
 	    -e 's|#define GTK_DISABLE_DEPRECATED||g' ${WRKSRC}/include/emerald.h
 	@${REINPLACE_CMD} '/^emerald_LDADD =/s/$$/ -lm/' ${WRKSRC}/src/Makefile.am
 	@${REINPLACE_CMD} -e 's| -ldl||' ${WRKSRC}/configure.ac
-
-do-configure:
-	cd ${WRKSRC} && ${SH} autogen.sh ${CONFIGURE_ARGS}
 
 .include <bsd.port.mk>
