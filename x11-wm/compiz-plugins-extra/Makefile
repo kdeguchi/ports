@@ -48,10 +48,5 @@ NLS_USES=		gettext-runtime gettext-tools
 post-patch:
 	@${REINPLACE_CMD} -e 's|malloc.h|stdlib.h|' \
 		${WRKSRC}/src/group/group-internal.h
-	@${REINPLACE_CMD} -e 's|(libdir)/pkgconfig|(prefix)/libdata/pkg_config|' \
-		${WRKSRC}/Makefile.am
-
-do-configure:
-	cd ${WRKSRC} && ${SH} autogen.sh ${CONFIGURE_ARGS}
 
 .include <bsd.port.mk>

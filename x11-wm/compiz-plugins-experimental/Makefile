@@ -43,7 +43,4 @@ OPTIONS_SUB=	yes
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext-runtime gettext-tools
 
-do-configure:
-	cd ${WRKSRC} && ${SH} autogen.sh ${CONFIGURE_ARGS}
-
 .include <bsd.port.mk>

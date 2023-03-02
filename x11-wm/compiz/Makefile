@@ -22,7 +22,7 @@ RUN_DEPENDS=	glxinfo:graphics/mesa-demos \
 RUN_DEPENDS_amd64=	nvidia-settings:x11/nvidia-settings
 RUN_DEPENDS_i386=	nvidia-settings:x11/nvidia-settings
 
-USES=		autoreconf:build gl gmake gnome iconv libtool localbase pathfix \
+USES=		autoreconf gl gmake gnome iconv libtool localbase pathfix \
 		pkgconfig shebangfix xorg
 USE_GL=		gl glu
 USE_GNOME=	cairo glib20 intltool
@@ -93,9 +93,6 @@ SVG_USE=	gnome=librsvg2
 post-patch:
 	cd ${WRKSRC} && ${REINPLACE_CMD} -E 's@\[\[@[@g;s@\]\]@]@g;' ${SHEBANG_FILES} && \
 		${REINPLACE_CMD} -E 's@librsvg-@rsvg-@;s@<librsvg/@<librsvg-2.0/librsvg/@' plugins/svg.c
-
-pre-configure:
-	@cd ${WRKSRC} && ${SETENV} NOCONFIGURE=yes ${SH} autogen.sh ${CONFIGURE_ARGS}
 
 post-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/compiz-manager ${STAGEDIR}${PREFIX}/bin/compiz-manager
