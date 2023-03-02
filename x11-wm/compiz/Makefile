@@ -1,6 +1,6 @@
 PORTNAME=	compiz
 PORTVERSION=	0.8.18
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-wm
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -34,9 +34,6 @@ USE_GITLAB=	yes
 GL_ACCOUNT=	compiz
 GL_PROJECT=	compiz-core
 GL_COMMIT=	ae031701f5f8b43cf6a03262fbabc779bd35ad80
-#USE_GITHUB=	yes
-#GH_ACCOUNT=	compiz-reloaded
-#GH_TAGNAME=	ae03170
 
 INSTALL_TARGET=	install-strip
 INSTALL_ICONS=	yes
