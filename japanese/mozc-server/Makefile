@@ -17,7 +17,7 @@ USES=		compiler:c++11-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:34f5c88 \
+GH_TUPLE=	fcitx:mozc:623b2d4 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src

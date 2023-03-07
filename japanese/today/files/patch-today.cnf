@@ -18,7 +18,7 @@
  $common				# 以降 共通環境定義部
  
 -table_path = %ExecCmdPath%/tbl	# 各テーブルの検索パス名
-+table_path = /usr/local/share/today	# 各テーブルの検索パス名
++table_path = %%DATADIR%%	# 各テーブルの検索パス名
  				# ';' で区切り複数指定可能
  				# 未定義の場合、環境変数 TODAYTBL の場所
  
