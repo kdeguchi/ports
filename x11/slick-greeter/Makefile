@@ -9,13 +9,14 @@ WWW=		https://github.com/linuxmint/slick-greeter
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xapp.pc:x11/xapp
 LIB_DEPENDS=	libcanberra-gtk3.so:audio/libcanberra-gtk3 \
 		libcanberra.so:audio/libcanberra \
 		libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz \
+		libxapp.so:x11/xapp \
 		liblightdm-gobject-1.so:x11/lightdm
-RUN_DEPENDS=	numlockx>=0:x11/numlockx
+RUN_DEPENDS=	numlockx>=0:x11/numlockx \
+		setxkbmap:x11/setxkbmap
 
 USES=		autoreconf gettext gmake gnome localbase pkgconfig python:run shebangfix \
 		vala:build xorg
