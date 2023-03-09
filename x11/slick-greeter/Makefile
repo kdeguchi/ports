@@ -1,6 +1,5 @@
 PORTNAME=	slick-greeter
-PORTVERSION=	1.6.0
-PORTREVISION=	1
+PORTVERSION=	1.6.1
 CATEGORIES=	x11
 
 MAINTAINER=	ericbsd@FreeBSD.org
@@ -10,6 +9,7 @@ WWW=		https://github.com/linuxmint/slick-greeter
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xapp.pc:x11/xapp
 LIB_DEPENDS=	libcanberra-gtk3.so:audio/libcanberra-gtk3 \
 		libcanberra.so:audio/libcanberra \
 		libfreetype.so:print/freetype2 \
@@ -25,9 +25,11 @@ USE_XORG=	pixman x11 xext
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxmint
+GH_TAGNAME=	85f83be
 
 GNU_CONFIGURE=	yes
 SHEBANG_FILES=	files/usr/bin/slick-greeter-check-hidpi \
+		files/usr/bin/slick-greeter-enable-tap-to-click \
 		files/usr/bin/slick-greeter-set-keyboard-layout \
 		makepot
 bash_OLD_CMD=	/usr/bin/bash
