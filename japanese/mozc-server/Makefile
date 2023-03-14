@@ -50,8 +50,8 @@ UTDIC_PATCH_DEPENDS=	rubygem-nkf>0:net/rubygem-nkf \
 		rubygem-zlib>0:devel/rubygem-zlib
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:cff76d9:personal \
-		utuhiro78:mozcdic-ut-place-names:0297d6a:place \
+UTDIC_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:8f12df2:personal \
+		utuhiro78:mozcdic-ut-place-names:a601c4f:place \
 		utuhiro78:mozcdic-ut-neologd:f881c1c:neologd \
 		utuhiro78:merge-ut-dictionaries:ffaf40e:ut
 
@@ -69,7 +69,7 @@ JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:c6738c3:jawiki
 
 # APACHE20 GPLv2
 SKKJISYO_DESC=	Dictionary from from SKK-JISYO
-SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:2cbf5b4:skkjisyo
+SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:43518e6:skkjisyo
 
 # APACHE20
 SUDACHIDICT_DESC=	Dictionary from SudachiDict
