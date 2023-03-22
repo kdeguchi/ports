@@ -19,9 +19,9 @@ RUN_DEPENDS:=	${RUN_DEPENDS:C@${LOCALBASE}/libexec/notification-daemon:deskutils
 RUN_DEPENDS:=	${RUN_DEPENDS:C@notification-daemon>0:deskutils/notification-daemon@${LOCALBASE}/lib/xfce4/notifyd/xfce4-notifyd:deskutils/xfce4-notifyd@}
 .endif
 
-LIB_DEPENDS:=	${LIB_DEPENDS:C@libMagick(.*)-6.Q16.so@libMagick\1-6.Q16*.so@}
-RUN_DEPENDS:=	${RUN_DEPENDS:C@p5-Gtk>@p5-Gtk-Perl>@}
-RUN_DEPENDS:=	${RUN_DEPENDS:C@/p5-Gtk$@/p5-Gtk-Perl@}
+#LIB_DEPENDS:=	${LIB_DEPENDS:C@libMagick(.*)-6.Q16.so@libMagick\1-6.Q16*.so@}
+#RUN_DEPENDS:=	${RUN_DEPENDS:C@p5-Gtk>@p5-Gtk-Perl>@}
+#RUN_DEPENDS:=	${RUN_DEPENDS:C@/p5-Gtk$@/p5-Gtk-Perl@}
 
 .if ${CC:M/usr/bin/clang}
 CC=	clang
@@ -76,61 +76,6 @@ CFLAGS+=	-Qunused-arguments
 .endif
 
 ########################################
-# xorgproto
-########################################
-#.if defined(USES) && ( ${USES:M*pkgconfig} || ${USES:M*xorg} || ${USES:M*gl} || ${USES:M*gnome})
-#. if ! ${.CURDIR:M*x11/xorgproto}
-#USES+=	xorg
-#USE_XORG+=	xorgproto
-#USE_XORG:=	${USE_XORG:S@xorgproto:both@xorgproto@}
-#. endif
-#.endif
-
-########################################
-# pkgconf
-########################################
-#.if ${.CURDIR:M*/graphics/ImageMagick*}
-#USES:=	${USES:S@pkgconfig:both@pkgconfig@}
-#.endif
-#
-#.if ${.CURDIR:M*/devel/p5-ExtUtils-PkgConfig}
-#USES:=	${USES:S@pkgconfig:both@pkgconfig@}
-#.endif
-#
-#.if defined(BUILD_DEPENDS) && ( ${BUILD_DEPENDS:M*graphics/ImageMagick*} || ${BUILD_DEPENDS:M*devel/p5-Glib2} || ${BUILD_DEPENDS:M*devel/p5-ExtUtils-PkgConfig} )
-#. if ! ${USES:Mpkgconfig}
-#USES+=	pkgconfig
-#. endif
-#.endif
-#
-#.if defined(LIB_DEPENDS) && ( ${LIB_DEPENDS:M*graphics/ImageMagick*} || ${LIB_DEPENDS:M*devel/p5-Glib2} || ${LIB_DEPENDS:M*devel/p5-ExtUtils-PkgConfig} )
-#. if ! ${USES:Mpkgconfig}
-#USES+=	pkgconfig
-#. endif
-#.endif
-#
-#.if defined(RUN_DEPENDS) && ( ${RUN_DEPENDS:M*graphics/ImageMagick*} || ${RUN_DEPENDS:M*devel/p5-Glib2} || ${RUN_DEPENDS:M*devel/p5-ExtUtils-PkgConfig} )
-#. if ! ${USES:Mpkgconfig}
-#USES+=	pkgconfig
-#. endif
-#.endif
-
-########################################
-# KDE
-########################################
-.if defined(USE_KDE) && ${USE_KDE:Mecm}
-USE_KDE:=	${USE_KDE:S@ecm@ecm:build@}
-.endif
-
-.if defined(USE_KDE) && ${USE_KDE:Mkirigami2}
-USE_KDE:=	${USE_KDE:S@kirigami2@kirigami2:build@}
-.endif
-
-.if defined(USE_KDE) && ${USE_KDE:Mplasma-wayland-protocols}
-USE_KDE:=	${USE_KDE:S@plasma-wayland-protocols@plasma-wayland-protocols:build@}
-.endif
-
-########################################
 # misc
 ########################################
 .if ${.CURDIR:M*/databases/mariadb*-server}
@@ -179,18 +124,6 @@ CONFIGURE_ENV:=	${CONFIGURE_ENV:S@PATH=@PATH=${PREFIX}/libexec/ccache:@}
 MAKE_ENV:=	${MAKE_ENV:S@PATH=@PATH=${PREFIX}/libexec/ccache:@}
 .endif
 .endif
-
-#.if defined(BUILD_DEPENDS) && ${BUILD_DEPENDS:M*xdvi\:print/tex-xdvik*}
-#BUILD_DEPENDS:=	${BUILD_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvik@}
-#.endif
-
-#.if defined(RUN_DEPENDS) && ${RUN_DEPENDS:M*xdvi\:print/tex-xdvik*}
-#RUN_DEPENDS:=	${RUN_DEPENDS:S@xdvi:print/tex-xdvik@xdvi:japanese/ja-tex-xdvik@}
-#.endif
-
-#.if ${.CURDIR:M*/math/wxmaxima}
-#USE_WX=	3.2+
-#.endif
 
 .if ${RUN_DEPENDS:M*sudo\:security/sudo}
 RUN_DEPENDS:=	${RUN_DEPENDS:S@sudo:security/sudo@sudo:security/doas-wrapper@}

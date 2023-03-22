@@ -1,35 +1,3 @@
-.if ${.CURDIR:M*/graphics/ImageMagick*}
-USES:=	${USES:S@pkgconfig:both@pkgconfig@}
-.endif
-
-.if ${.CURDIR:M*/devel/p5-ExtUtils-PkgConfig}
-USES:=	${USES:S@pkgconfig:both@pkgconfig@}
-.endif
-
-.if defined(BUILD_DEPENDS) && ( ${BUILD_DEPENDS:M*graphics/ImageMagick*} || ${BUILD_DEPENDS:M*devel/p5-Glib2} || ${BUILD_DEPENDS:M*devel/p5-ExtUtils-PkgConfig} )
-USES+=	pkgconfig
-.endif
-
-.if defined(LIB_DEPENDS) && ( ${LIB_DEPENDS:M*graphics/ImageMagick*} || ${LIB_DEPENDS:M*devel/p5-Glib2} || ${LIB_DEPENDS:M*devel/p5-ExtUtils-PkgConfig} )
-USES+=	pkgconfig
-.endif
-
-.if defined(RUN_DEPENDS) && ( ${RUN_DEPENDS:M*graphics/ImageMagick*} || ${RUN_DEPENDS:M*devel/p5-Glib2} || ${RUN_DEPENDS:M*devel/p5-ExtUtils-PkgConfig} )
-USES+=	pkgconfig
-.endif
-
-.if defined(USE_KDE) && ${USE_KDE:Mecm}
-USE_KDE:=	${USE_KDE:S@ecm@ecm:build@}
-.endif
-
-.if defined(USE_KDE) && ${USE_KDE:Mkirigami2}
-USE_KDE:=	${USE_KDE:S@kirigami2@kirigami2:build@}
-.endif
-
-.if defined(USE_KDE) && ${USE_KDE:Mplasma-wayland-protocols}
-USE_KDE:=	${USE_KDE:S@plasma-wayland-protocols@plasma-wayland-protocols:build@}
-.endif
-
 .if ${.CURDIR:M*/sysutils/libcdio-paranoia}
 USES+=	iconv
 .endif
@@ -46,6 +14,21 @@ BUILD_DEPENDS+=	${LOCALBASE}/include/boost/container/small_vector.hpp:devel/boos
 
 .if ${.CURDIR:M*/devel/llvm*}
 USES:=	${USES:S/lua:53/lua:54/}
+.endif
+
+########################################
+# KDE
+########################################
+.if defined(USE_KDE) && ${USE_KDE:Mecm}
+USE_KDE:=	${USE_KDE:S@ecm@ecm:build@}
+.endif
+
+.if defined(USE_KDE) && ! ${USE_KDE:Mecm\:build}
+USE_KDE+=	ecm:build
+.endif
+
+.if defined(USE_KDE) && ${USE_KDE:Mplasma-wayland-protocols}
+USE_KDE:=	${USE_KDE:S@plasma-wayland-protocols@plasma-wayland-protocols:build@}
 .endif
 
 ########################################
