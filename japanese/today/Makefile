@@ -18,7 +18,7 @@ USES=		lha
 
 MAKEFILE=	${FILESDIR}/Makefile
 
-OPTIONS_DEFINE=	HISTDATA DOCS
+OPTIONS_DEFINE=	HISTDATA DOCS SEIJI
 
 HISTDATA_DESC=	More history data
 HISTDATA_MASTER_SITES=	https://ftp.vector.co.jp/02/97/476/
@@ -26,6 +26,10 @@ HISTDATA_DISTFILES=	hst9602a.lzh \
 		hst9602b.lzh \
 		hst9602c.lzh
 HISTDATA_EXTRA_PATCHES=	${PATCHDIR}/histdata-patch-gengo.tbl
+
+SEIJI_DESC=	Politian birthday data
+SEIJI_MASTER_SITES=	https://ftp.vector.co.jp/05/61/476/
+SEIJI_DISTFILES=	seiji97.lzh
 
 .include <bsd.port.pre.mk>
 
