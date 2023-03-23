@@ -18,12 +18,32 @@ USES=		lha
 
 MAKEFILE=	${FILESDIR}/Makefile
 
-OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFINE=	HISTDATA DOCS
+
+HISTDATA_DESC=	More history data
+HISTDATA_MASTER_SITES=	https://ftp.vector.co.jp/02/97/476/
+HISTDATA_DISTFILES=	hst9602a.lzh \
+		hst9602b.lzh \
+		hst9602c.lzh
+HISTDATA_EXTRA_PATCHES=	${PATCHDIR}/histdata-patch-gengo.tbl
+
+.include <bsd.port.pre.mk>
+
+.if !${PORT_OPTIONS:MHISTDATA}
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-gengo.tbl \
+		${PATCHDIR}/extra-patch-hist04.tbl
+.endif
 
 post-extract:
 	@(cd ${WRKSRC}; lha xiqf utility.lzh src/dayinfo.c )
+.if ${PORT_OPTIONS:MHISTDATA}
+	@(cd ${WRKSRC}; ${MKDIR} backup; ${MV} hist*.tbl gengo.tbl backup; lha xqf tbl.lzh )
+.endif
 	@${ECHO_MSG} "===>  Extracting tbl file for ${DISTNAME}"
 	@(cd ${WRKSRC}; lha xqf tbl.lzh )
+.if ${PORT_OPTIONS:MHISTDATA}
+	@(cd ${WRKSRC}; ${MV} backup/*.tbl . )
+.endif
 	@${ECHO_MSG} "===>  Converting Kanji code for ${DISTNAME}"
 	@(cd ${WRKSRC}; \
 	for i in *.c *.h *.doc *.cnf *.rc birthday.tbl event*.tbl flower.tbl \
@@ -41,4 +61,4 @@ post-install:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/today.doc ${STAGEDIR}${DOCSDIR}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
