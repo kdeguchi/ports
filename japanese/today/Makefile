@@ -30,6 +30,8 @@ HISTDATA_EXTRA_PATCHES=	${PATCHDIR}/histdata-patch-gengo.tbl
 SEIJI_DESC=	Politian birthday data
 SEIJI_MASTER_SITES=	https://ftp.vector.co.jp/05/61/476/
 SEIJI_DISTFILES=	seiji97.lzh
+SEIJI_VARS=	TBL=seiji.tbl
+SEIJI_VARS_OFF=	TBL=
 
 .include <bsd.port.pre.mk>
 
@@ -52,7 +54,7 @@ post-extract:
 	@(cd ${WRKSRC}; \
 	for i in *.c *.h *.doc *.cnf *.rc birthday.tbl event*.tbl flower.tbl \
 		gengo.tbl hist??.tbl history.tbl holiday.tbl magazine.tbl \
-		monthly.tbl schedule.tbl suffix.tbl week.tbl; \
+		monthly.tbl schedule.tbl suffix.tbl week.tbl ${TBL}; \
 	do \
 		nkf -Se $$i | ${TR} -d '\015' > $$i.tmp ;\
 		${MV} -f $$i.tmp $$i ; \
