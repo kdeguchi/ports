@@ -23,51 +23,51 @@ RUN_DEPENDS:=	${RUN_DEPENDS:C@notification-daemon>0:deskutils/notification-daemo
 #RUN_DEPENDS:=	${RUN_DEPENDS:C@p5-Gtk>@p5-Gtk-Perl>@}
 #RUN_DEPENDS:=	${RUN_DEPENDS:C@/p5-Gtk$@/p5-Gtk-Perl@}
 
-.if ${CC:M/usr/bin/clang}
+.if defined(CC) && ${CC:M/usr/bin/clang}
 CC=	clang
 .endif
 
-.if ${CXX:M/usr/bin/clang++}
+.if defined(CXX) && ${CXX:M/usr/bin/clang++}
 CXX=	clang++
 .endif
 
-.if ${CPP:M/usr/bin/clang-cpp}
+.if defined(CPP) && ${CPP:M/usr/bin/clang-cpp}
 CPP=	clang-cpp
 .endif
 
-.if ${CC:M${PREFIX}/bin/clang${LLVM_DEFAULT}}
+.if defined(CC) && ${CC:M${PREFIX}/bin/clang${LLVM_DEFAULT}}
 CC=	clang${LLVM_DEFAULT}
 .endif
 
-.if ${CXX:M${PREFIX}/bin/clang++${LLVM_DEFAULT}}
+.if defined(CXX) && ${CXX:M${PREFIX}/bin/clang++${LLVM_DEFAULT}}
 CXX=	clang++${LLVM_DEFAULT}
 .endif
 
-.if ${CPP:M${PREFIX}/bin/clang-cpp${LLVM_DEFAULT}}
+.if defined(CPP) && ${CPP:M${PREFIX}/bin/clang-cpp${LLVM_DEFAULT}}
 CPP=	clang-cpp${LLVM_DEFAULT}
 .endif
 
-.if ${CC:M/usr/bin/gcc}
+.if defined(CC) && ${CC:M/usr/bin/gcc}
 CC=	gcc
 .endif
 
-.if ${CXX:M/usr/bin/g++}
+.if defined(CXX) && ${CXX:M/usr/bin/g++}
 CXX=	g++
 .endif
 
-.if ${CPP:M/usr/bin/gcpp}
+.if defined(CPP) && ${CPP:M/usr/bin/gcpp}
 CPP=	gcpp
 .endif
 
-.if ${CC:M/usr/bin/cc}
+.if defined(CC) && ${CC:M/usr/bin/cc}
 CC=	cc
 .endif
 
-.if ${CXX:M/usr/bin/c++}
+.if defined(CXX) && ${CXX:M/usr/bin/c++}
 CXX=	c++
 .endif
 
-.if ${CPP:M/usr/bin/cpp}
+.if defiend(CPP) && ${CPP:M/usr/bin/cpp}
 CPP=	cpp
 .endif
 
@@ -125,7 +125,7 @@ MAKE_ENV:=	${MAKE_ENV:S@PATH=@PATH=${PREFIX}/libexec/ccache:@}
 .endif
 .endif
 
-.if ${RUN_DEPENDS:M*sudo\:security/sudo}
+.if defined(RUN_DEPENDS) && ${RUN_DEPENDS:M*sudo\:security/sudo}
 RUN_DEPENDS:=	${RUN_DEPENDS:S@sudo:security/sudo@sudo:security/doas-wrapper@}
 .endif
 
@@ -133,9 +133,9 @@ RUN_DEPENDS:=	${RUN_DEPENDS:S@sudo:security/sudo@sudo:security/doas-wrapper@}
 CONFIGURE_ARGS:=	${CONFIGURE_ARGS:S/--enable-musepack//}
 .endif
 
-.if ${.CURDIR:M*/x11/kitty}
-BUILD_DEPENDS:=	${BUILD_DEPENDS:S@openssl>0:security/openssl@@}
-.endif
+#.if ${.CURDIR:M*/x11/kitty}
+#BUILD_DEPENDS:=	${BUILD_DEPENDS:S@openssl>0:security/openssl@@}
+#.endif
 
 .if ${.CURDIR:M*/x11-toolkits/Xaw3d}
 PATH:=/usr/bin:${PATH}
@@ -145,7 +145,7 @@ PATH:=/usr/bin:${PATH}
 LIB_DEPENDS:=	${LIB_DEPENDS:S@x11-toolkits/Xaw3d@x11-toolkits/libXaw3d@}
 .endif
 
-.if ${RUN_DEPENDS:M*/security/veracrypt}
+.if defined(RUN_DEPENDS) && ${RUN_DEPENDS:M*/security/veracrypt}
 .if !target(pre-configure)
 pre-configure:
 	${REINPLACE_CMD} -e 's|Icon=VeraCrypt-16x16|Icon=VeraCrypt-256x256|g' ${WRKSRC}/src/Setup/FreeBSD/veracrypt.desktop
