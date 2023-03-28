@@ -16,4 +16,4 @@ for ARG in $@; do
 	esac
 done
 
-${DOAS} ${ARGS}
+exec ${DOAS} ${ARGS}
