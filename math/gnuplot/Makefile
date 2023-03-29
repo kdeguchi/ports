@@ -42,7 +42,7 @@ CONFIGURE_ARGS+=--disable-x11-mbfonts \
 		--without-kpsexpand
 PLIST_SUB+=	X11="@comment "
 .else
-USES+=		gnome jpeg lua:54 ncurses tex xorg
+USES+=		gnome jpeg lua:flavors ncurses tex xorg
 USE_TEX=	kpathsea
 USE_GNOME+=	atk cairo gtk30 gdkpixbuf2
 USE_WX=		3.0+
@@ -76,6 +76,8 @@ GRIDBOX_DESC=		Use the gridbox optimization for hidden3d
 GRIDBOX_CONFIGURE_OFF=	--disable-h3d-quadtree --enable-h3d-gridbox
 
 post-patch:
+	@${REINPLACE_CMD} -e \
+		's|%%LUA_VER%%|${LUA_VER}|g;s|%%LUA_VER_STR%%|${LUA_VER_STR}|g' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e \
 		'/^install:/s/install-am//' ${WRKSRC}/share/LaTeX/Makefile.in
 	@${REINPLACE_CMD} -e \
