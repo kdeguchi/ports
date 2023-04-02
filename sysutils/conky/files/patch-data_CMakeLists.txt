@@ -1,0 +1,14 @@
+--- data/CMakeLists.txt.orig	2023-03-31 17:39:51 UTC
++++ data/CMakeLists.txt
+@@ -44,9 +44,9 @@ endif(BUILD_OLD_CONFIG)
+ 
+ add_custom_target(generated_hdr_files DEPENDS ${generated_hdr_files})
+ 
+-if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
++if(${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
+   install(FILES conky.desktop DESTINATION share/applications)
+   install(FILES logo/conky-logomark-violet.svg
+           DESTINATION share/icons/hicolor/scalable/apps)
+-endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
++			endif(${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
+ 
