@@ -109,7 +109,7 @@ ALSA_MESON_TRUE=	alsa
 AMIDI_LIB_DEPENDS=	libfluidsynth.so:audio/fluidsynth
 AMIDI_MESON_TRUE=	amidiplug
 AOSD_USES=		xorg
-AOSD_USE=		gnome=pango xorg=xrender
+AOSD_USE=		GNOME=pango XORG=xrender
 AOSD_LIB_DEPENDS=	libXcomposite.so:x11/libXcomposite
 AOSD_MESON_TRUE=	aosd
 BS2B_LIB_DEPENDS=	libbs2b.so:audio/libbs2b
@@ -142,9 +142,9 @@ NLS_USES=		gettext-runtime
 NOTIFY_LIB_DEPENDS=	libnotify.so:devel/libnotify
 NOTIFY_MESON_TRUE=	notify
 OPENGL_USES=		gl
-OPENGL_USE=		gl=gl
+OPENGL_USE=		GL=gl
 .if ${FLAVOR} == qt5
-OPENGL_USE+=		qt=opengl
+OPENGL_USE+=		QT=opengl
 .endif
 OPENGL_MESON_TRUE=	gl-spectrum
 OPENMPT_LIB_DEPENDS=	libopenmpt.so:audio/libopenmpt
