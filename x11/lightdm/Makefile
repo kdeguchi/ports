@@ -53,7 +53,7 @@ NLS_CONFIGURE_ENABLE=	nls
 VAPI_USES=		vala:build
 VAPI_CONFIGURE_ON=	--enable-vala=yes --enable-introspection=yes
 VAPI_CONFIGURE_OFF=	--enable-vala=no --enable-introspection=no
-VAPI_USE=		gnome=introspection:build
+VAPI_USE=		GNOME=introspection:build
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,%%PREFIX%%,${PREFIX},' \

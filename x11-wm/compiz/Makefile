@@ -72,11 +72,11 @@ FUSE_CONFIGURE_ENABLE=	fuse
 FUSE_USES=		fuse
 
 GTK2_CONFIGURE_ON=	--with-gtk=2.0
-GTK2_USE=	gnome=glib20,gtk20,libwnck
+GTK2_USE=	GNOME=glib20,gtk20,libwnck
 GTK2_IMPLIES=	DBUS
 
 GTK3_CONFIGURE_ON=	--with-gtk=3.0
-GTK3_USE=	gnome=glib20,gtk30,libwnck3
+GTK3_USE=	GNOME=glib20,gtk30,libwnck3
 GTK3_IMPLIES=	DBUS
 
 INOTIFY_CONFIGURE_ENABLE=	inotify
@@ -88,7 +88,7 @@ NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=	gettext
 
 SVG_CONFIGURE_ENABLE=	librsvg
-SVG_USE=	gnome=librsvg2
+SVG_USE=	GNOME=librsvg2
 
 post-patch:
 	cd ${WRKSRC} && ${REINPLACE_CMD} -E 's@\[\[@[@g;s@\]\]@]@g;' ${SHEBANG_FILES} && \

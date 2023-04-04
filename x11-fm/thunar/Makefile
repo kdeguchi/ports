@@ -50,7 +50,7 @@ PLUG_TPA_DESC=	Trash Panel Applet plugin
 PLUG_UCA_DESC=	User Customizable Actions plugin
 PLUG_WALL_DESC=	Wallpaper plugin
 
-GIR_USE=			gnome=introspection:build
+GIR_USE=			GNOME=introspection:build
 GIR_CONFIGURE_ON=		--enable-introspection=yes
 GIR_CONFIGURE_OFF=		--enable-introspection=no
 
@@ -70,7 +70,7 @@ PLUG_SBR_CONFIGURE_ENABLE=	sbr-plugin pcre
 PLUG_SBR_LIB_DEPENDS=		libpcre.so:devel/pcre
 
 PLUG_TPA_CONFIGURE_ENABLE=	tpa-plugin
-PLUG_TPA_USE=			gnome=gvfs xfce=panel
+PLUG_TPA_USE=			GNOME=gvfs XFCE=panel
 
 PLUG_UCA_CONFIGURE_ENABLE=	uca-plugin
 PLUG_WALL_CONFIGURE_ENABLE=	wallpaper-plugin
