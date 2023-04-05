@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.28.5050.102
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -17,7 +17,7 @@ USES=		compiler:c++11-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:7e7160c \
+GH_TUPLE=	fcitx:mozc:871d46f \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
@@ -61,7 +61,7 @@ ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:f59287e:altcannadic
 
 # CC-BY-SA-4.0
 EDICT2_DESC=	Dictionary from EDICT2
-EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:58648b1:edict2
+EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:a8e4249:edict2
 
 # CC-BY-SA-3.0
 JAWIKI_DESC=	Dictionary from Japanese Wikipedia
