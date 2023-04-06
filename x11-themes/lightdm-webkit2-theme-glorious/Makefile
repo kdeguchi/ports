@@ -10,7 +10,7 @@ WWW=		https://github.com/manilarome/lightdm-webkit2-theme-glorious
 LICENSE=	GPLv3
 
 RUN_DEPENDS=	lightdm>0:x11/lightdm \
-		lightdm-webkit2-greeter>0:x11/lightdm-webkit2-greeter
+		web-greeter>0:x11/web-greeter
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	manilarome
@@ -19,8 +19,8 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/lightdm-webkit/themes/glorious
-	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/lightdm-webkit/themes/glorious
-	${RM} -r ${STAGEDIR}${PREFIX}/share/lightdm-webkit/themes/glorious/.github
+	${MKDIR} ${STAGEDIR}${PREFIX}/share/web-greeter/themes/glorious
+	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/web-greeter/themes/glorious
+	${RM} -r ${STAGEDIR}${PREFIX}/share/web-greeter/themes/glorious/.github
 
 .include <bsd.port.mk>

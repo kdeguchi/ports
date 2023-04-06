@@ -13,7 +13,8 @@ BUILD_DEPENDS=	npm:www/npm
 LIB_DEPENDS=	liblightdm-gobject-1.so:x11/lightdm \
 		libwebkit2gtk-4.0.so:www/webkit2-gtk3
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyinotify>0:devel/py-pyinotify
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyinotify>0:devel/py-pyinotify \
+		${PYTHON_PKGNAMEPREFIX}ruamel.yaml>0:devel/py-ruamel.yaml
 
 OPTIONS_DEFINE=	DOCS
 
@@ -45,9 +46,13 @@ post-extract:
 
 post-patch:
 	${REINPLACE_CMD} -e 's,$${INSTALL_ROOT}/etc,$${INSTALL_ROOT}$${PREFIX}/etc,;s,sed .*,grep ID= | sed "s/ID=//"),;s,gcc,cc ${CFLAGS} ${LIBS} ${LDFLAGS},;s,#!/usr/bin/env .*/lib/web-greeter,#!/bin/sh\\n${PYTHON_CMD} ${PREFIX}/lib/web-greeter,' ${WRKSRC}/Makefile
-#	${REINPLACE_CMD} -e 's,sed -i,sed -i"",' ${WRKSRC}/build/utils.sh
-	${REINPLACE_CMD} -e 's,/usr,${PREFIX},' ${WRKSRC}/dist/web-greeter.yml ${WRKSRC}/src/*.py ${WRKSRC}/src/*/*.py ${WRKSRC}/themes/themes/*/js/*.js
-	${REINPLACE_CMD} -e 's,/etc,${PREFIX}/etc,' ${WRKSRC}/dist/90-greeter-wrapper.conf
+	${REINPLACE_CMD} -e 's,/usr,${PREFIX},;s,/etc,${PREFIX}/etc,;' \
+		${WRKSRC}/dist/web-greeter.yml \
+		${WRKSRC}/src/*.py \
+		${WRKSRC}/src/*/*.py \
+		${WRKSRC}/themes/themes/*/js/*.js \
+		${WRKSRC}/dist/90-greeter-wrapper.conf
+	${FIND} ${WRKSRC} -name '*.bak' -delete
 
 post-configure:
 	cd ${WRKSRC} && npm install typescript
