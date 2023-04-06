@@ -44,8 +44,8 @@ post-extract:
 		${LN} -sfn ../nody-greeter-types-* themes/ts-types
 
 post-patch:
-	${REINPLACE_CMD} -e 's,$${INSTALL_ROOT}/etc,$${INSTALL_ROOT}$${PREFIX}/etc,;s,sed .*,grep ID= | sed "s/ID=//"),;s,gcc,cc ${CFLAGS} ${LIBS} ${LDFLAGS},' ${WRKSRC}/Makefile
-	${REINPLACE_CMD} -e 's,sed -i,sed -i"",;' ${WRKSRC}/build/utils.sh
+	${REINPLACE_CMD} -e 's,$${INSTALL_ROOT}/etc,$${INSTALL_ROOT}$${PREFIX}/etc,;s,sed .*,grep ID= | sed "s/ID=//"),;s,gcc,cc ${CFLAGS} ${LIBS} ${LDFLAGS},;s,#!/usr/bin/env .*/lib/web-greeter,#!/bin/sh\\n${PYTHON_CMD} ${PREFIX}/lib/web-greeter,' ${WRKSRC}/Makefile
+#	${REINPLACE_CMD} -e 's,sed -i,sed -i"",' ${WRKSRC}/build/utils.sh
 	${REINPLACE_CMD} -e 's,/usr,${PREFIX},' ${WRKSRC}/dist/web-greeter.yml ${WRKSRC}/src/*.py ${WRKSRC}/src/*/*.py ${WRKSRC}/themes/themes/*/js/*.js
 	${REINPLACE_CMD} -e 's,/etc,${PREFIX}/etc,' ${WRKSRC}/dist/90-greeter-wrapper.conf
 
