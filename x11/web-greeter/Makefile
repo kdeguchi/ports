@@ -35,7 +35,7 @@ MAKE_JOBS_UNSAFE=	yes
 CFLAGS+=	-fPIC
 
 bash_CMD=	/bin/sh
-SHEBANG_FILES=	build/utils.sh dist/Xgreeter src/bridge/__init__.py
+SHEBANG_FILES=	dist/Xgreeter src/bridge/__init__.py
 
 post-extract:
 	cd ${WRKSRC} && \
@@ -45,7 +45,8 @@ post-extract:
 		${LN} -sfn ../nody-greeter-types-* themes/ts-types
 
 post-patch:
-	${REINPLACE_CMD} -e 's,$${INSTALL_ROOT}/etc,$${INSTALL_ROOT}$${PREFIX}/etc,;s,sed .*,grep ID= | sed "s/ID=//"),;s,gcc,cc ${CFLAGS} ${LIBS} ${LDFLAGS},;s,#!/usr/bin/env .*/lib/web-greeter,#!/bin/sh\\n${PYTHON_CMD} ${PREFIX}/lib/web-greeter,' ${WRKSRC}/Makefile
+	${REINPLACE_CMD} -e 's,$${INSTALL_ROOT}/etc,$${INSTALL_ROOT}$${PREFIX}/etc,;s,sed .*,grep ID= | sed "s/ID=//"),;s,gcc,cc ${CFLAGS} ${LIBS} ${LDFLAGS},;s,#!/usr/bin/env .*/lib/web-greeter,#!/bin/sh\\n${PYTHON_CMD} ${PREFIX}/lib/web-greeter,' \
+		${WRKSRC}/Makefile
 	${REINPLACE_CMD} -e 's,/usr,${PREFIX},;s,/etc,${PREFIX}/etc,;' \
 		${WRKSRC}/dist/web-greeter.yml \
 		${WRKSRC}/src/*.py \
@@ -58,6 +59,7 @@ post-configure:
 	cd ${WRKSRC} && npm install typescript
 
 post-install:
-	${MV} ${STAGEDIR}${PREFIX}/etc/lightdm/web-greeter.yml ${STAGEDIR}${PREFIX}/etc/lightdm/web-greeter.yml.sample
+	${MV} ${STAGEDIR}${PREFIX}/etc/lightdm/web-greeter.yml \
+		${STAGEDIR}${PREFIX}/etc/lightdm/web-greeter.yml.sample
 
 .include <bsd.port.mk>
