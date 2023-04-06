@@ -30,7 +30,7 @@ GH_TUPLE=	JezerM:web-greeter:35e96f9 \
 		JezerM:nody-greeter-types:4bf0196:tsc
 
 MAKE_ENV+=	PATH=${WRKSRC}/node_modules/.bin:${PATH}
-MAKE_JOBS_UNSAFE=yes
+MAKE_JOBS_UNSAFE=	yes
 CFLAGS+=	-fPIC
 
 bash_CMD=	/bin/sh
