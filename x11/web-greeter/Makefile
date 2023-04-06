@@ -10,7 +10,8 @@ LICENSE=	GPLv3
 
 BUILD_DEPENDS=	bash:shells/bash \
 		gsed:textproc/gsed \
-		pyrcc5:devel/py-qt5-pyqt
+		pyrcc5:devel/py-qt5-pyqt \
+		zip:archivers/zip
 LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib \
 		liblightdm-gobject-1.so:x11/lightdm \
 		libwebkit2gtk-4.0.so:www/webkit2-gtk3
