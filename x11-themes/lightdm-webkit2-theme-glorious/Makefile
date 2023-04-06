@@ -10,7 +10,7 @@ WWW=		https://github.com/manilarome/lightdm-webkit2-theme-glorious
 LICENSE=	GPLv3
 
 RUN_DEPENDS=	lightdm>0:x11/lightdm \
-		lightdm-webkit2-greeter>0:x11/lightdm-webkit2-greeter
+		web-greeter>0:x11/web-greeter
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	manilarome
