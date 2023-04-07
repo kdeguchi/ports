@@ -55,8 +55,8 @@ post-patch:
 		${WRKSRC}/dist/90-greeter-wrapper.conf
 	${FIND} ${WRKSRC} -name '*.bak' -delete
 
-post-configure:
-	cd ${WRKSRC} && npm install typescript
+pre-build:
+	cd ${WRKSRC} && ${SETENV} HOME=${WRKDIR} npm install typescript
 
 post-install:
 	${MV} ${STAGEDIR}${PREFIX}/etc/lightdm/web-greeter.yml \
