@@ -1,4 +1,4 @@
-PORTNAME=	Shikai
+PORTNAME=	lightdm-webkit-theme-shikai
 PORTVERSION=	1.3.0
 CATEGORIES=	x11-themes
 
@@ -13,6 +13,7 @@ RUN_DEPENDS=	lightdm>0:x11/lightdm \
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	TheWisker
+GH_PROJECT=	Shikai
 GH_TAGNAME=	b034092
 
 NO_ARCH=	yes
