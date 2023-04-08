@@ -18,7 +18,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyinotify>0:devel/py-pyinotify \
 
 OPTIONS_DEFINE=	DOCS
 
-USES=		gettext gmake gnome localbase pkgconfig python pyqt:5 qt:5 shebangfix xorg
+USES=		gettext gmake gnome localbase nodejs pkgconfig python pyqt:5 qt:5 shebangfix xorg
 USE_GNOME=	glib20 gtk30 pygobject3
 USE_XORG=	x11 xcb
 USE_PYQT=	webengine
@@ -56,7 +56,7 @@ post-patch:
 	${FIND} ${WRKSRC} -name '*.bak' -delete
 
 pre-build:
-	cd ${WRKSRC} && ${SETENV} HOME=${WRKDIR} npm install typescript
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} npm install typescript
 
 post-install:
 	${MV} ${STAGEDIR}${PREFIX}/etc/lightdm/web-greeter.yml \
