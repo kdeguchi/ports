@@ -32,7 +32,8 @@ GH_TUPLE=	JezerM:web-greeter:35e96f9 \
 
 MAKE_ENV+=	PATH=${WRKSRC}/node_modules/.bin:${PATH}
 MAKE_JOBS_UNSAFE=	yes
-CFLAGS+=	-fPIC
+CFLAGS+=	-fPIC -I${LOCALBASE}/include
+CPPFLAGS+=	-I${LOCALBASE}/include
 
 bash_CMD=	/bin/sh
 SHEBANG_FILES=	dist/Xgreeter \
@@ -48,7 +49,7 @@ post-extract:
 post-patch:
 	${REINPLACE_CMD} -e 's,$${INSTALL_ROOT}/etc,$${INSTALL_ROOT}$${PREFIX}/etc,' \
 		-e 's,sed .*,grep ID= | sed "s/ID=//"),' \
-		-e 's,gcc,${SETENV} ${MAKE_ENV} cc,' \
+		-e 's,gcc,cc ${CLAGS} ${CPPFLAGS} ${LIBS},' \
 		-e 's,#!/usr/bin/env .*/lib/web-greeter,#!/bin/sh\\n${PYTHON_CMD} ${PREFIX}/lib/web-greeter,' \
 			${WRKSRC}/Makefile
 	${REINPLACE_CMD} -e 's,/usr,${PREFIX},;s,/etc,${PREFIX}/etc,;' \
