@@ -152,6 +152,10 @@ pre-configure:
 .endif
 .endif
 
+.if ${.CURDIR:M*/graphics/gegl}
+MESON_ARGS+=	-Dlibv4l=disabled -Dmrg=disabled
+.endif
+
 .if defined(BUILD_DEPENDS) && ! ${BUILD_DEPENDS:M*lang/rust}
 . if ! ${.CURDIR:M*/lang/rust}
 NO_SCCACHE=	yes
