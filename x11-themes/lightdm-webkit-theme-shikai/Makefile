@@ -8,8 +8,15 @@ WWW=		https://github.com/TheWisker/Shikai
 
 LICENSE=	GPLv3
 
-RUN_DEPENDS=	lightdm>0:x11/lightdm \
-		web-greeter>0:x11/web-greeter
+RUN_DEPENDS=	lightdm>0:x11/lightdm
+
+OPTIONS_DEFINE=	SEA_GREETER WEB_GREETER
+
+SEA_GREETER_DESC=	WebKitGTK2 LightDM Greeter
+WEB_GREETER_DESC=	Qt5WebEngine LightDM Greeter
+
+SEA_GREETER_RUN_DEPENDS=	sea-greeter:x11/sea-greeter
+WEB_GREETER_RUN_DEPENDS=	web-greeter:x11/web-greeter
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	TheWisker
