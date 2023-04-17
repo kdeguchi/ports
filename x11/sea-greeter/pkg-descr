@@ -1,0 +1,7 @@
+Another LightDM greeter made with WebKitGTK2.
+
+Sea (like C) greeter for LightDM allows to create themes
+with web technologies, the same as web-greeter, nody-greeter
+and the outdated lightdm-webkit2-greeter. This project aims
+to be similar to the last one, as sea-greeter is made with
+webkit2 instead of chromium.
