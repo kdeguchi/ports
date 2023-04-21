@@ -218,6 +218,11 @@ BUILD_DEPENDS+=	clang${VBOX_LLVM_VER}:devel/llvm${VBOX_LLVM_VER}
 CC=		clang${VBOX_LLVM_VER}
 CXX=		clang++${VBOX_LLVM_VER}
 VBOX_LLVM_VER?=	11
+.elif ${OPSYS} == FreeBSD && ${OSVERSION} > 1302500
+BUILD_DEPENDS+=	clang${VBOX_LLVM_VER}:devel/llvm${VBOX_LLVM_VER}
+CC=		clang${VBOX_LLVM_VER}
+CXX=		clang++${VBOX_LLVM_VER}
+VBOX_LLVM_VER?=	14
 .endif
 PATCH_DEPENDS+=	${LOCALBASE}/share/kBuild/tools/GXX3.kmk:devel/kBuild
 EXTRA_PATCHES+=	${PATCHDIR}/extrapatch-src-VBox-Devices-PC-ipxe-Makefile.kmk
