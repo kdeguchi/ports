@@ -156,6 +156,10 @@ pre-configure:
 MESON_ARGS+=	-Dlibv4l=disabled -Dmrg=disabled
 .endif
 
+.if ${.CURDIR:M*/graphics/evince}
+MESON_ARGS+=	-Dthumbnail_cache=disabled
+.endif
+
 .if defined(BUILD_DEPENDS) && ! ${BUILD_DEPENDS:M*lang/rust}
 . if ! ${.CURDIR:M*/lang/rust}
 NO_SCCACHE=	yes
