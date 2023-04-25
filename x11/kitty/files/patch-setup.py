@@ -1,14 +1,11 @@
---- setup.py.orig	2023-04-21 03:04:45 UTC
+--- setup.py.orig	2023-04-08 12:02:15 UTC
 +++ setup.py
-@@ -126,27 +126,11 @@ def libcrypto_flags() -> Tuple[List[str], List[str]]:
+@@ -126,25 +126,9 @@ def libcrypto_flags() -> Tuple[List[str], List[str]]:
      # Apple use their special snowflake TLS libraries and additionally
      # have an ancient broken system OpenSSL, so we need to check for one
      # installed by all the various macOS package managers.
 -    extra_pc_dir = ''
-+    cflags = [f"-I{sys.prefix}/include"]
-+    libs = [f"-L{sys.prefix}/lib", "-lcrypto"]
-+    return cflags, libs
- 
+-
 -    try:
 -        cflags = pkg_config('libcrypto', '--cflags-only-I', fatal=False)
 -    except subprocess.CalledProcessError:
@@ -26,11 +23,12 @@
 -            extra_pc_dir = os.pathsep.join(openssl_dirs)
 -        cflags = pkg_config('libcrypto', '--cflags-only-I', extra_pc_dir=extra_pc_dir)
 -    return cflags, pkg_config('libcrypto', '--libs', extra_pc_dir=extra_pc_dir)
++    cflags = [f"-I{sys.prefix}/include"]
++    libs = [f"-L{sys.prefix}/lib", "-lcrypto"]
++    return cflags, libs
  
--
+ 
  def at_least_version(package: str, major: int, minor: int = 0) -> None:
-     q = f'{major}.{minor}'
-     if subprocess.run([PKGCONFIG, package, f'--atleast-version={q}']
 @@ -529,6 +513,7 @@ def get_source_specific_defines(env: Env, src: str) ->
      if src == 'kitty/data-types.c':
          if not env.vcs_rev:

@@ -1,4 +1,4 @@
---- docs/Makefile.orig	1979-11-29 15:00:00 UTC
+--- docs/Makefile.orig	2023-04-09 05:08:22 UTC
 +++ docs/Makefile
 @@ -6,7 +6,7 @@ override FAIL_WARN=-W
  endif
