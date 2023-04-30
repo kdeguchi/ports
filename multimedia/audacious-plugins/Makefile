@@ -1,6 +1,5 @@
 PORTNAME=	audacious-plugins
-PORTVERSION=	4.3
-PORTREVISION=	6
+PORTVERSION=	4.3.1
 CATEGORIES=	multimedia audio
 MASTER_SITES=	http://distfiles.audacious-media-player.org/
 
@@ -27,7 +26,7 @@ USE_XORG=	x11
 
 CONFIGURE_ENV=		LIBRARY_PATH="${LOCALBASE}/lib"
 MAKE_ENV=		LIBRARY_PATH="${LOCALBASE}/lib"
-MESON_ARGS=		-Dconsole=false -Dmms=false -Dsoxr=false -Dcoreaudio=false
+MESON_ARGS=		-Dmms=false -Dcoreaudio=false
 
 qt5_CONFLICTS_INSTALL=	audacious-plugins-qt6 audacious-plugins-gtk2 audacious-plugins-gtk3
 qt5_RUN_DEPENDS=	audacious:multimedia/audacious@qt5
@@ -89,6 +88,7 @@ ADPLUG_DESC=		ADPLUG plugin
 AMIDI_DESC=		Amidi decoder
 AOSD_DESC=		Audacious OSD
 BS2B_DESC=		BS2B effect
+CONSOLE_DESC=		Game Console Music Emulation
 FILEWRITER_DESC=	File writer
 MPRIS_DESC=		NPRIS plugin
 NEON_DESC=		Neon plugin
@@ -109,7 +109,7 @@ ALSA_MESON_TRUE=	alsa
 AMIDI_LIB_DEPENDS=	libfluidsynth.so:audio/fluidsynth
 AMIDI_MESON_TRUE=	amidiplug
 AOSD_USES=		xorg
-AOSD_USE=		GNOME=pango XORG=xrender
+AOSD_USE=		gnome=pango xorg=xrender
 AOSD_LIB_DEPENDS=	libXcomposite.so:x11/libXcomposite
 AOSD_MESON_TRUE=	aosd
 BS2B_LIB_DEPENDS=	libbs2b.so:audio/libbs2b
@@ -118,6 +118,7 @@ CDDA_LIB_DEPENDS=	libcdio_cdda.so:sysutils/libcdio-paranoia \
 			libcddb.so:audio/libcddb \
 			libcdio.so:sysutils/libcdio
 CDDA_MESON_TRUE=	cdaudio
+CONSOLE_MESON_TRUE=	console
 CUE_LIB_DEPENDS=	libcue.so:textproc/libcue
 CUE_MESON_TRUE=		cue
 FILEWRITER_MESON_TRUE=	filewriter
@@ -142,9 +143,9 @@ NLS_USES=		gettext-runtime
 NOTIFY_LIB_DEPENDS=	libnotify.so:devel/libnotify
 NOTIFY_MESON_TRUE=	notify
 OPENGL_USES=		gl
-OPENGL_USE=		GL=gl
+OPENGL_USE=		gl=gl
 .if ${FLAVOR} == qt5
-OPENGL_USE+=		QT=opengl
+OPENGL_USE+=		qt=opengl
 .endif
 OPENGL_MESON_TRUE=	gl-spectrum
 OPENMPT_LIB_DEPENDS=	libopenmpt.so:audio/libopenmpt
@@ -170,8 +171,8 @@ SNDFILE_LIB_DEPENDS=	libsndfile.so:audio/libsndfile
 SNDFILE_MESON_TRUE=	sndfile
 SNDIO_LIB_DEPENDS=	libsndio.so:audio/sndio
 SNDIO_MESON_TRUE=	sndio
-SOXR_MESON_TRUE=	soxr
 SOXR_LIB_DEPENDS=	libsoxr.so:audio/libsoxr
+SOXR_MESON_TRUE=	soxr
 SPEEDPITCH_MESON_TRUE=	speedpitch
 SPEEDPITCH_IMPLIES=	SAMPLERATE
 VORBIS_LIB_DEPENDS=	libvorbis.so:audio/libvorbis \
