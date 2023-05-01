@@ -18,6 +18,7 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libpng.so:graphics/png \
 		libstartup-notification-1.so:x11/startup-notification
 RUN_DEPENDS=	glxinfo:graphics/mesa-demos \
+		xdpyinfo:x11/xdpyinfo \
 		${RUN_DEPENDS_${ARCH}}
 RUN_DEPENDS_amd64=	nvidia-settings:x11/nvidia-settings
 RUN_DEPENDS_i386=	nvidia-settings:x11/nvidia-settings
