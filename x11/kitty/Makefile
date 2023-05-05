@@ -1,6 +1,6 @@
 PORTNAME=	kitty
-DISTVERSION=	0.28.0
-PORTREVISION=	1
+DISTVERSION=	0.28.1
+#PORTREVISION=	1
 DISTVERSIONPREFIX=v
 CATEGORIES=	x11 wayland
 
@@ -29,6 +29,8 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libwayland-client.so:graphics/wayland \
 		libwayland-cursor.so:graphics/wayland \
 		libxkbcommon.so:x11/libxkbcommon
+
+OPTIONS_DEFINE=	DOCS
 
 USES=		compiler:c11 cpe desktop-file-utils gettext-runtime gl gmake \
 		go:modules pkgconfig python:3.5+ shebangfix ssl tar:xz terminfo xorg
@@ -64,11 +66,11 @@ GH_TUPLE=	\
 INSTALL_WRKSRC=	${WRKSRC}/linux-package
 
 _STRIP_TARGETS=	lib/kitty/kitty/fast_data_types.so lib/kitty/kitty/glfw-x11.so \
-		lib/kitty/kittens/diff/diff_speedup.so \
-		lib/kitty/kittens/unicode_input/unicode_names.so \
 		lib/kitty/kitty/glfw-wayland.so \
 		bin/kitten bin/kitty \
 		lib/kitty/kittens/transfer/rsync.so
+#		lib/kitty/kittens/diff/diff_speedup.so \
+#		lib/kitty/kittens/unicode_input/unicode_names.so \
 
 _EMPTY_DIRS=	kittens/choose kittens/diff kittens/unicode_input kittens kitty
 
