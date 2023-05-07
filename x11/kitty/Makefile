@@ -16,7 +16,8 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}furo>0:textproc/py-furo@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinx-inline-tabs>0:textproc/py-sphinx-inline-tabs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinxext-opengraph>0:textproc/py-sphinxext-opengraph@${PY_FLAVOR} \
 		sphinx-build:textproc/py-sphinx@${PY_FLAVOR} \
-		wayland-protocols>=0:graphics/wayland-protocols
+		wayland-protocols>=0:graphics/wayland-protocols \
+		roboto-fonts-ttf>0:x11-fonts/roboto-fonts-ttf
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libepoll-shim-interpose.so:devel/libepoll-shim \
 		libfontconfig.so:x11-fonts/fontconfig \
@@ -73,7 +74,7 @@ _EMPTY_DIRS=	kittens/choose kittens/diff kittens/unicode_input kittens kitty
 
 .include <bsd.port.options.mk>
 
-.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1400079
+.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1302505
 CFLAGS+=	-Wno-error=invalid-utf8 -Winvalid-utf8
 .endif
 
