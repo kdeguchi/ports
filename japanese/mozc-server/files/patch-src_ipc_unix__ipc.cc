@@ -1,8 +1,8 @@
 --- src/ipc/unix_ipc.cc.orig	2023-01-23 19:19:19 UTC
 +++ src/ipc/unix_ipc.cc
 @@ -40,6 +40,9 @@
+ #include <sys/stat.h>
  #include <sys/time.h>
- #include <sys/types.h>
  #include <sys/un.h>
 +#if defined(__APPLE__) || defined(__FreeBSD__)
 +#include <sys/ucred.h>
@@ -10,7 +10,7 @@
  #include <unistd.h>
  
  #include <cerrno>
-@@ -125,6 +128,28 @@ bool IsWriteTimeout(int socket, int timeout) {
+@@ -125,6 +128,28 @@ bool IsWriteTimeout(int socket, absl::Duration timeout
  bool IsPeerValid(int socket, pid_t *pid) {
    *pid = 0;
  
@@ -47,7 +47,7 @@
  
    return true;
  }
-@@ -274,7 +300,12 @@ void IPCClient::Init(const std::string &name, const st
+@@ -274,7 +300,12 @@ void IPCClient::Init(const absl::string_view name,
      address.sun_family = AF_UNIX;
      ::memcpy(address.sun_path, server_address.data(), server_address_length);
      address.sun_path[server_address_length] = '\0';

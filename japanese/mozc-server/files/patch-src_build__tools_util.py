@@ -8,4 +8,4 @@
 +  return os.name == 'posix' and ( os.uname()[0] == 'Linux' or os.uname()[0] == 'FreeBSD' )
  
  
- def GetNumberOfProcessors():
+ def CaseAwareAbsPath(path: str) -> str:

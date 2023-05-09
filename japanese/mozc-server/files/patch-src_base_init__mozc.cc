@@ -1,7 +1,7 @@
 --- src/base/init_mozc.cc.orig	2022-07-23 14:02:59 UTC
 +++ src/base/init_mozc.cc
 @@ -34,6 +34,7 @@
- #endif  // OS_WIN
+ #endif  // _WIN32
  
  #include <string>
 +#include <stdlib.h>
