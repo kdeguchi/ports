@@ -1,6 +1,7 @@
 PORTNAME=	capitaine-cursors
-PORTVERSION=	r4
+DISTVERSION=	4
 CATEGORIES=	x11-themes
+DISTVERSIONPREFIX=	r
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Capitaine Cursors
