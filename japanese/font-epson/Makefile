@@ -1,9 +1,9 @@
 PORTNAME=	epson
-PORTVERSION=	3.1e
+PORTVERSION=	3.2.1
 CATEGORIES=	japanese x11-fonts
-MASTER_SITES=	https://www.epson.jp/dl_soft/file/9296/
-DISTNAME=	ttf31e
-EXTRACT_SUFX=	.EXE
+MASTER_SITES=	https://www.epson.jp/dl_soft/file/27767/
+DISTNAME=	EPSONTTF_v${PORTVERSION:S/.//g}
+EXTRACT_SUFX=	.exe
 PKGNAMEPREFIX=	ja-font-
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -22,7 +22,7 @@ NO_WRKSRCDIR=	yes
 
 do-install:
 	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/*.TTF \
+	${INSTALL_DATA} ${WRKDIR}/Data/*.ttf \
 	    ${STAGEDIR}${FONTSDIR}
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/fonts/conf.avail \
 	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.d
