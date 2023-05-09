@@ -42,20 +42,24 @@ do-install:
 		${RM} ${STAGEDIR}${PREFIX}/usr/bin/cnijlgmon3 && \
 		${RM} -r ${STAGEDIR}${PREFIX}/usr/share/locale && \
 		${MKDIR} ${STAGEDIR}${LOCALBASE}/bin && \
-		for i in `ls ${STAGEDIR}${PREFIX}/usr/bin`; do \
-			${LN} -s ${PREFIX}/usr/bin/$${i} ${STAGEDIR}${LOCALBASE}/bin/; \
+		for i in ${STAGEDIR}${PREFIX}/usr/bin/*; do \
+			i=`basename $${i}` && \
+			${RLN} ${STAGEDIR}${PREFIX}/usr/bin/$${i} ${STAGEDIR}${LOCALBASE}/bin/$${i}; \
 		done
 		${MKDIR} ${STAGEDIR}${LOCALBASE}/libexec/cups/backend && \
-		for i in `ls ${STAGEDIR}${PREFIX}/usr/lib/cups/backend`; do \
-			${LN} -s ${PREFIX}/usr/lib/cups/backend/$${i} ${STAGEDIR}${LOCALBASE}/libexec/cups/backend/; \
+		for i in ${STAGEDIR}${PREFIX}/usr/lib/cups/backend/*; do \
+			i=`basename $${i}` && \
+			${RLN} ${STAGEDIR}${PREFIX}/usr/lib/cups/backend/$${i} ${STAGEDIR}${LOCALBASE}/libexec/cups/backend/$${i}; \
 		done
 		${MKDIR} ${STAGEDIR}${LOCALBASE}/libexec/cups/filter && \
-		for i in `ls ${STAGEDIR}${PREFIX}/usr/lib/cups/filter`; do \
-			${LN} -s ${PREFIX}/usr/lib/cups/filter/$${i} ${STAGEDIR}${LOCALBASE}/libexec/cups/filter/; \
+		for i in ${STAGEDIR}${PREFIX}/usr/lib/cups/filter/*; do \
+			i=`basename $${i}` && \
+			${RLN} ${STAGEDIR}${PREFIX}/usr/lib/cups/filter/$${i} ${STAGEDIR}${LOCALBASE}/libexec/cups/filter/$${i}; \
 		done
 		${MKDIR} ${STAGEDIR}${LOCALBASE}/share/cups/model && \
-		for i in `ls ${STAGEDIR}${PREFIX}/usr/share/cups/model`; do \
-			${LN} -s ${PREFIX}/usr/share/cups/model/$${i} ${STAGEDIR}${LOCALBASE}/share/cups/model/; \
+		for i in ${STAGEDIR}${PREFIX}/usr/share/cups/model/*; do \
+			i=`basename $${i}` && \
+			${RLN} ${STAGEDIR}${PREFIX}/usr/share/cups/model/$${i} ${STAGEDIR}${LOCALBASE}/share/cups/model/$${i}; \
 		done
 
 do-install-DOCS-off:
