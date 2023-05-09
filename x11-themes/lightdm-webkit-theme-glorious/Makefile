@@ -1,7 +1,7 @@
-PORTNAME=	lightdm-webkit-theme-glorious
+PORTNAME=	lightdm-webkit2-theme-glorious
 PORTVERSION=	2.0.5
 CATEGORIES=	x11-themes
-DISTVERSION=	v${PORTVERSION}
+DISTVERSIONPREFIX=	v
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Sleek, modern, and glorified lightdm webkit2 theme
