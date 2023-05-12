@@ -1,8 +1,8 @@
 PORTNAME=	lightdm
 PORTVERSION=	1.32.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
-MASTER_SITES=	https://github.com/canonical/${PORTNAME}/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
+#MASTER_SITES=	https://github.com/canonical/${PORTNAME}/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
 
 MAINTAINER=	desktop@FreeBSD.org
 COMMENT=	Lightweight Display Manager
@@ -21,13 +21,17 @@ LIB_DEPENDS=	libaccountsservice.so:sysutils/accountsservice \
 		libgcrypt.so:security/libgcrypt \
 		libxklavier.so:x11/libxklavier
 
-USES=		compiler:c++11-lang cpe gettext gmake gnome libtool localbase \
+USES=		autoreconf compiler:c++11-lang cpe gettext gmake gnome libtool localbase \
 		pathfix pkgconfig tar:xz xorg
 CPE_VENDOR=	${PORTNAME}_project
 USE_GNOME=	glib20 intltool
 USE_XORG=	x11 xcb xdmcp
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	lightdm
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	canonical
+GH_TAGNAME=	3a74062
 
 CONFLICTS_INSTALL=	sddm
 
@@ -40,13 +44,13 @@ GROUPS=		lightdm video
 PORTSCOUT=	limitw:1,even
 SUB_FILES=	Xsession
 
-OPTIONS_DEFINE=	DOCS NLS VAPI
+OPTIONS_DEFINE=	NLS VAPI
 OPTIONS_DEFAULT=	NLS VAPI
 OPTIONS_SUB=	yes
 
-DOCS_BUILD_DEPENDS=	gtkdoc-check:textproc/gtk-doc
-DOCS_CONFIGURE_ON=	--enable-gtk-doc=yes --enable-gtk-doc-html=yes
-DOCS_CONFIGURE_OFF=	--enable-gtk-doc=no --enable-gtk-doc-html=no
+#DOCS_BUILD_DEPENDS=	gtkdoc-check:textproc/gtk-doc
+#DOCS_CONFIGURE_ON=	--enable-gtk-doc=yes --enable-gtk-doc-html=yes
+#DOCS_CONFIGURE_OFF=	--enable-gtk-doc=no --enable-gtk-doc-html=no
 
 NLS_CONFIGURE_ENABLE=	nls
 
@@ -56,6 +60,9 @@ VAPI_CONFIGURE_OFF=	--enable-vala=no --enable-introspection=no
 VAPI_USE=		GNOME=introspection:build
 
 post-patch:
+	${REINPLACE_CMD} -e 's, --enable-gtk-doc,,;s, help,,;s,^lightdm-.*,,;s,.*armor .*,,' \
+		${WRKSRC}/Makefile.am
+	${REINPLACE_CMD} -e 's,^include,#include,' ${WRKSRC}/doc/Makefile.am
 	@${REINPLACE_CMD} -e 's,%%PREFIX%%,${PREFIX},' \
 		${WRKSRC}/data/lightdm.conf
 
