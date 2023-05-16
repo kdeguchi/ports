@@ -1,8 +1,7 @@
 PORTNAME=	osdlyrics
 PORTVERSION=	0.5.13
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio deskutils
-#PKGNAMESUFFIX=	${PYTHON_PKGNAMESUFFIX}
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	On-screen lyrics display program for various media players
@@ -25,6 +24,7 @@ USES=		autoreconf desktop-file-utils gettext-tools gmake gnome \
 		iconv localbase pkgconfig python xorg
 
 USE_GITHUB=	yes
+GH_TAGNAME=	f75fa97
 
 USE_GNOME=	atk glib20 gtk20 intltool pango pygobject3
 USE_PYTHON=	autoplist flavors py3kplist
