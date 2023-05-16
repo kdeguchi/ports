@@ -160,6 +160,13 @@ MESON_ARGS+=	-Dlibv4l=disabled -Dmrg=disabled
 MESON_ARGS+=	-Dthumbnail_cache=disabled
 .endif
 
+.if ${.CURDIR:M*/emulators/virtualbox-ose}
+BUILD_DEPENDS+=	clang${VBOX_LLVM_VER}:devel/llvm${VBOX_LLVM_VER}
+CC=	clang${VBOX_LLVM_VER}
+CXX=	clang++${VBOX_LLVM_VER}
+VBOX_LLVM_VER?=	14
+.endif
+
 .if defined(BUILD_DEPENDS) && ! ${BUILD_DEPENDS:M*lang/rust}
 . if ! ${.CURDIR:M*/lang/rust}
 NO_SCCACHE=	yes
