@@ -30,7 +30,6 @@ PORTDOCS=	config_settings.yaml lua.yaml variables.yaml
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	brndnmtthws
-GH_TAGNAME=	00166b4
 
 OPTIONS_DEFINE=	APCUPSD CURL DOCS EXAMPLES ICONV IPV6 MANPAGES METAR MOC MPD NCURSES \
 		RSS WAYLAND X11 XMMS2
@@ -159,6 +158,7 @@ post-patch:
 		${WRKSRC}/cmake/ConkyPlatformChecks.cmake
 	@${REINPLACE_CMD} -e 's,%%LOCALBASE%%,${LOCALBASE},' -e 's|-Werror||' \
 		${WRKSRC}/cmake/ConkyBuildOptions.cmake
+	${REINPLACE_CMD} -e '/char \*freq_sysctl;/d' ${WRKSRC}/src/freebsd.cc
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}
