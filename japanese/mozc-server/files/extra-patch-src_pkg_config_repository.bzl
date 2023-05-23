@@ -1,5 +1,5 @@
---- src/pkg_config_repository.bzl	2022-07-23 23:02:59.000000000 +0900
-+++ src/pkg_config_repository.bzl	2022-08-05 18:51:57.036618000 +0900
+--- src/bazel/pkg_config_repository.bzl	2022-07-23 23:02:59.000000000 +0900
++++ src/bazel/pkg_config_repository.bzl	2022-08-05 18:51:57.036618000 +0900
 @@ -71,6 +71,9 @@
      linkopts = [
          {linkopts}
