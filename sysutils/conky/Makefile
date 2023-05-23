@@ -1,6 +1,6 @@
 PORTNAME=	conky
 PORTVERSION=	1.19.2
-#PORTREVISION=	1
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
 
@@ -11,7 +11,7 @@ WWW=		https://github.com/brndnmtthws/conky
 LIB_DEPENDS=	libinotify.so:devel/libinotify
 BUILD_DEPENDS=	gsed:textproc/gsed
 
-USES=		cmake compiler:c++11-lib cpe gettext-runtime \
+USES=		cmake compiler:c++11-lib cpe gettext-runtime iconv \
 		localbase:ldflags lua:flavors pkgconfig tar:bzip2
 
 CMAKE_ARGS=	-DAPP_SED=${LOCALBASE}/bin/gsed
@@ -20,7 +20,8 @@ CMAKE_OFF=	BUILD_PORT_MONITORS \
 		BUILD_HDDTEMP \
 		BUILD_IOSTATS \
 		BUILD_AUDACIOUS
-CMAKE_ON=	BUILD_EXTRAS
+CMAKE_ON=	BUILD_EXTRAS \
+		BUILD_ICONV
 CONFLICTS?=	conky-awesome
 
 SLAVEDIRS=	sysutils/conky-awesome
@@ -30,8 +31,9 @@ PORTDOCS=	config_settings.yaml lua.yaml variables.yaml
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	brndnmtthws
+GH_TAGNAME=	7807ea6
 
-OPTIONS_DEFINE=	APCUPSD CURL DOCS EXAMPLES ICONV IPV6 MANPAGES METAR MOC MPD NCURSES \
+OPTIONS_DEFINE=	APCUPSD CURL DOCS EXAMPLES IPV6 MANPAGES METAR MOC MPD NCURSES \
 		RSS WAYLAND X11 XMMS2
 
 OPTIONS_GROUP?=		X11
@@ -57,9 +59,6 @@ DOUBLE_BUFFER_IMPLIES=		X11
 
 HSV_DESC=		Generate gradient in HSV color space
 HSV_CMAKE_BOOL=	BUILD_HSV_GRADIENT
-
-ICONV_CMAKE_BOOL=	BUILD_ICONV
-ICONV_USES=		iconv
 
 IMLIB2_CMAKE_BOOL=	BUILD_IMLIB2
 IMLIB2_LIB_DEPENDS=	libImlib2.so:graphics/imlib2
@@ -158,7 +157,6 @@ post-patch:
 		${WRKSRC}/cmake/ConkyPlatformChecks.cmake
 	@${REINPLACE_CMD} -e 's,%%LOCALBASE%%,${LOCALBASE},' -e 's|-Werror||' \
 		${WRKSRC}/cmake/ConkyBuildOptions.cmake
-	${REINPLACE_CMD} -e '/char \*freq_sysctl;/d' ${WRKSRC}/src/freebsd.cc
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}

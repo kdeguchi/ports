@@ -1,6 +1,6 @@
---- CMakeLists.txt.orig	2023-03-31 17:39:51 UTC
+--- CMakeLists.txt.orig	2022-10-12 18:18:08 UTC
 +++ CMakeLists.txt
-@@ -72,9 +72,12 @@ if(BUILD_TESTS)
+@@ -73,11 +73,14 @@ if(NOT DEFINED DOC_PATH)
  endif()
  
  if(NOT DEFINED DOC_PATH)
@@ -13,5 +13,8 @@
 +endif(NOT DEFINED SAMPLE_PATH)
 +set(SAMPLE_FILES extras/convert.lua data/conky_no_x11.conf data/conky.conf)
  
- install(FILES ${DOC_FILES} DESTINATION ${DOC_PATH})
+-install(FILES ${DOC_FILES} DESTINATION ${DOC_PATH})
++install(FILES ${SAMPLE_FILES} DESTINATION ${SAMPLE_PATH})
  
+ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+   install(FILES conky.desktop DESTINATION share/applications)
