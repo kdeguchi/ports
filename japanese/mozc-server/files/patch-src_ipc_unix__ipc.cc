@@ -1,6 +1,6 @@
---- src/ipc/unix_ipc.cc.orig	2023-01-23 19:19:19 UTC
+--- src/ipc/unix_ipc.cc.orig	2023-05-27 07:35:04 UTC
 +++ src/ipc/unix_ipc.cc
-@@ -40,6 +40,9 @@
+@@ -37,6 +37,9 @@
  #include <sys/stat.h>
  #include <sys/time.h>
  #include <sys/un.h>
@@ -10,10 +10,10 @@
  #include <unistd.h>
  
  #include <cerrno>
-@@ -125,6 +128,28 @@ bool IsWriteTimeout(int socket, absl::Duration timeout
+@@ -120,7 +123,28 @@ bool IsWriteTimeout(int socket, absl::Duration timeout
+ 
  bool IsPeerValid(int socket, pid_t *pid) {
    *pid = 0;
- 
 +#if defined(__APPLE__) || defined(__FreeBSD__)
 +  // If the OS is MAC, we should validate the peer by using LOCAL_PEERCRED.
 +  struct xucred peer_cred;
@@ -34,20 +34,20 @@
 +  // MacOS doesn't have cr_pid;
 +  *pid = 0;
 +#endif
-+
+ 
 +#if defined(__linux__) && !defined(__FreeBSD__)
-   // On ARM Linux, we do nothing and just return true since the platform
-   // sometimes doesn't support the getsockopt(sock, SOL_SOCKET, SO_PEERCRED)
-   // system call.
-@@ -146,6 +171,7 @@ bool IsPeerValid(int socket, pid_t *pid) {
+   struct ucred peer_cred;
+   int peer_cred_len = sizeof(peer_cred);
+   if (getsockopt(socket, SOL_SOCKET, SO_PEERCRED,
+@@ -136,6 +160,7 @@ bool IsPeerValid(int socket, pid_t *pid) {
+   }
  
    *pid = peer_cred.pid;
- #endif  // __arm__
 +#endif
  
    return true;
  }
-@@ -274,7 +300,12 @@ void IPCClient::Init(const absl::string_view name,
+@@ -267,7 +292,12 @@ void IPCClient::Init(const absl::string_view name,
      address.sun_family = AF_UNIX;
      ::memcpy(address.sun_path, server_address.data(), server_address_length);
      address.sun_path[server_address_length] = '\0';
@@ -60,7 +60,7 @@
      pid_t pid = 0;
      if (::connect(socket_, reinterpret_cast<const sockaddr *>(&address),
                    sun_len) != 0 ||
-@@ -385,7 +416,12 @@ IPCServer::IPCServer(const std::string &name, int32_t 
+@@ -378,7 +408,12 @@ IPCServer::IPCServer(const std::string &name, int32_t 
    int on = 1;
    ::setsockopt(socket_, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<char *>(&on),
                 sizeof(on));

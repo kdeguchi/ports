@@ -1,5 +1,5 @@
 PORTNAME=	mozc
-PORTVERSION=	2.28.5105.102
+PORTVERSION=	2.29.5111.102
 #PORTREVISION=	2
 CATEGORIES=	japanese
 
@@ -17,7 +17,7 @@ USES=		compiler:c++11-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:ebc1ce4 \
+GH_TUPLE=	fcitx:mozc:fda1c54 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
