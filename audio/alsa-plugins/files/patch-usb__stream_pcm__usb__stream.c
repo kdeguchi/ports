@@ -1,8 +1,6 @@
-based on https://github.com/dankamongmen/libdank/blob/master/libdank/compat-FreeBSD.c
-
---- usb_stream/pcm_usb_stream.c.orig	2016-03-31 13:11:29 UTC
+--- usb_stream/pcm_usb_stream.c.orig	2022-06-17 09:44:44 UTC
 +++ usb_stream/pcm_usb_stream.c
-@@ -79,6 +79,69 @@ typedef struct {
+@@ -78,6 +78,69 @@ typedef struct {
  static struct user_usb_stream *uus;
  static pthread_mutex_t uus_mutex = PTHREAD_MUTEX_INITIALIZER;
  
@@ -69,10 +67,10 @@ based on https://github.com/dankamongmen/libdank/blob/master/libdank/compat-Free
 +}
 +#endif
 +
- static struct user_usb_stream *get_uus(const char *card)
+ static struct user_usb_stream *get_uus(int card)
  {
  	pthread_mutex_lock(&uus_mutex);
-@@ -219,7 +282,11 @@ static int snd_pcm_us_prepare(snd_pcm_io
+@@ -218,7 +281,11 @@ static int snd_pcm_us_prepare(snd_pcm_ioplug_t *io)
  		}
  
  
