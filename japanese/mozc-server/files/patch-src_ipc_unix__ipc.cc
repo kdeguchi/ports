@@ -1,6 +1,6 @@
---- src/ipc/unix_ipc.cc.orig	2023-05-27 07:35:04 UTC
+--- src/ipc/unix_ipc.cc.orig	2023-05-31 07:39:27 UTC
 +++ src/ipc/unix_ipc.cc
-@@ -37,6 +37,9 @@
+@@ -36,6 +36,9 @@
  #include <sys/stat.h>
  #include <sys/time.h>
  #include <sys/un.h>
@@ -10,7 +10,7 @@
  #include <unistd.h>
  
  #include <cerrno>
-@@ -120,7 +123,28 @@ bool IsWriteTimeout(int socket, absl::Duration timeout
+@@ -119,7 +122,28 @@ bool IsWriteTimeout(int socket, absl::Duration timeout
  
  bool IsPeerValid(int socket, pid_t *pid) {
    *pid = 0;
@@ -39,7 +39,7 @@
    struct ucred peer_cred;
    int peer_cred_len = sizeof(peer_cred);
    if (getsockopt(socket, SOL_SOCKET, SO_PEERCRED,
-@@ -136,6 +160,7 @@ bool IsPeerValid(int socket, pid_t *pid) {
+@@ -135,6 +159,7 @@ bool IsPeerValid(int socket, pid_t *pid) {
    }
  
    *pid = peer_cred.pid;
@@ -47,10 +47,10 @@
  
    return true;
  }
-@@ -267,7 +292,12 @@ void IPCClient::Init(const absl::string_view name,
+@@ -265,7 +290,12 @@ void IPCClient::Init(const absl::string_view name,
      address.sun_family = AF_UNIX;
-     ::memcpy(address.sun_path, server_address.data(), server_address_length);
-     address.sun_path[server_address_length] = '\0';
+     absl::SNPrintF(address.sun_path, sizeof(address.sun_path), "%s",
+                    server_address);
 +#if defined(__APPLE__) || defined(__FreeBSD__)
 +    address.sun_len = SUN_LEN(&address);
 +    const size_t sun_len = sizeof(address);
@@ -60,7 +60,7 @@
      pid_t pid = 0;
      if (::connect(socket_, reinterpret_cast<const sockaddr *>(&address),
                    sun_len) != 0 ||
-@@ -378,7 +408,12 @@ IPCServer::IPCServer(const std::string &name, int32_t 
+@@ -374,7 +404,12 @@ IPCServer::IPCServer(const std::string &name, int32_t 
    int on = 1;
    ::setsockopt(socket_, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<char *>(&on),
                 sizeof(on));
