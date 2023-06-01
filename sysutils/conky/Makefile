@@ -176,8 +176,8 @@ post-install-DOCS-on:
 .endfor
 
 post-install-VIM-on:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/vim
-	cd ${WRKSRC}/extras/vim && ${COPYTREE_SHARE} ftdetect ${STAGEDIR}${PREFIX}/share/vim
-	cd ${CONFIGURE_WRKSRC}/extras/vim && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/vim
+	${MKDIR} ${STAGEDIR}${PREFIX}/share/vim/vimfiles
+	cd ${WRKSRC}/extras/vim && ${COPYTREE_SHARE} ftdetect ${STAGEDIR}${PREFIX}/share/vim/vimfiles
+	cd ${CONFIGURE_WRKSRC}/extras/vim && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/vim/vimfiles
 
 .include <bsd.port.mk>
