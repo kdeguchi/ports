@@ -157,15 +157,16 @@ LICENSE+=	CC-BY-SA-4.0
 LICENSE+=	GPLv2
 .endif
 
-MASTER_SITES+=	LOCAL/kuriyama:zipcode
-DISTFILES+=	ken_all-20221228.zip:zipcode \
-		jigyosyo-20221228.zip:zipcode
+MASTER_SITES+=	https://www.post.japanpost.jp/zipcode/dl/kogaki/zip/:kenall \
+		https://www.post.japanpost.jp/zipcode/dl/jigyosyo/zip/:jigyosyo
+DISTFILES+=	ken_all.zip:kenall \
+		jigyosyo.zip:jigyosyo
 PLIST_FILES+=	bin/mozc \
 		libexec/mozc_server
 SUB_FILES+=	mozc
 
 post-patch-mozc_server:
-	@for F in ${DISTFILES:M*\:zipcode:S/:zipcode//}; do \
+	@for F in ${DISTFILES:M*\:kenall:S/:kenall//} ${DISTFILES:M*\:jigyosyo:S/:jigyosyo//}; do \
 		${UNZIP_NATIVE_CMD} -L -d ${BUILD_WRKSRC}/data/dictionary_oss \
 		    ${DISTDIR}/$$F; \
 	done
