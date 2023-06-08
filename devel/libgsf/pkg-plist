@@ -60,45 +60,45 @@ man/man1/gsf-office-thumbnailer.1.gz
 man/man1/gsf-vba-dump.1.gz
 man/man1/gsf.1.gz
 share/gir-1.0/Gsf-1.gir
-@comment share/gtk-doc/html/gsf/annotation-glossary.html
-@comment share/gtk-doc/html/gsf/api.html
-@comment share/gtk-doc/html/gsf/dependencies.html
-@comment share/gtk-doc/html/gsf/gsf-Compression.html
-@comment share/gtk-doc/html/gsf/gsf-GIO.html
-@comment share/gtk-doc/html/gsf/gsf-GIOChannel.html
-@comment share/gtk-doc/html/gsf/gsf-Infile-reading-structed-files.html
-@comment share/gtk-doc/html/gsf/gsf-Input-from-unstructured-files.html
-@comment share/gtk-doc/html/gsf/gsf-MS-OLE2.html
-@comment share/gtk-doc/html/gsf/gsf-OASIS-Open-Document.html
-@comment share/gtk-doc/html/gsf/gsf-Outfile-writing-structed-files.html
-@comment share/gtk-doc/html/gsf/gsf-Output-to-unstructured-files.html
-@comment share/gtk-doc/html/gsf/gsf-Reading-and-Writing-from-local-files-and-directories.html
-@comment share/gtk-doc/html/gsf/gsf-Text.html
-@comment share/gtk-doc/html/gsf/gsf-XML-and-libxml.html
-@comment share/gtk-doc/html/gsf/gsf-Zip.html
-@comment share/gtk-doc/html/gsf/gsf-blobs.html
-@comment share/gtk-doc/html/gsf/gsf-clip-data.html
-@comment share/gtk-doc/html/gsf/gsf-index.html
-@comment share/gtk-doc/html/gsf/gsf-memory.html
-@comment share/gtk-doc/html/gsf/gsf-metadata.html
-@comment share/gtk-doc/html/gsf/gsf-users.html
-@comment share/gtk-doc/html/gsf/gsf-Utilities.html
-@comment share/gtk-doc/html/gsf/gsf.devhelp2
-@comment share/gtk-doc/html/gsf/history.html
-@comment share/gtk-doc/html/gsf/home.png
-@comment share/gtk-doc/html/gsf/index.html
-@comment share/gtk-doc/html/gsf/intro.html
-@comment share/gtk-doc/html/gsf/io.html
-@comment share/gtk-doc/html/gsf/left-insensitive.png
-@comment share/gtk-doc/html/gsf/left.png
-@comment share/gtk-doc/html/gsf/misc.html
-@comment share/gtk-doc/html/gsf/parsers.html
-@comment share/gtk-doc/html/gsf/right-insensitive.png
-@comment share/gtk-doc/html/gsf/right.png
-@comment share/gtk-doc/html/gsf/sources.html
-@comment share/gtk-doc/html/gsf/style.css
-@comment share/gtk-doc/html/gsf/up-insensitive.png
-@comment share/gtk-doc/html/gsf/up.png
+%%GTKDOC%%share/gtk-doc/html/gsf/annotation-glossary.html
+%%GTKDOC%%share/gtk-doc/html/gsf/api.html
+%%GTKDOC%%share/gtk-doc/html/gsf/dependencies.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-Compression.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-GIO.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-GIOChannel.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-Infile-reading-structed-files.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-Input-from-unstructured-files.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-MS-OLE2.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-OASIS-Open-Document.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-Outfile-writing-structed-files.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-Output-to-unstructured-files.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-Reading-and-Writing-from-local-files-and-directories.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-Text.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-XML-and-libxml.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-Zip.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-blobs.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-clip-data.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-index.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-memory.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-metadata.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-users.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf-Utilities.html
+%%GTKDOC%%share/gtk-doc/html/gsf/gsf.devhelp2
+%%GTKDOC%%share/gtk-doc/html/gsf/history.html
+%%GTKDOC%%share/gtk-doc/html/gsf/home.png
+%%GTKDOC%%share/gtk-doc/html/gsf/index.html
+%%GTKDOC%%share/gtk-doc/html/gsf/intro.html
+%%GTKDOC%%share/gtk-doc/html/gsf/io.html
+%%GTKDOC%%share/gtk-doc/html/gsf/left-insensitive.png
+%%GTKDOC%%share/gtk-doc/html/gsf/left.png
+%%GTKDOC%%share/gtk-doc/html/gsf/misc.html
+%%GTKDOC%%share/gtk-doc/html/gsf/parsers.html
+%%GTKDOC%%share/gtk-doc/html/gsf/right-insensitive.png
+%%GTKDOC%%share/gtk-doc/html/gsf/right.png
+%%GTKDOC%%share/gtk-doc/html/gsf/sources.html
+%%GTKDOC%%share/gtk-doc/html/gsf/style.css
+%%GTKDOC%%share/gtk-doc/html/gsf/up-insensitive.png
+%%GTKDOC%%share/gtk-doc/html/gsf/up.png
 %%NLS%%share/locale/as/LC_MESSAGES/libgsf.mo
 %%NLS%%share/locale/bs/LC_MESSAGES/libgsf.mo
 %%NLS%%share/locale/ca/LC_MESSAGES/libgsf.mo
