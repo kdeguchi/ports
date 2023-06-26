@@ -1,5 +1,5 @@
 PORTNAME=	slick-greeter
-PORTVERSION=	1.8.0
+PORTVERSION=	1.8.1
 CATEGORIES=	x11
 
 MAINTAINER=	ericbsd@FreeBSD.org
@@ -27,7 +27,7 @@ USE_XORG=	pixman x11 xext
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxmint
-GH_TAGNAME=	1103709
+#GH_TAGNAME=	1103709
 
 GNU_CONFIGURE=	yes
 SHEBANG_FILES=	files/usr/bin/slick-greeter-check-hidpi \

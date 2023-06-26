@@ -28,6 +28,8 @@ INSTALL_TARGET=	install-strip
 CONFIGURE_ARGS=	--enable-introspection
 CPE_VENDOR=	gnome
 
+CFLAGS+=	-fwritable-strings
+
 OPTIONS_DEFINE=	GTKDOC NLS
 OPTIONS_DEFAULT=NLS
 OPTIONS_SUB=	yes
