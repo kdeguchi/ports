@@ -94,15 +94,15 @@ RUN_DEPENDS:=	${RUN_DEPENDS:C@gcc[0-9]+:lang/gcc[0-9]+@@}
 LIB_DEPENDS:=	${LIB_DEPENDS:S@libavcodec.so:multimedia/ffmpeg@@}
 .endif
 
-.if ${.CURDIR:M*/devel/qt5-core}
-RUN_DEPENDS:=	${RUN_DEPENDS:S@etc_os-release>0:sysutils/etc_os-release@@}
-.endif
+#.if ${.CURDIR:M*/devel/qt5-core}
+#RUN_DEPENDS:=	${RUN_DEPENDS:S@etc_os-release>0:sysutils/etc_os-release@@}
+#.endif
 
-.if ${.CURDIR:M*/emulators/i386-wine-devel}
-FETCH_BINARY=	curl
-FETCH_ARGS=	--proxy socks5://localhost:1090 --fail --insecure --location --remote-time -O
-DISABLE_SIZE=	yes
-.endif
+#.if ${.CURDIR:M*/emulators/i386-wine-devel}
+#FETCH_BINARY=	curl
+#FETCH_ARGS=	--proxy socks5://localhost:1090 --fail --insecure --location --remote-time -O
+#DISABLE_SIZE=	yes
+#.endif
 
 .if ${.CURDIR:M*/math/maxima}
 NOUSERINIT_EXTRA_PATCHES_OFF=
@@ -112,9 +112,9 @@ NOUSERINIT_EXTRA_PATCHES_OFF=
 CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON_CMD}
 .endif
 
-.if ${.CURDIR:M*/net/samba*}
-LIB_DEPENDS:=	${LIB_DEPENDS:S@libiconv.so:converters/libiconv@@}
-.endif
+#.if ${.CURDIR:M*/net/samba*}
+#LIB_DEPENDS:=	${LIB_DEPENDS:S@libiconv.so:converters/libiconv@@}
+#.endif
 
 .if ${.CURDIR:M*/www/firefox} || ${.CURDIR:M*/mail/thunderbird}
 .if defined(CONFIGURE_ENV) && ${CONFIGURE_ENV:N*${PREFIX}/libexec/ccache}
