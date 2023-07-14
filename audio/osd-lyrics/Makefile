@@ -1,6 +1,6 @@
 PORTNAME=	osdlyrics
-PORTVERSION=	0.5.13
-PORTREVISION=	2
+PORTVERSION=	0.5.14
+#PORTREVISION=	2
 CATEGORIES=	audio deskutils
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -24,7 +24,7 @@ USES=		autoreconf desktop-file-utils gettext-tools gmake gnome \
 		iconv localbase pkgconfig python xorg
 
 USE_GITHUB=	yes
-GH_TAGNAME=	f75fa97
+#GH_TAGNAME=	cd1d7e6
 
 USE_GNOME=	atk glib20 gtk20 intltool pango pygobject3
 USE_PYTHON=	autoplist flavors py3kplist
