@@ -1,6 +1,6 @@
 PORTNAME=	kitty
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.28.1
+DISTVERSION=	0.29.0
 CATEGORIES=	x11 wayland
 
 MAINTAINER=	nivit@FreeBSD.org
@@ -33,7 +33,7 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 OPTIONS_DEFINE=	DOCS
 
 USES=		compiler:c11 cpe desktop-file-utils gettext-runtime gl gmake \
-		go:modules pkgconfig python:3.5+ shebangfix ssl tar:xz terminfo \
+		go:modules pkgconfig python shebangfix ssl tar:xz terminfo \
 		xorg
 CPE_VENDOR=	kitty_project
 GH_TUPLE=	ALTree:bigfloat:38c8b72a9924:altree_bigfloat/vendor/github.com/ALTree/bigfloat \
@@ -95,10 +95,9 @@ EXTRA_PATCHES=	${PATCHDIR}/extra-patch-kitty_data-types.h
 .endif
 
 # For librsync, we need to set header and library path
-# --ignore-compiler-warnings is for https://github.com/kovidgoyal/kitty/issues/6422
 do-build:
 	(cd ${WRKSRC} && \
-	        ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} setup.py linux-package --ignore-compiler-warnings --update-check-interval 0 --extra-include-dirs ${LOCALBASE}/include/ --extra-library-dirs ${LOCALBASE}/lib)
+	        ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} setup.py linux-package --update-check-interval 0 --extra-include-dirs ${LOCALBASE}/include/ --extra-library-dirs ${LOCALBASE}/lib)
 	${FIND} ${INSTALL_WRKSRC} -name __pycache__ -type d -exec ${RM} -r -- {} +
 
 do-install:

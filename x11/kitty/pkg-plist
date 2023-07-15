@@ -27,10 +27,7 @@ lib/kitty/kittens/remote_file/main.py
 lib/kitty/kittens/resize_window/__init__.py
 lib/kitty/kittens/resize_window/main.py
 lib/kitty/kittens/runner.py
-lib/kitty/kittens/show_error/__init__.py
-lib/kitty/kittens/show_error/main.py
 lib/kitty/kittens/show_key/__init__.py
-lib/kitty/kittens/show_key/kitty_mode.py
 lib/kitty/kittens/show_key/main.py
 lib/kitty/kittens/ssh/__init__.py
 lib/kitty/kittens/ssh/main.py
@@ -60,15 +57,15 @@ lib/kitty/kittens/unicode_input/__init__.py
 lib/kitty/kittens/unicode_input/main.py
 lib/kitty/kitty/__init__.py
 lib/kitty/kitty/actions.py
+lib/kitty/kitty/alpha_blend.glsl
 lib/kitty/kitty/bash.py
 lib/kitty/kitty/bgimage_fragment.glsl
 lib/kitty/kitty/bgimage_vertex.glsl
-lib/kitty/kitty/blit_fragment.glsl
-lib/kitty/kitty/blit_vertex.glsl
 lib/kitty/kitty/border_fragment.glsl
 lib/kitty/kitty/border_vertex.glsl
 lib/kitty/kitty/borders.py
 lib/kitty/kitty/boss.py
+lib/kitty/kitty/cell_defines.glsl
 lib/kitty/kitty/cell_fragment.glsl
 lib/kitty/kitty/cell_vertex.glsl
 lib/kitty/kitty/child.py
@@ -111,6 +108,7 @@ lib/kitty/kitty/layout/splits.py
 lib/kitty/kitty/layout/stack.py
 lib/kitty/kitty/layout/tall.py
 lib/kitty/kitty/layout/vertical.py
+lib/kitty/kitty/linear2srgb.glsl
 lib/kitty/kitty/main.py
 lib/kitty/kitty/marks.py
 lib/kitty/kitty/multiprocessing.py
@@ -162,9 +160,11 @@ lib/kitty/kitty/remote_control.py
 lib/kitty/kitty/rgb.py
 lib/kitty/kitty/search_query_parser.py
 lib/kitty/kitty/session.py
+lib/kitty/kitty/shaders.py
 lib/kitty/kitty/shell_integration.py
 lib/kitty/kitty/shm.py
 lib/kitty/kitty/short_uuid.py
+lib/kitty/kitty/srgb_gamma.glsl
 lib/kitty/kitty/tab_bar.py
 lib/kitty/kitty/tabs.py
 lib/kitty/kitty/terminfo.py
@@ -223,10 +223,11 @@ share/applications/kitty.desktop
 %%PORTDOCS%%%%DOCSDIR%%/html/_images/social_previews/summary_generated_launch_2c8ae1a7.png
 %%PORTDOCS%%%%DOCSDIR%%/html/_images/social_previews/summary_generated_rc_1e263193.png
 %%PORTDOCS%%%%DOCSDIR%%/html/_images/social_previews/summary_generated_ssh-copy_26aa9e71.png
-%%PORTDOCS%%%%DOCSDIR%%/html/_images/social_previews/summary_glossary_b2beee9f.png
+%%PORTDOCS%%%%DOCSDIR%%/html/_images/social_previews/summary_glossary_e93f6fff.png
 %%PORTDOCS%%%%DOCSDIR%%/html/_images/social_previews/summary_graphics-protocol_96eb2627.png
 %%PORTDOCS%%%%DOCSDIR%%/html/_images/social_previews/summary_index_cb55e922.png
 %%PORTDOCS%%%%DOCSDIR%%/html/_images/social_previews/summary_integrations_89a2636c.png
+%%PORTDOCS%%%%DOCSDIR%%/html/_images/social_previews/summary_intro_vid_14889341.png
 %%PORTDOCS%%%%DOCSDIR%%/html/_images/social_previews/summary_invocation_05c40da8.png
 %%PORTDOCS%%%%DOCSDIR%%/html/_images/social_previews/summary_keyboard-protocol_37967379.png
 %%PORTDOCS%%%%DOCSDIR%%/html/_images/social_previews/summary_kittens_broadcast_4dfe59be.png
@@ -282,6 +283,7 @@ share/applications/kitty.desktop
 %%PORTDOCS%%%%DOCSDIR%%/html/_sources/graphics-protocol.rst.txt
 %%PORTDOCS%%%%DOCSDIR%%/html/_sources/index.rst.txt
 %%PORTDOCS%%%%DOCSDIR%%/html/_sources/integrations.rst.txt
+%%PORTDOCS%%%%DOCSDIR%%/html/_sources/intro_vid.rst.txt
 %%PORTDOCS%%%%DOCSDIR%%/html/_sources/invocation.rst.txt
 %%PORTDOCS%%%%DOCSDIR%%/html/_sources/keyboard-protocol.rst.txt
 %%PORTDOCS%%%%DOCSDIR%%/html/_sources/kittens/broadcast.rst.txt
@@ -350,6 +352,8 @@ share/applications/kitty.desktop
 %%PORTDOCS%%%%DOCSDIR%%/html/_static/styles/furo.css.map
 %%PORTDOCS%%%%DOCSDIR%%/html/_static/tabs.css
 %%PORTDOCS%%%%DOCSDIR%%/html/_static/tabs.js
+%%PORTDOCS%%%%DOCSDIR%%/html/_static/timestamps.css
+%%PORTDOCS%%%%DOCSDIR%%/html/_static/timestamps.js
 %%PORTDOCS%%%%DOCSDIR%%/html/_static/underscore-1.13.1.js
 %%PORTDOCS%%%%DOCSDIR%%/html/_static/underscore.js
 %%PORTDOCS%%%%DOCSDIR%%/html/actions.html
@@ -371,6 +375,7 @@ share/applications/kitty.desktop
 %%PORTDOCS%%%%DOCSDIR%%/html/graphics-protocol.html
 %%PORTDOCS%%%%DOCSDIR%%/html/index.html
 %%PORTDOCS%%%%DOCSDIR%%/html/integrations.html
+%%PORTDOCS%%%%DOCSDIR%%/html/intro_vid.html
 %%PORTDOCS%%%%DOCSDIR%%/html/invocation.html
 %%PORTDOCS%%%%DOCSDIR%%/html/keyboard-protocol.html
 %%PORTDOCS%%%%DOCSDIR%%/html/kittens/broadcast.html
