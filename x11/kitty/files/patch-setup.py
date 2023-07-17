@@ -31,7 +31,7 @@
  def at_least_version(package: str, major: int, minor: int = 0) -> None:
      q = f'{major}.{minor}'
      if subprocess.run([PKGCONFIG, package, f'--atleast-version={q}']
-@@ -529,6 +513,7 @@ def get_source_specific_defines(env: Env, src: str) ->
+@@ -538,6 +522,7 @@ def get_source_specific_defines(env: Env, src: str) ->
      if src == 'kitty/data-types.c':
          if not env.vcs_rev:
              env.vcs_rev = get_vcs_rev()
@@ -39,7 +39,7 @@
          return src, [f'KITTY_VCS_REV="{env.vcs_rev}"', f'WRAPPED_KITTENS="{wrapped_kittens()}"']
      try:
          return src, env.library_paths[src]
-@@ -1163,7 +1147,8 @@ def create_linux_bundle_gunk(ddir: str, libdir_name: s
+@@ -1163,7 +1148,8 @@ def create_linux_bundle_gunk(ddir: str, libdir_name: s
          make = 'gmake' if is_freebsd else 'make'
          run_tool([make, 'docs'])
      copy_man_pages(ddir)

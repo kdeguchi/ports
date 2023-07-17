@@ -16,7 +16,7 @@
      INCREF_CHILD(add_queue[add_queue_count]);
      add_queue_count++;
      children_mutex(unlock);
-@@ -1250,6 +1252,7 @@ hangup(pid_t pid) {
+@@ -1247,6 +1249,7 @@ hangup(pid_t pid) {
  
  static void
  cleanup_child(ssize_t i) {
