@@ -1,6 +1,6 @@
 PORTNAME=	kitty
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.29.0
+DISTVERSION=	0.29.1
 PORTREVISION=	0
 CATEGORIES=	x11 wayland
 
@@ -33,7 +33,7 @@ LIB_DEPENDS=	libcanberra.so:audio/libcanberra \
 		libxkbcommon.so:x11/libxkbcommon
 
 USES=		compiler:c11 cpe desktop-file-utils gettext-runtime gl gmake \
-	go:modules magick:build,nox11 pkgconfig python shebangfix ssl tar:xz \
+		go:modules magick:build,nox11 pkgconfig python shebangfix ssl tar:xz \
 		terminfo xorg
 CPE_VENDOR=	kitty_project
 GH_TUPLE=	ALTree:bigfloat:38c8b72a9924:altree_bigfloat/vendor/github.com/ALTree/bigfloat \
@@ -100,7 +100,7 @@ EXTRA_PATCHES=	${PATCHDIR}/extra-patch-kitty_data-types.h
 .endif
 
 post-patch:
-	${REINPLACE_CMD} -i.bak -e "s: 'go':'${GO_CMD:T}':1" ${WRKSRC}/setup.py
+	${REINPLACE_CMD} -i.bak -e "s:'go':'${GO_CMD}':1" ${WRKSRC}/setup.py
 
 # For librsync, we need to set header and library path
 do-build:
@@ -117,7 +117,8 @@ do-install:
 	cd ${BUILD_DIR} && \
 		${INSTALL_PROGRAM} bin/kitty bin/kitten ${STAGEDIR}${PREFIX}/bin && \
 		${INSTALL_DATA} share/applications/* ${STAGEDIR}${DESKTOPDIR} && \
-		${INSTALL_DATA} -d share/icons/hicolor ${STAGEDIR}${PREFIX}/share/icons/highcolor
+	cd ${BUILD_DIR}/share/icons/hicolor && \
+		${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/icons/hicolor
 	cd ${BUILD_DIR}/share/kitty && \
 		${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/terminfo/kitty.terminfo \
@@ -125,7 +126,6 @@ do-install:
 	${INSTALL_MAN} ${BUILD_DIR}/share/man/man1/kitty.1 ${STAGEDIR}${MANPREFIX}/share/man/man1
 	${INSTALL_MAN} ${BUILD_DIR}/share/man/man5/kitty.conf.5 ${STAGEDIR}${MANPREFIX}/share/man/man5
 	${STRIP_CMD} ${_STRIP_TARGETS:S|^|${STAGEDIR}${DATADIR}/|}
-
 
 do-install-DOCS-on:
 	cd ${BUILD_DIR}/share/doc/kitty/html && \
