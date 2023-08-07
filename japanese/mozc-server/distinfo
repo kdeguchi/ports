@@ -1,4 +1,4 @@
-TIMESTAMP = 1691396707
+TIMESTAMP = 1691397193
 SHA256 (jawiki-latest-all-titles-in-ns0.gz) = fe8d966ac8b6f0055d2d30d98f2e0c4c0b3c650109d015e600b090d73da6bf53
 SIZE (jawiki-latest-all-titles-in-ns0.gz) = 14260223
 SHA256 (id.def) = e19cf04ce6b9c4b5c326141fcfde927182784acaa2c9eaf852e9802e00eb2b73
@@ -7,8 +7,8 @@ SHA256 (ken_all.zip) = 917d748c1954e8f7063193a2efe54e14bbd67401d50d8dd018d8eacbe
 SIZE (ken_all.zip) = 1692002
 SHA256 (jigyosyo.zip) = ee17365ab0dd89c97d34f624c6fb332cccfe2c30775e68c677d02b1274bd59be
 SIZE (jigyosyo.zip) = 772532
-SHA256 (fcitx-mozc-2.29.5160.102-3125c4d_GH0.tar.gz) = 3aa6238a168fd82d49c707f80b1b7b7212146ca6c21515812014d6ae45da94e7
-SIZE (fcitx-mozc-2.29.5160.102-3125c4d_GH0.tar.gz) = 38317255
+SHA256 (fcitx-mozc-2.29.5160.102-fdf9534_GH0.tar.gz) = c2dbc8201e3a8d9a6c6984d3ddc1b2ccbdfae0f296bc48aeaeeedf519a83adf7
+SIZE (fcitx-mozc-2.29.5160.102-fdf9534_GH0.tar.gz) = 38398417
 SHA256 (hiroyuki-komatsu-japanese-usage-dictionary-a4a6677_GH0.tar.gz) = 2d20d64456dc081be84e7c0aa7be53cdf79d4e9f4ba3fcaf06e4fca74394c714
 SIZE (hiroyuki-komatsu-japanese-usage-dictionary-a4a6677_GH0.tar.gz) = 71282
 SHA256 (utuhiro78-mozcdic-ut-alt-cannadic-f59287e_GH0.tar.gz) = 79b64318db5360e25b82d18603ed7dbdf8586273e1adcabfb90221765080b5f7

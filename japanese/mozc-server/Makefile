@@ -18,7 +18,7 @@ USES=		compiler:c++11-lang gmake localbase ninja:build pkgconfig \
 
 USE_GITHUB=	yes
 # Segfault bug from 41cd99b
-GH_TUPLE=	fcitx:mozc:3125c4d \
+GH_TUPLE=	fcitx:mozc:fdf9534 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
