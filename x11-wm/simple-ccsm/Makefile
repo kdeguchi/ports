@@ -1,5 +1,6 @@
 PORTNAME=	simple-ccsm
 PORTVERSION=	0.8.18
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 
 MAINTAINER=	freebsd-ports@dan.me.uk
@@ -14,7 +15,7 @@ USE_PYTHON=	flavors py3kplist
 
 USE_GITLAB=	yes
 GL_ACCOUNT=	compiz
-GL_COMMIT=	1c2ecc26b2868a793b8fe089b6a2391251f8da98
+GL_COMMIT=	85dd9f9fead8e33782105ab04dd9cb66446f4dd4
 #USE_GITHUB=	yes
 #GH_ACCOUNT=	compiz-reloaded
 #GH_TAGNAME=	1c2ecc2

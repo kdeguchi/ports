@@ -1,6 +1,6 @@
 PORTNAME=	compiz-plugins-experimental
 PORTVERSION=	0.8.18
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-wm
 
 MAINTAINER=	freebsd-ports@dan.me.uk
@@ -31,7 +31,7 @@ USE_LDCONFIG=	yes
 
 USE_GITLAB=	yes
 GL_ACCOUNT=	compiz
-GL_COMMIT=	61a853e848f76b73eb9b7e1c320abda8a2bafb82
+GL_COMMIT=	1807d5ab7037b379a35bdfb3697e7eedc4b532d2
 #USE_GITHUB=	yes
 #GH_ACCOUNT=	compiz-reloaded
 #GH_TAGNAME=	61a853e
