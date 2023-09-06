@@ -1,5 +1,6 @@
 PORTNAME=	mozc
-PORTVERSION=	2.29.5210.102
+PORTVERSION=	2.29.5160.102
+PORTREVISION=	2
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -15,11 +16,9 @@ RUN_DEPENDS=	xdg-open:devel/xdg-utils
 USES=		compiler:c++11-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
-CFLAGS+=	DEBUG=1
-
 USE_GITHUB=	yes
-# segfault from f07bb2e in src/base/system_util.cc
-GH_TUPLE=	fcitx:mozc:e9c2d29 \
+# Segfault bug from 41cd99b
+GH_TUPLE=	fcitx:mozc:fdf9534 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
@@ -83,8 +82,8 @@ UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:jawikilatest \
 		https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/:iddef
 
 .elif ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
-USES+=		qt:6
-USE_QT=		base
+USES+=		qt:5
+USE_QT=		buildtools:build core gui widgets
 EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src_pkg_config_repository.bzl
 
 .elif ${BUILD_MOZC_LIST:Mibus_mozc} == "ibus_mozc"

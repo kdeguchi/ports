@@ -1,4 +1,4 @@
---- src/WORKSPACE.bazel.orig	2023-09-02 11:09:28 UTC
+--- src/WORKSPACE.bazel.orig	2023-05-09 02:54:28 UTC
 +++ src/WORKSPACE.bazel
 @@ -36,17 +36,20 @@ py_repositories()
  
@@ -26,12 +26,3 @@
  )
  load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
  protobuf_deps()
-@@ -130,7 +133,7 @@ new_local_repository(
- # Qt for Linux
- pkg_config_repository(
-   name = "qt_linux",
--  packages = ["Qt6Core", "Qt6Gui", "Qt6Widgets"],
-+  packages = ["Qt6Core", "Qt6Gui", "Qt6Widgets", "libglvnd"],
- )
- 
- # Qt for macOS
