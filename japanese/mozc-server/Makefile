@@ -50,10 +50,10 @@ UTDIC_PATCH_DEPENDS=	rubygem-nkf>0:net/rubygem-nkf \
 		rubygem-zlib>0:devel/rubygem-zlib
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:0e51584:personal \
-		utuhiro78:mozcdic-ut-place-names:4780045:place \
+UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:dbf3e9c:ut \
 		utuhiro78:mozcdic-ut-neologd:90e59c7:neologd \
-		utuhiro78:merge-ut-dictionaries:e081fbb:ut
+		utuhiro78:mozcdic-ut-personal-names:0e51584:personal \
+		utuhiro78:mozcdic-ut-place-names:4780045:place
 
 # GPLv2
 ALTCANNADIC_DESC=	Dictionary from Alt-Cannadic
