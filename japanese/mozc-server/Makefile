@@ -15,10 +15,8 @@ RUN_DEPENDS=	xdg-open:devel/xdg-utils
 USES=		compiler:c++11-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
-CFLAGS+=	DEBUG=1
-
 USE_GITHUB=	yes
-# segfault from f07bb2e in src/base/system_util.cc
+# files/patch-src_base_system__util.cc for segfault from f07bb2e
 GH_TUPLE=	fcitx:mozc:e9c2d29 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
