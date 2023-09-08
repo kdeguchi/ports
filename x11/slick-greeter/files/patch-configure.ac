@@ -1,0 +1,10 @@
+--- configure.ac.orig
++++ configure.ac
+@@ -28,6 +28,7 @@ PKG_CHECK_MODULES(SLICK_GREETER, [
+     x11
+     xext
+     xapp
++    libhandy-1
+ ])
+ 
+ dnl ###########################################################################

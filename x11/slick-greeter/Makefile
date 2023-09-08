@@ -1,5 +1,5 @@
 PORTNAME=	slick-greeter
-PORTVERSION=	1.8.1
+PORTVERSION=	1.8.2
 CATEGORIES=	x11
 
 MAINTAINER=	ericbsd@FreeBSD.org
@@ -12,6 +12,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libcanberra-gtk3.so:audio/libcanberra-gtk3 \
 		libcanberra.so:audio/libcanberra \
 		libfreetype.so:print/freetype2 \
+		libhandy-1.so:x11-toolkits/libhandy \
 		libharfbuzz.so:print/harfbuzz \
 		libxapp.so:x11/xapp \
 		liblightdm-gobject-1.so:x11/lightdm
