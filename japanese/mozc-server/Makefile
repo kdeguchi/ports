@@ -1,6 +1,5 @@
 PORTNAME=	mozc
-PORTVERSION=	2.29.5210.102
-PORTREVISION=	1
+PORTVERSION=	2.29.5220.102
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -18,7 +17,7 @@ USES=		compiler:c++11-lang gmake localbase ninja:build pkgconfig \
 
 USE_GITHUB=	yes
 # files/patch-src_base_system__util.cc for segfault from f07bb2e
-GH_TUPLE=	fcitx:mozc:861b58d \
+GH_TUPLE=	fcitx:mozc:25efda3 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
@@ -53,8 +52,8 @@ UTDIC_PATCH_DEPENDS=	rubygem-nkf>0:net/rubygem-nkf \
 # APACHE20 multi
 UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:dbf3e9c:ut \
 		utuhiro78:mozcdic-ut-neologd:90e59c7:neologd \
-		utuhiro78:mozcdic-ut-personal-names:0e51584:personal \
-		utuhiro78:mozcdic-ut-place-names:4780045:place
+		utuhiro78:mozcdic-ut-personal-names:2793c67:personal \
+		utuhiro78:mozcdic-ut-place-names:ad87b70:place
 
 # GPLv2
 ALTCANNADIC_DESC=	Dictionary from Alt-Cannadic
@@ -62,11 +61,11 @@ ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:f59287e:altcannadic
 
 # CC-BY-SA-4.0
 EDICT2_DESC=	Dictionary from EDICT2
-EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:e0cbf7d:edict2
+EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:e9504aa:edict2
 
 # CC-BY-SA-3.0
 JAWIKI_DESC=	Dictionary from Japanese Wikipedia
-JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:be4da36:jawiki
+JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:8a8d905:jawiki
 
 # APACHE20 GPLv2
 SKKJISYO_DESC=	Dictionary from from SKK-JISYO
