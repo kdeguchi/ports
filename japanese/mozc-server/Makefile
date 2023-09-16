@@ -1,5 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.29.5220.102
+PORTREVISION=	1
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -17,7 +18,7 @@ USES=		compiler:c++11-lang gmake localbase ninja:build pkgconfig \
 
 USE_GITHUB=	yes
 # files/patch-src_base_system__util.cc for segfault from f07bb2e
-GH_TUPLE=	fcitx:mozc:25efda3 \
+GH_TUPLE=	fcitx:mozc:2035e07 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
