@@ -1,4 +1,4 @@
---- setup.py.orig	2023-04-08 12:02:15 UTC
+--- setup.py.orig	2023-07-13 16:10:52 UTC
 +++ setup.py
 @@ -130,27 +130,11 @@ def libcrypto_flags() -> Tuple[List[str], List[str]]:
      # Apple use their special snowflake TLS libraries and additionally
