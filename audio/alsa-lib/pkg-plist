@@ -43,6 +43,8 @@ include/alsa/sound/uapi/sscape_ioctl.h
 include/alsa/sound/uapi/tlv.h
 include/alsa/timer.h
 include/alsa/topology.h
+include/alsa/ump.h
+include/alsa/ump_msg.h
 include/alsa/use-case.h
 include/alsa/version.h
 include/asoundlib.h
