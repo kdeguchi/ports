@@ -17,8 +17,7 @@ USES=		compiler:c++11-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-# files/patch-src_base_system__util.cc for segfault from f07bb2e
-GH_TUPLE=	fcitx:mozc:4b2a3ec \
+GH_TUPLE=	fcitx:mozc:5d36a04 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
