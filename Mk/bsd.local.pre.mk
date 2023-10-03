@@ -32,6 +32,13 @@ USE_KDE:=	${USE_KDE:S@plasma-wayland-protocols@plasma-wayland-protocols:build@}
 .endif
 
 ########################################
+# QT
+########################################
+.if defined(USE_QT) && ${USE_QT:Mdesigner}
+USE_QT:=	${USE_QT:S@designer@designer:build@}
+.endif
+
+########################################
 # xorgproto
 ########################################
 .if defined(USES)&& ( ${USES:M*pkgconfig} || ${USES:M*xorg} || ${USES:M*gl} || ${USES:M*gnome})
