@@ -19,17 +19,19 @@ GH_TAGNAME=	f6281e8
 
 NO_ARCH=	yes
 
+_DIRNAME=	Capitaine-Cursors
+
 do-build:
 	cd ${WRKSRC} && \
 		${PREFIX}/bin/bash ./build.sh -d xhd -t light && \
 		${PREFIX}/bin/bash ./build.sh -d xhd -t dark
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/${PORTNAME} \
-		${STAGEDIR}${PREFIX}/share/icons/${PORTNAME}-white
+	${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/${_DIRNAME} \
+		${STAGEDIR}${PREFIX}/share/icons/${_DIRNAME}-White
 	cd ${WRKSRC}/dist/dark && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/icons/${PORTNAME}
+		${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/icons/${_DIRNAME}
 	cd ${WRKSRC}/dist/light && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/icons/${PORTNAME}-white
+		${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/icons/${_DIRNAME}-White
 
 .include <bsd.port.mk>
