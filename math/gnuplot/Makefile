@@ -45,7 +45,7 @@ PLIST_SUB+=	X11="@comment "
 USES+=		gnome jpeg lua:flavors ncurses tex xorg
 USE_TEX=	kpathsea
 USE_GNOME+=	atk cairo gtk30 gdkpixbuf2
-USE_WX=		3.0+
+USE_WX=		3.2+
 USE_XORG+=	x11
 LIB_DEPENDS+=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
