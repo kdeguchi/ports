@@ -16,6 +16,10 @@ BUILD_DEPENDS+=	${LOCALBASE}/include/boost/container/small_vector.hpp:devel/boos
 USES:=	${USES:S/lua:53/lua:54/}
 .endif
 
+.if ${.CURDIR:M*/security/veracrypt}
+USE_WX=	3.2
+.endif
+
 ########################################
 # KDE
 ########################################
