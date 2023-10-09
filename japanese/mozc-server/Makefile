@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.29.5220.102
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -17,7 +17,7 @@ USES=		compiler:c++11-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:5d36a04 \
+GH_TUPLE=	fcitx:mozc:290b7b3 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
@@ -73,7 +73,7 @@ SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:43518e6:skkjisyo
 
 # APACHE20
 SUDACHIDICT_DESC=	Dictionary from SudachiDict
-SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:1b5ad7c:sudachi
+SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:39c8c2c:sudachi
 
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:jawikilatest \
 		id.def:iddef
