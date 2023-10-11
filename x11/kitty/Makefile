@@ -1,6 +1,6 @@
 PORTNAME=	kitty
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.30.0
+DISTVERSION=	0.30.1
 PORTREVISION=	0
 CATEGORIES=	x11 wayland
 
@@ -107,7 +107,7 @@ post-patch:
 # For librsync, we need to set header and library path
 do-build:
 	(cd ${WRKSRC} && \
-		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} setup.py \
+		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} -OO setup.py \
 			--extra-include-dirs ${LOCALBASE}/include \
 			--extra-library-dirs ${LOCALBASE}/lib \
 			--libdir-name share \
