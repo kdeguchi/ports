@@ -1,6 +1,6 @@
 PORTNAME=	audacious-plugins
 PORTVERSION=	4.3.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	multimedia audio
 MASTER_SITES=	http://distfiles.audacious-media-player.org/
 
@@ -95,7 +95,6 @@ FILEWRITER_DESC=	File writer
 MPRIS_DESC=		NPRIS plugin
 NEON_DESC=		Neon plugin
 OPENMPT_DESC=		OpenMPT plugin
-PIPEWIRE_DESC=		Pipewire output plugin
 SCROBBLER_DESC=		Scrobbler decoder
 SID_DESC=		Sound chip emulator of Commodore
 SPEEDPITCH_DESC=	Speed and Pitch plugin
@@ -204,12 +203,6 @@ MESON_ARGS+=	-Dfilewriter-ogg=false
 .else
 MESON_ARGS+=	-Dfilewriter-flac=false -Dfilewriter-mp3=false -Dfilewriter-ogg=false
 .endif
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
-		${WRKSRC}/src/aac/meson.build \
-		${WRKSRC}/src/filewriter/meson.build \
-		${WRKSRC}/src/lirc/meson.build
 
 post-patch-NLS-off:
 	@${REINPLACE_CMD} -e "/^subdir('po')/d" ${WRKSRC}/meson.build
