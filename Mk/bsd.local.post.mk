@@ -19,10 +19,6 @@ RUN_DEPENDS:=	${RUN_DEPENDS:C@${LOCALBASE}/libexec/notification-daemon:deskutils
 RUN_DEPENDS:=	${RUN_DEPENDS:C@notification-daemon>0:deskutils/notification-daemon@${LOCALBASE}/lib/xfce4/notifyd/xfce4-notifyd:deskutils/xfce4-notifyd@}
 .endif
 
-#LIB_DEPENDS:=	${LIB_DEPENDS:C@libMagick(.*)-6.Q16.so@libMagick\1-6.Q16*.so@}
-#RUN_DEPENDS:=	${RUN_DEPENDS:C@p5-Gtk>@p5-Gtk-Perl>@}
-#RUN_DEPENDS:=	${RUN_DEPENDS:C@/p5-Gtk$@/p5-Gtk-Perl@}
-
 .if defined(CC) && ${CC:M/usr/bin/clang}
 CC=	clang
 .endif
@@ -94,16 +90,6 @@ RUN_DEPENDS:=	${RUN_DEPENDS:C@gcc[0-9]+:lang/gcc[0-9]+@@}
 LIB_DEPENDS:=	${LIB_DEPENDS:S@libavcodec.so:multimedia/ffmpeg@@}
 .endif
 
-#.if ${.CURDIR:M*/devel/qt5-core}
-#RUN_DEPENDS:=	${RUN_DEPENDS:S@etc_os-release>0:sysutils/etc_os-release@@}
-#.endif
-
-#.if ${.CURDIR:M*/emulators/i386-wine-devel}
-#FETCH_BINARY=	curl
-#FETCH_ARGS=	--proxy socks5://localhost:1090 --fail --insecure --location --remote-time -O
-#DISABLE_SIZE=	yes
-#.endif
-
 .if ${.CURDIR:M*/math/maxima}
 NOUSERINIT_EXTRA_PATCHES_OFF=
 .endif
@@ -111,10 +97,6 @@ NOUSERINIT_EXTRA_PATCHES_OFF=
 .if ${.CURDIR:M*/www/webkit2-gtk3}
 CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON_CMD}
 .endif
-
-#.if ${.CURDIR:M*/net/samba*}
-#LIB_DEPENDS:=	${LIB_DEPENDS:S@libiconv.so:converters/libiconv@@}
-#.endif
 
 .if ${.CURDIR:M*/www/firefox} || ${.CURDIR:M*/mail/thunderbird}
 .if defined(CONFIGURE_ENV) && ${CONFIGURE_ENV:N*${PREFIX}/libexec/ccache}
@@ -132,10 +114,6 @@ RUN_DEPENDS:=	${RUN_DEPENDS:S@sudo:security/sudo@sudo:security/doas-wrapper@}
 .if ${.CURDIR:M*/multimedia/libxine}
 CONFIGURE_ARGS:=	${CONFIGURE_ARGS:S/--enable-musepack//}
 .endif
-
-#.if ${.CURDIR:M*/x11/kitty}
-#BUILD_DEPENDS:=	${BUILD_DEPENDS:S@openssl>0:security/openssl@@}
-#.endif
 
 .if ${.CURDIR:M*/x11-toolkits/Xaw3d}
 PATH:=/usr/bin:${PATH}
