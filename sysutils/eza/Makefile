@@ -3,8 +3,8 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	0.14.2
 CATEGORIES=	sysutils
 
-MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
-COMMENT=	Modern replacement for ls
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	Modern, maintained replacement for ls
 WWW=		https://eza.rocks/
 
 LICENSE=	MIT
