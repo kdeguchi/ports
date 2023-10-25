@@ -1,9 +1,9 @@
 PORTNAME=	eza
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.14.2
+DISTVERSION=	0.15.0
 CATEGORIES=	sysutils
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Modern, maintained replacement for ls
 WWW=		https://eza.rocks/
 
@@ -131,7 +131,6 @@ CARGO_CRATES=	aho-corasick-1.0.5 \
 		snapbox-macros-0.3.6 \
 		syn-2.0.29 \
 		tempfile-3.8.0 \
-		term_grid-0.1.7 \
 		terminal_size-0.3.0 \
 		thiserror-1.0.48 \
 		thiserror-impl-1.0.48 \
@@ -148,6 +147,7 @@ CARGO_CRATES=	aho-corasick-1.0.5 \
 		unicode-width-0.1.11 \
 		url-2.2.1 \
 		utf8parse-0.2.1 \
+		uutils_term_grid-0.3.0 \
 		uzers-0.11.3 \
 		vcpkg-0.2.12 \
 		wait-timeout-0.2.0 \
