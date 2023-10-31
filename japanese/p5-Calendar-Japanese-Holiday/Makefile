@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	ja-p5-
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Perl module for Calculate Japanese Holiday
+WWW=	http://search.cpan.org/dist/Calendar-Japanese-Holiday/
 
 LICENSE=	ART10 GPLv1+
 LICENSE_COMB=	dual
