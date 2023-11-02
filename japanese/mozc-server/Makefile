@@ -84,12 +84,12 @@ UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:jawikilatest \
 USES+=		qt:6
 USE_QT=		base
 EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src_bazel_pkg__config__repository.bzl
+BUILD_DEPENDS+=	libglvnd>0:graphics/libglvnd
 
 .elif ${BUILD_MOZC_LIST:Mibus_mozc} == "ibus_mozc"
 USES+=		gettext-runtime gnome xorg
 USE_XORG=	xcb
 USE_GNOME=	cairo gdkpixbuf2 glib20 gtk20
-BUILD_DEPENDS+=	libglvnd>0:graphics/libglvnd
 LIB_DEPENDS+=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
 
