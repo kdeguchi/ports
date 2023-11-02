@@ -22,7 +22,7 @@
      name = "com_google_protobuf",
 -    path = "third_party/protobuf",
 +    remote = "https://github.com/protocolbuffers/protobuf.git",
-+    tag = "v3.22.5",  # 2023-05-10
++    tag = "v24.2",  # v24.2 2023-05-10
  )
  load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
  protobuf_deps()
