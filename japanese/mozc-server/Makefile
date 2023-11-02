@@ -83,7 +83,7 @@ UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:jawikilatest \
 .elif ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
 USES+=		qt:6
 USE_QT=		base
-EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src_pkg_config_repository.bzl
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src_bazel_pkg__config__repository.bzl
 
 .elif ${BUILD_MOZC_LIST:Mibus_mozc} == "ibus_mozc"
 USES+=		gettext-runtime gnome xorg
@@ -100,7 +100,7 @@ USES+=		gettext-tools
 
 .elif ${BUILD_MOZC_LIST:Mfcitx5_mozc}
 USES+=		gettext-tools
-EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src_pkg_config_repository.bzl
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src_bazel_pkg__config__repository.bzl
 
 .endif
 
