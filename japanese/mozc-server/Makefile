@@ -89,6 +89,7 @@ EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src_bazel_pkg__config__repository.bzl
 USES+=		gettext-runtime gnome xorg
 USE_XORG=	xcb
 USE_GNOME=	cairo gdkpixbuf2 glib20 gtk20
+BUILD_DEPENDS+=	libglvnd>0:graphics/libglvnd
 LIB_DEPENDS+=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
 
@@ -220,8 +221,6 @@ PLIST_FILES+=	libexec/mozc_tool \
 		%%DATADIR%%/icons/product_logo.png \
 		%%DATADIR%%/icons/update_uptodate.png
 
-#		libexec/mozc_renderer \
-
 SUB_FILES+=	mozc_tool
 
 do-build-mozc_tool:
@@ -232,9 +231,6 @@ do-install-mozc_tool:
 	${INSTALL_PROGRAM} \
 		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/gui/tool/mozc_tool \
 			${STAGEDIR}${PREFIX}/libexec
-#	${INSTALL_PROGRAM} \
-#		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/renderer/mozc_renderer \
-#			${STAGEDIR}${PREFIX}/libexec
 	${INSTALL_SCRIPT} ${WRKDIR}/mozc_tool ${STAGEDIR}${PREFIX}/bin
 	@${MKDIR} ${STAGEDIR}${DATADIR}/icons
 	${INSTALL_DATA} \
