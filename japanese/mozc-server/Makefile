@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.29.5268.102
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -53,7 +53,7 @@ UTDIC_PATCH_DEPENDS=	rubygem-nkf>0:net/rubygem-nkf \
 UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:dbf3e9c:ut \
 		utuhiro78:mozcdic-ut-neologd:90e59c7:neologd \
 		utuhiro78:mozcdic-ut-personal-names:c96f2a2:personal \
-		utuhiro78:mozcdic-ut-place-names:284cf90:place
+		utuhiro78:mozcdic-ut-place-names:754722f:place
 
 # GPLv2
 ALTCANNADIC_DESC=	Dictionary from Alt-Cannadic
@@ -61,7 +61,7 @@ ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:f59287e:altcannadic
 
 # CC-BY-SA-4.0
 EDICT2_DESC=	Dictionary from EDICT2
-EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:c1a18c0:edict2
+EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:b976b67:edict2
 
 # CC-BY-SA-3.0
 JAWIKI_DESC=	Dictionary from Japanese Wikipedia
