@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.29.5268.102
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -13,11 +13,11 @@ PATCH_DEPENDS=${PYTHON_CMD}:${PYTHON_PORTSDIR}
 BUILD_DEPENDS=	bazel:devel/bazel
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
 
-USES=		compiler:c++11-lang gmake localbase ninja:build pkgconfig \
+USES=		compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:835de48 \
+GH_TUPLE=	fcitx:mozc:4c6aef2 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
