@@ -188,7 +188,7 @@ PLIST_FILES=	bin/${PORTNAME} \
 		share/fish/completions/${PORTNAME}.fish \
 		share/zsh/site-functions/_${PORTNAME}
 
-_MARKDOWN_FILES=	eza.1 eza_colors-explanation.5 eza_colors.5$
+_MARKDOWN_FILES=	eza.1 eza_colors-explanation.5 eza_colors.5
 .for i in ${_MARKDOWN_FILES}
 MANPAGES_PLIST_FILES+=	share/man/man${i:C/.*\.//}/${i}.gz
 .endfor
