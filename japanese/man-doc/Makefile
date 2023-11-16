@@ -1,5 +1,5 @@
 PORTNAME=	man
-PORTVERSION=	${OSREL}.20230407
+PORTVERSION=	${OSREL}.20231110
 CATEGORIES=	japanese
 MASTER_SITES=	ftp://ftp.koganemaru.co.jp/pub/jman${OSREL:C@\.[0-9]+@@}/
 PKGNAMESUFFIX=	-doc
