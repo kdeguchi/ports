@@ -1,6 +1,5 @@
 PORTNAME=	mozc
-PORTVERSION=	2.29.5268.102
-PORTREVISION=	4
+PORTVERSION=	2.29.5288.102
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -17,7 +16,7 @@ USES=		compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:4c6aef2 \
+GH_TUPLE=	fcitx:mozc:f384570 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
