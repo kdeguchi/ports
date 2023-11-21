@@ -49,7 +49,7 @@ UTDIC_PATCH_DEPENDS=	rubygem-nkf>0:net/rubygem-nkf \
 		rubygem-zlib>0:devel/rubygem-zlib
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:dbf3e9c:ut \
+UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:6b82871:ut \
 		utuhiro78:mozcdic-ut-neologd:be2a153:neologd \
 		utuhiro78:mozcdic-ut-personal-names:8457627:personal \
 		utuhiro78:mozcdic-ut-place-names:24f96d2:place
