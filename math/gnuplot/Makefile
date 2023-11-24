@@ -1,6 +1,5 @@
 PORTNAME=	gnuplot
-PORTVERSION=	5.4.1
-PORTREVISION=	4
+PORTVERSION=	5.4.10
 CATEGORIES=	math graphics
 MASTER_SITES=	SF
 
@@ -42,7 +41,7 @@ CONFIGURE_ARGS+=--disable-x11-mbfonts \
 		--without-kpsexpand
 PLIST_SUB+=	X11="@comment "
 .else
-USES+=		gnome jpeg lua:flavors ncurses tex xorg
+USES+=		gnome jpeg ncurses tex xorg
 USE_TEX=	kpathsea
 USE_GNOME+=	atk cairo gtk30 gdkpixbuf2
 USE_WX=		3.2+
@@ -70,18 +69,25 @@ TEST_TARGET=	check
 PORTDOCS=	*
 PORTEXAMPLES=	*
 
-OPTIONS_DEFINE=	DOCS EXAMPLES GRIDBOX
+OPTIONS_DEFINE=	DOCS EXAMPLES GRIDBOX LIBCERF LUA
 GRIDBOX_DESC=		Use the gridbox optimization for hidden3d
+LIBCERF_DESC=		User the libcerf
 
 GRIDBOX_CONFIGURE_OFF=	--disable-h3d-quadtree --enable-h3d-gridbox
+LIBCERF_CONFIGURE_WITH=		libcerf
+LIBCERF_LIB_DEPENDS=	libcerf.so:math/libcerf
+LUA_USES=	lua:flavors
+LUA_CONFIGURE_WITH=		lua
 
 post-patch:
-	@${REINPLACE_CMD} -e \
-		's|%%LUA_VER%%|${LUA_VER}|g;s|%%LUA_VER_STR%%|${LUA_VER_STR}|g' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e \
 		'/^install:/s/install-am//' ${WRKSRC}/share/LaTeX/Makefile.in
 	@${REINPLACE_CMD} -e \
 		's|)/@PACKAGE@/@PKG_MAJOR@|)|g' ${WRKSRC}/src/Makefile.in
+
+post-patch-LUA-on:
+	@${REINPLACE_CMD} -e \
+		's|lua5\.3|lua-${LUA_VER}|g;s|lua-53|lua-${LUA_VER_STR}|g;s|LUA=lua-${LUA_VER}|LUA=lua${LUA_VER_STR}|g' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e \
 		's|luaL_checkint(|(int)luaL_checkinteger(|' ${WRKSRC}/term/lua.trm
 
