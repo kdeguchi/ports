@@ -1,5 +1,4 @@
 PKGNAMEPREFIX=	ja-fcitx5-
-PORTREVISION=	0
 
 COMMENT=	Mozc engine for Fcitx
 
