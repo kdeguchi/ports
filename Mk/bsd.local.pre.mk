@@ -12,9 +12,9 @@ LIB_DEPENDS:=	${LIB_DEPENDS:S@libboost_thread.so:devel/boost-libs@@}
 BUILD_DEPENDS+=	${LOCALBASE}/include/boost/container/small_vector.hpp:devel/boost-libs
 .endif
 
-.if ${.CURDIR:M*/devel/llvm*}
-USES:=	${USES:S/lua:53/lua:54/}
-.endif
+#.if ${.CURDIR:M*/devel/llvm*}
+#USES:=	${USES:S/lua:53/lua:54/}
+#.endif
 
 .if ${.CURDIR:M*/security/veracrypt}
 USE_WX=	3.2
