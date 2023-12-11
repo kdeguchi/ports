@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.29.5291.102
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -17,7 +17,7 @@ USES=		compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:87c5a45 \
+GH_TUPLE=	fcitx:mozc:6175674 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
@@ -50,7 +50,7 @@ UTDIC_PATCH_DEPENDS=	rubygem-nkf>0:net/rubygem-nkf \
 		rubygem-zlib>0:devel/rubygem-zlib
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:6b82871:ut \
+UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:254e252:ut \
 		utuhiro78:mozcdic-ut-neologd:be2a153:neologd \
 		utuhiro78:mozcdic-ut-personal-names:2516dc2:personal \
 		utuhiro78:mozcdic-ut-place-names:24f96d2:place
