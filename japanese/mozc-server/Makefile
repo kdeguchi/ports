@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.29.5291.102
-PORTREVISION?=	4
+PORTREVISION?=	5
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -17,7 +17,7 @@ USES=		compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:cf8c58e \
+GH_TUPLE=	fcitx:mozc:37090dd \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
@@ -40,8 +40,9 @@ LICENSE_FILE_NAISTL=	${WRKSRC}/src/data/dictionary_oss/README.txt
 LICENSE_DISTFILES_NAISTL=${DISTNAME}${EXTRACT_SUFX}
 
 OPTIONS_DEFINE=	UTDIC
-OPTIONS_GROUP=	UTDIC
-OPTIONS_GROUP_UTDIC=	ALTCANNADIC EDICT2 JAWIKI SKKJISYO SUDACHIDICT
+OPTIONS_MULTI=	UTDIC
+OPTIONS_MULTI_UTDIC=	ALTCANNADIC EDICT2 JAWIKI NEOLOGD PERSONALNAME \
+		PLACENAME SKKJISYO SUDACHIDICT
 
 UTDIC_DESC=	Additional UT Dictionary
 
@@ -50,10 +51,7 @@ UTDIC_PATCH_DEPENDS=	rubygem-nkf>0:net/rubygem-nkf \
 		rubygem-zlib>0:devel/rubygem-zlib
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:254e252:ut \
-		utuhiro78:mozcdic-ut-neologd:be2a153:neologd \
-		utuhiro78:mozcdic-ut-personal-names:2516dc2:personal \
-		utuhiro78:mozcdic-ut-place-names:24f96d2:place
+UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:254e252:ut
 
 # GPLv2
 ALTCANNADIC_DESC=	Dictionary from Alt-Cannadic
@@ -65,7 +63,19 @@ EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:ac4d4af:edict2
 
 # CC-BY-SA-3.0
 JAWIKI_DESC=	Dictionary from Japanese Wikipedia
-JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:3eccc6b:jawiki
+JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:fe41386:jawiki
+
+# APACHE20
+NEOLOGD_DESC=	Dictionary from NEologd
+NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:be2a153:neologd
+
+# APACHE20
+PERSONALNAME_DESC=	Personal Name Dictionary
+PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:e939ab9:personal
+
+# APCHE20
+PLACENAME_DESC=	Place Name Dictionary
+PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:d57f84c:place
 
 # APACHE20 GPLv2
 SKKJISYO_DESC=	Dictionary from from SKK-JISYO
@@ -145,10 +155,11 @@ post-patch:
 # mozc_server
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server" || make(makesum)
 
-.if ${PORT_OPTIONS:MUTDIC}
+.if ${PORT_OPTIONS:MNEOLOGD} || ${PORT_OPTIONS:MPERSONALNAME} || \
+	${PORT_OPTIONS:MPLACENAME}
 LICENSE+=	APACHE20
 .endif
-.if ${PORT_OPTIONS:MJAWIKI}
+.if ${PORT_OPTIONS:MUTDIC} || ${PORT_OPTIONS:MJAWIKI}
 LICENSE+=	CC-BY-SA-3.0
 .endif
 .if ${PORT_OPTIONS:MEDICT2}
