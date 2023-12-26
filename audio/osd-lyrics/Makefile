@@ -1,6 +1,5 @@
 PORTNAME=	osdlyrics
-PORTVERSION=	0.5.14
-#PORTREVISION=	2
+PORTVERSION=	0.5.15
 CATEGORIES=	audio deskutils
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -24,7 +23,6 @@ USES=		autoreconf desktop-file-utils gettext-tools gmake gnome \
 		iconv localbase pkgconfig python xorg
 
 USE_GITHUB=	yes
-#GH_TAGNAME=	cd1d7e6
 
 USE_GNOME=	atk glib20 gtk20 intltool pango pygobject3
 USE_PYTHON=	autoplist flavors py3kplist
@@ -36,9 +34,6 @@ OPTIONS_SUB=	yes
 
 NLS_USES=	gettext-runtime
 NLS_CONFIGURE_ENABLE=	nls
-
-#post-patch:
-#	${REINPLACE_CMD} -E 's,AM_GNU_GETTEXT_VERSION,AM_GNU_GETTEXT_REQUIRE_VERSION,' ${WRKSRC}/configure.ac
 
 post-patch-NLS-on:
 	${CP} ${FILESDIR}/ja.po ${WRKSRC}/po/
