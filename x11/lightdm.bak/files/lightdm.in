@@ -19,6 +19,7 @@ rcvar=lightdm_enable
 load_rc_config ${name}
 
 : ${lightdm_enable:="NO"}
+: ${lightdm_login_class:="default"}
 
 command="/usr/sbin/daemon"
 procname="%%PREFIX%%/sbin/${name}"

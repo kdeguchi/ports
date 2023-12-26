@@ -1,8 +1,8 @@
 PORTNAME=	lightdm
 PORTVERSION=	1.32.0
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	x11
-MASTER_SITES=	https://github.com/canonical/${PORTNAME}/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
+#MASTER_SITES=	https://github.com/canonical/${PORTNAME}/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
 
 MAINTAINER=	desktop@FreeBSD.org
 COMMENT=	Lightweight Display Manager
@@ -21,37 +21,48 @@ LIB_DEPENDS=	libaccountsservice.so:sysutils/accountsservice \
 		libgcrypt.so:security/libgcrypt \
 		libxklavier.so:x11/libxklavier
 
-USES=		compiler:c++11-lang cpe gettext gmake gnome libtool localbase \
+USES=		autoreconf compiler:c++11-lang cpe gettext gmake gnome libtool localbase \
 		pathfix pkgconfig tar:xz xorg
 CPE_VENDOR=	${PORTNAME}_project
-USE_CXXSTD=	c++11
 USE_GNOME=	glib20 intltool
 USE_XORG=	x11 xcb xdmcp
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	lightdm
 
+USE_GITHUB=	yes
+GH_ACCOUNT=	canonical
+GH_TAGNAME=	3a74062
+
 CONFLICTS_INSTALL=	sddm
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-tests # PAM errors
+CONFIGURE_ARGS=	--disable-tests \
+		--disable-liblightdm-qt5
 INSTALL_TARGET=	install-strip
 USERS=		lightdm
 GROUPS=		lightdm video
 PORTSCOUT=	limitw:1,even
 SUB_FILES=	Xsession
 
-OPTIONS_DEFINE=	DOCS VAPI
-OPTIONS_DEFAULT=VAPI
+OPTIONS_DEFINE=	NLS VAPI
+OPTIONS_DEFAULT=	NLS VAPI
 OPTIONS_SUB=	yes
 
-DOCS_BUILD_DEPENDS=	gtkdoc-check:textproc/gtk-doc
-DOCS_CONFIGURE_ENABLE=	gtk-doc
+#DOCS_BUILD_DEPENDS=	gtkdoc-check:textproc/gtk-doc
+#DOCS_CONFIGURE_ON=	--enable-gtk-doc=yes --enable-gtk-doc-html=yes
+#DOCS_CONFIGURE_OFF=	--enable-gtk-doc=no --enable-gtk-doc-html=no
+
+NLS_CONFIGURE_ENABLE=	nls
 
 VAPI_USES=		vala:build
-VAPI_CONFIGURE_ENABLE=	vala
-VAPI_USE=		gnome=introspection:build
+VAPI_CONFIGURE_ON=	--enable-vala=yes --enable-introspection=yes
+VAPI_CONFIGURE_OFF=	--enable-vala=no --enable-introspection=no
+VAPI_USE=		GNOME=introspection:build
 
 post-patch:
+	${REINPLACE_CMD} -e 's, --enable-gtk-doc,,;s, help,,;s,^lightdm-.*,,;s,.*armor .*,,' \
+		${WRKSRC}/Makefile.am
+	${REINPLACE_CMD} -e 's,^include,#include,' ${WRKSRC}/doc/Makefile.am
 	@${REINPLACE_CMD} -e 's,%%PREFIX%%,${PREFIX},' \
 		${WRKSRC}/data/lightdm.conf
 
@@ -67,5 +78,9 @@ post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/xgreeters
 	@(cd ${STAGEDIR}${PREFIX}/share/xgreeters && \
 		${LN} -sf lightdm-gtk-greeter.desktop default.desktop)
+
+#post-install-DOCS-off:
+#	${RM} -r ${STAGEDIR}${PREFIX}/share/help
+#	${RM} -r ${STAGEDIR}${PREFIX}/share/gtk-doc
 
 .include <bsd.port.mk>

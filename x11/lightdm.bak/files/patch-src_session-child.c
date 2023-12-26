@@ -1,17 +1,22 @@
---- src/session-child.c.orig	2018-02-06 23:31:03 UTC
-+++ src/session-child.c
-@@ -13,7 +13,6 @@
+--- src/session-child.c.orig	2018-09-05 11:03:31.000000000 +0930
++++ src/session-child.c	2022-09-23 18:09:16.132448000 +0930
+@@ -13,9 +13,11 @@
  #include <grp.h>
  #include <glib.h>
  #include <security/pam_appl.h>
 -#include <utmp.h>
  #include <utmpx.h>
  #include <sys/mman.h>
- 
-@@ -192,28 +191,6 @@ read_xauth (void)
++#if HAVE_SETUSERCONTEXT
++#include <login_cap.h>
++#endif
+
+ #if HAVE_LIBAUDIT
+ #include <libaudit.h>
+@@ -192,28 +194,6 @@
      return x_authority_new (x_authority_family, x_authority_address, x_authority_address_length, x_authority_number, x_authority_name, x_authority_data, x_authority_data_length);
  }
- 
+
 -/* GNU provides this but we can't rely on that so let's make our own version */
 -static void
 -updwtmpx (const gchar *wtmp_file, struct utmpx *ut)
@@ -37,15 +42,15 @@
  #if HAVE_LIBAUDIT
  static void
  audit_event (int type, const gchar *username, uid_t uid, const gchar *remote_host_name, const gchar *tty, gboolean success)
-@@ -363,7 +340,6 @@ session_child_run (int argc, char **argv)
+@@ -363,7 +343,6 @@
              ut.ut_tv.tv_sec = tv.tv_sec;
              ut.ut_tv.tv_usec = tv.tv_usec;
- 
+
 -            updwtmpx ("/var/log/btmp", &ut);
- 
+
  #if HAVE_LIBAUDIT
              audit_event (AUDIT_USER_LOGIN, username, -1, remote_host_name, tty, FALSE);
-@@ -393,7 +369,7 @@ session_child_run (int argc, char **argv)
+@@ -393,7 +372,7 @@
          else
          {
              /* Set POSIX variables */
@@ -54,19 +59,81 @@
              pam_putenv (pam_handle, g_strdup_printf ("USER=%s", username));
              pam_putenv (pam_handle, g_strdup_printf ("LOGNAME=%s", username));
              pam_putenv (pam_handle, g_strdup_printf ("HOME=%s", user_get_home_directory (user)));
-@@ -708,7 +684,6 @@ session_child_run (int argc, char **argv)
+@@ -636,6 +615,29 @@
+         if (setsid () < 0)
+             _exit (errno);
+
++#if HAVE_SETUSERCONTEXT
++    /* Setup user context
++     * Reset the current environment to what is in the PAM context,
++     * then setusercontext will add to it as necessary as there is no
++     * option for setusercontext to add to a PAM context.
++     */
++    extern char **environ;
++    environ = pam_getenvlist (pam_handle);
++    struct passwd* pwd = getpwnam (username);
++    if (pwd) {
++	if (setusercontext (NULL, pwd, pwd->pw_uid, LOGIN_SETALL) < 0) {
++	    int _errno = errno;
++	    fprintf(stderr, "setusercontext for \"%s\" (%d) failed: %s\n",
++		    username, user_get_uid (user), strerror (errno));
++	    _exit (_errno);
++	}
++	endpwent();
++    } else {
++	fprintf (stderr, "getpwname for \"%s\" failed: %s\n",
++		    username, strerror (errno));
++	_exit (ENOENT);
++    }
++#else
+         /* Change to this user */
+         if (getuid () == 0)
+         {
+@@ -645,7 +647,7 @@
+             if (setuid (uid) != 0)
+                 _exit (errno);
+         }
+-
++#endif
+         /* Change working directory */
+         /* NOTE: This must be done after the permissions are changed because NFS filesystems can
+          * be setup so the local root user accesses the NFS files as 'nobody'.  If the home directories
+@@ -658,6 +660,7 @@
+             int fd = log_file_open (log_filename, log_mode);
+             if (fd >= 0)
+             {
++                dup2 (fd, STDOUT_FILENO);
+                 dup2 (fd, STDERR_FILENO);
+                 close (fd);
+             }
+@@ -667,7 +670,13 @@
+         signal (SIGPIPE, SIG_DFL);
+
+         /* Run the command */
+-        execve (command_argv[0], command_argv, pam_getenvlist (pam_handle));
++	execve (command_argv[0], command_argv,
++#if HAVE_SETUSERCONTEXT
++		environ
++#else
++		pam_getenvlist (pam_handle)
++#endif
++		);
+         _exit (EXIT_FAILURE);
+     }
+
+@@ -708,7 +717,6 @@
              if (!pututxline (&ut))
                  g_printerr ("Failed to write utmpx: %s\n", strerror (errno));
              endutxent ();
 -            updwtmpx ("/var/log/wtmp", &ut);
- 
+
  #if HAVE_LIBAUDIT
              audit_event (AUDIT_USER_LOGIN, username, uid, remote_host_name, tty, TRUE);
-@@ -749,7 +724,6 @@ session_child_run (int argc, char **argv)
+@@ -749,7 +757,6 @@
              if (!pututxline (&ut))
                  g_printerr ("Failed to write utmpx: %s\n", strerror (errno));
              endutxent ();
 -            updwtmpx ("/var/log/wtmp", &ut);
- 
+
  #if HAVE_LIBAUDIT
              audit_event (AUDIT_USER_LOGOUT, username, uid, remote_host_name, tty, TRUE);
