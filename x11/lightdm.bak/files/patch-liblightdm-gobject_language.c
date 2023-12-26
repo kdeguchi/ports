@@ -1,8 +1,6 @@
-https://bugs.launchpad.net/lightdm/+bug/790186
-
---- liblightdm-gobject/language.c.orig	2021-02-15 22:06:28 UTC
+--- liblightdm-gobject/language.c.orig	2023-05-02 11:39:06 UTC
 +++ liblightdm-gobject/language.c
-@@ -55,6 +55,12 @@ static GList *languages = NULL;
+@@ -55,6 +55,12 @@ G_DEFINE_TYPE_WITH_PRIVATE (LightDMLanguage, lightdm_l
  static gboolean have_languages = FALSE;
  static GList *languages = NULL;
  

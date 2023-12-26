@@ -1,36 +1,29 @@
---- data/Makefile.am.orig	2023-05-02 11:39:06 UTC
+--- data/Makefile.am.orig	2022-05-01 23:00:26 UTC
 +++ data/Makefile.am
-@@ -15,17 +15,17 @@ dist_pam_DATA = pam/lightdm \
+@@ -15,18 +15,6 @@ dist_completions_DATA = bash-completion/dm-tool bash-c
  completionsdir = $(datadir)/bash-completion/completions
  dist_completions_DATA = bash-completion/dm-tool bash-completion/lightdm
  
 -lightdm-guest-session: $(srcdir)/apparmor/lightdm-guest-session.in
 -	sed -e 's|@libexecdir[@]|$(libexecdir)|g' $< >$@
-+#lightdm-guest-session: $(srcdir)/apparmor/lightdm-guest-session.in
-+#	sed -e 's|@libexecdir[@]|$(libexecdir)|g' $< >$@
- 
+-
 -apparmor_profiledir = $(sysconfdir)/apparmor.d
 -apparmor_profile_DATA = \
 -    lightdm-guest-session
-+#apparmor_profiledir = $(sysconfdir)/apparmor.d
-+#apparmor_profile_DATA = \
-+#    lightdm-guest-session
- 
+-
 -apparmor_profile_abstractionsdir = $(apparmor_profiledir)/abstractions
 -dist_apparmor_profile_abstractions_DATA = \
 -    apparmor/abstractions/lightdm \
 -    apparmor/abstractions/lightdm_chromium-browser
-+#apparmor_profile_abstractionsdir = $(apparmor_profiledir)/abstractions
-+#dist_apparmor_profile_abstractions_DATA = \
-+#    apparmor/abstractions/lightdm \
-+#    apparmor/abstractions/lightdm_chromium-browser
- 
+-
  accountsservice_interface = org.freedesktop.DisplayManager.AccountsService.xml
  
-@@ -46,5 +46,5 @@ polkit_DATA = $(polkit_in_files:.policy.in=.policy)
+ dbusdir = $(datadir)/dbus-1/interfaces
+@@ -46,5 +34,5 @@ dist_man1_MANS = dm-tool.1 \
  dist_man1_MANS = dm-tool.1 \
                   lightdm.1
  
 -EXTRA_DIST = apparmor/lightdm-guest-session.in $(polkit_in_files)
+-CLEANFILES = lightdm-guest-session $(polkit_DATA)
 +EXTRA_DIST = $(polkit_in_files)
- CLEANFILES = lightdm-guest-session $(polkit_DATA)
++CLEANFILES = $(polkit_DATA)
