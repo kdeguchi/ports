@@ -51,7 +51,7 @@ UTDIC_PATCH_DEPENDS=	rubygem-nkf>0:net/rubygem-nkf \
 		rubygem-zlib>0:devel/rubygem-zlib
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:254e252:ut
+UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:b1c327f:ut
 
 # GPLv2
 ALTCANNADIC_DESC=	Dictionary from Alt-Cannadic
