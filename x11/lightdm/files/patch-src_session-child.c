@@ -112,7 +112,7 @@
  
          /* Change working directory */
          /* NOTE: This must be done after the permissions are changed because NFS filesystems can
-@@ -668,7 +670,13 @@ session_child_run (int argc, char **argv)
+@@ -675,7 +670,13 @@ session_child_run (int argc, char **argv)
          signal (SIGPIPE, SIG_DFL);
  
          /* Run the command */
