@@ -42,9 +42,13 @@ SUB_FILES=		Xsession
 USERS=			lightdm
 GROUPS=			lightdm video
 
-OPTIONS_DEFINE=		NLS QT5 VAPI
+OPTIONS_DEFINE=		DOCS NLS QT5 VAPI
 OPTIONS_DEFAULT=	VAPI
 OPTIONS_SUB=		yes
+
+DOCS_BUILD_DEPENDS=	${LOCALBASE}/share/aclocal/yelp.m4:textproc/yelp-tools \
+			gtkdoc-check:textproc/gtk-doc
+DOCS_CONFIGURE_ON=	--enable-gtk-doc
 
 NLS_CONFIGURE_ENABLE=	nls
 
@@ -58,11 +62,17 @@ VAPI_CONFIGURE_OFF=	--enable-vala=no --enable-introspection=no
 VAPI_USE=		GNOME=introspection:build
 
 post-patch:
-	${REINPLACE_CMD} -e 's, --enable-gtk-doc,,;s, help,,;s,^lightdm-.*,,;s,.*armor .*,,' \
-		${WRKSRC}/Makefile.am
-	${REINPLACE_CMD} -e 's,^include,#include,' ${WRKSRC}/doc/Makefile.am
 	@${REINPLACE_CMD} -e 's,%%PREFIX%%,${PREFIX},' \
 		${WRKSRC}/data/lightdm.conf
+
+post-patch-DOCS-off:
+	@${REINPLACE_CMD} -e '/^GTK_DOC_CHECK/d' \
+		-e '/^YELP_HELP_INIT/d' \
+		-e '/^doc\/Makefile/d' \
+		-e '/^help\/Makefile/d' \
+		${WRKSRC}/configure.ac
+	@${REINPLACE_CMD} -e '/^SUBDIRS/s/ doc help//' \
+		${WRKSRC}/Makefile.am
 
 post-install:
 	${RM} -r ${STAGEDIR}${PREFIX}/etc/init

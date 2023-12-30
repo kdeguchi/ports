@@ -59,21 +59,7 @@
              pam_putenv (pam_handle, g_strdup_printf ("USER=%s", username));
              pam_putenv (pam_handle, g_strdup_printf ("LOGNAME=%s", username));
              pam_putenv (pam_handle, g_strdup_printf ("HOME=%s", user_get_home_directory (user)));
-@@ -602,6 +581,13 @@
-     /* Write X authority */
-     if (x_authority)
-     {
-+        /* If XDG_RUNTIME_DIR is set and user-authority-in-system-dir=false than use
-+         * XDG_RUNTIME_DIR to store .Xauthority file. */
-+        const gchar *runtime_dir = pam_getenv (pam_handle, "XDG_RUNTIME_DIR");
-+        if (runtime_dir && x_authority_filename && g_str_has_suffix (x_authority_filename, ".Xauthority")) {
-+            x_authority_filename = g_build_filename (runtime_dir, ".Xauthority", NULL);
-+        }
-+
-         gboolean drop_privileges = geteuid () == 0;
-         if (drop_privileges)
-             privileges_drop (user_get_uid (user), user_get_gid (user));
-@@ -643,7 +615,29 @@ session_child_run (int argc, char **argv)
+@@ -636,7 +615,29 @@ session_child_run (int argc, char **argv)
          /* Make this process its own session */
          if (setsid () < 0)
              _exit (errno);
@@ -104,7 +90,7 @@
          /* Change to this user */
          if (getuid () == 0)
          {
-@@ -653,6 +647,7 @@ session_child_run (int argc, char **argv)
+@@ -646,6 +647,7 @@ session_child_run (int argc, char **argv)
              if (setuid (uid) != 0)
                  _exit (errno);
          }
@@ -112,7 +98,7 @@
  
          /* Change working directory */
          /* NOTE: This must be done after the permissions are changed because NFS filesystems can
-@@ -675,7 +670,13 @@ session_child_run (int argc, char **argv)
+@@ -668,7 +670,13 @@ session_child_run (int argc, char **argv)
          signal (SIGPIPE, SIG_DFL);
  
          /* Run the command */
@@ -127,7 +113,7 @@
          _exit (EXIT_FAILURE);
      }
  
-@@ -716,7 +717,6 @@ session_child_run (int argc, char **argv)
+@@ -709,7 +717,6 @@ session_child_run (int argc, char **argv)
              if (!pututxline (&ut))
                  g_printerr ("Failed to write utmpx: %s\n", strerror (errno));
              endutxent ();
@@ -135,7 +121,7 @@
  
  #if HAVE_LIBAUDIT
              audit_event (AUDIT_USER_LOGIN, username, uid, remote_host_name, tty, TRUE);
-@@ -757,7 +757,6 @@ session_child_run (int argc, char **argv)
+@@ -750,7 +757,6 @@ session_child_run (int argc, char **argv)
              if (!pututxline (&ut))
                  g_printerr ("Failed to write utmpx: %s\n", strerror (errno));
              endutxent ();
