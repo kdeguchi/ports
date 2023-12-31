@@ -1,6 +1,5 @@
 PORTNAME=	slick-greeter
-PORTVERSION=	1.8.2
-PORTREVISION=	1
+PORTVERSION=	2.0.2
 CATEGORIES=	x11
 
 MAINTAINER=	ericbsd@FreeBSD.org
@@ -14,11 +13,12 @@ LIB_DEPENDS=	libcanberra-gtk3.so:audio/libcanberra-gtk3 \
 		libcanberra.so:audio/libcanberra \
 		libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz \
-		libxapp.so:x11/xapp \
-		liblightdm-gobject-1.so:x11/lightdm
-RUN_DEPENDS=	numlockx>=0:x11/numlockx \
+		liblightdm-gobject-1.so:x11/lightdm \
 		setxkbmap:x11/setxkbmap \
+		libxapp.so:x11/xapp \
 		xinput:x11/xinput
+
+RUN_DEPENDS=	numlockx>=0:x11/numlockx
 
 USES=		autoreconf gettext gmake gnome localbase pkgconfig python:run shebangfix \
 		vala:build xorg
@@ -28,7 +28,6 @@ USE_XORG=	pixman x11 xext
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxmint
-#GH_TAGNAME=	1103709
 
 GNU_CONFIGURE=	yes
 SHEBANG_FILES=	files/usr/bin/slick-greeter-check-hidpi \
