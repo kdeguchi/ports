@@ -14,11 +14,11 @@ LIB_DEPENDS=	libcanberra-gtk3.so:audio/libcanberra-gtk3 \
 		libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz \
 		liblightdm-gobject-1.so:x11/lightdm \
-		setxkbmap:x11/setxkbmap \
 		libxapp.so:x11/xapp \
-		xinput:x11/xinput
 
-RUN_DEPENDS=	numlockx>=0:x11/numlockx
+RUN_DEPENDS=	numlockx>=0:x11/numlockx \
+		setxkbmap:x11/setxkbmap \
+		xinput:x11/xinput
 
 USES=		autoreconf gettext gmake gnome localbase pkgconfig python:run shebangfix \
 		vala:build xorg
