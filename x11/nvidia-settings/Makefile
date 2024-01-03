@@ -1,6 +1,5 @@
 PORTNAME=	nvidia-settings
-PORTVERSION=	535.104.05
-PORTREVISION=	1
+PORTVERSION=	535.146.02
 CATEGORIES=	x11
 
 MAINTAINER=	x11@FreeBSD.org
@@ -55,6 +54,7 @@ post-patch:	.SILENT
 
 post-install:	.SILENT
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libnvidia-gtk3.so.${PORTVERSION}
+	${RM} ${STAGEDIR}/${PREFIX}/lib/libnvidia-wayland-client.so.${PORTVERSION}
 	${INSTALL_DATA} ${WRKSRC}/doc/nvidia-settings.desktop \
 		${STAGEDIR}/${DESKTOPDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/nvidia-settings.png \
