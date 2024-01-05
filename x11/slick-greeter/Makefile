@@ -1,5 +1,5 @@
 PORTNAME=	slick-greeter
-PORTVERSION=	2.0.2
+PORTVERSION=	2.0.3
 CATEGORIES=	x11
 
 MAINTAINER=	ericbsd@FreeBSD.org
