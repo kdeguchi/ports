@@ -1,6 +1,6 @@
 PORTNAME=	lightdm
 PORTVERSION=	1.32.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11
 MASTER_SITES=	https://github.com/canonical/${PORTNAME}/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
 
@@ -29,6 +29,10 @@ USE_GNOME=	glib20 intltool
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	lightdm
 USE_XORG=	x11 xcb xdmcp
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	canonical
+GH_TAGNAME=	1ade713
 
 GNU_CONFIGURE=		yes
 # tests causes PAM errors
