@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.29.5291.102
-PORTREVISION?=	6
+PORTREVISION?=	7
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -17,7 +17,7 @@ USES=		compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:fa6da3e \
+GH_TUPLE=	fcitx:mozc:d1e1e9f \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
@@ -93,7 +93,6 @@ UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:jawikilatest \
 .elif ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
 USES+=		qt:6
 USE_QT=		base
-EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src_bazel_pkg__config__repository.bzl
 BUILD_DEPENDS+=	libglvnd>0:graphics/libglvnd
 
 .elif ${BUILD_MOZC_LIST:Mibus_mozc} == "ibus_mozc"
@@ -111,7 +110,6 @@ USES+=		gettext-tools
 
 .elif ${BUILD_MOZC_LIST:Mfcitx5_mozc}
 USES+=		gettext-tools
-EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src_bazel_pkg__config__repository.bzl
 
 .endif
 
