@@ -22,4 +22,7 @@ GNU_CONFIGURE=	yes
 
 NO_ARCH=	yes
 
+post-install:
+	${FIND} ${STAGEDIR} -name '*.bak' -delete
+
 .include <bsd.port.mk>
