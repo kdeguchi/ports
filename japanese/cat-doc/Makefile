@@ -37,10 +37,10 @@ pre-extract:
 	${MKDIR} ${WRKSRC}
 
 do-install:
-	cd ${STAGEDIR}${MANPREFIX}/share/man && \
+	cd ${STAGEDIR}${PREFIX}/share/man && \
 		${LN} -s ja ja.UTF-8 && ${LN} -s ja ja_JP.UTF-8
-	${TAR} -cf - -C ${WRKSRC}${MANPREFIX}/share/man . | ${TAR} -xpf - -C ${STAGEDIR}${MANPREFIX}/share/man
-	${SH} ${WRKDIR}/eucjp2utf8.sh ${STAGEDIR}${MANPREFIX}/share/man
+	${TAR} -cf - -C ${WRKSRC}${PREFIX}/share/man . | ${TAR} -xpf - -C ${STAGEDIR}${PREFIX}/share/man
+	${SH} ${WRKDIR}/eucjp2utf8.sh ${STAGEDIR}${PREFIX}/share/man
 
 post-install:
 	@${FIND} ${STAGEDIR}${PREFIX} -not -type d | ${SORT} | \

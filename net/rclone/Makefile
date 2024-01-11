@@ -24,6 +24,6 @@ PLIST_FILES=	bin/rclone \
 GO_BUILDFLAGS+=	-tags cmount
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/rclone.1 ${STAGEDIR}${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/rclone.1 ${STAGEDIR}${PREFIX}/man/man1
 
 .include <bsd.port.mk>

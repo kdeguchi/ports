@@ -103,10 +103,10 @@ pre-install:
 post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	cd ${WRKSRC}/demo && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR}
-	@${MKDIR} ${STAGEDIR}${MANPREFIX}/man/ja/man1
+	@${MKDIR} ${STAGEDIR}${PREFIX}/man/ja/man1
 	cd ${WRKSRC}/man && \
 		${INSTALL_MAN} ${PORTNAME}-ja_JP.UTF-8 \
-			${STAGEDIR}${MANPREFIX}/man/ja/man1/${PORTNAME}.1
+			${STAGEDIR}${PREFIX}/man/ja/man1/${PORTNAME}.1
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}/psdoc
