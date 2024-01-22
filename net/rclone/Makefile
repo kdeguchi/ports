@@ -19,11 +19,11 @@ GO_MODULE=	github.com/rclone/rclone
 GO_BUILDFLAGS=	-ldflags -s
 
 PLIST_FILES=	bin/rclone \
-		man/man1/rclone.1.gz
+		share/man/man1/rclone.1.gz
 
 GO_BUILDFLAGS+=	-tags cmount
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/rclone.1 ${STAGEDIR}${PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/rclone.1 ${STAGEDIR}${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>

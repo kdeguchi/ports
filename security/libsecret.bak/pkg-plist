@@ -341,7 +341,7 @@ libdata/pkgconfig/libsecret-unstable.pc
 %%DOCS%%%%DOCSDIR%%-1/vfunc.Service.prompt_finish.html
 %%DOCS%%%%DOCSDIR%%-1/vfunc.Service.prompt_sync.html
 %%GIR%%share/gir-1.0/Secret-1.gir
-%%MANPAGES%%man/man1/secret-tool.1.gz
+%%MANPAGES%%share/man/man1/secret-tool.1.gz
 %%NLS%%share/locale/ab/LC_MESSAGES/libsecret.mo
 %%NLS%%share/locale/an/LC_MESSAGES/libsecret.mo
 %%NLS%%share/locale/ar/LC_MESSAGES/libsecret.mo
