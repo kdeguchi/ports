@@ -1,6 +1,6 @@
-PORTNAME=			${SAMBA4_BASENAME}416
+PORTNAME=			${SAMBA4_BASENAME}419
 PORTVERSION=			${SAMBA4_VERSION}
-PORTREVISION=			3
+PORTREVISION=			0
 CATEGORIES?=			net
 MASTER_SITES=			SAMBA/samba/stable SAMBA/samba/rc
 DISTNAME=			${SAMBA4_DISTNAME}
@@ -44,13 +44,11 @@ EXTRA_PATCHES=			\
 				${PATCHDIR}/0025-From-d9b748869a8f4018ebee302aae8246bf29f60309-Mon-Se.patch:-p1 \
 				${PATCHDIR}/0026-vfs-add-a-compatibility-option-to-the-vfs_streams_xa.patch:-p1 \
 				${PATCHDIR}/0027-Add-VFS-module-vfs_freebsd-that-implements-FreeBSD-s.patch:-p1 \
-				${PATCHDIR}/0028-s3-lib-system-add-FreeBSD-proc_fd_pattern.patch:-p1 \
-				${PATCHDIR}/0099-s3-modules-zfsacl-fix-get-set-ACL-on-FreeBSD-13.patch:-p1 \
-				${PATCHDIR}/0099-s4-mitkdc-Add-support-for-MIT-Kerberos-1.20.patch:-p1
+				${PATCHDIR}/0100-Fix-pathref-handling-for-FreeBSD-13plus.patch:-p1
 
 SAMBA4_BASENAME=		samba
 SAMBA4_PORTNAME=		${SAMBA4_BASENAME}4
-SAMBA4_VERSION=			4.16.11
+SAMBA4_VERSION=			4.19.4
 SAMBA4_DISTNAME=		${SAMBA4_BASENAME}-${SAMBA4_VERSION:S|.p|pre|:S|.r|rc|:S|.t|tp|:S|.a|alpha|}
 
 WRKSRC?=			${WRKDIR}/${DISTNAME}
@@ -93,7 +91,8 @@ CONFIGURE_ARGS=			--mandir="${PREFIX}/share/man" \
 				--with-privatedir="${SAMBA4_PRIVATEDIR}" \
 				--with-logfilebase="${SAMBA4_LOGDIR}"
 # XXX: Flags
-CONFIGURE_ENV=			PTHREAD_LDFLAGS="-lpthread"
+CONFIGURE_ENV=			PTHREAD_LDFLAGS="-lpthread" \
+				PYTHONHASHSEED=1
 MAKE_ENV=			PYTHONHASHSEED=1
 
 USES=				compiler:c++11-lang iconv localbase:ldflags \
@@ -105,7 +104,7 @@ CONFIGURE_LOG=			bin/config.log
 
 # Make sure that the right version of Python is used by the tools
 # https://bugzilla.samba.org/show_bug.cgi?id=7305
-SHEBANG_FILES=			${PATCH_WRKSRC}/source4/scripting/bin/* ${PATCH_WRKSRC}/selftest/*
+SHEBANG_FILES=			source3/script* source4/scripting/bin/* selftest/*
 
 PKGCONFIGDIR?=			${PREFIX}/libdata/pkgconfig
 PKGCONFIGDIR_REL?=		${PKGCONFIGDIR:S,^${PREFIX}/,,}
@@ -413,6 +412,14 @@ UTMP_CONFIGURE_WITH=		utmp
 ##############################################################################
 .include <bsd.port.options.mk>
 ##############################################################################
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1300076
+IGNORE=runs only on FreeBSD 13.1 and above due use of O_EMPTY_PATH
+.endif
+
+.if !${PORT_OPTIONS:MADS} && ${PORT_OPTIONS:MAD_DC}
+IGNORE=To disable ADS option you also need to disable AD_DC option
+.endif
+
 .if !defined(WANT_EXP_MODULES) || empty(WANT_EXP_MODULES)
 WANT_EXP_MODULES=		vfs_cacheprime
 .endif
@@ -458,7 +465,7 @@ SAMBA4_MODULES+=		auth_skel pdb_test gpext_security gpext_registry \
 USES+=				python:build,test
 CONFIGURE_ARGS+=		--disable-python
 .else
-USES+=				python
+USES+=				python:3.6+
 PLIST+=				${PKGDIR}/pkg-plist.python
 # Don't cache Python modules
 CONFIGURE_ARGS+=		--nopycache
@@ -520,13 +527,6 @@ DEBUG_FLAGS?=			-g -ggdb3 -O0
 ##############################################################################
 .include <bsd.port.pre.mk>
 ##############################################################################
-# Implemented in the gcrypt on AMD64
-.if ${ARCH} == "amd64"
-CONFIGURE_ARGS+=		--accel-aes=intelaesni
-.else
-CONFIGURE_ARGS+=		--accel-aes=none
-.endif
-
 # Only for 64-bit architectures
 .if ${ARCH} != armv6 && ${ARCH} != armv7 && ${ARCH} != i386 && ${ARCH} != mips && ${ARCH} != powerpc && ${ARCH} != powerpcspe
 .	if defined(SAMBA4_BUNDLED_LDB) && ${SAMBA4_BUNDLED_LDB} == yes && (${PORT_OPTIONS:MAD_DC} || ${PORT_OPTIONS:MDEVELOPER})

@@ -84,10 +84,10 @@ index b69a4f342f5..070111e3ee9 100644
  	struct ea_struct ea;
  	ssize_t result;
 +	struct streams_xattr_config *config = NULL;
-+
+ 
 +	SMB_VFS_HANDLE_GET_DATA(handle, config, struct streams_xattr_config,
 +				return -1);
- 
++
  	status = get_ea_value_fsp(talloc_tos(),
  				  fsp,
  				  xattr_name,
@@ -102,7 +102,7 @@ index b69a4f342f5..070111e3ee9 100644
  	TALLOC_FREE(ea.value.data);
  	return result;
  }
-@@ -197,7 +204,8 @@ static int streams_xattr_fstat(vfs_handle_struct *handle, files_struct *fsp,
+@@ -197,7 +204,8 @@ static int streams_xattr_fstat(vfs_handle_struct *hand
  		return -1;
  	}
  
@@ -112,7 +112,7 @@ index b69a4f342f5..070111e3ee9 100644
  					      io->xattr_name);
  	if (sbuf->st_ex_size == -1) {
  		SET_STAT_INVALID(*sbuf);
-@@ -273,7 +281,7 @@ static int streams_xattr_stat(vfs_handle_struct *handle,
+@@ -273,7 +281,7 @@ static int streams_xattr_stat(vfs_handle_struct *handl
  		fsp = fsp->base_fsp;
  	}
  
@@ -121,7 +121,7 @@ index b69a4f342f5..070111e3ee9 100644
  						      xattr_name);
  	if (smb_fname->st.st_ex_size == -1) {
  		TALLOC_FREE(xattr_name);
-@@ -308,6 +316,7 @@ static int streams_xattr_lstat(vfs_handle_struct *handle,
+@@ -308,6 +316,7 @@ static int streams_xattr_lstat(vfs_handle_struct *hand
  		errno = ENOENT;
  		return -1;
  	}
@@ -129,19 +129,20 @@ index b69a4f342f5..070111e3ee9 100644
  	return SMB_VFS_NEXT_LSTAT(handle, smb_fname);
  }
  
-@@ -346,6 +355,11 @@ static int streams_xattr_openat(struct vfs_handle_struct *handle,
- 	/*
- 	 * For now assert this, so the below SMB_VFS_SETXATTR() works.
- 	 */
+@@ -341,6 +350,12 @@ static int streams_xattr_openat(struct vfs_handle_stru
+ 					   how);
+ 	}
+ 
 +#ifdef O_EMPTY_PATH
-+	if (flags & O_EMPTY_PATH) {
++	if (how->flags & O_EMPTY_PATH) {
 +		return vfs_fake_fd();
 +	}
 +#endif
- 	SMB_ASSERT(fsp_get_pathref_fd(dirfsp) == AT_FDCWD);
- 
- 	status = streams_xattr_get_name(handle, talloc_tos(),
-@@ -355,6 +369,8 @@ static int streams_xattr_openat(struct vfs_handle_struct *handle,
++
+ 	if (how->resolve != 0) {
+ 		errno = ENOSYS;
+ 		return -1;
+@@ -356,6 +371,8 @@ static int streams_xattr_openat(struct vfs_handle_stru
  		goto fail;
  	}
  
@@ -150,7 +151,7 @@ index b69a4f342f5..070111e3ee9 100644
  	status = get_ea_value_fsp(talloc_tos(),
  				  fsp->base_fsp,
  				  xattr_name,
-@@ -393,7 +409,8 @@ static int streams_xattr_openat(struct vfs_handle_struct *handle,
+@@ -394,7 +411,8 @@ static int streams_xattr_openat(struct vfs_handle_stru
  		 */
  
  		/*
@@ -160,17 +161,17 @@ index b69a4f342f5..070111e3ee9 100644
  		 */
  		char null = '\0';
  
-@@ -402,7 +419,8 @@ static int streams_xattr_openat(struct vfs_handle_struct *handle,
+@@ -403,7 +421,8 @@ static int streams_xattr_openat(struct vfs_handle_stru
  
  		ret = SMB_VFS_FSETXATTR(fsp->base_fsp,
  				       xattr_name,
 -				       &null, sizeof(null),
-+				       (config->xattr_compat_bytes) ? &null : NULL,
-+				       (config->xattr_compat_bytes) ? sizeof(null) : 0,
- 				       flags & O_EXCL ? XATTR_CREATE : 0);
++                                       (config->xattr_compat_bytes) ? &null : NULL,
++                                       (config->xattr_compat_bytes) ? sizeof(null) : 0,
+ 				       how->flags & O_EXCL ? XATTR_CREATE : 0);
  		if (ret != 0) {
  			goto fail;
-@@ -411,13 +429,13 @@ static int streams_xattr_openat(struct vfs_handle_struct *handle,
+@@ -412,13 +431,13 @@ static int streams_xattr_openat(struct vfs_handle_stru
  
  	fakefd = vfs_fake_fd();
  
@@ -190,15 +191,15 @@ index b69a4f342f5..070111e3ee9 100644
  					xattr_name);
  	if (sio->xattr_name == NULL) {
  		errno = ENOMEM;
-@@ -823,12 +841,16 @@ static bool collect_one_stream(struct ea_struct *ea, void *private_data)
+@@ -808,12 +827,16 @@ static bool collect_one_stream(struct ea_struct *ea, v
  {
  	struct streaminfo_state *state =
  		(struct streaminfo_state *)private_data;
 +	struct streams_xattr_config *config = NULL;
-+
+ 
 +	SMB_VFS_HANDLE_GET_DATA(state->handle, config, struct streams_xattr_config,
 +				return false);
- 
++
  	if (!add_one_stream(state->mem_ctx,
  			    &state->num_streams, &state->streams,
 -			    ea->name, ea->value.length-1,
@@ -209,7 +210,7 @@ index b69a4f342f5..070111e3ee9 100644
  		state->status = NT_STATUS_NO_MEMORY;
  		return false;
  	}
-@@ -890,6 +912,7 @@ static int streams_xattr_connect(vfs_handle_struct *handle,
+@@ -875,6 +898,7 @@ static int streams_xattr_connect(vfs_handle_struct *ha
  	const char *default_prefix = SAMBA_XATTR_DOSSTREAM_PREFIX;
  	const char *prefix;
  	int rc;
@@ -217,7 +218,7 @@ index b69a4f342f5..070111e3ee9 100644
  
  	rc = SMB_VFS_NEXT_CONNECT(handle, service, user);
  	if (rc != 0) {
-@@ -920,6 +943,13 @@ static int streams_xattr_connect(vfs_handle_struct *handle,
+@@ -905,6 +929,13 @@ static int streams_xattr_connect(vfs_handle_struct *ha
  						 "store_stream_type",
  						 true);
  
@@ -231,7 +232,7 @@ index b69a4f342f5..070111e3ee9 100644
  	SMB_VFS_HANDLE_SET_DATA(handle, config,
  				NULL, struct stream_xattr_config,
  				return -1);
-@@ -936,6 +966,7 @@ static ssize_t streams_xattr_pwrite(vfs_handle_struct *handle,
+@@ -921,6 +952,7 @@ static ssize_t streams_xattr_pwrite(vfs_handle_struct 
  	struct ea_struct ea;
  	NTSTATUS status;
  	int ret;
@@ -239,7 +240,7 @@ index b69a4f342f5..070111e3ee9 100644
  
  	DEBUG(10, ("streams_xattr_pwrite called for %d bytes\n", (int)n));
  
-@@ -947,6 +978,9 @@ static ssize_t streams_xattr_pwrite(vfs_handle_struct *handle,
+@@ -932,6 +964,9 @@ static ssize_t streams_xattr_pwrite(vfs_handle_struct 
  		return -1;
  	}
  
@@ -249,7 +250,7 @@ index b69a4f342f5..070111e3ee9 100644
  	if ((offset + n) >= lp_smbd_max_xattr_size(SNUM(handle->conn))) {
  		/*
  		 * Requested write is beyond what can be read based on
-@@ -976,11 +1010,11 @@ static ssize_t streams_xattr_pwrite(vfs_handle_struct *handle,
+@@ -961,11 +996,11 @@ static ssize_t streams_xattr_pwrite(vfs_handle_struct 
  		return -1;
  	}
  
@@ -263,7 +264,7 @@ index b69a4f342f5..070111e3ee9 100644
  
  		if (tmp == NULL) {
  			TALLOC_FREE(ea.value.data);
-@@ -988,8 +1022,10 @@ static ssize_t streams_xattr_pwrite(vfs_handle_struct *handle,
+@@ -973,8 +1008,10 @@ static ssize_t streams_xattr_pwrite(vfs_handle_struct 
                          return -1;
                  }
  		ea.value.data = tmp;
@@ -276,19 +277,20 @@ index b69a4f342f5..070111e3ee9 100644
          }
  
          memcpy(ea.value.data + offset, data, n);
-@@ -1017,6 +1053,11 @@ static ssize_t streams_xattr_pread(vfs_handle_struct *handle,
+@@ -1002,7 +1039,12 @@ static ssize_t streams_xattr_pread(vfs_handle_struct *
  	struct ea_struct ea;
  	NTSTATUS status;
  	size_t length, overlap;
 +	struct smb_filename *smb_fname_base = NULL;
 +	struct streams_xattr_config *config = NULL;
-+
+ 
 +	SMB_VFS_HANDLE_GET_DATA(handle, config, struct streams_xattr_config,
 +				return -1);
- 
++
  	DEBUG(10, ("streams_xattr_pread: offset=%d, size=%d\n",
  		   (int)offset, (int)n));
-@@ -1037,7 +1078,7 @@ static ssize_t streams_xattr_pread(vfs_handle_struct *handle,
+ 
+@@ -1022,7 +1064,7 @@ static ssize_t streams_xattr_pread(vfs_handle_struct *
  		return -1;
  	}
  
@@ -297,7 +299,7 @@ index b69a4f342f5..070111e3ee9 100644
  
  	DBG_DEBUG("get_ea_value_fsp returned %d bytes\n",
  		   (int)length);
-@@ -1225,6 +1266,12 @@ static int streams_xattr_ftruncate(struct vfs_handle_struct *handle,
+@@ -1210,6 +1252,12 @@ static int streams_xattr_ftruncate(struct vfs_handle_s
          struct stream_io *sio =
  		(struct stream_io *)VFS_FETCH_FSP_EXTENSION(handle, fsp);
  
@@ -310,7 +312,7 @@ index b69a4f342f5..070111e3ee9 100644
  	DEBUG(10, ("streams_xattr_ftruncate called for file %s offset %.0f\n",
  		   fsp_str_dbg(fsp), (double)offset));
  
-@@ -1254,14 +1301,16 @@ static int streams_xattr_ftruncate(struct vfs_handle_struct *handle,
+@@ -1239,14 +1287,16 @@ static int streams_xattr_ftruncate(struct vfs_handle_s
  	}
  
  	/* Did we expand ? */
@@ -331,6 +333,3 @@ index b69a4f342f5..070111e3ee9 100644
  
  	ret = SMB_VFS_FSETXATTR(fsp->base_fsp,
  				sio->xattr_name,
--- 
-2.37.1
-

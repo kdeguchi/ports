@@ -39,7 +39,6 @@ libexec/ctdb/ctdb-path
 libexec/ctdb/smnotify
 share/man/man1/ctdb_diagnostics.1.gz
 share/man/man1/ctdb.1.gz
-share/man/man1/ctdbd_wrapper.1.gz
 share/man/man1/ctdbd.1.gz
 share/man/man1/ltdbtool.1.gz
 share/man/man1/onnode.1.gz
@@ -51,7 +50,6 @@ share/man/man7/ctdb-statistics.7.gz
 share/man/man7/ctdb-tunables.7.gz
 share/man/man7/ctdb.7.gz
 sbin/ctdbd
-sbin/ctdbd_wrapper
 share/ctdb/events/legacy/00.ctdb.script
 share/ctdb/events/legacy/01.reclock.script
 share/ctdb/events/legacy/05.system.script

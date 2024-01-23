@@ -1,14 +1,17 @@
-PORTNAME=			tdb
-DISTVERSION=			1.4.9
-PORTEPOCH=			1
-CATEGORIES=			databases
+PORTNAME=			tevent
+DISTVERSION=			0.16.0
+PORTEPOCH=			0
+CATEGORIES=			devel
 MASTER_SITES=			SAMBA
 
 MAINTAINER=			timur@FreeBSD.org
-COMMENT=			Trivial Database
-WWW=		https://tdb.samba.org/
+COMMENT=			Talloc based event loop library
+WWW=				https://tevent.samba.org/
 
-LICENSE=			GPLv3
+LICENSE=			LGPL3
+
+BUILD_DEPENDS=			talloc>=2.3.4:devel/talloc
+RUN_DEPENDS=			talloc>=2.3.4:devel/talloc
 
 USES=				compiler pkgconfig shebangfix waf
 USE_LDCONFIG=			yes
@@ -17,11 +20,11 @@ WAF_CMD=			buildtools/bin/waf
 CONFIGURE_LOG=			bin/config.log
 
 PKGCONFIGDIR?=			${PREFIX}/libdata/pkgconfig
-PLIST_SUB+=			PKGCONFIGDIR=${PKGCONFIGDIR:S;^${PREFIX}/;;}
+PLIST_SUB=			PKGCONFIGDIR=${PKGCONFIGDIR:S;^${PREFIX}/;;}
 
-CONFIGURE_ARGS+=		--disable-rpath \
+CONFIGURE_ARGS=			--disable-rpath \
 				--disable-rpath-install \
-				--bundled-libraries=NONE \
+				--bundled-libraries=!talloc,cmocka \
 				--builtin-libraries=replace \
 				--without-gettext
 CONFIGURE_ENV=			PYTHONHASHSEED=1
@@ -29,7 +32,7 @@ MAKE_ENV=			PYTHONHASHSEED=1
 
 MANPAGES_DESC=			Build and install manpages (requires textproc/docbook-xsl)
 
-OPTIONS_DEFINE=			MANPAGES DEBUG PYTHON
+OPTIONS_DEFINE=			DEBUG MANPAGES PYTHON
 OPTIONS_DEFAULT=		PYTHON
 OPTIONS_SUB=			yes
 
@@ -38,19 +41,19 @@ DEBUG_CONFIGURE_ON=		--verbose --enable-debug
 DEBUG_MAKE_ARGS=		--verbose
 
 PYTHON_USES=			gettext-runtime python
-PYTHON_USE+=			python=py3kplist
+PYTHON_USE=			python=py3kplist
 PYTHON_USES_OFF=		python:build,test
 PYTHON_CONFIGURE_OFF=		--disable-python
 
-MANPAGES_CONFIGURE_ENV_OFF+=	XSLTPROC="true"
-MANPAGES_BUILD_DEPENDS+=	${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:textproc/docbook-xsl \
+MANPAGES_CONFIGURE_ENV_OFF=	XSLTPROC="true"
+MANPAGES_BUILD_DEPENDS=		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:textproc/docbook-xsl \
 				xsltproc:textproc/libxslt
 # No fancy color error messages
 CFLAGS+=			${CFLAGS_${CHOSEN_COMPILER_TYPE}}
 CFLAGS_clang=			-fno-color-diagnostics
 CONFIGURE_ENV+=			NOCOLOR=yes
 MAKE_ENV+=			NOCOLOR=yes
-# Some symbols in tdb's linker version scripts are not defined, but since the
+# Some symbols in tevent's linker version scripts are not defined, but since the
 # scripts are generated dynamically, suppress errors with lld >= 17 due to these
 # undefined symbols.
 LDFLAGS+=			-Wl,--undefined-version
@@ -59,15 +62,13 @@ post-patch:
 				@${REINPLACE_CMD} -e 's|%%PKGCONFIGDIR%%|${PKGCONFIGDIR}|g' \
 					${BUILD_WRKSRC}/wscript
 
-pre-build-MANPAGES-off:
-				${MKDIR} ${BUILD_WRKSRC}/bin/default/man
-				${INSTALL_MAN} ${FILESDIR}/tdb*.8 ${BUILD_WRKSRC}/bin/default/man
-
 post-install:
-				${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/tdb*
-				${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtdb.so.1
+				${RM} ${STAGEDIR}${PREFIX}/lib/tevent/libcmocka-tevent.so
+				${RMDIR} ${STAGEDIR}${PREFIX}/lib/tevent
+				${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtevent.so
 
 post-install-PYTHON-on:
-				${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/tdb*.so
+				${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/_tevent*.so
+				${PYTHON_CMD} -m compileall -d ${PYTHON_SITELIBDIR} ${STAGEDIR}${PYTHON_SITELIBDIR}
 
 .include <bsd.port.mk>

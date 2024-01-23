@@ -18,6 +18,7 @@ bin/regpatch
 bin/regshell
 bin/regtree
 bin/rpcclient
+bin/samba-log-parser
 bin/samba-regedit
 %%ADS%%bin/samba-tool
 bin/sharesec
@@ -55,6 +56,7 @@ include/samba4/dcesrv_core.h
 include/samba4/domain_credentials.h
 include/samba4/gen_ndr/atsvc.h
 include/samba4/gen_ndr/auth.h
+include/samba4/gen_ndr/claims.h
 include/samba4/gen_ndr/dcerpc.h
 include/samba4/gen_ndr/drsblobs.h
 include/samba4/gen_ndr/drsuapi.h
@@ -140,7 +142,7 @@ include/samba4/wbclient.h
 %%SAMBA4_LIBDIR%%/libndr-standard.so
 %%SAMBA4_LIBDIR%%/libndr-standard.so.0
 %%SAMBA4_LIBDIR%%/libndr.so
-%%SAMBA4_LIBDIR%%/libndr.so.2
+%%SAMBA4_LIBDIR%%/libndr.so.3
 %%SAMBA4_LIBDIR%%/libnetapi.so
 %%SAMBA4_LIBDIR%%/libnetapi.so.1
 %%SAMBA4_LIBDIR%%/libsamba-credentials.so
@@ -174,7 +176,6 @@ libexec/samba/rpcd_epmapper
 libexec/samba/rpcd_fsrvp
 libexec/samba/rpcd_lsad
 libexec/samba/rpcd_mdssvc
-libexec/samba/rpcd_rpcecho
 libexec/samba/rpcd_spoolss
 libexec/samba/rpcd_winreg
 libexec/samba/samba-bgqd
@@ -273,6 +274,7 @@ libexec/samba/samba-dcerpcd
 %%SAMBA4_LIBDIR%%/private/libsmbd-shim-samba4.so
 %%SAMBA4_LIBDIR%%/private/libsmbpasswdparser-samba4.so
 %%SAMBA4_LIBDIR%%/private/libsocket-blocking-samba4.so
+%%SAMBA4_LIBDIR%%/private/libstable-sort-samba4.so
 %%SAMBA4_LIBDIR%%/private/libsys-rw-samba4.so
 %%SAMBA4_LIBDIR%%/private/libtalloc-report-printf-samba4.so
 %%SAMBA4_LIBDIR%%/private/libtalloc-report-samba4.so
@@ -335,7 +337,6 @@ share/man/man5/lmhosts.5.gz
 share/man/man5/pam_winbind.conf.5.gz
 share/man/man5/smb.conf.5.gz
 share/man/man5/smb4.conf.5.gz
-share/man/man5/smbgetrc.5.gz
 share/man/man5/smbpasswd.5.gz
 share/man/man7/libsmbclient.7.gz
 share/man/man7/samba.7.gz

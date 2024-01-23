@@ -1,14 +1,13 @@
-PORTNAME=			tdb
-DISTVERSION=			1.4.9
-PORTEPOCH=			1
-CATEGORIES=			databases
+PORTNAME=			talloc
+DISTVERSION=			2.4.1
+CATEGORIES=			devel
 MASTER_SITES=			SAMBA
 
 MAINTAINER=			timur@FreeBSD.org
-COMMENT=			Trivial Database
-WWW=		https://tdb.samba.org/
+COMMENT=			Hierarchical pool based memory allocator
+WWW=		https://talloc.samba.org/
 
-LICENSE=			GPLv3
+LICENSE=			LGPL3
 
 USES=				compiler pkgconfig shebangfix waf
 USE_LDCONFIG=			yes
@@ -29,7 +28,7 @@ MAKE_ENV=			PYTHONHASHSEED=1
 
 MANPAGES_DESC=			Build and install manpages (requires textproc/docbook-xsl)
 
-OPTIONS_DEFINE=			MANPAGES DEBUG PYTHON
+OPTIONS_DEFINE=			DEBUG MANPAGES PYTHON
 OPTIONS_DEFAULT=		PYTHON
 OPTIONS_SUB=			yes
 
@@ -38,7 +37,6 @@ DEBUG_CONFIGURE_ON=		--verbose --enable-debug
 DEBUG_MAKE_ARGS=		--verbose
 
 PYTHON_USES=			gettext-runtime python
-PYTHON_USE+=			python=py3kplist
 PYTHON_USES_OFF=		python:build,test
 PYTHON_CONFIGURE_OFF=		--disable-python
 
@@ -50,24 +48,24 @@ CFLAGS+=			${CFLAGS_${CHOSEN_COMPILER_TYPE}}
 CFLAGS_clang=			-fno-color-diagnostics
 CONFIGURE_ENV+=			NOCOLOR=yes
 MAKE_ENV+=			NOCOLOR=yes
-# Some symbols in tdb's linker version scripts are not defined, but since the
+# Some symbols in talloc's linker version scripts are not defined, but since the
 # scripts are generated dynamically, suppress errors with lld >= 17 due to these
 # undefined symbols.
 LDFLAGS+=			-Wl,--undefined-version
 
 post-patch:
 				@${REINPLACE_CMD} -e 's|%%PKGCONFIGDIR%%|${PKGCONFIGDIR}|g' \
-					${BUILD_WRKSRC}/wscript
+				${BUILD_WRKSRC}/wscript
 
 pre-build-MANPAGES-off:
-				${MKDIR} ${BUILD_WRKSRC}/bin/default/man
-				${INSTALL_MAN} ${FILESDIR}/tdb*.8 ${BUILD_WRKSRC}/bin/default/man
+				-${MKDIR} ${BUILD_WRKSRC}/bin/default/man
+				${INSTALL_MAN} ${FILESDIR}/talloc.3 ${BUILD_WRKSRC}/bin/default/man
 
 post-install:
-				${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/tdb*
-				${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtdb.so.1
+				${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtalloc.so.2
 
 post-install-PYTHON-on:
-				${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/tdb*.so
+				${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libpytalloc-util*.so
+				${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/talloc*.so
 
 .include <bsd.port.mk>
