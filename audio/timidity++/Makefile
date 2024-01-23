@@ -65,18 +65,18 @@ pre-patch:
 pre-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/${TIMID_LIBDIR}
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/timidity
-	@${MKDIR} ${STAGEDIR}${REFIX}/man/ja/man1
-	@${MKDIR} ${STAGEDIR}${PREFIX}/man/ja/man5
+	@${MKDIR} ${STAGEDIR}${REFIX}/share/man/ja/man1
+	@${MKDIR} ${STAGEDIR}${PREFIX}/share/man/ja/man5
 
 post-install:
 	cd ${WRKSRC}/doc/${EUCJP_LOCALE} && \
-		${INSTALL_MAN} timidity.1 ${STAGEDIR}${PREFIX}/man/ja/man1 && \
-		${INSTALL_MAN} timidity.cfg.5 ${STAGEDIR}${PREFIX}/man/ja/man5
-	cd ${STAGEDIR}${PREFIX}/man/ja/man1 && \
+		${INSTALL_MAN} timidity.1 ${STAGEDIR}${PREFIX}/share/man/ja/man1 && \
+		${INSTALL_MAN} timidity.cfg.5 ${STAGEDIR}${PREFIX}/share/man/ja/man5
+	cd ${STAGEDIR}${PREFIX}/share/man/ja/man1 && \
 		${CAT} timidity.1 | \
 			${ICONV_CMD} -f euc-jp -t utf-8 > timidity.1.utf-8 && \
 		${MV} -f timidity.1.utf-8 timidity.1
-	cd ${STAGEDIR}${PREFIX}/man/ja/man5 && \
+	cd ${STAGEDIR}${PREFIX}/share/man/ja/man5 && \
 		${CAT} timidity.cfg.5 | \
 			${ICONV_CMD} -f euc-jp -t utf-8 > timidity.cfg.5.utf-8 && \
 		${MV} -f timidity.cfg.5.utf-8 timidity.cfg.5
