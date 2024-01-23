@@ -1,5 +1,5 @@
 PORTNAME=	mozc
-PORTVERSION=	2.29.5291.102
+PORTVERSION=	2.29.5346.102
 PORTREVISION?=	9
 CATEGORIES=	japanese
 
@@ -17,7 +17,7 @@ USES=		compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:fee387d \
+GH_TUPLE=	fcitx:mozc:4b1510b \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
@@ -63,7 +63,7 @@ EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:b2eec66:edict2
 
 # CC-BY-SA-3.0
 JAWIKI_DESC=	Dictionary from Japanese Wikipedia
-JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:e320498:jawiki
+JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:6e08b8c:jawiki
 
 # APACHE20
 NEOLOGD_DESC=	Dictionary from NEologd
@@ -71,7 +71,7 @@ NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:bf9d0d2:neologd
 
 # APACHE20
 PERSONALNAME_DESC=	Personal Name Dictionary
-PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:749fc19:personal
+PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:8a500f8:personal
 
 # APCHE20
 PLACENAME_DESC=	Place Name Dictionary
