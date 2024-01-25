@@ -138,6 +138,23 @@ MESON_ARGS+=	-Dlibv4l=disabled -Dmrg=disabled
 MESON_ARGS+=	-Dthumbnail_cache=disabled
 .endif
 
+.if ${.CURDIR:M*/devel/llvm*}
+USES:=	${USES:S/lua:53/lua:${LUA_VER_STR}/}
+. if !target(post-patch-LLDB-on)
+post-patch-LLDB-on:
+	${REINPLACE_CMD} -e 's/Lua 5\.3/Lua ${LUA_VER}/' \
+		${WRKSRC}/lldb/cmake/modules/FindLuaAndSwig.cmake
+	${REINPLACE_CMD} -e 's@lua/5\.3@lua/${LUA_VER}@' \
+		${WRKSRC}/lldb/test/API/lua_api/TestLuaAPI.py
+. endif
+. if !target(post-install-LLDB-on)
+post-install-LLDB-on:
+	${MV} ${STAGEDIR}${PREFIX}/llvm${LLVM_SUFFIX}/lib/lua/5.3 \
+		${STAGEDIR}${PREFIX}/llvm${LLVM_SUFFIX}/lib/lua/${LUA_VER}
+	${REINPLACE_CMD} -e 's|lua/5\.3|lua/${LUA_VER}|' ${TMPPLIST} || exit 0
+. endif
+.endif
+
 .if defined(BUILD_DEPENDS) && ! ${BUILD_DEPENDS:M*lang/rust}
 . if ! ${.CURDIR:M*/lang/rust}
 NO_SCCACHE=	yes
