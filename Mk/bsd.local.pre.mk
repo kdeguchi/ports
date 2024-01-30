@@ -1,13 +1,13 @@
-.if ${.CURDIR:M*/sysutils/libcdio-paranoia}
+.if ${.CURDIR:M*/sysutils/libcdio-paranoia*}
 USES+=	iconv
 .endif
 
-.if ${.CURDIR:M*/graphics/libetonyek01}
+.if ${.CURDIR:M*/graphics/libetonyek01*}
 LIB_DEPENDS:=	${LIB_DEPENDS:S@libboost_filesystem.so:devel/boost-libs@@}
 BUILD_DEPENDS+=	${LOCALBASE}/include/boost/container/small_vector.hpp:devel/boost-libs
 .endif
 
-.if ${.CURDIR:M*/math/lib2geom}
+.if ${.CURDIR:M*/math/lib2geom*}
 LIB_DEPENDS:=	${LIB_DEPENDS:S@libboost_thread.so:devel/boost-libs@@}
 BUILD_DEPENDS+=	${LOCALBASE}/include/boost/container/small_vector.hpp:devel/boost-libs
 .endif
@@ -23,22 +23,26 @@ USE_WX=	3.2
 ########################################
 # KDE
 ########################################
-.if defined(USE_KDE) && ${USE_KDE:Mecm}
-USE_KDE:=	${USE_KDE:S@ecm@ecm:build@}
+.if defined(USE_KDE) && ${USE_KDE:M*ecm*}
+NO_CCACHE=	yes
 .endif
 
-.if defined(USE_KDE) && ! ${USE_KDE:Mecm\:build}
-USE_KDE+=	ecm:build
-.endif
+#.if defined(USE_KDE) && ${USE_KDE:Mecm}
+#USE_KDE:=	${USE_KDE:S@ecm@ecm:build@}
+#.endif
 
-.if defined(USE_KDE) && ${USE_KDE:Mplasma-wayland-protocols}
-USE_KDE:=	${USE_KDE:S@plasma-wayland-protocols@plasma-wayland-protocols:build@}
-.endif
+#.if defined(USE_KDE) && ! ${USE_KDE:Mecm\:build}
+#USE_KDE+=	ecm:build
+#.endif
+
+#.if defined(USE_KDE) && ${USE_KDE:Mplasma-wayland-protocols}
+#USE_KDE:=	${USE_KDE:S@plasma-wayland-protocols@plasma-wayland-protocols:build@}
+#.endif
 
 ########################################
 # QT
 ########################################
-.if defined(USE_QT) && ${USE_QT:Mdesigner}
+.if defined(USE_QT) && ${USE_QT:M*designer*}
 USE_QT:=	${USE_QT:S@designer@designer:build@}
 .endif
 

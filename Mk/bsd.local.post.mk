@@ -74,27 +74,27 @@ CFLAGS+=	-Qunused-arguments
 ########################################
 # misc
 ########################################
-.if ${.CURDIR:M*/databases/mariadb*-server}
+.if ${.CURDIR:M*/databases/mariadb*-server*}
 SUB_LIST+=	MARIADB_GROUP="${MARIADB_GROUP}"
 .endif
 
-.if ${.CURDIR:M*/sysutils/fusefs-lkl}
+.if ${.CURDIR:M*/sysutils/fusefs-lkl*}
 RUN_DEPENDS:=	${RUN_DEPENDS:C@gcc[0-9]+:lang/gcc[0-9]+@@}
 .endif
 
-.if ${.CURDIR:M*/multimedia/*x264}
+.if ${.CURDIR:M*/multimedia/*x264*}
 RUN_DEPENDS:=	${RUN_DEPENDS:C@gcc[0-9]+:lang/gcc[0-9]+@@}
 .endif
 
-.if ${.CURDIR:M*/multimedia/vapoursynth}
+.if ${.CURDIR:M*/multimedia/vapoursynth*}
 LIB_DEPENDS:=	${LIB_DEPENDS:S@libavcodec.so:multimedia/ffmpeg@@}
 .endif
 
-.if ${.CURDIR:M*/math/maxima}
+.if ${.CURDIR:M*/math/maxima*}
 NOUSERINIT_EXTRA_PATCHES_OFF=
 .endif
 
-.if ${.CURDIR:M*/www/webkit2-gtk3}
+.if ${.CURDIR:M*/www/webkit2-gtk3*}
 CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON_CMD}
 .endif
 
@@ -107,34 +107,34 @@ MAKE_ENV:=	${MAKE_ENV:S@PATH=@PATH=${PREFIX}/libexec/ccache:@}
 .endif
 .endif
 
-.if defined(RUN_DEPENDS) && ${RUN_DEPENDS:M*sudo\:security/sudo}
+.if defined(RUN_DEPENDS) && ${RUN_DEPENDS:M*sudo\:security/sudo*}
 RUN_DEPENDS:=	${RUN_DEPENDS:S@sudo:security/sudo@sudo:security/doas-wrapper@}
 .endif
 
-.if ${.CURDIR:M*/multimedia/libxine}
+.if ${.CURDIR:M*/multimedia/libxine*}
 CONFIGURE_ARGS:=	${CONFIGURE_ARGS:S/--enable-musepack//}
 .endif
 
-.if ${.CURDIR:M*/x11-toolkits/Xaw3d}
+.if ${.CURDIR:M*/x11-toolkits/Xaw3d*}
 PATH:=/usr/bin:${PATH}
 .endif
 
-.if defined(LIB_DEPENDS) && ${LIB_DEPENDS:M*\:x11-toolkits/Xaw3d}
+.if defined(LIB_DEPENDS) && ${LIB_DEPENDS:M*\:x11-toolkits/Xaw3d*}
 LIB_DEPENDS:=	${LIB_DEPENDS:S@x11-toolkits/Xaw3d@x11-toolkits/libXaw3d@}
 .endif
 
-.if defined(RUN_DEPENDS) && ${RUN_DEPENDS:M*/security/veracrypt}
+.if defined(RUN_DEPENDS) && ${RUN_DEPENDS:M*/security/veracrypt*}
 .if !target(pre-configure)
 pre-configure:
 	${REINPLACE_CMD} -e 's|Icon=VeraCrypt-16x16|Icon=VeraCrypt-256x256|g' ${WRKSRC}/src/Setup/FreeBSD/veracrypt.desktop
 .endif
 .endif
 
-.if ${.CURDIR:M*/graphics/gegl}
+.if ${.CURDIR:M*/graphics/gegl*}
 MESON_ARGS+=	-Dlibv4l=disabled -Dmrg=disabled
 .endif
 
-.if ${.CURDIR:M*/graphics/evince}
+.if ${.CURDIR:M*/graphics/evince*}
 MESON_ARGS+=	-Dthumbnail_cache=disabled
 .endif
 
