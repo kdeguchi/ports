@@ -2,6 +2,7 @@ bin/fcitx5
 bin/fcitx5-configtool
 bin/fcitx5-diagnose
 bin/fcitx5-remote
+etc/xdg/Xwayland-session.d/20-fcitx-x11
 etc/xdg/autostart/org.fcitx.Fcitx5.desktop
 include/Fcitx5/Config/fcitx-config/configuration.h
 include/Fcitx5/Config/fcitx-config/dbushelper.h
@@ -64,6 +65,7 @@ include/Fcitx5/Utils/fcitx-utils/dbus/message.h
 include/Fcitx5/Utils/fcitx-utils/dbus/message_details.h
 include/Fcitx5/Utils/fcitx-utils/dbus/objectvtable.h
 include/Fcitx5/Utils/fcitx-utils/dbus/servicewatcher.h
+include/Fcitx5/Utils/fcitx-utils/dbus/variant.h
 include/Fcitx5/Utils/fcitx-utils/element.h
 include/Fcitx5/Utils/fcitx-utils/event.h
 include/Fcitx5/Utils/fcitx-utils/eventdispatcher.h
@@ -177,6 +179,7 @@ libdata/pkgconfig/Fcitx5Module.pc
 libdata/pkgconfig/Fcitx5Utils.pc
 libexec/fcitx5-wayland-launcher
 share/applications/fcitx5-configtool.desktop
+share/applications/fcitx5-wayland-launcher.desktop
 share/applications/org.fcitx.Fcitx5.desktop
 share/dbus-1/services/org.fcitx.Fcitx5.service
 %%DATADIR%%/addon/classicui.conf
