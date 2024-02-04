@@ -1,6 +1,5 @@
 PORTNAME=	fcitx5-gtk
-DISTVERSION=	5.1.0
-PORTREVISION=	1
+DISTVERSION=	5.1.1
 CATEGORIES=	textproc
 MASTER_SITES=	https://download.fcitx-im.org/fcitx5/${PORTNAME}/
 

@@ -166,6 +166,10 @@ _USES_stage:=	${_USES_stage:S@950:sccache-stats@@}
 . endif
 .endif
 
+.if ${.CURDIR:M*/devel/ccache*}
+NO_CCACHE=yes
+.endif
+
 .if defined(PREFIX) && ${PREFIX} == /usr/local
 #POST_PLIST+=	remove-info-plist
 POST_PLIST+=	post-man-plist remove-info-plist

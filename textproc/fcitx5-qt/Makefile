@@ -1,6 +1,5 @@
 PORTNAME=	fcitx5-qt
-DISTVERSION=	5.1.0
-PORTREVISION=	1
+DISTVERSION=	5.1.4
 CATEGORIES=	textproc
 MASTER_SITES=	https://download.fcitx-im.org/fcitx5/${PORTNAME}/
 
@@ -37,7 +36,7 @@ EXTRA_PATCHES=	${PATCHDIR}/extra-patch-CMakeLists.txt
 RUN_DEPENDS=	fcitx5-qt-common>=${DISTVERSION}:textproc/fcitx5-qt-common
 .elif ${FLAVOR} == qt6
 USES+=		qt:6
-USE_QT=		base
+USE_QT=		base wayland
 CMAKE_ON=	ENABLE_QT6
 CMAKE_OFF+=	ENABLE_QT5
 EXTRA_PATCHES=	${PATCHDIR}/extra-patch-CMakeLists.txt
