@@ -27,13 +27,13 @@ USE_WX=	3.2
 NO_CCACHE=	yes
 .endif
 
-#.if defined(USE_KDE) && ${USE_KDE:Mecm}
-#USE_KDE:=	${USE_KDE:S@ecm@ecm:build@}
-#.endif
+.if defined(USE_KDE) && ${USE_KDE:Mecm}
+USE_KDE:=	${USE_KDE:S@ecm@ecm:build@}
+.endif
 
-#.if defined(USE_KDE) && ! ${USE_KDE:Mecm\:build}
-#USE_KDE+=	ecm:build
-#.endif
+.if defined(USE_KDE) && ! ${USE_KDE:Mecm\:build}
+USE_KDE+=	ecm:build
+.endif
 
 #.if defined(USE_KDE) && ${USE_KDE:Mplasma-wayland-protocols}
 #USE_KDE:=	${USE_KDE:S@plasma-wayland-protocols@plasma-wayland-protocols:build@}
