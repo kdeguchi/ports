@@ -16,6 +16,6 @@
 +  const char *nolog = getenv("MOZC_NOLOG");
 +  if (nolog == NULL)
 +    Logging::InitLogStream(GetLogFilePathFromProgramName(program_name));
- 
  }
  
+ }  // namespace mozc
