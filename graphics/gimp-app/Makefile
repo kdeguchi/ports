@@ -1,6 +1,6 @@
 PORTNAME?=	gimp
-PORTVERSION=	2.10.34
-PORTREVISION=	12
+PORTVERSION=	2.10.36
+PORTREVISION?=	0
 PORTEPOCH?=	1
 CATEGORIES?=	graphics gnome
 MASTER_SITES=	GIMP/gimp/v${PORTVERSION:R}
@@ -56,6 +56,7 @@ USE_XORG=	ice sm x11 xcursor xext xfixes xmu xpm xt
 SHEBANG_FILES=	plug-ins/pygimp/plug-ins/*.py
 
 GNU_CONFIGURE=		yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS?=	--with-html-dir=${PREFIX}/share/doc/gimp \
 			--with-bug-report-url="https://bugs.freebsd.org/" \
 			--disable-gtk-doc \
@@ -104,8 +105,6 @@ LIB_DEPENDS+=	libgimp-2.0.so:graphics/gimp-app
 
 .else
 
-DEBUG_CONFIGURE_ON=	--enable-debug
-
 AALIB_DESC=	Ascii-art Plug-in
 OPENJPEG_DESC=	Enhanced JPEG (jpeg2000) graphics support
 
@@ -144,6 +143,8 @@ WMF_LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 WMF_CONFIGURE_WITH=	wmf
 
 .endif
+
+.include <bsd.port.options.mk>
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%GIMP_LIBS%%|${GIMP_LIBS}|; \
