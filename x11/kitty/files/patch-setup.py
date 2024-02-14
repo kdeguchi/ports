@@ -40,10 +40,10 @@
      try:
          return src, env.library_paths[src]
 @@ -1163,7 +1148,8 @@ def create_linux_bundle_gunk(ddir: str, libdir_name: s
-         make = 'gmake' if is_freebsd else 'make'
-         run_tool([make, 'docs'])
-     copy_man_pages(ddir)
--    copy_html_docs(ddir)
+                 raise SystemExit(f'kitten binary not found at: {kitten_exe}')
+     if not skip_docs
+         copy_man_pages(ddir)
+-        copy_html_docs(ddir)
 +    if os.getenv('BUILD_DOCS') == 'yes':
 +        copy_html_docs(ddir)
      for (icdir, ext) in {'256x256': 'png', 'scalable': 'svg'}.items():
