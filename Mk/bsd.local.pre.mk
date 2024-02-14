@@ -1,3 +1,8 @@
+.if ${.CURDIR:M*/devel/ccache*}
+NO_CCACHE=	yes
+NO_SCCACHE=	yes
+.endif
+
 .if ${.CURDIR:M*/sysutils/libcdio-paranoia*}
 USES+=	iconv
 .endif
@@ -42,9 +47,9 @@ USE_KDE+=	ecm:build
 ########################################
 # QT
 ########################################
-.if defined(USE_QT) && ${USE_QT:M*designer*}
-USE_QT:=	${USE_QT:S@designer@designer:build@}
-.endif
+#.if defined(USE_QT) && ${USE_QT:M*designer*}
+#USE_QT:=	${USE_QT:S@designer@designer:build@}
+#.endif
 
 ########################################
 # xorgproto

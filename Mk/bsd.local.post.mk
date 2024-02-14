@@ -167,7 +167,8 @@ _USES_stage:=	${_USES_stage:S@950:sccache-stats@@}
 .endif
 
 .if ${.CURDIR:M*/devel/ccache*}
-NO_CCACHE=yes
+NO_CCACHE=	yes
+NO_SCCACHE=	yes
 .endif
 
 .if defined(PREFIX) && ${PREFIX} == /usr/local
