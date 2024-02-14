@@ -21,7 +21,7 @@ LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
 RUN_DEPENDS=	accountsservice>=0:sysutils/accountsservice \
 		ck-launch-session:sysutils/consolekit2
 
-USES=		autoreconf compiler:c++11-lang cpe gettext gmake gnome \
+USES=		autoreconf compiler:c++11-lang cpe gettext-tools gmake gnome \
 		libtool localbase pathfix pkgconfig tar:xz xorg
 CPE_VENDOR=	${PORTNAME}_project
 USE_CXXSTD=	c++11
@@ -35,6 +35,7 @@ GH_ACCOUNT=	canonical
 GH_TAGNAME=	1ade713
 
 GNU_CONFIGURE=		yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 # tests causes PAM errors
 CONFIGURE_ARGS=		--disable-libaudit \
 			--disable-tests
@@ -54,6 +55,7 @@ DOCS_BUILD_DEPENDS=	${LOCALBASE}/share/aclocal/yelp.m4:textproc/yelp-tools \
 			gtkdoc-check:textproc/gtk-doc
 DOCS_CONFIGURE_ON=	--enable-gtk-doc
 
+NLS_USES=		gettext-runtime
 NLS_CONFIGURE_ENABLE=	nls
 
 QT5_USES=		qt:5
@@ -61,9 +63,8 @@ QT5_USE=		QT=buildtools,core,dbus,gui
 QT5_CONFIGURE_ENABLE=	liblightdm-qt5
 
 VAPI_USES=		vala:build
-VAPI_CONFIGURE_ON=	--enable-vala=yes --enable-introspection=yes
-VAPI_CONFIGURE_OFF=	--enable-vala=no --enable-introspection=no
 VAPI_USE=		GNOME=introspection:build
+VAPI_CONFIGURE_ENABLE=	vala
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,%%PREFIX%%,${PREFIX},' \
