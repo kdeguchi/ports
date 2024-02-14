@@ -121,7 +121,7 @@
 %%LINUXBASE%%%%LINUX_LIBDIR%%/libnvidia-compiler.so.%%SHLIB_VERSION%%
 %%LINUXBASE%%%%LINUX_LIBDIR%%/libnvidia-egl-gbm.so
 %%LINUXBASE%%%%LINUX_LIBDIR%%/libnvidia-egl-gbm.so.1
-%%LINUXBASE%%%%LINUX_LIBDIR%%/libnvidia-egl-gbm.so.1.1.0
+%%LINUXBASE%%%%LINUX_LIBDIR%%/libnvidia-egl-gbm.so.X
 %%LINUXBASE%%%%LINUX_LIBDIR%%/libnvidia-egl-wayland.so.1
 %%LINUXBASE%%%%LINUX_LIBDIR%%/libnvidia-egl-wayland.so.X
 %%LINUXBASE%%%%LINUX_LIBDIR%%/libnvidia-eglcore.so.%%SHLIB_VERSION%%
