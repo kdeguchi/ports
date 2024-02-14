@@ -1,6 +1,6 @@
 PORTNAME=	mozc
-PORTVERSION=	2.29.5346.102
-PORTREVISION?=	1
+PORTVERSION=	2.29.5374.102
+PORTREVISION?=	0
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -17,7 +17,7 @@ USES=		compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:0a117f1 \
+GH_TUPLE=	fcitx:mozc:c687b82 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
@@ -75,7 +75,7 @@ PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:8a500f8:personal
 
 # APCHE20
 PLACENAME_DESC=	Place Name Dictionary
-PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:3db0d6c:place
+PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:a847a02:place
 
 # APACHE20 GPLv2
 SKKJISYO_DESC=	Dictionary from from SKK-JISYO
