@@ -30,26 +30,19 @@ USE_WX=	3.2
 ########################################
 .if defined(USE_KDE) && ${USE_KDE:M*ecm*}
 NO_CCACHE=	yes
-.endif
-
-.if defined(USE_KDE) && ${USE_KDE:Mecm}
+. if defined(USE_KDE) && ! ${USE_KDE:M*ecm\:build*}
 USE_KDE:=	${USE_KDE:S@ecm@ecm:build@}
+. endif
 .endif
-
-.if defined(USE_KDE) && ! ${USE_KDE:Mecm\:build}
-USE_KDE+=	ecm:build
-.endif
-
-#.if defined(USE_KDE) && ${USE_KDE:Mplasma-wayland-protocols}
-#USE_KDE:=	${USE_KDE:S@plasma-wayland-protocols@plasma-wayland-protocols:build@}
-#.endif
 
 ########################################
 # QT
 ########################################
-#.if defined(USE_QT) && ${USE_QT:M*designer*}
-#USE_QT:=	${USE_QT:S@designer@designer:build@}
-#.endif
+.if defined(USE_QT) && ${USE_QT:M*designer*}
+. if defined(USE_QT) && ! ${USE_QT:M*designer\:build*}
+USE_QT:=	${USE_QT:S@designer@designer:build@}
+. endif
+.endif
 
 ########################################
 # xorgproto
