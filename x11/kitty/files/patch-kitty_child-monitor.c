@@ -1,6 +1,6 @@
 --- kitty/child-monitor.c.orig	1979-11-29 15:00:00 UTC
 +++ kitty/child-monitor.c
-@@ -22,6 +22,7 @@
+@@ -20,6 +20,7 @@
  #include <sys/socket.h>
  #include <sys/un.h>
  #include <signal.h>
@@ -8,7 +8,7 @@
  extern PyTypeObject Screen_Type;
  
  #if defined(__APPLE__) || defined(__OpenBSD__)
-@@ -270,6 +271,7 @@ add_child(ChildMonitor *self, PyObject *args) {
+@@ -314,6 +315,7 @@ add_child(ChildMonitor *self, PyObject *args) {
          return NULL;
      }
  #undef A
@@ -16,7 +16,7 @@
      INCREF_CHILD(add_queue[add_queue_count]);
      add_queue_count++;
      children_mutex(unlock);
-@@ -1247,6 +1249,7 @@ hangup(pid_t pid) {
+@@ -1310,6 +1312,7 @@ cleanup_child(ssize_t i) {
  
  static void
  cleanup_child(ssize_t i) {

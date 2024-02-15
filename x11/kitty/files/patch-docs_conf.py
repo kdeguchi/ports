@@ -1,6 +1,6 @@
---- docs/conf.py.orig	2023-09-18 07:09:42 UTC
+--- docs/conf.py.orig	1979-11-29 23:00:00 UTC
 +++ docs/conf.py
-@@ -207,18 +207,10 @@ def commit_role(
+@@ -209,18 +209,10 @@ def commit_role(
      name: str, rawtext: str, text: str, lineno: int, inliner: Any, options: Any = {}, content: Any = []
  ) -> Tuple[List[nodes.reference], List[nodes.problematic]]:
      ' Link to a github commit '
