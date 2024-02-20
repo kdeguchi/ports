@@ -155,21 +155,19 @@ post-install-LLDB-on:
 . endif
 .endif
 
-.if defined(BUILD_DEPENDS) && ! ${BUILD_DEPENDS:M*lang/rust}
-. if ! ${.CURDIR:M*/lang/rust}
-NO_SCCACHE=	yes
-.  if defined(NO_CCACHE)
+.if defined(BUILD_DEPENDS) && ${BUILD_DEPENDS:M*lang/rust}
+. if ! defined(CCACHE_DIR)
 SCCACHE_DIR!=	/usr/local/bin/ccache -p | awk ' /cache_dir = / { print $$4 } '
-.  endif
+. endif
 _USES_configure:=	${_USES_configure:S@250:sccache-start@@}
 _USES_stage:=	${_USES_stage:S@950:sccache-stats@@}
-. endif
-.endif
-
-.if ${.CURDIR:M*/devel/ccache*}
-NO_CCACHE=	yes
+.else
 NO_SCCACHE=	yes
 .endif
+
+#.if exists(/usr/local/share/sccache/overlay)
+#OVERLAYS+=	/usr/local/share/sccache/overlay
+#.endif
 
 .if defined(PREFIX) && ${PREFIX} == /usr/local
 #POST_PLIST+=	remove-info-plist
