@@ -1,12 +1,13 @@
 PORTNAME=	timidity++
 PORTVERSION=	2.15.0
+PORTREVISION=	1
 CATEGORIES+=	audio
 MASTER_SITES=	SF/timidity/TiMidity%2B%2B/TiMidity%2B%2B-${PORTVERSION}
 DISTNAME=	TiMidity++-${PORTVERSION}
 
-MAINTAINER?=	fuz@fuz.su
+MAINTAINER?=	fuz@FreeBSD.org
 COMMENT?=	Software MIDI player
-WWW=		http://timidity.sourceforge.net/
+WWW=		https://timidity.sourceforge.net/
 
 LICENSE=	GPLv2+
 
@@ -19,6 +20,7 @@ RUN_DEPENDS=	eawpats>0:audio/eawpats
 
 USES=		gmake iconv:build localbase tar:bzip2
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 CONFIGURE_ENV+=	SHLD="${CC} -shared"
 
 CPPFLAGS+=	-I${LOCALBASE}/include/libarc
@@ -65,7 +67,7 @@ pre-patch:
 pre-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/${TIMID_LIBDIR}
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/timidity
-	@${MKDIR} ${STAGEDIR}${REFIX}/share/man/ja/man1
+	@${MKDIR} ${STAGEDIR}${PREFIX}/share/man/ja/man1
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/man/ja/man5
 
 post-install:
