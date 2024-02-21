@@ -3,7 +3,8 @@ NO_CCACHE=	yes
 NO_SCCACHE=	yes
 .endif
 
-.if defined(BUILD_DEPENDS) && ${BUILD_DEPENDS:M*lang/rust}
+.if defined(BUILD_DEPENDS) && ${BUILD_DEPENDS:M*lang/rust*}
+.undef NO_SCCACHE
 . if ! defined(CCACHE_DIR)
 SCCACHE_DIR!=	/usr/local/bin/ccache -p | awk ' /cache_dir = / { print $$4 } '
 . endif
