@@ -1,5 +1,6 @@
 PORTNAME=	thunar
 DISTVERSION=	4.18.10
+PORTREVISION=	1
 CATEGORIES=	x11-fm xfce
 MASTER_SITES=	XFCE
 DIST_SUBDIR=	xfce4
@@ -21,7 +22,7 @@ USES=		compiler:c11 cpe desktop-file-utils gettext-tools gmake gnome \
 		libtool pathfix perl5 pkgconfig tar:bzip2 xfce xorg
 USE_GNOME=	cairo gdkpixbuf2 glib20 gtk30 intltool
 USE_LDCONFIG=	yes
-USE_XFCE=	libexo xfconf
+USE_XFCE=	libexo panel xfconf
 USE_XORG=	ice sm x11
 
 CPE_VENDOR=	xfce
