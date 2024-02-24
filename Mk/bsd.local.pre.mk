@@ -3,16 +3,16 @@ NO_CCACHE=	yes
 NO_SCCACHE=	yes
 .endif
 
-.if defined(BUILD_DEPENDS) && ${BUILD_DEPENDS:M*lang/rust*}
-.undef NO_SCCACHE
-. if ! defined(CCACHE_DIR)
-SCCACHE_DIR!=	/usr/local/bin/ccache -p | awk ' /cache_dir = / { print $$4 } '
-. endif
-_USES_configure:=	${_USES_configure:S@250:sccache-start@@}
-_USES_stage:=	${_USES_stage:S@950:sccache-stats@@}
-.else
-NO_SCCACHE=	yes
-.endif
+#.if defined(BUILD_DEPENDS) && ${BUILD_DEPENDS:M*lang/rust*}
+#.undef NO_SCCACHE
+#. if ! defined(CCACHE_DIR)
+#SCCACHE_DIR!=	/usr/local/bin/ccache -p | awk ' /cache_dir = / { print $$4 } '
+#. endif
+#_USES_configure:=	${_USES_configure:S@250:sccache-start@@}
+#_USES_stage:=	${_USES_stage:S@950:sccache-stats@@}
+#.else
+#NO_SCCACHE=	yes
+#.endif
 
 #.if exists(/usr/local/share/sccache/overlay)
 #OVERLAYS+=	/usr/local/share/sccache/overlay
