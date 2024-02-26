@@ -1,21 +1,21 @@
---- src/base/init_mozc.cc.orig	2022-07-23 14:02:59 UTC
+--- src/base/init_mozc.cc.orig	2024-02-26 07:09:29 UTC
 +++ src/base/init_mozc.cc
-@@ -34,6 +34,7 @@
- #endif  // _WIN32
+@@ -30,6 +30,7 @@
+ #include "base/init_mozc.h"
  
  #include <string>
 +#include <stdlib.h>
  
+ #include "absl/flags/flag.h"
  
- #include "base/file_util.h"
-@@ -110,7 +111,9 @@ void InitMozc(const char *arg0, int *argc, char ***arg
+@@ -116,7 +117,9 @@ void InitMozc(const char *arg0, int *argc, char ***arg
    ParseCommandLineFlags(*argc, *argv);
  
    const std::string program_name = *argc > 0 ? (*argv)[0] : "UNKNOWN";
--  Logging::InitLogStream(GetLogFilePathFromProgramName(program_name));
+-  RegisterLogFileSink(GetLogFilePathFromProgramName(program_name));
 +  const char *nolog = getenv("MOZC_NOLOG");
 +  if (nolog == NULL)
-+    Logging::InitLogStream(GetLogFilePathFromProgramName(program_name));
++    RegisterLogFileSink(GetLogFilePathFromProgramName(program_name));
  }
  
  }  // namespace mozc

@@ -11,7 +11,7 @@
      name = "com_google_absl",
 -    path = "third_party/abseil-cpp",
 +    remote = "https://github.com/abseil/abseil-cpp.git",
-+    tag = "20240116.0"  # 2024-01-16
++    tag = "20240116.1"  # 2024-01-16
  )
  
 -
