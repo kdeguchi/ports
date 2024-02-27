@@ -35,7 +35,7 @@
 +  *pid = 0;
 +#endif
  
-+#if defined(__linux__) && !defined(__FreeBSD__)
++#if 0
    struct ucred peer_cred;
    int peer_cred_len = sizeof(peer_cred);
    if (getsockopt(socket, SOL_SOCKET, SO_PEERCRED,
