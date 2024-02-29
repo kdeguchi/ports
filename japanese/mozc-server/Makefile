@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.29.5374.102
-PORTREVISION?=	3
+PORTREVISION?=	4
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -17,7 +17,7 @@ USES=		compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:ea0cf17 \
+GH_TUPLE=	fcitx:mozc:97d1d65 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
@@ -91,6 +91,7 @@ UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:jawikilatest \
 		https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/:iddef
 
 .elif ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
+USE_LOCALE=	C.UTF-8
 USES+=		qt:6
 USE_QT=		base
 BUILD_DEPENDS+=	libglvnd>0:graphics/libglvnd
