@@ -14,10 +14,6 @@ NO_SCCACHE=	yes
 #NO_SCCACHE=	yes
 #.endif
 
-#.if exists(/usr/local/share/sccache/overlay)
-#OVERLAYS+=	/usr/local/share/sccache/overlay
-#.endif
-
 .if ${.CURDIR:M*/sysutils/libcdio-paranoia*}
 USES+=	iconv
 .endif

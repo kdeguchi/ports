@@ -166,10 +166,6 @@ post-install-LLDB-on:
 #NO_SCCACHE=	yes
 #.endif
 
-.if exists(/usr/local/share/sccache/overlay)
-OVERLAYS+=	/usr/local/share/sccache/overlay
-.endif
-
 .if defined(PREFIX) && ${PREFIX} == /usr/local
 POST_PLIST+=	remove-info-plist
 #POST_PLIST+=	post-man-plist remove-info-plist
