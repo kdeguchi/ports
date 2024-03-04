@@ -1,15 +1,5 @@
-.if ${.CURDIR:M*/devel/ccache*}
-NO_CCACHE=	yes
-NO_SCCACHE=	yes
-.endif
-
 .if ${.CURDIR:M*/sysutils/libcdio-paranoia*}
 USES+=	iconv
-.endif
-
-.if ${.CURDIR:M*/graphics/libetonyek01*}
-LIB_DEPENDS:=	${LIB_DEPENDS:S@libboost_filesystem.so:devel/boost-libs@@}
-BUILD_DEPENDS+=	${LOCALBASE}/include/boost/container/small_vector.hpp:devel/boost-libs
 .endif
 
 .if ${.CURDIR:M*/math/lib2geom*}
