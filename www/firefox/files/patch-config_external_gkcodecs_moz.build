@@ -1,8 +1,0 @@
---- config/external/gkcodecs/moz.build.orig	2024-02-14 07:18:40 UTC
-+++ config/external/gkcodecs/moz.build
-@@ -16,3 +16,5 @@ if CONFIG["MOZ_SYSTEM_LIBVPX"]:
- SYMBOLS_FILE = "gkcodecs.symbols"
- if CONFIG["MOZ_SYSTEM_LIBVPX"]:
-     DEFINES["MOZ_SYSTEM_LIBVPX"] = True
-+if CONFIG["OS_TARGET"] == "FreeBSD":
-+    OS_LIBS += [ "m" ]
