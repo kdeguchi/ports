@@ -67,71 +67,39 @@ CXX=	c++
 CPP=	cpp
 .endif
 
-.if defined(CC) && ${CC:T:Mclang}
-CFLAGS+=	-Qunused-arguments
-.endif
+#.if defined(CC) && ${CC:T:Mclang}
+#CFLAGS+=	-Qunused-arguments
+#.endif
 
 ########################################
 # misc
 ########################################
-.if ${.CURDIR:M*/databases/mariadb*-server*}
-SUB_LIST+=	MARIADB_GROUP="${MARIADB_GROUP}"
+.if ${.CURDIR:M*/www/firefox*} || ${.CURDIR:M*/mail/thunderbird*}
+. if defined(CONFIGURE_ENV) && ${CONFIGURE_ENV:N*${PREFIX}/libexec/ccache}
+CONFIGURE_ENV:=	${CONFIGURE_ENV:S@PATH=@PATH=${PREFIX}/libexec/ccache:@}
+. endif
+. if defined(MAKE_ENV) && ${MAKE_ENV:N*${PREFIX}/libexec/ccache}
+MAKE_ENV:=	${MAKE_ENV:S@PATH=@PATH=${PREFIX}/libexec/ccache:@}
+. endif
 .endif
 
-.if ${.CURDIR:M*/sysutils/fusefs-lkl*}
-RUN_DEPENDS:=	${RUN_DEPENDS:C@gcc[0-9]+:lang/gcc[0-9]+@@}
-.endif
-
-.if ${.CURDIR:M*/multimedia/*x264*}
-RUN_DEPENDS:=	${RUN_DEPENDS:C@gcc[0-9]+:lang/gcc[0-9]+@@}
-.endif
-
-.if ${.CURDIR:M*/multimedia/vapoursynth*}
-LIB_DEPENDS:=	${LIB_DEPENDS:S@libavcodec.so:multimedia/ffmpeg@@}
+.if defined(RUN_DEPENDS) && ${RUN_DEPENDS:M*/security/veracrypt*}
+. if !target(pre-configure)
+pre-configure:
+	${REINPLACE_CMD} -e 's|Icon=VeraCrypt-16x16|Icon=VeraCrypt-256x256|g' ${WRKSRC}/src/Setup/FreeBSD/veracrypt.desktop
+. endif
 .endif
 
 .if ${.CURDIR:M*/math/maxima*}
 NOUSERINIT_EXTRA_PATCHES_OFF=
 .endif
 
-.if ${.CURDIR:M*/www/webkit2-gtk3*}
-CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON_CMD}
-.endif
-
-.if ${.CURDIR:M*/www/firefox*} || ${.CURDIR:M*/mail/thunderbird*}
-.if defined(CONFIGURE_ENV) && ${CONFIGURE_ENV:N*${PREFIX}/libexec/ccache}
-CONFIGURE_ENV:=	${CONFIGURE_ENV:S@PATH=@PATH=${PREFIX}/libexec/ccache:@}
-.endif
-.if defined(MAKE_ENV) && ${MAKE_ENV:N*${PREFIX}/libexec/ccache}
-MAKE_ENV:=	${MAKE_ENV:S@PATH=@PATH=${PREFIX}/libexec/ccache:@}
-.endif
-.endif
-
 .if defined(RUN_DEPENDS) && ${RUN_DEPENDS:M*sudo\:security/sudo*}
 RUN_DEPENDS:=	${RUN_DEPENDS:S@sudo:security/sudo@sudo:security/doas-wrapper@}
 .endif
 
-.if ${.CURDIR:M*/multimedia/libxine*}
-CONFIGURE_ARGS:=	${CONFIGURE_ARGS:S/--enable-musepack//}
-.endif
-
-.if ${.CURDIR:M*/x11-toolkits/Xaw3d*}
-PATH:=/usr/bin:${PATH}
-.endif
-
 .if defined(LIB_DEPENDS) && ${LIB_DEPENDS:M*\:x11-toolkits/Xaw3d*}
 LIB_DEPENDS:=	${LIB_DEPENDS:S@x11-toolkits/Xaw3d@x11-toolkits/libXaw3d@}
-.endif
-
-.if defined(RUN_DEPENDS) && ${RUN_DEPENDS:M*/security/veracrypt*}
-.if !target(pre-configure)
-pre-configure:
-	${REINPLACE_CMD} -e 's|Icon=VeraCrypt-16x16|Icon=VeraCrypt-256x256|g' ${WRKSRC}/src/Setup/FreeBSD/veracrypt.desktop
-.endif
-.endif
-
-.if ${.CURDIR:M*/graphics/gegl*}
-MESON_ARGS+=	-Dlibv4l=disabled -Dmrg=disabled
 .endif
 
 .if ${.CURDIR:M*/graphics/evince*}
@@ -155,32 +123,8 @@ post-install-LLDB-on:
 . endif
 .endif
 
-#.if defined(BUILD_DEPENDS) && ${BUILD_DEPENDS:M*lang/rust*}
-#.undef NO_SCCACHE
-#. if ! defined(CCACHE_DIR) && exists(/usr/local/bin/ccache)
-#SCCACHE_DIR!=	/usr/local/bin/ccache -p | awk ' /cache_dir = / { print $$4 } '
-#. endif
-#_USES_configure:=	${_USES_configure:S@250:sccache-start@@}
-#_USES_stage:=	${_USES_stage:S@950:sccache-stats@@}
-#.else
-#NO_SCCACHE=	yes
-#.endif
-
 .if defined(PREFIX) && ${PREFIX} == /usr/local
 POST_PLIST+=	remove-info-plist
-#POST_PLIST+=	post-man-plist remove-info-plist
-#. if !target(post-man-plist)
-#post-man-plist:
-#	cd ${STAGEDIR}${PREFIX}; \
-#	[ -d man ] && \
-#	( _MANFILES=$$( ${FIND} man/ -type f -or -type l ); \
-#		for _F in $${_MANFILES}; do \
-#			${MKDIR} share/$${_F%/*}; \
-#			${MV} $${_F} share/$${_F}; \
-#		done; \
-#		${REINPLACE_CMD} -E 's|^man/|share/man/|;s| man/| share/man/|;s|%%MANPAGES%%man/|%%MANPAGES%%share/man/|' ${TMPPLIST}; \
-#	) || exit 0
-#. endif
 . if ! ${.CURDIR:M*/math/maxima}
 .  if !target(remove-info-plist)
 .undef INFO

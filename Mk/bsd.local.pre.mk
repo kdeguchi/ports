@@ -3,17 +3,6 @@ NO_CCACHE=	yes
 NO_SCCACHE=	yes
 .endif
 
-#.if defined(BUILD_DEPENDS) && ${BUILD_DEPENDS:M*lang/rust*}
-#.undef NO_SCCACHE
-#. if ! defined(CCACHE_DIR)
-#SCCACHE_DIR!=	/usr/local/bin/ccache -p | awk ' /cache_dir = / { print $$4 } '
-#. endif
-#_USES_configure:=	${_USES_configure:S@250:sccache-start@@}
-#_USES_stage:=	${_USES_stage:S@950:sccache-stats@@}
-#.else
-#NO_SCCACHE=	yes
-#.endif
-
 .if ${.CURDIR:M*/sysutils/libcdio-paranoia*}
 USES+=	iconv
 .endif
@@ -40,7 +29,6 @@ USE_WX=	3.2
 # KDE
 ########################################
 .if defined(USE_KDE) && ${USE_KDE:M*ecm*}
-#NO_CCACHE=	yes
 . if defined(USE_KDE) && ! ${USE_KDE:M*ecm\:build*}
 USE_KDE:=	${USE_KDE:S@ecm@ecm:build@}
 . endif
