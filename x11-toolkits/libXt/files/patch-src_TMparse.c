@@ -1,4 +1,4 @@
---- src/TMparse.c.orig	2021-01-24 14:47:39 UTC
+--- src/TMparse.c.orig	2023-04-09 20:48:48 UTC
 +++ src/TMparse.c
 @@ -99,6 +99,15 @@ in this Software without prior written authorization f
  #define MIN(a,b) (((a) < (b)) ? (a) : (b))
@@ -16,16 +16,16 @@
  static _Xconst char *XtNtranslationParseError = "translationParseError";
  
  typedef int EventType;
-@@ -173,6 +182,8 @@ static NameValueRec buttonNames[] = {
-     {"Button3",             0,         Button3},
-     {"Button4",             0,         Button4},
-     {"Button5",             0,         Button5},
-+    {"Button6",             0,         XtButton6},
-+    {"Button7",             0,         XtButton7},
-     {NULL,                  NULLQUARK, 0},
- };
- 
-@@ -260,6 +271,8 @@ static EventKey events[] = {
+@@ -162,6 +171,8 @@ static ModifierRec modifiers[] = {
+     {"Button3", 0,      ParseModImmed, Button3Mask},
+     {"Button4", 0,      ParseModImmed, Button4Mask},
+     {"Button5", 0,      ParseModImmed, Button5Mask},
++    {"Button6", 0,      ParseModImmed, XtButton6},
++    {"Button7", 0,      ParseModImmed, XtButton7},
+     {"c",       0,      ParseModImmed, ControlMask},
+     {"s",       0,      ParseModImmed, ShiftMask},
+     {"l",       0,      ParseModImmed, LockMask},
+@@ -252,6 +263,8 @@ static EventKey events[] = {
  {"Btn3Down",        NULLQUARK, ButtonPress,     ParseImmed, (Opaque)Button3},
  {"Btn4Down",        NULLQUARK, ButtonPress,     ParseImmed, (Opaque)Button4},
  {"Btn5Down",        NULLQUARK, ButtonPress,     ParseImmed, (Opaque)Button5},
@@ -34,7 +34,7 @@
  
  /* Event Name,    Quark, Event Type,    Detail Parser, Closure */
  
-@@ -270,6 +283,8 @@ static EventKey events[] = {
+@@ -262,6 +275,8 @@ static EventKey events[] = {
  {"Btn3Up",          NULLQUARK, ButtonRelease,   ParseImmed, (Opaque)Button3},
  {"Btn4Up",          NULLQUARK, ButtonRelease,   ParseImmed, (Opaque)Button4},
  {"Btn5Up",          NULLQUARK, ButtonRelease,   ParseImmed, (Opaque)Button5},
