@@ -91,7 +91,6 @@ UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:jawikilatest \
 		https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/:iddef
 
 .elif ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
-USE_LOCALE=	C.UTF-8
 USES+=		qt:6
 USE_QT=		base
 BUILD_DEPENDS+=	libglvnd>0:graphics/libglvnd
