@@ -461,7 +461,7 @@ do-install-fcitx5_mozc:
 		${STAGEDIR}${PREFIX}/share/icons/hicolor/32x32/apps \
 		${STAGEDIR}${PREFIX}/share/icons/hicolor/48x48/apps \
 		${STAGEDIR}${PREFIX}/share/metainfo
-	${INSTALL_LIB} \
+	${INSTALL_PROGRAM} \
 		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/fcitx5/fcitx5-mozc.so \
 			${STAGEDIR}${PREFIX}/lib/fcitx5
 	${INSTALL_DATA} \
