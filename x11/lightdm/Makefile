@@ -59,7 +59,7 @@ NLS_USES=		gettext-runtime
 NLS_CONFIGURE_ENABLE=	nls
 
 QT5_USES=		qt:5
-QT5_USE=		QT=buildtools,core,dbus,gui
+QT5_USE=		QT=buildtools:build,core,dbus,gui
 QT5_CONFIGURE_ENABLE=	liblightdm-qt5
 
 VAPI_USES=		vala:build
