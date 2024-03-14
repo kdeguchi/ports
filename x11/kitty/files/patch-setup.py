@@ -1,6 +1,6 @@
---- setup.py.orig	1979-11-29 23:00:00 UTC
+--- setup.py.orig	2024-03-13 10:18:26 UTC
 +++ setup.py
-@@ -218,25 +218,10 @@ def libcrypto_flags() -> Tuple[List[str], List[str]]:
+@@ -237,25 +237,10 @@ def libcrypto_flags() -> Tuple[List[str], List[str]]:
      # Apple use their special snowflake TLS libraries and additionally
      # have an ancient broken system OpenSSL, so we need to check for one
      # installed by all the various macOS package managers.
@@ -29,15 +29,15 @@
  
  
  def at_least_version(package: str, major: int, minor: int = 0) -> None:
-@@ -619,6 +604,7 @@ def get_source_specific_defines(env: Env, src: str) ->
+@@ -684,6 +669,7 @@ def get_source_specific_defines(env: Env, src: str) ->
      if src == 'kitty/data-types.c':
          if not env.vcs_rev:
              env.vcs_rev = get_vcs_rev()
 +            env.ldflags.append('-lutempter')
-         return src, [f'KITTY_VCS_REV="{env.vcs_rev}"', f'WRAPPED_KITTENS="{wrapped_kittens()}"']
-     try:
-         return src, env.library_paths[src]
-@@ -1170,8 +1156,8 @@ def create_linux_bundle_gunk(ddir: str, args: Options)
+         return src, [], [f'KITTY_VCS_REV="{env.vcs_rev}"', f'WRAPPED_KITTENS="{wrapped_kittens()}"']
+     if src.startswith('3rdparty/base64/'):
+         return src, ['3rdparty/base64',], base64_defines(env.binary_arch.isa)
+@@ -1290,8 +1276,8 @@ def create_linux_bundle_gunk(ddir: str, args: Options)
      base = Path(ddir)
      in_src_launcher = base / (f'{libdir_name}/kitty/kitty/launcher/kitty')
      launcher = base / 'bin/kitty'
