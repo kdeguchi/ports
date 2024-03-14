@@ -1,6 +1,6 @@
 PORTNAME=	compiz
 PORTVERSION=	0.8.18
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11-wm
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -34,7 +34,7 @@ USE_XORG=	ice sm x11 xcomposite xdamage xext xfixes xinerama \
 USE_GITLAB=	yes
 GL_ACCOUNT=	compiz
 GL_PROJECT=	compiz-core
-GL_COMMIT=	56b7daa0277b03e2974c5a5e1d814ad66e3ee761
+GL_COMMIT=	fe274c9f3d8d657dffaaa594be4c851e40ad623c
 
 INSTALL_TARGET=	install-strip
 INSTALL_ICONS=	yes
