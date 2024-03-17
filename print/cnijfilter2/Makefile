@@ -21,6 +21,7 @@ OPTIONS_DEFINE=	DOCS
 
 .if defined(ARCH) && ${ARCH:Mamd64}
 _ARCH=	x86_64
+_LIBDIR=	${STAGEDIR}${PREFIX}/usr/lib64
 .else
 _ARCH=	${ARCH}
 .endif
@@ -34,7 +35,8 @@ _ARCH=	${ARCH}
 post-extract:
 	cd ${WRKSRC}/packages && \
 		${MKDIR} ${_ARCH} && \
-		${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${DISTNAME:S/-rpm/.${_ARCH}.rpm/} -C ./${_ARCH}
+		${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} \
+			${DISTNAME:S/-rpm/.${_ARCH}.rpm/} -C ./${_ARCH}
 
 do-install:
 	cd ${WRKSRC}/packages/${_ARCH} && \
@@ -46,20 +48,27 @@ do-install:
 			i=`basename $${i}` && \
 			${RLN} ${STAGEDIR}${PREFIX}/usr/bin/$${i} ${STAGEDIR}${LOCALBASE}/bin/$${i}; \
 		done
+.if defined(_ARCH) && ${_ARCH:Mx86_64}
+		${MV} ${STAGEDIR}${PREFIX}/usr/lib/* ${_LIBDIR} && \
+		${RMDIR} ${STAGEDIR}${PREFIX}/usr/lib
+.endif
 		${MKDIR} ${STAGEDIR}${LOCALBASE}/libexec/cups/backend && \
-		for i in ${STAGEDIR}${PREFIX}/usr/lib/cups/backend/*; do \
+		for i in ${_LIBDIR}/cups/backend/*; do \
 			i=`basename $${i}` && \
-			${RLN} ${STAGEDIR}${PREFIX}/usr/lib/cups/backend/$${i} ${STAGEDIR}${LOCALBASE}/libexec/cups/backend/$${i}; \
+			${RLN} ${_LIBDIR}/cups/backend/$${i} \
+				${STAGEDIR}${LOCALBASE}/libexec/cups/backend/$${i}; \
 		done
 		${MKDIR} ${STAGEDIR}${LOCALBASE}/libexec/cups/filter && \
-		for i in ${STAGEDIR}${PREFIX}/usr/lib/cups/filter/*; do \
+		for i in ${_LIBDIR}/cups/filter/*; do \
 			i=`basename $${i}` && \
-			${RLN} ${STAGEDIR}${PREFIX}/usr/lib/cups/filter/$${i} ${STAGEDIR}${LOCALBASE}/libexec/cups/filter/$${i}; \
+			${RLN} ${_LIBDIR}/cups/filter/$${i} \
+				${STAGEDIR}${LOCALBASE}/libexec/cups/filter/$${i}; \
 		done
 		${MKDIR} ${STAGEDIR}${LOCALBASE}/share/cups/model && \
 		for i in ${STAGEDIR}${PREFIX}/usr/share/cups/model/*; do \
 			i=`basename $${i}` && \
-			${RLN} ${STAGEDIR}${PREFIX}/usr/share/cups/model/$${i} ${STAGEDIR}${LOCALBASE}/share/cups/model/$${i}; \
+			${RLN} ${STAGEDIR}${PREFIX}/usr/share/cups/model/$${i} \
+				${STAGEDIR}${LOCALBASE}/share/cups/model/$${i}; \
 		done
 
 do-install-DOCS-off:
