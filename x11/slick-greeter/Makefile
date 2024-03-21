@@ -1,5 +1,6 @@
 PORTNAME=	slick-greeter
 PORTVERSION=	2.0.3
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ericbsd@FreeBSD.org
@@ -28,8 +29,10 @@ USE_XORG=	pixman x11 xext
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxmint
+GH_TAGNAME=	5bd9be1
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 SHEBANG_FILES=	files/usr/bin/slick-greeter-check-hidpi \
 		files/usr/bin/slick-greeter-enable-tap-to-click \
 		files/usr/bin/slick-greeter-set-keyboard-layout \
