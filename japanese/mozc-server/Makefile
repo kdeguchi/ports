@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.29.5400.102
-PORTREVISION?=	3
+PORTREVISION?=	4
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -17,7 +17,7 @@ USES=		compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:9122039 \
+GH_TUPLE=	fcitx:mozc:a5360b0 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
@@ -51,7 +51,7 @@ UTDIC_PATCH_DEPENDS=	rubygem-nkf>0:net/rubygem-nkf \
 		rubygem-zlib>0:devel/rubygem-zlib
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:21ad277:ut
+UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:158abdb:ut
 
 # GPLv2
 ALTCANNADIC_DESC=	Dictionary from Alt-Cannadic
@@ -60,10 +60,8 @@ ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:4e548e6:altcannadic
 # CC-BY-SA-4.0
 EDICT2_DESC=	Dictionary from EDICT2
 EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:16283aa:edict2
-
-# CC-BY-SA-3.0
 JAWIKI_DESC=	Dictionary from Japanese Wikipedia
-JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:bd82687:jawiki
+JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:3fa6610:jawiki
 
 # APACHE20
 NEOLOGD_DESC=	Dictionary from NEologd
@@ -71,11 +69,11 @@ NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:bf9d0d2:neologd
 
 # APACHE20
 PERSONALNAME_DESC=	Personal Name Dictionary
-PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:6cc099c:personal
+PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:3c11566:personal
 
 # APCHE20
 PLACENAME_DESC=	Place Name Dictionary
-PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:a847a02:place
+PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:2d4aa70:place
 
 # APACHE20 GPLv2
 SKKJISYO_DESC=	Dictionary from from SKK-JISYO
@@ -157,10 +155,7 @@ post-patch:
 	${PORT_OPTIONS:MPLACENAME}
 LICENSE+=	APACHE20
 .endif
-.if ${PORT_OPTIONS:MUTDIC} || ${PORT_OPTIONS:MJAWIKI}
-LICENSE+=	CC-BY-SA-3.0
-.endif
-.if ${PORT_OPTIONS:MEDICT2}
+.if ${PORT_OPTIONS:MEDICT2} || ${PORT_OPTIONS:MJAWIKI}
 LICENSE+=	CC-BY-SA-4.0
 .endif
 .if ${PORT_OPTIONS:MALTCANNADIC} || ${PORT_OPTIONS:MSKKJISYO}
