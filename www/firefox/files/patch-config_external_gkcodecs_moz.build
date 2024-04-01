@@ -1,0 +1,10 @@
+--- config/external/gkcodecs/moz.build.orig	2024-03-04 12:24:51 UTC
++++ config/external/gkcodecs/moz.build
+@@ -16,3 +16,7 @@ SHARED_LIBRARY_NAME = "gkcodecs"
+ SYMBOLS_FILE = "gkcodecs.symbols"
+ if CONFIG["MOZ_SYSTEM_LIBVPX"]:
+     DEFINES["MOZ_SYSTEM_LIBVPX"] = True
++if CONFIG['OS_TARGET'] != 'WINNT':
++    OS_LIBS += [
++        "m",
++    ]
