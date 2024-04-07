@@ -1,6 +1,6 @@
---- src/x-server-local.c.orig	2018-08-30 00:35:31 UTC
+--- src/x-server-local.c.orig	2024-03-20 01:33:02 UTC
 +++ src/x-server-local.c
-@@ -530,17 +530,13 @@ x_server_local_start (DisplayServer *display_server)
+@@ -542,17 +542,13 @@ x_server_local_start (DisplayServer *display_server)
          }
      }
  
