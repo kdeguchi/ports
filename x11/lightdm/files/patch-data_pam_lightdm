@@ -1,4 +1,4 @@
---- data/pam/lightdm.orig	2015-08-09 23:30:00 UTC
+--- data/pam/lightdm.orig	2018-03-21 23:13:29 UTC
 +++ data/pam/lightdm
 @@ -1,20 +1,21 @@
 -#%PAM-1.0

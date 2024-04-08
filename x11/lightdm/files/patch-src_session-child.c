@@ -1,14 +1,19 @@
 --- src/session-child.c.orig	2021-04-12 04:52:50 UTC
 +++ src/session-child.c
-@@ -13,7 +13,6 @@
+@@ -13,9 +13,11 @@
  #include <grp.h>
  #include <glib.h>
  #include <security/pam_appl.h>
 -#include <utmp.h>
  #include <utmpx.h>
  #include <sys/mman.h>
- #if HAVE_SETUSERCONTEXT
-@@ -196,28 +195,6 @@ read_xauth (void)
++#if HAVE_SETUSERCONTEXT
++#include <login_cap.h>
++#endif
+ 
+ #if HAVE_LIBAUDIT
+ #include <libaudit.h>
+@@ -193,28 +195,6 @@ read_xauth (void)
      return x_authority_new (x_authority_family, x_authority_address, x_authority_address_length, x_authority_number, x_authority_name, x_authority_data, x_authority_data_length);
  }
  
@@ -37,16 +42,15 @@
  #if HAVE_LIBAUDIT
  static void
  audit_event (int type, const gchar *username, uid_t uid, const gchar *remote_host_name, const gchar *tty, gboolean success)
-@@ -367,8 +344,6 @@ session_child_run (int argc, char **argv)
+@@ -364,7 +344,6 @@ session_child_run (int argc, char **argv)
              ut.ut_tv.tv_sec = tv.tv_sec;
              ut.ut_tv.tv_usec = tv.tv_usec;
  
 -            updwtmpx ("/var/log/btmp", &ut);
--
+ 
  #if HAVE_LIBAUDIT
              audit_event (AUDIT_USER_LOGIN, username, -1, remote_host_name, tty, FALSE);
- #endif
-@@ -397,7 +372,7 @@ session_child_run (int argc, char **argv)
+@@ -394,7 +373,7 @@ session_child_run (int argc, char **argv)
          else
          {
              /* Set POSIX variables */
@@ -55,7 +59,61 @@
              pam_putenv (pam_handle, g_strdup_printf ("USER=%s", username));
              pam_putenv (pam_handle, g_strdup_printf ("LOGNAME=%s", username));
              pam_putenv (pam_handle, g_strdup_printf ("HOME=%s", user_get_home_directory (user)));
-@@ -755,7 +730,6 @@ session_child_run (int argc, char **argv)
+@@ -636,7 +615,29 @@ session_child_run (int argc, char **argv)
+         /* Make this process its own session */
+         if (setsid () < 0)
+             _exit (errno);
+-
++#if HAVE_SETUSERCONTEXT
++        /* Setup user context
++        * Reset the current environment to what is in the PAM context,
++        * then setusercontext will add to it as necessary as there is no
++        * option for setusercontext to add to a PAM context.
++        */
++        extern char **environ;
++        environ = pam_getenvlist (pam_handle);
++        struct passwd* pwd = getpwnam (username);
++        if (pwd) {
++            if (setusercontext (NULL, pwd, pwd->pw_uid, LOGIN_SETALL) < 0) {
++                int _errno = errno;
++                fprintf(stderr, "setusercontext for \"%s\" (%d) failed: %s\n",
++                    username, user_get_uid (user), strerror (errno));
++                _exit (_errno);
++            }
++            endpwent();
++        } else {
++            fprintf (stderr, "getpwname for \"%s\" failed: %s\n",
++                username, strerror (errno));
++            _exit (ENOENT);
++        }
++#else
+         /* Change to this user */
+         if (getuid () == 0)
+         {
+@@ -646,6 +647,7 @@ session_child_run (int argc, char **argv)
+             if (setuid (uid) != 0)
+                 _exit (errno);
+         }
++#endif
+ 
+         /* Change working directory */
+         /* NOTE: This must be done after the permissions are changed because NFS filesystems can
+@@ -668,7 +670,13 @@ session_child_run (int argc, char **argv)
+         signal (SIGPIPE, SIG_DFL);
+ 
+         /* Run the command */
+-        execve (command_argv[0], command_argv, pam_getenvlist (pam_handle));
++        execve (command_argv[0], command_argv,
++#if HAVE_SETUSERCONTEXT
++            environ
++#else
++            pam_getenvlist (pam_handle)
++#endif
++        );
+         _exit (EXIT_FAILURE);
+     }
+ 
+@@ -709,7 +717,6 @@ session_child_run (int argc, char **argv)
              if (!pututxline (&ut))
                  g_printerr ("Failed to write utmpx: %s\n", strerror (errno));
              endutxent ();
@@ -63,7 +121,7 @@
  
  #if HAVE_LIBAUDIT
              audit_event (AUDIT_USER_LOGIN, username, uid, remote_host_name, tty, TRUE);
-@@ -796,7 +770,6 @@ session_child_run (int argc, char **argv)
+@@ -750,7 +757,6 @@ session_child_run (int argc, char **argv)
              if (!pututxline (&ut))
                  g_printerr ("Failed to write utmpx: %s\n", strerror (errno));
              endutxent ();
