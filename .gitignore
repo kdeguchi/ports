@@ -1,5 +1,4 @@
 */Makefile.inc
 /Mk/Scripts/[a-hj-z]*.sh
 /Mk/Scripts/*.awk
-/multimedia/avidemux-cli
-/multimedia/avidemux-plugins
+/Mk/Scripts/*.py
