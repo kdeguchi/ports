@@ -1,4 +1,4 @@
---- src/lightdm.c.orig	2024-03-20 01:33:02 UTC
+--- src/lightdm.c.orig	2022-07-10 21:17:23 UTC
 +++ src/lightdm.c
 @@ -773,6 +773,8 @@ main (int argc, char **argv)
          config_set_boolean (config_get_instance (), "LightDM", "backup-logs", TRUE);

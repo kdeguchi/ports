@@ -1,4 +1,4 @@
---- src/session.c.orig	2024-03-20 01:33:02 UTC
+--- src/session.c.orig	2021-04-12 04:52:50 UTC
 +++ src/session.c
 @@ -1000,7 +1000,17 @@ session_init (Session *session)
  {
