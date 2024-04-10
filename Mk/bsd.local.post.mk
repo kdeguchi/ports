@@ -123,6 +123,15 @@ post-install-LLDB-on:
 . endif
 .endif
 
+.if exists(/usr/local/share/sccache/overlay/Mk/bsd.overlay.mk)
+. if defined(USES) && ${USES:Mcargo}
+.unexport NO_SCCACHE
+.undef NO_SCCACHE
+. else
+.export NO_SCCACHE=	yes
+. endif
+.endif
+
 .if defined(PREFIX) && ${PREFIX} == /usr/local
 POST_PLIST+=	remove-info-plist
 . if ! ${.CURDIR:M*/math/maxima}
