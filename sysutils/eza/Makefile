@@ -1,6 +1,6 @@
 PORTNAME=	eza
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.18.9
+DISTVERSION=	0.18.10
 CATEGORIES=	sysutils
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -92,7 +92,7 @@ CARGO_CRATES=	aho-corasick-1.0.5 \
 		memoffset-0.9.0 \
 		natord-1.0.9 \
 		normalize-line-endings-0.3.0 \
-		nu-ansi-term-0.49.0 \
+		nu-ansi-term-0.50.0 \
 		num-traits-0.2.14 \
 		number_prefix-0.4.0 \
 		once_cell-1.19.0 \
@@ -139,7 +139,7 @@ CARGO_CRATES=	aho-corasick-1.0.5 \
 		shlex-1.3.0 \
 		similar-2.2.1 \
 		siphasher-0.3.11 \
-		snapbox-0.5.5 \
+		snapbox-0.5.9 \
 		snapbox-macros-0.3.8 \
 		syn-2.0.29 \
 		tempfile-3.8.0 \
@@ -155,7 +155,7 @@ CARGO_CRATES=	aho-corasick-1.0.5 \
 		tinyvec_macros-0.1.0 \
 		toml_datetime-0.6.5 \
 		toml_edit-0.22.6 \
-		trycmd-0.15.0 \
+		trycmd-0.15.1 \
 		unicode-bidi-0.3.5 \
 		unicode-ident-1.0.11 \
 		unicode-normalization-0.1.17 \
