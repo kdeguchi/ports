@@ -124,7 +124,7 @@ post-install-LLDB-on:
 .endif
 
 .if exists(/usr/local/share/sccache/overlay/Mk/bsd.overlay.mk)
-. if defined(USES) && ${USES:Mcargo}
+. if ( defined(USES) && ${USES:Mcargo} || defined(BUILD_DEPENDS) && ${BUILD_DEPENDS:M*rust*} )
 .unexport NO_SCCACHE
 .undef NO_SCCACHE
 . else
