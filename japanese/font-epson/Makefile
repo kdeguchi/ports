@@ -21,6 +21,8 @@ NO_BUILD=	yes
 
 SUB_FILES=	pkg-install
 
+NO_WRKSUBDIR=	yes
+
 PKGINSTALL=	${WRKDIR}/pkg-install
 PKGDEINSTALL=	${WRKDIR}/pkg-install
 
