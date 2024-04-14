@@ -1,7 +1,7 @@
 PORTNAME=	conky
 PORTVERSION=	1.19.8
-PORTREVISION=	1
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	fernape@FreeBSD.org
@@ -21,16 +21,14 @@ GH_ACCOUNT=	brndnmtthws
 GH_TAGNAME=	bc85f40
 
 CMAKE_ARGS=	-DAPP_SED=${LOCALBASE}/bin/gsed
+CMAKE_ON=	BUILD_EXTRAS \
+		BUILD_ICONV
 CMAKE_OFF=	BUILD_AUDACIOUS \
 		BUILD_HDDTEMP \
 		BUILD_IBM \
 		BUILD_IOSTATS \
 		BUILD_PORT_MONITORS
-CMAKE_ON=	BUILD_EXTRAS \
-		BUILD_ICONV
 CONFLICTS?=	conky-awesome
-
-SLAVEDIRS=	sysutils/conky-awesome
 
 PORTDOCS=	config_settings.yaml lua.yaml variables.yaml
 PORTEXAMPLES=	conky.conf conky_no_x11.conf convert.lua
@@ -59,10 +57,13 @@ MOC_DESC=		Control MOC (Music On Console)
 MOUSE_EVENTS_DESC=	Support generating mouse events
 MPD_DESC=		Control MPD (Music Player Daemon)
 NCURSES_DESC=		Use ncurses to draw on terminals
+NVIM_DESC=	For neovim
 RSS_DESC=		Display RSS feeds
+VIM_DESC=	For vim
 VIM_FILES_DESC=		Install vim syntax files
 XMMS2_DESC=		Control XMMS2 media player
 XSHAPE_DESC=		Xshape support
+
 
 APCUPSD_CMAKE_BOOL=	BUILD_APCUPSD
 
@@ -121,9 +122,6 @@ RSS_USES=	gnome
 RSS_USE=	GNOME=glib20,libxml2
 RSS_CMAKE_BOOL=	BUILD_RSS
 
-VIM_DESC=	For vim
-NVIM_DESC=	For neovim
-
 WAYLAND_CATEGORIES=	wayland
 WAYLAND_BUILD_DEPENDS=	wayland-protocols>=1.13:graphics/wayland-protocols
 WAYLAND_LIB_DEPENDS=	libepoll-shim.so:devel/libepoll-shim \
@@ -155,6 +153,8 @@ XSHAPE_IMPLIES=	X11
 XSHAPE_CMAKE_BOOL=	BUILD_XSHAPE
 
 .include <bsd.port.options.mk>
+
+SLAVEDIRS=	sysutils/conky-awesome
 
 # disable apm on non-x86 archs
 .if ${ARCH} != amd64 && ${ARCH} != i386
