@@ -11,14 +11,16 @@ LICENSE=	GPLv3
 LIB_DEPENDS=	libcolord.so:graphics/colord \
 		libXrandr.so:x11/libXrandr
 
-USES=		autoreconf gnome
-USE_GNOME=	glib20
-USE_XORG=	x11
-GNU_CONFIGURE=	yes
+USES=		autoreconf gnome xorg
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	agalakhov
 GH_TAGNAME=	b518820
+
+USE_GNOME=	glib20
+USE_XORG=	x11
+
+GNU_CONFIGURE=	yes
 
 OPTIONS_DEFINE=	DOCS
 
