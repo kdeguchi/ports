@@ -67,9 +67,9 @@ _STRIP_TARGETS=	kitty/fast_data_types.so kitty/glfw-x11.so \
 _EMPTY_DIRS=	kittens/choose kittens/diff kittens/unicode_input kittens kitty
 
 OPTIONS_DEFINE=	DOCS MANPAGES
+OPTIONS_SUB=	yes
 DOCS_MAKE_ENV=	BUILD_DOCS=yes
 MANPAGES_MAKE_ENV=	BUILD_DOCS=yes
-OPTIONS_SUB=	yes
 
 .include <bsd.port.options.mk>
 
