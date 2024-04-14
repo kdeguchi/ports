@@ -13,10 +13,11 @@ RUN_DEPENDS=	tgif:graphics/tgif \
 		${LOCALBASE}/share/fonts/ipa-uigothic/ipagui.ttf:japanese/font-ipa-uigothic \
 		${LOCALBASE}/share/fonts/std.ja_JP/Ryumin-Light:japanese/font-std
 
-NO_BUILD=	yes
-NO_WRKSUBDIR=	yes
 USES=		xorg
 USE_XORG=	x11
+
+NO_BUILD=	yes
+NO_WRKSUBDIR=	yes
 PLIST_SUB=	XAPPLRESDIR=${XAPPLRESDIR}
 
 XAPPLRESDIR=	lib/X11/ja_JP.UTF-8/app-defaults
