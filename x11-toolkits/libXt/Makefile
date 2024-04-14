@@ -11,9 +11,11 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		cpe tar:xz xorg xorg-cat:lib
-USE_XORG=	x11 sm ice xorgproto
+
 CPE_VENDOR=	x
 CPE_PRODUCT=	libxt
+
+USE_XORG=	x11 sm ice xorgproto
 
 CONFIGURE_ARGS=	--disable-specs
 
