@@ -56,7 +56,6 @@ USE_XORG=	ice sm x11 xcursor xext xfixes xmu xpm xt
 SHEBANG_FILES=	plug-ins/pygimp/plug-ins/*.py
 
 GNU_CONFIGURE=		yes
-GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS?=	--with-html-dir=${PREFIX}/share/doc/gimp \
 			--with-bug-report-url="https://bugs.freebsd.org/" \
 			--disable-gtk-doc \

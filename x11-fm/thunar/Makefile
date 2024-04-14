@@ -28,7 +28,6 @@ USE_XORG=	ice sm x11
 CPE_VENDOR=	xfce
 
 GNU_CONFIGURE=	yes
-GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--enable-gio-unix
 INSTALL_TARGET=	install-strip
 

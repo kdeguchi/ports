@@ -14,7 +14,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 USES=		gmake xorg xorg-cat:lib
 USE_XORG=	x11 xau xext xmu xpm xorgproto xt
 
-GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--without-xmlto
 
 SUB_FILES=	pkg-post-deinstall pkg-post-install

@@ -20,7 +20,6 @@ RUN_DEPENDS=	eawpats>0:audio/eawpats
 
 USES=		gmake iconv:build localbase tar:bzip2
 GNU_CONFIGURE=	yes
-GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 CONFIGURE_ENV+=	SHLD="${CC} -shared"
 
 CPPFLAGS+=	-I${LOCALBASE}/include/libarc

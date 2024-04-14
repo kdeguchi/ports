@@ -15,7 +15,6 @@ USE_XORG=	x11 sm ice xorgproto
 CPE_VENDOR=	x
 CPE_PRODUCT=	libxt
 
-GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--disable-specs
 
 INSTALL_TARGET=	install-strip

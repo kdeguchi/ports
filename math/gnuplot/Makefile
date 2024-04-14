@@ -18,7 +18,6 @@ CONFLICTS_INSTALL?=	gnuplot-lite
 USES+=		compiler:c++11-lang cpe groff iconv localbase pkgconfig readline
 CPE_VENDOR=	gnuplot_project
 GNU_CONFIGURE=	yes
-GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS+=--with-readline=gnu \
 		--without-linux-vga \
 		--without-lisp-files \

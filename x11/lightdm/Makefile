@@ -35,7 +35,6 @@ GH_ACCOUNT=	canonical
 GH_TAGNAME=	1ade713
 
 GNU_CONFIGURE=		yes
-GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 # tests causes PAM errors
 CONFIGURE_ARGS=		--disable-libaudit \
 			--disable-tests

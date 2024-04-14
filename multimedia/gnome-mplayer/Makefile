@@ -26,7 +26,6 @@ GLIB_SCHEMAS=	apps.gecko-mediaplayer.preferences.gschema.xml \
 		apps.gnome-mplayer.preferences.gschema.xml
 USE_XORG=	x11 xscrnsaver
 GNU_CONFIGURE=	yes
-GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--disable-nautilus \
 		--disable-nemo \
 		--disable-schemas-install \
