@@ -9,16 +9,19 @@ COMMENT=	3-D Athena Widget set that looks like Motif
 
 LICENSE=	MIT
 
-WRKSRC=		${WRKDIR}/xc/lib/Xaw3d
 USES=		gettext imake xorg
-USE_XORG=	x11 xext xmu xt sm ice xpm
 USE_LDCONFIG=	yes
+USE_XORG=	x11 xext xmu xt sm ice xpm
 
 SUB_FILES=	pkg-message pkg-post-deinstall pkg-post-install
+SUB_LIST=	XAWVER="${XAWVER}"
+
+WRKSRC=		${WRKDIR}/xc/lib/Xaw3d
+
 PKGPOSTINSTALL=	${WRKDIR}/pkg-post-install
 PKGPOSTDEINSTALL=	${WRKDIR}/pkg-post-deinstall
+
 XAWVER=		8
-SUB_LIST=	XAWVER="${XAWVER}"
 
 OPTIONS_DEFINE=	DOCS
 
