@@ -18,16 +18,16 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	linuxmint
 USE_GNOME=	cairo gdkpixbuf2 glib20 gtk-update-icon-cache gtk30 \
 		intltool introspection:build libgnomekbd pygobject3
+GLIB_SCHEMAS=	org.x.apps.gschema.xml
 USE_LDCONFIG=	yes
 USE_XORG=	x11
-GLIB_SCHEMAS=	org.x.apps.gschema.xml
 SHEBANG_FILES=	data libxapp meson-scripts schemas scripts status-applets \
 		test-scripts
 bash_CMD=	/bin/sh
 
-PLIST_SUB+=	LIBVERSION=${PORTVERSION}
-
 PORTSCOUT=	limit:^[0-9.]+$$	# ignore master.mint* tags
+
+PLIST_SUB+=	LIBVERSION=${PORTVERSION}
 
 OPTIONS_DEFINE=	DOCS
 OPTIONS_SUB=	yes
