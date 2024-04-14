@@ -8,14 +8,16 @@ COMMENT=	3-D Athena Widget set that looks like Motif
 LICENSE=	MIT
 
 USES=		autoreconf gettext libtool pkgconfig xorg xorg-cat:lib
-USE_XORG=	ice sm x11 xext xmu xpm xt
 USE_LDCONFIG=	yes
+USE_XORG=	ice sm x11 xext xmu xpm xt
 
 SUB_FILES=	pkg-message pkg-post-deinstall pkg-post-install
+SUB_LIST=	XAWVER="${XAWVER}"
+
 PKGPOSTINSTALL=	${WRKDIR}/pkg-post-install
 PKGPOSTDEINSTALL=	${WRKDIR}/pkg-post-deinstall
+
 XAWVER=	8
-SUB_LIST=	XAWVER="${XAWVER}"
 
 OPTIONS_DEFINE=	DOCS
 
