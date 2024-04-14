@@ -13,6 +13,9 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 NO_ARCH=	yes
 NO_BUILD=	yes
+SUB_FILES=	fluidr3_gm.cfg fluidr3_gs.cfg
+SUB_LIST=	PREFIX=${PREFIX}
+
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 PLIST_FILES=	share/sounds/sf2/FluidR3_GM.sf2 \
@@ -20,9 +23,6 @@ PLIST_FILES=	share/sounds/sf2/FluidR3_GM.sf2 \
 		share/timidity/fluidr3_gm.cfg \
 		share/timidity/fluidr3_gs.cfg
 PORTDOCS=	README
-
-SUB_FILES=	fluidr3_gm.cfg fluidr3_gs.cfg
-SUB_LIST=	PREFIX=${PREFIX}
 
 OPTIONS_DEFINE=	DOCS
 
