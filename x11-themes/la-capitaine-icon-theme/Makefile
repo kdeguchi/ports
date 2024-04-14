@@ -13,17 +13,18 @@ USE_GITHUB=	YES
 GH_ACCOUNT=	keeferrourke
 GH_TAGNAME=	8370e7c
 
-OPTIONS_DEFINE=	DOCS
-OPTIONS_SINGLE=	LIGHT-DARK
-OPTIONS_SINGLE_LIGHT-DARK=	LIGHT DARK
-LIGHT_DESC=	La Capitaine Light
-DARK_DESC=	La Capitaine Dark
-OPTIONS_DEFAULT=	LIGHT
-
 NO_ARCH=	yes
 NO_BUILD=	YES
 
 PORTDOCS=	Credits.md README.md Thanks.md COPYING
+
+OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFAULT=	LIGHT
+OPTIONS_SINGLE=	LIGHT-DARK
+OPTIONS_SINGLE_LIGHT-DARK=	LIGHT DARK
+
+DARK_DESC=	La Capitaine Dark
+LIGHT_DESC=	La Capitaine Light
 
 post-extract:
 .for logo in kubuntu debian-logo configure-debian debian debian-plymouth-manager archlinux gnome-debian
