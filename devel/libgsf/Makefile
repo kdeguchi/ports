@@ -16,19 +16,24 @@ LICENSE_FILE_GPLv2=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	gtkdocize:textproc/gtk-doc
 
 USES=		autoreconf cpe gmake gnome libtool localbase pathfix pkgconfig tar:xz
+CPE_VENDOR=	gnome
+
 USE_GITLAB=	yes
 GL_SITE=	https://gitlab.gnome.org
 GL_ACCOUNT=	GNOME
 GL_COMMIT=	503453ba
-#WRKSRC=	${WRKDIR}/libgsf-503453ba-503453ba1ee1220b2e18d2e8e5261f7585a8d2df
+
 USE_GNOME=	gdkpixbuf2 intlhack introspection:build libxml2
-GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-INSTALL_TARGET=	install-strip
+
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-introspection
-CPE_VENDOR=	gnome
+INSTALL_TARGET=	install-strip
 
 CFLAGS+=	-fwritable-strings
+
+PLIST_SUB+=	LIBMINORVER=${PORTVERSION:E} \
+		LIBSHORTVER=${PORTVERSION:R:S/.//}
 
 OPTIONS_DEFINE=	GTKDOC NLS
 OPTIONS_DEFAULT=NLS
@@ -36,10 +41,7 @@ OPTIONS_SUB=	yes
 
 GTKDOC_CONFIGURE_ENABLE=	gtk-doc
 
-NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext
-
-PLIST_SUB+=	LIBMINORVER=${PORTVERSION:E} \
-		LIBSHORTVER=${PORTVERSION:R:S/.//}
+NLS_CONFIGURE_ENABLE=	nls
 
 .include <bsd.port.mk>
