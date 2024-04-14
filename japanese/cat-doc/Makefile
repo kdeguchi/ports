@@ -19,12 +19,12 @@ EXTRACT_AFTER_ARGS=	-C ${WRKSRC} \
 		--exclude +MTREE_DIRS \
 		-s '|/usr|${PREFIX}|gs'
 
+NO_BUILD=	yes
+
 SUB_FILES=	eucjp2utf8.sh
 SUB_LIST=	AWK="${AWK}" CUT="${CUT}" ECHO_CMD="${ECHO_CMD}" FIND="${FIND}" \
 		GZCAT="${GZCAT}" GZIP_CMD="${GZIP_CMD}" ICONV_CMD="${ICONV_CMD}" \
 		LN="${LN}" SORT="${SORT}"
-
-NO_BUILD=	yes
 
 .include <bsd.port.pre.mk>
 
