@@ -1,21 +1,22 @@
 PORTNAME=	cnijfilter2
 PORTVERSION=	6.30
+DISTVERSIONSUFFIX=-1-rpm
 CATEGORIES=	print
 MASTER_SITES=	http://gdlp01.c-wss.com/gds/8/0100011318/01/
-DISTVERSIONSUFFIX=-1-rpm
 #https://gdlp01.c-wss.com/gds/8/0100011318/01/cnijfilter2-6.30-1-rpm.tar.gz
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Caonon IJ Printer driver
 WWW=		https://cweb.canon.jp/drv-upd/ij-mfp/linux-pd-20211h-630.html
 
+ONLY_FOR_ARCHS=	aarch64 amd64 i386 mips64el
+
 USES=	linux
+USE_LDCONFIG=	yes
 USE_LINUX=	avahi-libs cups-libs dbuslibs libxml2
 USE_LINUX_PREFIX=	yes
-USE_LDCONFIG=	yes
-NO_BUILD=	yes
 
-ONLY_FOR_ARCHS=	aarch64 amd64 i386 mips64el
+NO_BUILD=	yes
 
 OPTIONS_DEFINE=	DOCS
 
