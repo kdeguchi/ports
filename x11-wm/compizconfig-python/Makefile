@@ -11,24 +11,24 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/compiz.pc:x11-wm/compiz \
 	${LOCALBASE}/libdata/pkgconfig/libcompizconfig.pc:x11-wm/libcompizconfig
+
 LIB_DEPENDS=	libstartup-notification-1.so:x11/startup-notification
+
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/compiz.pc:x11-wm/compiz \
 	${LOCALBASE}/libdata/pkgconfig/libcompizconfig.pc:x11-wm/libcompizconfig
 
-HAS_CONFIGURE=	yes
 USES=		autoreconf gettext-runtime gmake gnome libtool \
 		pathfix pkgconfig python xorg
-USE_GNOME=	glib20 libxml2
-USE_PYTHON=	flavors cython
-USE_XORG=	ice sm x11 xcomposite xdamage xext xfixes xinerama xrandr xcursor xi
 
 USE_GITLAB=	yes
 GL_ACCOUNT=	compiz
 GL_COMMIT=	17f5f7548b30c88850c2564d9837c53e0eb035ff
-#USE_GITHUB=	yes
-#GH_ACCOUNT=	compiz-reloaded
-#GH_TAGNAME=	17f5f75
 
+USE_GNOME=	glib20 libxml2
+USE_PYTHON=	flavors cython
+USE_XORG=	ice sm x11 xcomposite xdamage xext xfixes xinerama xrandr xcursor xi
+
+HAS_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--with-cython=cython-${PYTHON_VER}
 
 post-install:
