@@ -1,7 +1,7 @@
 PORTNAME=	nss_mdns
 PORTVERSION=	0.15.1
-CATEGORIES=	dns
 DISTVERSIONPREFIX=	v
+CATEGORIES=	dns
 
 MAINTAINER=	ashish@FreeBSD.org
 COMMENT=	NSS module implementing multicast DNS name resolution
