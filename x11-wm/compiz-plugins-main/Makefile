@@ -39,7 +39,7 @@ OPTIONS_DEFINE=		NLS
 OPTIONS_DEFAULT=	NLS
 OPTIONS_SUB=	yes
 
-NLS_USES=		gettext-runtime gettext-tools
+NLS_USES=		gettext
 NLS_CONFIGURE_ENABLE=	nls
 
 .include <bsd.port.mk>
