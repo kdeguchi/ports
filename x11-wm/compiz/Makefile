@@ -25,22 +25,37 @@ RUN_DEPENDS_i386=	nvidia-settings:x11/nvidia-settings
 
 USES=		autoreconf gl gmake gnome iconv libtool localbase pathfix \
 		pkgconfig shebangfix xorg
-USE_GL=		gl glu
-USE_GNOME=	cairo glib20 intltool
-USE_LDCONFIG=	yes
-USE_XORG=	ice sm x11 xcomposite xdamage xext xfixes xinerama \
-		xorgproto xrandr xrender xcursor
 
 USE_GITLAB=	yes
 GL_ACCOUNT=	compiz
 GL_PROJECT=	compiz-core
 GL_COMMIT=	fe274c9f3d8d657dffaaa594be4c851e40ad623c
 
-INSTALL_TARGET=	install-strip
-INSTALL_ICONS=	yes
+USE_GL=		gl glu
+
+USE_GNOME=	cairo glib20 intltool
+GLIB_SCHEMAS=	org.compiz-0.gwd.gschema.xml
+
+USE_LDCONFIG=	yes
+USE_XORG=	ice sm x11 xcomposite xdamage xext xfixes xinerama \
+		xorgproto xrandr xrender xcursor
+
+SHEBANG_FILES=	plugins/compiz-decorator
+bash_CMD=	/bin/sh
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-menu-entries --disable-dependency-tracking
+
+INSTALL_TARGET=	install-strip
+
+DESKTOP_ENTRIES=	"Compiz Manager" \
+			"Wrapper script for starting compiz" \
+			"${DATADIR}/compiz-manager.png" \
+			"compiz-manager" \
+			"System;Core;" \
+			false
+
+SUB_FILES=		compiz-manager
 
 OPTIONS_DEFINE=	DBUS FUSE INOTIFY MATE NLS SVG
 OPTIONS_DEFAULT=	DBUS GTK3 NLS SVG
@@ -50,46 +65,33 @@ OPTIONS_SUB=	yes
 
 INOTIFY_DESC=	inotify plugin support
 
-SUB_FILES=		compiz-manager
-DESKTOP_ENTRIES=	"Compiz Manager" \
-			"Wrapper script for starting compiz" \
-			"${DATADIR}/compiz-manager.png" \
-			"compiz-manager" \
-			"System;Core;" \
-			false
-
-SHEBANG_FILES=	plugins/compiz-decorator
-bash_CMD=	/bin/sh
-
-GLIB_SCHEMAS=	org.compiz-0.gwd.gschema.xml
-
-DBUS_CONFIGURE_ENABLE=	dbus dbus-glib
 DBUS_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/dbus-1.pc:devel/dbus \
 		${LOCALBASE}/libdata/pkgconfig/dbus-glib-1.pc:devel/dbus-glib
 DBUS_RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/dbus-1.pc:devel/dbus \
 		${LOCALBASE}/libdata/pkgconfig/dbus-glib-1.pc:devel/dbus-glib
+DBUS_CONFIGURE_ENABLE=	dbus dbus-glib
 
-FUSE_CONFIGURE_ENABLE=	fuse
 FUSE_USES=		fuse
+FUSE_CONFIGURE_ENABLE=	fuse
 
-GTK2_CONFIGURE_ON=	--with-gtk=2.0
-GTK2_USE=	GNOME=glib20,gtk20,libwnck
 GTK2_IMPLIES=	DBUS
+GTK2_USE=	GNOME=glib20,gtk20,libwnck
+GTK2_CONFIGURE_ON=	--with-gtk=2.0
 
-GTK3_CONFIGURE_ON=	--with-gtk=3.0
-GTK3_USE=	GNOME=glib20,gtk30,libwnck3
 GTK3_IMPLIES=	DBUS
+GTK3_USE=	GNOME=glib20,gtk30,libwnck3
+GTK3_CONFIGURE_ON=	--with-gtk=3.0
 
-INOTIFY_CONFIGURE_ENABLE=	inotify
 INOTIFY_LIB_DEPENDS=	libinotify.so:devel/libinotify
+INOTIFY_CONFIGURE_ENABLE=	inotify
 
 MATE_CONFIGURE_ENABLE=	mate
 
-NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=	gettext
+NLS_CONFIGURE_ENABLE=	nls
 
-SVG_CONFIGURE_ENABLE=	librsvg
 SVG_USE=	GNOME=librsvg2
+SVG_CONFIGURE_ENABLE=	librsvg
 
 post-patch:
 	cd ${WRKSRC} && ${REINPLACE_CMD} -E 's@\[\[@[@g;s@\]\]@]@g;' ${SHEBANG_FILES} && \
