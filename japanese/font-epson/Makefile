@@ -2,9 +2,10 @@ PORTNAME=	epson
 PORTVERSION=	3.2.1
 CATEGORIES=	japanese x11-fonts
 MASTER_SITES=	https://www.epson.jp/dl_soft/file/27767/
+PKGNAMEPREFIX=	ja-font-
+
 DISTNAME=	EPSONTTF_v${PORTVERSION:S/.//g}
 EXTRACT_SUFX=	.exe
-PKGNAMEPREFIX=	ja-font-
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	EPSON TrueTypeFont
@@ -12,13 +13,16 @@ COMMENT=	EPSON TrueTypeFont
 LICENSE_FILE=	LA
 
 USES=		fonts:fc
+
 FONTPATHSPEC=	${FONTNAME}:pri=60
+
 NO_ARCH=	yes
 NO_BUILD=	yes
+
+SUB_FILES=	pkg-install
+
 PKGINSTALL=	${WRKDIR}/pkg-install
 PKGDEINSTALL=	${WRKDIR}/pkg-install
-SUB_FILES=	pkg-install
-NO_WRKSRCDIR=	yes
 
 do-install:
 	${MKDIR} ${STAGEDIR}${FONTSDIR}
