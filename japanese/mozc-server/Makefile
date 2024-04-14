@@ -44,61 +44,62 @@ OPTIONS_MULTI=	UTDIC
 OPTIONS_MULTI_UTDIC=	ALTCANNADIC EDICT2 JAWIKI NEOLOGD PERSONALNAME \
 		PLACENAME SKKJISYO SUDACHIDICT
 
+ALTCANNADIC_DESC=	Dictionary from Alt-Cannadic
+EDICT2_DESC=	Dictionary from EDICT2
+JAWIKI_DESC=	Dictionary from Japanese Wikipedia
+NEOLOGD_DESC=	Dictionary from NEologd
+PERSONALNAME_DESC=	Personal Name Dictionary
+PLACENAME_DESC=	Place Name Dictionary
+SKKJISYO_DESC=	Dictionary from from SKK-JISYO
+SUDACHIDICT_DESC=	Dictionary from SudachiDict
 UTDIC_DESC=	Additional UT Dictionary
+
+# GPLv2
+ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:4e548e6:altcannadic
+
+# CC-BY-SA-4.0
+EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:16283aa:edict2
+JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:3fa6610:jawiki
+
+# APACHE20
+NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:bf9d0d2:neologd
+
+# APACHE20
+PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:3c11566:personal
+
+# APCHE20
+PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:2d4aa70:place
+
+# APACHE20 GPLv2
+SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:ee94f65:skkjisyo
+
+# APACHE20
+SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:55f61c3:sudachi
+
+# APACHE20 multi
+UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:158abdb:ut
+
+UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:jawikilatest \
+		id.def:iddef
+
+UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:jawikilatest \
+		https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/:iddef
 
 UTDIC_USES=	ruby:build
 UTDIC_PATCH_DEPENDS=	rubygem-nkf>0:net/rubygem-nkf \
 		rubygem-zlib>0:devel/rubygem-zlib
 
-# APACHE20 multi
-UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:158abdb:ut
-
-# GPLv2
-ALTCANNADIC_DESC=	Dictionary from Alt-Cannadic
-ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:4e548e6:altcannadic
-
-# CC-BY-SA-4.0
-EDICT2_DESC=	Dictionary from EDICT2
-EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:16283aa:edict2
-JAWIKI_DESC=	Dictionary from Japanese Wikipedia
-JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:3fa6610:jawiki
-
-# APACHE20
-NEOLOGD_DESC=	Dictionary from NEologd
-NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:bf9d0d2:neologd
-
-# APACHE20
-PERSONALNAME_DESC=	Personal Name Dictionary
-PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:3c11566:personal
-
-# APCHE20
-PLACENAME_DESC=	Place Name Dictionary
-PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:2d4aa70:place
-
-# APACHE20 GPLv2
-SKKJISYO_DESC=	Dictionary from from SKK-JISYO
-SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:ee94f65:skkjisyo
-
-# APACHE20
-SUDACHIDICT_DESC=	Dictionary from SudachiDict
-SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:55f61c3:sudachi
-
-UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:jawikilatest \
-		id.def:iddef
-UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:jawikilatest \
-		https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/:iddef
-
 .elif ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
+BUILD_DEPENDS+=	libglvnd>0:graphics/libglvnd
 USES+=		qt:6
 USE_QT=		base
-BUILD_DEPENDS+=	libglvnd>0:graphics/libglvnd
 
 .elif ${BUILD_MOZC_LIST:Mibus_mozc} == "ibus_mozc"
+LIB_DEPENDS+=	libfontconfig.so:x11-fonts/fontconfig \
+		libfreetype.so:print/freetype2
 USES+=		gettext-runtime gnome xorg
 USE_XORG=	xcb
 USE_GNOME=	cairo gdkpixbuf2 glib20 gtk20
-LIB_DEPENDS+=	libfontconfig.so:x11-fonts/fontconfig \
-		libfreetype.so:print/freetype2
 
 .elif ${BUILD_MOZC_LIST:Mmozc_el} == "mozc_el"
 USES+=		emacs
