@@ -25,14 +25,15 @@ USES=		autoreconf compiler:c++11-lang cpe gettext-tools gmake gnome \
 		libtool localbase pathfix pkgconfig tar:xz xorg
 CPE_VENDOR=	${PORTNAME}_project
 USE_CXXSTD=	c++11
-USE_GNOME=	glib20 intltool
-USE_LDCONFIG=	yes
-USE_RC_SUBR=	lightdm
-USE_XORG=	x11 xcb xdmcp
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	canonical
 GH_TAGNAME=	1ade713
+
+USE_GNOME=	glib20 intltool
+USE_LDCONFIG=	yes
+USE_RC_SUBR=	lightdm
+USE_XORG=	x11 xcb xdmcp
 
 GNU_CONFIGURE=		yes
 # tests causes PAM errors
