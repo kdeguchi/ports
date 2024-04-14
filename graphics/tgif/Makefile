@@ -18,11 +18,7 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 RUN_DEPENDS=	giftopnm:graphics/netpbm
 
-OPTIONS_DEFINE=	NLS A4SIZE DOCS
-A4SIZE_DESC=	Set default paper size to A4
-
 USES=		imake xorg
-PORTDOCS=	HISTORY README
 USE_XORG=	x11 xext xt sm ice
 
 DESKTOP_ENTRIES=	"Tgif" \
@@ -31,6 +27,11 @@ DESKTOP_ENTRIES=	"Tgif" \
 		"${PORTNAME}" \
 		"Graphics;VectorGraphics;" \
 		""
+
+PORTDOCS=	HISTORY README
+
+OPTIONS_DEFINE=	NLS A4SIZE DOCS
+A4SIZE_DESC=	Set default paper size to A4
 
 .include <bsd.port.options.mk>
 
