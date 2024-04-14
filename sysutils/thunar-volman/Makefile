@@ -23,8 +23,8 @@ INSTALL_TARGET=	install-strip
 OPTIONS_DEFINE=		NLS NOTIFY
 OPTIONS_SUB=		yes
 
-NLS_CONFIGURE_ENABLE=		nls
 NLS_USES=			gettext-runtime
+NLS_CONFIGURE_ENABLE=		nls
 
 NOTIFY_LIB_DEPENDS=	libnotify.so:devel/libnotify
 NOTIFY_CONFIGURE_ENABLE=	notifications
