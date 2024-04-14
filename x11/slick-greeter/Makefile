@@ -23,24 +23,26 @@ RUN_DEPENDS=	numlockx>=0:x11/numlockx \
 
 USES=		autoreconf gettext gmake gnome localbase pkgconfig python:run shebangfix \
 		vala:build xorg
-USE_GNOME=	cairo dconf gdkpixbuf2 gtk30 intltool pygobject3
-
-USE_XORG=	pixman x11 xext
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxmint
 GH_TAGNAME=	5bd9be1
 
-GNU_CONFIGURE=	yes
+USE_GNOME=	cairo dconf gdkpixbuf2 gtk30 intltool pygobject3
+GLIB_SCHEMAS=	x.dm.slick-greeter.gschema.xml
+USE_XORG=	pixman x11 xext
+
 SHEBANG_FILES=	files/usr/bin/slick-greeter-check-hidpi \
 		files/usr/bin/slick-greeter-enable-tap-to-click \
 		files/usr/bin/slick-greeter-set-keyboard-layout \
 		makepot
+
 bash_OLD_CMD=	/usr/bin/bash
 bash_CMD=	/bin/sh
-SUB_FILES=	pkg-deinstall pkg-install
 
-GLIB_SCHEMAS=	x.dm.slick-greeter.gschema.xml
+GNU_CONFIGURE=	yes
+
+SUB_FILES=	pkg-deinstall pkg-install
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|"/usr|"${PREFIX}|g' \
