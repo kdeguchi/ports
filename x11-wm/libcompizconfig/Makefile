@@ -13,21 +13,19 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/compiz.pc:x11-wm/compiz
 LIB_DEPENDS=	libprotobuf.so:devel/protobuf
 
-GNU_CONFIGURE=	yes
-INSTALL_TARGET=	install-strip
-LDFLAGS+=	-lpthread
-
 USES=		autoreconf gmake gnome libtool localbase pathfix pkgconfig xorg
-USE_GNOME=	intltool libxml2
-USE_XORG=		x11
-USE_LDCONFIG=	yes
 
 USE_GITLAB=	yes
 GL_ACCOUNT=	compiz
 GL_COMMIT=	2ee9952ce5aac8e7d4e676f692acace1ecc088e6
-#USE_GITHUB=	yes
-#GH_ACCOUNT=	compiz-reloaded
-#GH_TAGNAME=	c3d65e4
+
+USE_GNOME=	intltool libxml2
+USE_LDCONFIG=	yes
+USE_XORG=		x11
+
+GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
+LDFLAGS+=	-lpthread
 
 OPTIONS_DEFINE=	INOTIFY
 OPTIONS_DEFAULT=	INOTIFY
