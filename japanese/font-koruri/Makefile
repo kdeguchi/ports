@@ -11,15 +11,20 @@ LICENSE=	APACHE20
 
 USES=		fonts:fc
 FONTPATHSPEC=   ${FONTNAME}:pri=60
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	Koruri
 GH_PROJECT=	Koruri
-NO_BUILD=	yes
+
+DATADIR=	${PREFIX}/share/font-${PORTNAME}
 NO_ARCH=	yes
+NO_BUILD=	yes
+
+SUB_FILES=	pkg-install
+
 PKGINSTALL=	${WRKDIR}/pkg-install
 PKGDEINSTALL=	${WRKDIR}/pkg-install
-SUB_FILES=	pkg-install
-DATADIR=	${PREFIX}/share/font-${PORTNAME}
+
 PORTDOCS=	README.md
 
 OPTIONS_DEFINE=	DOCS
