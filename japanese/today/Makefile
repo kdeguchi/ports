@@ -13,21 +13,22 @@ WWW=		https://www.vector.co.jp/soft/dos/personal/se002657.html
 
 EXTRACT_DEPENDS=nkf:japanese/nkf
 
-NO_WRKSUBDIR=	yes
 USES=		lha
 
 MAKEFILE=	${FILESDIR}/Makefile
+NO_WRKSUBDIR=	yes
 
 OPTIONS_DEFINE=	HISTDATA DOCS SEIJI
 
 HISTDATA_DESC=	More history data
+SEIJI_DESC=	Politian birthday data
+
 HISTDATA_MASTER_SITES=	https://ftp.vector.co.jp/02/97/476/
 HISTDATA_DISTFILES=	hst9602a.lzh \
 		hst9602b.lzh \
 		hst9602c.lzh
 HISTDATA_EXTRA_PATCHES=	${PATCHDIR}/histdata-patch-gengo.tbl
 
-SEIJI_DESC=	Politian birthday data
 SEIJI_MASTER_SITES=	https://ftp.vector.co.jp/05/61/476/
 SEIJI_DISTFILES=	seiji97.lzh
 SEIJI_VARS=	TBL=seiji.tbl
