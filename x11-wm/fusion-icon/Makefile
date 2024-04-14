@@ -10,18 +10,17 @@ LICENSE=	GPLv2+
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyside2>0:devel/pyside2@${PY_FLAVOR}
 
-USES=		python shebangfix
-USE_GNOME=	intltool:build
-USE_PYTHON=	autoplist flavors distutils
+USES=		gnome python shebangfix
 
 USE_GITLAB=	yes
 GL_ACCOUNT=	compiz
 GL_COMMIT=	f39d989cf070470e3f75685b9c00552923f39187
 
-INSTALL_ICONS=	yes
+USE_GNOME=	intltool:build
+
+USE_PYTHON=	autoplist flavors distutils
+PYDISTUTILS_INSTALLNOSINGLE=	yes
 
 SHEBANG_FILES=	setup.py fusion-icon
-
-PYDISTUTILS_INSTALLNOSINGLE=	yes
 
 .include <bsd.port.mk>
