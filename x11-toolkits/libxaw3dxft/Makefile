@@ -14,19 +14,25 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libfreetype.so:print/freetype2
 
 USES=		libtool pathfix pkgconfig tar:bzip2 xorg
-GNU_CONFIGURE=	yes
-USE_XORG=	x11 xext xft xmu xpm xt
+
 USE_LDCONFIG=	yes
 
-SUB_FILES=	pkg-post-deinstall pkg-post-install
-PKGPOSTINSTALL=	${WRKDIR}/pkg-post-install
-PKGPOSTDEINSTALL=	${WRKDIR}/pkg-post-deinstall
+USE_XORG=	x11 xext xft xmu xpm xt
+
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS+=--enable-internationalization --enable-arrow-scrollbars
 
 INSTALL_TARGET=	install-strip
-CONFIGURE_ARGS+=--enable-internationalization --enable-arrow-scrollbars
+
 CPPFLAGS+=	-I${LOCALBASE}/include/freetype2
 
 DOCSDIR=	${LOCALBASE}/share/doc/libXaw3dXft
+
+SUB_FILES=	pkg-post-deinstall pkg-post-install
+
+PKGPOSTINSTALL=	${WRKDIR}/pkg-post-install
+PKGPOSTDEINSTALL=	${WRKDIR}/pkg-post-deinstall
+
 PORTDOCS=	*
 
 OPTIONS_DEFINE=	DOCS
