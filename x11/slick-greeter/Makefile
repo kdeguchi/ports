@@ -50,7 +50,7 @@ post-patch:
 		${WRKSRC}/files/usr/bin/slick-greeter-set-keyboard-layout \
 		${WRKSRC}/data/*.8 \
 		${WRKSRC}/src/*.vala
-	@${RM} ${WRKSRC}/files/usr/bin/slick-greeter-set-keyboard-layout.bak
+	@${FIND} ${WRKSRC} -name '*.bak' -delete
 	@${MKDIR} ${WRKSRC}/files/${PREFIX}
 	@${MV} ${WRKSRC}/files/usr/bin ${WRKSRC}/files/${PREFIX}/bin
 	@${MV} ${WRKSRC}/files/usr/share ${WRKSRC}/files/${PREFIX}/share

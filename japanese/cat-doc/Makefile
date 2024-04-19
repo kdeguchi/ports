@@ -1,9 +1,8 @@
-PORTNAME=	cat
+PORTNAME=	cat-doc
 PORTVERSION=	${OSREL}.20231110
 CATEGORIES=	japanese
 MASTER_SITES=	ftp://ftp.koganemaru.co.jp/pub/jman${OSREL:C@\.[0-9]+@@}/
-PKGNAMESUFFIX=	-doc
-DISTNAME=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-${PORTVERSION}
+DISTNAME=	${PKGNAMEPREFIX}${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Japanese translation of FreeBSD cat manual pages
