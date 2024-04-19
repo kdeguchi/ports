@@ -74,12 +74,9 @@ CPP=	cpp
 ########################################
 # misc
 ########################################
-.if ${.CURDIR:M*/www/firefox*} || ${.CURDIR:M*/mail/thunderbird*}
-. if defined(CONFIGURE_ENV) && ${CONFIGURE_ENV:N*${PREFIX}/libexec/ccache}
-CONFIGURE_ENV:=	${CONFIGURE_ENV:S@PATH=@PATH=${PREFIX}/libexec/ccache:@}
-. endif
-. if defined(MAKE_ENV) && ${MAKE_ENV:N*${PREFIX}/libexec/ccache}
-MAKE_ENV:=	${MAKE_ENV:S@PATH=@PATH=${PREFIX}/libexec/ccache:@}
+.if defined(USE_GECKO) # firefox, thunderbird etc.
+. if defined(WITH_CCACHE_BUILD) && !defined(NO_CCACHE)
+MOZ_OPTIONS+=	--with-ccache
 . endif
 .endif
 
