@@ -76,14 +76,12 @@ SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:ee94f65:skkjisyo
 # APACHE20
 SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:4d90c21:sudachi
 
-# APACHE20 multi
-UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:158abdb:ut
-
-UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:jawikilatest \
-		id.def:iddef
-
 UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:jawikilatest \
 		https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/:iddef
+UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:jawikilatest \
+		id.def:iddef
+# APACHE20 multi
+UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:158abdb:ut
 
 UTDIC_USES=	ruby:build
 UTDIC_PATCH_DEPENDS=	rubygem-nkf>0:net/rubygem-nkf \
