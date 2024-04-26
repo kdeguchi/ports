@@ -90,6 +90,7 @@ UTDIC_PATCH_DEPENDS=	rubygem-nkf>0:net/rubygem-nkf \
 .elif ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
 BUILD_DEPENDS+=	libglvnd>0:graphics/libglvnd
 USES+=		qt:6
+USE_LOCALE?=	C.UTF-8
 USE_QT=		base
 
 .elif ${BUILD_MOZC_LIST:Mibus_mozc} == "ibus_mozc"
