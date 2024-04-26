@@ -1,6 +1,6 @@
 PORTNAME=	mozc
-PORTVERSION=	2.30.5432.102
-PORTREVISION?=	1
+PORTVERSION=	2.30.5448.102
+PORTREVISION?=	0
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -17,7 +17,7 @@ USES=		compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:beccb25 \
+GH_TUPLE=	fcitx:mozc:8e7e34e \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
@@ -58,30 +58,30 @@ UTDIC_DESC=	Additional UT Dictionary
 ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:4e548e6:altcannadic
 
 # CC-BY-SA-4.0
-EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:16283aa:edict2
-JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:3fa6610:jawiki
+EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:4a08ebf:edict2
+JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:42297bc:jawiki
 
 # APACHE20
-NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:bf9d0d2:neologd
+NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:b0de4b9:neologd
 
 # APACHE20
-PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:99f931c:personal
+PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:adaaaf9:personal
 
 # APCHE20
-PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:2d4aa70:place
+PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:2dfabea:place
 
 # APACHE20 GPLv2
-SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:ee94f65:skkjisyo
+SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:5a996bf:skkjisyo
 
 # APACHE20
-SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:4d90c21:sudachi
+SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:c109f06:sudachi
 
 UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:jawikilatest \
 		https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/:iddef
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:jawikilatest \
 		id.def:iddef
 # APACHE20 multi
-UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:158abdb:ut
+UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:7d8a3f9:ut
 
 UTDIC_USES=	ruby:build
 UTDIC_PATCH_DEPENDS=	rubygem-nkf>0:net/rubygem-nkf \
