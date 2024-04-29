@@ -1,5 +1,5 @@
 PORTNAME=	conky
-PORTVERSION=	1.20.1
+PORTVERSION=	1.20.2
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
 
@@ -10,7 +10,8 @@ WWW=		https://github.com/brndnmtthws/conky
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-BUILD_DEPENDS=	gsed:textproc/gsed
+BUILD_DEPENDS=	gperf:devel/gperf \
+		gsed:textproc/gsed
 LIB_DEPENDS=	libinotify.so:devel/libinotify
 
 USES=		cmake compiler:c++11-lib cpe gettext-runtime iconv \
