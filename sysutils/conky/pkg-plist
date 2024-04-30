@@ -1,6 +1,7 @@
 bin/conky
 %%LUA_CAIRO%%lib/conky/libcairo.so
 %%LUA_CAIRO%%%%LUA_IMLIB2%%lib/conky/libcairo_imlib2_helper.so
+%%LUA_CAIRO%%%%LUA_IMLIB2%%lib/conky/libcairo_xlib.so
 %%LUA_IMLIB2%%lib/conky/libimlib2.so
 %%LUA_RSVG%%lib/conky/librsvg.so
 %%X11%%share/applications/conky.desktop
