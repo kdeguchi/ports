@@ -417,17 +417,17 @@ RUN_DEPENDS+=	mozc:japanese/mozc-server \
 PLIST_FILES+=	lib/fcitx5/fcitx5-mozc.so \
 		share/fcitx5/addon/mozc.conf \
 		share/fcitx5/inputmethod/mozc.conf \
-		share/icons/hicolor/128x128/apps/fcitx-mozc.png \
-		share/icons/hicolor/32x32/apps/fcitx-mozc.png \
-		share/icons/hicolor/48x48/apps/fcitx-mozc-alpha-full.png \
-		share/icons/hicolor/48x48/apps/fcitx-mozc-alpha-half.png \
-		share/icons/hicolor/48x48/apps/fcitx-mozc-direct.png \
-		share/icons/hicolor/48x48/apps/fcitx-mozc-hiragana.png \
-		share/icons/hicolor/48x48/apps/fcitx-mozc-katakana-full.png \
-		share/icons/hicolor/48x48/apps/fcitx-mozc-katakana-half.png \
-		share/icons/hicolor/48x48/apps/fcitx-mozc-dictionary.png \
-		share/icons/hicolor/48x48/apps/fcitx-mozc-properties.png \
-		share/icons/hicolor/48x48/apps/fcitx-mozc-tool.png \
+		share/icons/hicolor/128x128/apps/fcitx_mozc.png \
+		share/icons/hicolor/32x32/apps/fcitx_mozc.png \
+		share/icons/hicolor/48x48/apps/fcitx_mozc_alpha_full.png \
+		share/icons/hicolor/48x48/apps/fcitx_mozc_alpha_half.png \
+		share/icons/hicolor/48x48/apps/fcitx_mozc_direct.png \
+		share/icons/hicolor/48x48/apps/fcitx_mozc_hiragana.png \
+		share/icons/hicolor/48x48/apps/fcitx_mozc_katakana_full.png \
+		share/icons/hicolor/48x48/apps/fcitx_mozc_katakana_half.png \
+		share/icons/hicolor/48x48/apps/fcitx_mozc_dictionary.png \
+		share/icons/hicolor/48x48/apps/fcitx_mozc_properties.png \
+		share/icons/hicolor/48x48/apps/fcitx_mozc_tool.png \
 		share/locale/ca/LC_MESSAGES/fcitx5-mozc.mo \
 		share/locale/da/LC_MESSAGES/fcitx5-mozc.mo \
 		share/locale/de/LC_MESSAGES/fcitx5-mozc.mo \
@@ -467,15 +467,15 @@ do-install-fcitx5_mozc:
 			${STAGEDIR}${PREFIX}/share/fcitx5/inputmethod/mozc.conf
 	${INSTALL_DATA} \
 		${BUILD_WRKSRC}/data/images/product_icon_32bpp-128.png \
-			${STAGEDIR}${PREFIX}/share/icons/hicolor/128x128/apps/fcitx-mozc.png
+			${STAGEDIR}${PREFIX}/share/icons/hicolor/128x128/apps/fcitx_mozc.png
 	${INSTALL_DATA} \
 		${BUILD_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
-			${STAGEDIR}${PREFIX}/share/icons/hicolor/32x32/apps/fcitx-mozc.png
+			${STAGEDIR}${PREFIX}/share/icons/hicolor/32x32/apps/fcitx_mozc.png
 .for F in ui-alpha_full ui-alpha_half ui-dictionary ui-direct \
 	ui-hiragana ui-katakana_full ui-katakana_half ui-properties ui-tool
 	${INSTALL_DATA} \
 		${BUILD_WRKSRC}/../scripts/icons/${F}.png \
-			${STAGEDIR}${PREFIX}/share/icons/hicolor/48x48/apps/${F:S,^ui-,fcitx-mozc-,S,_,-,}.png
+			${STAGEDIR}${PREFIX}/share/icons/hicolor/48x48/apps/${F:S,^ui-,fcitx_mozc_,}.png
 .endfor
 	cd ${BUILD_WRKSRC} && \
 		for mofile in unix/fcitx5/po/*.mo; do \
