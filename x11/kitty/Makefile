@@ -1,7 +1,7 @@
 PORTNAME=	kitty
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.33.1
-PORTREVISION=	1
+DISTVERSION=	0.34.1
+PORTREVISION=	0
 CATEGORIES=	x11 wayland
 
 MAINTAINER=	nivit@FreeBSD.org
@@ -42,8 +42,7 @@ CPE_VENDOR=	kitty_project
 USE_GL=		gl
 USE_XORG=	x11 xcb xcursor xi xinerama xrandr
 
-SHEBANG_FILES=	build-terminfo count-lines-of-code mypy-editor-integration \
-		update-on-ox
+SHEBANG_FILES=	build-terminfo count-lines-of-code update-on-ox
 SHEBANG_GLOB=	*.py
 
 GO_MODULE=	github.com/kovidgoyal/kitty

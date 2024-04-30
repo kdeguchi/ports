@@ -16,7 +16,7 @@
      INCREF_CHILD(add_queue[add_queue_count]);
      add_queue_count++;
      children_mutex(unlock);
-@@ -1303,6 +1305,7 @@ cleanup_child(ssize_t i) {
+@@ -1301,6 +1303,7 @@ cleanup_child(ssize_t i) {
  
  static void
  cleanup_child(ssize_t i) {
