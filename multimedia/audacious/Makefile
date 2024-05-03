@@ -41,7 +41,6 @@ gtk3_LIB_DEPENDS=	libharfbuzz.so:print/harfbuzz
 gtk3_PKGNAMESUFFIX=	-gtk3
 gtk3_CONFLICTS_INSTALL=	audacious audacious-qt6 audacious-gtk2
 
-
 .if ${FLAVOR} == qt5
 MESON_ARGS+=		-Dqt=true -Dqt6=false -Dgtk=false -Dgtk3=false
 USES+=			qt:5
