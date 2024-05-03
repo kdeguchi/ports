@@ -1,0 +1,20 @@
+--- configure.orig
++++ configure
+@@ -3892,6 +3892,8 @@
+     arch_default=$(uname -p)
+     strip_default="strip -X32_64"
+     nm_default="nm -g -X32_64"
++elif test "$target_os_default" = freebsd; then
++    arch_default=$(uname -p)
+ else
+     arch_default=$(uname -m)
+ fi
+@@ -7018,7 +7020,7 @@
+ 
+ if enabled x86; then
+     case $target_os in
+-        mingw32*|mingw64*|win32|win64|linux|cygwin*)
++        freebsd|mingw32*|mingw64*|win32|win64|linux|cygwin*)
+             ;;
+         *)
+             disable ffnvcodec cuvid nvdec nvenc
