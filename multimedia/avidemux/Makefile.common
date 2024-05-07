@@ -308,7 +308,7 @@ NOT_FOR_ARCHS_REASON=	cmake/admDetermineSystem.cmake:78: CPU not supported
 post-extract:
 	@${CP} ${FILESDIR}/ffmpeg.patch \
 		${WRKSRC}/avidemux_core/ffmpeg_package/patches/configure.patch
-	${LN} -s ${WRKDIR}/${DISTFILES:M*\:qt5:C/_GH0.*\:qt5//:C/mean00-//}/* \
+	${RLN} ${WRKDIR}/${DISTFILES:M*\:qt5:C/_GH0.*\:qt5//:C/mean00-//}/* \
 		${WRKSRC}/avidemux/qt4/i18n/
 
 post-patch:
