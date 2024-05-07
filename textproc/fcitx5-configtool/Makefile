@@ -19,14 +19,15 @@ LIB_DEPENDS=	libFcitx5Core.so:textproc/fcitx5 \
 RUN_DEPENDS=	iso-codes>=0:misc/iso-codes \
 		xkeyboard-config>=0:x11/xkeyboard-config
 
-USES=		cmake compiler:c++17-lang gettext-tools kde:6 pkgconfig qt:6 \
+USES=		cmake compiler:c++17-lang gettext-tools gl kde:6 pkgconfig qt:6 \
 		tar:zst xorg
 
 PLIST_SUB=	VER=${PORTVERSION}
 
 USE_KDE=	config coreaddons ecm:build i18n iconthemes itemviews kcmutils \
 		kdeclarative kirigami2 libplasma package service widgetsaddons
-USE_QT=		base declarative
+USE_GL=	opengl
+USE_QT=	base declarative
 USE_XORG=	x11 xkbfile
 USE_LDCONFIG=	yes
 
