@@ -44,7 +44,7 @@ index 5c6e25b3980b..ce99ebfb6d3f 100644
      EXPORTS += [
 --- media/ffvpx/libavcodec/moz.build.orig	2024-03-04 12:24:58 UTC
 +++ media/ffvpx/libavcodec/moz.build
-@@ -122,10 +122,17 @@ if not CONFIG['MOZ_FFVPX_AUDIOONLY']:
+@@ -120,10 +120,17 @@ if not CONFIG['MOZ_FFVPX_AUDIOONLY']:
          'vp9recon.c',
          'vpx_rac.c',
      ]
