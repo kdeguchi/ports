@@ -104,7 +104,7 @@ post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	cd ${WRKSRC}/demo && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR}
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/man/ja/man1
-	cd ${WRKSRC}/share/man && \
+	cd ${WRKSRC}/man && \
 		${INSTALL_MAN} ${PORTNAME}-ja_JP.UTF-8 \
 			${STAGEDIR}${PREFIX}/share/man/ja/man1/${PORTNAME}.1
 
