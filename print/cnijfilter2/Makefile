@@ -13,7 +13,7 @@ ONLY_FOR_ARCHS=	aarch64 amd64 i386 mips64el
 
 USES=	linux
 USE_LDCONFIG=	yes
-USE_LINUX=	avahi-libs cups-libs dbuslibs libxml2
+USE_LINUX=	cups-libs libxml2
 USE_LINUX_PREFIX=	yes
 
 NO_BUILD=	yes
