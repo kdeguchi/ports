@@ -8,6 +8,8 @@ WWW=		https://github.com/JezerM/web-greeterer
 
 LICENSE=	GPLv3
 
+CONFLICTS=	sea-greeter-*
+
 BUILD_DEPENDS=	npm:www/npm
 
 LIB_DEPENDS=	liblightdm-gobject-1.so:x11/lightdm \
@@ -26,7 +28,7 @@ USE_PYTHON=	flavors
 USE_QT=	webengine
 
 USE_GITHUB=	yes
-GH_TUPLE=	JezerM:web-greeter:35e96f9 \
+GH_TUPLE=	JezerM:web-greeter:f33a7d6 \
 		JezerM:web-greeter-themes:44283ca:themes \
 		JezerM:nody-greeter-types:4bf0196:tsc
 
@@ -60,7 +62,7 @@ post-patch:
 		${WRKSRC}/dist/90-greeter-wrapper.conf
 	${FIND} ${WRKSRC} -name '*.bak' -delete
 
-pre-build:
+pre-configure:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} npm install typescript
 
 post-install:

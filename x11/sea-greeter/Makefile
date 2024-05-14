@@ -7,6 +7,8 @@ WWW=		https://jezerm.github.io/web-greeter-page/
 
 LICENSE=	GPLv3
 
+CONFLICTS=	web-greeter-*
+
 BUILD_DEPENDS=	npm:www/npm
 
 LIB_DEPENDS=	liblightdm-gobject-1.so:x11/lightdm \
@@ -20,7 +22,7 @@ USE_GNOME=	glib20 gtk30
 USE_XORG=	x11 xcb
 
 USE_GITHUB=	yes
-GH_TUPLE=	JezerM:sea-greeter:2f37ecd \
+GH_TUPLE=	JezerM:sea-greeter:ffd2f3c \
 		JezerM:web-greeter-themes:44283ca:themes \
 		JezerM:nody-greeter-types:4bf0196:tsc
 
@@ -37,17 +39,17 @@ post-extract:
 
 post-patch:
 	${REINPLACE_CMD} -e 's@/usr@${PREFIX}@g;s@/etc@${PREFIX}/etc@g;' \
-		${WRKSRC}/meson_options.txt \
-		${WRKSRC}/valgrind.sh \
 		${WRKSRC}/data/meson.build \
 		${WRKSRC}/data/sea-greeter.desktop \
 		${WRKSRC}/data/web-greeter.yml \
 		${WRKSRC}/src/meson.build \
+		${WRKSRC}/meson.options \
 		${WRKSRC}/src/settings.[ch] \
-		${WRKSRC}/src/theme.c
+		${WRKSRC}/src/theme.c \
+		${WRKSRC}/valgrind.sh
 
 pre-configure:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} npm install typescript
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} npm install typescript --save-dev
 
 post-install:
 	${MV} ${STAGEDIR}${PREFIX}/etc/lightdm/web-greeter.yml \
