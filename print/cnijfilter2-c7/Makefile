@@ -4,6 +4,7 @@ DISTVERSIONSUFFIX=-1-rpm
 CATEGORIES=	print
 MASTER_SITES=	http://gdlp01.c-wss.com/gds/8/0100011318/01/
 #https://gdlp01.c-wss.com/gds/8/0100011318/01/cnijfilter2-6.30-1-rpm.tar.gz
+PKGNAMEPREFIX=	linux-c7-
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Caonon IJ Printer driver
