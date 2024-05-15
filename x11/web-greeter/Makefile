@@ -20,7 +20,8 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyinotify>0:devel/py-pyinotify \
 
 OPTIONS_DEFINE=	DOCS
 
-USES=		gettext gmake gnome localbase nodejs pkgconfig python pyqt:5 qt:5 shebangfix xorg
+USES=		gettext gmake gnome localbase nodejs:build pkgconfig python \
+		pyqt:5 qt:5 shebangfix xorg
 USE_GNOME=	glib20 gtk30 pygobject3
 USE_XORG=	x11 xcb
 USE_PYQT=	webengine
@@ -34,8 +35,7 @@ GH_TUPLE=	JezerM:web-greeter:f33a7d6 \
 
 MAKE_ENV+=	PATH=${WRKSRC}/node_modules/.bin:${PATH}
 MAKE_JOBS_UNSAFE=	yes
-CFLAGS+=	-fPIC -I${LOCALBASE}/include
-CPPFLAGS+=	-I${LOCALBASE}/include
+CFLAGS+=	-fPIC
 
 bash_CMD=	/bin/sh
 SHEBANG_FILES=	dist/Xgreeter \
