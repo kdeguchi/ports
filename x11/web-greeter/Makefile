@@ -26,7 +26,7 @@ USE_GNOME=	glib20 gtk30 pygobject3
 USE_XORG=	x11 xcb
 USE_PYQT=	webengine
 USE_PYTHON=	flavors
-USE_QT=	webengine
+USE_QT=		webengine
 
 USE_GITHUB=	yes
 GH_TUPLE=	JezerM:web-greeter:f33a7d6 \
