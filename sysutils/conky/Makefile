@@ -18,7 +18,6 @@ USES=		cmake compiler:c++11-lib cpe gettext-runtime iconv \
 		localbase:ldflags lua:flavors pkgconfig tar:bzip2
 USE_GITHUB=	yes
 GH_ACCOUNT=	brndnmtthws
-GH_TAGNAME=	a03f0bc
 
 CMAKE_ARGS=	-DAPP_SED=${LOCALBASE}/bin/gsed
 CMAKE_ON=	BUILD_EXTRAS \
@@ -169,6 +168,8 @@ post-patch:
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}
+	${RM} -rf ${STAGEDIR}${PREFIX}/include
+	${RM} -rf ${STAGEDIR}${PREFIX}/lib/cmake
 
 post-install-X11-on:
 	${INSTALL_DATA} ${WRKSRC}/data/conky.conf ${STAGEDIR}${ETCDIR}/conky.conf.sample
