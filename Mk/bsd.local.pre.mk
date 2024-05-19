@@ -1,5 +1,4 @@
 # Maybe, many ports need this
-USES+=	localbase
 
 .if ${.CURDIR:M*/devel/msgpack-c*}
 CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=${LOCALBASE}/lib
@@ -35,6 +34,7 @@ USE_KDE:=	${USE_KDE:S@ecm@ecm:build@}
 # QT
 ########################################
 .if defined(USE_QT)
+USES+=	localbase
 . if ${USE_QT:M*designer*}
 .  if defined(USE_QT) && ! ${USE_QT:M*designer\:build*}
 USE_QT:=	${USE_QT:S@designer@designer:build@}
