@@ -1,4 +1,4 @@
---- glfw/wl_client_side_decorations.c.orig	1979-11-29 15:00:00 UTC
+--- glfw/wl_client_side_decorations.c.orig	2024-05-08 04:55:34 UTC
 +++ glfw/wl_client_side_decorations.c
 @@ -12,6 +12,16 @@
  #include <errno.h>

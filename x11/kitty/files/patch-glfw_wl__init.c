@@ -1,4 +1,4 @@
---- glfw/wl_init.c.orig	1979-11-29 15:00:00 UTC
+--- glfw/wl_init.c.orig	2024-05-08 04:55:34 UTC
 +++ glfw/wl_init.c
 @@ -35,6 +35,7 @@
  #include "wl_text_input.h"
@@ -8,7 +8,7 @@
  #include <stdio.h>
  #include <stdlib.h>
  #include <string.h>
-@@ -634,7 +635,7 @@ static pid_t
+@@ -636,7 +637,7 @@ static pid_t
  }
  
  static pid_t
@@ -17,7 +17,7 @@
  #ifdef __linux__
      struct ucred ucred;
      socklen_t len = sizeof(struct ucred);
-@@ -657,7 +658,7 @@ GLFWAPI pid_t glfwWaylandCompositorPID(void) {
+@@ -659,7 +660,7 @@ GLFWAPI pid_t glfwWaylandCompositorPID(void) {
      if (!_glfw.wl.display) return -1;
      int fd = wl_display_get_fd(_glfw.wl.display);
      if (fd < 0) return -1;

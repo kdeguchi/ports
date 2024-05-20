@@ -88,6 +88,25 @@ USES+=		ncurses:port
 USES+=		ncurses
 .endif
 
+_USES_fetch+=	750:my-fetch
+_USES_extract+=	750:my-extract
+my-fetch:
+	cd ${DISTDIR}/${DIST_SUBDIR} && \
+		[ -e ${GO_DISTFILE} ] || ${FETCH_CMD} \
+				https://github.com/kovidgoyal/kitty/archive/refs/heads/master.zip \
+					-o ${GO_DISTFILE}
+	cd ${DISTDIR}/${DIST_SUBDIR} && \
+		[ -e go.sum ] || ${FETCH_CMD} \
+			https://raw.githubusercontent.com/kovidgoyal/kitty/master/go.sum
+	cd ${DISTDIR}/${DIST_SUBDIR} && \
+		${FETCH_CMD} \
+			https://raw.githubusercontent.com/kovidgoyal/kitty/master/go.mod \
+				-o ${GO_MODFILE}
+
+my-extract:
+	${MKDIR} ${WRKSRC:S,${PORTNAME}@${GO_MODVERSION},,} && \
+		${LN} -s ${WRKDIR}/${PORTNAME}-master ${WRKSRC}
+
 post-patch:
 	${REINPLACE_CMD} -E \
 		-e "s:'go':'${GO_CMD}':1" \

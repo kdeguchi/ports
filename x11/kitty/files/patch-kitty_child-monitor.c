@@ -1,4 +1,4 @@
---- kitty/child-monitor.c.orig	1979-11-29 15:00:00 UTC
+--- kitty/child-monitor.c.orig	2024-05-08 04:55:34 UTC
 +++ kitty/child-monitor.c
 @@ -20,6 +20,7 @@
  #include <sys/socket.h>

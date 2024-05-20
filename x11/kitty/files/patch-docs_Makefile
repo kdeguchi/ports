@@ -1,4 +1,4 @@
---- docs/Makefile.orig	1979-11-29 15:00:00 UTC
+--- docs/Makefile.orig	2024-05-08 04:55:34 UTC
 +++ docs/Makefile
 @@ -6,7 +6,7 @@ endif
  endif
