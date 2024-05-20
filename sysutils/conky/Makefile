@@ -1,5 +1,5 @@
 PORTNAME=	conky
-PORTVERSION=	1.21.0
+PORTVERSION=	1.21.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
 
@@ -168,8 +168,6 @@ post-patch:
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}
-	${RM} -rf ${STAGEDIR}${PREFIX}/include
-	${RM} -rf ${STAGEDIR}${PREFIX}/lib/cmake
 
 post-install-X11-on:
 	${INSTALL_DATA} ${WRKSRC}/data/conky.conf ${STAGEDIR}${ETCDIR}/conky.conf.sample

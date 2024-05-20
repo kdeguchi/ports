@@ -35,9 +35,11 @@ USE_KDE:=	${USE_KDE:S@ecm@ecm:build@}
 ########################################
 .if defined(USE_QT)
 USES+=	localbase
-. if ${USE_QT:M*designer*}
-.  if defined(USE_QT) && ! ${USE_QT:M*designer\:build*}
+. if ! ${.CURDIR:M*devel/py-qt5-pyqt*}
+.  if ${USE_QT:M*designer*}
+.   if defined(USE_QT) && ! ${USE_QT:M*designer\:build*}
 USE_QT:=	${USE_QT:S@designer@designer:build@}
+.   endif
 .  endif
 . endif
 .endif

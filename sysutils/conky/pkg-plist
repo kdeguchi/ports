@@ -4,7 +4,6 @@ bin/conky
 %%LUA_CAIRO%%%%LUA_IMLIB2%%lib/conky/libcairo_xlib.so
 %%LUA_IMLIB2%%lib/conky/libimlib2.so
 %%LUA_RSVG%%lib/conky/librsvg.so
-lib/libVc.a
 %%X11%%share/applications/conky.desktop
 %%X11%%share/icons/hicolor/scalable/apps/conky-logomark-violet.svg
 %%MANPAGES%%share/man/man1/conky.1.gz
