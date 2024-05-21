@@ -102,13 +102,13 @@ my-fetch:
 				cd ${PORTNAME}-master && \
 					${COPYTREE_SHARE} . ../${GO_MODNAME}@${GO_MODVERSION} && \
 				cd .. && zip -r ${GO_DISTFILE} ${GO_MODNAME:C,/.*,,} && \
-				${RM} -r ${GO_MODNAME:C,/.*,,} ${PORTNAME}-master master.zip; } && \
+				${RM} -r ${GO_MODNAME:C,/.*,,} ${PORTNAME}-master master.zip; }
 	@cd ${DISTDIR} && \
 		${GREP} -q "$$(${SHA256} ${DIST_SUBDIR}/${GO_MODFILE})" ${DISTINFO_FILE} || \
 			{ cd ${DISTDIR}/${DIST_SUBDIR} && \
 				${RM} ${GO_MODFILE} && \
 				${FETCH_CMD} -o ${GO_MODFILE} \
-					https://raw.githubusercontent.com/kovidgoyal/kitty/master/go.mod; } && \
+					https://raw.githubusercontent.com/kovidgoyal/kitty/master/go.mod; }
 	@cd ${DISTDIR}/${DIST_SUBDIR} && \
 		${RM} go.sum && \
 		${FETCH_CMD} -o go.sum \
