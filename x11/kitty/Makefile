@@ -89,23 +89,30 @@ USES+=		ncurses
 .endif
 
 _USES_fetch+=	750:my-fetch
-_USES_extract+=	750:my-extract
-my-fetch:
-	cd ${DISTDIR}/${DIST_SUBDIR} && \
-		[ -e ${GO_DISTFILE} ] || ${FETCH_CMD} \
-				https://github.com/kovidgoyal/kitty/archive/refs/heads/master.zip \
-					-o ${GO_DISTFILE}
-	cd ${DISTDIR}/${DIST_SUBDIR} && \
-		[ -e go.sum ] || ${FETCH_CMD} \
-			https://raw.githubusercontent.com/kovidgoyal/kitty/master/go.sum
-	cd ${DISTDIR}/${DIST_SUBDIR} && \
-		${FETCH_CMD} \
-			https://raw.githubusercontent.com/kovidgoyal/kitty/master/go.mod \
-				-o ${GO_MODFILE}
 
-my-extract:
-	${MKDIR} ${WRKSRC:S,${PORTNAME}@${GO_MODVERSION},,} && \
-		${LN} -s ${WRKDIR}/${PORTNAME}-master ${WRKSRC}
+my-fetch:
+	cd ${DISTDIR} && \
+		${GREP} -q "$$(${SHA256} ${DIST_SUBDIR}/${GO_DISTFILE})" ${DISTINFO_FILE} || \
+			{ cd ${DISTDIR}/${DIST_SUBDIR} && \
+				${FETCH_CMD} \
+					https://github.com/kovidgoyal/kitty/archive/refs/heads/master.zip && \
+				${UNZIP_CMD} master.zip && \
+				${MKDIR} ${GO_MODNAME}@${GO_MODVERSION} && \
+				${RM} ${GO_DISTFILE} && \
+				cd ${PORTNAME}-master && \
+					${COPYTREE_SHARE} . ../${GO_MODNAME}@${GO_MODVERSION} && \
+				cd .. && zip -r ${GO_DISTFILE} ${GO_MODNAME:C,/.*,,} && \
+				${RM} -r ${GO_MODNAME:C,/.*,,} ${PORTNAME}-master master.zip; } && \
+	cd ${DISTDIR} && \
+		${GREP} -q "$$(${SHA256} ${DIST_SUBDIR}/${GO_MODFILE})" ${DISTINFO_FILE} || \
+			{ cd ${DISTDIR}/${DIST_SUBDIR} && \
+				${RM} ${GO_MODFILE} && \
+				${FETCH_CMD} -o ${GO_MODFILE} \
+					https://raw.githubusercontent.com/kovidgoyal/kitty/master/go.mod; } && \
+	cd ${DISTDIR}/${DIST_SUBDIR} && \
+		${RM} go.sum && \
+		${FETCH_CMD} -o go.sum \
+			https://raw.githubusercontent.com/kovidgoyal/kitty/master/go.sum
 
 post-patch:
 	${REINPLACE_CMD} -E \
