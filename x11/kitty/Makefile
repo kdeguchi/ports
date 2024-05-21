@@ -91,7 +91,7 @@ USES+=		ncurses
 _USES_fetch+=	750:my-fetch
 
 my-fetch:
-	cd ${DISTDIR} && \
+	@cd ${DISTDIR} && \
 		${GREP} -q "$$(${SHA256} ${DIST_SUBDIR}/${GO_DISTFILE})" ${DISTINFO_FILE} || \
 			{ cd ${DISTDIR}/${DIST_SUBDIR} && \
 				${FETCH_CMD} \
@@ -103,13 +103,13 @@ my-fetch:
 					${COPYTREE_SHARE} . ../${GO_MODNAME}@${GO_MODVERSION} && \
 				cd .. && zip -r ${GO_DISTFILE} ${GO_MODNAME:C,/.*,,} && \
 				${RM} -r ${GO_MODNAME:C,/.*,,} ${PORTNAME}-master master.zip; } && \
-	cd ${DISTDIR} && \
+	@cd ${DISTDIR} && \
 		${GREP} -q "$$(${SHA256} ${DIST_SUBDIR}/${GO_MODFILE})" ${DISTINFO_FILE} || \
 			{ cd ${DISTDIR}/${DIST_SUBDIR} && \
 				${RM} ${GO_MODFILE} && \
 				${FETCH_CMD} -o ${GO_MODFILE} \
 					https://raw.githubusercontent.com/kovidgoyal/kitty/master/go.mod; } && \
-	cd ${DISTDIR}/${DIST_SUBDIR} && \
+	@cd ${DISTDIR}/${DIST_SUBDIR} && \
 		${RM} go.sum && \
 		${FETCH_CMD} -o go.sum \
 			https://raw.githubusercontent.com/kovidgoyal/kitty/master/go.sum
