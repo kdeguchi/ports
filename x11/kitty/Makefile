@@ -90,6 +90,13 @@ USES+=		ncurses
 
 _USES_fetch+=	750:my-fetch
 
+.if !target(makesum)
+my-makesum:
+	${RM} ${DISTDIR}/${DIST_SUBDIR}/${GO_DISTFILE}
+	${RM} ${DISTDIR}/${DIST_SUBDIR}/${GO_MODFILE}
+	${MAKE} makesum
+.endif
+
 my-fetch:
 	@cd ${DISTDIR} && \
 		${GREP} -q "$$(${SHA256} ${DIST_SUBDIR}/${GO_DISTFILE})" ${DISTINFO_FILE} || \
