@@ -45,7 +45,7 @@ RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes \
 		glib-networking>=0:net/glib-networking \
 		mypaint-brushes>0:graphics/mypaint-brushes
 
-USES+=		compiler:c++14-lang cpe gettext gmake gnome jpeg libtool \
+USES+=		cpe compiler:c++14-lang gettext gmake gnome jpeg libtool \
 		localbase pkgconfig shebangfix tar:bzip2 xorg
 CPE_VENDOR=	gimp
 CPE_PRODUCT=	gimp
