@@ -31,20 +31,6 @@ USE_KDE:=	${USE_KDE:S@ecm@ecm:build@}
 .endif
 
 ########################################
-# QT
-########################################
-.if defined(USE_QT)
-USES+=	localbase
-. if ! ${.CURDIR:M*devel/py-qt5-pyqt*}
-.  if ${USE_QT:M*designer*}
-.   if defined(USE_QT) && ! ${USE_QT:M*designer\:build*}
-USE_QT:=	${USE_QT:S@designer@designer:build@}
-.   endif
-.  endif
-. endif
-.endif
-
-########################################
 # xorgproto
 ########################################
 .if defined(USES)&& ( ${USES:M*pkgconfig} || ${USES:M*xorg} || ${USES:M*gl} || ${USES:M*gnome})
