@@ -195,9 +195,9 @@ post-patch-mozc_server:
 		for f in mozcdic-ut-*.txt.tar.bz2; do ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} $$f ${EXTRACT_AFTER_ARGS}; done && \
 		${CAT} *.txt > ${WRKDIR}/mozcdic-ut.txt && \
 		${MV} ${WRKDIR}/mozcdic-ut.txt . && \
-		${RUBY} -W1 -Ku remove_duplicate_ut_entries.rb mozcdic-ut.txt && \
-		${RUBY} -W1 -Ku count_word_hits.rb && \
-		${RUBY} -W1 -Ku apply_word_hits.rb mozcdic-ut.txt && \
+		${RUBY} -W2 -Ku remove_duplicate_ut_entries.rb mozcdic-ut.txt && \
+		${RUBY} -W2 -Ku count_word_hits.rb && \
+		${RUBY} -W2 -Ku apply_word_hits.rb mozcdic-ut.txt && \
 		${CAT} mozcdic-ut.txt \
 			>> ${BUILD_WRKSRC}/data/dictionary_oss/dictionary00.txt
 .endif
