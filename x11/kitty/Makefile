@@ -1,6 +1,6 @@
 PORTNAME=	kitty
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.34.1
+DISTVERSION=	0.35.0
 PORTREVISION=	0
 CATEGORIES=	x11 wayland
 
@@ -88,7 +88,7 @@ USES+=		ncurses:port
 USES+=		ncurses
 .endif
 
-_USES_fetch+=	750:my-fetch
+#_USES_fetch+=	750:my-fetch
 
 .if !target(makesum)
 my-makesum:
