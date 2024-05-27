@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.30.5448.102
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -17,7 +17,7 @@ USES=		compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:642a939 \
+GH_TUPLE=	fcitx:mozc:4b49992 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
@@ -65,10 +65,10 @@ JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:c5dc0ae:jawiki
 NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:b0de4b9:neologd
 
 # APACHE20
-PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:adaaaf9:personal
+PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:1d30d66:personal
 
 # APCHE20
-PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:2dfabea:place
+PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:8ddc00b:place
 
 # APACHE20 GPLv2
 SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:5a996bf:skkjisyo
@@ -81,7 +81,7 @@ UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:jawikilatest \
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:jawikilatest \
 		id.def:iddef
 # APACHE20 multi
-UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:7d8a3f9:ut
+UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:d44c83d:ut
 
 UTDIC_USES=	ruby:build
 UTDIC_PATCH_DEPENDS=	rubygem-nkf>0:net/rubygem-nkf \
@@ -122,7 +122,8 @@ _CCTYPE=	gcc
 .include <bsd.port.pre.mk>
 
 post-patch:
-	${FIND} ${BUILD_WRKSRC} -type f \( -name 'BUILD' -o -name '*.bzl' -o -name '*.cc' -o -name '*.h' \) \
+	${FIND} ${BUILD_WRKSRC} -type f \
+		\( -name 'BUILD' -o -name '*.bzl' -o -name '*.cc' -o -name '*.h' \) \
 		-exec ${REINPLACE_CMD} -E "s,'python','${PYTHON_CMD}',g;s,/usr/bin/xdg-open,${PREFIX}/bin/xdg-open,g;s,/usr/lib/mozc,${PREFIX}/libexec,g;s,LINUX_MOZC_SERVER_DIR \+ \"/documents\",\"${DATADIR}\",g;s,/usr/lib/mozc/documents,${DATADIR},g;s,/usr/share,${PREFIX}/share,g;s,/usr/lib,${PREFIX}/lib,g;s,OS==\"linux\",OS==\"linux\" or OS==\"freebsd\",g;s,target_platform==\"Linux\",target_platform==\"Linux\" or target_platform==\"FreeBSD\",g;s,defined\(__linux__\),defined(__linux__) || defined(__FreeBSD__),g;s,^#ifdef __linux__$$,#if defined(__linux__) || defined(__FreeBSD__),;s,^#ifdef __linux$$,#if defined(__linux__) || defined(__FreeBSD__),;s,ByteSize\(,ByteSizeLong(,g" {} \;
 	${REINPLACE_CMD} 's@path = \"/usr\"@path = \"${PREFIX}\"@g' \
 		${BUILD_WRKSRC}/WORKSPACE.bazel
@@ -183,7 +184,8 @@ post-patch-mozc_server:
 		${BUILD_WRKSRC}/third_party/japanese_usage_dictionary
 .if ${PORT_OPTIONS:MUTDIC}
 	# ut dictionary
-	${REINPLACE_CMD} -e 's@coding:@encoding:@g;s@`wget @#`wget @' ${WRKDIR}/merge-ut-dictionaries-*/src/*.rb
+	${REINPLACE_CMD} -e 's@coding:@encoding:@g;s@`wget @#`wget @' \
+		${WRKDIR}/merge-ut-dictionaries-*/src/*.rb
 	${REINPLACE_CMD} -e "s@^require 'open-uri'@#require 'open-uri'@g;" \
 		-e 's@^url = "https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/id.def"@id_def = File.new("id.def", "r")@g;s@^id_mozc = URI.open(url)@id_mozc = id_def@g;' \
 		${WRKDIR}/merge-ut-dictionaries-*/src/remove_duplicate_ut_entries.rb
@@ -193,9 +195,9 @@ post-patch-mozc_server:
 		for f in mozcdic-ut-*.txt.tar.bz2; do ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} $$f ${EXTRACT_AFTER_ARGS}; done && \
 		${CAT} *.txt > ${WRKDIR}/mozcdic-ut.txt && \
 		${MV} ${WRKDIR}/mozcdic-ut.txt . && \
-		${RUBY} -Ku remove_duplicate_ut_entries.rb mozcdic-ut.txt && \
-		${RUBY} -Ku count_word_hits.rb && \
-		${RUBY} -Ku apply_word_hits.rb mozcdic-ut.txt && \
+		${RUBY} -W1 -Ku remove_duplicate_ut_entries.rb mozcdic-ut.txt && \
+		${RUBY} -W1 -Ku count_word_hits.rb && \
+		${RUBY} -W1 -Ku apply_word_hits.rb mozcdic-ut.txt && \
 		${CAT} mozcdic-ut.txt \
 			>> ${BUILD_WRKSRC}/data/dictionary_oss/dictionary00.txt
 .endif
