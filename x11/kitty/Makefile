@@ -88,19 +88,17 @@ USES+=		ncurses:port
 USES+=		ncurses
 .endif
 
-#_USES_fetch+=	750:my-fetch
-
 .if !target(makesum)
 my-makesum:
 	${RM} ${DISTDIR}/${DIST_SUBDIR}/${GO_DISTFILE}
 	${RM} ${DISTDIR}/${DIST_SUBDIR}/${GO_MODFILE}
+	${MAKE} my-fetch
 	${MAKE} makesum
 .endif
 
 my-fetch:
 	@cd ${DISTDIR} && \
-		${GREP} -q "$$(${SHA256} ${DIST_SUBDIR}/${GO_DISTFILE})" ${DISTINFO_FILE} || \
-			{ cd ${DISTDIR}/${DIST_SUBDIR} && \
+			cd ${DISTDIR}/${DIST_SUBDIR} && \
 				${FETCH_CMD} \
 					https://github.com/kovidgoyal/kitty/archive/refs/heads/master.zip && \
 				${UNZIP_CMD} master.zip && \
@@ -109,13 +107,12 @@ my-fetch:
 				cd ${PORTNAME}-master && \
 					${COPYTREE_SHARE} . ../${GO_MODNAME}@${GO_MODVERSION} && \
 				cd .. && zip -r ${GO_DISTFILE} ${GO_MODNAME:C,/.*,,} && \
-				${RM} -r ${GO_MODNAME:C,/.*,,} ${PORTNAME}-master master.zip; }
+				${RM} -r ${GO_MODNAME:C,/.*,,} ${PORTNAME}-master master.zip
 	@cd ${DISTDIR} && \
-		${GREP} -q "$$(${SHA256} ${DIST_SUBDIR}/${GO_MODFILE})" ${DISTINFO_FILE} || \
-			{ cd ${DISTDIR}/${DIST_SUBDIR} && \
+			cd ${DISTDIR}/${DIST_SUBDIR} && \
 				${RM} ${GO_MODFILE} && \
 				${FETCH_CMD} -o ${GO_MODFILE} \
-					https://raw.githubusercontent.com/kovidgoyal/kitty/master/go.mod; }
+					https://raw.githubusercontent.com/kovidgoyal/kitty/master/go.mod
 	@cd ${DISTDIR}/${DIST_SUBDIR} && \
 		${RM} go.sum && \
 		${FETCH_CMD} -o go.sum \
