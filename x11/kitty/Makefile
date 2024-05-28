@@ -94,7 +94,6 @@ my-makesum:
 	${RM} ${DISTDIR}/${DIST_SUBDIR}/${GO_MODFILE}
 	${MAKE} my-fetch
 	${MAKE} makesum
-.endif
 
 my-fetch:
 	@cd ${DISTDIR} && \
@@ -117,6 +116,7 @@ my-fetch:
 		${RM} go.sum && \
 		${FETCH_CMD} -o go.sum \
 			https://raw.githubusercontent.com/kovidgoyal/kitty/master/go.sum
+.endif
 
 post-patch:
 	${REINPLACE_CMD} -E \
