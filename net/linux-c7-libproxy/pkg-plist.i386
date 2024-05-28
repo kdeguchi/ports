@@ -1,6 +1,0 @@
-usr/lib/libproxy.so.1
-usr/lib/libproxy.so.1.0.0
-%%PORTDOCS%%%%DOCSDIR%%/AUTHORS
-%%PORTDOCS%%%%DOCSDIR%%/COPYING
-%%PORTDOCS%%%%DOCSDIR%%/README
-@dir usr/lib/libproxy/0.4.11/modules

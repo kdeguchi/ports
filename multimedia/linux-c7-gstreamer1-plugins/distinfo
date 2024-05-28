@@ -1,7 +1,0 @@
-TIMESTAMP = 1613105250
-SHA256 (centos/gstreamer1-plugins-base-1.10.4-2.el7.i686.rpm) = 066d6016f4c64cf35d1aaf4245c699e0b8a1ce1e684655ce87f8f5f1a1988b27
-SIZE (centos/gstreamer1-plugins-base-1.10.4-2.el7.i686.rpm) = 1495192
-SHA256 (centos/gstreamer1-plugins-base-1.10.4-2.el7.x86_64.rpm) = 78c2582b6d78c9ef50731b774d69173927f6ca41380524563fb08adaffb5063a
-SIZE (centos/gstreamer1-plugins-base-1.10.4-2.el7.x86_64.rpm) = 1486664
-SHA256 (centos/gstreamer1-plugins-base-1.10.4-2.el7.src.rpm) = aa78ff102f477f220d82b354cc971257dbba3af8af11a96c00345edebfed589b
-SIZE (centos/gstreamer1-plugins-base-1.10.4-2.el7.src.rpm) = 3072655

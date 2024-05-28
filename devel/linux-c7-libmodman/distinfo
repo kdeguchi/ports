@@ -1,7 +1,0 @@
-TIMESTAMP = 1613104259
-SHA256 (centos/libmodman-2.0.1-8.el7.i686.rpm) = 8db8999702b58d6b292c7dd6b752edd17dcc18299d17b0d81d89419d1fb55d87
-SIZE (centos/libmodman-2.0.1-8.el7.i686.rpm) = 28580
-SHA256 (centos/libmodman-2.0.1-8.el7.x86_64.rpm) = 9a030b2f23942d6f828b068ec685535b753a903d390cebcad0a82b5ba59a4292
-SIZE (centos/libmodman-2.0.1-8.el7.x86_64.rpm) = 28976
-SHA256 (centos/libmodman-2.0.1-8.el7.src.rpm) = 2beeb96111e7406d7f489fca90ee683b8872f04b53ae98ed9f2678f5ec48aeef
-SIZE (centos/libmodman-2.0.1-8.el7.src.rpm) = 23351
