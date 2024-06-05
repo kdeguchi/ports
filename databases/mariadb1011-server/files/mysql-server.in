@@ -152,8 +152,8 @@ mysql_poststart()
 mysql_stop()
 {
 	checkyesno mysql_enable && echo "Stopping ${name}." && \
-		echo 'Waiting for PIDS: '$(cat ${pidfile})
-	mysqladmin -u${mysql_admin} -p${mysql_passwd} shutdown
+		echo 'Waiting for PIDS: '$(cat ${pidfile}) && \
+			mysqladmin -u${mysql_admin} -p${mysql_passwd} shutdown
 }
 
 run_rc_command "$1"
