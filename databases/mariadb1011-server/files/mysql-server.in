@@ -45,6 +45,7 @@ command="/usr/sbin/daemon"
 procname="%%PREFIX%%/libexec/mariadbd"
 start_precmd="${name}_prestart"
 start_postcmd="${name}_poststart"
+stop_cmd="${name}_stop"
 
 if [ -n "$2" ]; then
 	instance="$2"
