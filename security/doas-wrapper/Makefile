@@ -20,8 +20,8 @@ PLIST_FILES=	bin/sudo bin/sudoedit bin/visudo
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/sudo.sh ${STAGEDIR}${PREFIX}/bin/sudo
-	cd ${STAGEDIR}${PREFIX}/bin && \
-		${LN} -s doasedit sudoedit \
-		${LN} -s vidoas visudo
+	cd ${STAGEDIR}/${PREFIX}/bin && \
+		${RLN} doasedit sudoedit && \
+		${RLN} vidoas visudo
 
 .include <bsd.port.mk>
