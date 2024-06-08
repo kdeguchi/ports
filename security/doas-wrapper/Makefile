@@ -1,5 +1,5 @@
 PORTNAME=	doas-wrapper
-PORTVERSION=	0.2
+PORTVERSION=	0.3
 CATEGORIES=	security
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -16,10 +16,12 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 SUB_FILES=	sudo.sh
-PLIST_FILES=	bin/sudo bin/sudoedit
+PLIST_FILES=	bin/sudo bin/sudoedit bin/visudo
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/sudo.sh ${STAGEDIR}${PREFIX}/bin/sudo
-	cd ${STAGEDIR}${PREFIX}/bin && ${LN} -s doasedit sudoedit
+	cd ${STAGEDIR}${PREFIX}/bin && \
+		${LN} -s doasedit sudoedit \
+		${LN} -s vidoas visudo
 
 .include <bsd.port.mk>
