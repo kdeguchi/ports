@@ -84,8 +84,7 @@ UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:jawikilatest \
 UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:d44c83d:ut
 
 UTDIC_USES=	ruby:build
-UTDIC_PATCH_DEPENDS=	rubygem-nkf>0:net/rubygem-nkf \
-		rubygem-zlib>0:devel/rubygem-zlib
+UTDIC_PATCH_DEPENDS=	rubygem-zlib>0:devel/rubygem-zlib
 
 .elif ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
 BUILD_DEPENDS+=	libglvnd>0:graphics/libglvnd
@@ -184,11 +183,12 @@ post-patch-mozc_server:
 		${BUILD_WRKSRC}/third_party/japanese_usage_dictionary
 .if ${PORT_OPTIONS:MUTDIC}
 	# ut dictionary
-	${REINPLACE_CMD} -e 's@coding:@encoding:@g;s@`wget @#`wget @' \
-		${WRKDIR}/merge-ut-dictionaries-*/src/*.rb
-	${REINPLACE_CMD} -e "s@^require 'open-uri'@#require 'open-uri'@g;" \
-		-e 's@^url = "https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/id.def"@id_def = File.new("id.def", "r")@g;s@^id_mozc = URI.open(url)@id_mozc = id_def@g;' \
-		${WRKDIR}/merge-ut-dictionaries-*/src/remove_duplicate_ut_entries.rb
+	${REINPLACE_CMD} -e 's@coding:@en&@g;' \
+		-e 's@`wget @#&@;' -e "s@^require 'nkf'@#&@;" \
+		-e "s@^require 'open-uri'@#&@;" \
+		-e 's@^url = "https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/id.def"@id_def = File.new("id.def", "r")@;' \
+		-e 's@^id_mozc = URI.open(url)@id_mozc = id_def@;' \
+			${WRKDIR}/merge-ut-dictionaries-*/src/*.rb
 	cd ${WRKDIR}/merge-ut-dictionaries-*/src && \
 		${CP} ${DISTDIR}/jawiki-latest-all-titles-in-ns0.gz ${DISTDIR}/id.def . && \
 		${CP} ../../mozcdic-ut-*/mozcdic-ut-*.txt.tar.bz2 . && \
