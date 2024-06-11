@@ -17,7 +17,7 @@ NOT_FOR_ARCHS=	i386
 BUILD_DEPENDS=	bash:shells/bash \
 		zip:archivers/zip
 
-USES=		cpe llvm:15 python shebangfix zip
+USES=		cpe llvm:15,build,run python shebangfix zip
 
 CPE_VENDOR=	google
 
