@@ -19,7 +19,8 @@ GL_ACCOUNT=	compiz
 GL_COMMIT=	0cc706c1c741a8234da3bd1a2c0460cae2804820
 
 USE_GNOME=	intltool pygobject3
-USE_PYTHON=	flavors py3kplist
+USE_PYTHON=	autoplist distutils flavors py3kplist
+PYDISTUTILS_INSTALLNOSINGLE=	yes
 
 PLIST_SUB+=	PORTVERSION=${PORTVERSION}
 
@@ -33,7 +34,7 @@ NLS_CONFIGURE_ENABLE=	nls
 post-patch:
 	${REINPLACE_CMD} 's,@python ,@${PYTHON_CMD} ,' ${WRKSRC}/Makefile
 
-do-install:
-	@(cd ${WRKSRC}; ${PYTHON_CMD} setup.py install --root=${STAGEDIR} --prefix=${PREFIX})
+do-configure:
+	@${DO_NADA}
 
 .include <bsd.port.mk>
