@@ -55,11 +55,13 @@ post-patch:
 		-e 's,#!/usr/bin/env .*/lib/web-greeter,#!/bin/sh\\n${PYTHON_CMD} ${PREFIX}/lib/web-greeter,' \
 			${WRKSRC}/Makefile
 	${REINPLACE_CMD} -e 's,/usr,${PREFIX},;s,/etc,${PREFIX}/etc,;' \
+		${WRKSRC}/dist/90-greeter-wrapper.conf \
+		${WRKSRC}/dist/web-greeter.1 \
 		${WRKSRC}/dist/web-greeter.yml \
+		${WRKSRC}/docs/*.js \
 		${WRKSRC}/src/*.py \
 		${WRKSRC}/src/*/*.py \
-		${WRKSRC}/themes/themes/*/js/*.js \
-		${WRKSRC}/dist/90-greeter-wrapper.conf
+		${WRKSRC}/themes/themes/*/js/*.js
 	${FIND} ${WRKSRC} -name '*.bak' -delete
 
 pre-configure:

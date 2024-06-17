@@ -8,14 +8,15 @@ WWW=		https://github.com/JezerM/nody-greeterer
 
 LICENSE=	GPLv3
 
-gUILD_DEPENDS=	npm:www/npm
+BUILD_DEPENDS=	npm:www/npm
 
 LIB_DEPENDS=	liblightdm-gobject-1.so:x11/lightdm \
 		libwebkit2gtk-4.0.so:www/webkit2-gtk3
 
 OPTIONS_DEFINE=	DOCS
 
-USES=		gettext gmake gnome localbase nodejs:run pkgconfig python:3.10 xorg
+USES=		gettext gmake gnome localbase nodejs:build,run pathfix pkgconfig \
+		python xorg
 USE_GNOME=	cairo glib20 gtk30 introspection pango
 USE_XORG=	x11 xcb
 
@@ -36,7 +37,7 @@ post-extract:
 post-patch:
 	${REINPLACE_CMD} 's@/usr@${PREFIX}@;s@/etc/lightdm@${PREFIX}/etc/lightdm@;s@/etc/xdg@${PREFIX}/etc/xdg@' \
 		${WRKSRC}/*.js ${WRKSRC}/*/*.js ${WRKSRC}/*/*.ts
-	${REINPLACE_CMD} 's@16\.2\.8@23.0.0@' ${WRKSRC}/package.json
+#	${REINPLACE_CMD} 's@16\.2\.8@23.0.0@' ${WRKSRC}/package.json
 
 pre-configure:
 	${MKDIR} ${WRKDIR}/.bin ${WRKSRC}/node_modules/.bin
