@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.30.5490.102
-#PORTREVISION?=	4
+PORTREVISION?=	1
 CATEGORIES=	japanese
 
 EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
@@ -17,7 +17,7 @@ USES=		compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 		python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:8acc79f \
+GH_TUPLE=	fcitx:mozc:e379550 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 BUILD_WRKSRC=	${WRKSRC}/src
@@ -55,33 +55,33 @@ SUDACHIDICT_DESC=	Dictionary from SudachiDict
 UTDIC_DESC=	Additional UT Dictionary
 
 # GPLv2
-ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:4e548e6:altcannadic
+ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:9e71156:altcannadic
 
 # CC-BY-SA-4.0
-EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:4a08ebf:edict2
-JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:954b072:jawiki
+EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:38f7f74:edict2
+JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:e9e2931:jawiki
 
 # APACHE20
-NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:b0de4b9:neologd
+NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:65370a0:neologd
 
 # APACHE20
-PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:1d30d66:personal
+PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:e104958:personal
 
 # APCHE20
-PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:8ddc00b:place
+PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:1e45b1d:place
 
 # APACHE20 GPLv2
-SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:5a996bf:skkjisyo
+SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:e1f26b8:skkjisyo
 
 # APACHE20
-SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:c109f06:sudachi
+SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:f25afb4:sudachi
 
 UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:jawikilatest \
 		https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/:iddef
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:jawikilatest \
 		id.def:iddef
 # APACHE20 multi
-UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:d44c83d:ut
+UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:ea8cfbd:ut
 
 UTDIC_USES=	ruby:build
 UTDIC_PATCH_DEPENDS=	rubygem-zlib>0:devel/rubygem-zlib
