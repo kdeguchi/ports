@@ -197,10 +197,10 @@ PLIST_FILES+=	bin/mozc \
 		libexec/mozc_server
 SUB_FILES+=	mozc
 
-post-extract-mozc_server:
+post-fetch-mozc_server:
 .if ${PORT_OPTIONS:MUTDIC}
 	@${ECHO_MSG} "Downloading files required by UT Dictionary..."
-	@cd ${WRKDIR}/merge-ut-dictionaries-*/src && \
+	@cd ${DISTDIR}/${DIST_SUBDIR} && \
 		${FETCH_CMD} ${UTDIC_JAWIKI} && \
 		${FETCH_CMD} ${UTDIC_IDDEF}
 .endif
@@ -225,6 +225,8 @@ post-patch-mozc_server:
 		-e 's@^id_mozc = URI.open(url)@id_mozc = id_def@;' \
 			${WRKDIR}/merge-ut-dictionaries-*/src/*.rb
 	cd ${WRKDIR}/merge-ut-dictionaries-*/src && \
+		${CP} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_IDDEF:C@.*/@@} . && \
+		${CP} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_JAWIKI:C@.*/@@} . && \
 		${CP} ../../mozcdic-ut-*/mozcdic-ut-*.txt.tar.bz2 . && \
 		for f in mozcdic-ut-*.txt.tar.bz2; do ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} $$f ${EXTRACT_AFTER_ARGS}; done && \
 		${CAT} *.txt > ${WRKDIR}/mozcdic-ut.txt && \
@@ -236,7 +238,7 @@ post-patch-mozc_server:
 			>> ${BUILD_WRKSRC}/data/dictionary_oss/dictionary00.txt
 .endif
 
-post-extract: post-extract-mozc_server
+post-fetch: post-fetch-mozc_server
 
 post-patch: post-patch-mozc_server
 
