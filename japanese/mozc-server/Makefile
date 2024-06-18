@@ -22,9 +22,12 @@ GH_TUPLE=	fcitx:mozc:e379550 \
 
 BUILD_WRKSRC=	${WRKSRC}/src
 BUILD_MOZC_CMD=	${SETENV} PATH="${PREFIX}/openjdk11/bin:${PATH}" \
-		bazel build -c opt --copt=-fPIC --host_linkopt=-lm --verbose_failures --sandbox_debug --config oss_linux
+		bazel ${BAZEL_OPTS} build -c opt --copt=-fPIC --host_linkopt=-lm \
+			--verbose_failures --sandbox_debug --config oss_linux
 
 BUILD_MOZC_LIST?=	mozc_server
+
+BAZEL_OPTS=	--output_user_root=${WRKDIR}/bazel_out
 
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
 PKGNAMEPREFIX=	ja-
@@ -531,6 +534,6 @@ do-build: ${BUILD_MOZC_LIST:S/^/do-build-/}
 do-install: ${BUILD_MOZC_LIST:S/^/do-install-/}
 
 post-install:
-	cd ${BUILD_WRKSRC} && bazel shutdown
+	cd ${BUILD_WRKSRC} && bazel ${BAZEL_OPTS} shutdown
 
 .include <bsd.port.post.mk>
