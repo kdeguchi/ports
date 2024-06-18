@@ -1,32 +1,6 @@
 --- src/WORKSPACE.bazel.orig	2023-09-02 11:09:28 UTC
 +++ src/WORKSPACE.bazel
-@@ -36,17 +36,20 @@ py_repositories()
- 
- # Abseil
- # https://abseil.io/docs/cpp/quickstart#set-up-a-bazel-workspace-to-work-with-abseil
--local_repository(
-+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
-+# This git_repository rule is an alternative for the above rule.
-+git_repository(
-     name = "com_google_absl",
--    path = "third_party/abseil-cpp",
-+    remote = "https://github.com/abseil/abseil-cpp.git",
-+    tag = "20240116.1"  # 2024-01-16
- )
- 
--
- # Protocol Buffers
- # https://github.com/protocolbuffers/protobuf/blob/main/examples/WORKSPACE
--local_repository(
-+git_repository(
-     name = "com_google_protobuf",
--    path = "third_party/protobuf",
-+    remote = "https://github.com/protocolbuffers/protobuf.git",
-+    tag = "v27.0",  # v27.0, 2024-05-23
- )
- load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
- protobuf_deps()
-@@ -130,7 +133,7 @@ new_local_repository(
+@@ -130,7 +130,7 @@ new_local_repository(
  # Qt for Linux
  pkg_config_repository(
    name = "qt_linux",

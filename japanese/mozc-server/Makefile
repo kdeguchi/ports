@@ -3,8 +3,6 @@ PORTVERSION=	2.30.5490.102
 PORTREVISION?=	1
 CATEGORIES=	japanese
 
-EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
-
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT?=	Mozc Japanese Input Method, Server
 WWW=		https://github.com/google/mozc
@@ -13,8 +11,12 @@ PATCH_DEPENDS=${PYTHON_CMD}:${PYTHON_PORTSDIR}
 BUILD_DEPENDS=	bazel:devel/bazel
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
 
-USES=		compiler:c++20-lang gmake localbase ninja:build pkgconfig \
-		python:3.7+,build shebangfix tar:bzip2
+DIST_SUBDIR=	${PORTNAME}
+
+.include "Makefile.MASTER_SITES"
+
+USES=	compiler:c++20-lang gmake localbase ninja:build pkgconfig \
+	python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
 GH_TUPLE=	fcitx:mozc:e379550 \
@@ -22,12 +24,12 @@ GH_TUPLE=	fcitx:mozc:e379550 \
 
 BUILD_WRKSRC=	${WRKSRC}/src
 BUILD_MOZC_CMD=	${SETENV} PATH="${PREFIX}/openjdk11/bin:${PATH}" \
-		bazel ${BAZEL_OPTS} build -c opt --copt=-fPIC --host_linkopt=-lm \
-			--verbose_failures --sandbox_debug --config oss_linux
+		bazel --output_user_root=${WRKDIR}/bazel_out \
+			build -c opt --copt=-fPIC --host_linkopt=-lm \
+			--verbose_failures --sandbox_debug --config oss_linux \
+			--distdir=${WRKDIR}/bazel-dist
 
 BUILD_MOZC_LIST?=	mozc_server
-
-BAZEL_OPTS=	--output_user_root=${WRKDIR}/bazel_out
 
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
 PKGNAMEPREFIX=	ja-
@@ -48,14 +50,14 @@ OPTIONS_MULTI_UTDIC=	ALTCANNADIC EDICT2 JAWIKI NEOLOGD PERSONALNAME \
 		PLACENAME SKKJISYO SUDACHIDICT
 
 ALTCANNADIC_DESC=	Dictionary from Alt-Cannadic
-EDICT2_DESC=	Dictionary from EDICT2
-JAWIKI_DESC=	Dictionary from Japanese Wikipedia
-NEOLOGD_DESC=	Dictionary from NEologd
+EDICT2_DESC=		Dictionary from EDICT2
+JAWIKI_DESC=		Dictionary from Japanese Wikipedia
+NEOLOGD_DESC=		Dictionary from NEologd
 PERSONALNAME_DESC=	Personal Name Dictionary
-PLACENAME_DESC=	Place Name Dictionary
-SKKJISYO_DESC=	Dictionary from from SKK-JISYO
+PLACENAME_DESC=		Place Name Dictionary
+SKKJISYO_DESC=		Dictionary from from SKK-JISYO
 SUDACHIDICT_DESC=	Dictionary from SudachiDict
-UTDIC_DESC=	Additional UT Dictionary
+UTDIC_DESC=		Additional UT Dictionary
 
 # GPLv2
 ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:9e71156:altcannadic
@@ -79,20 +81,17 @@ SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:e1f26b8:skkjisyo
 # APACHE20
 SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:f25afb4:sudachi
 
-UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:jawikilatest \
-		https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/:iddef
-UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:jawikilatest \
-		id.def:iddef
 # APACHE20 multi
-UTDIC_GH_TUPLE=	utuhiro78:merge-ut-dictionaries:ea8cfbd:ut
-
-UTDIC_USES=	ruby:build
+UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:ea8cfbd:ut
+UTDIC_IDDEF=		https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/id.def
+UTDIC_JAWIKI=		https://dumps.wikimedia.org/jawiki/latest/jawiki-latest-all-titles-in-ns0.gz
 UTDIC_PATCH_DEPENDS=	rubygem-zlib>0:devel/rubygem-zlib
+UTDIC_USES=		ruby:build
 
 .elif ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
 BUILD_DEPENDS+=	libglvnd>0:graphics/libglvnd
 USES+=		qt:6
-USE_LOCALE?=	C.UTF-8
+USE_LOCALE=	C.UTF-8
 USE_QT=		base
 
 .elif ${BUILD_MOZC_LIST:Mibus_mozc} == "ibus_mozc"
@@ -123,19 +122,44 @@ _CCTYPE=	gcc
 
 .include <bsd.port.pre.mk>
 
+post-extract:
+	@${RMDIR} ${WRKSRC}/src/third_party/abseil-cpp && \
+		${RLN} ${WRKDIR}/abseil-cpp-* ${WRKSRC}/src/third_party/abseil-cpp
+	@${RMDIR} ${WRKSRC}/src/third_party/protobuf && \
+		${RLN} ${WRKDIR}/protobuf-* ${WRKSRC}/src/third_party/protobuf
+	@${MKDIR} ${WRKDIR}/bazel-dist
+.for file in ${DISTFILES:C/\:(.*)//}
+	@${CP} ${DISTDIR}/${DIST_SUBDIR}/${file} ${WRKDIR}/bazel-dist
+.endfor
+
 post-patch:
-	${FIND} ${BUILD_WRKSRC} -type f \
+	@${CP} ${PATCHDIR}/bazelrc ${WRKDIR} && \
+		${REINPLACE_CMD} -e 's@%%BAZEL_DIR%%@${WRKDIR}@g;s@%%BAZEL_DIST%%@${WRKDIR}@g;' \
+			${WRKDIR}/bazelrc
+	@${FIND} ${BUILD_WRKSRC} -type f \
 		\( -name 'BUILD' -o -name '*.bzl' -o -name '*.cc' -o -name '*.h' \) \
-		-exec ${REINPLACE_CMD} -E "s,'python','${PYTHON_CMD}',g;s,/usr/bin/xdg-open,${PREFIX}/bin/xdg-open,g;s,/usr/lib/mozc,${PREFIX}/libexec,g;s,LINUX_MOZC_SERVER_DIR \+ \"/documents\",\"${DATADIR}\",g;s,/usr/lib/mozc/documents,${DATADIR},g;s,/usr/share,${PREFIX}/share,g;s,/usr/lib,${PREFIX}/lib,g;s,OS==\"linux\",OS==\"linux\" or OS==\"freebsd\",g;s,target_platform==\"Linux\",target_platform==\"Linux\" or target_platform==\"FreeBSD\",g;s,defined\(__linux__\),defined(__linux__) || defined(__FreeBSD__),g;s,^#ifdef __linux__$$,#if defined(__linux__) || defined(__FreeBSD__),;s,^#ifdef __linux$$,#if defined(__linux__) || defined(__FreeBSD__),;s,ByteSize\(,ByteSizeLong(,g" {} \;
-	${REINPLACE_CMD} 's@path = \"/usr\"@path = \"${PREFIX}\"@g' \
+		-exec ${REINPLACE_CMD} -E -e "s,'python','${PYTHON_CMD}',g;" \
+			-e 's,/usr/bin/xdg-open,${PREFIX}/bin/xdg-open,g;' \
+			-e 's,/usr/lib/mozc,${PREFIX}/libexec,g;' \
+			-e 's,LINUX_MOZC_SERVER_DIR \+ "/documents","${DATADIR}",g;' \
+			-e 's,/usr/lib/mozc/documents,${DATADIR},g;' \
+			-e 's,/usr/share,${PREFIX}/share,g;' \
+			-e 's,/usr/lib,${PREFIX}/lib,g;' \
+			-e 's,OS=="linux",OS=="linux" or OS=="freebsd",g;' \
+			-e 's,target_platform=="Linux",target_platform=="Linux" or target_platform=="FreeBSD",g;' \
+			-e 's,defined\(__linux__\),defined(__linux__) || defined(__FreeBSD__),g;' \
+			-e 's,^#ifdef __linux__$$,#if defined(__linux__) || defined(__FreeBSD__),;' \
+			-e 's,^#ifdef __linux$$,#if defined(__linux__) || defined(__FreeBSD__),;' \
+			-e 's,ByteSize\(,ByteSizeLong\(,g;' {} \;
+	@${REINPLACE_CMD} 's@path = "/usr"@path = "${PREFIX}"@g' \
 		${BUILD_WRKSRC}/WORKSPACE.bazel
 
 .if ${BUILD_MOZC_LIST:Mfcitx_mozc} == "fcitx_mozc"
 	${REINPLACE_CMD} 's,/po/mo},%po}mo,g' \
-	    ${BUILD_WRKSRC}/unix/fcitx/gen_fcitx_mozc_i18n.sh
+		${BUILD_WRKSRC}/unix/fcitx/gen_fcitx_mozc_i18n.sh
 	${REINPLACE_CMD} \
-	    "s,IconName=.*,IconName=${LOCALBASE:Q}/share/fcitx/mozc/icon/mozc.png," \
-	    ${BUILD_WRKSRC}/unix/fcitx/mozc.conf
+		's,IconName=.*,IconName=${LOCALBASE:Q}/share/fcitx/mozc/icon/mozc.png,' \
+			${BUILD_WRKSRC}/unix/fcitx/mozc.conf
 .endif
 
 .if ${BUILD_MOZC_LIST:Mfcitx5_mozc} == "fcitx5_mozc"
@@ -173,27 +197,34 @@ PLIST_FILES+=	bin/mozc \
 		libexec/mozc_server
 SUB_FILES+=	mozc
 
+post-extract-mozc_server:
+.if ${PORT_OPTIONS:MUTDIC}
+	@${ECHO_MSG} "Downloading files required by UT Dictionary..."
+	@cd ${WRKDIR}/merge-ut-dictionaries-*/src && \
+		${FETCH_CMD} ${UTDIC_JAWIKI} && \
+		${FETCH_CMD} ${UTDIC_IDDEF}
+.endif
+
 post-patch-mozc_server:
-	@for F in ${DISTFILES:M*\:kenall:S/:kenall//} ${DISTFILES:M*\:jigyosyo:S/:jigyosyo//}; do \
-		${UNZIP_NATIVE_CMD} -L -d ${BUILD_WRKSRC}/data/dictionary_oss \
-		    ${DISTDIR}/$$F; \
-	done
-	cd ${BUILD_WRKSRC}/data/dictionary_oss && \
-	    ${SETENV} PYTHONPATH=${BUILD_WRKSRC} \
-		${PYTHON_CMD} ${BUILD_WRKSRC}/dictionary/gen_zip_code_seed.py \
-		--zip_code=ken_all.csv --jigyosyo=jigyosyo.csv >> dictionary09.txt
-	${MV} ${WRKSRC_udic}/usage_dict.txt \
+.for file in ${DISTFILES:M*\:kenall:S/:kenall//} ${DISTFILES:M*\:jigyosyo:S/:jigyosyo//}
+		@${UNZIP_NATIVE_CMD} -q -L -d ${BUILD_WRKSRC}/data/dictionary_oss \
+			${DISTDIR}/${DIST_SUBDIR}/${file}
+.endfor
+	@cd ${BUILD_WRKSRC}/data/dictionary_oss && \
+		${SETENV} PYTHONPATH=${BUILD_WRKSRC} \
+			${PYTHON_CMD} ${BUILD_WRKSRC}/dictionary/gen_zip_code_seed.py \
+				--zip_code=ken_all.csv --jigyosyo=jigyosyo.csv >> dictionary09.txt
+	@${MV} ${WRKSRC_udic}/usage_dict.txt \
 		${BUILD_WRKSRC}/third_party/japanese_usage_dictionary
 .if ${PORT_OPTIONS:MUTDIC}
 	# ut dictionary
-	${REINPLACE_CMD} -e 's@coding:@en&@g;' \
+	@${REINPLACE_CMD} -e 's@coding:@en&@g;' \
 		-e 's@`wget @#&@;' -e "s@^require 'nkf'@#&@;" \
 		-e "s@^require 'open-uri'@#&@;" \
 		-e 's@^url = "https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/id.def"@id_def = File.new("id.def", "r")@;' \
 		-e 's@^id_mozc = URI.open(url)@id_mozc = id_def@;' \
 			${WRKDIR}/merge-ut-dictionaries-*/src/*.rb
 	cd ${WRKDIR}/merge-ut-dictionaries-*/src && \
-		${CP} ${DISTDIR}/jawiki-latest-all-titles-in-ns0.gz ${DISTDIR}/id.def . && \
 		${CP} ../../mozcdic-ut-*/mozcdic-ut-*.txt.tar.bz2 . && \
 		for f in mozcdic-ut-*.txt.tar.bz2; do ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} $$f ${EXTRACT_AFTER_ARGS}; done && \
 		${CAT} *.txt > ${WRKDIR}/mozcdic-ut.txt && \
@@ -204,6 +235,8 @@ post-patch-mozc_server:
 		${CAT} mozcdic-ut.txt \
 			>> ${BUILD_WRKSRC}/data/dictionary_oss/dictionary00.txt
 .endif
+
+post-extract: post-extract-mozc_server
 
 post-patch: post-patch-mozc_server
 
