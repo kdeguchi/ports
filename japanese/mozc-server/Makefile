@@ -199,7 +199,7 @@ SUB_FILES+=	mozc
 
 post-fetch-mozc_server:
 .if ${PORT_OPTIONS:MUTDIC}
-	@${ECHO_MSG} "Downloading files required by UT Dictionary..."
+#	@${ECHO_MSG} "Downloading files required by UT Dictionary..."
 	@cd ${DISTDIR}/${DIST_SUBDIR} && \
 		${FETCH_CMD} ${UTDIC_JAWIKI} && \
 		${FETCH_CMD} ${UTDIC_IDDEF}
@@ -207,13 +207,14 @@ post-fetch-mozc_server:
 
 post-patch-mozc_server:
 .for file in ${DISTFILES:M*\:kenall:S/:kenall//} ${DISTFILES:M*\:jigyosyo:S/:jigyosyo//}
-		@${UNZIP_NATIVE_CMD} -q -L -d ${BUILD_WRKSRC}/data/dictionary_oss \
-			${DISTDIR}/${DIST_SUBDIR}/${file}
+		@${CP} ${DISTDIR}/${DIST_SUBDIR}/${file} ${WRKDIR}/bazel-dist
+#		@${UNZIP_NATIVE_CMD} -q -L -d ${BUILD_WRKSRC}/data/dictionary_oss \
+#			${DISTDIR}/${DIST_SUBDIR}/${file}
 .endfor
-	@cd ${BUILD_WRKSRC}/data/dictionary_oss && \
-		${SETENV} PYTHONPATH=${BUILD_WRKSRC} \
-			${PYTHON_CMD} ${BUILD_WRKSRC}/dictionary/gen_zip_code_seed.py \
-				--zip_code=ken_all.csv --jigyosyo=jigyosyo.csv >> dictionary09.txt
+#	@cd ${BUILD_WRKSRC}/data/dictionary_oss && \
+#		${SETENV} PYTHONPATH=${BUILD_WRKSRC} \
+#			${PYTHON_CMD} ${BUILD_WRKSRC}/dictionary/gen_zip_code_seed.py \
+#				--zip_code=ken_all.csv --jigyosyo=jigyosyo.csv >> dictionary09.txt
 	@${MV} ${WRKSRC_udic}/usage_dict.txt \
 		${BUILD_WRKSRC}/third_party/japanese_usage_dictionary
 .if ${PORT_OPTIONS:MUTDIC}
@@ -224,16 +225,18 @@ post-patch-mozc_server:
 		-e 's@^url = "https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/id.def"@id_def = File.new("id.def", "r")@;' \
 		-e 's@^id_mozc = URI.open(url)@id_mozc = id_def@;' \
 			${WRKDIR}/merge-ut-dictionaries-*/src/*.rb
-	cd ${WRKDIR}/merge-ut-dictionaries-*/src && \
+
+	@${ECHO_MSG} "*** Creating mozcdic-ut.txt for UT Dictionary. It takes a long time! ***"
+	@cd ${WRKDIR}/merge-ut-dictionaries-*/src && \
 		${CP} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_IDDEF:C@.*/@@} . && \
 		${CP} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_JAWIKI:C@.*/@@} . && \
 		${CP} ../../mozcdic-ut-*/mozcdic-ut-*.txt.tar.bz2 . && \
 		for f in mozcdic-ut-*.txt.tar.bz2; do ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} $$f ${EXTRACT_AFTER_ARGS}; done && \
 		${CAT} *.txt > ${WRKDIR}/mozcdic-ut.txt && \
 		${MV} ${WRKDIR}/mozcdic-ut.txt . && \
-		${RUBY} -W2 -Ku remove_duplicate_ut_entries.rb mozcdic-ut.txt && \
-		${RUBY} -W2 -Ku count_word_hits.rb && \
-		${RUBY} -W2 -Ku apply_word_hits.rb mozcdic-ut.txt && \
+		${RUBY} -Ku remove_duplicate_ut_entries.rb mozcdic-ut.txt && \
+		${RUBY} -Ku count_word_hits.rb && \
+		${RUBY} -Ku apply_word_hits.rb mozcdic-ut.txt && \
 		${CAT} mozcdic-ut.txt \
 			>> ${BUILD_WRKSRC}/data/dictionary_oss/dictionary00.txt
 .endif
