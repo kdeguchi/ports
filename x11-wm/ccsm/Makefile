@@ -37,4 +37,7 @@ post-patch:
 do-configure:
 	@${DO_NADA}
 
+post-install-NLS-off:
+	${RM} -r ${STAGEDIR}${PREFIX}/share/locale
+
 .include <bsd.port.mk>
