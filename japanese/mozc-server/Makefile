@@ -191,32 +191,29 @@ LICENSE+=	CC-BY-SA-4.0
 LICENSE+=	GPLv2
 .endif
 
-MASTER_SITES+=	https://www.post.japanpost.jp/zipcode/dl/kogaki/zip/:kenall \
-		https://www.post.japanpost.jp/zipcode/dl/jigyosyo/zip/:jigyosyo
-DISTFILES+=	ken_all.zip:kenall \
-		jigyosyo.zip:jigyosyo
 PLIST_FILES+=	bin/mozc \
 		libexec/mozc_server
 SUB_FILES+=	mozc
 
+KEN_ALL=	https://www.post.japanpost.jp/zipcode/dl/kogaki/zip/ken_all.zip
+JIGYOSYO=	https://www.post.japanpost.jp/zipcode/dl/jigyosyo/zip/jigyosyo.zip
+
 post-fetch-mozc_server:
+	@cd ${DISTDIR}/${DIST_SUBDIR} && \
+		{ ${FETCH_CMD} -i ${KEN_ALL:C@.*/@@} ${KEN_ALL} || \
+			${FETCH_CMD} ${KEN_ALL} ; } && \
+		{ ${FETCH_CMD} -i ${JIGYOSYO:C@.*/@@} ${JIGYOSYO} || \
+			${FETCH_CMD} ${JIGYOSYO} ; }
 .if ${PORT_OPTIONS:MUTDIC}
-#	@${ECHO_MSG} "Downloading files required by UT Dictionary..."
 	@cd ${DISTDIR}/${DIST_SUBDIR} && \
 		${FETCH_CMD} ${UTDIC_JAWIKI} && \
 		${FETCH_CMD} ${UTDIC_IDDEF}
 .endif
 
 post-patch-mozc_server:
-.for file in ${DISTFILES:M*\:kenall:S/:kenall//} ${DISTFILES:M*\:jigyosyo:S/:jigyosyo//}
+.for file in ${KEN_ALL:C@.*/@@} ${JIGYOSYO:C@.*/@@}
 		@${CP} ${DISTDIR}/${DIST_SUBDIR}/${file} ${WRKDIR}/bazel-dist
-#		@${UNZIP_NATIVE_CMD} -q -L -d ${BUILD_WRKSRC}/data/dictionary_oss \
-#			${DISTDIR}/${DIST_SUBDIR}/${file}
 .endfor
-#	@cd ${BUILD_WRKSRC}/data/dictionary_oss && \
-#		${SETENV} PYTHONPATH=${BUILD_WRKSRC} \
-#			${PYTHON_CMD} ${BUILD_WRKSRC}/dictionary/gen_zip_code_seed.py \
-#				--zip_code=ken_all.csv --jigyosyo=jigyosyo.csv >> dictionary09.txt
 	@${MV} ${WRKSRC_udic}/usage_dict.txt \
 		${BUILD_WRKSRC}/third_party/japanese_usage_dictionary
 .if ${PORT_OPTIONS:MUTDIC}
