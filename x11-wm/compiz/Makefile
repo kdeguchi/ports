@@ -33,7 +33,7 @@ GL_COMMIT=	fe274c9f3d8d657dffaaa594be4c851e40ad623c
 
 USE_GL=		gl glu
 
-USE_GNOME=	cairo glib20 intltool
+USE_GNOME=	cairo glib20 intltool libxslt
 GLIB_SCHEMAS=	org.compiz-0.gwd.gschema.xml
 
 USE_LDCONFIG=	yes
