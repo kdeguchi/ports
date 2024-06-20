@@ -133,6 +133,8 @@ post-extract:
 .endfor
 
 post-patch:
+	@${MKDIR} ${WRKDIR}/.bin
+	@${RLN} ${PYTHON_CMD} ${WRKDIR}/.bin/python3
 	@${CP} ${PATCHDIR}/bazelrc ${WRKDIR} && \
 		${REINPLACE_CMD} -e 's@%%BAZEL_DIR%%@${WRKDIR}@g;s@%%BAZEL_DIST%%@${WRKDIR}@g;' \
 			${WRKDIR}/bazelrc
