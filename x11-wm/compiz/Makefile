@@ -1,6 +1,6 @@
 PORTNAME=	compiz
 PORTVERSION=	0.8.18
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	x11-wm
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -33,7 +33,7 @@ GL_COMMIT=	fe274c9f3d8d657dffaaa594be4c851e40ad623c
 
 USE_GL=		gl glu
 
-USE_GNOME=	cairo glib20 intltool libxslt
+USE_GNOME=	cairo glib20 intltool libxslt:build
 GLIB_SCHEMAS=	org.compiz-0.gwd.gschema.xml
 
 USE_LDCONFIG=	yes
