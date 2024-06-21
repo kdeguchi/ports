@@ -200,10 +200,8 @@ JIGYOSYO=	https://www.post.japanpost.jp/zipcode/dl/jigyosyo/zip/jigyosyo.zip
 
 post-fetch-mozc_server:
 	@cd ${DISTDIR}/${DIST_SUBDIR} && \
-		{ ${FETCH_CMD} -i ${KEN_ALL:C@.*/@@} ${KEN_ALL} || \
-			${FETCH_CMD} ${KEN_ALL} ; } && \
-		{ ${FETCH_CMD} -i ${JIGYOSYO:C@.*/@@} ${JIGYOSYO} || \
-			${FETCH_CMD} ${JIGYOSYO} ; }
+			${FETCH_BINARY} -mp ${KEN_ALL} && \
+			${FETCH_BINARY} -mp ${JIGYOSYO}
 .if ${PORT_OPTIONS:MUTDIC}
 	@cd ${DISTDIR}/${DIST_SUBDIR} && \
 		${FETCH_CMD} ${UTDIC_JAWIKI} && \
