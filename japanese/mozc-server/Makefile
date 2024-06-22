@@ -31,6 +31,8 @@ BUILD_MOZC_CMD=	${SETENV} PATH="${PREFIX}/openjdk11/bin:${PATH}" \
 
 BUILD_MOZC_LIST?=	mozc_server
 
+BINARY_ALIAS=	python3=${PYTHON_CMD}
+
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
 PKGNAMEPREFIX=	ja-
 PKGNAMESUFFIX=	-server
@@ -133,8 +135,6 @@ post-extract:
 .endfor
 
 post-patch:
-	@${MKDIR} ${WRKDIR}/.bin
-	@${RLN} ${PYTHON_CMD} ${WRKDIR}/.bin/python3
 	@${CP} ${PATCHDIR}/bazelrc ${WRKDIR} && \
 		${REINPLACE_CMD} -e 's@%%BAZEL_DIR%%@${WRKDIR}@g;s@%%BAZEL_DIST%%@${WRKDIR}@g;' \
 			${WRKDIR}/bazelrc
