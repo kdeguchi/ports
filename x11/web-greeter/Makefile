@@ -1,6 +1,5 @@
 PORTNAME=	web-greeter
 PORTVERSION=	3.5.3
-PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
