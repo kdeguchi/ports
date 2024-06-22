@@ -22,8 +22,13 @@ USE_GITHUB=	yes
 GH_TUPLE=	fcitx:mozc:e379550 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
+USE_JAVA=	yes
+JAVA_BUILD=	yes
+JAVA_VENDOR=	openjdk
+JAVA_VERSION=	11
+
 BUILD_WRKSRC=	${WRKSRC}/src
-BUILD_MOZC_CMD=	${SETENV} PATH="${PREFIX}/openjdk11/bin:${PATH}" \
+BUILD_MOZC_CMD=	${SETENV} PATH="${JAVA_HOME}/bin:${PATH}" \
 		bazel --output_user_root=${WRKDIR}/bazel_out \
 			build -c opt --copt=-fPIC --host_linkopt=-lm \
 			--verbose_failures --sandbox_debug --config oss_linux \
