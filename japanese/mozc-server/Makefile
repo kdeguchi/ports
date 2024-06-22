@@ -85,10 +85,20 @@ SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:f25afb4:sudachi
 
 # APACHE20 multi
 UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:ea8cfbd:ut
-UTDIC_IDDEF=		https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/id.def
-UTDIC_JAWIKI=		https://dumps.wikimedia.org/jawiki/latest/jawiki-latest-all-titles-in-ns0.gz
 UTDIC_PATCH_DEPENDS=	rubygem-zlib>0:devel/rubygem-zlib
 UTDIC_USES=		ruby:build
+UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:title \
+		https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/:iddef
+UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:title \
+		id.def:iddef
+
+EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
+
+# zip code
+MASTER_SITES+=	https://www.post.japanpost.jp/zipcode/dl/kogaki/zip/:kenall \
+		https://www.post.japanpost.jp/zipcode/dl/jigyosyo/zip/:jigyosyo
+DISTFILES+=	ken_all.zip:kenall \
+		jigyosyo.zip:jigyosyo
 
 .elif ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
 BUILD_DEPENDS+=	libglvnd>0:graphics/libglvnd
@@ -195,21 +205,8 @@ PLIST_FILES+=	bin/mozc \
 		libexec/mozc_server
 SUB_FILES+=	mozc
 
-KEN_ALL=	https://www.post.japanpost.jp/zipcode/dl/kogaki/zip/ken_all.zip
-JIGYOSYO=	https://www.post.japanpost.jp/zipcode/dl/jigyosyo/zip/jigyosyo.zip
-
-post-fetch-mozc_server:
-	@cd ${DISTDIR}/${DIST_SUBDIR} && \
-			${FETCH_BINARY} -mp ${KEN_ALL} && \
-			${FETCH_BINARY} -mp ${JIGYOSYO}
-.if ${PORT_OPTIONS:MUTDIC}
-	@cd ${DISTDIR}/${DIST_SUBDIR} && \
-		${FETCH_CMD} ${UTDIC_JAWIKI} && \
-		${FETCH_CMD} ${UTDIC_IDDEF}
-.endif
-
 post-patch-mozc_server:
-.for file in ${KEN_ALL:C@.*/@@} ${JIGYOSYO:C@.*/@@}
+.for file in ${DISTFILES:M*\:kenall:C@\:kenall@@} ${DISTFILES:M*\:jigyosyo:C@\:jigyosyo@@}
 		@${CP} ${DISTDIR}/${DIST_SUBDIR}/${file} ${WRKDIR}/bazel-dist
 .endfor
 	@${MV} ${WRKSRC_udic}/usage_dict.txt \
@@ -225,8 +222,8 @@ post-patch-mozc_server:
 
 	@${ECHO_MSG} "*** Creating mozcdic-ut.txt for UT Dictionary. It takes a long time! ***"
 	@cd ${WRKDIR}/merge-ut-dictionaries-*/src && \
-		${CP} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_IDDEF:C@.*/@@} . && \
-		${CP} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_JAWIKI:C@.*/@@} . && \
+		${CP} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:iddef:C@\:iddef@@} . && \
+		${CP} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} . && \
 		${CP} ../../mozcdic-ut-*/mozcdic-ut-*.txt.tar.bz2 . && \
 		for f in mozcdic-ut-*.txt.tar.bz2; do ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} $$f ${EXTRACT_AFTER_ARGS}; done && \
 		${CAT} *.txt > ${WRKDIR}/mozcdic-ut.txt && \
@@ -237,8 +234,6 @@ post-patch-mozc_server:
 		${CAT} mozcdic-ut.txt \
 			>> ${BUILD_WRKSRC}/data/dictionary_oss/dictionary00.txt
 .endif
-
-post-fetch: post-fetch-mozc_server
 
 post-patch: post-patch-mozc_server
 
@@ -253,6 +248,9 @@ do-install-mozc_server:
 	${INSTALL_SCRIPT} \
 	    ${WRKDIR}/mozc ${STAGEDIR}/${PREFIX}/bin
 .endif
+
+renew-makesum: distclean makesum
+
 #################################################
 
 #################################################
