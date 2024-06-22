@@ -249,7 +249,13 @@ do-install-mozc_server:
 	    ${WRKDIR}/mozc ${STAGEDIR}/${PREFIX}/bin
 .endif
 
-renew-makesum: distclean makesum
+renew-makesum:
+	${RM} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:iddef:C@\:iddef@@} \
+		${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} \
+		${DISTDIR}/${DIST_SUBDIR}/${DISTFILES:M*\:kenall:C@\:kenall@@} \
+		${DISTDIR}/${DIST_SUBDIR}/${DISTFILES:M*\:jigyosyo:C@\:jigyosyo@@}
+
+all-makesum: renew-makesum makesum
 
 #################################################
 
