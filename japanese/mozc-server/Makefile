@@ -254,14 +254,6 @@ do-install-mozc_server:
 	    ${WRKDIR}/mozc ${STAGEDIR}/${PREFIX}/bin
 .endif
 
-renew-makesum:
-	${RM} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:iddef:C@\:iddef@@} \
-		${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} \
-		${DISTDIR}/${DIST_SUBDIR}/${DISTFILES:M*\:kenall:C@\:kenall@@} \
-		${DISTDIR}/${DIST_SUBDIR}/${DISTFILES:M*\:jigyosyo:C@\:jigyosyo@@}
-
-all-makesum: renew-makesum makesum
-
 #################################################
 
 #################################################
@@ -579,5 +571,12 @@ do-install: ${BUILD_MOZC_LIST:S/^/do-install-/}
 
 post-install:
 	cd ${BUILD_WRKSRC} && bazel ${BAZEL_OPTS} shutdown
+
+# make renew-makesum makesum
+renew-makesum:
+	${RM} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:iddef:C@\:iddef@@} \
+		${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} \
+		${DISTDIR}/${DIST_SUBDIR}/${DISTFILES:M*\:kenall:C@\:kenall@@} \
+		${DISTDIR}/${DIST_SUBDIR}/${DISTFILES:M*\:jigyosyo:C@\:jigyosyo@@}
 
 .include <bsd.port.post.mk>
