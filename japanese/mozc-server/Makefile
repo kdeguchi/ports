@@ -212,7 +212,7 @@ SUB_FILES+=	mozc
 
 post-patch-mozc_server:
 .for file in ${DISTFILES:M*\:kenall:C@\:kenall@@} ${DISTFILES:M*\:jigyosyo:C@\:jigyosyo@@}
-		@${CP} ${DISTDIR}/${DIST_SUBDIR}/${file} ${WRKDIR}/bazel-dist
+	@${CP} ${DISTDIR}/${DIST_SUBDIR}/${file} ${WRKDIR}/bazel-dist
 .endfor
 	@${MV} ${WRKSRC_udic}/usage_dict.txt \
 		${BUILD_WRKSRC}/third_party/japanese_usage_dictionary
@@ -223,14 +223,16 @@ post-patch-mozc_server:
 		-e "s@^require 'open-uri'@#&@;" \
 		-e 's@^url = "https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/id.def"@id_def = File.new("id.def", "r")@;' \
 		-e 's@^id_mozc = URI.open(url)@id_mozc = id_def@;' \
-			${WRKDIR}/merge-ut-dictionaries-*/src/*.rb
+			${WRKSRC_ut}/src/*.rb
 
 	@${ECHO_MSG} "*** Creating mozcdic-ut.txt for UT Dictionary. It takes a long time! ***"
-	@cd ${WRKDIR}/merge-ut-dictionaries-*/src && \
+	@cd ${WRKSRC_ut}/src && \
 		${CP} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:iddef:C@\:iddef@@} . && \
 		${CP} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} . && \
 		${CP} ../../mozcdic-ut-*/mozcdic-ut-*.txt.tar.bz2 . && \
-		for f in mozcdic-ut-*.txt.tar.bz2; do ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} $$f ${EXTRACT_AFTER_ARGS}; done && \
+		for f in mozcdic-ut-*.txt.tar.bz2; do \
+			${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} $$f ${EXTRACT_AFTER_ARGS}; \
+		done && \
 		${CAT} *.txt > ${WRKDIR}/mozcdic-ut.txt && \
 		${MV} ${WRKDIR}/mozcdic-ut.txt . && \
 		${RUBY} -Ku remove_duplicate_ut_entries.rb mozcdic-ut.txt && \
