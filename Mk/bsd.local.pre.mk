@@ -1,5 +1,9 @@
 # Maybe, many ports need this
 
+.if defined(USE_QT) && ${USE_QT:Mopengl}
+USES+=	localbase
+.endif
+
 .if ${.CURDIR:M*/devel/msgpack-c*}
 CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=${LOCALBASE}/lib
 .endif
