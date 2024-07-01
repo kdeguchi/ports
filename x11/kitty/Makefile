@@ -89,6 +89,7 @@ USES+=		ncurses
 
 .if !target(makesum)
 my-makesum:
+	${MKDIR} ${DISTDIR}/${DIST_SUBDIR}
 	${RM} ${DISTDIR}/${DIST_SUBDIR}/${GO_DISTFILE}
 	${RM} ${DISTDIR}/${DIST_SUBDIR}/${GO_MODFILE}
 	${MAKE} my-fetch
