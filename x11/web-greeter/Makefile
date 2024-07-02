@@ -42,19 +42,19 @@ SHEBANG_FILES=	dist/Xgreeter \
 		src/bridge/__init__.py
 
 post-extract:
-	cd ${WRKSRC} && \
+	@cd ${WRKSRC} && \
 		${RMDIR} themes && \
 		${LN} -sfn ../web-greeter-themes-* themes && \
 		${RMDIR} themes/ts-types && \
 		${LN} -sfn ../nody-greeter-types-* themes/ts-types
 
 post-patch:
-	${REINPLACE_CMD} -e 's,$${INSTALL_ROOT}/etc,$${INSTALL_ROOT}$${PREFIX}/etc,' \
+	@${REINPLACE_CMD} -e 's,$${INSTALL_ROOT}/etc,$${INSTALL_ROOT}$${PREFIX}/etc,' \
 		-e 's,sed .*,grep ID= | sed "s/ID=//"),' \
 		-e 's,gcc,cc ${CLAGS} ${CPPFLAGS} ${LIBS},' \
 		-e 's,#!/usr/bin/env .*/lib/web-greeter,#!/bin/sh\\n${PYTHON_CMD} ${PREFIX}/lib/web-greeter,' \
 			${WRKSRC}/Makefile
-	${REINPLACE_CMD} -e 's,/usr,${PREFIX},;s,/etc,${PREFIX}/etc,;' \
+	@${REINPLACE_CMD} -e 's,/usr,${PREFIX},;s,/etc,${PREFIX}/etc,;' \
 		${WRKSRC}/dist/90-greeter-wrapper.conf \
 		${WRKSRC}/dist/web-greeter.1 \
 		${WRKSRC}/dist/web-greeter.yml \
@@ -62,10 +62,10 @@ post-patch:
 		${WRKSRC}/src/*.py \
 		${WRKSRC}/src/*/*.py \
 		${WRKSRC}/themes/themes/*/js/*.js
-	${FIND} ${WRKSRC} -name '*.bak' -delete
+	@${FIND} ${WRKSRC} -name '*.bak' -delete
 
 pre-configure:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} npm install typescript
+	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} npm install typescript
 
 post-install:
 	${MV} ${STAGEDIR}${PREFIX}/etc/lightdm/web-greeter.yml \
