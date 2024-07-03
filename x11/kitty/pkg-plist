@@ -229,6 +229,7 @@ share/applications/kitty.desktop
 %%PORTDOCS%%%%DOCSDIR%%/support.html
 %%PORTDOCS%%%%DOCSDIR%%/underlines.html
 %%PORTDOCS%%%%DOCSDIR%%/unscroll.html
+%%DATADIR%%/fonts/SymbolsNerdFontMono-Regular.ttf
 share/icons/hicolor/256x256/apps/kitty.png
 share/icons/hicolor/scalable/apps/kitty.svg
 %%DATADIR%%/__main__.py
