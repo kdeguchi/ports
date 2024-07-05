@@ -217,8 +217,7 @@ post-patch-mozc_server:
 .if ${PORT_OPTIONS:MUTDIC}
 	# ut dictionary
 	@${REINPLACE_CMD} -e 's@coding:@en&@g;' \
-		-e "s@^.*'wget'@#&@;" -e "s@^require 'nkf'@#&@;" \
-		-e "s@^require 'open-uri'@#&@;" \
+		-e "s@^.*'wget'@#&@;" \
 		-e 's@^url = "https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/id.def"@id_def = open("id.def", "r")@;' \
 		-e 's@^response = .*@id_mozc = id_def.read()@;' \
 		-e 's@^id_mozc = response.*@id_def.close()@;' \
