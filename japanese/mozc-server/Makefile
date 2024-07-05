@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.30.5490.102
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES=	japanese
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -19,7 +19,7 @@ USES=	compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 	python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:e379550 \
+GH_TUPLE=	fcitx:mozc:8ae324e \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 USE_JAVA=	yes
@@ -71,7 +71,7 @@ ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:9e71156:altcannadic
 
 # CC-BY-SA-4.0
 EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:38f7f74:edict2
-JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:e9e2931:jawiki
+JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:daab02b:jawiki
 
 # APACHE20
 NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:65370a0:neologd
@@ -89,9 +89,7 @@ SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:e1f26b8:skkjisyo
 SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:f25afb4:sudachi
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:ea8cfbd:ut
-UTDIC_PATCH_DEPENDS=	rubygem-zlib>0:devel/rubygem-zlib
-UTDIC_USES=		ruby:build
+UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:4462a62:ut
 UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:title \
 		https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/:iddef
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:title \
@@ -219,11 +217,12 @@ post-patch-mozc_server:
 .if ${PORT_OPTIONS:MUTDIC}
 	# ut dictionary
 	@${REINPLACE_CMD} -e 's@coding:@en&@g;' \
-		-e 's@`wget @#&@;' -e "s@^require 'nkf'@#&@;" \
+		-e "s@^.*'wget'@#&@;" -e "s@^require 'nkf'@#&@;" \
 		-e "s@^require 'open-uri'@#&@;" \
-		-e 's@^url = "https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/id.def"@id_def = File.new("id.def", "r")@;' \
-		-e 's@^id_mozc = URI.open(url)@id_mozc = id_def@;' \
-			${WRKSRC_ut}/src/*.rb
+		-e 's@^url = "https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/id.def"@id_def = open("id.def", "r")@;' \
+		-e 's@^response = .*@id_mozc = id_def.read()@;' \
+		-e 's@^id_mozc = response.*@id_def.close()@;' \
+			${WRKSRC_ut}/src/*.py
 
 	@${ECHO_MSG} "*** Creating mozcdic-ut.txt for UT Dictionary. It takes a long time! ***"
 	@cd ${WRKSRC_ut}/src && \
@@ -233,11 +232,10 @@ post-patch-mozc_server:
 		for f in mozcdic-ut-*.txt.tar.bz2; do \
 			${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} $$f ${EXTRACT_AFTER_ARGS}; \
 		done && \
-		${CAT} *.txt > ${WRKDIR}/mozcdic-ut.txt && \
-		${MV} ${WRKDIR}/mozcdic-ut.txt . && \
-		${RUBY} -Ku remove_duplicate_ut_entries.rb mozcdic-ut.txt && \
-		${RUBY} -Ku count_word_hits.rb && \
-		${RUBY} -Ku apply_word_hits.rb mozcdic-ut.txt && \
+		${CAT} *.txt > mozcdic-ut.txt && \
+		${PYTHON_CMD} remove_duplicate_ut_entries.py mozcdic-ut.txt && \
+		${PYTHON_CMD} count_word_hits.py && \
+		${PYTHON_CMD} apply_word_hits.py mozcdic-ut.txt && \
 		${CAT} mozcdic-ut.txt \
 			>> ${BUILD_WRKSRC}/data/dictionary_oss/dictionary00.txt
 .endif
