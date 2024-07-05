@@ -1,4 +1,4 @@
---- docs/conf.py.orig	2024-05-08 04:55:54 UTC
+--- docs/conf.py.orig	1979-11-29 23:00:00 UTC
 +++ docs/conf.py
 @@ -209,18 +209,10 @@ def commit_role(
      name: str, rawtext: str, text: str, lineno: int, inliner: Any, options: Any = {}, content: Any = []

@@ -4,9 +4,8 @@ DISTVERSION=	0.35.2
 PORTREVISION=	1
 CATEGORIES=	x11 wayland
 
-MASTER_SITES+=	https://github.com/ryanoasis/nerd-fonts/releases/download/v${NERDSYMBOLS_VERSION}/:nerd
-DISTFILES+=	NerdFontsSymbolsOnly.tar.xz:nerd
-NERDSYMBOLS_VERSION=	3.2.1
+MASTER_SITES=	https://github.com/ryanoasis/nerd-fonts/releases/latest/download/:nerd
+DISTFILES=	NerdFontsSymbolsOnly.tar.xz:nerd
 
 MAINTAINER=	nivit@FreeBSD.org
 COMMENT=	Cross-platform, fast, featureful, GPU-based terminal emulator
@@ -21,8 +20,8 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}furo>0:textproc/py-furo@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinx-inline-tabs>0:textproc/py-sphinx-inline-tabs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinxext-opengraph>0:textproc/py-sphinxext-opengraph@${PY_FLAVOR} \
 		roboto-fonts-ttf>0:x11-fonts/roboto-fonts-ttf \
-		sphinx-build:textproc/py-sphinx@${PY_FLAVOR} \
 		simde>=0.7.6:devel/simde \
+		sphinx-build:textproc/py-sphinx@${PY_FLAVOR} \
 		wayland-protocols>=0:graphics/wayland-protocols
 LIB_DEPENDS=	libcanberra.so:audio/libcanberra \
 		libdbus-1.so:devel/dbus \
