@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.30.5490.102
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES=	japanese
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -19,7 +19,7 @@ USES=	compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 	python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:8ae324e \
+GH_TUPLE=	fcitx:mozc:0e6eec4 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 USE_JAVA=	yes
@@ -89,7 +89,7 @@ SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:e1f26b8:skkjisyo
 SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:f25afb4:sudachi
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:4462a62:ut
+UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:f175ba5:ut
 UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:title \
 		https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/:iddef
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:title \
@@ -216,11 +216,11 @@ post-patch-mozc_server:
 		${BUILD_WRKSRC}/third_party/japanese_usage_dictionary
 .if ${PORT_OPTIONS:MUTDIC}
 	# ut dictionary
-	@${REINPLACE_CMD} -e 's@coding:@en&@g;' \
+	@${REINPLACE_CMD} -E -e 's@coding:@en&@g;' \
 		-e "s@^.*'wget'@#&@;" \
 		-e 's@^url = "https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/id.def"@id_def = open("id.def", "r")@;' \
-		-e 's@^response = .*@id_mozc = id_def.read()@;' \
-		-e 's@^id_mozc = response.*@id_def.close()@;' \
+		-e 's@^with urlli.*@#&@;' \
+		-e 's@^\tid_mozc = .*@id_mozc = id_def.read()@;' \
 			${WRKSRC_ut}/src/*.py
 
 	@${ECHO_MSG} "*** Creating mozcdic-ut.txt for UT Dictionary. It takes a long time! ***"
