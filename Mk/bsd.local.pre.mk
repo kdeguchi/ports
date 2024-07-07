@@ -1,7 +1,9 @@
 # Maybe, many ports need this
 
-.if defined(USE_QT) && ${USE_QT:Mopengl}
+.if defined(USE_QT)
+. if ${USE_QT:Mopengl} || ${USE_QT:Mwayland}
 USES+=	localbase
+. endif
 .endif
 
 .if ${.CURDIR:M*/devel/msgpack-c*}
