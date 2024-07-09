@@ -570,11 +570,12 @@ do-install: ${BUILD_MOZC_LIST:S/^/do-install-/}
 post-install:
 	cd ${BUILD_WRKSRC} && bazel ${BAZEL_OPTS} shutdown
 
-# make renew-makesum makesum
+# Create new distinfo: `make renew-makesum`
 renew-makesum:
 	${RM} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:iddef:C@\:iddef@@} \
 		${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} \
 		${DISTDIR}/${DIST_SUBDIR}/${DISTFILES:M*\:kenall:C@\:kenall@@} \
 		${DISTDIR}/${DIST_SUBDIR}/${DISTFILES:M*\:jigyosyo:C@\:jigyosyo@@}
+		${MAKE} makesum
 
 .include <bsd.port.post.mk>
