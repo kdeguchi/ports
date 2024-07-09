@@ -576,6 +576,6 @@ renew-makesum:
 		${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} \
 		${DISTDIR}/${DIST_SUBDIR}/${DISTFILES:M*\:kenall:C@\:kenall@@} \
 		${DISTDIR}/${DIST_SUBDIR}/${DISTFILES:M*\:jigyosyo:C@\:jigyosyo@@}
-		${MAKE} makesum
+	${MAKE} makesum
 
 .include <bsd.port.post.mk>
