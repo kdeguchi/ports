@@ -10,7 +10,7 @@ DISTFILES+=	abseil-cpp-20240116.1.tar.gz:abseil \
 		rules_swift.1.13.0.tar.gz:rules_swift \
 		zlib-1.2.13.tar.xz:zlib \
 		protobuf-27.0.tar.gz:protobuf \
-		bazel-skylib-1.4.1.tar.gz:skylib \
+		bazel-skylib-1.4.1.tar.gz:bazel_skylib \
 		platforms-0.0.7.tar.gz:platforms \
 		rules_license-0.0.3.tar.gz:rules_license \
 		rules_pkg-0.7.0.tar.gz:rules_pkg
@@ -27,7 +27,7 @@ MASTER_SITES+=	https://github.com/abseil/abseil-cpp/releases/download/20240116.1
 		https://github.com/bazelbuild/rules_swift/releases/download/1.13.0/:rules_swift \
 		https://github.com/madler/zlib/releases/download/v1.2.13/:zlib \
 		https://github.com/protocolbuffers/protobuf/releases/download/v27.0/:protobuf \
-		https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.4.1/:skylib \
+		https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.4.1/:bazel_skylib \
 		https://mirror.bazel.build/github.com/bazelbuild/platforms/releases/download/0.0.7/:platforms \
 		https://mirror.bazel.build/github.com/bazelbuild/rules_license/releases/download/0.0.3/:rules_license \
 		https://mirror.bazel.build/github.com/bazelbuild/rules_pkg/releases/download/0.7.0/:rules_pkg
