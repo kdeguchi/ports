@@ -1,6 +1,5 @@
 PORTNAME=	mozc
-PORTVERSION=	2.30.5490.102
-PORTREVISION?=	3
+PORTVERSION=	2.30.5520.102
 CATEGORIES=	japanese
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -20,7 +19,7 @@ USES=	compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 	python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:0e6eec4 \
+GH_TUPLE=	fcitx:mozc:3d2e00b \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 USE_JAVA=	yes
@@ -72,7 +71,7 @@ ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:9e71156:altcannadic
 
 # CC-BY-SA-4.0
 EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:38f7f74:edict2
-JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:daab02b:jawiki
+JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:6e95d7d:jawiki
 
 # APACHE20
 NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:65370a0:neologd
