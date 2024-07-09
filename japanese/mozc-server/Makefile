@@ -8,7 +8,8 @@ COMMENT?=	Mozc Japanese Input Method, Server
 WWW=		https://github.com/google/mozc
 
 PATCH_DEPENDS=${PYTHON_CMD}:${PYTHON_PORTSDIR}
-BUILD_DEPENDS=	bazel:devel/bazel
+BUILD_DEPENDS=	bazel:devel/bazel \
+		python3:lang/python3
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
 
 DIST_SUBDIR=	${PORTNAME}
