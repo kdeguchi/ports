@@ -22,7 +22,7 @@ load_rc_config ${name}
 : ${lightdm_login_class:="default"}
 : ${lightdm_env:="LANG=en_US.UTF-8"}
 
-command="env ${lightdm_env} /usr/sbin/daemon"
+command="/usr/sbin/daemon"
 procname="%%PREFIX%%/sbin/${name}"
 pidfile="/var/run/${name}.pid"
 command_args="-f ${procname} --pid-file=${pidfile}"
