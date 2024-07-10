@@ -15,6 +15,7 @@ LIB_DEPENDS=	liblightdm-gobject-1.so:x11/lightdm
 RUN_DEPENDS=	at-spi2-core>0:accessibility/at-spi2-core
 
 USES=		gettext-tools gmake gnome localbase pkgconfig xorg
+USE_CSTD=	c99
 USE_GNOME=	cairo gdkpixbuf2 gtk30 intltool
 USE_XORG=	x11
 
