@@ -1,6 +1,6 @@
 PORTNAME=	lightdm
 PORTVERSION=	1.32.0
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	x11
 MASTER_SITES=	https://github.com/canonical/${PORTNAME}/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
 
@@ -28,7 +28,7 @@ USE_CXXSTD=	c++11
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	canonical
-GH_TAGNAME=	1ade713
+GH_TAGNAME=	3abc9fb
 
 USE_GNOME=	glib20 intltool
 USE_LDCONFIG=	yes
