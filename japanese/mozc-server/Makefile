@@ -29,7 +29,8 @@ JAVA_VERSION=	11
 
 BUILD_WRKSRC=	${WRKSRC}/src
 BUILD_MOZC_CMD=	${SETENV} PATH="${JAVA_HOME}/bin:${PATH}" \
-		bazel --output_user_root=${WRKDIR}/bazel_out \
+		bazel --bazelrc="${WRKDIR}/bazelrc" \
+			--output_user_root=${WRKDIR}/bazel_out \
 			build -c opt --copt=-fPIC --host_linkopt=-lm \
 			--verbose_failures --sandbox_debug --config oss_linux \
 			--distdir=${WRKDIR}/bazel-dist
@@ -135,6 +136,8 @@ USE_GCC=	yes
 _CCTYPE=	gcc
 .endif
 
+SHEBANG_FILES=	src/*.py src/*/*.py
+
 .include <bsd.port.pre.mk>
 
 post-extract:
@@ -209,9 +212,6 @@ PLIST_FILES+=	bin/mozc \
 SUB_FILES+=	mozc
 
 post-patch-mozc_server:
-.for file in ${DISTFILES:M*\:kenall:C@\:kenall@@} ${DISTFILES:M*\:jigyosyo:C@\:jigyosyo@@}
-	@${CP} ${DISTDIR}/${DIST_SUBDIR}/${file} ${WRKDIR}/bazel-dist
-.endfor
 	@${MV} ${WRKSRC_udic}/usage_dict.txt \
 		${BUILD_WRKSRC}/third_party/japanese_usage_dictionary
 .if ${PORT_OPTIONS:MUTDIC}
