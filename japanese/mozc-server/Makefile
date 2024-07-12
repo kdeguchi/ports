@@ -1,5 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.30.5520.102
+PORTREVISION=	1
 CATEGORIES=	japanese
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -19,7 +20,7 @@ USES=	compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 	python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:3d2e00b \
+GH_TUPLE=	fcitx:mozc:5c09e44 \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 USE_JAVA=	yes
@@ -72,25 +73,25 @@ ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:9e71156:altcannadic
 
 # CC-BY-SA-4.0
 EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:38f7f74:edict2
-JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:6e95d7d:jawiki
+JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:afd4a37:jawiki
 
 # APACHE20
-NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:65370a0:neologd
+NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:3aa888d:neologd
 
 # APACHE20
 PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:e104958:personal
 
 # APCHE20
-PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:1e45b1d:place
+PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:faaf64e:place
 
 # APACHE20 GPLv2
 SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:e1f26b8:skkjisyo
 
 # APACHE20
-SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:f25afb4:sudachi
+SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:3ad17aa:sudachi
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:f175ba5:ut
+UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:6c5f28b:ut
 UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:title \
 		https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/:iddef
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:title \
