@@ -136,8 +136,6 @@ USE_GCC=	yes
 _CCTYPE=	gcc
 .endif
 
-SHEBANG_FILES=	src/*.py src/*/*.py
-
 .include <bsd.port.pre.mk>
 
 post-extract:
