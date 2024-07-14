@@ -85,19 +85,17 @@ PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:e104958:personal
 PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:7f66088:place
 
 # APACHE20 GPLv2
-SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:e1f26b8:skkjisyo
+SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:3d04262:skkjisyo
 
 # APACHE20
 SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:3ad17aa:sudachi
 
 # APACHE20 multi
 UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:4862bd6:ut
-UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:title \
-		https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/:iddef
-UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:title \
-		id.def:iddef
+UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:title
+UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:title
 
-EXTRACT_ONLY=	${_DISTFILES:S@id.def@@:S@jawiki-latest-all-titles-in-ns0.gz@@}
+EXTRACT_ONLY=	${_DISTFILES:S@jawiki-latest-all-titles-in-ns0.gz@@}
 
 # zip code
 MASTER_SITES+=	https://www.post.japanpost.jp/zipcode/dl/kogaki/zip/:kenall \
@@ -223,7 +221,7 @@ post-patch-mozc_server:
 
 	@${ECHO_MSG} "*** Creating mozcdic-ut.txt for UT Dictionary. It takes a long time! ***"
 	@cd ${WRKSRC_ut}/src && \
-		${CP} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:iddef:C@\:iddef@@} . && \
+		${CP} ${BUILD_WRKSRC}/data/dictionary_oss/id.def . && \
 		${CP} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} . && \
 		${CP} ../../mozcdic-ut-*/mozcdic-ut-*.txt.tar.bz2 . && \
 		for f in mozcdic-ut-*.txt.tar.bz2; do \
