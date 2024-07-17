@@ -1,5 +1,6 @@
 PORTNAME=	la-capitaine-icon-theme
 PORTVERSION=	0.6.2
+PORTREVISION=	1
 CATEGORIES=	x11-themes
 
 MAINTAINER=	lbartoletti@FreeBSD.org
@@ -50,5 +51,27 @@ do-install-DARK-on:
 do-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
+
+post-install:
+	${RLN} ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/actions/22x22/system-lock-screen.svg \
+		${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/apps/scalable/gnome-lockscreen.svg
+	${RLN} ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/actions/22x22/system-lock-screen.svg \
+		${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/apps/scalable/lock-screen.svg
+	${RLN} ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/actions/22x22/system-lock-screen.svg \
+		${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/apps/scalable/xfce-system-lock.svg
+	${RLN} ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/actions/22x22/system-lock-screen.svg \
+		${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/apps/scalable/xfce4-system-lock.svg
+	${RLN} ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/actions/22x22/system-restart.svg \
+		${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/apps/scalable/un-reboot.svg
+	${RLN} ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/actions/22x22/system-restart.svg \
+		${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/apps/scalable/xfsm-reboot.svg
+	${RLN} ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/actions/22x22/system-suspend.svg \
+		${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/apps/scalable/gnome-session-hibernate.svg
+	${RLN} ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/actions/22x22/system-suspend.svg \
+		${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/apps/scalable/gnome-session-suspend.svg
+	${RLN} ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/actions/22x22/system-suspend.svg \
+		${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/apps/scalable/xfpm-suspend.svg
+	${RLN} ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/actions/22x22/system-suspend.svg \
+		${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/apps/scalable/xfsm-hibernate.svg
 
 .include <bsd.port.mk>
