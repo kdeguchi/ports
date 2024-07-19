@@ -1,3 +1,3 @@
-TIMESTAMP = 1660386883
-SHA256 (lightdm-1.32.0.tar.xz) = 12f5ab432748f0387c7cf8b94430495a558a035a4f8465e5181af6faff133e4b
-SIZE (lightdm-1.32.0.tar.xz) = 518168
+TIMESTAMP = 1721345307
+SHA256 (canonical-lightdm-1.32.0-3abc9fb_GH0.tar.gz) = 93f62c75b5e6d59919f7a071027c8c7e37d1d375c9ae1158f79fa06513af96cf
+SIZE (canonical-lightdm-1.32.0-3abc9fb_GH0.tar.gz) = 400052
