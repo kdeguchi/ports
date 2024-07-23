@@ -73,13 +73,13 @@ ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:b3d151c:altcannadic
 
 # CC-BY-SA-4.0
 EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:a3febcb:edict2
-JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:263fe32:jawiki
+JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:9395f09:jawiki
 
 # APACHE20
 NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:c152403:neologd
 
 # APACHE20
-PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:e104958:personal
+PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:5df5ced:personal
 
 # APCHE20
 PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:99cb804:place
@@ -91,7 +91,7 @@ SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:3d04262:skkjisyo
 SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:1aa3d3d:sudachi
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:9558277:ut
+UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:2855b79:ut
 UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:title
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:title
 
