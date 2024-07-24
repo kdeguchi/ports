@@ -569,9 +569,18 @@ post-install:
 
 # Create new distinfo: `make renew-makesum`
 renew-makesum:
-	${RM} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} \
-		${DISTDIR}/${DIST_SUBDIR}/${DISTFILES:M*\:kenall:C@\:kenall@@} \
-		${DISTDIR}/${DIST_SUBDIR}/${DISTFILES:M*\:jigyosyo:C@\:jigyosyo@@}
-	${MAKE} makesum
+	@for file in `${MAKE} fetch-url-list | ${GREP} -v 'FreeBSD\.org'`; do \
+		case $${file} in \
+		*${UTDIC_DISTFILES:M*\:title:C@\:title@@}) urls="$${urls} $${file}" ;; \
+		*${DISTFILES:M*\:kenall:C@\:kenall@@}) urls="$${urls} $${file}" ;; \
+		*${DISTFILES:M*\:jigyosyo:C@\:jigyosyo@@}) urls="$${urls} $${file}" ;; \
+		*) continue ;; \
+		esac ; \
+	done && \
+	cd ${DISTDIR}/${DIST_SUBDIR} && \
+	for url in $${urls}; do \
+		${FETCH_BINARY} -Fmp $${url} ; \
+	done
+	@${MAKE} makesum
 
 .include <bsd.port.post.mk>
