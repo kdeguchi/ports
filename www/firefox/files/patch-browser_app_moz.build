@@ -1,0 +1,14 @@
+--- browser/app/moz.build.orig	2024-03-04 12:24:51 UTC
++++ browser/app/moz.build
+@@ -57,6 +57,11 @@ LOCAL_INCLUDES += [
+     "/xpcom/build",
+ ]
+
++if CONFIG['OS_TARGET'] != 'WINNT':
++    OS_LIBS += [
++        "m",
++    ]
++
+ if CONFIG["LIBFUZZER"]:
+     USE_LIBS += ["fuzzer"]
+     LOCAL_INCLUDES += [
