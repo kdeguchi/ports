@@ -1,5 +1,5 @@
 PORTNAME=	nody-greeter
-PORTVERSION=	1.5.2
+PORTVERSION=	1.6.2
 CATEGORIES=	x11
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -21,11 +21,9 @@ USE_GNOME=	cairo glib20 gtk30 introspection pango
 USE_XORG=	x11 xcb
 
 USE_GITHUB=	yes
-GH_TUPLE=	JezerM:nody-greeter:8455b07 \
+GH_TUPLE=	JezerM:nody-greeter:b92e3da \
 		JezerM:web-greeter-themes:44283ca:themes \
 		JezerM:nody-greeter-types:4bf0196:tsc
-
-MAKE_JOBS_UNSAFE=	yes
 
 post-extract:
 	cd ${WRKSRC} && \
@@ -37,7 +35,6 @@ post-extract:
 post-patch:
 	${REINPLACE_CMD} 's@/usr@${PREFIX}@;s@/etc/lightdm@${PREFIX}/etc/lightdm@;s@/etc/xdg@${PREFIX}/etc/xdg@' \
 		${WRKSRC}/*.js ${WRKSRC}/*/*.js ${WRKSRC}/*/*.ts
-#	${REINPLACE_CMD} 's@16\.2\.8@23.0.0@' ${WRKSRC}/package.json
 
 pre-configure:
 	${MKDIR} ${WRKDIR}/.bin ${WRKSRC}/node_modules/.bin
