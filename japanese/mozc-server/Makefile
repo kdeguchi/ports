@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.30.5520.102
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	japanese
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -69,29 +69,29 @@ SUDACHIDICT_DESC=	Dictionary from SudachiDict
 UTDIC_DESC=		Additional UT Dictionary
 
 # GPLv2
-ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:b3d151c:altcannadic
+ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:50fee03:altcannadic
 
 # CC-BY-SA-4.0
-EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:a3febcb:edict2
-JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:9395f09:jawiki
+EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:b211227:edict2
+JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:29dd6d3:jawiki
 
 # APACHE20
-NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:c152403:neologd
+NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:b7035b8:neologd
 
 # APACHE20
 PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:5df5ced:personal
 
 # APCHE20
-PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:99cb804:place
+PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:5c21675:place
 
 # APACHE20 GPLv2
-SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:3d04262:skkjisyo
+SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:7300f19:skkjisyo
 
 # APACHE20
-SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:1aa3d3d:sudachi
+SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:a754f1f:sudachi
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:2855b79:ut
+UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:519fe3e:ut
 UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:title
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:title
 
@@ -216,7 +216,7 @@ post-patch-mozc_server:
 	@${REINPLACE_CMD} -E -e "/^.*'wget'/d;" \
 		-e '/^with urlli.*/d;' \
 		-e 's@^url = "https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/id.def"@id_def = open("id.def", "r")@;' \
-		-e 's@^\tid_mozc = .*@id_mozc = id_def.read()@;' \
+		-e 's@^    id_mozc = .*@id_mozc = id_def.read()@;' \
 			${WRKSRC_ut}/src/*.py
 
 	@${ECHO_MSG} "*** Creating mozcdic-ut.txt for UT Dictionary. It takes a long time! ***"
