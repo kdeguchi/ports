@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.30.5520.102
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	japanese
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -20,7 +20,7 @@ USES=	compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 	python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:2acac13 \
+GH_TUPLE=	fcitx:mozc:a9e4bea \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 USE_JAVA=	yes
@@ -91,7 +91,7 @@ SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:7300f19:skkjisyo
 SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:a754f1f:sudachi
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:519fe3e:ut
+UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:1f1cdcf:ut
 UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:title
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:title
 
