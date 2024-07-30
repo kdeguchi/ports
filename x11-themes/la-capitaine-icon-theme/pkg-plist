@@ -5633,10 +5633,13 @@ share/icons/La-Capitaine/apps/scalable/system-file-manager-root.svg
 share/icons/La-Capitaine/apps/scalable/system-file-manager.svg
 share/icons/La-Capitaine/apps/scalable/system-help.svg
 share/icons/La-Capitaine/apps/scalable/system-installer.svg
+share/icons/La-Capitaine/apps/scalable/system-lock-screen.svg
+share/icons/La-Capitaine/apps/scalable/system-restart.svg
 share/icons/La-Capitaine/apps/scalable/system-search.svg
 share/icons/La-Capitaine/apps/scalable/system-software-install.svg
 share/icons/La-Capitaine/apps/scalable/system-software-installer.svg
 share/icons/La-Capitaine/apps/scalable/system-software-update.svg
+share/icons/La-Capitaine/apps/scalable/system-suspend.svg
 share/icons/La-Capitaine/apps/scalable/system-switch-java.svg
 share/icons/La-Capitaine/apps/scalable/system-upgrade.svg
 share/icons/La-Capitaine/apps/scalable/system-users.svg
