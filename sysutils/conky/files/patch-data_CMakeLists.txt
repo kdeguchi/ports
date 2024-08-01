@@ -1,6 +1,6 @@
 --- data/CMakeLists.txt.orig	2023-03-31 17:39:51 UTC
 +++ data/CMakeLists.txt
-@@ -45,8 +45,8 @@ endif(BUILD_OLD_CONFIG)
+@@ -45,8 +45,8 @@ add_custom_target(generated_hdr_files DEPENDS ${genera
  
  add_custom_target(generated_hdr_files DEPENDS ${generated_hdr_files})
  

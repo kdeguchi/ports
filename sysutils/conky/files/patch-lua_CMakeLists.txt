@@ -1,6 +1,6 @@
 --- lua/CMakeLists.txt.orig	2024-04-24 13:56:28 UTC
 +++ lua/CMakeLists.txt
-@@ -28,6 +28,8 @@ if(BUILD_LUA_CAIRO)
+@@ -27,6 +27,8 @@ if(BUILD_LUA_CAIRO)
  if(BUILD_LUA_CAIRO)
    include_directories(${luacairo_includes} ${CMAKE_CURRENT_SOURCE_DIR})
  

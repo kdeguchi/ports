@@ -1,6 +1,6 @@
 --- src/conky.cc.orig	2024-04-24 13:56:28 UTC
 +++ src/conky.cc
-@@ -84,6 +84,12 @@
+@@ -86,6 +86,12 @@
  #ifdef BUILD_IMLIB2
  #include "conky-imlib2.h"
  #endif /* BUILD_IMLIB2 */
@@ -13,7 +13,7 @@
  #endif /* BUILD_X11 */
  
  #ifdef BUILD_NCURSES
-@@ -1713,6 +1719,34 @@ void main_loop() {
+@@ -1733,6 +1739,34 @@ void main_loop() {
    sigaddset(&newmask, SIGTERM);
    sigaddset(&newmask, SIGUSR1);
  #endif
