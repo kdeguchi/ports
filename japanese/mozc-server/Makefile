@@ -218,7 +218,7 @@ post-patch-mozc_server:
 		-e 's@^    id_mozc = .*@id_mozc = id_def.read()@;' \
 			${WRKSRC_ut}/src/*.py
 
-	@${ECHO_MSG} "*** Creating mozcdic-ut.txt for UT Dictionary. It takes a long time! ***"
+	@${ECHO_MSG} "===> Creating mozcdic-ut.txt for UT Dictionary. It takes a long time!"
 	@cd ${WRKSRC_ut}/src && \
 		${CP} ${BUILD_WRKSRC}/data/dictionary_oss/id.def . && \
 		${CP} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} . && \
