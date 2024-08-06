@@ -1,5 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.30.5544.102
+PORTREVISION=	1
 CATEGORIES=	japanese
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
