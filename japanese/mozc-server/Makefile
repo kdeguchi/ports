@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.30.5544.102
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	japanese
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -20,7 +20,7 @@ USES=	compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 	python:3.7+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:57e67f2 \
+GH_TUPLE=	fcitx:mozc:5f1b9eb \
 		hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
 
 USE_JAVA=	yes
@@ -30,11 +30,13 @@ JAVA_VERSION=	11
 
 BUILD_WRKSRC=	${WRKSRC}/src
 BUILD_MOZC_CMD=	${SETENV} PATH="${JAVA_HOME}/bin:${PATH}" \
-		bazel --bazelrc="${WRKDIR}/bazelrc" \
-			--output_user_root=${WRKDIR}/bazel_out \
+		bazel ${BAZEL_OPTS} \
 			build -c opt --copt=-fPIC --host_linkopt=-lm \
 			--verbose_failures --sandbox_debug --config oss_linux \
 			--distdir=${WRKDIR}/bazel-dist
+BAZEL_OPTS=	--bazelrc="${WRKDIR}/bazelrc" \
+		--output_base=${WRKDIR}/bazel_out_base \
+		--output_user_root=${WRKDIR}/bazel_out_user
 
 BUILD_MOZC_LIST?=	mozc_server
 
@@ -79,10 +81,10 @@ JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:29dd6d3:jawiki
 NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:b7035b8:neologd
 
 # APACHE20
-PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:5df5ced:personal
+PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:79e1192:personal
 
 # APCHE20
-PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:5c21675:place
+PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:e606f23:place
 
 # APACHE20 GPLv2
 SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:7300f19:skkjisyo
