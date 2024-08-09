@@ -19,7 +19,7 @@ USES=		autoreconf cpe gmake gnome libtool localbase pathfix pkgconfig tar:xz
 CPE_VENDOR=	gnome
 
 USE_GITLAB=	yes
-GL_SITE=	https://gitlab.gnome.org
+GL_SITE=		https://gitlab.gnome.org
 GL_ACCOUNT=	GNOME
 GL_COMMIT=	503453ba
 
