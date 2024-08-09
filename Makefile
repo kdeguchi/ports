@@ -8,7 +8,7 @@ all:
 		check=$$( ${PKG_VERSION} --test-version $${orig} $${my} ); \
 		${PRINTF} "%-$${#_orig}s\r" $${orig}; \
 		_orig=$${orig} ; \
-		[ "$${check}" = ">" ] && ${ECHO_CMD} -e "update\t$${check}\t$${i}" || continue; \
+		[ "$${check}" = ">" ] && ${ECHO_MSG} -e "update\t$${check}\t$${i}" || continue; \
 	done
 
 .include <bsd.port.mk>
