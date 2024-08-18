@@ -1,7 +1,5 @@
-TIMESTAMP = 1723185843
-SHA256 (go/x11_kitty/kitty-v0.35.2/NerdFontsSymbolsOnly.tar.xz) = b7a3eee24d2b0910f3a07705f1e053221d2535f07c5a13614c4dead2620e9978
-SIZE (go/x11_kitty/kitty-v0.35.2/NerdFontsSymbolsOnly.tar.xz) = 1752504
-SHA256 (go/x11_kitty/kitty-v0.35.2/v0.35.2.mod) = 77e984205f60ca748d086690d305f4ee25a1355ec63da5365f99256cb178b748
-SIZE (go/x11_kitty/kitty-v0.35.2/v0.35.2.mod) = 1237
-SHA256 (go/x11_kitty/kitty-v0.35.2/v0.35.2.zip) = 4909e70d7090e113534b1517df52e3bc1f8317b8cceb34b066f23d53cd9e9efc
-SIZE (go/x11_kitty/kitty-v0.35.2/v0.35.2.zip) = 9047151
+TIMESTAMP = 1723881075
+SHA256 (go/x11_kitty/kitty-v0.36.0/v0.36.0.mod) = 860e13b69a20309f1b32c4d6c9c9890e069a9fc679d74f8740029081cac6498f
+SIZE (go/x11_kitty/kitty-v0.36.0/v0.36.0.mod) = 1237
+SHA256 (go/x11_kitty/kitty-v0.36.0/v0.36.0.zip) = 4b2bdc737be940c65037b5cb4d55c7b823a7258280c5cfd1f0cd92ba6aa38768
+SIZE (go/x11_kitty/kitty-v0.36.0/v0.36.0.zip) = 9033105

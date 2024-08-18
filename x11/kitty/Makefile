@@ -1,11 +1,10 @@
 PORTNAME=	kitty
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.35.2
-PORTREVISION=	10
+DISTVERSION=	0.36.0
 CATEGORIES=	x11 wayland
 
-MASTER_SITES=	https://github.com/ryanoasis/nerd-fonts/releases/latest/download/:nerd
-DISTFILES=	NerdFontsSymbolsOnly.tar.xz:nerd
+#MASTER_SITES=	https://github.com/ryanoasis/nerd-fonts/releases/latest/download/:nerd
+#DISTFILES=	NerdFontsSymbolsOnly.tar.xz:nerd
 
 MAINTAINER=	nivit@FreeBSD.org
 COMMENT=	Cross-platform, fast, featureful, GPU-based terminal emulator
@@ -19,7 +18,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}furo>0:textproc/py-furo@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinx-copybutton>0:textproc/py-sphinx-copybutton@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinx-inline-tabs>0:textproc/py-sphinx-inline-tabs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinxext-opengraph>0:textproc/py-sphinxext-opengraph@${PY_FLAVOR} \
-		roboto-fonts-ttf>0:x11-fonts/roboto-fonts-ttf \
+		nerd-fonts>=3.1.1:x11-fonts/nerd-fonts \
 		simde>=0.7.6:devel/simde \
 		sphinx-build:textproc/py-sphinx@${PY_FLAVOR} \
 		wayland-protocols>=0:graphics/wayland-protocols
@@ -123,8 +122,6 @@ my-fetch:
 .endif
 
 post-patch:
-	${MKDIR} ${WRKSRC}/fonts && \
-		${CP} ${WRKDIR}/SymbolsNerdFontMono-Regular.ttf ${WRKSRC}/fonts
 	${REINPLACE_CMD} -E \
 		-e "s:'go':'${GO_CMD}':1" \
 		-e "s:(dirs_exist_ok=True):\1, ignore=shutil.ignore_patterns('*.orig', '*.bak'):1" \
