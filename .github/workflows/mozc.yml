@@ -1,3 +1,5 @@
+name: update_mozc_dictionaries
+
 on:
   schedule:
     - cron: '0 4 * * *'
