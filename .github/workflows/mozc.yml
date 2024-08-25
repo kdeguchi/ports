@@ -14,11 +14,11 @@ jobs:
       with:
         submodules: recursive
     - name: Fetch mozc dictionaries
-        uses: vmactions/freebsd-vm@v1
-        with:
-          release: '14.1'
-          usesh: true
-          run: |
-            pwd
-            cd japanese/mozc-server
-            make renew-makesum
+      uses: vmactions/freebsd-vm@v1
+      with:
+        release: '14.1'
+        usesh: true
+        run: |
+          pwd
+          cd japanese/mozc-server
+          make renew-makesum
