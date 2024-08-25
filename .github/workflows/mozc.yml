@@ -20,7 +20,7 @@ jobs:
         usesh: true
         prepare: |
           pkg install -y git
-          git config --global --add safe.directory /home/runner/ports
+          git config --global --add safe.directory /home/runner/work/ports
         run: |
           pwd
           cd japanese/mozc-server
