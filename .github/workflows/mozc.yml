@@ -2,6 +2,10 @@ name: Update mozc dictionaries
 
 on:
   schedule:
+    paths-ignore:
+      - 'ports/mail/postgrey'
+      - 'ports/japanese/Makefile'
+      - 'ports/sysutils/e2fsprogs'
     - cron: '0 4 * * *'
   workflow_dispatch:
     
