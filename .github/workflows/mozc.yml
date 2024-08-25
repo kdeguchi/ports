@@ -26,3 +26,9 @@ jobs:
         run: |
           cd /home/runner/work/ports/ports/japanese/mozc-server
           make renew-makesum
+          git diff --quiet --exit-code || git commit -am "Automated changes"
+          if [ $? -eq 0 ]; then
+            echo "No changes to commit"
+          else
+            git push
+          fi
