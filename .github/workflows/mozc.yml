@@ -6,19 +6,19 @@ on:
   workflow_dispatch:
     
 jobs:
-  mozc-update:
+  mozc:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: recursive
-      - name: Fetch
+    - uses: actions/checkout@v4
+      with:
+        submodules: recursive
+    - name: Fetch mozc dictionaries
         uses: vmactions/freebsd-vm@v1
         with:
           release: '14.1'
           usesh: true
-        run: |
+          run: |
             pwd
             cd japanese/mozc-server
             make renew-makesum
