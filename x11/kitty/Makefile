@@ -38,6 +38,7 @@ LIB_DEPENDS=	libcanberra.so:audio/libcanberra \
 		libxxhash.so:devel/xxhash
 
 DOCS_BUILD_DEPENDS=	roboto-fonts-ttf>=2.134:x11-fonts/roboto-fonts-ttf
+MANPAGES_BUILD_DEPENDS=	roboto-fonts-ttf>=2.134:x11-fonts/roboto-fonts-ttf
 
 USES=		compiler:c11 cpe desktop-file-utils gettext-runtime gl gmake \
 		go:1.22,modules magick pkgconfig python shebangfix ssl tar:xz \
