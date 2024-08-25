@@ -19,5 +19,5 @@ jobs:
         release: '14.1'
         usesh: true
         run: |
-          cd japanese/mozc-server
+          cd ports/ports/japanese/mozc-server
           make renew-makesum
