@@ -1,0 +1,19 @@
+on:
+  schedule:
+    - cron: '0 4 * * *'
+jobs:
+  mozc-update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Fetch
+        users: vmactions/freebsd-vm@v1
+        with:
+          release: '14.1'
+          usesh: true
+          run: |
+            cd japanese/mozc-server
+            make renew-makesum
