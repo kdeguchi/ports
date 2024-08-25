@@ -2,7 +2,7 @@ name: Update mozc dictionaries
 
 on:
   schedule:
-    cron: '15 4 * * 0'
+    - cron: '15 4 * * 0'
 
 jobs:
   mozc:
