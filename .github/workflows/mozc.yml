@@ -20,9 +20,9 @@ jobs:
       with:
         release: '14.1'
         usesh: true
-        prepare:
+        prepare: |
           pkg install -y git
-          git config --global --add safe.directory /home/runner/work/eza/eza
+          git config --global --add safe.directory /home/runner/work/ports/ports
         run: |
           cd /home/runner/work/ports/ports/japanese/mozc-server
           make renew-makesum
