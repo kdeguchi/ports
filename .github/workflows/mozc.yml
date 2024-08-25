@@ -8,6 +8,7 @@ on:
 jobs:
   mozc:
     runs-on: ubuntu-latest
+    name: job in FreeBSD
     timeout-minutes: 20
     steps:
     - uses: actions/checkout@v4
@@ -15,7 +16,11 @@ jobs:
       id: mozc
       uses: vmactions/freebsd-vm@v1
       with:
+        release: '14.1'
         usesh: true
+        prepare: |
+          pkg install -y git
+          git config --global --add safe.directory /home/runner/ports
         run: |
           pwd
           cd japanese/mozc-server
