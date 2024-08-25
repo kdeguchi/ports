@@ -3,9 +3,9 @@ name: Update mozc dictionaries
 on:
   workflow_dispatch:
     paths-ignore:
-      - 'ports/mail/postgrey'
-      - 'ports/japanese/Makefile'
-      - 'ports/sysutils/e2fsprogs'
+      - 'ports/ports/mail/postgrey'
+      - 'ports/ports/japanese/Makefile'
+      - 'ports/ports/sysutils/e2fsprogs'
     
 jobs:
   mozc:
