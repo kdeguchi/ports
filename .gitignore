@@ -1,4 +1,6 @@
-/japanese/Makefile.inc
 /Mk/Scripts/[a-hj-z]*.sh
 /Mk/Scripts/*.awk
 /Mk/Scripts/*.py
+/japanese/Makefile.inc
+/mail/postgrey
+/sysutiles/e2fsprogs
