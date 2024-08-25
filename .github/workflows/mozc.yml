@@ -1,6 +1,8 @@
-on: [ schedule workflow_dispatch ]
+on:
   schedule:
     - cron: '0 4 * * *'
+  workflow_dispatch:
+    
 jobs:
   mozc-update:
     runs-on: ubuntu-latest
