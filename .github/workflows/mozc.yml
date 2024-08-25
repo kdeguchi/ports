@@ -11,12 +11,10 @@ jobs:
     timeout-minutes: 20
     steps:
     - uses: actions/checkout@v4
-      with:
-        submodules: recursive
     - name: Fetch mozc dictionaries
+      id: mozc
       uses: vmactions/freebsd-vm@v1
       with:
-        release: '14.1'
         usesh: true
         run: |
           pwd
