@@ -20,6 +20,7 @@ jobs:
         usesh: true
         prepare: |
           pkg install -y git
+          cd /usr && git clone https://github.com/freebsd/freebsd-ports ports
           git config --global --add safe.directory /home/runner/work/ports/ports
         run: |
           cd /home/runner/work/ports/ports/japanese/mozc-server
