@@ -6,7 +6,7 @@ on:
       - 'ports/ports/mail/postgrey'
       - 'ports/ports/japanese/Makefile'
       - 'ports/ports/sysutils/e2fsprogs'
-    
+
 jobs:
   mozc:
     runs-on: ubuntu-latest
@@ -20,6 +20,9 @@ jobs:
       with:
         release: '14.1'
         usesh: true
+        prepare:
+          pkg install -y git
+          git config --global --add safe.directory /home/runner/work/eza/eza
         run: |
           cd /home/runner/work/ports/ports/japanese/mozc-server
           make renew-makesum
