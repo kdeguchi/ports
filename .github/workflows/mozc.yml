@@ -26,6 +26,9 @@ jobs:
         run: |
           cd /home/runner/work/ports/ports/japanese/mozc-server
           make renew-makesum
+          git config --global user.email 'kdeguchi@sz.tokoha-u.ac.jp'
+          git config --global user.name 'Ken DEGUCHI'
+          git remote set-url origin https://x-access-token:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}
           git diff --quiet --exit-code || git commit -am "Automated changes"
           if [ $? -eq 0 ]; then
             echo "No changes to commit"
