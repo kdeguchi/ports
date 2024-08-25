@@ -1,4 +1,4 @@
-name: update_mozc_dictionaries
+name: Update mozc dictionaries
 
 on:
   schedule:
@@ -18,6 +18,6 @@ jobs:
         with:
           release: '14.1'
           usesh: true
-          run: |
+          - run: |
             cd japanese/mozc-server
             make renew-makesum
