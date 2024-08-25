@@ -22,6 +22,7 @@ jobs:
           pkg install -y git
           cd /usr && git clone https://github.com/freebsd/freebsd-ports ports
           git config --global --add safe.directory /home/runner/work/ports/ports
+          mkdir -p /usr/ports/distfiles/mozc
         run: |
           cd /home/runner/work/ports/ports/japanese/mozc-server
           make renew-makesum
