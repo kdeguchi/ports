@@ -8,7 +8,7 @@
  
  #include "absl/flags/flag.h"
  
-@@ -116,7 +117,9 @@ void InitMozc(const char *arg0, int *argc, char ***arg
+@@ -112,7 +113,9 @@ void InitMozc(const char *arg0, int *argc, char ***arg
    ParseCommandLineFlags(*argc, *argv);
  
    const std::string program_name = *argc > 0 ? (*argv)[0] : "UNKNOWN";

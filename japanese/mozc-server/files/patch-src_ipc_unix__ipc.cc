@@ -10,7 +10,7 @@
  #include <unistd.h>
  
  #include <cerrno>
-@@ -119,7 +122,28 @@ bool IsWriteTimeout(int socket, absl::Duration timeout
+@@ -120,7 +123,28 @@ bool IsPeerValid(int socket, pid_t *pid) {
  
  bool IsPeerValid(int socket, pid_t *pid) {
    *pid = 0;
@@ -38,7 +38,7 @@
 +#if 0
    struct ucred peer_cred;
    int peer_cred_len = sizeof(peer_cred);
-   if (getsockopt(socket, SOL_SOCKET, SO_PEERCRED,
+   if (getsockopt(socket, SOL_SOCKET, SO_PEERCRED, &peer_cred,
 @@ -135,6 +159,7 @@ bool IsPeerValid(int socket, pid_t *pid) {
    }
  
@@ -60,7 +60,7 @@
      pid_t pid = 0;
      if (::connect(socket_, reinterpret_cast<const sockaddr *>(&address),
                    sun_len) != 0 ||
-@@ -374,7 +404,12 @@ IPCServer::IPCServer(const std::string &name, int32_t 
+@@ -378,7 +408,12 @@ IPCServer::IPCServer(const std::string &name, int32_t 
    int on = 1;
    ::setsockopt(socket_, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<char *>(&on),
                 sizeof(on));

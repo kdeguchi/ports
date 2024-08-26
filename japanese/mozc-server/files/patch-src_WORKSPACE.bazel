@@ -1,6 +1,6 @@
 --- src/WORKSPACE.bazel.orig	2023-09-02 11:09:28 UTC
 +++ src/WORKSPACE.bazel
-@@ -130,7 +130,7 @@ new_local_repository(
+@@ -211,7 +211,7 @@ pkg_config_repository(
  # Qt for Linux
  pkg_config_repository(
    name = "qt_linux",
