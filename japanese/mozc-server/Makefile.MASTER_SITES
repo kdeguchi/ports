@@ -18,7 +18,7 @@ DISTFILES+=	abseil-cpp-${abseil_VERSION}.tar.gz:abseil \
 MASTER_SITES+=	https://github.com/abseil/abseil-cpp/releases/download/${abseil_VERSION}/:abseil \
 		https://github.com/protocolbuffers/protobuf/releases/download/v${protobuf_VERSION}/:protobuf \
 		https://github.com/bazelbuild/apple_support/releases/download/${apple_support_VERSION}/:apple_support \
-		https://github.com/bazelbuild/bazel-skylib/releases/download/${bazel_skylib}/:bazel_skylib \
+		https://github.com/bazelbuild/bazel-skylib/releases/download/${bazel_skylib_VERSION}/:bazel_skylib \
 		https://github.com/bazelbuild/platforms/releases/download/${platforms_VERSION}/:platforms \
 		https://github.com/bazelbuild/rules_android/releases/download/v${rules_android_VERSION}/:rules_android \
 		https://github.com/bazelbuild/rules_android_ndk/releases/download/v${rules_android_ndk_VERSION}/:rules_android_ndk \
