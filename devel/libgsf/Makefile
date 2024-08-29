@@ -1,5 +1,5 @@
 PORTNAME=	libgsf
-PORTVERSION=	1.14.51
+PORTVERSION=	1.14.53
 CATEGORIES=	devel
 #MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -21,7 +21,7 @@ CPE_VENDOR=	gnome
 USE_GITLAB=	yes
 GL_SITE=		https://gitlab.gnome.org
 GL_ACCOUNT=	GNOME
-GL_COMMIT=	503453ba
+GL_COMMIT=	634340d31177c02ccdb43171e37291948e7f8974
 
 USE_GNOME=	gdkpixbuf2 intlhack introspection:build libxml2
 USE_LDCONFIG=	yes

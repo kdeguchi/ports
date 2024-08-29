@@ -4,9 +4,9 @@ all:
 		my=$$( cd $${i} && ${MAKE} -V PKGNAME ) || continue; \
 		orig=$$( [ -d ${PORTSDIR}/$${i} ] && cd ${PORTSDIR}/$${i} && ${MAKE} -V PKGNAME ) || \
 			continue; \
+		${PRINTF} "%-$$(tput co)s\r" $${orig}; \
 		check=$$( ${PKG_VERSION} --test-version $${orig} $${my} ); \
-		${PRINTF} "%-$$( tput co )s\r" $${orig}; \
-		[ "$${check}" = ">" ] && ${PRINTF} "%-$$( tput co )s\t%s\t%s\n" "update" "$${check}" "$${i}" || continue; \
+		[ "$${check}" = ">" ] && ${PRINTF} "%-$$(tput co)s\n" "update $${my}" || continue; \
 	done
 
 .include <bsd.port.mk>

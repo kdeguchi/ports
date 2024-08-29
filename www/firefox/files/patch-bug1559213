@@ -42,7 +42,9 @@ index 5c6e25b3980b..ce99ebfb6d3f 100644
  
  if CONFIG["MOZ_OMX"]:
      EXPORTS += [
---- media/ffvpx/libavcodec/moz.build.orig	2024-03-04 12:24:58 UTC
+diff --git media/ffvpx/libavcodec/moz.build media/ffvpx/libavcodec/moz.build
+index 761fc8cf4cd9..793a5b8697a8 100644
+--- media/ffvpx/libavcodec/moz.build
 +++ media/ffvpx/libavcodec/moz.build
 @@ -120,10 +120,17 @@ if not CONFIG['MOZ_FFVPX_AUDIOONLY']:
          'vp9recon.c',
