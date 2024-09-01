@@ -1,5 +1,5 @@
 PORTNAME=	libgsf
-PORTVERSION=	1.14.53
+DISTVERSION=	1.14.53
 CATEGORIES=	devel
 #MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -8,10 +8,8 @@ MAINTAINER=	desktop@FreeBSD.org
 COMMENT=	Extensible I/O abstraction for dealing with structured file formats
 WWW=		http://www.gnumeric.org
 
-LICENSE=	GPLv2 #LGPL21
-#LICENSE_COMB=	multi
-LICENSE_FILE_GPLv2=	${WRKSRC}/COPYING
-#LICENSE_FILE_LGPL21=	${WRKSRC}/COPYING.LIB
+LICENSE=	LGPL21
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	gtkdocize:textproc/gtk-doc
 
@@ -23,17 +21,17 @@ GL_SITE=		https://gitlab.gnome.org
 GL_ACCOUNT=	GNOME
 GL_COMMIT=	634340d31177c02ccdb43171e37291948e7f8974
 
-USE_GNOME=	gdkpixbuf2 intlhack introspection:build libxml2
+USE_GNOME=	gdkpixbuf2 glib20 intlhack introspection:build libxml2
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
+
 CONFIGURE_ARGS=	--enable-introspection
+
 INSTALL_TARGET=	install-strip
 
-CFLAGS+=	-fwritable-strings
-
-PLIST_SUB+=	LIBMINORVER=${PORTVERSION:E} \
-		LIBSHORTVER=${PORTVERSION:R:S/.//}
+PLIST_SUB+=	LIBMINORVER=${DISTVERSION:E} \
+		LIBSHORTVER=${DISTVERSION:R:S/.//}
 
 OPTIONS_DEFINE=	GTKDOC NLS
 OPTIONS_DEFAULT=NLS
