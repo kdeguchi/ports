@@ -4,7 +4,7 @@
 
 PORTNAME=	avidemux
 PORTVERSION=	${AVIDEMUX_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia
 
 MAINTAINER=	multimedia@FreeBSD.org
@@ -18,7 +18,7 @@ CMAKE_SOURCE_PATH=	${WRKSRC}/avidemux_core
 post-configure: post-configure-common
 
 post-install:
-.for l in swscale.so.7 postproc.so.57 avutil.so.58 avcodec.so.60 avformat.so.60
+.for l in swscale.so.8 postproc.so.58 avutil.so.59 avcodec.so.61 avformat.so.61
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libADM6${l}
 .endfor
 
