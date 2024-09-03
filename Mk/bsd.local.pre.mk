@@ -4,6 +4,10 @@
 USES+=	localbase
 .endif
 
+.if ${.CURDIR:M*/graphics/vulkan-*}
+USES+=	localbase
+.endif
+
 .if ${.CURDIR:M*/devel/msgpack-c*}
 CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=${LOCALBASE}/lib
 .endif
