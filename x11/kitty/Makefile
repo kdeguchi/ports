@@ -1,7 +1,6 @@
 PORTNAME=	kitty
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.36.1
-PORTREVISION=	3
+DISTVERSION=	0.36.2
 CATEGORIES=	x11 wayland
 
 #MASTER_SITES=	https://github.com/ryanoasis/nerd-fonts/releases/latest/download/:nerd
