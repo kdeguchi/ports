@@ -1,6 +1,6 @@
 DISTFILES+=	abseil-cpp-${abseil_VERSION}.tar.gz:abseil \
 		apple_support.${apple_support_VERSION}.tar.gz:apple_support \
-		bazel_features-v1.3.0.tar.gz:bazel_features \
+		bazel_features-v${bazel_features_VERSION}.tar.gz:bazel_features \
 		bazel-skylib-${bazel_skylib_VERSION}.tar.gz:bazel_skylib \
 		platforms-${platforms_VERSION}.tar.gz:platforms \
 		protobuf-${protobuf_VERSION}.tar.gz:protobuf \

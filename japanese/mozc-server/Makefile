@@ -28,19 +28,18 @@ JAVA_VENDOR=	openjdk
 JAVA_VERSION=	21
 
 BUILD_WRKSRC=	${WRKSRC}/src
-BUILD_MOZC_CMD=	${SETENV} PATH="${JAVA_HOME}/bin:${PATH}" \
-	JAVA_HOME=${JAVA_HOME} \
-		bazel ${BAZEL_OPTS} \
-			build -c opt --copt=-fPIC --host_linkopt=-lm \
-			--verbose_failures --sandbox_debug --config oss_linux \
-			--distdir=${WRKDIR}/bazel-dist
+BUILD_MOZC_CMD=	${SETENV} ${BAZEL_ENV} \
+	bazel ${BAZEL_OPTS} build ${BAZEL_COMMON_OPTS} \
+		-c opt --copt=-fPIC --host_linkopt=-lm \
+		--verbose_failures --sandbox_debug --config oss_linux \
+		--tool_java_language_version=21
 BAZEL_OPTS=	--bazelrc="${WRKDIR}/bazelrc" \
-		--output_base=${WRKDIR}/bazel_out_base \
-		--output_user_root=${WRKDIR}/bazel_out_user
+		--output_base=${WRKDIR}/bazel-out-base \
+		--output_user_root=${WRKDIR}/bazel-out-user
+BAZEL_ENV=	PATH="${JAVA_HOME}/bin:${PATH}" JAVA_HOME=${JAVA_HOME}
+BAZEL_COMMON_OPTS=	--distdir=${WRKDIR}/bazel-dist
 
 BUILD_MOZC_LIST?=	mozc_server
-
-BINARY_ALIAS=	python3=${PYTHON_CMD}
 
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
 PKGNAMEPREFIX=	ja-
@@ -148,7 +147,7 @@ post-extract:
 		${RLN} ${WRKDIR}/protobuf-* ${WRKSRC}/src/third_party/protobuf
 	@${MKDIR} ${WRKDIR}/bazel-dist
 .for file in ${DISTFILES:C/\:(.*)//}
-	@${CP} ${DISTDIR}/${DIST_SUBDIR}/${file} ${WRKDIR}/bazel-dist
+	@${RLN} ${DISTDIR}/${DIST_SUBDIR}/${file} ${WRKDIR}/bazel-dist
 .endfor
 
 post-patch:
