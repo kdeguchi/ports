@@ -76,7 +76,7 @@ do-build:
 	JAVA_VERSION=${JAVA_VERSION} \
 	TMPDIR=${WRKDIR}/bazel_tmp \
 	EMBED_LABEL='${PORTVERSION}' \
-	PATH=${JAVA_HOME}/bin:$$PATH \
+	PATH=${LOCALBASE}/bin:$$PATH \
 	SOURCE_DATE_EPOCH=$${SOURCE_DATE_EPOCH} \
 	BAZEL_JAVAC_OPTS=${BAZEL_JAVAC_OPTS} \
 	EXTRA_BAZEL_ARGS='--tool_java_runtime_version=local_jdk --java_language_version=${JAVA_VERSION} --tool_java_language_version=${JAVA_VERSION}' \
