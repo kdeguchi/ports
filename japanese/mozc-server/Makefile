@@ -8,7 +8,7 @@ COMMENT?=	Mozc Japanese Input Method, Server
 WWW=		https://github.com/google/mozc
 
 PATCH_DEPENDS=${PYTHON_CMD}:${PYTHON_PORTSDIR}
-BUILD_DEPENDS=	bazel:devel/bazel \
+BUILD_DEPENDS=	bazel:devel/bazel7 \
 		python3:lang/python3
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
 
@@ -25,10 +25,11 @@ GH_TUPLE=	fcitx:mozc:e6ad74b
 USE_JAVA=	yes
 JAVA_BUILD=	yes
 JAVA_VENDOR=	openjdk
-JAVA_VERSION=	11
+JAVA_VERSION=	21
 
 BUILD_WRKSRC=	${WRKSRC}/src
 BUILD_MOZC_CMD=	${SETENV} PATH="${JAVA_HOME}/bin:${PATH}" \
+	JAVA_HOME=${JAVA_HOME} \
 		bazel ${BAZEL_OPTS} \
 			build -c opt --copt=-fPIC --host_linkopt=-lm \
 			--verbose_failures --sandbox_debug --config oss_linux \
