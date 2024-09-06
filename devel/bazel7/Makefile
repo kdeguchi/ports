@@ -76,15 +76,18 @@ do-build:
 	JAVA_VERSION=${JAVA_VERSION} \
 	TMPDIR=${WRKDIR}/bazel_tmp \
 	EMBED_LABEL='${PORTVERSION}' \
-	PATH=${LOCALBASE}/bin:$$PATH \
+	PATH=${JAVA_HOME}/bin:$$PATH \
 	SOURCE_DATE_EPOCH=$${SOURCE_DATE_EPOCH} \
 	BAZEL_JAVAC_OPTS=${BAZEL_JAVAC_OPTS} \
-	EXTRA_BAZEL_ARGS='--host_javabase=@local_jdk//:jdk --tool_java_runtime_version=local_jdk   --java_language_version=${JAVA_VERSION}  --tool_java_language_version=${JAVA_VERSION}' \
+	EXTRA_BAZEL_ARGS='--tool_java_runtime_version=local_jdk --java_language_version=${JAVA_VERSION} --tool_java_language_version=${JAVA_VERSION}' \
 	${LOCALBASE}/bin/bash ./compile.sh)
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/output/bazel ${STAGEDIR}${PREFIX}/bin
 	@${MKDIR} ${STAGEDIR}${ETCDIR}
 	${INSTALL_DATA} ${WRKSRC}/scripts/packages/bazel.bazelrc ${STAGEDIR}${ETCDIR}/bazel.bazelrc.sample
+
+pre-clean:
+	@${CHMOD} -R u+w ${WRKDIR}
 
 .include <bsd.port.post.mk>
