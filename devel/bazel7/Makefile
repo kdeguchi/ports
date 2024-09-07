@@ -17,7 +17,8 @@ BUILD_DEPENDS=	bash:shells/bash \
 		python3:lang/python3 \
 		zip:archivers/zip
 
-RUN_DEPENDS=	bash:shells/bash
+RUN_DEPENDS=	bash:shells/bash \
+		python3:lang/python3
 
 USES=		cpe llvm:15,build,run python:3.8+ shebangfix zip
 
