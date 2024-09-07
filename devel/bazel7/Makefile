@@ -57,9 +57,6 @@ post-patch:
 	@${ECHO_CMD} build --java_runtime_version=${JAVA_VERSION} >> ${WRKSRC}/scripts/packages/bazel.bazelrc
 	@${ECHO_CMD} build --tool_java_runtime_version=${JAVA_VERSION} >> ${WRKSRC}/scripts/packages/bazel.bazelrc
 	@${ECHO_CMD} build --action_env=PATH=/bin:/usr/bin/:${LOCALBASE}/bin >> ${WRKSRC}/scripts/packages/bazel.bazelrc
-	@${REINPLACE_CMD} -i '' \
-		-e 's|^\(PYTHON_BIN=.*\)|if [ "%VERSION%" = "3" ] ; then PYTHON_BIN=${LOCALBASE}/bin/python3; else \1 ; fi|' \
-		${WRKSRC}/tools/python/pywrapper_template.txt
 	@${REINPLACE_CMD} -i '' -e 's|%%JAVA_HOME%%|${JAVA_HOME}|' \
 		${WRKSRC}/src/main/cpp/blaze_util_bsd.cc
 	@${REINPLACE_CMD} -i '' -e 's|/usr/bin/clang|${CC}|' \
