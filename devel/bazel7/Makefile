@@ -1,4 +1,4 @@
-PORTNAME=	bazel7
+PORTNAME=	bazel
 DISTVERSION=	7.3.1
 CATEGORIES=	devel java
 MASTER_SITES=	https://github.com/bazelbuild/${PORTNAME}/releases/download/${DISTVERSION}/
@@ -90,6 +90,8 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/scripts/packages/bazel.bazelrc ${STAGEDIR}${ETCDIR}/bazel.bazelrc.sample
 
 pre-clean:
+.if exist(WRKDIR)
 	@${CHMOD} -R u+w ${WRKDIR}
+.endif
 
 .include <bsd.port.post.mk>
