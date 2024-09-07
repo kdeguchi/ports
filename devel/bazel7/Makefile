@@ -14,6 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 NOT_FOR_ARCHS=	i386
 
 BUILD_DEPENDS=	bash:shells/bash \
+		python3:lang/python3 \
 		zip:archivers/zip
 
 RUN_DEPENDS=	bash:shells/bash
