@@ -28,15 +28,16 @@ JAVA_VENDOR=	openjdk
 JAVA_VERSION=	21
 
 BUILD_WRKSRC=	${WRKSRC}/src
-BUILD_MOZC_CMD=	${SETENV} ${BAZEL_ENV} \
-	bazel ${BAZEL_OPTS} build ${BAZEL_COMMON_OPTS} \
+BUILD_MOZC_CMD=	bazel ${BAZEL_OPTS} build \
+		${BAZEL_ENV} ${BAZEL_COMMON_OPTS} \
 		-c opt --copt=-fPIC --host_linkopt=-lm \
 		--verbose_failures --sandbox_debug --config oss_linux \
 		--tool_java_language_version=21
 BAZEL_OPTS=	--bazelrc="${WRKDIR}/bazelrc" \
 		--output_base=${WRKDIR}/bazel-out-base \
-		--output_user_root=${WRKDIR}/bazel-out-user
-BAZEL_ENV=	PATH="${JAVA_HOME}/bin:${PATH}" JAVA_HOME=${JAVA_HOME}
+		--output_user_root=${WRKDIR}/bazel-out-user \
+		--server_javabase=${JAVA_HOME}
+BAZEL_ENV=	--action_env=PATH=${JAVA_HOME}/bin/:${PATH}
 BAZEL_COMMON_OPTS=	--distdir=${WRKDIR}/bazel-dist
 
 BUILD_MOZC_LIST?=	mozc_server
