@@ -17,7 +17,7 @@ DIST_SUBDIR=	${PORTNAME}
 .include "Makefile.MASTER_SITES"
 
 USES=	compiler:c++20-lang gmake localbase ninja:build pkgconfig \
-	python:3.7+,build shebangfix tar:bzip2
+	python:3.8+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
 GH_TUPLE=	fcitx:mozc:e6ad74b
@@ -28,19 +28,22 @@ JAVA_VENDOR=	openjdk
 JAVA_VERSION=	21
 
 BUILD_WRKSRC=	${WRKSRC}/src
+BUILD_MOZC_LIST?=	mozc_server
+
 BUILD_MOZC_CMD=	bazel ${BAZEL_OPTS} build \
 		${BAZEL_ENV} ${BAZEL_COMMON_OPTS} \
 		-c opt --copt=-fPIC --host_linkopt=-lm \
 		--verbose_failures --sandbox_debug --config oss_linux \
 		--tool_java_language_version=21
+
 BAZEL_OPTS=	--bazelrc="${WRKDIR}/bazelrc" \
 		--output_base=${WRKDIR}/bazel-out-base \
 		--output_user_root=${WRKDIR}/bazel-out-user \
 		--server_javabase=${JAVA_HOME}
-BAZEL_ENV=	--action_env=PATH=${JAVA_HOME}/bin/:${PATH}
-BAZEL_COMMON_OPTS=	--distdir=${WRKDIR}/bazel-dist
 
-BUILD_MOZC_LIST?=	mozc_server
+BAZEL_ENV=	--action_env=PATH=${JAVA_HOME}/bin/:${PATH}
+
+BAZEL_COMMON_OPTS=	--distdir=${WRKDIR}/bazel-dist
 
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
 PKGNAMEPREFIX=	ja-
