@@ -3,6 +3,7 @@ DISTVERSION=	7.3.1
 CATEGORIES=	devel java
 MASTER_SITES=	https://github.com/bazelbuild/${PORTNAME}/releases/download/${DISTVERSION}/
 DISTNAME=	bazel-${DISTVERSION}-dist
+PKGNAMESUFFIX=	7
 
 MAINTAINER=	vishwin@FreeBSD.org
 COMMENT=	Fast and correct build system
