@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.30.5544.102
-PORTREVISION=	12
+PORTREVISION=	11
 CATEGORIES=	japanese
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -20,7 +20,7 @@ USES=	compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 	python:3.8+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:515dd86
+GH_TUPLE=	fcitx:mozc:e6ad74b
 
 USE_JAVA=	yes
 JAVA_BUILD=	yes
@@ -30,20 +30,18 @@ JAVA_VERSION=	21
 BUILD_WRKSRC=	${WRKSRC}/src
 BUILD_MOZC_LIST?=	mozc_server
 
-BUILD_MOZC_CMD=	bazel ${BAZEL_OPTS} build \
-		${BAZEL_ENV} ${BAZEL_COMMON_OPTS} \
-		-c opt --copt=-fPIC --host_linkopt=-lm \
-		--verbose_failures --sandbox_debug --config oss_linux \
+BUILD_MOZC_CMD=	bazel ${BAZEL_OPTS} \
+		build ${BAZEL_ENV} --nofetch --verbose_failures --sandbox_debug \
+		--repository_cache=${WRKDIR}/bazel-cache \
+		--distdir=${_DISTDIR} \
+		--config oss_linux -c opt --copt=-fPIC --host_linkopt=-lm \
 		--tool_java_language_version=21
 
-BAZEL_OPTS=	--bazelrc="${WRKDIR}/bazelrc" \
+BAZEL_OPTS=	--output_user_root=${WRKDIR}/bazel-out-user \
 		--output_base=${WRKDIR}/bazel-out-base \
-		--output_user_root=${WRKDIR}/bazel-out-user \
 		--server_javabase=${JAVA_HOME}
 
 BAZEL_ENV=	--action_env=PATH=${JAVA_HOME}/bin/:${PATH}
-
-BAZEL_COMMON_OPTS=	--distdir=${WRKDIR}/bazel-dist
 
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
 PKGNAMEPREFIX=	ja-
@@ -98,7 +96,7 @@ SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:7300f19:skkjisyo
 SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:a754f1f:sudachi
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:35dfcca:ut
+UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:9cacaad:ut
 UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:title
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:title
 
@@ -147,17 +145,16 @@ _CCTYPE=	gcc
 post-extract:
 	@${RMDIR} ${WRKSRC}/src/third_party/abseil-cpp && \
 		${RLN} ${WRKDIR}/abseil-cpp-* ${WRKSRC}/src/third_party/abseil-cpp
+	@${RMDIR} ${WRKSRC}/src/third_party/gtest && \
+		${RLN} ${WRKDIR}/googletest-* ${WRKSRC}/src/third_party/gtest
 	@${RMDIR} ${WRKSRC}/src/third_party/protobuf && \
 		${RLN} ${WRKDIR}/protobuf-* ${WRKSRC}/src/third_party/protobuf
 	@${MKDIR} ${WRKDIR}/bazel-dist
-.for file in ${DISTFILES:C/\:(.*)//}
-	@${RLN} ${DISTDIR}/${DIST_SUBDIR}/${file} ${WRKDIR}/bazel-dist
-.endfor
+	@${RLN} ${_DISTDIR}/* ${WRKDIR}/bazel-dist/
+	@${MKDIR} ${WRKDIR}/bazel-out-base
+	@${CP} -a ${_DISTDIR}/external ${WRKDIR}/bazel-out-base/
 
 post-patch:
-	@${CP} ${PATCHDIR}/bazelrc ${WRKDIR} && \
-		${REINPLACE_CMD} -e 's@%%BAZEL_DIR%%@${WRKDIR}@g;s@%%BAZEL_DIST%%@${WRKDIR}@g;' \
-			${WRKDIR}/bazelrc
 	@${FIND} ${BUILD_WRKSRC} -type f \
 		\( -name 'BUILD' -o -name '*.bzl' -o -name '*.cc' -o -name '*.h' \) \
 		-exec ${REINPLACE_CMD} -E -e "s,'python','${PYTHON_CMD}',g;" \
@@ -216,7 +213,7 @@ PLIST_FILES+=	bin/mozc \
 SUB_FILES+=	mozc
 
 post-patch-mozc_server:
-	@${MV} ${WRKSRC_udic}/usage_dict.txt \
+	@${CP} -a ${WRKSRC_udic}/* \
 		${BUILD_WRKSRC}/third_party/japanese_usage_dictionary
 .if ${PORT_OPTIONS:MUTDIC}
 	# ut dictionary
@@ -229,7 +226,7 @@ post-patch-mozc_server:
 	@${ECHO_MSG} "===> Creating mozcdic-ut.txt for UT Dictionary. It takes a long time!"
 	@cd ${WRKSRC_ut}/src && \
 		${CP} ${BUILD_WRKSRC}/data/dictionary_oss/id.def . && \
-		${CP} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} . && \
+		${CP} ${_DISTDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} . && \
 		${CP} ../../mozcdic-ut-*/mozcdic-ut-*.txt.tar.bz2 . && \
 		for f in mozcdic-ut-*.txt.tar.bz2; do \
 			${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} $$f ${EXTRACT_AFTER_ARGS}; \
@@ -584,10 +581,68 @@ renew-makesum:
 		*) continue ;; \
 		esac ; \
 	done && \
-	cd ${DISTDIR}/${DIST_SUBDIR} && \
+	cd ${_DISTDIR} && \
 	for url in $${urls}; do \
 		${FETCH_BINARY} -Fmp $${url} ; \
 	done
 	@${MAKE} makesum
+
+_USES_fetch+=	800:bazel-fetch
+bazel-fetch:
+	@${MKDIR} ${WRKDIR}
+	@cd ${WRKDIR} && \
+		${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/${DISTFILES:Mfcitx-mozc*} ${EXTRACT_AFTER_ARGS} && \
+		${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/${DISTFILES:M*\:abseil:C@\:abseil@@} ${EXTRACT_AFTER_ARGS} && \
+		${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/${DISTFILES:M*\:googletest:C@\:googletest@@} ${EXTRACT_AFTER_ARGS} && \
+		${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/${DISTFILES:M*\:protobuf:C@\:protobuf@@} ${EXTRACT_AFTER_ARGS} && \
+		${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/${DISTFILES:M*\:udic:C@\:udic@@} ${EXTRACT_AFTER_ARGS}
+	@${RMDIR} ${WRKSRC}/src/third_party/abseil-cpp && \
+		${RLN} ${WRKDIR}/abseil-cpp-* ${WRKSRC}/src/third_party/abseil-cpp
+	@${RMDIR} ${WRKSRC}/src/third_party/gtest && \
+		${RLN} ${WRKDIR}/googletest-* ${WRKSRC}/src/third_party/gtest
+	@${RMDIR} ${WRKSRC}/src/third_party/protobuf && \
+		${RLN} ${WRKDIR}/protobuf-* ${WRKSRC}/src/third_party/protobuf
+	@${CP} -a ${WRKSRC_udic}/* \
+		${BUILD_WRKSRC}/third_party/japanese_usage_dictionary
+	@${SETENV} \
+		dp_BZCAT="${BZCAT}" \
+		dp_CAT="${CAT}" \
+		dp_DISTDIR="${_DISTDIR}" \
+		dp_ECHO_MSG="${ECHO_MSG}" \
+		dp_EXTRA_PATCHES="${EXTRA_PATCHES}" \
+		dp_EXTRA_PATCH_TREE="${EXTRA_PATCH_TREE}" \
+		dp_GZCAT="${GZCAT}" \
+		dp_OPSYS="${OPSYS}" \
+		dp_PATCH="${PATCH}" \
+		dp_PATCHDIR="${PATCHDIR}" \
+		dp_PATCHFILES="${_PATCHFILES2}" \
+		dp_PATCH_ARGS=${PATCH_ARGS:Q} \
+		dp_PATCH_DEBUG_TMP="${PATCH_DEBUG_TMP}" \
+		dp_PATCH_DIST_ARGS="${PATCH_DIST_ARGS}" \
+		dp_PATCH_CONTINUE_ON_FAIL=${PATCH_CONTINUE_ON_FAIL:Dyes} \
+		dp_PATCH_SILENT="${PATCH_SILENT}" \
+		dp_PATCH_WRKSRC=${PATCH_WRKSRC} \
+		dp_PKGNAME="${PKGNAME}" \
+		dp_PKGORIGIN="${PKGORIGIN}" \
+		dp_SCRIPTSDIR="${SCRIPTSDIR}" \
+		dp_UNZIP_NATIVE_CMD="${UNZIP_NATIVE_CMD}" \
+		dp_XZCAT="${XZCAT}" \
+		${SH} ${SCRIPTSDIR}/do-patch.sh 2>&1 > /dev/null
+	@cd ${BUILD_WRKSRC} && \
+		bazel ${BAZEL_OPTS} \
+			fetch ${BAZEL_ENV} \
+				--distdir=${_DISTDIR} \
+				--repository_cache=${WRKDIR}/bazel-cache \
+				--config oss_linux \
+				server:mozc_server gui/tool:mozc_tool unix/fcitx5:fcitx5-mozc.so unix:icons
+	${CP} -a ${WRKDIR}/bazel-out-base/external ${_DISTDIR}
+
+bazel-info:
+	cd ${BUILD_WRKSRC} && \
+		bazel ${BAZEL_OPTS} info ${BAZEL_KEY}
+
+bazel-mod:
+	cd ${BUILD_WRKSRC} && \
+		bazel ${BAZEL_OPTS} mod graph --verbose
 
 .include <bsd.port.post.mk>

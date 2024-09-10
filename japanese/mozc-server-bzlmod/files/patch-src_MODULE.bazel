@@ -1,0 +1,19 @@
+--- src/MODULE.bazel.orig	2024-09-02 10:09:27 UTC
++++ src/MODULE.bazel
+@@ -52,6 +52,7 @@ bazel_dep(
+     name = "rules_python",
+     version = "0.34.0",
+ )
++register_toolchains("@bazel_tools//tools/python:autodetecting_toolchain")
+ 
+ # Bazel macOS build (3.5.1 2024-04-09)
+ # Note, versions after 3.5.1 result a build failure of universal binary.
+@@ -163,7 +164,7 @@ pkg_config_repository(
+ # Qt for Linux
+ pkg_config_repository(
+     name = "qt_linux",
+-    packages = ["Qt6Core", "Qt6Gui", "Qt6Widgets"],
++    packages = ["Qt6Core", "Qt6Gui", "Qt6Widgets", "libglvnd"],
+ )
+ 
+ # Qt for macOS
