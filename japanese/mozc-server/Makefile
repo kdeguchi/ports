@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.30.5544.102
-PORTREVISION=	12
+PORTREVISION=	13
 CATEGORIES=	japanese
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -21,6 +21,8 @@ USES=	compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 
 USE_GITHUB=	yes
 GH_TUPLE=	fcitx:mozc:9d69314
+GH_TUPLE+=	abseil:abseil-cpp:4447c75:abseil/src/third_party/abseil-cpp
+GH_TUPLE+=	protocolbuffers:protobuf:7cc670c:protobuf/src/third_party/protobuf
 
 USE_JAVA=	yes
 JAVA_BUILD=	yes
@@ -49,7 +51,7 @@ BAZEL_COMMON_OPTS=	--distdir=${WRKDIR}/bazel-dist
 PKGNAMEPREFIX=	ja-
 PKGNAMESUFFIX=	-server
 
-GH_TUPLE+=	hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
+GH_TUPLE+=	hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic/src/third_party/japanese_usage_dictionary
 
 LICENSE=		BSD3CLAUSE NAISTL
 LICENSE_COMB=		multi
@@ -145,20 +147,16 @@ _CCTYPE=	gcc
 .include <bsd.port.pre.mk>
 
 post-extract:
-	@${RMDIR} ${WRKSRC}/src/third_party/abseil-cpp && \
-		${RLN} ${WRKDIR}/abseil-cpp-* ${WRKSRC}/src/third_party/abseil-cpp
-	@${RMDIR} ${WRKSRC}/src/third_party/protobuf && \
-		${RLN} ${WRKDIR}/protobuf-* ${WRKSRC}/src/third_party/protobuf
 	@${MKDIR} ${WRKDIR}/bazel-dist
 .for file in ${DISTFILES:C/\:(.*)//}
-	@${RLN} ${DISTDIR}/${DIST_SUBDIR}/${file} ${WRKDIR}/bazel-dist
+	@${RLN} ${_DISTDIR}/${file} ${WRKDIR}/bazel-dist
 .endfor
 
 post-patch:
 	@${CP} ${PATCHDIR}/bazelrc ${WRKDIR} && \
 		${REINPLACE_CMD} -e 's@%%BAZEL_DIR%%@${WRKDIR}@g;s@%%BAZEL_DIST%%@${WRKDIR}@g;' \
 			${WRKDIR}/bazelrc
-	@${FIND} ${BUILD_WRKSRC} -type f \
+	@${FIND} ${BUILD_WRKSRC} -type f -not -path '*/third_party/*' \
 		\( -name 'BUILD' -o -name '*.bzl' -o -name '*.cc' -o -name '*.h' \) \
 		-exec ${REINPLACE_CMD} -E -e "s,'python','${PYTHON_CMD}',g;" \
 			-e 's,/usr/bin/xdg-open,${PREFIX}/bin/xdg-open,g;' \
@@ -216,8 +214,6 @@ PLIST_FILES+=	bin/mozc \
 SUB_FILES+=	mozc
 
 post-patch-mozc_server:
-	@${MV} ${WRKSRC_udic}/usage_dict.txt \
-		${BUILD_WRKSRC}/third_party/japanese_usage_dictionary
 .if ${PORT_OPTIONS:MUTDIC}
 	# ut dictionary
 	@${REINPLACE_CMD} -E -e "/^.*'wget'/d;" \
@@ -229,7 +225,7 @@ post-patch-mozc_server:
 	@${ECHO_MSG} "===> Creating mozcdic-ut.txt for UT Dictionary. It takes a long time!"
 	@cd ${WRKSRC_ut}/src && \
 		${CP} ${BUILD_WRKSRC}/data/dictionary_oss/id.def . && \
-		${CP} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} . && \
+		${CP} ${_DISTDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} . && \
 		${CP} ../../mozcdic-ut-*/mozcdic-ut-*.txt.tar.bz2 . && \
 		for f in mozcdic-ut-*.txt.tar.bz2; do \
 			${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} $$f ${EXTRACT_AFTER_ARGS}; \
@@ -584,7 +580,7 @@ renew-makesum:
 		*) continue ;; \
 		esac ; \
 	done && \
-	cd ${DISTDIR}/${DIST_SUBDIR} && \
+	cd ${_DISTDIR} && \
 	for url in $${urls}; do \
 		${FETCH_BINARY} -Fmp $${url} ; \
 	done

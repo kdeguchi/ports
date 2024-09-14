@@ -1,9 +1,7 @@
-DISTFILES+=	abseil-cpp-${abseil_VERSION}.tar.gz:abseil \
-		apple_support.${apple_support_VERSION}.tar.gz:apple_support \
+DISTFILES+=	apple_support.${apple_support_VERSION}.tar.gz:apple_support \
 		bazel_features-v${bazel_features_VERSION}.tar.gz:bazel_features \
 		bazel-skylib-${bazel_skylib_VERSION}.tar.gz:bazel_skylib \
 		platforms-${platforms_VERSION}.tar.gz:platforms \
-		protobuf-${protobuf_VERSION}.tar.gz:protobuf \
 		v${rules_android_VERSION}.zip:rules_android \
 		rules_android_ndk-v${rules_android_ndk_VERSION}.tar.gz:rules_android_ndk \
 		rules_apple.${rules_apple_VERSION}.tar.gz:rules_apple \
@@ -16,13 +14,10 @@ DISTFILES+=	abseil-cpp-${abseil_VERSION}.tar.gz:abseil \
 		rules_swift.${rules_swift_VERSION}.tar.gz:rules_swift \
 		zlib-${zlib_VERSION}.tar.xz:zlib
 
-MASTER_SITES+=	https://github.com/abseil/abseil-cpp/releases/download/${abseil_VERSION}/:abseil \
-		https://github.com/bazelbuild/apple_support/releases/download/${apple_support_VERSION}/:apple_support \
-		https://github.com/protocolbuffers/protobuf/releases/download/v${protobuf_VERSION}/:protobuf \
+MASTER_SITES+=	https://github.com/bazelbuild/apple_support/releases/download/${apple_support_VERSION}/:apple_support \
 		https://github.com/bazel-contrib/bazel_features/releases/download/v${bazel_features_VERSION}/:bazel_features \
 		https://github.com/bazelbuild/bazel-skylib/releases/download/${bazel_skylib_VERSION}/:bazel_skylib \
 		https://github.com/bazelbuild/platforms/releases/download/${platforms_VERSION}/:platforms \
-		https://github.com/protocolbuffers/protobuf/releases/download/v${protobuf_VERSION}/:protobuf \
 		https://github.com/bazelbuild/rules_android/archive/:rules_android \
 		https://github.com/bazelbuild/rules_android_ndk/releases/download/v${rules_android_ndk_VERSION}/:rules_android_ndk \
 		https://github.com/bazelbuild/rules_apple/releases/download/${rules_apple_VERSION}/:rules_apple \
@@ -35,12 +30,10 @@ MASTER_SITES+=	https://github.com/abseil/abseil-cpp/releases/download/${abseil_V
 		https://github.com/bazelbuild/rules_swift/releases/download/${rules_swift_VERSION}/:rules_swift \
 		https://github.com/madler/zlib/releases/download/v${zlib_VERSION}/:zlib
 
-abseil_VERSION=	20240722.0
 apple_support_VERSION=	1.12.0
 bazel_features_VERSION=	1.3.0
 bazel_skylib_VERSION=	1.7.1
 platforms_VERSION=	0.0.9
-protobuf_VERSION=	27.3
 rules_android_VERSION=	0.1.1
 rules_android_ndk_VERSION=	0.1.2
 rules_apple_VERSION=	3.8.0
