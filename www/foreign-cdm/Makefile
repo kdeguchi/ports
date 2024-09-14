@@ -13,10 +13,17 @@ LICENSE=	MIT
 
 ONLY_FOR_ARCHS=	amd64
 
-BUILD_DEPENDS=	cmake:devel/cmake-core \
-		linux-rl9-devtools>0:devel/linux-rl9-devtools \
+FLAVORS=	c7 rl9
+FLAVOR=	${LINUX_DEFAULT}
+
+BUILD_DEPENDS=	cmake:devel/cmake-core
+
+c7_BUILD_DEPENDS=	linux-c7-devtoolset>0:devel/linux-c7-devtoolset
+c7_RUN_DEPENDS=	linux_base-c7>0:emulators/linux_base-c7
+
+rl9_BUILD_DEPENDS=	linux-rl9-devtools>0:devel/linux-rl9-devtools \
 		linux-rl9-libsigc++20>0:devel/linux-rl9-libsigc++20
-RUN_DEPENDS=	linux_base-rl9>0:emulators/linux_base-rl9
+rl9_RUN_DEPENDS=	linux_base-rl9>0:emulators/linux_base-rl9
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	shkhln
@@ -24,8 +31,9 @@ GH_PROJECT=	foreign-cdm
 GH_TAGNAME=	3fe4d7130bb1e0581b5310635515a120f2794b88
 GH_TUPLE=	capnproto:capnproto:928c8390d4d562bd32dc79a42eb64e9bdba572d8:capnproto/third_party/capnproto
 
-MAKE_ENV=	LINUX_CC=/compat/linux/usr/bin/g++ \
-		MAKE_JOBS_NUMBER=${MAKE_JOBS_NUMBER}
+MAKK_ENV=		MAKE_JOBS_NUMBER=${MAKE_JOBS_NUMBER}
+c7_MAKE_ENV=	LINUX_CC=${LINUXBASE}/opt/rh/devtoolset-11/root/usr/bin/g++
+rl9_MAKE_ENV=	LINUX_CC=${LINUXBASE}/usr/bin/g++
 
 SUB_FILES=	fcdm-setup-env
 
