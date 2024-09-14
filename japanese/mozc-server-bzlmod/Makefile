@@ -20,7 +20,10 @@ USES=	compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 	python:3.8+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:e6ad74b
+GH_TUPLE=	fcitx:mozc:9d69314
+GH_TUPLE+=	abseil:abseil-cpp:4447c75:abseil/src/third_party/abseil-cpp
+GH_TUPLE+=	protocolbuffers:protobuf:7cc670c:protobuf/src/third_party/protobuf
+GH_TUPLE+=	google:googletest:b514bdc:googletest/src/third_party/gtest
 
 USE_JAVA=	yes
 JAVA_BUILD=	yes
@@ -143,19 +146,13 @@ _CCTYPE=	gcc
 .include <bsd.port.pre.mk>
 
 post-extract:
-	@${RMDIR} ${WRKSRC}/src/third_party/abseil-cpp && \
-		${RLN} ${WRKDIR}/abseil-cpp-* ${WRKSRC}/src/third_party/abseil-cpp
-	@${RMDIR} ${WRKSRC}/src/third_party/gtest && \
-		${RLN} ${WRKDIR}/googletest-* ${WRKSRC}/src/third_party/gtest
-	@${RMDIR} ${WRKSRC}/src/third_party/protobuf && \
-		${RLN} ${WRKDIR}/protobuf-* ${WRKSRC}/src/third_party/protobuf
 	@${MKDIR} ${WRKDIR}/bazel-dist
 	@${RLN} ${_DISTDIR}/* ${WRKDIR}/bazel-dist/
 	@${MKDIR} ${WRKDIR}/bazel-out-base
 	@${CP} -a ${_DISTDIR}/external ${WRKDIR}/bazel-out-base/
 
 post-patch:
-	@${FIND} ${BUILD_WRKSRC} -type f \
+	@${FIND} ${BUILD_WRKSRC} -type f -not -path '*/third_party/*' \
 		\( -name 'BUILD' -o -name '*.bzl' -o -name '*.cc' -o -name '*.h' \) \
 		-exec ${REINPLACE_CMD} -E -e "s,'python','${PYTHON_CMD}',g;" \
 			-e 's,/usr/bin/xdg-open,${PREFIX}/bin/xdg-open,g;' \
@@ -587,7 +584,7 @@ renew-makesum:
 	done
 	@${MAKE} makesum
 
-_USES_fetch+=	800:bazel-fetch
+#_USES_fetch+=	800:bazel-fetch
 bazel-fetch:
 	@${MKDIR} ${WRKDIR}
 	@cd ${WRKDIR} && \
