@@ -53,8 +53,7 @@ post-extract:
 	${MV} ${WRKDIR}/*.h ${WRKSRC}/third_party/cdm/
 
 post-patch:
-	${REINPLACE_CMD} -E -e 's|chmod a+srX|chmod a+rX|' \
-		${WRKSRC}/Makefile
+	${REINPLACE_CMD} -e 's|chmod a+srX|chmod a+rX|' ${WRKSRC}/Makefile
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/build/fcdm-jail ${STAGEDIR}${PREFIX}/libexec/
