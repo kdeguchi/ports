@@ -1028,7 +1028,7 @@ share/applications/gimp.desktop
 %%PORTDOCS%%%%DOCSDIR%%/libgimpwidgets/style.css
 %%PORTDOCS%%%%DOCSDIR%%/libgimpwidgets/up-insensitive.png
 %%PORTDOCS%%%%DOCSDIR%%/libgimpwidgets/up.png
-%%PORTDOCS%%%%DATADIR%%/brushes/Basic/1-pixel.vbr
+%%DATADIR%%/brushes/Basic/1-pixel.vbr
 %%DATADIR%%/brushes/Basic/Block-01.vbr
 %%DATADIR%%/brushes/Basic/Block-02.vbr
 %%DATADIR%%/brushes/Basic/Block-03.vbr
