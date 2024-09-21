@@ -42,7 +42,7 @@ BAZEL_OPTS=	--bazelrc="${WRKDIR}/bazelrc" \
 		--output_user_root=${WRKDIR}/bazel-out-user \
 		--server_javabase=${JAVA_HOME}
 
-BAZEL_ENV=	--action_env=PATH=${JAVA_HOME}/bin/:${PATH}
+BAZEL_ENV=	--action_env=PATH=${JAVA_HOME}/bin:${PATH}
 
 BAZEL_COMMON_OPTS=	--distdir=${WRKDIR}/bazel-dist
 
