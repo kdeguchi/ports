@@ -47,7 +47,7 @@ SYSTEM_PREFS=	${FAKEDIR}/lib/${PORTNAME}/defaults/pref/${PORTNAME}.js
 
 OPTIONS_DEFAULT=CANBERRA
 
-.include "${.CURDIR}/../../www/firefox/Makefile.options"
+.include "${PORTSDIR}/www/firefox/Makefile.options"
 
 .include <bsd.port.options.mk>
 
