@@ -1,5 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.30.5595.102
+PORTREVISION=	1
 CATEGORIES=	japanese
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -81,13 +82,13 @@ ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:50fee03:altcannadic
 
 # CC-BY-SA-4.0
 EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:b211227:edict2
-JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:08814f7:jawiki
+JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:c7bec6a:jawiki
 
 # APACHE20
 NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:b7035b8:neologd
 
 # APACHE20
-PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:bbf04c9:personal
+PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:b61a5af:personal
 
 # APCHE20
 PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:4525819:place
