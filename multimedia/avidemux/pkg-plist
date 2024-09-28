@@ -435,11 +435,11 @@ include/avidemux/2.8/libpostproc/version_major.h
 include/avidemux/2.8/libswscale/swscale.h
 include/avidemux/2.8/libswscale/version.h
 include/avidemux/2.8/libswscale/version_major.h
-lib/libADM6avcodec.so.61
-lib/libADM6avformat.so.61
-lib/libADM6avutil.so.59
-lib/libADM6postproc.so.58
-lib/libADM6swscale.so.8
+lib/libADM6avcodec.so.%%AVCODEC_VERSION%%
+lib/libADM6avformat.so.%%AVFORMAT_VERSION%%
+lib/libADM6avutil.so.%%AVUTIL_VERSION%%
+lib/libADM6postproc.so.%%POSTPROC_VERSION%%
+lib/libADM6swscale.so.%%SWSCALE_VERSION%%
 lib/libADM_audioParser6.so
 lib/libADM_core6.so
 lib/libADM_coreAudio6.so

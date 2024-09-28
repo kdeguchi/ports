@@ -1,13 +1,12 @@
 PORTNAME=	avidemux
 PORTVERSION=	${AVIDEMUX_VERSION}
-PORTREVISION=	2
 CATEGORIES=	multimedia
 PKGNAMESUFFIX=	-qt5
 
 MAINTAINER=	multimedia@FreeBSD.org
 COMMENT=	Simple GUI based video editor (QT5 UI)
 
-LIB_DEPENDS=	libADM6avutil.so.59:multimedia/avidemux
+LIB_DEPENDS=	libADM6avutil.so.${AVUTIL_VERSION}:multimedia/avidemux
 
 MASTERDIR=	${.CURDIR}/../avidemux
 OPTIONS_SLAVE=	QT5

@@ -1,13 +1,12 @@
 PORTNAME=	avidemux
 PORTVERSION=	${AVIDEMUX_VERSION}
-PORTREVISION=	2
 CATEGORIES=	multimedia
 PKGNAMESUFFIX=	-cli
 
 MAINTAINER=	multimedia@FreeBSD.org
 COMMENT=	Simple GUI based video editor (cli)
 
-LIB_DEPENDS=	libADM6avutil.so.59:multimedia/avidemux
+LIB_DEPENDS=	libADM6avutil.so.${AVUTIL_VERSION}:multimedia/avidemux
 
 MASTERDIR=	${.CURDIR}/../avidemux
 PLIST=		${.CURDIR}/pkg-plist

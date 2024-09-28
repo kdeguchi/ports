@@ -1,6 +1,6 @@
---- avidemux_core/ADM_core/src/ADM_folder_linux.cpp.orig	2021-03-07 06:18:22 UTC
+--- avidemux_core/ADM_core/src/ADM_folder_linux.cpp.orig	2024-09-20 19:15:55 UTC
 +++ avidemux_core/ADM_core/src/ADM_folder_linux.cpp
-@@ -39,7 +39,7 @@ static std::string ADM_i18nDir;
+@@ -41,7 +41,7 @@ static std::string canonize(const std::string &in)
  static std::string canonize(const std::string &in)
  {
      std::string out;
