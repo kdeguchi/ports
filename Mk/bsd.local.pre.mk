@@ -1,6 +1,6 @@
 # Maybe, many ports need this
 
-.if defined(USE_QT)
+.if ${.CURDIR:M*/devel/qt6-base*} || defined(USE_QT)
 USES+=	localbase
 .endif
 
