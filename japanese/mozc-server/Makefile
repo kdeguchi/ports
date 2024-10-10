@@ -1,6 +1,5 @@
 PORTNAME=	mozc
-PORTVERSION=	2.30.5595.102
-PORTREVISION=	8
+PORTVERSION=	2.30.5618.102
 CATEGORIES=	japanese
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -20,7 +19,7 @@ USES=	compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 	python:3.8+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:53f12ea
+GH_TUPLE=	fcitx:mozc:0cbb8f1
 GH_TUPLE+=	abseil:abseil-cpp:4447c75:abseil/src/third_party/abseil-cpp
 GH_TUPLE+=	protocolbuffers:protobuf:7cc670c:protobuf/src/third_party/protobuf
 
