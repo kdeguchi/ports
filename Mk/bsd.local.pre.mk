@@ -12,6 +12,10 @@ USES+=	localbase
 USES+=	localbase
 .endif
 
+.if ${.CURDIR:M*/devel/sdl20*}
+USES+=	localbase
+.endif
+
 .if ${.CURDIR:M*/devel/msgpack-c*}
 CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=${LOCALBASE}/lib
 .endif
