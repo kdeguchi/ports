@@ -148,8 +148,9 @@ _CCTYPE=	gcc
 post-extract:
 	@${MKDIR} ${WRKDIR}/bazel-dist
 .for file in ${DISTFILES:C/\:(.*)//}
-	@${RLN} ${_DISTDIR}/${file} ${WRKDIR}/bazel-dist
+	@${CP} -a ${_DISTDIR}/${file} ${WRKDIR}/bazel-dist
 .endfor
+	@${CP} -a ${WRKDIR}/*.CSV ${BUILD_WRKSRC}/third_party
 
 post-patch:
 	@${CP} ${PATCHDIR}/bazelrc ${WRKDIR} && \
