@@ -90,4 +90,4 @@ USES+=	pkgconfig
 . endif
 .endif
 
-SCRITPTSDIR=	/home/deguchi/data/work/github/ports/Mk/Scripts
+SCRITPTSDIR=	${.CURDIR}/Scripts

@@ -1,5 +1,2 @@
-/Mk/Scripts/[a-hj-z]*.sh
-/Mk/Scripts/*.awk
-/Mk/Scripts/*.py
 /mail/postgrey
 /sysutiles/e2fsprogs

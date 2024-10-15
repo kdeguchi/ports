@@ -142,4 +142,4 @@ remove-info-plist:
 . endif
 .endif
 
-SCRIPTSDIR=	/home/deguchi/data/work/github/ports/Mk/Scripts
+SCRIPTSDIR=	${.CURDIR}/Scripts
