@@ -142,4 +142,4 @@ remove-info-plist:
 . endif
 .endif
 
-SCRIPTSDIR=	${.CURDIR}/Scripts
+SCRIPTSDIR=	${OVERLAYS:[1]}/Mk/Scripts
