@@ -3,20 +3,28 @@ PORTVERSION=	2.30.5618.102
 PORTREVISION=	1
 CATEGORIES=	japanese
 
+DIST_SUBDIR=	${PORTNAME}
+.include "Makefile.MASTER_SITES"
+
 EXTRACT_ONLY=	${_DISTFILES:S@jawiki-latest-all-titles-in-ns0.gz@@:C@^(5\.3\.0|apple|bazel|platforms|rules|v0|zlib).*@@}
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT?=	Mozc Japanese Input Method, Server
 WWW=		https://github.com/google/mozc
 
+LICENSE=		BSD3CLAUSE NAISTL
+LICENSE_COMB=		multi
+LICENSE_NAME_NAISTL=	Nara Institute of Science and Technology License
+LICENSE_FILE_BSD3CLAUSE=	${WRKSRC}/LICENSE
+LICENSE_FILE_NAISTL=	${WRKSRC}/src/data/dictionary_oss/README.txt
+LICENSE_PERMS_NAISTL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE_DISTFILES_BSD3CLAUSE=	${DISTNAME}${EXTRACT_SUFX}
+LICENSE_DISTFILES_NAISTL=${DISTNAME}${EXTRACT_SUFX}
+
 PATCH_DEPENDS=${PYTHON_CMD}:${PYTHON_PORTSDIR}
 BUILD_DEPENDS=	bazel:devel/bazel7 \
 		python3:lang/python3
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
-
-DIST_SUBDIR=	${PORTNAME}
-
-.include "Makefile.MASTER_SITES"
 
 USES=	compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 	python:3.8+,build shebangfix tar:bzip2
@@ -27,9 +35,9 @@ GH_TUPLE+=	abseil:abseil-cpp:4447c75:abseil/src/third_party/abseil-cpp
 GH_TUPLE+=	protocolbuffers:protobuf:7cc670c:protobuf/src/third_party/protobuf
 
 USE_JAVA=	yes
-JAVA_BUILD=	yes
-JAVA_VENDOR=	openjdk
 JAVA_VERSION=	21
+JAVA_VENDOR=	openjdk
+JAVA_BUILD=	yes
 
 BUILD_WRKSRC=	${WRKSRC}/src
 BUILD_MOZC_LIST?=	mozc_server
@@ -54,15 +62,6 @@ PKGNAMEPREFIX=	ja-
 PKGNAMESUFFIX=	-server
 
 GH_TUPLE+=	hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic/src/third_party/japanese_usage_dictionary
-
-LICENSE=		BSD3CLAUSE NAISTL
-LICENSE_COMB=		multi
-LICENSE_FILE_BSD3CLAUSE=	${WRKSRC}/LICENSE
-LICENSE_DISTFILES_BSD3CLAUSE=	${DISTNAME}${EXTRACT_SUFX}
-LICENSE_NAME_NAISTL=	Nara Institute of Science and Technology License
-LICENSE_PERMS_NAISTL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
-LICENSE_FILE_NAISTL=	${WRKSRC}/src/data/dictionary_oss/README.txt
-LICENSE_DISTFILES_NAISTL=${DISTNAME}${EXTRACT_SUFX}
 
 OPTIONS_DEFINE=	UTDIC
 OPTIONS_MULTI=	UTDIC
