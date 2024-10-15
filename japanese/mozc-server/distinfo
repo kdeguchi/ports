@@ -1,4 +1,4 @@
-TIMESTAMP = 1728953967
+TIMESTAMP = 1728969875
 SHA256 (mozc/apple_support.1.12.0.tar.gz) = 100d12617a84ebc7ee7a10ecf3b3e2fdadaebc167ad93a21f820a6cb60158ead
 SIZE (mozc/apple_support.1.12.0.tar.gz) = 72338
 SHA256 (mozc/bazel_features-v1.3.0.tar.gz) = 53182a68f172a2af4ad37051f82201e222bc19f7a40825b877da3ff4c922b9e0

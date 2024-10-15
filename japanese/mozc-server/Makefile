@@ -3,6 +3,8 @@ PORTVERSION=	2.30.5618.102
 PORTREVISION=	1
 CATEGORIES=	japanese
 
+EXTRACT_ONLY=	${_DISTFILES:S@jawiki-latest-all-titles-in-ns0.gz@@:C@.*\.(svg|png)@@}
+
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT?=	Mozc Japanese Input Method, Server
 WWW=		https://github.com/google/mozc
@@ -103,8 +105,6 @@ SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:a807010:sudachi
 UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:4e08ad0:ut
 UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:title
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:title
-
-EXTRACT_ONLY=	${_DISTFILES:S@jawiki-latest-all-titles-in-ns0.gz@@}
 
 # zip code
 MASTER_SITES+=	https://www.post.japanpost.jp/zipcode/dl/kogaki/zip/:kenall \
@@ -476,7 +476,7 @@ PLIST_FILES+=	lib/fcitx5/fcitx5-mozc.so \
 
 do-build-fcitx5_mozc:
 	cd ${BUILD_WRKSRC} && \
-		${BUILD_MOZC_CMD} unix/fcitx5:fcitx5-mozc.so unix:icons; \
+		${BUILD_MOZC_CMD} unix/fcitx5:fcitx5-mozc.so; \
 		msgfmt --xml -d unix/fcitx5/po/ \
 			--template unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml.in \
 			-o unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml
