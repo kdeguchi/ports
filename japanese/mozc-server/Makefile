@@ -151,6 +151,9 @@ post-extract:
 .for file in ${DISTFILES:C/\:(.*)//}
 	@${CP} -a ${_DISTDIR}/${file} ${WRKDIR}/bazel-dist
 .endfor
+.if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
+	@${CP} -a ${WRKDIR}/*.CSV ${BUILD_WRKSRC}/third_party
+.endif
 
 post-patch:
 	@${CP} ${PATCHDIR}/bazelrc ${WRKDIR} && \
@@ -208,7 +211,6 @@ PLIST_FILES+=	bin/mozc \
 SUB_FILES+=	mozc
 
 post-patch-mozc_server:
-	@${CP} -a ${WRKDIR}/*.CSV ${BUILD_WRKSRC}/third_party
 .if ${PORT_OPTIONS:MUTDIC}
 	# ut dictionary
 	@${REINPLACE_CMD} -E -e "/^.*'wget'/d;" \
