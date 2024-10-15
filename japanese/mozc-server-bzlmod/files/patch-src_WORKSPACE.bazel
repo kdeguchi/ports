@@ -1,11 +1,31 @@
---- src/WORKSPACE.bazel.orig	2023-09-02 11:09:28 UTC
+--- src/WORKSPACE.bazel.orig	2024-10-10 07:39:31 UTC
 +++ src/WORKSPACE.bazel
-@@ -211,7 +211,7 @@ pkg_config_repository(
- # Qt for Linux
- pkg_config_repository(
-   name = "qt_linux",
--  packages = ["Qt6Core", "Qt6Gui", "Qt6Widgets"],
-+  packages = ["Qt6Core", "Qt6Gui", "Qt6Widgets", "libglvnd"],
+@@ -224,6 +224,7 @@ pkg_config_repository(
+         "Qt6Core",
+         "Qt6Gui",
+         "Qt6Widgets",
++        "libglvnd",
+     ],
  )
- 
- # Qt for macOS
+
+@@ -329,16 +330,14 @@ http_file(
+ )
+
+ # Zip code
+-http_archive(
++new_local_repository(
+     name = "zip_code_ken_all",
+     build_file_content = "exports_files([\"KEN_ALL.CSV\"])",
+-    sha256 = SHA256_ZIP_CODE_KEN_ALL,
+-    url = "https://www.post.japanpost.jp/zipcode/dl/kogaki/zip/ken_all.zip",
++    path = "third_party",
+ )
+
+-http_archive(
++new_local_repository(
+     name = "zip_code_jigyosyo",
+     build_file_content = "exports_files([\"JIGYOSYO.CSV\"])",
+-    sha256 = SHA256_ZIP_CODE_JIGYOSYO,
+-    url = "https://www.post.japanpost.jp/zipcode/dl/jigyosyo/zip/jigyosyo.zip",
++    path = "third_party",
+ )

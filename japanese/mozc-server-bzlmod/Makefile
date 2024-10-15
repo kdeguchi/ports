@@ -1,6 +1,5 @@
 PORTNAME=	mozc
-PORTVERSION=	2.30.5544.102
-PORTREVISION=	11
+PORTVERSION=	2.30.5618.102
 CATEGORIES=	japanese
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -20,10 +19,10 @@ USES=	compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 	python:3.8+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:9d69314
+GH_TUPLE=	fcitx:mozc:0cbb8f1
 GH_TUPLE+=	abseil:abseil-cpp:4447c75:abseil/src/third_party/abseil-cpp
-GH_TUPLE+=	protocolbuffers:protobuf:7cc670c:protobuf/src/third_party/protobuf
 GH_TUPLE+=	google:googletest:b514bdc:googletest/src/third_party/gtest
+GH_TUPLE+=	protocolbuffers:protobuf:7cc670c:protobuf/src/third_party/protobuf
 
 USE_JAVA=	yes
 JAVA_BUILD=	yes
@@ -33,24 +32,32 @@ JAVA_VERSION=	21
 BUILD_WRKSRC=	${WRKSRC}/src
 BUILD_MOZC_LIST?=	mozc_server
 
-BUILD_MOZC_CMD=	bazel ${BAZEL_OPTS} \
-		build ${BAZEL_ENV} --nofetch --verbose_failures --sandbox_debug \
-		--repository_cache=${WRKDIR}/bazel-cache \
-		--distdir=${_DISTDIR} \
-		--config oss_linux -c opt --copt=-fPIC --host_linkopt=-lm \
-		--tool_java_language_version=21
+BUILD_MOZC_CMD=	bazel ${BAZEL_COMMON_OPTS} build \
+		${BAZEL_OPTS} ${BAZEL_ENV} \
+		--verbose_failures --sandbox_debug \
+		--copt=-fPIC --host_linkopt=-lm \
+		--verbose_failures --sandbox_debug
 
-BAZEL_OPTS=	--output_user_root=${WRKDIR}/bazel-out-user \
-		--output_base=${WRKDIR}/bazel-out-base \
+BAZEL_CACHE=	${_DISTDIR}/cache
+
+BAZEL_REGISTRY=	${_DISTDIR}/registry
+
+BAZEL_COMMON_OPTS=	--output_base=${WRKDIR}/bazel-out-base \
+		--output_user_root=${WRKDIR}/bazel-out-user \
 		--server_javabase=${JAVA_HOME}
 
-BAZEL_ENV=	--action_env=PATH=${JAVA_HOME}/bin/:${PATH}
+BAZEL_OPTS=	--action_env=PATH=${JAVA_HOME}/bin:${PATH} \
+		--action_env=JAVA_HOME=${JAVA_HOME} \
+		--tool_java_language_version=21 \
+		--config oss_linux \
+		--distdir=${_DISTDIR} \
+		--repository_cache=${BAZEL_CACHE}
 
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
 PKGNAMEPREFIX=	ja-
 PKGNAMESUFFIX=	-server
 
-GH_TUPLE+=	hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic
+GH_TUPLE+=	hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic/src/third_party/japanese_usage_dictionary
 
 LICENSE=		BSD3CLAUSE NAISTL
 LICENSE_COMB=		multi
@@ -81,13 +88,13 @@ ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:50fee03:altcannadic
 
 # CC-BY-SA-4.0
 EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:b211227:edict2
-JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:08814f7:jawiki
+JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:773cc08:jawiki
 
 # APACHE20
 NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:b7035b8:neologd
 
 # APACHE20
-PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:bbf04c9:personal
+PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:b61a5af:personal
 
 # APCHE20
 PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:4525819:place
@@ -99,7 +106,7 @@ SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:7300f19:skkjisyo
 SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:a754f1f:sudachi
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:9cacaad:ut
+UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:35dfcca:ut
 UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:title
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:title
 
@@ -146,10 +153,7 @@ _CCTYPE=	gcc
 .include <bsd.port.pre.mk>
 
 post-extract:
-	@${MKDIR} ${WRKDIR}/bazel-dist
-	@${RLN} ${_DISTDIR}/* ${WRKDIR}/bazel-dist/
-	@${MKDIR} ${WRKDIR}/bazel-out-base
-	@${CP} -a ${_DISTDIR}/external ${WRKDIR}/bazel-out-base/
+	@${CP} -a ${WRKDIR}/*.CSV ${BUILD_WRKSRC}/third_party
 
 post-patch:
 	@${FIND} ${BUILD_WRKSRC} -type f -not -path '*/third_party/*' \
@@ -209,9 +213,9 @@ PLIST_FILES+=	bin/mozc \
 		libexec/mozc_server
 SUB_FILES+=	mozc
 
+_USES_patch=	800:post-patch-mozc_server
+
 post-patch-mozc_server:
-	@${CP} -a ${WRKSRC_udic}/* \
-		${BUILD_WRKSRC}/third_party/japanese_usage_dictionary
 .if ${PORT_OPTIONS:MUTDIC}
 	# ut dictionary
 	@${REINPLACE_CMD} -E -e "/^.*'wget'/d;" \
@@ -219,7 +223,6 @@ post-patch-mozc_server:
 		-e 's@^url = "https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/id.def"@id_def = open("id.def", "r")@;' \
 		-e 's@^    id_mozc = .*@id_mozc = id_def.read()@;' \
 			${WRKSRC_ut}/src/*.py
-
 	@${ECHO_MSG} "===> Creating mozcdic-ut.txt for UT Dictionary. It takes a long time!"
 	@cd ${WRKSRC_ut}/src && \
 		${CP} ${BUILD_WRKSRC}/data/dictionary_oss/id.def . && \
@@ -236,11 +239,9 @@ post-patch-mozc_server:
 			>> ${BUILD_WRKSRC}/data/dictionary_oss/dictionary00.txt
 .endif
 
-post-patch: post-patch-mozc_server
-
 do-build-mozc_server:
 	cd ${BUILD_WRKSRC} && \
-		${BUILD_MOZC_CMD} server:mozc_server
+		${BUILD_MOZC_CMD} //server:mozc_server
 
 do-install-mozc_server:
 	${INSTALL_PROGRAM} \
@@ -266,7 +267,7 @@ SUB_FILES+=	mozc_tool
 
 do-build-mozc_tool:
 	cd ${BUILD_WRKSRC} && \
-		${BUILD_MOZC_CMD} gui/tool:mozc_tool
+		${BUILD_MOZC_CMD} //gui/tool:mozc_tool
 
 do-install-mozc_tool:
 	${INSTALL_PROGRAM} \
@@ -479,7 +480,7 @@ PLIST_FILES+=	lib/fcitx5/fcitx5-mozc.so \
 
 do-build-fcitx5_mozc:
 	cd ${BUILD_WRKSRC} && \
-		${BUILD_MOZC_CMD} unix/fcitx5:fcitx5-mozc.so unix:icons; \
+		${BUILD_MOZC_CMD} //unix/fcitx5:fcitx5-mozc.so; \
 		msgfmt --xml -d unix/fcitx5/po/ \
 			--template unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml.in \
 			-o unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml
@@ -566,7 +567,7 @@ do-build: ${BUILD_MOZC_LIST:S/^/do-build-/}
 do-install: ${BUILD_MOZC_LIST:S/^/do-install-/}
 
 post-install:
-	cd ${BUILD_WRKSRC} && bazel ${BAZEL_OPTS} shutdown
+	cd ${BUILD_WRKSRC} && bazel ${BAZEL_COMMON_OPTS} shutdown
 
 # Create new distinfo: `make renew-makesum`
 renew-makesum:
@@ -585,61 +586,28 @@ renew-makesum:
 	@${MAKE} makesum
 
 #_USES_fetch+=	800:bazel-fetch
+_GH_mozc_group=	abseil googletest protobuf
 bazel-fetch:
-	@${MKDIR} ${WRKDIR}
-	@cd ${WRKDIR} && \
-		${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/${DISTFILES:Mfcitx-mozc*} ${EXTRACT_AFTER_ARGS} && \
-		${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/${DISTFILES:M*\:abseil:C@\:abseil@@} ${EXTRACT_AFTER_ARGS} && \
-		${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/${DISTFILES:M*\:googletest:C@\:googletest@@} ${EXTRACT_AFTER_ARGS} && \
-		${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/${DISTFILES:M*\:protobuf:C@\:protobuf@@} ${EXTRACT_AFTER_ARGS} && \
-		${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/${DISTFILES:M*\:udic:C@\:udic@@} ${EXTRACT_AFTER_ARGS}
-	@${RMDIR} ${WRKSRC}/src/third_party/abseil-cpp && \
-		${RLN} ${WRKDIR}/abseil-cpp-* ${WRKSRC}/src/third_party/abseil-cpp
-	@${RMDIR} ${WRKSRC}/src/third_party/gtest && \
-		${RLN} ${WRKDIR}/googletest-* ${WRKSRC}/src/third_party/gtest
-	@${RMDIR} ${WRKSRC}/src/third_party/protobuf && \
-		${RLN} ${WRKDIR}/protobuf-* ${WRKSRC}/src/third_party/protobuf
-	@${CP} -a ${WRKSRC_udic}/* \
-		${BUILD_WRKSRC}/third_party/japanese_usage_dictionary
-	@${SETENV} \
-		dp_BZCAT="${BZCAT}" \
-		dp_CAT="${CAT}" \
-		dp_DISTDIR="${_DISTDIR}" \
-		dp_ECHO_MSG="${ECHO_MSG}" \
-		dp_EXTRA_PATCHES="${EXTRA_PATCHES}" \
-		dp_EXTRA_PATCH_TREE="${EXTRA_PATCH_TREE}" \
-		dp_GZCAT="${GZCAT}" \
-		dp_OPSYS="${OPSYS}" \
-		dp_PATCH="${PATCH}" \
-		dp_PATCHDIR="${PATCHDIR}" \
-		dp_PATCHFILES="${_PATCHFILES2}" \
-		dp_PATCH_ARGS=${PATCH_ARGS:Q} \
-		dp_PATCH_DEBUG_TMP="${PATCH_DEBUG_TMP}" \
-		dp_PATCH_DIST_ARGS="${PATCH_DIST_ARGS}" \
-		dp_PATCH_CONTINUE_ON_FAIL=${PATCH_CONTINUE_ON_FAIL:Dyes} \
-		dp_PATCH_SILENT="${PATCH_SILENT}" \
-		dp_PATCH_WRKSRC=${PATCH_WRKSRC} \
-		dp_PKGNAME="${PKGNAME}" \
-		dp_PKGORIGIN="${PKGORIGIN}" \
-		dp_SCRIPTSDIR="${SCRIPTSDIR}" \
-		dp_UNZIP_NATIVE_CMD="${UNZIP_NATIVE_CMD}" \
-		dp_XZCAT="${XZCAT}" \
-		${SH} ${SCRIPTSDIR}/do-patch.sh 2>&1 > /dev/null
-	@cd ${BUILD_WRKSRC} && \
-		bazel ${BAZEL_OPTS} \
-			fetch ${BAZEL_ENV} \
-				--distdir=${_DISTDIR} \
-				--repository_cache=${WRKDIR}/bazel-cache \
-				--config oss_linux \
-				server:mozc_server gui/tool:mozc_tool unix/fcitx5:fcitx5-mozc.so unix:icons
-	${CP} -a ${WRKDIR}/bazel-out-base/external ${_DISTDIR}
+.if !exists(WRKSRC)
+	${MAKE} do-extract post-extract
+. for _mozc_group in ${_GH_mozc_group}
+	${MAKE} post-extract-gh-${_mozc_group}
+. endfor
+	${MAKE} do-patch post-patch
+	${MKDIR} ${BAZEL_CACHE} ${BAZEL_REGISTRY}
+	cd ${BUILD_WRKSRC} && \
+		bazel ${BAZEL_COMMON_OPTS} \
+			build ${BAZEL_OPTS} ${BAZEL_ENV} \
+				//server:mozc_server //gui/tool:mozc_tool \
+				//unix/fcitx5:fcitx5-mozc.so
+.endif
 
 bazel-info:
 	cd ${BUILD_WRKSRC} && \
-		bazel ${BAZEL_OPTS} info ${BAZEL_KEY}
+		bazel ${BAZEL_COMMON_OPTS} info ${BAZEL_KEY}
 
 bazel-mod:
 	cd ${BUILD_WRKSRC} && \
-		bazel ${BAZEL_OPTS} mod graph --verbose
+		bazel ${BAZEL_COMMON_OPTS} mod graph --verbose
 
 .include <bsd.port.post.mk>

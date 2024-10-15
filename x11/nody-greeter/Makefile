@@ -15,34 +15,27 @@ LIB_DEPENDS=	liblightdm-gobject-1.so:x11/lightdm \
 
 OPTIONS_DEFINE=	DOCS
 
-USES=		gettext gmake gnome localbase nodejs:build,run pathfix pkgconfig \
-		python xorg
+USES=		electronfix:32 gettext gmake gnome localbase nodejs:build,run \
+	pathfix pkgconfig python:3.8+ xorg
 USE_GNOME=	cairo glib20 gtk30 introspection pango
 USE_XORG=	x11 xcb
 
 USE_GITHUB=	yes
-GH_TUPLE=	JezerM:nody-greeter:b92e3da \
-		JezerM:web-greeter-themes:44283ca:themes \
-		JezerM:nody-greeter-types:4bf0196:tsc
-
-post-extract:
-	cd ${WRKSRC} && \
-		${RMDIR} themes && \
-		${LN} -sfn ../web-greeter-themes-* themes && \
-		${RMDIR} themes/ts-types && \
-		${LN} -sfn ../nody-greeter-types-* themes/ts-types
+GH_TUPLE=	JezerM:nody-greeter:cba2e44 \
+		JezerM:web-greeter-themes:44283ca:themes/themes \
+		JezerM:nody-greeter-types:4bf0196:tsc/themes/ts-types \
+		romgrk:node-gtk:6b5cd74:nodegtk/node_modules/node-gtk \
+		electron:electron:eb40d2c:electron/node_modules/electron
 
 post-patch:
 	${REINPLACE_CMD} 's@/usr@${PREFIX}@;s@/etc/lightdm@${PREFIX}/etc/lightdm@;s@/etc/xdg@${PREFIX}/etc/xdg@' \
 		${WRKSRC}/*.js ${WRKSRC}/*/*.js ${WRKSRC}/*/*.ts
-
-pre-configure:
-	${MKDIR} ${WRKDIR}/.bin ${WRKSRC}/node_modules/.bin
-	${LN} -sf /usr/local/bin/gmake ${WRKDIR}/.bin/make
+	${MKDIR} ${WRKSRC}/node_modules/.bin
+	${LN} -sf /usr/local/bin/gmake ${WRKSRC}/node_modules/.bin/make
 
 post-configure:
 	@cd ${WRKSRC} && \
-		${SETENV} ${MAKE_ENV} npm install
+		${SETENV} ${CONFIGURE_ENV} npm install
 
 do-build:
 	@cd ${WRKSRC} && \
