@@ -3,7 +3,7 @@ PORTVERSION=	2.30.5618.102
 PORTREVISION=	1
 CATEGORIES=	japanese
 
-EXTRACT_ONLY=	${_DISTFILES:S@jawiki-latest-all-titles-in-ns0.gz@@:C@.*\.(svg|png)@@}
+EXTRACT_ONLY=	${_DISTFILES:S@jawiki-latest-all-titles-in-ns0.gz@@:C@^(5\.3\.0|apple|bazel|platforms|rules|v0|zlib).*@@}
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT?=	Mozc Japanese Input Method, Server
