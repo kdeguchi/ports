@@ -1,5 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.30.5618.102
+PORTREVISION=	1
 CATEGORIES=	japanese
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
@@ -77,29 +78,29 @@ SUDACHIDICT_DESC=	Dictionary from SudachiDict
 UTDIC_DESC=		Additional UT Dictionary
 
 # GPLv2
-ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:50fee03:altcannadic
+ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:7f70e48:altcannadic
 
 # CC-BY-SA-4.0
-EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:b211227:edict2
-JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:773cc08:jawiki
+EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:f68299b:edict2
+JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:a91b76a:jawiki
 
 # APACHE20
-NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:b7035b8:neologd
+NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:d37f051:neologd
 
 # APACHE20
-PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:b61a5af:personal
+PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:24d783e:personal
 
 # APCHE20
-PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:4525819:place
+PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:888a977:place
 
 # APACHE20 GPLv2
-SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:7300f19:skkjisyo
+SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:f34f580:skkjisyo
 
 # APACHE20
-SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:a754f1f:sudachi
+SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:a807010:sudachi
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:35dfcca:ut
+UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:4e08ad0:ut
 UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:title
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:title
 
@@ -150,7 +151,6 @@ post-extract:
 .for file in ${DISTFILES:C/\:(.*)//}
 	@${CP} -a ${_DISTDIR}/${file} ${WRKDIR}/bazel-dist
 .endfor
-	@${CP} -a ${WRKDIR}/*.CSV ${BUILD_WRKSRC}/third_party
 
 post-patch:
 	@${CP} ${PATCHDIR}/bazelrc ${WRKDIR} && \
@@ -183,15 +183,9 @@ post-patch:
 .endif
 
 .if ${BUILD_MOZC_LIST:Mfcitx5_mozc} == "fcitx5_mozc"
-	${CP} ${BUILD_WRKSRC}/unix/fcitx/gen_fcitx_mozc_i18n.sh ${BUILD_WRKSRC}/unix/fcitx5/
-	${REINPLACE_CMD} 's,/po/mo},%po}mo,g' \
+	@${CP} ${BUILD_WRKSRC}/unix/fcitx/gen_fcitx_mozc_i18n.sh ${BUILD_WRKSRC}/unix/fcitx5/
+	@${REINPLACE_CMD} 's,/po/mo},%po}mo,g' \
 	    ${BUILD_WRKSRC}/unix/fcitx5/gen_fcitx_mozc_i18n.sh
-#	${REINPLACE_CMD} 's@^    linkopts@    srcs = glob(["lib/libFcitx5*.so"]),\n    linkopts@g' \
-#		${BUILD_WRKSRC}/BUILD.fcitx5.bazel
-.endif
-
-.if ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
-	${REINPLACE_CMD} 's@"Qt5Widgets"],@"Qt5Widgets"],\n  includedirs = ["${PREFIX}/include"],\n  symlinks = ["${PREFIX}/include/GL"],@' ${BUILD_WRKSRC}/WORKSPACE.bazel
 .endif
 
 #################################################
@@ -214,6 +208,7 @@ PLIST_FILES+=	bin/mozc \
 SUB_FILES+=	mozc
 
 post-patch-mozc_server:
+	@${CP} -a ${WRKDIR}/*.CSV ${BUILD_WRKSRC}/third_party
 .if ${PORT_OPTIONS:MUTDIC}
 	# ut dictionary
 	@${REINPLACE_CMD} -E -e "/^.*'wget'/d;" \
