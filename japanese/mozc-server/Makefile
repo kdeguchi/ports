@@ -6,7 +6,7 @@ CATEGORIES=	japanese
 DIST_SUBDIR=	${PORTNAME}
 .include "Makefile.MASTER_SITES"
 
-EXTRACT_ONLY=	${_DISTFILES:S@jawiki-latest-all-titles-in-ns0.gz@@:C@^(5\.3\.0|apple|bazel|platforms|rules|v0|zlib).*@@}
+EXTRACT_ONLY=	${_DISTFILES:C@^(5\.3\.0|apple|bazel|jawiki-latest|platforms|rules|v0|zlib).*@@}
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT?=	Mozc Japanese Input Method, Server
