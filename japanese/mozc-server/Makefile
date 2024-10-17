@@ -115,7 +115,7 @@ DISTFILES+=	ken_all.zip:kenall \
 BUILD_DEPENDS+=	libglvnd>0:graphics/libglvnd
 USES+=		qt:6
 USE_LOCALE=	C.UTF-8
-USE_QT=		base
+USE_QT=		base:build,run
 
 .elif ${BUILD_MOZC_LIST:Mibus_mozc} == "ibus_mozc"
 LIB_DEPENDS+=	libfontconfig.so:x11-fonts/fontconfig \
