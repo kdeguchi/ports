@@ -9,7 +9,7 @@
 +    ]
  )
  """
- 
+
 @@ -103,6 +106,16 @@ def _pkg_config_repository_impl(repo_ctx):
      includes = _exec_pkg_config(repo_ctx, "--cflags-only-I")
      includes = [item[len("-I/"):] for item in includes]
@@ -21,7 +21,7 @@
 +    libdir = "".join(libdirs)
 +    srcs = [libdir + '/lib' + linkopt[len("-l"):] + '.so' for linkopt in linkopts]
 +    _symlinks(repo_ctx, srcs)
-+    symlinks = repo_ctx.attr._symlinks
++    symlinks = repo_ctx.attr.symlinks
 +    symlinks = [item[len("/"):] for item in symlinks]
 +    _symlinks(repo_ctx, symlinks)
      data = {
@@ -36,7 +36,7 @@
 +        "srcs": _make_strlist(srcs),
      }
      build_file_data = BUILD_TEMPLATE.format(**data)
- 
+
 @@ -128,5 +142,7 @@ pkg_config_repository = repository_rule(
      local = True,
      attrs = {
