@@ -1,6 +1,6 @@
 PORTNAME=	eza
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.20.2
+DISTVERSION=	0.20.3
 CATEGORIES=	sysutils
 MASTER_SITES=	https://github.com/eza-community/${PORTNAME}/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/:man
 DISTFILES=	man-${DISTVERSION}.tar.gz:man
@@ -18,6 +18,7 @@ LICENSE_PERMS=	auto-accept dist-mirror dist-sell pkg-mirror pkg-sell
 USES=		cargo
 USE_GITHUB=	yes
 GH_ACCOUNT=	eza-community
+CARGO_DIST_SUBDIR=	../rust/crates
 
 PLIST_FILES=	bin/${PORTNAME} \
 		etc/bash_completion.d/${PORTNAME}.bash \
