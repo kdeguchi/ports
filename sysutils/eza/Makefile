@@ -5,7 +5,6 @@ CATEGORIES=	sysutils
 MASTER_SITES=	https://github.com/eza-community/${PORTNAME}/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/:man
 DISTFILES=	man-${DISTVERSION}.tar.gz:man
 DIST_SUBDIR=	${PORTNAME}
-CARGO_DIST_SUBDIR=	../rust/crates
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Modern, maintained replacement for ls
