@@ -1,5 +1,6 @@
 PORTNAME=	bazel
 DISTVERSION=	7.3.2
+PORTREVISION=	1
 CATEGORIES=	devel java
 MASTER_SITES=	https://github.com/bazelbuild/${PORTNAME}/releases/download/${DISTVERSION}/
 DISTNAME=	bazel-${DISTVERSION}-dist
@@ -21,7 +22,7 @@ BUILD_DEPENDS=	bash:shells/bash \
 RUN_DEPENDS=	bash:shells/bash \
 		python3:lang/python3
 
-USES=		cpe llvm:15,build,run python:3.8+ shebangfix zip
+USES=		cpe python:3.8+ shebangfix zip
 
 CPE_VENDOR=	google
 
@@ -35,14 +36,13 @@ SHEBANG_REGEX=	.*(sh|txt|_stub|stub_.*|bazel|get_workspace_status|protobuf_suppo
 
 CONFLICTS_INSTALL=	bazel[0-9]* bazel
 
+CFLAGS+=	-Wno-gnu-offsetof-extensions
 # The bazel binary is also a zip archive (extracted by the elf part), it must not be stripped
 STRIP=
 
 NO_WRKSUBDIR=	YES
 
 .include <bsd.port.pre.mk>
-
-_LLVM_VERSION!=	cd ${PORTSDIR}/${LLVM_PORT} && ${MAKE} -V PORTVERSION
 
 .if ${ARCH} == "aarch64"
 BAZEL_JAVAC_OPTS+=	"-J-Xmx1g -J-Xms128m"
@@ -60,9 +60,6 @@ post-patch:
 	@${ECHO_CMD} build --action_env=PATH=/bin:/usr/bin/:${LOCALBASE}/bin >> ${WRKSRC}/scripts/packages/bazel.bazelrc
 	@${REINPLACE_CMD} -i '' -e 's|%%JAVA_HOME%%|${JAVA_HOME}|' \
 		${WRKSRC}/src/main/cpp/blaze_util_bsd.cc
-	@${REINPLACE_CMD} -i '' -e 's|/usr/bin/clang|${CC}|' \
-		-e 's|/usr/lib/clang|${LLVM_PREFIX}/lib/clang/${_LLVM_VERSION}/include|' \
-		${WRKSRC}/tools/cpp/bsd_cc_toolchain_config.bzl
 
 do-build:
 	@${MKDIR} ${WRKDIR}/bazel_tmp
