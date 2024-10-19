@@ -28,7 +28,7 @@ PKGDEINSTALL=	${WRKDIR}/pkg-install
 
 do-install:
 	${MKDIR} ${STAGEDIR}${FONTSDIR}
-	${INSTALL_DATA} ${WRKDIR}/Data/*.ttf \
+	${INSTALL_DATA} ${WRKSRC}/Data/*.ttf \
 	    ${STAGEDIR}${FONTSDIR}
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/fonts/conf.avail \
 	    ${STAGEDIR}${PREFIX}/etc/fonts/conf.d
