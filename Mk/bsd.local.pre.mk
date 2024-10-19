@@ -4,6 +4,10 @@
 USES+=	localbase
 .endif
 
+.if ${.CURDIR:M*/graphics/libavif*}
+USES+=	localbase
+.endif
+
 .if ${.CURDIR:M*/graphics/inkscape*}
 USES+=	localbase
 .endif
