@@ -10,7 +10,7 @@ COMMENT=	Arachno sound fonts
 LICENSE=	ARACHNO
 LICENSE_NAME=	arachno
 LICENSE_FILE=	${WRKSRC}/Read\ Me.txt
-LICENSE_PERMS=	no-dist-mirror no-dist-sell no-pkg-mirror no-pkg-sell no-auto-accept
+LICENSE_PERMS=	no-dist-mirror no-dist-sell no-pkg-mirror no-pkg-sell auto-accept
 
 RESTRICTED=	Manual download from https://www.dropbox.com/s/2rnpya9ecb9m4jh/arachno-soundfont-10-sf2.zip
 
