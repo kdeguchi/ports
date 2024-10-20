@@ -1,28 +1,5 @@
 # Maybe, many ports need this
-
-.if ${.CURDIR:M*/devel/qt6-base*} || defined(USE_QT)
 USES+=	localbase
-.endif
-
-.if ${.CURDIR:M*/graphics/libavif*}
-USES+=	localbase
-.endif
-
-.if ${.CURDIR:M*/graphics/inkscape*}
-USES+=	localbase
-.endif
-
-.if ${.CURDIR:M*/graphics/openexr*}
-USES+=	localbase
-.endif
-
-.if ${.CURDIR:M*/graphics/vulkan-*}
-USES+=	localbase
-.endif
-
-.if ${.CURDIR:M*/devel/sdl20*}
-USES+=	localbase
-.endif
 
 .if ${.CURDIR:M*/devel/msgpack-c*}
 CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=${LOCALBASE}/lib
