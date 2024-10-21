@@ -1,5 +1,7 @@
 # Maybe, many ports need this
+.if ${.CURDIR:N*/graphics/jbigkit*}
 USES+=	localbase
+.endif
 
 .if ${.CURDIR:M*/devel/msgpack-c*}
 CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=${LOCALBASE}/lib
