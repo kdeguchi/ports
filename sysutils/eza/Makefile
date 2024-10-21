@@ -1,10 +1,9 @@
 PORTNAME=	eza
-DISTVERSIONPREFIX=	v
-DISTVERSION=	0.20.2
+DISTVERSION=	0.20.4
 CATEGORIES=	sysutils
-MASTER_SITES=	https://github.com/eza-community/${PORTNAME}/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/:man
-DISTFILES=	man-${DISTVERSION}.tar.gz:man
-DIST_SUBDIR=	${PORTNAME}
+MASTER_SITES=	https://github.com/eza-community/${PORTNAME}/archive/refs/tags/v${DISTVERSION}/${DISTVERSION}.tar.gz?dummy=/:src \
+		https://github.com/eza-community/${PORTNAME}/releases/download/v${DISTVERSION}/man-${DISTVERSION}.tar.gz?dummy=/:man
+DISTFILES=	${PORTNAME}-man-${DISTVERSION}.tar.gz:man ${PORTNAME}-${DISTVERSION}.tar.gz:src
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Modern, maintained replacement for ls
@@ -16,8 +15,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 LICENSE_PERMS=	auto-accept dist-mirror dist-sell pkg-mirror pkg-sell
 
 USES=		cargo
-USE_GITHUB=	yes
-GH_ACCOUNT=	eza-community
 
 PLIST_FILES=	bin/${PORTNAME} \
 		etc/bash_completion.d/${PORTNAME}.bash \
