@@ -13,10 +13,10 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	lonkamikaze
 GH_PROJECT=	bsda2
 
+CONFLICTS_INSTALL=	bsdadminscripts
+
 NO_ARCH=	yes
 NO_BUILD=	yes
-
-CONFLICTS_INSTALL=	bsdadminscripts
 
 OPTIONS_DEFINE=	DOCS
 
