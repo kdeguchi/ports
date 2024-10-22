@@ -22,7 +22,7 @@ BUILD_DEPENDS=	bash:shells/bash \
 RUN_DEPENDS=	bash:shells/bash \
 		python3:lang/python3
 
-USES=		cpe llvm:19 python:3.8+ shebangfix zip
+USES=		cpe python:3.8+ shebangfix zip
 
 CPE_VENDOR=	google
 
