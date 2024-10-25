@@ -1,4 +1,4 @@
-TIMESTAMP = 1729757259
+TIMESTAMP = 1729828926
 SHA256 (mozc/apple_support.1.12.0.tar.gz) = 100d12617a84ebc7ee7a10ecf3b3e2fdadaebc167ad93a21f820a6cb60158ead
 SIZE (mozc/apple_support.1.12.0.tar.gz) = 72338
 SHA256 (mozc/bazel_features-v1.3.0.tar.gz) = 53182a68f172a2af4ad37051f82201e222bc19f7a40825b877da3ff4c922b9e0
@@ -61,7 +61,7 @@ SHA256 (mozc/utuhiro78-mozcdic-ut-skk-jisyo-6ea6a46_GH0.tar.gz) = 9055f25af12070
 SIZE (mozc/utuhiro78-mozcdic-ut-skk-jisyo-6ea6a46_GH0.tar.gz) = 1172438
 SHA256 (mozc/utuhiro78-mozcdic-ut-sudachidict-e8e9bd9_GH0.tar.gz) = 8da1b0093409b39a855b3c4ab7921a1f4179137349addc1991e78406c60a867f
 SIZE (mozc/utuhiro78-mozcdic-ut-sudachidict-e8e9bd9_GH0.tar.gz) = 12292083
-SHA256 (mozc/utuhiro78-merge-ut-dictionaries-4e08ad0_GH0.tar.gz) = ff18feb6d7c6723abbe80ad1a662cc3b7b0a9a816a334d5baaf8e00e288cd3f5
-SIZE (mozc/utuhiro78-merge-ut-dictionaries-4e08ad0_GH0.tar.gz) = 22823
+SHA256 (mozc/utuhiro78-merge-ut-dictionaries-d45df96_GH0.tar.gz) = 2464c02442008611cf1898ba4f3e4bfdef00c290e67e5903f210c5b19647e117
+SIZE (mozc/utuhiro78-merge-ut-dictionaries-d45df96_GH0.tar.gz) = 31903
 SHA256 (mozc/e-kato-macuim-v0.6.16.2.1_GH0.tar.gz) = ae999a2f02379bd049484a22684c37be5eb1f4db9763fa79885c4981502336e9
 SIZE (mozc/e-kato-macuim-v0.6.16.2.1_GH0.tar.gz) = 324549
