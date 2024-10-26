@@ -30,7 +30,7 @@ USES=	compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 	python:3.8+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:667bdf8
+GH_TUPLE=	fcitx:mozc:3db6e34
 GH_TUPLE+=	abseil:abseil-cpp:4447c75:abseil/src/third_party/abseil-cpp
 GH_TUPLE+=	protocolbuffers:protobuf:7cc670c:protobuf/src/third_party/protobuf
 
@@ -89,7 +89,7 @@ JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:5d8014f:jawiki
 NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:53fbd86:neologd
 
 # APACHE20
-PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:0192911:personal
+PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:7482916:personal
 
 # APCHE20
 PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:45c21fb:place
@@ -98,10 +98,10 @@ PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:45c21fb:place
 SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:6ea6a46:skkjisyo
 
 # APACHE20
-SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:e8e9bd9:sudachi
+SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:e9c60b4:sudachi
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:d45df96:ut
+UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:b7b6943:ut
 UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:title
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:title
 
@@ -211,25 +211,17 @@ SUB_FILES+=	mozc
 
 post-patch-mozc_server:
 .if ${PORT_OPTIONS:MUTDIC}
-	# ut dictionary
-	@${REINPLACE_CMD} -E -e "/^.*'wget'/d;" \
-		-e '/^with urlli.*/d;' \
-		-e 's@^url = "https://raw.githubusercontent.com/google/mozc/master/src/data/dictionary_oss/id.def"@id_def = open("id.def", "r")@;' \
-		-e 's@^    id_mozc = .*@id_mozc = id_def.read()@;' \
-			${WRKSRC_ut}/src/*.py
-
 	@${ECHO_MSG} "===> Creating mozcdic-ut.txt for UT Dictionary. It takes a long time!"
-	@cd ${WRKSRC_ut}/src && \
+	cd ${WRKSRC_ut}/src/merge && \
+		${PATCH} < ${PATCHDIR}/extra-patch-merge-ut-dictionaries.py && \
 		${CP} ${BUILD_WRKSRC}/data/dictionary_oss/id.def . && \
 		${CP} ${_DISTDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} . && \
-		${CP} ../../mozcdic-ut-*/mozcdic-ut-*.txt.tar.bz2 . && \
+		${CP} ../../../mozcdic-ut-*/mozcdic-ut-*.txt.tar.bz2 . && \
 		for f in mozcdic-ut-*.txt.tar.bz2; do \
 			${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} $$f ${EXTRACT_AFTER_ARGS}; \
 		done && \
 		${CAT} *.txt > mozcdic-ut.txt && \
-		${PYTHON_CMD} remove_duplicate_ut_entries.py mozcdic-ut.txt && \
-		${PYTHON_CMD} count_word_hits.py && \
-		${PYTHON_CMD} apply_word_hits.py mozcdic-ut.txt && \
+		${PYTHON_CMD} merge-ut-dictionaries.py mozcdic-ut.txt && \
 		${CAT} mozcdic-ut.txt \
 			>> ${BUILD_WRKSRC}/data/dictionary_oss/dictionary00.txt
 .endif
