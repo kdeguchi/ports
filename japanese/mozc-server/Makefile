@@ -394,7 +394,14 @@ PLIST_FILES+=	lib/fcitx/fcitx-mozc.so \
 		%%DATADIR%%/icon/mozc-dictionary.png \
 		%%DATADIR%%/icon/mozc-properties.png \
 		%%DATADIR%%/icon/mozc-tool.png \
+		share/locale/ca/LC_MESSAGES/fcitx-mozc.mo \
+		share/locale/da/LC_MESSAGES/fcitx-mozc.mo \
+		share/locale/de/LC_MESSAGES/fcitx-mozc.mo \
+		share/locale/he/LC_MESSAGES/fcitx-mozc.mo \
 		share/locale/ja/LC_MESSAGES/fcitx-mozc.mo \
+		share/locale/ko/LC_MESSAGES/fcitx-mozc.mo \
+		share/locale/ru/LC_MESSAGES/fcitx-mozc.mo \
+		share/locale/tr/LC_MESSAGES/fcitx-mozc.mo \
 		share/locale/zh_CN/LC_MESSAGES/fcitx-mozc.mo \
 		share/locale/zh_TW/LC_MESSAGES/fcitx-mozc.mo
 PLIST_DIRS+=	%%DATADIR%%/icon ${DATADIR_REL}
@@ -402,6 +409,7 @@ PLIST_DIRS+=	%%DATADIR%%/icon ${DATADIR_REL}
 do-build-fcitx_mozc:
 	cd ${BUILD_WRKSRC} && \
 		${BUILD_MOZC_CMD} unix/fcitx:fcitx-mozc.so
+	cd ${BUILD_WRKSRC}/unix/fcitx && ${SH} gen_fcitx_mozc_i18n.sh ./po
 
 do-install-fcitx_mozc:
 	@${MKDIR} \
@@ -427,9 +435,9 @@ do-install-fcitx_mozc:
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/data/images/product_icon_32bpp-128.png \
 	    ${STAGEDIR}${DATADIR}/icon/mozc.png
-.for L in ja zh_CN zh_TW
+.for L in ca da de he ja ko ru tr zh_CN zh_TW
 	${INSTALL_DATA} \
-	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/gen/unix/fcitx/po/${L}.mo \
+	    ${BUILD_WRKSRC}/unix/fcitx/po/${L}.mo \
 	    ${STAGEDIR}${PREFIX}/share/locale/${L}/LC_MESSAGES/fcitx-mozc.mo
 .endfor
 .endif #fcitx_mozc
