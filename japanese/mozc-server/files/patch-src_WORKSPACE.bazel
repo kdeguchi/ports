@@ -1,16 +1,34 @@
---- src/WORKSPACE.bazel.orig	2024-10-10 07:39:31 UTC
+--- src/WORKSPACE.bazel.orig	2024-10-27 06:41:47 UTC
 +++ src/WORKSPACE.bazel
-@@ -224,6 +224,7 @@ pkg_config_repository(
+@@ -199,11 +199,13 @@ pkg_config_repository(
+ )
+ 
+ # Fcitx
+-new_local_repository(
++pkg_config_repository(
+     name = "fcitx",
+-    build_file = "BUILD.fcitx.bazel",
+-    # This path should be updated per the environment.
+-    path = "/usr",  # For Debian
++    packages = [
++      "fcitx",
++      "fcitx-config",
++      "fcitx-utils",
++    ]
+ )
+ 
+ # Fcitx 5
+@@ -229,6 +231,7 @@ pkg_config_repository(
          "Qt6Core",
          "Qt6Gui",
          "Qt6Widgets",
 +        "libglvnd",
      ],
  )
-
-@@ -329,16 +330,14 @@ http_file(
+ 
+@@ -334,16 +337,14 @@ http_file(
  )
-
+ 
  # Zip code
 -http_archive(
 +new_local_repository(
@@ -20,7 +38,7 @@
 -    url = "https://www.post.japanpost.jp/zipcode/dl/kogaki/zip/ken_all.zip",
 +    path = "third_party",
  )
-
+ 
 -http_archive(
 +new_local_repository(
      name = "zip_code_jigyosyo",
