@@ -409,7 +409,7 @@ do-install-fcitx_mozc:
 	    ${STAGEDIR}${PREFIX}/share/fcitx/addon \
 	    ${STAGEDIR}${PREFIX}/share/fcitx/inputmethod
 	${INSTALL_LIB} \
-	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/fcitx-mozc.so \
+	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/fcitx/fcitx-mozc.so \
 	    ${STAGEDIR}${PREFIX}/lib/fcitx/fcitx-mozc.so
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/unix/fcitx/fcitx-mozc.conf \
