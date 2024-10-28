@@ -397,11 +397,9 @@ PLIST_FILES+=	lib/fcitx/fcitx-mozc.so \
 		share/locale/ca/LC_MESSAGES/fcitx-mozc.mo \
 		share/locale/da/LC_MESSAGES/fcitx-mozc.mo \
 		share/locale/de/LC_MESSAGES/fcitx-mozc.mo \
-		share/locale/he/LC_MESSAGES/fcitx-mozc.mo \
 		share/locale/ja/LC_MESSAGES/fcitx-mozc.mo \
 		share/locale/ko/LC_MESSAGES/fcitx-mozc.mo \
 		share/locale/ru/LC_MESSAGES/fcitx-mozc.mo \
-		share/locale/tr/LC_MESSAGES/fcitx-mozc.mo \
 		share/locale/zh_CN/LC_MESSAGES/fcitx-mozc.mo \
 		share/locale/zh_TW/LC_MESSAGES/fcitx-mozc.mo
 PLIST_DIRS+=	%%DATADIR%%/icon ${DATADIR_REL}
@@ -435,7 +433,7 @@ do-install-fcitx_mozc:
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/data/images/product_icon_32bpp-128.png \
 	    ${STAGEDIR}${DATADIR}/icon/mozc.png
-.for L in ca da de he ja ko ru tr zh_CN zh_TW
+.for L in ca da de ja ko ru zh_CN zh_TW
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/unix/fcitx/po/${L}.mo \
 	    ${STAGEDIR}${PREFIX}/share/locale/${L}/LC_MESSAGES/fcitx-mozc.mo
