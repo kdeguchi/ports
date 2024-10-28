@@ -429,7 +429,7 @@ do-install-fcitx_mozc:
 	    ${STAGEDIR}${DATADIR}/icon/mozc.png
 .for L in ja zh_CN zh_TW
 	${INSTALL_DATA} \
-	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/gen/unix/fcitx/po/${L}.mo \
+	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/gen/unix/fcitx/po/${L}.mo \
 	    ${STAGEDIR}${PREFIX}/share/locale/${L}/LC_MESSAGES/fcitx-mozc.mo
 .endfor
 .endif #fcitx_mozc
