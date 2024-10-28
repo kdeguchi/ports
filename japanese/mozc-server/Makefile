@@ -400,6 +400,8 @@ PLIST_FILES+=	lib/fcitx/fcitx-mozc.so \
 PLIST_DIRS+=	%%DATADIR%%/icon ${DATADIR_REL}
 
 do-build-fcitx_mozc:
+	cd ${BUILD_WRKSRC} && \
+		${BUILD_MOZC_CMD} unix/fcitx:fcitx-mozc.so
 
 do-install-fcitx_mozc:
 	@${MKDIR} \
