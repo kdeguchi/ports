@@ -16,8 +16,8 @@
      _symlinks(repo_ctx, includes)
 +    includedirs = [item[len("/"):] for item in repo_ctx.attr.includedirs]
 +    includes.extend(includedirs)
-+    linkopts = _make_strlist(_exec_pkg_config(repo_ctx, ["--libs-only-l"]))
-+    libdirs = _exec_pkg_config(repo_ctx, "--libs-only-L")
++    linkopts = _exec_pkg_config(repo_ctx, ["--libs-only-l"])
++    libdirs = _exec_pkg_config(repo_ctx, ["--libs-only-L"])
 +    libdirs = [item[len("-L/"):] for item in libdirs]
 +    libdir = "".join(libdirs)
 +    srcs = [libdir + '/lib' + linkopt[len("-l"):] + '.so' for linkopt in linkopts]
