@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.30.5618.102
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	japanese
 
 DIST_SUBDIR=	${PORTNAME}
@@ -30,7 +30,7 @@ USES=	compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 	python:3.8+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:03e7041
+GH_TUPLE=	fcitx:mozc:ae65159
 GH_TUPLE+=	abseil:abseil-cpp:4447c75:abseil/src/third_party/abseil-cpp
 GH_TUPLE+=	protocolbuffers:protobuf:7cc670c:protobuf/src/third_party/protobuf
 
@@ -79,29 +79,29 @@ SUDACHIDICT_DESC=	Dictionary from SudachiDict
 UTDIC_DESC=		Additional UT Dictionary
 
 # GPLv2
-ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:da1cc09:altcannadic
+ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:8cc8de5:altcannadic
 
 # CC-BY-SA-4.0
-EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:cc90dbe:edict2
-JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:5d8014f:jawiki
+EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:ba32590:edict2
+JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:6cb5e9e:jawiki
 
 # APACHE20
-NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:53fbd86:neologd
+NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:74311c3:neologd
 
 # APACHE20
-PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:7482916:personal
+PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:92f3943:personal
 
 # APCHE20
-PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:45c21fb:place
+PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:d26152b:place
 
 # APACHE20 GPLv2
-SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:6ea6a46:skkjisyo
+SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:d57b90e:skkjisyo
 
 # APACHE20
-SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:e9c60b4:sudachi
+SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:bfc639c:sudachi
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:b7b6943:ut
+UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:a2e4238:ut
 UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:title
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:title
 
@@ -213,15 +213,11 @@ post-patch-mozc_server:
 .if ${PORT_OPTIONS:MUTDIC}
 	@${ECHO_MSG} "===> Creating mozcdic-ut.txt for UT Dictionary. It takes a long time!"
 	cd ${WRKSRC_ut}/src/merge && \
-		${PATCH} < ${PATCHDIR}/extra-patch-merge-ut-dictionaries.py && \
+		${PATCH} < ${PATCHDIR}/extra-patch-merge_dictionaries.py && \
 		${CP} ${BUILD_WRKSRC}/data/dictionary_oss/id.def . && \
 		${CP} ${_DISTDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} . && \
-		${CP} ../../../mozcdic-ut-*/mozcdic-ut-*.txt.tar.bz2 . && \
-		for f in mozcdic-ut-*.txt.tar.bz2; do \
-			${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} $$f ${EXTRACT_AFTER_ARGS}; \
-		done && \
-		${CAT} *.txt > mozcdic-ut.txt && \
-		${PYTHON_CMD} merge-ut-dictionaries.py mozcdic-ut.txt && \
+		${BZCAT} ../../../mozcdic-ut-*/mozcdic-ut-*.txt.bz2 > mozcdic-ut.txt && \
+		${PYTHON_CMD} merge_dictionaries.py mozcdic-ut.txt && \
 		${CAT} mozcdic-ut.txt \
 			>> ${BUILD_WRKSRC}/data/dictionary_oss/dictionary00.txt
 .endif
