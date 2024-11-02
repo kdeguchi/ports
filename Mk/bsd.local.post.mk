@@ -111,11 +111,13 @@ post-patch-LLDB-on:
 		${WRKSRC}/lldb/cmake/modules/FindLuaAndSwig.cmake
 	${REINPLACE_CMD} -e 's@lua/5\.3@lua/${LUA_VER}@' \
 		${WRKSRC}/lldb/test/API/lua_api/TestLuaAPI.py
+	${REINPLACE_CMD} -e 's@lua5\.3@lua${LUA_VER_STR}@;s@/lua/5\.3@/lua/${LUA_VER}@;' \
+		${WRKSRC}/lldb/CMakeLists.txt
 . endif
 . if !target(post-install-LLDB-on)
 post-install-LLDB-on:
-	${MV} ${STAGEDIR}${PREFIX}/llvm${LLVM_SUFFIX}/lib/lua/5.3 \
-		${STAGEDIR}${PREFIX}/llvm${LLVM_SUFFIX}/lib/lua/${LUA_VER}
+#	${MV} ${STAGEDIR}${PREFIX}/llvm${LLVM_SUFFIX}/lib/lua/5.3 \
+#		${STAGEDIR}${PREFIX}/llvm${LLVM_SUFFIX}/lib/lua/${LUA_VER}
 	${REINPLACE_CMD} -e 's|lua/5\.3|lua/${LUA_VER}|' ${TMPPLIST} || exit 0
 . endif
 .endif
