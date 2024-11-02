@@ -147,7 +147,7 @@ _CCTYPE=	gcc
 
 post-extract:
 	@${MKDIR} ${WRKDIR}/bazel-dist
-.for file in ${DISTFILES:C/\:(.*)//}
+.for file in ${DISTFILES:C/\:.*//}
 	@${CP} -a ${_DISTDIR}/${file} ${WRKDIR}/bazel-dist
 .endfor
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
