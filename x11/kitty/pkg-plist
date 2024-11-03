@@ -922,6 +922,8 @@ share/icons/hicolor/scalable/apps/kitty.svg
 %%DATADIR%%/kitty/terminfo.py
 %%DATADIR%%/kitty/tint_fragment.glsl
 %%DATADIR%%/kitty/tint_vertex.glsl
+%%DATADIR%%/kitty/trail_fragment.glsl
+%%DATADIR%%/kitty/trail_vertex.glsl
 %%DATADIR%%/kitty/types.py
 %%DATADIR%%/kitty/typing.py
 %%DATADIR%%/kitty/update_check.py
