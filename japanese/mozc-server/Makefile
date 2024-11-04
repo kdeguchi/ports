@@ -79,29 +79,29 @@ SUDACHIDICT_DESC=	Dictionary from SudachiDict
 UTDIC_DESC=		Additional UT Dictionary
 
 # GPLv2
-ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:8cc8de5:altcannadic
+ALTCANNADIC_GH_TUPLE=	utuhiro78:mozcdic-ut-alt-cannadic:bf26bcb:altcannadic
 
 # CC-BY-SA-4.0
-EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:ba32590:edict2
-JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:6cb5e9e:jawiki
+EDICT2_GH_TUPLE=	utuhiro78:mozcdic-ut-edict2:33b4d09:edict2
+JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:d60f02b:jawiki
 
 # APACHE20
-NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:74311c3:neologd
+NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:5a275dc:neologd
 
 # APACHE20
 PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:92f3943:personal
 
 # APCHE20
-PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:d26152b:place
+PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:d189fce:place
 
 # APACHE20 GPLv2
-SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:d57b90e:skkjisyo
+SKKJISYO_GH_TUPLE=	utuhiro78:mozcdic-ut-skk-jisyo:c52cdb1:skkjisyo
 
 # APACHE20
-SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:bfc639c:sudachi
+SUDACHIDICT_GH_TUPLE=	utuhiro78:mozcdic-ut-sudachidict:d12da3c:sudachi
 
 # APACHE20 multi
-UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:a2e4238:ut
+UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:23de2d9:ut
 UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:title
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:title
 
