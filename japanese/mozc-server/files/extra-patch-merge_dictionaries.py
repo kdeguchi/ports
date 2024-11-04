@@ -8,7 +8,7 @@
  from unicodedata import normalize
 
 
- def remove_duplicates(file_name):
+ def get_id_mozc():
      # Mozc の一般名詞のIDを取得
 -    url = 'https://raw.githubusercontent.com/' + \
 -            'google/mozc/master/src/data/dictionary_oss/id.def'
@@ -19,9 +19,9 @@
 -        id_mozc = response.read().decode()
 -
      id_mozc = id_mozc.split(' 名詞,一般,')[0].split('\n')[-1]
+     return (id_mozc)
 
-     with open(file_name, 'r', encoding='utf-8') as file:
-@@ -57,10 +53,6 @@
+@@ -62,10 +58,6 @@
 
  def count_word_hits():
      # jawiki-latest-all-titles を取得
