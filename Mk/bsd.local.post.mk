@@ -103,6 +103,14 @@ LIB_DEPENDS:=	${LIB_DEPENDS:S@x11-toolkits/Xaw3d@x11-toolkits/libXaw3d@}
 MESON_ARGS+=	-Dthumbnail_cache=disabled
 .endif
 
+.if ${.CURDIR:M*/www/chromium*}
+LLVM_DEFAULT=	19
+. if ! defined(NO_CCACHE) && exists(/usr/local/bin/ccache)
+BINARY_ALIAS:=	${BINARY_ALIAS:S@cc=${LOCALBASE}/bin/clang${LLVM_DEFAULT}@cc=${LOCALBASE}/libexec/ccache/clang${LLVM_DEFAULT}@}
+BINARY_ALIAS:=	${BINARY_ALIAS:S@c++=${LOCALBASE}/bin/clang++${LLVM_DEFAULT}@c++=${LOCALBASE}/libexec/ccache/clang++${LLVM_DEFAULT}@}
+. endif
+.endif
+
 .if ${.CURDIR:M*/devel/llvm*}
 USES:=	${USES:S/lua:53/lua:${LUA_VER_STR}/}
 . if !target(post-patch-LLDB-on)
