@@ -21,6 +21,7 @@ LICENSE_PERMS_NAISTL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_DISTFILES_BSD3CLAUSE=	${DISTNAME}${EXTRACT_SUFX}
 LICENSE_DISTFILES_NAISTL=${DISTNAME}${EXTRACT_SUFX}
 
+FETCH_DEPENDS=	git:devel/git
 PATCH_DEPENDS=${PYTHON_CMD}:${PYTHON_PORTSDIR}
 BUILD_DEPENDS=	bazel:devel/bazel7 \
 		python3:lang/python3
@@ -59,6 +60,8 @@ BAZEL_OPTS=	--output_base=${WRKDIR}/bazel-out-base \
 		--server_javabase=${JAVA_HOME}
 
 BAZEL_ENV=	--action_env=PATH=${JAVA_HOME}/bin:${PATH}
+
+GIT_URL=	https://github.com/bazelbuild/bazel-central-registry.git
 
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
 PKGNAMEPREFIX=	ja-
@@ -578,29 +581,12 @@ renew-makesum:
 	done
 	@${MAKE} makesum
 
-#_USES_fetch+=	800:bazel-fetch
-_GH_mozc_group=	abseil googletest protobuf
+_USES_fetch+=	800:bazel-fetch
 bazel-fetch:
-.if !exists(WRKSRC)
-	${MAKE} do-extract post-extract
-. for _mozc_group in ${_GH_mozc_group}
-	${MAKE} post-extract-gh-${_mozc_group}
-. endfor
-	${MAKE} do-patch post-patch
-	${MKDIR} ${BAZEL_CACHE} ${BAZEL_REGISTRY}
-	cd ${BUILD_WRKSRC} && \
-		bazel ${BAZEL_COMMON_OPTS} \
-			build ${BAZEL_OPTS} ${BAZEL_ENV} \
-				server:mozc_server gui/tool:mozc_tool \
-				unix/fcitx5:fcitx5-mozc.so
+.if exists(${BAZEL_REGISTRY})
+	cd ${BAZEL_REGISTRY} && git pull
+.else
+	cd ${_DISTDIR} && git clone ${GIT_URL}
 .endif
-
-bazel-info:
-	cd ${BUILD_WRKSRC} && \
-		bazel ${BAZEL_COMMON_OPTS} info ${BAZEL_KEY}
-
-bazel-mod:
-	cd ${BUILD_WRKSRC} && \
-		bazel ${BAZEL_COMMON_OPTS} mod graph --verbose
 
 .include <bsd.port.post.mk>
