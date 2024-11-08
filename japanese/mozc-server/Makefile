@@ -589,7 +589,7 @@ registry-fetch:
 		git clone https://github.com/bazelbuild/bazel-central-registry.git
 .else
 . if make(fetch)
-	cd ${DISTDIR}/${DIST_SUBDIR}/bazel-central-registry && git pull
+	cd ${BAZEL_REGISTRY} && git pull
 . endif
 .endif
 
