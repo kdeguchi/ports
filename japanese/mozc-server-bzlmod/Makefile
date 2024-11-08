@@ -61,8 +61,6 @@ BAZEL_OPTS=	--output_base=${WRKDIR}/bazel-out-base \
 
 BAZEL_ENV=	--action_env=PATH=${JAVA_HOME}/bin:${PATH}
 
-BCR_URL=	https://github.com/bazelbuild/bazel-central-registry.git
-
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
 PKGNAMEPREFIX=	ja-
 PKGNAMESUFFIX=	-server
@@ -586,7 +584,8 @@ bazel-fetch:
 .if exists(${BAZEL_REGISTRY})
 	cd ${BAZEL_REGISTRY} && git pull
 .else
-	cd ${DISTDIR}/${DIST_SUBDIR} && git clone ${BCR_URL}
+	cd ${DISTDIR}/${DIST_SUBDIR} && git clone https://github.com/bazelbuild/bazel-central-registry.git
+
 .endif
 
 .include <bsd.port.post.mk>
