@@ -50,7 +50,7 @@ BUILD_MOZC_CMD=	bazel ${BAZEL_OPTS} build \
 		--verbose_failures --sandbox_debug --config oss_linux \
 		--tool_java_language_version=21
 
-BAZEL_REGISTRY=	${_DISTDIR}/bazel-central-registry
+BAZEL_REGISTRY=	${DISTDIR}/${DIST_SUBDIR}/bazel-central-registry
 
 BAZEL_COMMON_OPTS=	--distdir=${WRKDIR}/bazel-dist \
 		--registry="file://${BAZEL_REGISTRY}"
@@ -154,7 +154,7 @@ _CCTYPE=	gcc
 post-extract:
 	@${MKDIR} ${WRKDIR}/bazel-dist
 .for file in ${DISTFILES:C/\:.*//}
-	@${CP} -a ${_DISTDIR}/${file} ${WRKDIR}/bazel-dist
+	@${CP} -a ${DISTDIR}/${DIST_SUBDIR}/${file} ${WRKDIR}/bazel-dist
 .endfor
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
 	@${CP} -a ${WRKDIR}/*.CSV ${BUILD_WRKSRC}/third_party
@@ -218,7 +218,7 @@ post-patch-mozc_server:
 	cd ${WRKSRC_ut}/src/merge && \
 		${PATCH} < ${PATCHDIR}/extra-patch-merge_dictionaries.py && \
 		${CP} ${BUILD_WRKSRC}/data/dictionary_oss/id.def . && \
-		${CP} ${_DISTDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} . && \
+		${CP} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} . && \
 		${BZCAT} ../../../mozcdic-ut-*/mozcdic-ut-*.txt.bz2 > mozcdic-ut.txt && \
 		${PYTHON_CMD} merge_dictionaries.py mozcdic-ut.txt && \
 		${CAT} mozcdic-ut.txt \
@@ -575,7 +575,7 @@ renew-makesum:
 		*) continue ;; \
 		esac ; \
 	done && \
-	cd ${_DISTDIR} && \
+	cd ${DISTDIR}/${DIST_SUBDIR} && \
 	for url in $${urls}; do \
 		${FETCH_BINARY} -Fmp $${url} ; \
 	done
@@ -586,7 +586,7 @@ bazel-fetch:
 .if exists(${BAZEL_REGISTRY})
 	cd ${BAZEL_REGISTRY} && git pull
 .else
-	cd ${_DISTDIR} && git clone ${GIT_URL}
+	cd ${DISTDIR}/${DIST_SUBDIR} && git clone ${GIT_URL}
 .endif
 
 .include <bsd.port.post.mk>
