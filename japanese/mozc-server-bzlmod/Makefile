@@ -581,11 +581,8 @@ renew-makesum:
 
 _USES_fetch+=	500:registry-fetch
 registry-fetch:
-.if exists(${BAZEL_REGISTRY})
-	cd ${BAZEL_REGISTRY} && git pull
-.else
+.if ! exists(${BAZEL_REGISTRY})
 	cd ${DISTDIR}/${DIST_SUBDIR} && git clone https://github.com/bazelbuild/bazel-central-registry.git
-
 .endif
 
 .include <bsd.port.post.mk>
