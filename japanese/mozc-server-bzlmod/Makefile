@@ -579,8 +579,11 @@ renew-makesum:
 	done
 	@${MAKE} makesum
 
-_USES_fetch+=	500:registry-fetch
+_USES_fetch+=	800:registry-fetch
 registry-fetch:
+.if defined(FORCE_FETCH_ALL)
+	${RM} -r ${BAZEL_REGISTRY}
+.endif
 .if ! exists(${BAZEL_REGISTRY})
 	cd ${DISTDIR}/${DIST_SUBDIR} && git clone https://github.com/bazelbuild/bazel-central-registry.git
 .endif
