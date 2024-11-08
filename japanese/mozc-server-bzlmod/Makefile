@@ -581,7 +581,7 @@ renew-makesum:
 	done
 	@${MAKE} makesum
 
-_USES_fetch+=	800:bazel-fetch
+_USES_fetch+=	600:bazel-fetch
 bazel-fetch:
 .if exists(${BAZEL_REGISTRY})
 	cd ${BAZEL_REGISTRY} && git pull
