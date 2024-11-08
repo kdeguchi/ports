@@ -1,12 +1,12 @@
 PORTNAME=	mozc
 PORTVERSION=	2.30.5618.102
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	japanese
 
 DIST_SUBDIR=	${PORTNAME}
 .include "Makefile.MASTER_SITES"
 
-EXTRACT_ONLY=	${_DISTFILES:C@^(5\.3\.0|apple|bazel|jawiki-latest|platforms|rules|v0|zlib).*@@}
+EXTRACT_ONLY=	${_DISTFILES:C@^(apple|bazel|jawiki-latest|kotlin|include|platforms|rules|zlib).*@@}
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT?=	Mozc Japanese Input Method, Server
@@ -21,6 +21,7 @@ LICENSE_PERMS_NAISTL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_DISTFILES_BSD3CLAUSE=	${DISTNAME}${EXTRACT_SUFX}
 LICENSE_DISTFILES_NAISTL=${DISTNAME}${EXTRACT_SUFX}
 
+FETCH_DEPENDS=	git:devel/git
 PATCH_DEPENDS=${PYTHON_CMD}:${PYTHON_PORTSDIR}
 BUILD_DEPENDS=	bazel:devel/bazel7 \
 		python3:lang/python3
@@ -30,8 +31,9 @@ USES=	compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 	python:3.8+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:718a451
+GH_TUPLE=	fcitx:mozc:95a88f6
 GH_TUPLE+=	abseil:abseil-cpp:4447c75:abseil/src/third_party/abseil-cpp
+GH_TUPLE+=	google:googletest:b514bdc:googletest/src/third_party/gtest
 GH_TUPLE+=	protocolbuffers:protobuf:7cc670c:protobuf/src/third_party/protobuf
 
 USE_JAVA=	yes
@@ -48,14 +50,16 @@ BUILD_MOZC_CMD=	bazel ${BAZEL_OPTS} build \
 		--verbose_failures --sandbox_debug --config oss_linux \
 		--tool_java_language_version=21
 
-BAZEL_OPTS=	--bazelrc="${WRKDIR}/bazelrc" \
-		--output_base=${WRKDIR}/bazel-out-base \
+BAZEL_REGISTRY=	${DISTDIR}/${DIST_SUBDIR}/bazel-central-registry
+
+BAZEL_COMMON_OPTS=	--distdir=${WRKDIR}/bazel-dist \
+		--registry="file://${BAZEL_REGISTRY}"
+
+BAZEL_OPTS=	--output_base=${WRKDIR}/bazel-out-base \
 		--output_user_root=${WRKDIR}/bazel-out-user \
 		--server_javabase=${JAVA_HOME}
 
 BAZEL_ENV=	--action_env=PATH=${JAVA_HOME}/bin:${PATH}
-
-BAZEL_COMMON_OPTS=	--distdir=${WRKDIR}/bazel-dist
 
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
 PKGNAMEPREFIX=	ja-
@@ -148,16 +152,13 @@ _CCTYPE=	gcc
 post-extract:
 	@${MKDIR} ${WRKDIR}/bazel-dist
 .for file in ${DISTFILES:C/\:.*//}
-	@${CP} -a ${_DISTDIR}/${file} ${WRKDIR}/bazel-dist
+	@${CP} -a ${DISTDIR}/${DIST_SUBDIR}/${file} ${WRKDIR}/bazel-dist
 .endfor
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
 	@${CP} -a ${WRKDIR}/*.CSV ${BUILD_WRKSRC}/third_party
 .endif
 
 post-patch:
-	@${CP} ${PATCHDIR}/bazelrc ${WRKDIR} && \
-		${REINPLACE_CMD} -e 's@%%BAZEL_DIR%%@${WRKDIR}@g;s@%%BAZEL_DIST%%@${WRKDIR}@g;' \
-			${WRKDIR}/bazelrc
 	@${FIND} ${BUILD_WRKSRC} -type f -not -path '*/third_party/*' \
 		\( -name 'BUILD' -o -name '*.bzl' -o -name '*.cc' -o -name '*.h' \) \
 		-exec ${REINPLACE_CMD} -E -e "s,'python','${PYTHON_CMD}',g;" \
@@ -173,8 +174,6 @@ post-patch:
 			-e 's,^#ifdef __linux__$$,#if defined(__linux__) || defined(__FreeBSD__),;' \
 			-e 's,^#ifdef __linux$$,#if defined(__linux__) || defined(__FreeBSD__),;' \
 			-e 's,ByteSize\(,ByteSizeLong\(,g;' {} \;
-	@${REINPLACE_CMD} 's@path = "/usr"@path = "${PREFIX}"@g' \
-		${BUILD_WRKSRC}/WORKSPACE.bazel
 
 .if ${BUILD_MOZC_LIST:Mfcitx_mozc} == "fcitx_mozc"
 	${REINPLACE_CMD} 's,/po/mo},%po}mo,g' \
@@ -209,13 +208,15 @@ PLIST_FILES+=	bin/mozc \
 		libexec/mozc_server
 SUB_FILES+=	mozc
 
+_USES_patch=	800:post-patch-mozc_server
+
 post-patch-mozc_server:
 .if ${PORT_OPTIONS:MUTDIC}
 	@${ECHO_MSG} "===> Creating mozcdic-ut.txt for UT Dictionary. It takes a long time!"
 	cd ${WRKSRC_ut}/src/merge && \
 		${PATCH} < ${PATCHDIR}/extra-patch-merge_dictionaries.py && \
 		${CP} ${BUILD_WRKSRC}/data/dictionary_oss/id.def . && \
-		${CP} ${_DISTDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} . && \
+		${CP} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} . && \
 		${BZCAT} ../../../mozcdic-ut-*/mozcdic-ut-*.txt.bz2 > mozcdic-ut.txt && \
 		${PYTHON_CMD} merge_dictionaries.py mozcdic-ut.txt && \
 		${CAT} mozcdic-ut.txt \
@@ -572,10 +573,19 @@ renew-makesum:
 		*) continue ;; \
 		esac ; \
 	done && \
-	cd ${_DISTDIR} && \
+	cd ${DISTDIR}/${DIST_SUBDIR} && \
 	for url in $${urls}; do \
 		${FETCH_BINARY} -Fmp $${url} ; \
 	done
 	@${MAKE} makesum
+
+_USES_fetch+=	800:registry-fetch
+registry-fetch:
+.if defined(FORCE_FETCH_ALL)
+	${RM} -r ${BAZEL_REGISTRY}
+.endif
+.if ! exists(${BAZEL_REGISTRY})
+	cd ${DISTDIR}/${DIST_SUBDIR} && git clone https://github.com/bazelbuild/bazel-central-registry.git
+.endif
 
 .include <bsd.port.post.mk>
