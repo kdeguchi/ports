@@ -407,32 +407,32 @@ do-build-fcitx_mozc:
 
 do-install-fcitx_mozc:
 	@${MKDIR} \
-	    ${STAGEDIR}${PREFIX}/lib/fcitx \
-	    ${STAGEDIR}${PREFIX}/share/fcitx/addon \
-	    ${STAGEDIR}${PREFIX}/share/fcitx/inputmethod
+		${STAGEDIR}${PREFIX}/lib/fcitx \
+		${STAGEDIR}${PREFIX}/share/fcitx/addon \
+		${STAGEDIR}${PREFIX}/share/fcitx/inputmethod
 	${INSTALL_LIB} \
-	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/fcitx/fcitx-mozc.so \
-	    ${STAGEDIR}${PREFIX}/lib/fcitx/fcitx-mozc.so
+		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/fcitx/fcitx-mozc.so \
+		${STAGEDIR}${PREFIX}/lib/fcitx/fcitx-mozc.so
 	${INSTALL_DATA} \
-	    ${BUILD_WRKSRC}/unix/fcitx/fcitx-mozc.conf \
-	    ${STAGEDIR}${PREFIX}/share/fcitx/addon/fcitx-mozc.conf
+		${BUILD_WRKSRC}/unix/fcitx/fcitx-mozc.conf \
+		${STAGEDIR}${PREFIX}/share/fcitx/addon/fcitx-mozc.conf
 	${INSTALL_DATA} \
-	    ${BUILD_WRKSRC}/unix/fcitx/mozc.conf \
-	    ${STAGEDIR}${PREFIX}/share/fcitx/inputmethod/mozc.conf
+		${BUILD_WRKSRC}/unix/fcitx/mozc.conf \
+		${STAGEDIR}${PREFIX}/share/fcitx/inputmethod/mozc.conf
 	@${MKDIR} ${STAGEDIR}${DATADIR}/icon
 .for F in ui-alpha_full ui-alpha_half ui-dictionary ui-direct \
 	ui-hiragana ui-katakana_full ui-katakana_half ui-properties ui-tool
 	${INSTALL_DATA} \
-	    ${BUILD_WRKSRC}/data/images/unix/${F}.png \
-	    ${STAGEDIR}${DATADIR}/icon/${F:S,^ui-,mozc-,}.png
+		${BUILD_WRKSRC}/data/images/unix/${F}.png \
+		${STAGEDIR}${DATADIR}/icon/${F:S,^ui-,mozc-,}.png
 .endfor
 	${INSTALL_DATA} \
-	    ${BUILD_WRKSRC}/data/images/product_icon_32bpp-128.png \
-	    ${STAGEDIR}${DATADIR}/icon/mozc.png
+		${BUILD_WRKSRC}/data/images/product_icon_32bpp-128.png \
+		${STAGEDIR}${DATADIR}/icon/mozc.png
 .for L in ca da de ja ko ru zh_CN zh_TW
 	${INSTALL_DATA} \
-	    ${BUILD_WRKSRC}/unix/fcitx/po/${L}.mo \
-	    ${STAGEDIR}${PREFIX}/share/locale/${L}/LC_MESSAGES/fcitx-mozc.mo
+		${BUILD_WRKSRC}/unix/fcitx/po/${L}.mo \
+		${STAGEDIR}${PREFIX}/share/locale/${L}/LC_MESSAGES/fcitx-mozc.mo
 .endfor
 .endif #fcitx_mozc
 #################################################
