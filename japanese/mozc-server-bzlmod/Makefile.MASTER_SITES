@@ -16,7 +16,7 @@ DISTFILES+=	apple_support.${apple_support_VERSION}.tar.gz:apple_support \
 		rules_proto-${rules_proto_VERSION}.tar.gz:rules_proto \
 		rules_python-${rules_python_VERSION}.tar.gz:rules_python \
 		rules_swift.${rules_swift_VERSION}.tar.gz:rules_swift \
-		zlib-${zlib_VERSION}.tar.xz:zlib
+		zlib-${zlib_VERSION}.tar.gz:zlib
 
 MASTER_SITES+=	https://github.com/abseil/abseil-cpp/releases/download/${abseil_VERSION}/:abseil \
 		https://github.com/bazelbuild/apple_support/releases/download/${apple_support_VERSION}/:apple_support \
