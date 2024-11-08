@@ -585,7 +585,8 @@ registry-fetch:
 	${RM} -r ${BAZEL_REGISTRY}
 .endif
 .if ! exists(${BAZEL_REGISTRY})
-	cd ${DISTDIR}/${DIST_SUBDIR} && git clone https://github.com/bazelbuild/bazel-central-registry.git
+	cd ${DISTDIR}/${DIST_SUBDIR} && \
+		git clone https://github.com/bazelbuild/bazel-central-registry.git
 .endif
 
 .include <bsd.port.post.mk>
