@@ -121,7 +121,7 @@ FETCH_DEPENDS+=	git:devel/git
 _USES_fetch+=	800:fetch-bcr
 
 fetch-bcr:
-.    if ! exists(BAZEL_BCR_LOCAL)
+.    if ! exists(${BAZEL_BCR_LOCAL})
 	cd ${BAZEL_DISTDIR} && \
 		git clone ${BAZEL_BCR_URL} ${BAZEL_BCR_DIR}
 .    else
