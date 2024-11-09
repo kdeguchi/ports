@@ -573,7 +573,13 @@ bazel-modules: patch
 				${GREP} '@[0-9]' | sort -u ) \
 			--output text --charset ascii \
 			${BAZEL_COMMON_OPTS} | \
-		${AWK} -F / ' / urls = / { sub(/.* urls = \["/, ""); sub(/"\],/, ""); group=$$5; gsub(/-/, "_", group); printf( "MASTER_SITES+=\t%s/%s/%s/%s/%s/%s/%s/%s/:%s\nDISTFILES+=\t%s:%s\n", $$1, $$2, $$3, $$4, $$5, $$6, $$7, $$8, group, $$9, group ); } ' > ${.CURDIR}/Makefile.MASTER_SITES
+		${AWK} -F / ' / urls = / { \
+			sub(/.* urls = \["/, ""); sub(/"\],/, ""); \
+			group=$$5; gsub(/-/, "_", group); \
+			printf( "MASTER_SITES+=\t%s/%s/%s/%s/%s/%s/%s/%s/:%s\n", \
+				$$1, $$2, $$3, $$4, $$5, $$6, $$7, $$8, group ); \
+			printf( "DISTFILES+=\t%s:%s\n", $$9, group ); \
+			} ' > ${.CURDIR}/Makefile.MASTER_SITES
 
 # Create new distinfo: `make renew-makesum`
 renew-makesum:
