@@ -578,7 +578,7 @@ bazel-modules: patch
 			printf( "MASTER_SITES+=\t%s/%s/%s/%s/%s/%s/%s/%s/:%s\n", \
 				$$1, $$2, $$3, $$4, $$5, $$6, $$7, $$8, group ); \
 			printf( "DISTFILES+=\t%s:%s\n", $$9, group ); \
-			} ' > ${.CURDIR}/Makefile.MASTER_SITES
+			} ' > ${MASTERDIR}/Makefile.MASTER_SITES
 
 # Create new distinfo: `make renew-makesum`
 renew-makesum:
