@@ -44,8 +44,8 @@ JAVA_BUILD=	yes
 BUILD_WRKSRC=	${WRKSRC}/src
 BUILD_MOZC_LIST?=	mozc_server
 
-BUILD_MOZC_CMD=	bazel ${BAZEL_OPTS} --server_javabase=${JAVA_HOME} build \
-		${BAZEL_ENV} ${BAZEL_COMMON_OPTS} \
+BUILD_MOZC_CMD=	bazel ${BAZEL_BOOT} --server_javabase=${JAVA_HOME} \
+		build ${BAZEL_ENV} ${BAZEL_COMMON_OPTS} \
 		-c opt --copt=-fPIC --host_linkopt=-lm \
 		--verbose_failures --sandbox_debug \
 		--tool_java_language_version=${JAVA_VERSION} \
@@ -56,7 +56,7 @@ BAZEL_REGISTRY=	${DISTDIR}/bazel-central-registry
 BAZEL_COMMON_OPTS=	--distdir=${DISTDIR}/${DIST_SUBDIR} \
 		--registry="file://${BAZEL_REGISTRY}"
 
-BAZEL_OPTS=	--output_base=${WRKDIR}/bazel-out-base \
+BAZEL_BOOT=	--output_base=${WRKDIR}/bazel-out-base \
 		--output_user_root=${WRKDIR}/bazel-out-user
 
 BAZEL_ENV=	--action_env=PATH=${JAVA_HOME}/bin:${PATH}
@@ -540,7 +540,7 @@ do-build: ${BUILD_MOZC_LIST:S/^/do-build-/}
 do-install: ${BUILD_MOZC_LIST:S/^/do-install-/}
 
 post-install:
-	cd ${BUILD_WRKSRC} && bazel ${BAZEL_OPTS} shutdown
+	cd ${BUILD_WRKSRC} && bazel ${BAZEL_BOOT} shutdown
 
 _USES_fetch+=	800:bcr-fetch
 BCR_URL=	https://github.com/bazelbuild/bazel-central-registry.git
@@ -556,20 +556,22 @@ bcr-fetch:
 . endif
 .endif
 
-bazel-mod:
+bazel-mod: configure
 	@cd ${BUILD_WRKSRC} && \
-		bazel ${BAZEL_OPTS} mod graph \
+		bazel ${BAZEL_BOOT} mod graph \
 			--output text --charset ascii \
-			${BAZEL_COMMON_OPTS}
+			${BAZEL_COMMON_OPTS} | \
+		${SED} -E 's/[^[:alnum:]]+//;s/ .*//;' | \
+		${GREP} '@[0-9]' | ${SORT} -u \
 
-bazel-modules: patch
+bazel-modules: configure
 	@cd ${BUILD_WRKSRC} && \
-		bazel ${BAZEL_OPTS} mod show_repo $$( cd ${BUILD_WRKSRC} && \
-				bazel ${BAZEL_OPTS} mod graph \
+		bazel ${BAZEL_BOOT} mod show_repo \
+			$$( bazel ${BAZEL_BOOT} mod graph \
 					--output text --charset ascii \
 					${BAZEL_COMMON_OPTS} | \
-				${SED} -E 's/[_]+//;s/\|//g;s/^ +//;s/ .*//;' | \
-				${GREP} '@[0-9]' | sort -u ) \
+				${SED} -E 's/[^[:alnum:]]+//;s/ .*//;' | \
+				${GREP} '@[0-9]' | ${SORT} -u ) \
 			--output text --charset ascii \
 			${BAZEL_COMMON_OPTS} | \
 		${AWK} -F / ' / urls = / { \
