@@ -6,7 +6,7 @@ CATEGORIES=	japanese
 DIST_SUBDIR=	${PORTNAME}
 .include "Makefile.MASTER_SITES"
 
-EXTRACT_ONLY=	${_DISTFILES:C@^(apple|bazel|jawiki-latest|kotlin|include|platforms|rules|zlib).*@@}
+EXTRACT_ONLY=	${_DISTFILES:C@^([0-9]|apple|bazel|include|jawiki|platforms|pybind|re2|rules|stardoc|zlib).*@@}
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT?=	Mozc Japanese Input Method, Server
@@ -15,14 +15,14 @@ WWW=		https://github.com/google/mozc
 LICENSE=		BSD3CLAUSE NAISTL
 LICENSE_COMB=		multi
 LICENSE_NAME_NAISTL=	Nara Institute of Science and Technology License
-LICENSE_FILE_BSD3CLAUSE=	${WRKSRC}/LICENSE
+LICENSE_FILE_BSD3CLAUSE=${WRKSRC}/LICENSE
 LICENSE_FILE_NAISTL=	${WRKSRC}/src/data/dictionary_oss/README.txt
 LICENSE_PERMS_NAISTL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_DISTFILES_BSD3CLAUSE=	${DISTNAME}${EXTRACT_SUFX}
-LICENSE_DISTFILES_NAISTL=${DISTNAME}${EXTRACT_SUFX}
+LICENSE_DISTFILES_NAISTL=	${DISTNAME}${EXTRACT_SUFX}
 
 FETCH_DEPENDS=	git:devel/git
-PATCH_DEPENDS=${PYTHON_CMD}:${PYTHON_PORTSDIR}
+PATCH_DEPENDS=	${PYTHON_CMD}:${PYTHON_PORTSDIR}
 BUILD_DEPENDS=	bazel:devel/bazel7 \
 		python3:lang/python3
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
@@ -44,27 +44,35 @@ JAVA_BUILD=	yes
 BUILD_WRKSRC=	${WRKSRC}/src
 BUILD_MOZC_LIST?=	mozc_server
 
-BUILD_MOZC_CMD=	bazel ${BAZEL_OPTS} build \
+BUILD_MOZC_CMD=	bazel ${BAZEL_OPTS} --server_javabase=${JAVA_HOME} build \
 		${BAZEL_ENV} ${BAZEL_COMMON_OPTS} \
 		-c opt --copt=-fPIC --host_linkopt=-lm \
-		--verbose_failures --sandbox_debug --config oss_linux \
-		--tool_java_language_version=21
+		--verbose_failures --sandbox_debug \
+		--tool_java_language_version=${JAVA_VERSION} \
+		--config oss_linux
 
-BAZEL_REGISTRY=	${DISTDIR}/${DIST_SUBDIR}/bazel-central-registry
+BAZEL_REGISTRY=	${DISTDIR}/bazel-central-registry
 
-BAZEL_COMMON_OPTS=	--distdir=${WRKDIR}/bazel-dist \
+BAZEL_COMMON_OPTS=	--distdir=${DISTDIR}/${DIST_SUBDIR} \
 		--registry="file://${BAZEL_REGISTRY}"
 
 BAZEL_OPTS=	--output_base=${WRKDIR}/bazel-out-base \
-		--output_user_root=${WRKDIR}/bazel-out-user \
-		--server_javabase=${JAVA_HOME}
+		--output_user_root=${WRKDIR}/bazel-out-user
 
 BAZEL_ENV=	--action_env=PATH=${JAVA_HOME}/bin:${PATH}
 
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
+
 PKGNAMEPREFIX=	ja-
 PKGNAMESUFFIX=	-server
 
+# zip code
+MASTER_SITES+=	https://www.post.japanpost.jp/zipcode/dl/kogaki/zip/:kenall \
+		https://www.post.japanpost.jp/zipcode/dl/jigyosyo/zip/:jigyosyo
+DISTFILES+=	ken_all.zip:kenall \
+		jigyosyo.zip:jigyosyo
+
+# usage dictionary
 GH_TUPLE+=	hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic/src/third_party/japanese_usage_dictionary
 
 OPTIONS_DEFINE=	UTDIC
@@ -109,19 +117,15 @@ UTDIC_GH_TUPLE=		utuhiro78:merge-ut-dictionaries:23de2d9:ut
 UTDIC_MASTER_SITES=	https://dumps.wikimedia.org/jawiki/latest/:title
 UTDIC_DISTFILES=	jawiki-latest-all-titles-in-ns0.gz:title
 
-# zip code
-MASTER_SITES+=	https://www.post.japanpost.jp/zipcode/dl/kogaki/zip/:kenall \
-		https://www.post.japanpost.jp/zipcode/dl/jigyosyo/zip/:jigyosyo
-DISTFILES+=	ken_all.zip:kenall \
-		jigyosyo.zip:jigyosyo
-
 .elif ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
+
 BUILD_DEPENDS+=	libglvnd>0:graphics/libglvnd
 USES+=		qt:6
 USE_LOCALE=	C.UTF-8
 USE_QT=		base
 
 .elif ${BUILD_MOZC_LIST:Mibus_mozc} == "ibus_mozc"
+
 LIB_DEPENDS+=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
 USES+=		gettext-runtime gnome xorg
@@ -129,12 +133,15 @@ USE_XORG=	xcb
 USE_GNOME=	cairo gdkpixbuf2 glib20 gtk20
 
 .elif ${BUILD_MOZC_LIST:Mmozc_el} == "mozc_el"
+
 USES+=		emacs
 
 .elif ${BUILD_MOZC_LIST:Mfcitx_mozc}
+
 USES+=		gettext-tools
 
 .elif ${BUILD_MOZC_LIST:Mfcitx5_mozc}
+
 USES+=		gettext-tools
 
 .endif
@@ -150,10 +157,6 @@ _CCTYPE=	gcc
 .include <bsd.port.pre.mk>
 
 post-extract:
-	@${MKDIR} ${WRKDIR}/bazel-dist
-.for file in ${DISTFILES:C/\:.*//}
-	@${CP} -a ${DISTDIR}/${DIST_SUBDIR}/${file} ${WRKDIR}/bazel-dist
-.endfor
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
 	@${CP} -a ${WRKDIR}/*.CSV ${BUILD_WRKSRC}/third_party
 .endif
@@ -189,8 +192,6 @@ post-patch:
 	    ${BUILD_WRKSRC}/unix/fcitx5/gen_fcitx_mozc_i18n.sh
 .endif
 
-#################################################
-# mozc_server
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server" || make(makesum)
 
 .if ${PORT_OPTIONS:MNEOLOGD} || ${PORT_OPTIONS:MPERSONALNAME} || \
@@ -207,8 +208,6 @@ LICENSE+=	GPLv2
 PLIST_FILES+=	bin/mozc \
 		libexec/mozc_server
 SUB_FILES+=	mozc
-
-_USES_patch=	800:post-patch-mozc_server
 
 post-patch-mozc_server:
 .if ${PORT_OPTIONS:MUTDIC}
@@ -237,10 +236,6 @@ do-install-mozc_server:
 	    ${WRKDIR}/mozc ${STAGEDIR}/${PREFIX}/bin
 .endif
 
-#################################################
-
-#################################################
-# mozc_tool
 .if ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
 
 PLIST_FILES+=	libexec/mozc_tool \
@@ -270,10 +265,7 @@ do-install-mozc_tool:
 	${INSTALL_DATA} ${BUILD_WRKSRC}/data/installer/credits_en.html \
 		${STAGEDIR}${DATADIR}
 .endif
-#################################################
 
-#################################################
-# ibus_mozc
 .if ${BUILD_MOZC_LIST:Mibus_mozc} == "ibus_mozc"
 
 LIB_DEPENDS+=	libibus-1.0.so:textproc/ibus
@@ -321,10 +313,7 @@ do-install-ibus_mozc:
 	    ${BUILD_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
 	    ${STAGEDIR}${DATADIR}/icons/product_icon.png
 .endif
-#################################################
 
-#################################################
-# uim_mozc
 .if ${BUILD_MOZC_LIST:Muim_mozc} == "uim_mozc" || make(makesum)
 GH_TUPLE+=	e-kato:macuim:v0.6.16.2.1:MU
 
@@ -368,10 +357,7 @@ do-install-uim_mozc:
 	    ${BUILD_WRKSRC}/data/images/product_icon_32bpp-128.png \
 	    ${STAGEDIR}${DATADIR}/pixmaps/mozc.png
 .endif
-#################################################
 
-#################################################
-# fcitx_mozc
 .if ${BUILD_MOZC_LIST:Mfcitx_mozc} == "fcitx_mozc"
 
 LIB_DEPENDS+=	libfcitx-core.so:chinese/fcitx
@@ -436,10 +422,7 @@ do-install-fcitx_mozc:
 		${STAGEDIR}${PREFIX}/share/locale/${L}/LC_MESSAGES/fcitx-mozc.mo
 .endfor
 .endif #fcitx_mozc
-#################################################
 
-#################################################
-# fcitx5_mozc
 .if ${BUILD_MOZC_LIST:Mfcitx5_mozc} == "fcitx5_mozc"
 
 LIB_DEPENDS+=	libFcitx5Core.so:textproc/fcitx5
@@ -520,10 +503,7 @@ do-install-fcitx5_mozc:
 		${BUILD_WRKSRC}/unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml \
 			${STAGEDIR}${PREFIX}/share/metainfo
 .endif #fcitx5_mozc
-#################################################
 
-#################################################
-# mozc_el
 .if ${BUILD_MOZC_LIST:Mmozc_el} == "mozc_el"
 
 CATEGORIES+=	elisp
@@ -555,13 +535,45 @@ do-install-mozc_el:
 	    ${FILESDIR}/leim-list.el \
 	    ${STAGEDIR}${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/mozc/
 .endif
-#################################################
 
 do-build: ${BUILD_MOZC_LIST:S/^/do-build-/}
 do-install: ${BUILD_MOZC_LIST:S/^/do-install-/}
 
 post-install:
 	cd ${BUILD_WRKSRC} && bazel ${BAZEL_OPTS} shutdown
+
+_USES_fetch+=	800:bcr-fetch
+BCR_URL=	https://github.com/bazelbuild/bazel-central-registry.git
+bcr-fetch:
+.if defined(FORCE_FETCH_ALL)
+	${RM} -r ${BAZEL_REGISTRY}
+.endif
+.if ! exists(${BAZEL_REGISTRY})
+	cd ${DISTDIR} && \
+		git clone ${BCR_URL}
+.else
+. if make(fetch)
+	cd ${BAZEL_REGISTRY} && git pull
+. endif
+.endif
+
+bazel-mod:
+	@cd ${BUILD_WRKSRC} && \
+		bazel ${BAZEL_OPTS} mod graph \
+			--output text --charset ascii \
+			${BAZEL_COMMON_OPTS}
+
+bazel-modules: patch
+	@cd ${BUILD_WRKSRC} && \
+		bazel ${BAZEL_OPTS} mod show_repo $$( cd ${BUILD_WRKSRC} && \
+				bazel ${BAZEL_OPTS} mod graph \
+					--output text --charset ascii \
+					${BAZEL_COMMON_OPTS} | \
+				${SED} -E 's/[_]+//;s/\|//g;s/^ +//;s/ .*//;' | \
+				${GREP} '@[0-9]' | sort -u ) \
+			--output text --charset ascii \
+			${BAZEL_COMMON_OPTS} | \
+		${AWK} -F / ' / urls = / { sub(/.* urls = \["/, ""); sub(/"\],/, ""); group=$$5; gsub(/-/, "_", group); printf( "MASTER_SITES+=\t%s/%s/%s/%s/%s/%s/%s/%s/:%s\nDISTFILES+=\t%s:%s\n", $$1, $$2, $$3, $$4, $$5, $$6, $$7, $$8, group, $$9, group ); } ' > ${.CURDIR}/Makefile.MASTER_SITES
 
 # Create new distinfo: `make renew-makesum`
 renew-makesum:
@@ -578,19 +590,5 @@ renew-makesum:
 		${FETCH_BINARY} -Fmp $${url} ; \
 	done
 	@${MAKE} makesum
-
-_USES_fetch+=	800:registry-fetch
-registry-fetch:
-.if defined(FORCE_FETCH_ALL)
-	${RM} -r ${BAZEL_REGISTRY}
-.endif
-.if ! exists(${BAZEL_REGISTRY})
-	cd ${DISTDIR}/${DIST_SUBDIR} && \
-		git clone https://github.com/bazelbuild/bazel-central-registry.git
-.else
-. if make(fetch)
-	cd ${BAZEL_REGISTRY} && git pull
-. endif
-.endif
 
 .include <bsd.port.post.mk>

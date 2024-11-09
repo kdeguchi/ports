@@ -1,60 +1,40 @@
-DISTFILES+=	apple_support.${apple_support_VERSION}.tar.gz:apple_support \
-		bazel_features-v${bazel_features_VERSION}.tar.gz:bazel_features \
-		bazel-skylib-${bazel_skylib_VERSION}.tar.gz:bazel_skylib \
-		kotlin-compiler-${kotlin_compiler_VERSION}.zip:kotlin_compiler \
-		include.zip:nlohmann_json \
-		platforms-${platforms_VERSION}.tar.gz:platforms \
-		rules_android-v${rules_android_VERSION}.tar.gz:rules_android \
-		rules_android_ndk-v${rules_android_ndk_VERSION}.tar.gz:rules_android_ndk \
-		rules_apple.${rules_apple_VERSION}.tar.gz:rules_apple \
-		rules_cc-${rules_cc_VERSION}.tar.gz:rules_cc \
-		rules_go-v${rules_go_VERSION}.zip:rules_go \
-		rules_java-${rules_java_VERSION}.tar.gz:rules_java \
-		rules_kotlin-v${rules_kotlin_VERSION}.tar.gz:rules_kotlin \
-		rules_license-${rules_license_VERSION}.tar.gz:rules_license \
-		rules_pkg-${rules_pkg_VERSION}.tar.gz:rules_pkg \
-		rules_proto-${rules_proto_VERSION}.tar.gz:rules_proto \
-		rules_python-${rules_python_VERSION}.tar.gz:rules_python \
-		rules_swift.${rules_swift_VERSION}.tar.gz:rules_swift \
-		zlib-${zlib_VERSION}.tar.gz:zlib
-
-MASTER_SITES+=	https://github.com/abseil/abseil-cpp/releases/download/${abseil_VERSION}/:abseil \
-		https://github.com/bazelbuild/apple_support/releases/download/${apple_support_VERSION}/:apple_support \
-		https://github.com/bazel-contrib/bazel_features/releases/download/v${bazel_features_VERSION}/:bazel_features \
-		https://github.com/bazelbuild/bazel-skylib/releases/download/${bazel_skylib_VERSION}/:bazel_skylib \
-		https://github.com/JetBrains/kotlin/releases/download/v${kotlin_compiler_VERSION}/:kotlin_compiler \
-		https://github.com/nlohmann/json/releases/download/v${nlohmann_json_VERSION}/:nlohmann_json \
-		https://github.com/bazelbuild/platforms/releases/download/${platforms_VERSION}/:platforms \
-		https://github.com/bazelbuild/rules_android/releases/download/v${rules_android_VERSION}/:rules_android \
-		https://github.com/bazelbuild/rules_android_ndk/releases/download/v${rules_android_ndk_VERSION}/:rules_android_ndk \
-		https://github.com/bazelbuild/rules_apple/releases/download/${rules_apple_VERSION}/:rules_apple \
-		https://github.com/bazelbuild/rules_cc/releases/download/${rules_cc_VERSION}/:rules_cc \
-		https://github.com/bazelbuild/rules_go/releases/download/v${rules_go_VERSION}/:rules_go \
-		https://github.com/bazelbuild/rules_java/releases/download/${rules_java_VERSION}/:rules_java \
-		https://github.com/bazelbuild/rules_kotlin/releases/download/v${rules_kotlin_VERSION}/:rules_kotlin \
-		https://github.com/bazelbuild/rules_license/releases/download/${rules_license_VERSION}/:rules_license \
-		https://github.com/bazelbuild/rules_pkg/releases/download/${rules_pkg_VERSION}/:rules_pkg \
-		https://github.com/bazelbuild/rules_proto/releases/download/${rules_proto_VERSION}/:rules_proto \
-		https://github.com/bazelbuild/rules_python/releases/download/${rules_python_VERSION}/:rules_python \
-		https://github.com/bazelbuild/rules_swift/releases/download/${rules_swift_VERSION}/:rules_swift \
-		https://github.com/madler/zlib/releases/download/v${zlib_VERSION}/:zlib
-
-apple_support_VERSION=	1.16.0
-bazel_features_VERSION=	1.11.0
-bazel_skylib_VERSION=	1.7.1
-kotlin_compiler_VERSION=	1.9.22
-nlohmann_json_VERSION=3.6.1
-platforms_VERSION=	0.0.10
-rules_android_VERSION=	0.5.1
-rules_android_ndk_VERSION=	0.1.2
-rules_apple_VERSION=	3.5.1
-rules_cc_VERSION=	0.0.9
-rules_go_VERSION=	0.48.0
-rules_java_VERSION=	7.9.0
-rules_kotlin_VERSION=	1.9.5
-rules_license_VERSION=	0.0.7
-rules_pkg_VERSION=	0.7.0
-rules_proto_VERSION=	6.0.0-rc1
-rules_python_VERSION=	0.34.0
-rules_swift_VERSION=	1.18.0
-zlib_VERSION=	1.3.1
+MASTER_SITES+=	https://github.com/bazelbuild/apple_support/releases/download/1.16.0/:apple_support
+DISTFILES+=	apple_support.1.16.0.tar.gz:apple_support
+MASTER_SITES+=	https://github.com/bazel-contrib/bazel_features/releases/download/v1.11.0/:bazel_features
+DISTFILES+=	bazel_features-v1.11.0.tar.gz:bazel_features
+MASTER_SITES+=	https://github.com/bazelbuild/bazel-skylib/releases/download/1.7.1/:bazel_skylib
+DISTFILES+=	bazel-skylib-1.7.1.tar.gz:bazel_skylib
+MASTER_SITES+=	https://github.com/open-source-parsers/jsoncpp/archive/refs/tags/:jsoncpp
+DISTFILES+=	1.9.5.tar.gz:jsoncpp
+MASTER_SITES+=	https://github.com/nlohmann/json/releases/download/v3.6.1/:json
+DISTFILES+=	include.zip:json
+MASTER_SITES+=	https://github.com/bazelbuild/platforms/releases/download/0.0.10/:platforms
+DISTFILES+=	platforms-0.0.10.tar.gz:platforms
+MASTER_SITES+=	https://github.com/pybind/pybind11_bazel/releases/download/v2.12.0/:pybind11_bazel
+DISTFILES+=	pybind11_bazel-2.12.0.zip:pybind11_bazel
+MASTER_SITES+=	https://github.com/google/re2/releases/download/2024-07-02/:re2
+DISTFILES+=	re2-2024-07-02.zip:re2
+MASTER_SITES+=	https://github.com/bazelbuild/rules_android_ndk/releases/download/v0.1.2/:rules_android_ndk
+DISTFILES+=	rules_android_ndk-v0.1.2.tar.gz:rules_android_ndk
+MASTER_SITES+=	https://github.com/bazelbuild/rules_apple/releases/download/3.5.1/:rules_apple
+DISTFILES+=	rules_apple.3.5.1.tar.gz:rules_apple
+MASTER_SITES+=	https://github.com/bazelbuild/rules_cc/releases/download/0.0.9/:rules_cc
+DISTFILES+=	rules_cc-0.0.9.tar.gz:rules_cc
+MASTER_SITES+=	https://github.com/bazelbuild/rules_java/releases/download/7.9.0/:rules_java
+DISTFILES+=	rules_java-7.9.0.tar.gz:rules_java
+MASTER_SITES+=	https://github.com/bazelbuild/rules_jvm_external/releases/download/5.1/:rules_jvm_external
+DISTFILES+=	rules_jvm_external-5.1.tar.gz:rules_jvm_external
+MASTER_SITES+=	https://github.com/bazelbuild/rules_license/releases/download/0.0.7/:rules_license
+DISTFILES+=	rules_license-0.0.7.tar.gz:rules_license
+MASTER_SITES+=	https://github.com/bazelbuild/rules_pkg/releases/download/0.7.0/:rules_pkg
+DISTFILES+=	rules_pkg-0.7.0.tar.gz:rules_pkg
+MASTER_SITES+=	https://github.com/bazelbuild/rules_proto/releases/download/6.0.0-rc1/:rules_proto
+DISTFILES+=	rules_proto-6.0.0-rc1.tar.gz:rules_proto
+MASTER_SITES+=	https://github.com/bazelbuild/rules_python/releases/download/0.34.0/:rules_python
+DISTFILES+=	rules_python-0.34.0.tar.gz:rules_python
+MASTER_SITES+=	https://github.com/bazelbuild/rules_swift/releases/download/1.18.0/:rules_swift
+DISTFILES+=	rules_swift.1.18.0.tar.gz:rules_swift
+MASTER_SITES+=	https://github.com/bazelbuild/stardoc/releases/download/0.5.3/:stardoc
+DISTFILES+=	stardoc-0.5.3.tar.gz:stardoc
+MASTER_SITES+=	https://github.com/madler/zlib/releases/download/v1.3.1/:zlib
+DISTFILES+=	zlib-1.3.1.tar.gz:zlib
