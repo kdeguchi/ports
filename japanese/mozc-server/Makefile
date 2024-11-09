@@ -548,11 +548,11 @@ bcr-fetch:
 .if defined(FORCE_FETCH_ALL)
 	${RM} -r ${BAZEL_REGISTRY}
 .endif
-.if ! exists(BAZEL_REGISTRY)
+.if ! exists(${BAZEL_REGISTRY})
 	cd ${DISTDIR} && git clone ${BCR_URL}
 .else
 . if make(fetch)
-	cd ${BAZEL_REGISTRY} && git pull || exit 0
+	cd ${BAZEL_REGISTRY} && ( git pull 2> /dev/null || exit 0 )
 . endif
 .endif
 
