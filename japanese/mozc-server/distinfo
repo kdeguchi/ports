@@ -1,4 +1,4 @@
-TIMESTAMP = 1731112768
+TIMESTAMP = 1731226167
 SHA256 (mozc/apple_support.1.16.0.tar.gz) = c31ce8e531b50ef1338392ee29dd3db3689668701ec3237b9c61e26a1937ab07
 SIZE (mozc/apple_support.1.16.0.tar.gz) = 86001
 SHA256 (mozc/bazel_features-v1.11.0.tar.gz) = 2cd9e57d4c38675d321731d65c15258f3a66438ad531ae09cb8bb14217dc8572
@@ -43,8 +43,8 @@ SHA256 (mozc/ken_all.zip) = b7a1fb92c5b0e98a8c8ffa3cd732399809fcc80ffef2e19eb2d1
 SIZE (mozc/ken_all.zip) = 1693886
 SHA256 (mozc/jigyosyo.zip) = 7fe78e0392e62dc9b77d8d5fa89786144b2df6bf07cb7b3fef55ab239292842b
 SIZE (mozc/jigyosyo.zip) = 773467
-SHA256 (mozc/jawiki-latest-all-titles-in-ns0.gz) = 982000b6afd57c5c31b82c7ed0ee969e572cc02200579934a3915069d978c8c7
-SIZE (mozc/jawiki-latest-all-titles-in-ns0.gz) = 14842305
+SHA256 (mozc/jawiki-latest-all-titles-in-ns0.gz) = 4537683e16570c2bd76eb0867454b3bfde26f1d98634d16f2021a3fdf843ef62
+SIZE (mozc/jawiki-latest-all-titles-in-ns0.gz) = 14865482
 SHA256 (mozc/fcitx-mozc-2.30.5618.102-95a88f6_GH0.tar.gz) = 548c0461d5c020febf966bce34f498ec22089ce0e39f5d36f78c349bbb2d85fd
 SIZE (mozc/fcitx-mozc-2.30.5618.102-95a88f6_GH0.tar.gz) = 31375737
 SHA256 (mozc/abseil-abseil-cpp-4447c75_GH0.tar.gz) = 27faabd1ef627ea99020a1d6b93e306ac2014d0d1a18589da480ac18a43fd208

@@ -226,7 +226,7 @@ post-patch: post-patch-mozc_server
 
 do-build-mozc_server:
 	cd ${BUILD_WRKSRC} && \
-		${BUILD_MOZC_CMD} server:mozc_server
+		${BUILD_MOZC_CMD} //server:mozc_server
 
 do-install-mozc_server:
 	${INSTALL_PROGRAM} \
@@ -289,7 +289,7 @@ PLIST_DIRS+=	%%DATADIR%%/icons ${DATADIR_REL}
 
 do-build-ibus_mozc:
 	cd ${BUILD_WRKSRC} && \
-		${BUILD_MOZC_CMD} unix/ibus:ibus
+		${BUILD_MOZC_CMD} //unix/ibus:ibus
 
 do-install-ibus_mozc:
 	${INSTALL_PROGRAM} \
@@ -389,7 +389,7 @@ PLIST_DIRS+=	%%DATADIR%%/icon ${DATADIR_REL}
 
 do-build-fcitx_mozc:
 	cd ${BUILD_WRKSRC} && \
-		${BUILD_MOZC_CMD} unix/fcitx:fcitx-mozc.so
+		${BUILD_MOZC_CMD} //unix/fcitx:fcitx-mozc.so
 	cd ${BUILD_WRKSRC}/unix/fcitx && ${SH} gen_fcitx_mozc_i18n.sh ./po
 
 do-install-fcitx_mozc:
@@ -457,7 +457,7 @@ PLIST_FILES+=	lib/fcitx5/fcitx5-mozc.so \
 
 do-build-fcitx5_mozc:
 	cd ${BUILD_WRKSRC} && \
-		${BUILD_MOZC_CMD} unix/fcitx5:fcitx5-mozc.so; \
+		${BUILD_MOZC_CMD} //unix/fcitx5:fcitx5-mozc.so; \
 		msgfmt --xml -d unix/fcitx5/po/ \
 			--template unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml.in \
 			-o unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml
