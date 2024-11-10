@@ -126,11 +126,17 @@ USE_QT=		base
 
 .elif ${BUILD_MOZC_LIST:Mibus_mozc} == "ibus_mozc"
 
+BUILD_DEPENDS+=	libglvnd>0:graphics/libglvnd
 LIB_DEPENDS+=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
+
 USES+=		gettext-runtime gnome xorg
 USE_XORG=	xcb
 USE_GNOME=	cairo gdkpixbuf2 glib20 gtk20
+
+USES+=		qt:6
+USE_LOCALE=	C.UTF-8
+USE_QT=		base
 
 .elif ${BUILD_MOZC_LIST:Mmozc_el} == "mozc_el"
 
@@ -289,7 +295,8 @@ PLIST_DIRS+=	%%DATADIR%%/icons ${DATADIR_REL}
 
 do-build-ibus_mozc:
 	cd ${BUILD_WRKSRC} && \
-		${BUILD_MOZC_CMD} //unix/ibus:ibus_mozc //unix:ibus:gen_mozc_xml
+		${BUILD_MOZC_CMD} //unix/ibus:ibus_mozc \
+			//unix:ibus:gen_mozc_xml //renderer/qt:mozc_renderer
 
 do-install-ibus_mozc:
 	${INSTALL_PROGRAM} \
