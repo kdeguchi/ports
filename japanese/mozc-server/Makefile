@@ -569,7 +569,7 @@ bazel-mod: configure
 			--output text --charset ascii \
 			${BAZEL_COMMON_OPTS} | \
 		${SED} -E 's/[^[:alnum:]]+//;s/ .*//;' | \
-		${GREP} '@[0-9]' | ${SORT} -u \
+		${GREP} '@[0-9]' | ${SORT} -u
 
 bazel-modules: configure
 	@cd ${BUILD_WRKSRC} && \
