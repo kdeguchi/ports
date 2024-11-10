@@ -296,8 +296,8 @@ PLIST_DIRS+=	%%DATADIR%%/icons ${DATADIR_REL}
 do-build-ibus_mozc:
 	cd ${BUILD_WRKSRC} && \
 		${BUILD_MOZC_CMD} //unix/ibus:ibus_mozc \
-			//unix/ibus:gen_mozc_xml #\
-#			//renderer/qt:mozc_renderer
+			//unix/ibus:gen_mozc_xml //unix:icons \
+			//renderer/qt:mozc_renderer
 
 do-install-ibus_mozc:
 	${INSTALL_PROGRAM} \
@@ -550,9 +550,9 @@ do-install: ${BUILD_MOZC_LIST:S/^/do-install-/}
 post-install:
 	cd ${BUILD_WRKSRC} && bazel ${BAZEL_BOOT} shutdown
 
-_USES_fetch+=	800:bcr-fetch
+_USES_fetch+=	800:fetch-bcr
 BCR_URL=	https://github.com/bazelbuild/bazel-central-registry.git
-bcr-fetch:
+fetch-bcr:
 .if defined(FORCE_FETCH_ALL)
 	${RM} -r ${BAZEL_REGISTRY}
 .endif
