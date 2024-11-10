@@ -289,18 +289,18 @@ PLIST_DIRS+=	%%DATADIR%%/icons ${DATADIR_REL}
 
 do-build-ibus_mozc:
 	cd ${BUILD_WRKSRC} && \
-		${BUILD_MOZC_CMD} //unix/ibus:ibus
+		${BUILD_MOZC_CMD} //unix/ibus:ibus_mozc //unix:ibus:gen_mozc_xml
 
 do-install-ibus_mozc:
 	${INSTALL_PROGRAM} \
-	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/mozc_renderer \
+	    ${BUILD_WRKSRC}/basel-out/freebsd-opt/bin/mozc_renderer \
 	    ${STAGEDIR}${PREFIX}/libexec/mozc_renderer
 	${INSTALL_PROGRAM} \
-	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/ibus_mozc \
+	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/ibus_mozc \
 	    ${STAGEDIR}${PREFIX}/libexec/ibus-engine-mozc
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/ibus/component
 	${INSTALL_DATA} \
-	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/gen/unix/ibus/mozc.xml \
+	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/ibus/mozc.xml \
 	    ${STAGEDIR}${PREFIX}/share/ibus/component/mozc.xml
 	@${MKDIR} ${STAGEDIR}${DATADIR}/icons
 .for F in ui-alpha_full ui-alpha_half ui-dictionary ui-direct \
