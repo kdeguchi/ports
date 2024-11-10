@@ -296,7 +296,7 @@ PLIST_DIRS+=	%%DATADIR%%/icons ${DATADIR_REL}
 do-build-ibus_mozc:
 	cd ${BUILD_WRKSRC} && \
 		${BUILD_MOZC_CMD} //unix/ibus:ibus_mozc \
-			//unix:ibus:gen_mozc_xml //renderer/qt:mozc_renderer
+			//unix/ibus:gen_mozc_xml //renderer/qt:mozc_renderer
 
 do-install-ibus_mozc:
 	${INSTALL_PROGRAM} \
