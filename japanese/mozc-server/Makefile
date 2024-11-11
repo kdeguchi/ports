@@ -537,6 +537,8 @@ post-patch-mozc_el:
 post-patch: post-patch-mozc_el
 
 do-build-mozc_el:
+	cd ${BUILD_WRKSRC} && \
+		${BUILD_MOZC_CMD} //unix/emacs:mozc_emacs_helper
 	cd ${BUILD_WRKSRC}/unix/emacs && \
 	    ${EMACS_CMD} -batch -q -no-site-file -no-init-file \
 	    -f batch-byte-compile mozc.el && \
@@ -544,6 +546,9 @@ do-build-mozc_el:
 
 do-install-mozc_el:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/mozc
+	${INSTALL_PROGRAM} \
+		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/emacs/mozc_emacs_helper \
+		${STAGEDIR}${PREFIX}/libexec/
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/unix/emacs/mozc.el.gz \
 	    ${BUILD_WRKSRC}/unix/emacs/mozc.elc \
