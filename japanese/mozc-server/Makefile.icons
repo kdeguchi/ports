@@ -1,8 +1,0 @@
-fetch-materialicons:
-	cd ${DISTDIR}/${DIST_SUBDIR} && \
-		${FETCH_CMD} https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/chrome_reader_mode/materialiconsoutlined/48dp/1x/outline_chrome_reader_mode_black_48dp.png -o dictionary.png && \
-		${FETCH_CMD} https://raw.githubusercontent.com/google/material-design-icons/4.0.0/src/action/chrome_reader_mode/materialiconsoutlined/24px.svg -o dictionary.svg && \
-		${FETCH_CMD} https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/settings/materialiconsround/48dp/1x/round_settings_black_48dp.png -o properties.png && \
-		${FETCH_CMD} https://raw.githubusercontent.com/google/material-design-icons/4.0.0/src/action/settings/materialiconsround/24px.svg -o properties.svg && \
-		${FETCH_CMD} https://raw.githubusercontent.com/google/material-design-icons/4.0.0/png/action/build/materialicons/48dp/1x/baseline_build_black_48dp.png -o tool.png && \
-		${FETCH_CMD} https://raw.githubusercontent.com/google/material-design-icons/4.0.0/src/action/build/materialicons/24px.svg -o tool.svg
