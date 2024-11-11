@@ -549,6 +549,7 @@ do-install-mozc_el:
 	    ${BUILD_WRKSRC}/unix/emacs/mozc.elc \
 	    ${FILESDIR}/leim-list.el \
 	    ${STAGEDIR}${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/mozc/
+
 .endif
 
 do-build: ${BUILD_MOZC_LIST:S/^/do-build-/}
