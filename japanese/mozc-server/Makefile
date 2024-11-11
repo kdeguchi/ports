@@ -280,18 +280,25 @@ RUN_DEPENDS+=	mozc:japanese/mozc-server \
 
 PLIST_FILES+=	libexec/mozc_renderer \
 		libexec/ibus-engine-mozc \
-		%%DATADIR%%/icons/alpha_full.png \
-		%%DATADIR%%/icons/alpha_half.png \
-		%%DATADIR%%/icons/dictionary.png \
-		%%DATADIR%%/icons/direct.png \
-		%%DATADIR%%/icons/hiragana.png \
-		%%DATADIR%%/icons/katakana_full.png \
-		%%DATADIR%%/icons/katakana_half.png \
-		%%DATADIR%%/icons/product_icon.png \
-		%%DATADIR%%/icons/properties.png \
-		%%DATADIR%%/icons/tool.png \
+		%%DATADIR%%/alpha_full.png \
+		%%DATADIR%%/alpha_half.png \
+		%%DATADIR%%/dictionary.png \
+		%%DATADIR%%/direct.png \
+		%%DATADIR%%/hiragana.png \
+		%%DATADIR%%/katakana_full.png \
+		%%DATADIR%%/katakana_half.png \
+		%%DATADIR%%/product_icon.png \
+		%%DATADIR%%/properties.png \
+		%%DATADIR%%/tool.png \
 		share/ibus/component/mozc.xml
-PLIST_DIRS+=	%%DATADIR%%/icons ${DATADIR_REL}
+PLIST_DIRS+=	${DATADIR_REL}
+
+post-patch-ibus_mozc:
+	${REINPLACE_CMD} -e 's@ ulong @ unsigned long @;' \
+		-e 's@ulong id@unsigned long id@;' -e 's@, ulong>@, unsigned long>@;' \
+			${BUILD_WRKSRC}/unix/ibus/ibus_wrapper.*
+
+post-patch: post-patch-ibus_mozc
 
 do-build-ibus_mozc:
 	cd ${BUILD_WRKSRC} && \
@@ -301,7 +308,7 @@ do-build-ibus_mozc:
 
 do-install-ibus_mozc:
 	${INSTALL_PROGRAM} \
-	    ${BUILD_WRKSRC}/basel-out/freebsd-opt/bin/renderer/mozc_renderer \
+	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/renderer/qt/mozc_renderer \
 	    ${STAGEDIR}${PREFIX}/libexec/mozc_renderer
 	${INSTALL_PROGRAM} \
 	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/ibus/ibus_mozc \
@@ -310,16 +317,16 @@ do-install-ibus_mozc:
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/ibus/mozc.xml \
 	    ${STAGEDIR}${PREFIX}/share/ibus/component/mozc.xml
-	@${MKDIR} ${STAGEDIR}${DATADIR}/icons
+	@${MKDIR} ${STAGEDIR}${DATADIR}
 .for F in ui-alpha_full ui-alpha_half ui-dictionary ui-direct \
 	ui-hiragana ui-katakana_full ui-katakana_half ui-properties ui-tool
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/data/images/unix/${F}.png \
-	    ${STAGEDIR}${DATADIR}/icons/${F:S/^ui-//}.png
+	    ${STAGEDIR}${DATADIR}/${F:S/^ui-//}.png
 .endfor
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
-	    ${STAGEDIR}${DATADIR}/icons/product_icon.png
+	    ${STAGEDIR}${DATADIR}/product_icon.png
 .endif
 
 .if ${BUILD_MOZC_LIST:Muim_mozc} == "uim_mozc" || make(makesum)
