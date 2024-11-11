@@ -51,10 +51,10 @@ BUILD_MOZC_CMD=	bazel ${BAZEL_BOOT} --server_javabase=${JAVA_HOME} \
 		--tool_java_language_version=${JAVA_VERSION} \
 		--config oss_linux
 
-BAZEL_REGISTRY=	${DISTDIR}/bazel-central-registry
+BAZEL_BCR_LOCAL=	${DISTDIR}/bazel-central-registry
 
 BAZEL_COMMON_OPTS=	--distdir=${DISTDIR}/${DIST_SUBDIR} \
-		--registry="file://${BAZEL_REGISTRY}"
+		--registry="file://${BAZEL_BCR_LOCAL}"
 
 BAZEL_BOOT=	--output_base=${WRKDIR}/bazel-out-base \
 		--output_user_root=${WRKDIR}/bazel-out-user
@@ -295,20 +295,20 @@ PLIST_DIRS+=	%%DATADIR%%/icons ${DATADIR_REL}
 
 do-build-ibus_mozc:
 	cd ${BUILD_WRKSRC} && \
-		${BUILD_MOZC_CMD} //unix/ibus:ibus_mozc \
-			//unix/ibus:gen_mozc_xml //unix:icons \
-			//renderer/qt:mozc_renderer
+		${BUILD_MOZC_CMD} //renderer/qt:mozc_renderer \
+			//unix/ibus:ibus_mozc \
+			//unix/ibus:gen_mozc_xml //unix:icons
 
 do-install-ibus_mozc:
 	${INSTALL_PROGRAM} \
-	    ${BUILD_WRKSRC}/basel-out/freebsd-opt/bin/mozc_renderer \
+	    ${BUILD_WRKSRC}/basel-out/freebsd-opt/bin/renderer/mozc_renderer \
 	    ${STAGEDIR}${PREFIX}/libexec/mozc_renderer
 	${INSTALL_PROGRAM} \
-	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/ibus_mozc \
+	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/ibus/ibus_mozc \
 	    ${STAGEDIR}${PREFIX}/libexec/ibus-engine-mozc
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/ibus/component
 	${INSTALL_DATA} \
-	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/ibus/mozc.xml \
+	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/ibus/mozc.xml \
 	    ${STAGEDIR}${PREFIX}/share/ibus/component/mozc.xml
 	@${MKDIR} ${STAGEDIR}${DATADIR}/icons
 .for F in ui-alpha_full ui-alpha_half ui-dictionary ui-direct \
@@ -551,16 +551,16 @@ post-install:
 	cd ${BUILD_WRKSRC} && bazel ${BAZEL_BOOT} shutdown
 
 _USES_fetch+=	800:fetch-bcr
-BCR_URL=	https://github.com/bazelbuild/bazel-central-registry.git
+BAZEL_BCR_URL=	https://github.com/bazelbuild/bazel-central-registry.git
 fetch-bcr:
 .if defined(FORCE_FETCH_ALL)
-	${RM} -r ${BAZEL_REGISTRY}
+	${RM} -r ${BAZEL_BCR_LOCAL}
 .endif
-.if ! exists(${BAZEL_REGISTRY})
-	cd ${DISTDIR} && git clone ${BCR_URL}
+.if ! exists(${BAZEL_BCR_LOCAL})
+	cd ${DISTDIR} && git clone ${BAZEL_BCR_URL}
 .else
 . if make(fetch)
-	cd ${BAZEL_REGISTRY} && ( git pull 2> /dev/null || exit 0 )
+	cd ${BAZEL_BCR_LOCAL} && ( git pull 2> /dev/null || exit 0 )
 . endif
 .endif
 
