@@ -527,7 +527,8 @@ RUN_DEPENDS+=	mozc:japanese/mozc-server
 NO_ARCH=	yes
 PLIST_FILES+=	${EMACS_VERSION_SITE_LISPDIR}/mozc/mozc.elc \
 		${EMACS_VERSION_SITE_LISPDIR}/mozc/mozc.el.gz \
-		${EMACS_VERSION_SITE_LISPDIR}/mozc/leim-list.el
+		${EMACS_VERSION_SITE_LISPDIR}/mozc/leim-list.el \
+		libexec/mozc_emacs_helper
 PLIST_DIRS+=	${EMACS_VERSION_SITE_LISPDIR}/mozc
 
 post-patch-mozc_el:
@@ -548,7 +549,7 @@ do-install-mozc_el:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/mozc
 	${INSTALL_PROGRAM} \
 		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/emacs/mozc_emacs_helper \
-		${STAGEDIR}${PREFIX}/libexec/
+		${STAGEDIR}${PREFIX}/libexec
 	${INSTALL_DATA} \
 	    ${BUILD_WRKSRC}/unix/emacs/mozc.el.gz \
 	    ${BUILD_WRKSRC}/unix/emacs/mozc.elc \
