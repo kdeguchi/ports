@@ -114,7 +114,8 @@ BAZEL_BOOT=	--output_base=${BAZEL_OUTPUT_BASE} \
 
 BAZEL_COMMON_OPTS=	--distdir=${BAZEL_DISTDIR}
 
-BAZEL_JAVA=	--action_env=PATH=${JAVA_HOME}/bin:${PATH} \
+BAZEL_BUILD_OPTS+=	--verbose_failures --sandbox_debug \
+		--action_env=PATH=${JAVA_HOME}/bin:${PATH} \
 		--tool_java_language_version=${JAVA_VERSION}
 
 USE_JAVA=	yes
@@ -131,7 +132,6 @@ JAVA_BUILD=	yes
 BAZEL_COMMON_OPTS+=	--registry=file://${BAZEL_BCR_LOCAL} \
 		--enable_bzlmod
 BAZEL_MOD_OPTS+=	--output text --charset ascii
-BAZEL_BUILD_OPTS+=	--verbose_failures --sandbox_debug
 
 BAZEL_BUILD=	${BAZEL_CMD} ${BAZEL_BOOT} build \
 		${BAZEL_COMMON_OPTS} ${BAZEL_BUILD_OPTS}
