@@ -189,13 +189,13 @@ post-patch:
 		${BUILD_WRKSRC}/unix/fcitx/gen_fcitx_mozc_i18n.sh
 	${REINPLACE_CMD} \
 		's,IconName=.*,IconName=${LOCALBASE:Q}/share/fcitx/mozc/icon/mozc.png,' \
-			${BUILD_WRKSRC}/unix/fcitx/mozc.conf
+		${BUILD_WRKSRC}/unix/fcitx/mozc.conf
 .endif
 
 .if ${BUILD_MOZC_LIST:Mfcitx5_mozc} == "fcitx5_mozc"
 	@${CP} ${BUILD_WRKSRC}/unix/fcitx/gen_fcitx_mozc_i18n.sh ${BUILD_WRKSRC}/unix/fcitx5/
 	@${REINPLACE_CMD} 's,/po/mo},%po}mo,g' \
-	    ${BUILD_WRKSRC}/unix/fcitx5/gen_fcitx_mozc_i18n.sh
+		${BUILD_WRKSRC}/unix/fcitx5/gen_fcitx_mozc_i18n.sh
 .endif
 
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server" || make(makesum)
@@ -236,10 +236,10 @@ do-build-mozc_server:
 
 do-install-mozc_server:
 	${INSTALL_PROGRAM} \
-	    ${BUILD_WRKSRC}/bazel-bin/server/mozc_server \
-	    ${STAGEDIR}${PREFIX}/libexec
+		${BUILD_WRKSRC}/bazel-bin/server/mozc_server \
+		${STAGEDIR}${PREFIX}/libexec
 	${INSTALL_SCRIPT} \
-	    ${WRKDIR}/mozc ${STAGEDIR}/${PREFIX}/bin
+		${WRKDIR}/mozc ${STAGEDIR}/${PREFIX}/bin
 .endif
 
 .if ${BUILD_MOZC_LIST:Mmozc_tool} == "mozc_tool"
@@ -259,15 +259,15 @@ do-build-mozc_tool:
 do-install-mozc_tool:
 	${INSTALL_PROGRAM} \
 		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/gui/tool/mozc_tool \
-			${STAGEDIR}${PREFIX}/libexec
+		${STAGEDIR}${PREFIX}/libexec
 	${INSTALL_SCRIPT} ${WRKDIR}/mozc_tool ${STAGEDIR}${PREFIX}/bin
 	@${MKDIR} ${STAGEDIR}${DATADIR}/icons
 	${INSTALL_DATA} \
 		${BUILD_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
-			${STAGEDIR}${DATADIR}/icons/product_logo.png
+		${STAGEDIR}${DATADIR}/icons/product_logo.png
 	${INSTALL_DATA} \
 		${BUILD_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
-			${STAGEDIR}${DATADIR}/icons/update_uptodate.png
+		${STAGEDIR}${DATADIR}/icons/update_uptodate.png
 	${INSTALL_DATA} ${BUILD_WRKSRC}/data/installer/credits_en.html \
 		${STAGEDIR}${DATADIR}
 .endif
@@ -296,37 +296,37 @@ PLIST_DIRS+=	${DATADIR_REL}
 post-patch-ibus_mozc:
 	${REINPLACE_CMD} -e 's@ ulong @ unsigned long @;' \
 		-e 's@ulong id@unsigned long id@;' -e 's@, ulong>@, unsigned long>@;' \
-			${BUILD_WRKSRC}/unix/ibus/ibus_wrapper.*
+		${BUILD_WRKSRC}/unix/ibus/ibus_wrapper.*
 
 post-patch: post-patch-ibus_mozc
 
 do-build-ibus_mozc:
 	cd ${BUILD_WRKSRC} && \
 		${BUILD_MOZC_CMD} //unix/ibus:ibus_mozc \
-		//unix/ibus:gen_mozc_xml \
-		//renderer/qt:mozc_renderer
+			//unix/ibus:gen_mozc_xml \
+			//renderer/qt:mozc_renderer
 
 do-install-ibus_mozc:
 	${INSTALL_PROGRAM} \
-	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/renderer/qt/mozc_renderer \
-	    ${STAGEDIR}${PREFIX}/libexec/mozc_renderer
+		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/renderer/qt/mozc_renderer \
+		${STAGEDIR}${PREFIX}/libexec/mozc_renderer
 	${INSTALL_PROGRAM} \
-	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/ibus/ibus_mozc \
-	    ${STAGEDIR}${PREFIX}/libexec/ibus-engine-mozc
+		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/ibus/ibus_mozc \
+		${STAGEDIR}${PREFIX}/libexec/ibus-engine-mozc
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/ibus/component
 	${INSTALL_DATA} \
-	    ${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/ibus/mozc.xml \
-	    ${STAGEDIR}${PREFIX}/share/ibus/component/mozc.xml
+		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/ibus/mozc.xml \
+		${STAGEDIR}${PREFIX}/share/ibus/component/mozc.xml
 	@${MKDIR} ${STAGEDIR}${DATADIR}
 .for F in ui-alpha_full ui-alpha_half ui-dictionary ui-direct \
 	ui-hiragana ui-katakana_full ui-katakana_half ui-properties ui-tool
 	${INSTALL_DATA} \
-	    ${BUILD_WRKSRC}/data/images/unix/${F}.png \
-	    ${STAGEDIR}${DATADIR}/${F:S/^ui-//}.png
+		${BUILD_WRKSRC}/data/images/unix/${F}.png \
+		${STAGEDIR}${DATADIR}/${F:S/^ui-//}.png
 .endfor
 	${INSTALL_DATA} \
-	    ${BUILD_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
-	    ${STAGEDIR}${DATADIR}/product_icon.png
+		${BUILD_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
+		${STAGEDIR}${DATADIR}/product_icon.png
 .endif
 
 .if ${BUILD_MOZC_LIST:Muim_mozc} == "uim_mozc" || make(makesum)
@@ -352,7 +352,7 @@ PLIST_FILES+=	lib/uim/plugin/libuim-mozc.so \
 post-extract-uim_mozc:
 	${MV} ${WRKSRC_MU}/Mozc/uim ${BUILD_WRKSRC}/unix
 	${REINPLACE_CMD} -e "s,/usr/lib/mozc,${LOCALBASE}/libexec," \
-	    ${WRKSRC_MU}/Mozc/scm/mozc-custom.scm
+		${WRKSRC_MU}/Mozc/scm/mozc-custom.scm
 
 post-extract: post-extract-uim_mozc
 
@@ -361,16 +361,16 @@ do-build-uim_mozc:
 do-install-uim_mozc:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/uim/plugin
 	${INSTALL_LIB} \
-	    ${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/libuim-mozc.so \
-	    ${STAGEDIR}${PREFIX}/lib/uim/plugin
+		${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/libuim-mozc.so \
+		${STAGEDIR}${PREFIX}/lib/uim/plugin
 	${MKDIR} ${STAGEDIR}${DATADIR}
 	cd ${WRKSRC_MU}/Mozc/scm && \
-	    ${INSTALL_DATA} mozc.scm mozc-custom.scm mozc-key-custom.scm \
-	    ${STAGEDIR}${DATADIR}
+		${INSTALL_DATA} mozc.scm mozc-custom.scm mozc-key-custom.scm \
+		${STAGEDIR}${DATADIR}
 	${MKDIR} ${STAGEDIR}${DATADIR}/pixmaps
 	${INSTALL_DATA} \
-	    ${BUILD_WRKSRC}/data/images/product_icon_32bpp-128.png \
-	    ${STAGEDIR}${DATADIR}/pixmaps/mozc.png
+		${BUILD_WRKSRC}/data/images/product_icon_32bpp-128.png \
+		${STAGEDIR}${DATADIR}/pixmaps/mozc.png
 .endif
 
 .if ${BUILD_MOZC_LIST:Mfcitx_mozc} == "fcitx_mozc"
@@ -533,7 +533,7 @@ PLIST_DIRS+=	${EMACS_VERSION_SITE_LISPDIR}/mozc
 
 post-patch-mozc_el:
 	${REINPLACE_CMD} "s,%%PREFIX%%,${PREFIX}," \
-	    ${BUILD_WRKSRC}/unix/emacs/mozc.el
+		${BUILD_WRKSRC}/unix/emacs/mozc.el
 
 post-patch: post-patch-mozc_el
 
@@ -541,9 +541,9 @@ do-build-mozc_el:
 	cd ${BUILD_WRKSRC} && \
 		${BUILD_MOZC_CMD} //unix/emacs:mozc_emacs_helper
 	cd ${BUILD_WRKSRC}/unix/emacs && \
-	    ${EMACS_CMD} -batch -q -no-site-file -no-init-file \
-	    -f batch-byte-compile mozc.el && \
-	    ${GZIP_CMD} mozc.el
+		${EMACS_CMD} -batch -q -no-site-file -no-init-file \
+			-f batch-byte-compile mozc.el && \
+		${GZIP_CMD} mozc.el
 
 do-install-mozc_el:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/mozc
@@ -551,10 +551,10 @@ do-install-mozc_el:
 		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/emacs/mozc_emacs_helper \
 		${STAGEDIR}${PREFIX}/libexec
 	${INSTALL_DATA} \
-	    ${BUILD_WRKSRC}/unix/emacs/mozc.el.gz \
-	    ${BUILD_WRKSRC}/unix/emacs/mozc.elc \
-	    ${FILESDIR}/leim-list.el \
-	    ${STAGEDIR}${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/mozc/
+		${BUILD_WRKSRC}/unix/emacs/mozc.el.gz \
+		${BUILD_WRKSRC}/unix/emacs/mozc.elc \
+		${FILESDIR}/leim-list.el \
+		${STAGEDIR}${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/mozc/
 
 .endif
 
@@ -606,18 +606,18 @@ bazel-modules: configure
 
 # Create new distinfo: `make renew-makesum`
 renew-makesum:
-	@for file in `${MAKE} fetch-url-list | ${GREP} -v 'FreeBSD\.org'`; do \
-		case $${file} in \
-		*${UTDIC_DISTFILES:M*\:title:C@\:title@@}) urls="$${urls} $${file}" ;; \
-		*${DISTFILES:M*\:kenall:C@\:kenall@@}) urls="$${urls} $${file}" ;; \
-		*${DISTFILES:M*\:jigyosyo:C@\:jigyosyo@@}) urls="$${urls} $${file}" ;; \
+	@for url in `${MAKE} fetch-url-list | ${GREP} -v 'FreeBSD\.org'`; do \
+		case $${url} in \
+		*${UTDIC_DISTFILES:M*\:title:C@\:title@@}) urls="$${urls} $${url}" ;; \
+		*${DISTFILES:M*\:kenall:C@\:kenall@@}) urls="$${urls} $${url}" ;; \
+		*${DISTFILES:M*\:jigyosyo:C@\:jigyosyo@@}) urls="$${urls} $${url}" ;; \
 		*) continue ;; \
 		esac ; \
 	done && \
 	cd ${DISTDIR}/${DIST_SUBDIR} && \
-	for url in $${urls}; do \
-		${FETCH_BINARY} -Fmp $${url} ; \
-	done
+		for url in $${urls}; do \
+			${FETCH_BINARY} -Fmp $${url} ; \
+		done
 	@${MAKE} makesum
 
 .include <bsd.port.post.mk>
