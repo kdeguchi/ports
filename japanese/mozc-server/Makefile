@@ -330,8 +330,18 @@ do-install-ibus_mozc:
 .endif
 
 .if ${BUILD_MOZC_LIST:Muim_mozc} == "uim_mozc" || make(makesum)
-GH_TUPLE+=	e-kato:macuim:7beac7b:MU \
-		femshima:uim-mozc:176de70:uim_mozc
+
+LICENSE_FILE+=	${BAZEL_WRKSRC}/src/unix/uim/LICENSE
+
+GH_TUPLE+=	e-kato:macuim:7beac7b:MU
+
+# These patches are from https://github.com/femshima/uim-mozc
+# Modified to support the latest mozc.
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src_MODULE.bazel \
+		${PATCHDIR}/extra-patch-src_unix_uim_BUILD.bazel \
+		${PATCHDIR}/extra-patch-src_unix_uim_key__translator.cc \
+		${PATCHDIR}/extra-patch-src_unix_uim_key__translator.h \
+		${PATCHDIR}/extra-patch-src_unix_uim_mozc.cc
 
 LIB_DEPENDS+=	libuim.so:textproc/uim
 RUN_DEPENDS+=	mozc:japanese/mozc-server \
@@ -345,19 +355,14 @@ PLIST_FILES+=	lib/uim/plugin/libuim-mozc.so \
 		"@postexec ${SETENV} MOZC_NOLOG=true ${LOCALBASE}/bin/uim-module-manager --register mozc" \
 		"@preunexec ${LOCALBASE}/bin/uim-module-manager --unregister mozc"
 
-post-patch-uim_mozc:
+post-extract-uim_mozc:
 	${CP} -a ${WRKSRC_MU}/Mozc/uim ${BAZEL_WRKSRC}/unix
+
+post-extract: post-extract-uim_mozc
+
+post-patch-uim_mozc:
 	${REINPLACE_CMD} -e "s,/usr/lib/mozc,${LOCALBASE}/libexec," \
 		${WRKSRC_MU}/Mozc/scm/mozc-custom.scm
-	${HEAD} --lines 17 ${WRKSRC_uim_mozc}/bazel.patch > ${WRKSRC_uim_mozc}/bazel.patch.new
-	${MV} ${WRKSRC_uim_mozc}/bazel.patch.new ${WRKSRC_uim_mozc}/bazel.patch
-	cd ${BAZEL_WRKSRC} && \
-		${PATCH} -p2 < ${WRKSRC_uim_mozc}/bazel.patch
-	${REINPLACE_CMD} -e 's@\["uim"\]@["uim", "uim-scm"]@;' \
-		${BAZEL_WRKSRC}/MODULE.bazel
-	cd ${BAZEL_WRKSRC} && \
-		${PATCH} -p1 < ${WRKSRC_uim_mozc}/mozc.patch
-	${CP} ${WRKSRC_uim_mozc}/BUILD.bazel ${BAZEL_WRKSRC}/unix/uim/
 	${HEAD} --lines 32 ${BAZEL_WRKSRC}/unix/uim/mozc.cc > ${BAZEL_WRKSRC}/unix/uim/LICENSE
 
 post-patch: post-patch-uim_mozc
