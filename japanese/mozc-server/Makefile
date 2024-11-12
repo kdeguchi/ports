@@ -353,6 +353,8 @@ post-patch-uim_mozc:
 	${MV} ${WRKSRC_uim_mozc}/bazel.patch.new ${WRKSRC_uim_mozc}/bazel.patch
 	cd ${BAZEL_WRKSRC} && \
 		${PATCH} -p2 < ${WRKSRC_uim_mozc}/bazel.patch
+	${REINPLACE_CMD} -e 's@\["uim"\]@["uim", "uim-scm"]@;' \
+		${BAZEL_WRKSRC}/MODULE.bazel
 	cd ${BAZEL_WRKSRC} && \
 		${PATCH} -p1 < ${WRKSRC_uim_mozc}/mozc.patch
 	${CP} ${WRKSRC_uim_mozc}/BUILD.bazel ${BAZEL_WRKSRC}/unix/uim/
