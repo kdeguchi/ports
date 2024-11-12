@@ -345,14 +345,10 @@ PLIST_FILES+=	lib/uim/plugin/libuim-mozc.so \
 		"@postexec ${SETENV} MOZC_NOLOG=true ${LOCALBASE}/bin/uim-module-manager --register mozc" \
 		"@preunexec ${LOCALBASE}/bin/uim-module-manager --unregister mozc"
 
-post-extract-uim_mozc:
+post-patch-uim_mozc:
 	${CP} -a ${WRKSRC_MU}/Mozc/uim ${BAZEL_WRKSRC}/unix
 	${REINPLACE_CMD} -e "s,/usr/lib/mozc,${LOCALBASE}/libexec," \
 		${WRKSRC_MU}/Mozc/scm/mozc-custom.scm
-
-post-extract: post-extract-uim_mozc
-
-post-patch-uim_mozc:
 	${HEAD} --lines 17 ${WRKSRC_uim_mozc}/bazel.patch > ${WRKSRC_uim_mozc}/bazel.patch.new
 	${MV} ${WRKSRC_uim_mozc}/bazel.patch.new ${WRKSRC_uim_mozc}/bazel.patch
 	cd ${BAZEL_WRKSRC} && \
@@ -360,12 +356,13 @@ post-patch-uim_mozc:
 	cd ${BAZEL_WRKSRC} && \
 		${PATCH} -p1 < ${WRKSRC_uim_mozc}/mozc.patch
 	${CP} ${WRKSRC_uim_mozc}/BUILD.bazel ${BAZEL_WRKSRC}/unix/uim/
+	${HEAD} --lines 32 ${BAZEL_WRKSRC}/unix/uim/mozc.cc > ${BAZEL_WRKSRC}/unix/uim/LICENSE
 
 post-patch: post-patch-uim_mozc
 
 do-build-uim_mozc:
-	cd ${BAZEL_WRKSRC}/unix/uim && \
-		${BUILD_MOZC_CMD} //uim:uim
+	cd ${BAZEL_WRKSRC}&& \
+		${BUILD_MOZC_CMD} //unix/uim:uim-mozc
 
 do-install-uim_mozc:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/uim/plugin
