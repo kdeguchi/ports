@@ -41,7 +41,7 @@ JAVA_VERSION=	21
 JAVA_VENDOR=	openjdk
 JAVA_BUILD=	yes
 
-BUILD_WRKSRC=	${WRKSRC}/src
+BAZEL_WRKSRC=	${WRKSRC}/src
 BUILD_MOZC_LIST?=	mozc_server
 
 BUILD_MOZC_CMD=	bazel ${BAZEL_BOOT} --server_javabase=${JAVA_HOME} \
@@ -164,11 +164,11 @@ _CCTYPE=	gcc
 
 post-extract:
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
-	@${CP} -a ${WRKDIR}/*.CSV ${BUILD_WRKSRC}/third_party
+	@${CP} -a ${WRKDIR}/*.CSV ${BAZEL_WRKSRC}/third_party
 .endif
 
 post-patch:
-	@${FIND} ${BUILD_WRKSRC} -type f -not -path '*/third_party/*' \
+	@${FIND} ${BAZEL_WRKSRC} -type f -not -path '*/third_party/*' \
 		\( -name 'BUILD' -o -name '*.bzl' -o -name '*.cc' -o -name '*.h' \) \
 		-exec ${REINPLACE_CMD} -E -e "s,'python','${PYTHON_CMD}',g;" \
 			-e 's,/usr/bin/xdg-open,${PREFIX}/bin/xdg-open,g;' \
@@ -186,16 +186,16 @@ post-patch:
 
 .if ${BUILD_MOZC_LIST:Mfcitx_mozc} == "fcitx_mozc"
 	${REINPLACE_CMD} 's,/po/mo},%po}mo,g' \
-		${BUILD_WRKSRC}/unix/fcitx/gen_fcitx_mozc_i18n.sh
+		${BAZEL_WRKSRC}/unix/fcitx/gen_fcitx_mozc_i18n.sh
 	${REINPLACE_CMD} \
 		's,IconName=.*,IconName=${LOCALBASE:Q}/share/fcitx/mozc/icon/mozc.png,' \
-		${BUILD_WRKSRC}/unix/fcitx/mozc.conf
+		${BAZEL_WRKSRC}/unix/fcitx/mozc.conf
 .endif
 
 .if ${BUILD_MOZC_LIST:Mfcitx5_mozc} == "fcitx5_mozc"
-	@${CP} ${BUILD_WRKSRC}/unix/fcitx/gen_fcitx_mozc_i18n.sh ${BUILD_WRKSRC}/unix/fcitx5/
+	@${CP} ${BAZEL_WRKSRC}/unix/fcitx/gen_fcitx_mozc_i18n.sh ${BAZEL_WRKSRC}/unix/fcitx5/
 	@${REINPLACE_CMD} 's,/po/mo},%po}mo,g' \
-		${BUILD_WRKSRC}/unix/fcitx5/gen_fcitx_mozc_i18n.sh
+		${BAZEL_WRKSRC}/unix/fcitx5/gen_fcitx_mozc_i18n.sh
 .endif
 
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server" || make(makesum)
@@ -220,23 +220,23 @@ post-patch-mozc_server:
 	@${ECHO_MSG} "===> Creating mozcdic-ut.txt for UT Dictionary. It takes a long time!"
 	cd ${WRKSRC_ut}/src/merge && \
 		${PATCH} < ${PATCHDIR}/extra-patch-merge_dictionaries.py && \
-		${CP} ${BUILD_WRKSRC}/data/dictionary_oss/id.def . && \
+		${CP} ${BAZEL_WRKSRC}/data/dictionary_oss/id.def . && \
 		${CP} ${DISTDIR}/${DIST_SUBDIR}/${UTDIC_DISTFILES:M*\:title:C@\:title@@} . && \
 		${BZCAT} ../../../mozcdic-ut-*/mozcdic-ut-*.txt.bz2 > mozcdic-ut.txt && \
 		${PYTHON_CMD} merge_dictionaries.py mozcdic-ut.txt && \
 		${CAT} mozcdic-ut.txt \
-			>> ${BUILD_WRKSRC}/data/dictionary_oss/dictionary00.txt
+			>> ${BAZEL_WRKSRC}/data/dictionary_oss/dictionary00.txt
 .endif
 
 post-patch: post-patch-mozc_server
 
 do-build-mozc_server:
-	cd ${BUILD_WRKSRC} && \
+	cd ${BAZEL_WRKSRC} && \
 		${BUILD_MOZC_CMD} //server:mozc_server
 
 do-install-mozc_server:
 	${INSTALL_PROGRAM} \
-		${BUILD_WRKSRC}/bazel-bin/server/mozc_server \
+		${BAZEL_WRKSRC}/bazel-bin/server/mozc_server \
 		${STAGEDIR}${PREFIX}/libexec
 	${INSTALL_SCRIPT} \
 		${WRKDIR}/mozc ${STAGEDIR}/${PREFIX}/bin
@@ -253,22 +253,22 @@ PLIST_FILES+=	libexec/mozc_tool \
 SUB_FILES+=	mozc_tool
 
 do-build-mozc_tool:
-	cd ${BUILD_WRKSRC} && \
+	cd ${BAZEL_WRKSRC} && \
 		${BUILD_MOZC_CMD} //gui/tool:mozc_tool
 
 do-install-mozc_tool:
 	${INSTALL_PROGRAM} \
-		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/gui/tool/mozc_tool \
+		${BAZEL_WRKSRC}/bazel-out/freebsd-opt/bin/gui/tool/mozc_tool \
 		${STAGEDIR}${PREFIX}/libexec
 	${INSTALL_SCRIPT} ${WRKDIR}/mozc_tool ${STAGEDIR}${PREFIX}/bin
 	@${MKDIR} ${STAGEDIR}${DATADIR}/icons
 	${INSTALL_DATA} \
-		${BUILD_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
+		${BAZEL_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
 		${STAGEDIR}${DATADIR}/icons/product_logo.png
 	${INSTALL_DATA} \
-		${BUILD_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
+		${BAZEL_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
 		${STAGEDIR}${DATADIR}/icons/update_uptodate.png
-	${INSTALL_DATA} ${BUILD_WRKSRC}/data/installer/credits_en.html \
+	${INSTALL_DATA} ${BAZEL_WRKSRC}/data/installer/credits_en.html \
 		${STAGEDIR}${DATADIR}
 .endif
 
@@ -296,36 +296,36 @@ PLIST_DIRS+=	${DATADIR_REL}
 post-patch-ibus_mozc:
 	${REINPLACE_CMD} -e 's@ ulong @ unsigned long @;' \
 		-e 's@ulong id@unsigned long id@;' -e 's@, ulong>@, unsigned long>@;' \
-		${BUILD_WRKSRC}/unix/ibus/ibus_wrapper.*
+		${BAZEL_WRKSRC}/unix/ibus/ibus_wrapper.*
 
 post-patch: post-patch-ibus_mozc
 
 do-build-ibus_mozc:
-	cd ${BUILD_WRKSRC} && \
+	cd ${BAZEL_WRKSRC} && \
 		${BUILD_MOZC_CMD} //unix/ibus:ibus_mozc \
 			//unix/ibus:gen_mozc_xml \
 			//renderer/qt:mozc_renderer
 
 do-install-ibus_mozc:
 	${INSTALL_PROGRAM} \
-		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/renderer/qt/mozc_renderer \
+		${BAZEL_WRKSRC}/bazel-out/freebsd-opt/bin/renderer/qt/mozc_renderer \
 		${STAGEDIR}${PREFIX}/libexec/mozc_renderer
 	${INSTALL_PROGRAM} \
-		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/ibus/ibus_mozc \
+		${BAZEL_WRKSRC}/bazel-out/freebsd-opt/bin/unix/ibus/ibus_mozc \
 		${STAGEDIR}${PREFIX}/libexec/ibus-engine-mozc
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/ibus/component
 	${INSTALL_DATA} \
-		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/ibus/mozc.xml \
+		${BAZEL_WRKSRC}/bazel-out/freebsd-opt/bin/unix/ibus/mozc.xml \
 		${STAGEDIR}${PREFIX}/share/ibus/component/mozc.xml
 	@${MKDIR} ${STAGEDIR}${DATADIR}
 .for F in ui-alpha_full ui-alpha_half ui-dictionary ui-direct \
 	ui-hiragana ui-katakana_full ui-katakana_half ui-properties ui-tool
 	${INSTALL_DATA} \
-		${BUILD_WRKSRC}/data/images/unix/${F}.png \
+		${BAZEL_WRKSRC}/data/images/unix/${F}.png \
 		${STAGEDIR}${DATADIR}/${F:S/^ui-//}.png
 .endfor
 	${INSTALL_DATA} \
-		${BUILD_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
+		${BAZEL_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
 		${STAGEDIR}${DATADIR}/product_icon.png
 .endif
 
@@ -350,7 +350,7 @@ PLIST_FILES+=	lib/uim/plugin/libuim-mozc.so \
 		"@preunexec ${LOCALBASE}/bin/uim-module-manager --unregister mozc"
 
 post-extract-uim_mozc:
-	${MV} ${WRKSRC_MU}/Mozc/uim ${BUILD_WRKSRC}/unix
+	${MV} ${WRKSRC_MU}/Mozc/uim ${BAZEL_WRKSRC}/unix
 	${REINPLACE_CMD} -e "s,/usr/lib/mozc,${LOCALBASE}/libexec," \
 		${WRKSRC_MU}/Mozc/scm/mozc-custom.scm
 
@@ -361,7 +361,7 @@ do-build-uim_mozc:
 do-install-uim_mozc:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/uim/plugin
 	${INSTALL_LIB} \
-		${BUILD_WRKSRC}/out_linux/${BUILD_MODE}/libuim-mozc.so \
+		${BAZEL_WRKSRC}/out_linux/${BUILD_MODE}/libuim-mozc.so \
 		${STAGEDIR}${PREFIX}/lib/uim/plugin
 	${MKDIR} ${STAGEDIR}${DATADIR}
 	cd ${WRKSRC_MU}/Mozc/scm && \
@@ -369,7 +369,7 @@ do-install-uim_mozc:
 		${STAGEDIR}${DATADIR}
 	${MKDIR} ${STAGEDIR}${DATADIR}/pixmaps
 	${INSTALL_DATA} \
-		${BUILD_WRKSRC}/data/images/product_icon_32bpp-128.png \
+		${BAZEL_WRKSRC}/data/images/product_icon_32bpp-128.png \
 		${STAGEDIR}${DATADIR}/pixmaps/mozc.png
 .endif
 
@@ -403,9 +403,9 @@ PLIST_FILES+=	lib/fcitx/fcitx-mozc.so \
 PLIST_DIRS+=	%%DATADIR%%/icon ${DATADIR_REL}
 
 do-build-fcitx_mozc:
-	cd ${BUILD_WRKSRC} && \
+	cd ${BAZEL_WRKSRC} && \
 		${BUILD_MOZC_CMD} //unix/fcitx:fcitx-mozc.so
-	cd ${BUILD_WRKSRC}/unix/fcitx && ${SH} gen_fcitx_mozc_i18n.sh ./po
+	cd ${BAZEL_WRKSRC}/unix/fcitx && ${SH} gen_fcitx_mozc_i18n.sh ./po
 
 do-install-fcitx_mozc:
 	@${MKDIR} \
@@ -413,27 +413,27 @@ do-install-fcitx_mozc:
 		${STAGEDIR}${PREFIX}/share/fcitx/addon \
 		${STAGEDIR}${PREFIX}/share/fcitx/inputmethod
 	${INSTALL_LIB} \
-		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/fcitx/fcitx-mozc.so \
+		${BAZEL_WRKSRC}/bazel-out/freebsd-opt/bin/unix/fcitx/fcitx-mozc.so \
 		${STAGEDIR}${PREFIX}/lib/fcitx/fcitx-mozc.so
 	${INSTALL_DATA} \
-		${BUILD_WRKSRC}/unix/fcitx/fcitx-mozc.conf \
+		${BAZEL_WRKSRC}/unix/fcitx/fcitx-mozc.conf \
 		${STAGEDIR}${PREFIX}/share/fcitx/addon/fcitx-mozc.conf
 	${INSTALL_DATA} \
-		${BUILD_WRKSRC}/unix/fcitx/mozc.conf \
+		${BAZEL_WRKSRC}/unix/fcitx/mozc.conf \
 		${STAGEDIR}${PREFIX}/share/fcitx/inputmethod/mozc.conf
 	@${MKDIR} ${STAGEDIR}${DATADIR}/icon
 .for F in ui-alpha_full ui-alpha_half ui-dictionary ui-direct \
 	ui-hiragana ui-katakana_full ui-katakana_half ui-properties ui-tool
 	${INSTALL_DATA} \
-		${BUILD_WRKSRC}/data/images/unix/${F}.png \
+		${BAZEL_WRKSRC}/data/images/unix/${F}.png \
 		${STAGEDIR}${DATADIR}/icon/${F:S,^ui-,mozc-,}.png
 .endfor
 	${INSTALL_DATA} \
-		${BUILD_WRKSRC}/data/images/product_icon_32bpp-128.png \
+		${BAZEL_WRKSRC}/data/images/product_icon_32bpp-128.png \
 		${STAGEDIR}${DATADIR}/icon/mozc.png
 .for L in ca da de ja ko ru zh_CN zh_TW
 	${INSTALL_DATA} \
-		${BUILD_WRKSRC}/unix/fcitx/po/${L}.mo \
+		${BAZEL_WRKSRC}/unix/fcitx/po/${L}.mo \
 		${STAGEDIR}${PREFIX}/share/locale/${L}/LC_MESSAGES/fcitx-mozc.mo
 .endfor
 .endif #fcitx_mozc
@@ -471,12 +471,12 @@ PLIST_FILES+=	lib/fcitx5/fcitx5-mozc.so \
 		share/metainfo/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml
 
 do-build-fcitx5_mozc:
-	cd ${BUILD_WRKSRC} && \
+	cd ${BAZEL_WRKSRC} && \
 		${BUILD_MOZC_CMD} //unix/fcitx5:fcitx5-mozc.so; \
 		msgfmt --xml -d unix/fcitx5/po/ \
 			--template unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml.in \
 			-o unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml
-	cd ${BUILD_WRKSRC}/unix/fcitx5 && ${SH} gen_fcitx_mozc_i18n.sh ./po
+	cd ${BAZEL_WRKSRC}/unix/fcitx5 && ${SH} gen_fcitx_mozc_i18n.sh ./po
 
 do-install-fcitx5_mozc:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/fcitx5 \
@@ -487,35 +487,35 @@ do-install-fcitx5_mozc:
 		${STAGEDIR}${PREFIX}/share/icons/hicolor/48x48/apps \
 		${STAGEDIR}${PREFIX}/share/metainfo
 	${INSTALL_PROGRAM} \
-		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/fcitx5/fcitx5-mozc.so \
+		${BAZEL_WRKSRC}/bazel-out/freebsd-opt/bin/unix/fcitx5/fcitx5-mozc.so \
 			${STAGEDIR}${PREFIX}/lib/fcitx5
 	${INSTALL_DATA} \
-		${BUILD_WRKSRC}/unix/fcitx5/mozc-addon.conf \
+		${BAZEL_WRKSRC}/unix/fcitx5/mozc-addon.conf \
 			${STAGEDIR}${PREFIX}/share/fcitx5/addon/mozc.conf
 	${INSTALL_DATA} \
-		${BUILD_WRKSRC}/unix/fcitx5/mozc.conf \
+		${BAZEL_WRKSRC}/unix/fcitx5/mozc.conf \
 			${STAGEDIR}${PREFIX}/share/fcitx5/inputmethod/mozc.conf
 	${INSTALL_DATA} \
-		${BUILD_WRKSRC}/data/images/product_icon_32bpp-128.png \
+		${BAZEL_WRKSRC}/data/images/product_icon_32bpp-128.png \
 			${STAGEDIR}${PREFIX}/share/icons/hicolor/128x128/apps/fcitx_mozc.png
 	${INSTALL_DATA} \
-		${BUILD_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
+		${BAZEL_WRKSRC}/data/images/unix/ime_product_icon_opensource-32.png \
 			${STAGEDIR}${PREFIX}/share/icons/hicolor/32x32/apps/fcitx_mozc.png
 .for F in ui-alpha_full ui-alpha_half ui-dictionary ui-direct \
 	ui-hiragana ui-katakana_full ui-katakana_half ui-properties ui-tool
 	${INSTALL_DATA} \
-		${BUILD_WRKSRC}/../scripts/icons/${F}.png \
+		${BAZEL_WRKSRC}/../scripts/icons/${F}.png \
 			${STAGEDIR}${PREFIX}/share/icons/hicolor/48x48/apps/${F:S,^ui-,fcitx_mozc_,}.png
 .endfor
-	cd ${BUILD_WRKSRC} && \
+	cd ${BAZEL_WRKSRC} && \
 		for mofile in unix/fcitx5/po/*.mo; do \
 			locale=$${mofile##*/}; \
 			locale=$${locale%.mo}; \
-			${INSTALL_DATA} ${BUILD_WRKSRC}/$${mofile} \
+			${INSTALL_DATA} ${BAZEL_WRKSRC}/$${mofile} \
 				${STAGEDIR}${PREFIX}/share/locale/$${locale}/LC_MESSAGES/fcitx5-mozc.mo; \
 		done
 	${INSTALL_DATA} \
-		${BUILD_WRKSRC}/unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml \
+		${BAZEL_WRKSRC}/unix/fcitx5/org.fcitx.Fcitx5.Addon.Mozc.metainfo.xml \
 			${STAGEDIR}${PREFIX}/share/metainfo
 .endif #fcitx5_mozc
 
@@ -533,14 +533,14 @@ PLIST_DIRS+=	${EMACS_VERSION_SITE_LISPDIR}/mozc
 
 post-patch-mozc_el:
 	${REINPLACE_CMD} "s,%%PREFIX%%,${PREFIX}," \
-		${BUILD_WRKSRC}/unix/emacs/mozc.el
+		${BAZEL_WRKSRC}/unix/emacs/mozc.el
 
 post-patch: post-patch-mozc_el
 
 do-build-mozc_el:
-	cd ${BUILD_WRKSRC} && \
+	cd ${BAZEL_WRKSRC} && \
 		${BUILD_MOZC_CMD} //unix/emacs:mozc_emacs_helper
-	cd ${BUILD_WRKSRC}/unix/emacs && \
+	cd ${BAZEL_WRKSRC}/unix/emacs && \
 		${EMACS_CMD} -batch -q -no-site-file -no-init-file \
 			-f batch-byte-compile mozc.el && \
 		${GZIP_CMD} mozc.el
@@ -548,11 +548,11 @@ do-build-mozc_el:
 do-install-mozc_el:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/mozc
 	${INSTALL_PROGRAM} \
-		${BUILD_WRKSRC}/bazel-out/freebsd-opt/bin/unix/emacs/mozc_emacs_helper \
+		${BAZEL_WRKSRC}/bazel-out/freebsd-opt/bin/unix/emacs/mozc_emacs_helper \
 		${STAGEDIR}${PREFIX}/libexec
 	${INSTALL_DATA} \
-		${BUILD_WRKSRC}/unix/emacs/mozc.el.gz \
-		${BUILD_WRKSRC}/unix/emacs/mozc.elc \
+		${BAZEL_WRKSRC}/unix/emacs/mozc.el.gz \
+		${BAZEL_WRKSRC}/unix/emacs/mozc.elc \
 		${FILESDIR}/leim-list.el \
 		${STAGEDIR}${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/mozc/
 
@@ -562,7 +562,7 @@ do-build: ${BUILD_MOZC_LIST:S/^/do-build-/}
 do-install: ${BUILD_MOZC_LIST:S/^/do-install-/}
 
 post-install:
-	cd ${BUILD_WRKSRC} && bazel ${BAZEL_BOOT} shutdown
+	cd ${BAZEL_WRKSRC} && bazel ${BAZEL_BOOT} shutdown
 
 _USES_fetch+=	800:fetch-bcr
 BAZEL_BCR_URL=	https://github.com/bazelbuild/bazel-central-registry.git
@@ -579,7 +579,7 @@ fetch-bcr:
 .endif
 
 bazel-mod: configure
-	@cd ${BUILD_WRKSRC} && \
+	@cd ${BAZEL_WRKSRC} && \
 		bazel ${BAZEL_BOOT} mod graph \
 			--output text --charset ascii \
 			${BAZEL_COMMON_OPTS} | \
@@ -587,7 +587,7 @@ bazel-mod: configure
 		${GREP} '@[0-9]' | ${SORT} -u
 
 bazel-modules: configure
-	@cd ${BUILD_WRKSRC} && \
+	@cd ${BAZEL_WRKSRC} && \
 		bazel ${BAZEL_BOOT} mod show_repo \
 			$$( bazel ${BAZEL_BOOT} mod graph \
 					--output text --charset ascii \
