@@ -354,9 +354,7 @@ PLIST_FILES+=	lib/uim/plugin/libuim-mozc.so \
 		%%DATADIR%%/pixmaps/mozc.png \
 		%%DATADIR%%/pixmaps/mozc_tool_config_dialog.png \
 		%%DATADIR%%/pixmaps/mozc_tool_dictionary_tool.png \
-		%%DATADIR%%/pixmaps/mozc_tool_config_selector.png \
-		%%DATADIR%%/pixmaps/mozc.png \
-		%%DATADIR%%/pixmaps/mozc.png \
+		%%DATADIR%%/pixmaps/mozc_tool_selector.png \
 		"@postexec ${SETENV} MOZC_NOLOG=true ${LOCALBASE}/bin/uim-module-manager --register mozc" \
 		"@preunexec ${LOCALBASE}/bin/uim-module-manager --unregister mozc"
 
