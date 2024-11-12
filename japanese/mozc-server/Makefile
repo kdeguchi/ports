@@ -352,6 +352,11 @@ PLIST_FILES+=	lib/uim/plugin/libuim-mozc.so \
 		%%DATADIR%%/mozc-custom.scm \
 		%%DATADIR%%/mozc-key-custom.scm \
 		%%DATADIR%%/pixmaps/mozc.png \
+		%%DATADIR%%/pixmaps/mozc_tool_config_dialog.png \
+		%%DATADIR%%/pixmaps/mozc_tool_dictionary_tool.png \
+		%%DATADIR%%/pixmaps/mozc_tool_config_selector.png \
+		%%DATADIR%%/pixmaps/mozc.png \
+		%%DATADIR%%/pixmaps/mozc.png \
 		"@postexec ${SETENV} MOZC_NOLOG=true ${LOCALBASE}/bin/uim-module-manager --register mozc" \
 		"@preunexec ${LOCALBASE}/bin/uim-module-manager --unregister mozc"
 
@@ -384,6 +389,15 @@ do-install-uim_mozc:
 	${INSTALL_DATA} \
 		${BAZEL_WRKSRC}/data/images/product_icon_32bpp-128.png \
 		${STAGEDIR}${DATADIR}/pixmaps/mozc.png
+	${INSTALL_DATA} \
+		${BAZEL_WRKSRC}/data/images/unix/ui-properties.png \
+		${STAGEDIR}${DATADIR}/pixmaps/mozc_tool_config_dialog.png
+	${INSTALL_DATA} \
+		${BAZEL_WRKSRC}/data/images/unix/ui-dictionary.png \
+		${STAGEDIR}${DATADIR}/pixmaps/mozc_tool_dictionary_tool.png
+	${INSTALL_DATA} \
+		${BAZEL_WRKSRC}/data/images/unix/ui-tool.png \
+		${STAGEDIR}${DATADIR}/pixmaps/mozc_tool_selector.png
 .endif
 
 .if ${BUILD_MOZC_LIST:Mfcitx_mozc} == "fcitx_mozc"
