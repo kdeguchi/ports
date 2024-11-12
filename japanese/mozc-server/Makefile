@@ -364,8 +364,8 @@ post-patch-uim_mozc:
 post-patch: post-patch-uim_mozc
 
 do-build-uim_mozc:
-	cd ${BAZEL_WRKSRC} && \
-		${BUILD_MOZC_CMD} //unix/uim:uim
+	cd ${BAZEL_WRKSRC}/unix/uim && \
+		${BUILD_MOZC_CMD} //uim:uim
 
 do-install-uim_mozc:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/uim/plugin
