@@ -330,16 +330,12 @@ do-install-ibus_mozc:
 .endif
 
 .if ${BUILD_MOZC_LIST:Muim_mozc} == "uim_mozc" || make(makesum)
-GH_TUPLE+=	e-kato:macuim:v0.6.16.2.1:MU
+GH_TUPLE+=	e-kato:macuim:7beac7b:MU \
+		femshima:uim-mozc:176de70:uim_mozc
 
 LIB_DEPENDS+=	libuim.so:textproc/uim
 RUN_DEPENDS+=	mozc:japanese/mozc-server \
 		mozc_tool:japanese/mozc-tool
-
-EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src-unix-uim-mozc.cc \
-		${PATCHDIR}/extra-patch-src-unix-uim-key_translator.h \
-		${PATCHDIR}/extra-patch-src-unix-uim-key_translator.cc
-#		${PATCHDIR}/extra-patch-src-unix-uim-uim.gyp \
 
 PLIST_FILES+=	lib/uim/plugin/libuim-mozc.so \
 		%%DATADIR%%/mozc.scm \
@@ -350,18 +346,31 @@ PLIST_FILES+=	lib/uim/plugin/libuim-mozc.so \
 		"@preunexec ${LOCALBASE}/bin/uim-module-manager --unregister mozc"
 
 post-extract-uim_mozc:
-	${MV} ${WRKSRC_MU}/Mozc/uim ${BAZEL_WRKSRC}/unix
+	${CP} -a ${WRKSRC_MU}/Mozc/uim ${BAZEL_WRKSRC}/unix
 	${REINPLACE_CMD} -e "s,/usr/lib/mozc,${LOCALBASE}/libexec," \
 		${WRKSRC_MU}/Mozc/scm/mozc-custom.scm
 
 post-extract: post-extract-uim_mozc
 
+post-patch-uim_mozc:
+	${HEAD} --lines 17 ${WRKSRC_uim_mozc}/bazel.patch > ${WRKSRC_uim_mozc}/bazel.patch.new
+	${MV} ${WRKSRC_uim_mozc}/bazel.patch.new ${WRKSRC_uim_mozc}/bazel.patch
+	cd ${BAZEL_WRKSRC} && \
+		${PATCH} -p2 < ${WRKSRC_uim_mozc}/bazel.patch
+	cd ${BAZEL_WRKSRC} && \
+		${PATCH} -p1 < ${WRKSRC_uim_mozc}/mozc.patch
+	${CP} ${WRKSRC_uim_mozc}/BUILD.bazel ${BAZEL_WRKSRC}/unix/uim/
+
+post-patch: post-patch-uim_mozc
+
 do-build-uim_mozc:
+	cd ${BAZEL_WRKSRC} && \
+		${BUILD_MOZC_CMD} //unix/uim:uim-mozc
 
 do-install-uim_mozc:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/uim/plugin
 	${INSTALL_LIB} \
-		${BAZEL_WRKSRC}/out_linux/${BUILD_MODE}/libuim-mozc.so \
+		${BAZEL_WRKSRC}/bazel-out/freebsd-opt/bin/unix/uim/libuim-mozc.so \
 		${STAGEDIR}${PREFIX}/lib/uim/plugin
 	${MKDIR} ${STAGEDIR}${DATADIR}
 	cd ${WRKSRC_MU}/Mozc/scm && \

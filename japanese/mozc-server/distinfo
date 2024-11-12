@@ -1,4 +1,4 @@
-TIMESTAMP = 1731233775
+TIMESTAMP = 1731401676
 SHA256 (mozc/apple_support.1.16.0.tar.gz) = c31ce8e531b50ef1338392ee29dd3db3689668701ec3237b9c61e26a1937ab07
 SIZE (mozc/apple_support.1.16.0.tar.gz) = 86001
 SHA256 (mozc/bazel_features-v1.11.0.tar.gz) = 2cd9e57d4c38675d321731d65c15258f3a66438ad531ae09cb8bb14217dc8572
@@ -73,5 +73,7 @@ SHA256 (mozc/utuhiro78-mozcdic-ut-sudachidict-d12da3c_GH0.tar.gz) = 59a5570bbd0d
 SIZE (mozc/utuhiro78-mozcdic-ut-sudachidict-d12da3c_GH0.tar.gz) = 12087776
 SHA256 (mozc/utuhiro78-merge-ut-dictionaries-cbca642_GH0.tar.gz) = 5c82f1d35b2406fa287809efa2bf05bc8696f28c06aea8980b3085a8f633138a
 SIZE (mozc/utuhiro78-merge-ut-dictionaries-cbca642_GH0.tar.gz) = 31316
-SHA256 (mozc/e-kato-macuim-v0.6.16.2.1_GH0.tar.gz) = ae999a2f02379bd049484a22684c37be5eb1f4db9763fa79885c4981502336e9
-SIZE (mozc/e-kato-macuim-v0.6.16.2.1_GH0.tar.gz) = 324549
+SHA256 (mozc/e-kato-macuim-7beac7b_GH0.tar.gz) = 9241ae481bc15c07ab128f73fc3259c092daea1eec81ae83865ed727a4df336e
+SIZE (mozc/e-kato-macuim-7beac7b_GH0.tar.gz) = 324660
+SHA256 (mozc/femshima-uim-mozc-176de70_GH0.tar.gz) = 764121d03d1fcb64237329303409723b9e26dacaee8d1cf5cee505aafcc13048
+SIZE (mozc/femshima-uim-mozc-176de70_GH0.tar.gz) = 6894
