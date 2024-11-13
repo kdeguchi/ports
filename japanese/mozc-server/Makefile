@@ -456,13 +456,14 @@ do-install-fcitx_mozc:
 	${INSTALL_DATA} \
 		${BAZEL_WRKSRC}/data/images/product_icon_32bpp-128.png \
 		${STAGEDIR}${DATADIR}/icon/mozc.png
-	cd ${BUILD_WRKSRC} &&
+	cd ${BAZEL_WRKSRC} &&
 		for mofile in unix/fcitx/po/*.mo; do \
 			locale=$${mofile##*/}; \
 			locale=$${locale%.mo}; \
 			${INSTALL_DATA} ${BAZEL_WRKSRC}/$${mofile} \
 				${STAGEDIR}${PREFIX}/share/locale/$${locale}/LC_MESSAGES/fcitx-mozc.mo; \
 		done
+
 .endif #fcitx_mozc
 
 .if ${BUILD_MOZC_LIST:Mfcitx5_mozc} == "fcitx5_mozc"
