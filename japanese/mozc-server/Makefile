@@ -456,7 +456,7 @@ do-install-fcitx_mozc:
 	${INSTALL_DATA} \
 		${BAZEL_WRKSRC}/data/images/product_icon_32bpp-128.png \
 		${STAGEDIR}${DATADIR}/icon/mozc.png
-	cd ${BAZEL_WRKSRC} &&
+	cd ${BAZEL_WRKSRC} && \
 		for mofile in unix/fcitx/po/*.mo; do \
 			locale=$${mofile##*/}; \
 			locale=$${locale%.mo}; \
