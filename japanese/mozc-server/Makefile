@@ -140,7 +140,7 @@ USE_QT=		base
 
 .elif ${BUILD_MOZC_LIST:Mmozc_el} == "mozc_el"
 
-USES+=		emacs
+USES+=		emacs:noflavors
 
 .elif ${BUILD_MOZC_LIST:Mfcitx_mozc}
 
