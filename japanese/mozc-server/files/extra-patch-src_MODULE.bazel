@@ -3,7 +3,7 @@
 @@ -127,6 +127,12 @@ pkg_config_repository(
      ],
  )
-
+ 
 +# uim
 +pkg_config_repository(
 +    name = "uim",

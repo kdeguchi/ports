@@ -9,7 +9,7 @@
 +    ]
  )
  """
-
+ 
 @@ -110,6 +113,17 @@ def _pkg_config_repository_impl(repo_ctx):
          includes = _exec_pkg_config(repo_ctx, ["--cflags-only-I", "--keep-system-cflags"])
      includes = [item[len("-I/"):] for item in includes]
@@ -36,7 +36,7 @@
 +        "srcs": _make_strlist(srcs),
      }
      build_file_data = BUILD_TEMPLATE.format(**data)
-
+ 
 @@ -135,5 +150,7 @@ pkg_config_repository = repository_rule(
      local = True,
      attrs = {

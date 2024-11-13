@@ -6,8 +6,8 @@
  import sys
 -import urllib.request
  from unicodedata import normalize
-
-
+ 
+ 
  def get_id_mozc():
      # Mozc の一般名詞のIDを取得
 -    url = 'https://raw.githubusercontent.com/' + \
@@ -20,9 +20,9 @@
 -
      id_mozc = id_mozc.split(' 名詞,一般,')[0].split('\n')[-1]
      return (id_mozc)
-
+ 
 @@ -62,10 +58,6 @@
-
+ 
  def count_word_hits():
      # jawiki-latest-all-titles を取得
 -    subprocess.run(
