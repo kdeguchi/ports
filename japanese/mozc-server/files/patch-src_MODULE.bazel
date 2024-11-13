@@ -19,7 +19,7 @@
 -    # This path should be updated per the environment.
 -    path = "/usr",  # For Debian
 +    packages = [
-+      "fcitx-core",
++      "fcitx",
 +      "fcitx-config",
 +      "fcitx-utils",
 +    ],
