@@ -24,9 +24,9 @@ RUN_DEPENDS+=	avidemux-cli>0:multimedia/avidemux-cli
 PLUGIN_UI+=	CLI
 .endif
 
-.if ${PORT_OPTIONS:MQT5}
-BUILD_DEPENDS+=	avidemux-qt5>0:multimedia/avidemux-qt5
-RUN_DEPENDS+=	avidemux-qt5>0:multimedia/avidemux-qt5
+.if ${PORT_OPTIONS:MQT6}
+BUILD_DEPENDS+=	avidemux-qt6>0:multimedia/avidemux-qt6
+RUN_DEPENDS+=	avidemux-qt6>0:multimedia/avidemux-qt6
 PLUGIN_UI+=	QT4
 .endif
 
