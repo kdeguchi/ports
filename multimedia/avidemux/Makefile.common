@@ -319,6 +319,10 @@ post-patch:
 	@${LN} -s ${LOCALBASE}/include/iconv.h ${CONFIGURE_WRKSRC}/config
 	@${FIND} ${WRKSRC}/cmake -name '*.cmake.orig' -delete
 
+post-patch-QT6-on:
+	${REINPLACE_CMD} -e 's@avidemux3_qt5@avidemux3_qt6@;' \
+		${WRKSRC}/avidemux/qt4/xdg_data/org.avidemux.Avidemux.desktop
+
 post-configure-common:
 	@${FIND} ${CONFIGURE_WRKSRC} -name link.txt -print0 | \
 		${XARGS} -0 ${REINPLACE_CMD} 's|-ldl||g'
