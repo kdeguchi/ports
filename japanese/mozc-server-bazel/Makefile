@@ -519,7 +519,7 @@ do-build: ${BUILD_MOZC_LIST:S/^/do-build-/}
 do-install: ${BUILD_MOZC_LIST:S/^/do-install-/}
 
 post-install:
-	cd ${BAZEL_WRKSRC} && bazel ${BAZEL_OPTS} shutdown
+	cd ${BAZEL_WRKSRC} && bazel ${BAZEL_BOOT} shutdown
 
 # Create new distinfo: `make renew-makesum`
 renew-makesum:
