@@ -41,7 +41,6 @@ JAVA_VERSION=	21
 JAVA_VENDOR=	openjdk
 JAVA_BUILD=	yes
 
-BAZEL_WRKSRC=	${WRKSRC}/src
 BUILD_MOZC_LIST?=	mozc_server
 
 BUILD_MOZC_CMD=	bazel ${BAZEL_BOOT} --server_javabase=${JAVA_HOME} \
@@ -52,14 +51,17 @@ BUILD_MOZC_CMD=	bazel ${BAZEL_BOOT} --server_javabase=${JAVA_HOME} \
 		--config oss_linux
 
 BAZEL_BCR_LOCAL=	${DISTDIR}/bazel-central-registry
-
-BAZEL_COMMON_OPTS=	--distdir=${DISTDIR}/${DIST_SUBDIR} \
-		--registry="file://${BAZEL_BCR_LOCAL}"
+BAZEL_BCR_URL=	https://github.com/bazelbuild/bazel-central-registry.git
 
 BAZEL_BOOT=	--output_base=${WRKDIR}/bazel-out-base \
 		--output_user_root=${WRKDIR}/bazel-out-user
 
+BAZEL_COMMON_OPTS=	--distdir=${DISTDIR}/${DIST_SUBDIR} \
+		--registry="file://${BAZEL_BCR_LOCAL}"
+
 BAZEL_ENV=	--action_env=PATH=${JAVA_HOME}/bin:${PATH}
+
+BAZEL_WRKSRC=	${WRKSRC}/src
 
 .if ${BUILD_MOZC_LIST:Mmozc_server} == "mozc_server"
 
@@ -593,7 +595,6 @@ post-install:
 	cd ${BAZEL_WRKSRC} && bazel ${BAZEL_BOOT} shutdown
 
 _USES_fetch+=	800:fetch-bcr
-BAZEL_BCR_URL=	https://github.com/bazelbuild/bazel-central-registry.git
 fetch-bcr:
 .if defined(FORCE_FETCH_ALL)
 	${RM} -r ${BAZEL_BCR_LOCAL}
