@@ -1,6 +1,8 @@
 PORTNAME=	web-greeter
 PORTVERSION=	3.5.3
 CATEGORIES=	x11
+MASTER_SITES=	LOCAL:npmcahce
+DISTFILES=	${PORTNAME}-npm-cache-${DISTVERSION}${EXTRACT_SUFX}:npmcache
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Web Greeter for LightDM
@@ -57,11 +59,15 @@ post-patch:
 		${WRKSRC}/themes/themes/*/js/*.js
 	@${FIND} ${WRKSRC} -name '*.bak' -delete
 
-pre-configure:
-	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} npm install typescript
-
 post-install:
 	${MV} ${STAGEDIR}${PREFIX}/etc/lightdm/web-greeter.yml \
 		${STAGEDIR}${PREFIX}/etc/lightdm/web-greeter.yml.sample
+
+make-npm-cache: patch
+	cd ${WRKDIR} && ${RM} -r .npm
+	cd ${WRKSRC} && ${SETENV} HOME=${WRKDIR} npm install typescript
+	cd ${WRKDIR} && \
+		${TAR} -cJf ${PORTNAME}-npm-cache-${DISTVERSION}${EXTRACT_SUFX} .npm
+	${CP} -a ${WRKDIR}/${PORTNAME}-npm-cache-${DISTVERSION}${EXTRACT_SUFX} ${DISTDIR}
 
 .include <bsd.port.mk>
