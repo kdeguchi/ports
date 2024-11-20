@@ -1,5 +1,5 @@
 PORTNAME=	conky
-PORTVERSION=	1.21.7
+PORTVERSION=	1.21.8
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
 
@@ -18,7 +18,7 @@ USES=		cmake compiler:c++11-lib cpe gettext-runtime iconv \
 		localbase:ldflags lua:flavors pkgconfig tar:bzip2
 USE_GITHUB=	yes
 GH_ACCOUNT=	brndnmtthws
-GH_TAGNAME=	fdec466
+#GH_TAGNAME=	fdec466
 
 CMAKE_ARGS=	-DAPP_SED=${LOCALBASE}/bin/gsed
 CMAKE_ON=	BUILD_EXTRAS \
