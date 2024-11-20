@@ -12,7 +12,8 @@ LICENSE=	GPLv3
 
 CONFLICTS=	sea-greeter-*
 
-BUILD_DEPENDS=	npm:www/npm
+BUILD_DEPENDS=	npm:www/npm \
+		rsync:net/rsync
 
 LIB_DEPENDS=	liblightdm-gobject-1.so:x11/lightdm \
 		libwebkit2gtk-4.0.so:www/webkit2-gtk3
