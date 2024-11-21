@@ -48,11 +48,11 @@ post-patch:
 		${WRKSRC}/src/theme.c \
 		${WRKSRC}/valgrind.sh
 	${FIND} ${WRKSRC} -name '*.bak' -delete
-
-pre-configure:
+.if !make(make-npm-cache)
 	${ECHO_CMD} offline=true >> ${WRKSRC}/.npmrc
 	cd ${WRKSRC} && \
 		${SETENV} ${CONFIGURE_ENV} npm config set cache ${WRKDIR}/node_modules
+.endif
 
 post-install:
 	${MV} ${STAGEDIR}${PREFIX}/etc/lightdm/web-greeter.yml \
