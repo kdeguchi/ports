@@ -29,8 +29,10 @@ GH_TUPLE=	JezerM:sea-greeter:ffd2f3c \
 		JezerM:web-greeter-themes:44283ca:themes/themes \
 		JezerM:nody-greeter-types:4bf0196:tsc/themes/ts-types
 
-CONFIGURE_ENV+=	PATH=${WRKDIR}/node_modules/.bin:${PATH}
-MAKE_ENV+=	PATH=${WRKDIR}/node_modules/.bin:${PATH}
+CONFIGURE_ENV+=	HOME=${WRKDIR} \
+		PATH=${WRKDIR}/node_modules/.bin:${PATH}
+MAKE_ENV+=	HOME=${WRKDIR} \
+		PATH=${WRKDIR}/node_modules/.bin:${PATH}
 MAKE_JOBS_UNSAFE=	yes
 
 post-patch:
