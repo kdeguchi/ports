@@ -60,15 +60,24 @@ post-patch:
 		${WRKSRC}/themes/themes/*/js/*.js
 	@${FIND} ${WRKSRC} -name '*.bak' -delete
 
+pre-build:
+	cd ${WRKSRC} && \
+		${SETENV} ${MAKE_ENV} npm config set cache ${WRKDIR}/node_modules
+	cd ${WRKSRC} && \
+		${SETENV} ${MAKE_ENV} npm install t--prefer-offline typescript
+
 post-install:
 	${MV} ${STAGEDIR}${PREFIX}/etc/lightdm/web-greeter.yml \
 		${STAGEDIR}${PREFIX}/etc/lightdm/web-greeter.yml.sample
 
 make-npm-cache: patch
-	cd ${WRKDIR} && ${RM} -r .npm
-	cd ${WRKSRC} && ${SETENV} HOME=${WRKDIR} npm install typescript
+	${RM} -r ${WRKSRC}/node_modules
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} npm cache clean --force
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} npm config set cache ${WRKDIR}/node_modules
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} npm install typescript
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} npm install --cache=${WRKDIR}/node_modules --prefer-offline typescript
 	cd ${WRKDIR} && \
-		${TAR} -cJf ${PORTNAME}-npm-cache-${DISTVERSION}${EXTRACT_SUFX} .npm
+		${TAR} -cJf ${PORTNAME}-npm-cache-${DISTVERSION}${EXTRACT_SUFX} -C ${WRKDIR} node_modules
 	${CP} -a ${WRKDIR}/${PORTNAME}-npm-cache-${DISTVERSION}${EXTRACT_SUFX} ${DISTDIR}
 
 .include <bsd.port.mk>
