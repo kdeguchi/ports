@@ -44,6 +44,9 @@ bash_CMD=	/bin/sh
 SHEBANG_FILES=	dist/Xgreeter \
 		src/bridge/__init__.py
 
+MAKE_ENV+=	HOME=${WRKDIR} \
+		PATH=${WRKDIR}/node_modules/.bin:${LOCALBASE}/bin:${PATH}
+
 post-patch:
 	@${REINPLACE_CMD} -e 's,$${INSTALL_ROOT}/etc,$${INSTALL_ROOT}$${PREFIX}/etc,' \
 		-e 's,sed .*,grep ID= | sed "s/ID=//"),' \
@@ -61,6 +64,7 @@ post-patch:
 	@${FIND} ${WRKSRC} -name '*.bak' -delete
 
 pre-build:
+	${ECHO_CMD} offline=true >> ${WRKSRC}/.npmrc
 	cd ${WRKSRC} && \
 		${SETENV} ${MAKE_ENV} npm config set cache ${WRKDIR}/node_modules
 	cd ${WRKSRC} && \
