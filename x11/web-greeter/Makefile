@@ -81,7 +81,7 @@ make-npm-cache: patch
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} npm install typescript
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} npm install --cache=${WRKDIR}/node_modules --prefer-offline typescript
 	cd ${WRKDIR} && \
-		${TAR} -cJf ${PORTNAME}-npm-cache-${DISTVERSION}${EXTRACT_SUFX} -C ${WRKDIR} node_modules
+		${TAR} -cJf ${PORTNAME}-npm-cache-${DISTVERSION}${EXTRACT_SUFX} -C ${WRKDIR} node_modules package-lock.json package.json
 	${CP} -a ${WRKDIR}/${PORTNAME}-npm-cache-${DISTVERSION}${EXTRACT_SUFX} ${DISTDIR}
 
 .include <bsd.port.mk>
