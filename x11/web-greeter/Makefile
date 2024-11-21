@@ -36,16 +36,16 @@ GH_TUPLE=	JezerM:web-greeter:f33a7d6 \
 		JezerM:web-greeter-themes:44283ca:themes/themes \
 		JezerM:nody-greeter-types:4bf0196:tsc/themes/ts-types
 
-MAKE_ENV+=	PATH=${WRKSRC}/node_modules/.bin:${PATH}
+MAKE_ENV+=	HOME=${WRKDIR} \
+		PATH=${WRKDIR}/node_modules/.bin:${LOCALBASE}/bin:${PATH}
 MAKE_JOBS_UNSAFE=	yes
+
 CFLAGS+=	-fPIC
 
 bash_CMD=	/bin/sh
 SHEBANG_FILES=	dist/Xgreeter \
 		src/bridge/__init__.py
 
-MAKE_ENV+=	HOME=${WRKDIR} \
-		PATH=${WRKDIR}/node_modules/.bin:${LOCALBASE}/bin:${PATH}
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,$${INSTALL_ROOT}/etc,$${INSTALL_ROOT}$${PREFIX}/etc,' \
