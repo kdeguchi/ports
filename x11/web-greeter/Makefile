@@ -67,8 +67,8 @@ pre-build:
 	${ECHO_CMD} offline=true >> ${WRKSRC}/.npmrc
 	cd ${WRKSRC} && \
 		${SETENV} ${MAKE_ENV} npm config set cache ${WRKDIR}/node_modules
-	cd ${WRKSRC} && \
-		${SETENV} ${MAKE_ENV} npm install --prefer-offline typescript
+#	cd ${WRKSRC} && \
+#		${SETENV} ${MAKE_ENV} npm install --prefer-offline typescript
 
 post-install:
 	${MV} ${STAGEDIR}${PREFIX}/etc/lightdm/web-greeter.yml \
