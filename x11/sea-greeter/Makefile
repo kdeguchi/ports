@@ -1,8 +1,10 @@
 PORTNAME=	sea-greeter
 PORTVERSION=	0.1
 CATEGORIES=	x11
+.if !make(make-npm-cache)
 MASTER_SITES=	LOCAL:npmcache
 DISTFILES=	${PORTNAME}-npm-cache-${DISTVERSION}${EXTRACT_SUFX}:npmcache
+.endif
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Another LightDM greeter made with WebKitGTK2
