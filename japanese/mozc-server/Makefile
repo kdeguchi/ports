@@ -1,6 +1,6 @@
 PORTNAME=	mozc
 PORTVERSION=	2.30.5618.102
-PORTREVISION=	12
+PORTREVISION=	13
 CATEGORIES=	japanese
 
 DIST_SUBDIR=	${PORTNAME}
@@ -31,7 +31,7 @@ USES=	compiler:c++20-lang gmake localbase ninja:build pkgconfig \
 	python:3.8+,build shebangfix tar:bzip2
 
 USE_GITHUB=	yes
-GH_TUPLE=	fcitx:mozc:0eec723
+GH_TUPLE=	fcitx:mozc:08e3c4b
 GH_TUPLE+=	abseil:abseil-cpp:4447c75:abseil/src/third_party/abseil-cpp
 GH_TUPLE+=	google:googletest:b514bdc:googletest/src/third_party/gtest
 GH_TUPLE+=	protocolbuffers:protobuf:7cc670c:protobuf/src/third_party/protobuf
@@ -73,7 +73,6 @@ MASTER_SITES+=	https://www.post.japanpost.jp/zipcode/dl/kogaki/zip/:kenall \
 		https://www.post.japanpost.jp/zipcode/dl/jigyosyo/zip/:jigyosyo
 DISTFILES+=	ken_all.zip:kenall \
 		jigyosyo.zip:jigyosyo
-
 # usage dictionary
 GH_TUPLE+=	hiroyuki-komatsu:japanese-usage-dictionary:a4a6677:udic/src/third_party/japanese_usage_dictionary
 
@@ -103,7 +102,7 @@ JAWIKI_GH_TUPLE=	utuhiro78:mozcdic-ut-jawiki:9c0e66c:jawiki
 NEOLOGD_GH_TUPLE=	utuhiro78:mozcdic-ut-neologd:5a275dc:neologd
 
 # APACHE20
-PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:92f3943:personal
+PERSONALNAME_GH_TUPLE=	utuhiro78:mozcdic-ut-personal-names:ea85549:personal
 
 # APCHE20
 PLACENAME_GH_TUPLE=	utuhiro78:mozcdic-ut-place-names:d189fce:place
