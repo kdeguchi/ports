@@ -1,3 +1,0 @@
-common --noenable_bzlmod
-fetch --repository_cache="%%BAZEL_DIR%%/bazel-cache/" --distdir="%%BAZEL_DIST%%/bazel-dist/"
-build --repository_cache="%%BAZEL_DIR%%/bazel-cache/" --distdir="%%BAZEL_DIST%%/bazel-dist/"
