@@ -1,6 +1,6 @@
 PORTNAME=	compiz-plugins-extra
 PORTVERSION=	0.8.18
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11-wm
 
 MAINTAINER=	freebsd-ports@dan.me.uk
@@ -27,7 +27,7 @@ USES=		autoreconf gl gmake gnome libtool localbase pathfix pkgconfig xorg
 
 USE_GITLAB=	yes
 GL_ACCOUNT=	compiz
-GL_COMMIT=	184b0cd51fac208b2b6b71f077668f9ca413cd66
+GL_COMMIT=	3441d027884b37194ca821b8e689d5d569058960
 
 USE_GL=		glu
 USE_GNOME=	gdkpixbuf2 intltool libxml2 pango
