@@ -7,12 +7,6 @@ export SUDO_UID=$(id -u)
 export SUDO_GID=$(id -g)
 export SUDO_USER=$(id -un)
 
-for ARG in $@; do
-	case ${ARG} in
-		-e)	DOAS=%%PREFIX%%/bin/doasedit ;;
-		-p)	continue ;;
-		*)	ARGS="${ARGS} ${ARG}" ;;
-	esac
-done
+[ "$1" = "-e" ] && shift && DOAS=%%PREFIX%%/bin/doasedit
 
-exec ${DOAS} ${ARGS}
+exec ${DOAS} $@

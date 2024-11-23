@@ -1,5 +1,5 @@
 PORTNAME=	doas-wrapper
-PORTVERSION=	0.4
+PORTVERSION=	0.5
 CATEGORIES=	security
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -14,7 +14,8 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 PLIST_FILES=	bin/sudo bin/sudoedit bin/visudo
-SUB_FILES=	doasedit.8 doasedit.sh vidoas.8 vidoas.sh sudo.sh
+PLIST_SUB=	DOAS_CONF=${PREFIX}/etc/doas.conf
+SUB_FILES=	doasedit.8 doasedit.sh sudo.sh vidoas.8 vidoas.sh
 
 OPTIONS_SINGLE=	DOAS_WRAPPER
 OPTIONS_SINGLE_DOAS_WRAPPER=	DOAS OPENDOAS

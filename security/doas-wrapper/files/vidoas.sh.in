@@ -91,7 +91,7 @@ Edit a temporary copy of a doas configuration file and check it for
 syntax errors before installing it as the actual configuration file.
 
 When no file is named, ${PROG} will edit the default configuration file
-for doas(1): @DOAS_CONF@
+for doas(1): ${DOAS_CONF}
 
 Options:
 -h	Show this usage.
