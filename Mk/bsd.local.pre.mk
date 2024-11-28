@@ -1,5 +1,5 @@
 # Maybe, many ports need this
-.if ${.CURDIR:N*/graphics/jbigkit*}
+.if ${.CURDIR:N*/graphics/jbigkit} && ${.CURDIR:N*/security/veracrypt}
 USES+=	localbase
 .endif
 
