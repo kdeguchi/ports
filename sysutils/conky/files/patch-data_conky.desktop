@@ -1,0 +1,11 @@
+--- data/conky.desktop.orig	2024-11-29 13:14:05 UTC
++++ data/conky.desktop
+@@ -1,7 +1,7 @@ Name=conky
+ [Desktop Entry]
+ Type=Application
+ Name=conky
+-Exec=conky --daemonize --pause=1
++Exec=conky --daemonize --pause=1 --unique
+ StartupNotify=false
+ Terminal=false
+ Icon=conky-logomark-violet
