@@ -498,6 +498,9 @@ share/icons/hicolor/scalable/apps/kitty.svg
 %%DATADIR%%/kitty/__pycache__/clipboard%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
 %%DATADIR%%/kitty/__pycache__/clipboard%%PYTHON_EXT_SUFFIX%%.opt-2.pyc
 %%DATADIR%%/kitty/__pycache__/clipboard%%PYTHON_EXT_SUFFIX%%.pyc
+%%DATADIR%%/kitty/__pycache__/colors%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%DATADIR%%/kitty/__pycache__/colors%%PYTHON_EXT_SUFFIX%%.opt-2.pyc
+%%DATADIR%%/kitty/__pycache__/colors%%PYTHON_EXT_SUFFIX%%.pyc
 %%DATADIR%%/kitty/__pycache__/config%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
 %%DATADIR%%/kitty/__pycache__/config%%PYTHON_EXT_SUFFIX%%.opt-2.pyc
 %%DATADIR%%/kitty/__pycache__/config%%PYTHON_EXT_SUFFIX%%.pyc
@@ -621,6 +624,7 @@ share/icons/hicolor/scalable/apps/kitty.svg
 %%DATADIR%%/kitty/cli_stub.py
 %%DATADIR%%/kitty/client.py
 %%DATADIR%%/kitty/clipboard.py
+%%DATADIR%%/kitty/colors.py
 %%DATADIR%%/kitty/conf/__init__.py
 %%DATADIR%%/kitty/conf/__pycache__/__init__%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
 %%DATADIR%%/kitty/conf/__pycache__/__init__%%PYTHON_EXT_SUFFIX%%.opt-2.pyc
