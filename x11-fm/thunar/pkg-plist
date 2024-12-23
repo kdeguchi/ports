@@ -57,7 +57,6 @@ share/dbus-1/services/org.xfce.Thunar.service
 %%GTKDOC%%share/gtk-doc/html/thunar/ThunarDeviceMonitor.html
 %%GTKDOC%%share/gtk-doc/html/thunar/ThunarEmblemChooser.html
 %%GTKDOC%%share/gtk-doc/html/thunar/ThunarFile.html
-%%GTKDOC%%share/gtk-doc/html/thunar/ThunarFileMonitor.html
 %%GTKDOC%%share/gtk-doc/html/thunar/ThunarFolder.html
 %%GTKDOC%%share/gtk-doc/html/thunar/ThunarHistory.html
 %%GTKDOC%%share/gtk-doc/html/thunar/ThunarIconFactory.html
