@@ -1,6 +1,5 @@
 PORTNAME=	tumbler
-PORTVERSION=	4.18.2
-PORTREVISION=	2
+PORTVERSION=	4.20.0
 CATEGORIES=	deskutils xfce
 MASTER_SITES=	XFCE
 PKGNAMEPREFIX=	xfce4-
@@ -18,14 +17,14 @@ LIB_DEPENDS=	libpng16.so:graphics/png
 
 USES=		compiler:c11 gettext-tools gmake gnome libtool \
 		localbase:ldflags pathfix pkgconfig tar:bzip2 xfce
-USE_GNOME=	cairo gdkpixbuf2 glib20 intltool libgsf librsvg2
+USE_GNOME=	cairo gdkpixbuf2 glib20 libgsf librsvg2
 USE_LDCONFIG=	yes
 USE_XFCE=	libutil
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-xdg-cache \
+CONFIGURE_ARGS=	--disable-gtk-doc-html \
 		--enable-pixbuf-thumbnailer \
-		--disable-gtk-doc-html \
+		--enable-xdg-cache \
 		--without-html-dir
 
 INSTALL_TARGET=	install-strip
@@ -34,10 +33,9 @@ PORTSCOUT=	limitw:1,even
 
 SUB_FILES=	pkg-message
 
-OPTIONS_DEFINE=	COVER EPUB FFMPEG FONTS GSTREAMER JPEG \
-		NLS ODF OPENRAW POPPLER
-OPTIONS_DEFAULT=EPUB FONTS GSTREAMER JPEG ODF POPPLER
-OPTIONS_SUB=	yes
+OPTIONS_DEFINE=		COVER EPUB FFMPEG FONTS GSTREAMER JPEG NLS ODF OPENRAW POPPLER
+OPTIONS_DEFAULT=	EPUB FONTS GSTREAMER JPEG ODF POPPLER
+OPTIONS_SUB=		yes
 
 COVER_DESC=	Open Movie Database plugin (check pkg-message)
 EPUB_DESC=	EPUB thumbnailer plugin
@@ -50,13 +48,13 @@ COVER_CONFIGURE_ENABLE=	cover-thumbnailer
 EPUB_LIB_DEPENDS=	libgepub-0.6.so:textproc/libgepub
 EPUB_CONFIGURE_ENABLE=	gepub-thumbnailer
 
-FFMPEG_LIB_DEPENDS=	libffmpegthumbnailer.so:multimedia/ffmpegthumbnailer
+FFMPEG_LIB_DEPENDS=		libffmpegthumbnailer.so:multimedia/ffmpegthumbnailer
 FFMPEG_CONFIGURE_ENABLE=	ffmpeg-thumbnailer
 
 FONTS_LIB_DEPENDS=	libfreetype.so:print/freetype2
 FONTS_CONFIGURE_ENABLE=	font-thumbnailer
 
-GSTREAMER_USES=		gstreamer
+GSTREAMER_USES=			gstreamer
 GSTREAMER_CONFIGURE_ENABLE=	gstreamer-thumbnailer
 
 JPEG_LIB_DEPENDS=	libexif.so:graphics/libexif
@@ -66,13 +64,13 @@ JPEG_CONFIGURE_ENABLE=	jpeg-thumbnailer
 NLS_USES=		gettext-runtime
 NLS_CONFIGURE_ENABLE=	nls
 
-ODF_USE=		gnome=libgsf
+ODF_USE=		GNOME=libgsf
 ODF_CONFIGURE_ENABLE=	odf-thumbnailer
 
-OPENRAW_LIB_DEPENDS=	libopenraw.so:graphics/libopenraw
+OPENRAW_LIB_DEPENDS=		libopenraw.so:graphics/libopenraw
 OPENRAW_CONFIGURE_ENABLE=	raw-thumbnailer
 
-POPPLER_LIB_DEPENDS=	libpoppler-glib.so:graphics/poppler-glib
+POPPLER_LIB_DEPENDS=		libpoppler-glib.so:graphics/poppler-glib
 POPPLER_CONFIGURE_ENABLE=	poppler-thumbnailer
 
 .include <bsd.port.mk>
