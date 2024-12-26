@@ -25,11 +25,17 @@ USE_WX=	3.2
 .endif
 
 ########################################
-# KDE
+# KDE & Qt
 ########################################
-.if defined(USE_KDE) && ${USE_KDE:M*ecm*}
-. if defined(USE_KDE) && ! ${USE_KDE:M*ecm\:build*}
+.if defined(USE_KDE) && ${USE_KDE:Mecm}
+. if defined(USE_KDE) && ! ${USE_KDE:Mecm\:build}
 USE_KDE:=	${USE_KDE:S@ecm@ecm:build@}
+. endif
+.endif
+
+.if defined(USE_QT) && ${USE_QT:Mtools}
+. if defined(USE_QT) && ! ${USE_QT:Mtools\:build}
+USE_QT:=	${USE_QT:S@tools@tools:build@}
 . endif
 .endif
 
