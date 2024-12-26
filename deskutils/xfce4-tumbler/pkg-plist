@@ -30,6 +30,7 @@ lib/tumbler-1/plugins/tumbler-desktop-thumbnailer.so
 %%ODF%%lib/tumbler-1/plugins/tumbler-odf-thumbnailer.so
 lib/tumbler-1/plugins/tumbler-pixbuf-thumbnailer.so
 %%POPPLER%%lib/tumbler-1/plugins/tumbler-poppler-thumbnailer.so
+%%OPENRAW%%lib/tumbler-1/plugins/tumbler-raw-thumbnailer.so
 lib/tumbler-1/tumblerd
 libdata/pkgconfig/tumbler-1.pc
 share/dbus-1/services/org.xfce.Tumbler.Cache1.service
