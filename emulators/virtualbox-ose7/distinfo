@@ -1,0 +1,5 @@
+TIMESTAMP = 1735183789
+SHA256 (VirtualBox-7.0.22.tar.bz2) = cf3ddf633ca410f1b087b0722413e83247cda4f14d33323dc122a4a42ff61981
+SIZE (VirtualBox-7.0.22.tar.bz2) = 174643573
+SHA256 (VBoxGuestAdditions_7.0.22.iso) = 486f90cbfe9ed4bf2b12d726ebf54a839758a237e967aa65fc2c92d90a963021
+SIZE (VBoxGuestAdditions_7.0.22.iso) = 54300672

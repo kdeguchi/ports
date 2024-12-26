@@ -1,0 +1,48 @@
+--- src/VBox/Main/webservice/Makefile.kmk.orig	2024-10-10 18:31:48 UTC
++++ src/VBox/Main/webservice/Makefile.kmk
+@@ -168,7 +168,6 @@ PATH_TARGET_SOAPDEMOXML       := $(VBOXWEB_OUT_DIR)/de
+ RECOMPILE_ON_MAKEFILE_CURRENT := $(MAKEFILE_CURRENT)
+ 
+ PATH_TARGET_SOAPDEMOXML       := $(VBOXWEB_OUT_DIR)/demo_soapxml
+-PATH_TARGET_SOAPDEMOHEADERS   := $(VBOXWEB_OUT_DIR)/demo_headers
+ PATH_TARGET_SOAPDEMONSMAPS    := $(VBOXWEB_OUT_DIR)/demo_namespacemaps
+ PATH_TARGET_WEBTEST           := $(VBOXWEB_OUT_DIR)/webtest
+ 
+@@ -340,7 +339,7 @@ ifdef VBOX_GSOAP_INSTALLED
+    	$(VBOX_GCC_Wno-logical-op)
+    # currently necessary when compiling against OpenSSL 1.0 due to a missing
+    # typecase from 'const v3_ext_method*' to 'aka v3_ext_method*'.
+-   $(VBOX_GSOAP_CXX_SOURCES)_CXXFLAGS += -fpermissive
++   $(VBOX_GSOAP_CXX_SOURCES)_CXXFLAGS +=
+    # Necessary with gcc 9.2.1 for some reason:
+    $(VBOX_GSOAP_CXX_SOURCES)_CXXFLAGS += -Wno-deprecated-declarations
+   endif
+@@ -622,8 +621,6 @@ ifdef VBOX_GSOAP_INSTALLED
+  	$(VBOXWEB_OUT_DIR)/gsoap_copy_all_ts \
+  	$(wildcard $(PATH_TARGET_SOAPDEMOXML)/*) \
+  	$(PATH_TARGET_SOAPDEMOXML)/dummy_file \
+- 	$(wildcard $(PATH_TARGET_SOAPDEMOHEADERS)/*) \
+- 	$(PATH_TARGET_SOAPDEMOHEADERS)/dummy_file \
+  	$(wildcard $(PATH_TARGET_SOAPDEMONSMAPS)/*) \
+  	$(PATH_TARGET_SOAPDEMONSMAPS)/dummy_file
+ 
+@@ -874,17 +871,14 @@ ifdef VBOX_GSOAP_INSTALLED
+  # any more. Ignoring the exit code is the simple solution, accepting the error.
+  $(VBOXWEB_OUT_DIR)/gsoap_copy_all_ts: $(VBOXWEB_OUT_DIR)/gsoap_generate_all_ts | $$(dir $$@)
+ 	$(RM) -f $@
+-	$(MKDIR) -p $(PATH_TARGET_SOAPDEMOXML) $(PATH_TARGET_SOAPDEMOHEADERS) $(PATH_TARGET_SOAPDEMONSMAPS)
++	$(MKDIR) -p $(PATH_TARGET_SOAPDEMOXML) $(PATH_TARGET_SOAPDEMONSMAPS)
+  ifdef VBOX_GSOAP_VERBOSE
+ 	$(MV_EXT) -f -- $(VBOXWEB_OUT_DIR)/*.req.xml $(VBOXWEB_OUT_DIR)/*.res.xml $(PATH_TARGET_SOAPDEMOXML)/
+  endif
+-	-$(MV_EXT) -f -- $(VBOXWEB_OUT_DIR)/soapvbox*.h $(PATH_TARGET_SOAPDEMOHEADERS)/
+ 	$(MV_EXT) -f -- $(VBOXWEB_OUT_DIR)/vboxBinding.nsmap $(PATH_TARGET_SOAPDEMONSMAPS)/
+ 	$(APPEND) $@ done
+ 
+- $(PATH_TARGET_SOAPDEMONSMAPS) \
+- $(PATH_TARGET_SOAPDEMOHEADERS)/soapvboxBindingProxy.h \
+- $(PATH_TARGET_SOAPDEMOHEADERS)/soapvboxBindingObject.h: $(VBOXWEB_OUT_DIR)/gsoap_copy_all_ts
++ $(PATH_TARGET_SOAPDEMONSMAPS): $(VBOXWEB_OUT_DIR)/gsoap_copy_all_ts
+ 
+  hack: $(VBOXWEB_OUT_DIR)/gsoap_copy_all_ts
+ 
