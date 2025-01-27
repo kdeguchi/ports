@@ -4,7 +4,7 @@ DISTVERSIONSUFFIX=-1-rpm
 CATEGORIES=	print
 MASTER_SITES=	http://gdlp01.c-wss.com/gds/8/0100011318/01/
 #https://gdlp01.c-wss.com/gds/8/0100011318/01/cnijfilter2-6.30-1-rpm.tar.gz
-PKGNAMEPREFIX=	linux-${FLAVOR}-
+PKGNAMEPREFIX=	linux-${LINUX_DEFAULT}-
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Caonon IJ Printer driver
@@ -19,11 +19,11 @@ OPTIONS_DEFINE=	DOCS
 FLAVORS=	c7 rl9
 FLAVOR?=	${LINUX_DEFAULT}
 
-USES=	linux:${FLAVOR}
+USES=	linux:${LINUX_DEFAULT}
 USE_LDCONFIG=	yes
-.if ${FLAVOR} == rl9
+.if ${LINUX_DEFAULT} == rl9
 USE_LINUX=	cups-libs gnutls libxml2
-.elif ${FLAVOR} == c7
+.elif ${LINUX_DEFAULT} == c7
 USE_LINUX=	avahi-libs cups-libs dbuslibs libxml2
 .endif
 USE_LINUX_PREFIX=	yes
