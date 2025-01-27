@@ -21,9 +21,9 @@ FLAVOR?=	${LINUX_DEFAULT}
 
 USES=	linux:${LINUX_DEFAULT}
 USE_LDCONFIG=	yes
-.if ${LINUX_DEFAULT} == rl9
+.if defined(LINUX_DEFAULT) && ${LINUX_DEFAULT} == rl9
 USE_LINUX=	cups-libs gnutls libxml2
-.elif ${LINUX_DEFAULT} == c7
+.elif defined(LINUX_DEFAULT) && ${LINUX_DEFAULT} == c7
 USE_LINUX=	avahi-libs cups-libs dbuslibs libxml2
 .endif
 USE_LINUX_PREFIX=	yes
