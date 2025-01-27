@@ -31,7 +31,7 @@ GH_TAGNAME=	3f69acb
 GH_TUPLE=	capnproto:capnproto:928c8390d4d562bd32dc79a42eb64e9bdba572d8:capnproto/third_party/capnproto
 
 MAKE_ENV=	MAKE_JOBS_NUMBER=${MAKE_JOBS_NUMBER}
-.if ${LINUX_DEFAULT} == c7
+.if defined(LINUX_DEFAULT) && ${LINUX_DEFAULT} == c7
 MAKE_ENV+=	LINUX_CC=${LINUXBASE}/opt/rh/devtoolset-11/root/usr/bin/g++
 MAKE_ENV+=	LINUX_CC=${LINUXBASE}/opt/rh/devtoolset-11/root/usr/bin/ld.bfd
 .else
