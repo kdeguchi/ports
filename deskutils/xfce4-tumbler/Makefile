@@ -17,7 +17,7 @@ LIB_DEPENDS=	libpng16.so:graphics/png
 
 USES=		compiler:c11 gettext-tools gmake gnome libtool \
 		localbase:ldflags pathfix pkgconfig tar:bzip2 xfce
-USE_GNOME=	cairo gdkpixbuf2 glib20 libgsf librsvg2
+USE_GNOME=	cairo gdkpixbuf2 glib20 libgsf
 USE_LDCONFIG=	yes
 USE_XFCE=	libutil
 
@@ -26,7 +26,6 @@ CONFIGURE_ARGS=	--disable-gtk-doc-html \
 		--enable-pixbuf-thumbnailer \
 		--enable-xdg-cache \
 		--without-html-dir
-
 INSTALL_TARGET=	install-strip
 
 PORTSCOUT=	limitw:1,even
