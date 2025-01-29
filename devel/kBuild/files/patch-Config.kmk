@@ -1,0 +1,11 @@
+--- Config.kmk.orig	2025-01-28 18:06:03 UTC
++++ Config.kmk
+@@ -89,7 +89,7 @@ $(KBUILD_SVN_INFO_KMK):
+ $(KBUILD_SVN_INFO_KMK):
+ 	$(RM) -f $@
+ 	$(MKDIR) -p $(@D)
+-	$(APPEND) $@ 'KBUILD_SVN_REV := 0'
++	$(APPEND) $@ 'KBUILD_SVN_REV := 3360'
+ 	$(APPEND) $@ 'KBUILD_SVN_URL := /dev/null'
+ 
+  ifeq ($(DEPTH),.)
