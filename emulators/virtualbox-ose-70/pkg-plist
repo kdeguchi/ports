@@ -394,7 +394,7 @@ lib/virtualbox/VBoxGuestPropSvc.so
 @(root,%%VBOXGROUP%%,4510) lib/virtualbox/VBoxHeadless
 lib/virtualbox/VBoxHeadless.so
 lib/virtualbox/VBoxHostChannel.so
-%%X11%%lib/virtualbox/VBoxKeyboard.so
+%%QT%%lib/virtualbox/VBoxKeyboard.so
 lib/virtualbox/VBoxManage
 @(root,%%VBOXGROUP%%,4510) lib/virtualbox/VBoxNetAdpCtl
 @(root,%%VBOXGROUP%%,4510) lib/virtualbox/VBoxNetDHCP

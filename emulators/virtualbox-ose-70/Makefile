@@ -89,7 +89,6 @@ AIO_DESC=		Enable Asyncronous IO support (check pkg-message)
 DEBUG_DESC=		Debug symbols, additional logs and assertions
 GUESTADDITIONS_DESC=	Build with Guest Additions
 NLS_DESC=		Native language support (requires QT5)
-#OPUS_DESC=		Use libvpx for audio recording (requires VPX)
 QT5_DESC=		Build with QT5 frontend (requires X11)
 R0LOGGING_DESC=		Enable R0 logging (requires DEBUG)
 UDPTUNNEL_DESC=		Build with UDP tunnel support
@@ -105,9 +104,6 @@ DBUS_LIB_DEPENDS=	libdbus-1.so:devel/dbus
 DBUS_CONFIGURE_OFF=	--disable-dbus
 DEBUG_CONFIGURE_ON=	--build-debug
 NLS_IMPLIES=		QT5
-#OPUS_IMPLIES=		VPX
-#OPUS_LIB_DEPENDS=	libopus.so:audio/opus
-#OPUS_CONFIGURE_OFF=	--disable-libopus
 PULSEAUDIO_LIB_DEPENDS=	libpulse.so:audio/pulseaudio
 PULSEAUDIO_CONFIGURE_OFF=	--disable-pulse
 PYTHON_USES=		python
@@ -131,8 +127,8 @@ VNC_CONFIGURE_ON=	--enable-vnc
 VPX_LIB_DEPENDS=	libvpx.so:multimedia/libvpx
 VPX_CONFIGURE_OFF=	--disable-libvpx
 WEBSERVICE_BUILD_DEPENDS=	soapcpp2:devel/gsoap
-X11_USES=		sdl xorg
-X11_USE=		SDL=sdl XORG=x11,xcursor,xext,xinerama,xmu,xorgproto,xt
+X11_USES=		gl sdl xorg
+X11_USE=		GL=gl SDL=sdl XORG=x11,xcursor,xext,xinerama,xmu,xorgproto,xt
 X11_CONFIGURE_OFF=	--build-headless
 
 ENV=
