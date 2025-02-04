@@ -25,6 +25,8 @@ LARGE_FILE=	large.tgz
 TIMING_FILE=	timing.tgz
 CPE_VENDOR=	openblas_project
 
+USE_GCC=	yes
+
 USE_LDCONFIG=	yes
 USE_PERL5=	build
 
