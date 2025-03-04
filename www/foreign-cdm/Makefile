@@ -1,6 +1,6 @@
 PORTNAME=	foreign-cdm
-PORTVERSION=	20231217
-PORTREVISION=	4
+DISTVERSION=	20250224
+PORTREVISION=	1
 CATEGORIES=	www multimedia linux
 MASTER_SITES=	https://arrowd.name/:cdm
 DISTFILES=	cdm-${CDM_INT_HASH}.tar.gz:cdm
@@ -33,7 +33,7 @@ GH_TUPLE=	capnproto:capnproto:928c8390d4d562bd32dc79a42eb64e9bdba572d8:capnproto
 MAKE_ENV=	MAKE_JOBS_NUMBER=${MAKE_JOBS_NUMBER}
 .if defined(LINUX_DEFAULT) && ${LINUX_DEFAULT} == c7
 MAKE_ENV+=	LINUX_CC=${LINUXBASE}/opt/rh/devtoolset-11/root/usr/bin/g++
-MAKE_ENV+=	LINUX_CC=${LINUXBASE}/opt/rh/devtoolset-11/root/usr/bin/ld.bfd
+MAKE_ENV+=	LINUX_LD=${LINUXBASE}/opt/rh/devtoolset-11/root/usr/bin/ld.bfd
 .else
 MAKE_ENV+=	LINUX_CC=${LINUXBASE}/usr/bin/g++
 MAKE_ENV+=	LINUX_LD=${LINUXBASE}/usr/bin/ld.bfd
@@ -48,7 +48,7 @@ PLIST_FILES=	libexec/fcdm-jail \
 		share/chromium/WidevineCdm/manifest.json \
 		share/foreign-cdm/fcdm-setup-env
 
-CDM_INT_HASH=	fef0b5aa1bd31efb88dfab804bdbe614f3d54f28
+CDM_INT_HASH=	06395a2863cb1ebdb47617a995b73f95c14fe120
 
 post-extract:
 	${MV} ${WRKDIR}/*.h ${WRKSRC}/third_party/cdm/
