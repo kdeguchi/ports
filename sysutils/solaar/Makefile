@@ -1,5 +1,6 @@
 PORTNAME=	solaar
 DISTVERSION=	1.0.3
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	tobik@FreeBSD.org
