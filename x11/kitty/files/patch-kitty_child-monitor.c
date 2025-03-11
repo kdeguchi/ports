@@ -8,7 +8,7 @@
  extern PyTypeObject Screen_Type;
  
  #if defined(__APPLE__) || defined(__OpenBSD__)
-@@ -313,6 +314,7 @@ add_child(ChildMonitor *self, PyObject *args) {
+@@ -315,6 +316,7 @@ add_child(ChildMonitor *self, PyObject *args) {
          return NULL;
      }
  #undef A
@@ -16,7 +16,7 @@
      INCREF_CHILD(add_queue[add_queue_count]);
      add_queue_count++;
      children_mutex(unlock);
-@@ -1301,6 +1303,7 @@ cleanup_child(ssize_t i) {
+@@ -1352,6 +1354,7 @@ cleanup_child(ssize_t i) {
  
  static void
  cleanup_child(ssize_t i) {
