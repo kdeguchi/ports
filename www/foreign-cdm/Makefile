@@ -27,7 +27,6 @@ rl9_RUN_DEPENDS=	linux_base-rl9>0:emulators/linux_base-rl9
 USE_GITHUB=	yes
 GH_ACCOUNT=	shkhln
 GH_PROJECT=	foreign-cdm
-GH_TAGNAME=	3f69acb
 GH_TUPLE=	capnproto:capnproto:928c8390d4d562bd32dc79a42eb64e9bdba572d8:capnproto/third_party/capnproto
 
 MAKE_ENV=	MAKE_JOBS_NUMBER=${MAKE_JOBS_NUMBER}
