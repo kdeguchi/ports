@@ -16,7 +16,7 @@ RUN_DEPENDS=	7zz:archivers/7-zip
 USES=		gettext gnome libtool localbase pkgconfig xorg
 USE_LDCONFIG=	yes
 USE_XORG=	xorgproto
-USE_GNOME=	atk cairo gdkpixbuf2 glib20 gtk20 pango
+USE_GNOME=	atk cairo gdkpixbuf glib20 gtk20 pango
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	y-hiroyu

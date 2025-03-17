@@ -21,7 +21,7 @@ GL_SITE=		https://gitlab.gnome.org
 GL_ACCOUNT=	GNOME
 GL_COMMIT=	634340d31177c02ccdb43171e37291948e7f8974
 
-USE_GNOME=	gdkpixbuf2 glib20 intlhack introspection:build libxml2
+USE_GNOME=	gdkpixbuf glib20 intlhack introspection:build libxml2
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
