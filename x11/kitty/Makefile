@@ -1,6 +1,6 @@
 PORTNAME=	kitty
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.40.0
+DISTVERSION=	0.40.1
 CATEGORIES=	x11 wayland
 
 MAINTAINER=	nivit@FreeBSD.org
@@ -68,7 +68,7 @@ _STRIP_TARGETS=	kitty/fast_data_types.so kitty/glfw-x11.so \
 _EMPTY_DIRS=	kittens/choose kittens/diff kittens/unicode_input kittens kitty
 
 OPTIONS_DEFINE=		DOCS
-BUILD_DEPENDS=	roboto-fonts-ttf>=2.134:x11-fonts/roboto-fonts-ttf
+BUILD_DEPENDS+=	roboto-fonts-ttf>=2.134:x11-fonts/roboto-fonts-ttf
 MAKE_ENV=		BUILD_DOCS=yes
 
 .include <bsd.port.options.mk>
