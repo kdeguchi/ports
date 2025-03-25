@@ -1,25 +1,26 @@
 PORTNAME=	libXaw3d
-PORTVERSION=	1.6.3
+PORTVERSION=	1.6.6
 CATEGORIES=	x11-toolkits
 
-MAINTAINER=	ports@FreeBSD.org
-COMMENT=	3-D Athena Widget set that looks like Motif
+MAINTAINER=	x11@FreeBSD.org
+COMMENT=	Xaw3d is the X 3D Athena Widget Set
+WWW=		https://www.freedesktop.org/wiki/Software/xlibs/
 
 LICENSE=	MIT
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		autoreconf gettext libtool pkgconfig xorg xorg-cat:lib
+USES=		gmake tar:xz xorg xorg-cat:lib
+USE_XORG=	x11 xau xext xmu xpm xorgproto xt
 USE_LDCONFIG=	yes
-USE_XORG=	ice sm x11 xext xmu xpm xt
+
+CONFIGURE_ARGS=	--without-xmlto
 
 SUB_FILES=	pkg-message pkg-post-deinstall pkg-post-install
+XAWVER=		8
 SUB_LIST=	XAWVER="${XAWVER}"
 
 PKGPOSTINSTALL=	${WRKDIR}/pkg-post-install
 PKGPOSTDEINSTALL=	${WRKDIR}/pkg-post-deinstall
-
-XAWVER=	8
-
-OPTIONS_DEFINE=	DOCS
 
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libXaw3d.so

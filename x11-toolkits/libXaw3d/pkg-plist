@@ -78,4 +78,3 @@ lib/.libXaw3d/libXaw3d.so
 lib/.libXaw3d/libXaw3d.so.8
 lib/.libXaw3d/libXaw3d.so.8.0.0
 libdata/pkgconfig/xaw3d.pc
-%%PORTDOCS%%%%DOCSDIR%%/README.XAW3D
