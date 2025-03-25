@@ -1,2 +1,0 @@
-#!/bin/sh
-/bin/rm -f ${PKG_ROOTDIR}${PKG_PREFIX}/lib/libXaw3d*
