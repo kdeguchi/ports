@@ -1,6 +1,6 @@
 --- setup.py.orig	2024-05-08 04:55:54 UTC
 +++ setup.py
-@@ -733,6 +733,7 @@ def get_source_specific_defines(env: Env, src: str) ->
+@@ -737,6 +737,7 @@ def get_source_specific_defines(env: Env, src: str) ->
      if src == 'kitty/data-types.c':
          if not env.vcs_rev:
              env.vcs_rev = get_vcs_rev()
