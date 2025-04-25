@@ -1,7 +1,7 @@
 PORTNAME=	man
-PORTVERSION=	${OSREL}.20240531
+PORTVERSION=	14.2.20241129
 CATEGORIES=	japanese
-MASTER_SITES=	ftp://ftp.koganemaru.co.jp/pub/jman${OSREL:C@\.[0-9]+@@}/
+MASTER_SITES=	ftp://ftp.koganemaru.co.jp/pub/jman${PORTVERSION:C@\.[0-9.]+@@}/
 PKGNAMESUFFIX=	-doc
 DISTNAME=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-${PORTVERSION}
 
@@ -18,6 +18,7 @@ EXTRACT_AFTER_ARGS=	-C ${WRKSRC} \
 		--exclude +MTREE_DIRS \
 		-s '|/usr|${PREFIX}|gs'
 
+NO_ARCH=	yes
 NO_BUILD=	yes
 
 SUB_FILES=	eucjp2utf8.sh
