@@ -12,21 +12,14 @@ WWW=		https://cweb.canon.jp/drv-upd/ij-mfp/linux-pd-20211h-630.html
 
 ONLY_FOR_ARCHS=	aarch64 amd64 i386 mips64el
 
+USES=	linux
+USE_LDCONFIG=	yes
+USE_LINUX=	cups-libs libxml2
+USE_LINUX_PREFIX=	yes
+
 NO_BUILD=	yes
 
 OPTIONS_DEFINE=	DOCS
-
-FLAVORS=	c7 rl9
-FLAVOR?=	${LINUX_DEFAULT}
-
-USES=	linux:${LINUX_DEFAULT}
-USE_LDCONFIG=	yes
-.if defined(LINUX_DEFAULT) && ${LINUX_DEFAULT} == rl9
-USE_LINUX=	cups-libs gnutls libxml2
-.elif defined(LINUX_DEFAULT) && ${LINUX_DEFAULT} == c7
-USE_LINUX=	avahi-libs cups-libs dbuslibs libxml2
-.endif
-USE_LINUX_PREFIX=	yes
 
 .if defined(ARCH) && ${ARCH:Mamd64}
 _ARCH=	x86_64
