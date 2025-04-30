@@ -356,6 +356,14 @@ share/icons/hicolor/scalable/apps/kitty.svg
 %%DATADIR%%/kittens/query_terminal/__pycache__/main%%PYTHON_EXT_SUFFIX%%.opt-2.pyc
 %%DATADIR%%/kittens/query_terminal/__pycache__/main%%PYTHON_EXT_SUFFIX%%.pyc
 %%DATADIR%%/kittens/query_terminal/main.py
+%%DATADIR%%/kittens/quick_access_terminal/__init__.py
+%%DATADIR%%/kittens/quick_access_terminal/__pycache__/__init__%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%DATADIR%%/kittens/quick_access_terminal/__pycache__/__init__%%PYTHON_EXT_SUFFIX%%.opt-2.pyc
+%%DATADIR%%/kittens/quick_access_terminal/__pycache__/__init__%%PYTHON_EXT_SUFFIX%%.pyc
+%%DATADIR%%/kittens/quick_access_terminal/__pycache__/main%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%DATADIR%%/kittens/quick_access_terminal/__pycache__/main%%PYTHON_EXT_SUFFIX%%.opt-2.pyc
+%%DATADIR%%/kittens/quick_access_terminal/__pycache__/main%%PYTHON_EXT_SUFFIX%%.pyc
+%%DATADIR%%/kittens/quick_access_terminal/main.py
 %%DATADIR%%/kittens/remote_file/__init__.py
 %%DATADIR%%/kittens/remote_file/__pycache__/__init__%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
 %%DATADIR%%/kittens/remote_file/__pycache__/__init__%%PYTHON_EXT_SUFFIX%%.opt-2.pyc
@@ -585,6 +593,9 @@ share/icons/hicolor/scalable/apps/kitty.svg
 %%DATADIR%%/kitty/__pycache__/short_uuid%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
 %%DATADIR%%/kitty/__pycache__/short_uuid%%PYTHON_EXT_SUFFIX%%.opt-2.pyc
 %%DATADIR%%/kitty/__pycache__/short_uuid%%PYTHON_EXT_SUFFIX%%.pyc
+%%DATADIR%%/kitty/__pycache__/simple_cli_definitions%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%DATADIR%%/kitty/__pycache__/simple_cli_definitions%%PYTHON_EXT_SUFFIX%%.opt-2.pyc
+%%DATADIR%%/kitty/__pycache__/simple_cli_definitions%%PYTHON_EXT_SUFFIX%%.pyc
 %%DATADIR%%/kitty/__pycache__/tab_bar%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
 %%DATADIR%%/kitty/__pycache__/tab_bar%%PYTHON_EXT_SUFFIX%%.opt-2.pyc
 %%DATADIR%%/kitty/__pycache__/tab_bar%%PYTHON_EXT_SUFFIX%%.pyc
@@ -597,9 +608,9 @@ share/icons/hicolor/scalable/apps/kitty.svg
 %%DATADIR%%/kitty/__pycache__/types%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
 %%DATADIR%%/kitty/__pycache__/types%%PYTHON_EXT_SUFFIX%%.opt-2.pyc
 %%DATADIR%%/kitty/__pycache__/types%%PYTHON_EXT_SUFFIX%%.pyc
-%%DATADIR%%/kitty/__pycache__/typing%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
-%%DATADIR%%/kitty/__pycache__/typing%%PYTHON_EXT_SUFFIX%%.opt-2.pyc
-%%DATADIR%%/kitty/__pycache__/typing%%PYTHON_EXT_SUFFIX%%.pyc
+%%DATADIR%%/kitty/__pycache__/typing_compat%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
+%%DATADIR%%/kitty/__pycache__/typing_compat%%PYTHON_EXT_SUFFIX%%.opt-2.pyc
+%%DATADIR%%/kitty/__pycache__/typing_compat%%PYTHON_EXT_SUFFIX%%.pyc
 %%DATADIR%%/kitty/__pycache__/update_check%%PYTHON_EXT_SUFFIX%%.opt-1.pyc
 %%DATADIR%%/kitty/__pycache__/update_check%%PYTHON_EXT_SUFFIX%%.opt-2.pyc
 %%DATADIR%%/kitty/__pycache__/update_check%%PYTHON_EXT_SUFFIX%%.pyc
@@ -928,6 +939,7 @@ share/icons/hicolor/scalable/apps/kitty.svg
 %%DATADIR%%/kitty/shell_integration.py
 %%DATADIR%%/kitty/shm.py
 %%DATADIR%%/kitty/short_uuid.py
+%%DATADIR%%/kitty/simple_cli_definitions.py
 %%DATADIR%%/kitty/tab_bar.py
 %%DATADIR%%/kitty/tabs.py
 %%DATADIR%%/kitty/terminfo.py
@@ -936,7 +948,7 @@ share/icons/hicolor/scalable/apps/kitty.svg
 %%DATADIR%%/kitty/trail_fragment.glsl
 %%DATADIR%%/kitty/trail_vertex.glsl
 %%DATADIR%%/kitty/types.py
-%%DATADIR%%/kitty/typing.py
+%%DATADIR%%/kitty/typing_compat.py
 %%DATADIR%%/kitty/update_check.py
 %%DATADIR%%/kitty/utils.py
 %%DATADIR%%/kitty/window.py
