@@ -1,9 +1,9 @@
 PORTNAME=	cnijfilter2
-PORTVERSION=	6.30
+PORTVERSION=	6.80
 DISTVERSIONSUFFIX=-1-rpm
 CATEGORIES=	print
-MASTER_SITES=	http://gdlp01.c-wss.com/gds/8/0100011318/01/
-#https://gdlp01.c-wss.com/gds/8/0100011318/01/cnijfilter2-6.30-1-rpm.tar.gz
+MASTER_SITES=	https://gdlp01.c-wss.com/gds/1/0100012301/02/
+#https://gdlp01.c-wss.com/gds/1/0100012301/02/cnijfilter2-6.80-1-rpm.tar.gz
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp
 COMMENT=	Caonon IJ Printer driver
