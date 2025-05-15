@@ -2,7 +2,7 @@ PORTNAME=	libXaw3d
 PORTVERSION=	1.6.6
 CATEGORIES=	x11-toolkits
 
-MAINTAINER=	x11@FreeBSD.org
+MAINTAINER=	cy@FreeBSD.org
 COMMENT=	Xaw3d is the X 3D Athena Widget Set
 WWW=		https://www.freedesktop.org/wiki/Software/xlibs/
 
@@ -11,7 +11,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		gmake tar:xz xorg xorg-cat:lib
 USE_XORG=	x11 xau xext xmu xpm xorgproto xt
-USE_LDCONFIG=	yes
 
 CONFIGURE_ARGS=	--without-xmlto
 
