@@ -104,10 +104,16 @@ MESON_ARGS+=	-Dthumbnail_cache=disabled
 .endif
 
 .if ${.CURDIR:M*/www/chromium*}
-LLVM_DEFAULT=	19
+LLVM_DEFAULT=	20
+BINARY_ALIAS:=	${BINARY_ALIAS:S@ld=@ld.lld=@}
 . if ! defined(NO_CCACHE) && exists(/usr/local/bin/ccache)
 BINARY_ALIAS:=	${BINARY_ALIAS:S@cc=${LOCALBASE}/bin/clang${LLVM_DEFAULT}@cc=${LOCALBASE}/libexec/ccache/clang${LLVM_DEFAULT}@}
 BINARY_ALIAS:=	${BINARY_ALIAS:S@c++=${LOCALBASE}/bin/clang++${LLVM_DEFAULT}@c++=${LOCALBASE}/libexec/ccache/clang++${LLVM_DEFAULT}@}
+. endif
+. if !target(post-patch)
+post-patch:
+	${REINPLACE_CMD} -e 's@fuse-ld=lld@fuse-ld=lld${LLVM_DEFAULT}@' \
+		${WRKSRC}/build/config/compiler/BUILD.gn
 . endif
 .endif
 
