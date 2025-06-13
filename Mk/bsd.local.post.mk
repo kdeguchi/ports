@@ -8,12 +8,6 @@ LIB_DEPENDS:=		${LIB_DEPENDS:S@archivers/unrar$@archivers/unrar-iconv@}
 RUN_DEPENDS:=		${RUN_DEPENDS:S@archivers/unrar$@archivers/unrar-iconv@}
 .endif
 
-.if defined(_LV) && exists(${PORTSDIR}/misc/lv)
-BUILD_DEPENDS:=	${BUILD_DEPENDS:S@jless:japanese/less@lv:misc/lv@}
-LIB_DEPENDS:=	${LIB_DEPENDS:S@jless:japanese/less@lv:misc/lv@}
-RUN_DEPENDS:=	${RUN_DEPENDS:S@jless:japanese/less@lv:misc/lv@}
-.endif
-
 .if defined(_XFCE4_NOTIFYD) && exists(${PORTSDIR}/deskutils/xfce4-notifyd)
 RUN_DEPENDS:=	${RUN_DEPENDS:C@${LOCALBASE}/libexec/notification-daemon:deskutils/notification-daemon$@${LOCALBASE}/lib/xfce4/notifyd/xfce4-notifyd:deskutils/xfce4-notifyd@}
 RUN_DEPENDS:=	${RUN_DEPENDS:C@notification-daemon>0:deskutils/notification-daemon@${LOCALBASE}/lib/xfce4/notifyd/xfce4-notifyd:deskutils/xfce4-notifyd@}
@@ -80,13 +74,6 @@ MOZ_OPTIONS+=	--with-ccache
 . endif
 .endif
 
-.if defined(RUN_DEPENDS) && ${RUN_DEPENDS:M*/security/veracrypt*}
-. if !target(pre-configure)
-pre-configure:
-	${REINPLACE_CMD} -e 's|Icon=VeraCrypt-16x16|Icon=VeraCrypt-256x256|g' ${WRKSRC}/src/Setup/FreeBSD/veracrypt.desktop
-. endif
-.endif
-
 .if ${.CURDIR:M*/math/maxima*}
 NOUSERINIT_EXTRA_PATCHES_OFF=
 .endif
@@ -101,6 +88,10 @@ LIB_DEPENDS:=	${LIB_DEPENDS:S@x11-toolkits/Xaw3d@x11-toolkits/libXaw3d@}
 
 .if ${.CURDIR:M*/graphics/evince*}
 MESON_ARGS+=	-Dthumbnail_cache=disabled
+.endif
+
+.if ${.CURDIR:M*/editors/libreoffice}
+RUN_DEPENDS:=	${RUN_DEPENDS:C@.*/GentiumBasic/.*@${LOCALBASE}/share/fonts/Gentium/Gentium-Regular.ttf:x11-fonts/gentium@}
 .endif
 
 .if ${.CURDIR:M*/www/chromium*}
