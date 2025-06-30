@@ -1,0 +1,581 @@
+# Japanese translation for plank
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the plank package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: plank\n"
+"Report-Msgid-Bugs-To: https://github.com/zquestz/plank-reloaded/issues\n"
+"POT-Creation-Date: 2025-05-22 15:00-1000\n"
+"PO-Revision-Date: 2018-02-24 14:34+0000\n"
+"Last-Translator: Shushi Kurose <md81bird@hitaki.net>\n"
+"Language-Team: Japanese <ja@li.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2018-02-25 05:24+0000\n"
+"X-Generator: Launchpad (build 18561)\n"
+
+#: data/plank.appdata.xml.in:6 data/plank.desktop.in:2
+msgid "Plank Reloaded"
+msgstr ""
+
+#: data/plank.appdata.xml.in:7 data/plank.desktop.in:4
+#, fuzzy
+msgid "Still stupidly simple."
+msgstr "超シンプル"
+
+#: data/plank.appdata.xml.in:9
+msgid ""
+"Plank Reloaded is a fork of the original Plank project, providing a simple "
+"dock for X11 desktop environments. While development began with a focus on "
+"Cinnamon, we now actively support multiple desktop environments including "
+"MATE and Xfce. Wayland is not supported at this time."
+msgstr ""
+"Plank Reloaded は、X11 デスクトップ環境のためのシンプルなドックである Plank "
+"のフォークです。開発は Cinamon を中心に始まりましたが、現在では MATE や Xfce"
+"を含む複数のデスクトップ環境へサポートしています。Wayland は現在サポートして"
+"いません。"
+
+#: data/plank.appdata.xml.in:15
+msgid ""
+"Like its predecessor, Plank Reloaded aims to be the simplest dock on the "
+"planet, providing just what a dock needs and absolutely nothing more. It "
+"also remains a library which can be extended to create other dock programs "
+"with more advanced features."
+msgstr ""
+
+#: data/plank.appdata.xml.in:22
+msgid "dock"
+msgstr ""
+
+#: data/plank.appdata.xml.in:23
+msgid "launch"
+msgstr ""
+
+#: data/plank.appdata.xml.in:24
+msgid "panel"
+msgstr ""
+
+#: data/plank.appdata.xml.in:25
+msgid "start"
+msgstr "上/左寄せ"
+
+#: data/plank.appdata.xml.in:36
+msgid "The Plank Reloaded Developers"
+msgstr ""
+
+#: data/plank.desktop.in:3
+msgid "Dock"
+msgstr ""
+
+#: data/ui/preferences.ui:87
+msgid "Theme:"
+msgstr "テーマ:"
+
+#: data/ui/preferences.ui:100
+msgid "Position:"
+msgstr "位置:"
+
+#: data/ui/preferences.ui:127
+msgid "Left"
+msgstr "左端"
+
+#: data/ui/preferences.ui:128
+msgid "Right"
+msgstr "右端"
+
+#: data/ui/preferences.ui:129
+msgid "Top"
+msgstr "上部"
+
+#: data/ui/preferences.ui:130
+msgid "Bottom"
+msgstr "下部"
+
+#: data/ui/preferences.ui:144
+msgid "Alignment:"
+msgstr "配置:"
+
+#: data/ui/preferences.ui:157
+msgid "Fill"
+msgstr "全幅"
+
+#: data/ui/preferences.ui:158 data/ui/preferences.ui:236
+msgid "Start"
+msgstr "上/左寄せ"
+
+#: data/ui/preferences.ui:159 data/ui/preferences.ui:237
+msgid "End"
+msgstr "下/右寄せ"
+
+#: data/ui/preferences.ui:160 data/ui/preferences.ui:238
+msgid "Center"
+msgstr "中央"
+
+#: data/ui/preferences.ui:176
+msgid "On Primary Display:"
+msgstr "プライマリディスプレイに表示:"
+
+#: data/ui/preferences.ui:202
+msgid "Offset in percent from the center of the screen-edge"
+msgstr "スクリーン中央からの相対位置"
+
+#: data/ui/preferences.ui:222
+msgid "Icon Alignment:"
+msgstr "アイコンの配置:"
+
+#: data/ui/preferences.ui:252
+msgid "Icon Size:"
+msgstr "アイコンサイズ:"
+
+#: data/ui/preferences.ui:318
+msgid "Icon Zoom:"
+msgstr "アイコンの拡大:"
+
+#: data/ui/preferences.ui:332
+msgid "Gap Size:"
+msgstr ""
+
+#: data/ui/preferences.ui:383
+msgid "Appearance"
+msgstr "外観"
+
+#: data/ui/preferences.ui:403
+msgid "Intellihide"
+msgstr "賢く隠す"
+
+#: data/ui/preferences.ui:404
+msgid "Autohide"
+msgstr "自動的に隠す"
+
+#: data/ui/preferences.ui:405
+msgid "Dodge maximized window"
+msgstr "最大化されたウィンドウの上に表示しない"
+
+#: data/ui/preferences.ui:406
+msgid "Window Dodge"
+msgstr "ウィンドウの上に表示しない"
+
+#: data/ui/preferences.ui:407
+msgid "Dodge active window"
+msgstr "アクティブなウィンドウの上に表示しない"
+
+#: data/ui/preferences.ui:433
+msgid "Hide Dock"
+msgstr "ドックを隠す"
+
+#: data/ui/preferences.ui:449
+msgid "Hide Delay:"
+msgstr "隠すまでの時間:"
+
+#: data/ui/preferences.ui:463
+msgid "Delay in ms before hiding the dock"
+msgstr "ドックを隠すまでの時間(ミリ秒)"
+
+#: data/ui/preferences.ui:482
+msgid "Unhide Delay:"
+msgstr "復帰までの時間:"
+
+#: data/ui/preferences.ui:496
+msgid "Delay in ms before showing the dock"
+msgstr "ドックの復帰までの時間(ミリ秒)"
+
+#: data/ui/preferences.ui:515
+msgid "Pressure Reveal:"
+msgstr "押し込んで表示:"
+
+#: data/ui/preferences.ui:542
+msgid "Item Management"
+msgstr "アイテム管理"
+
+#: data/ui/preferences.ui:561
+msgid "Show Unpinned:"
+msgstr "固定していないアイテムも表示:"
+
+#: data/ui/preferences.ui:588
+msgid "Restrict to Workspace:"
+msgstr "現在のワークスペースのみ表示:"
+
+#: data/ui/preferences.ui:613
+msgid "Tooltips Enabled:"
+msgstr ""
+
+#: data/ui/preferences.ui:637
+msgid "Lock Icons:"
+msgstr "アイコンをロック:"
+
+#: data/ui/preferences.ui:664
+msgid "Anchor Docklets:"
+msgstr ""
+
+#: data/ui/preferences.ui:691
+msgid "Anchor Files:"
+msgstr ""
+
+#: data/ui/preferences.ui:713
+msgid "Behaviour"
+msgstr "挙動"
+
+#: data/ui/preferences.ui:733
+msgid "Docklets"
+msgstr "ドックレット"
+
+#: docklets/Applications/ApplicationsDockItem.vala:32
+msgid "No applications available"
+msgstr ""
+
+#: docklets/Applications/ApplicationsDockItem.vala:51
+#: docklets/Applications/ApplicationsDocklet.vala:28
+msgid "Applications"
+msgstr "アプリケーション"
+
+#: docklets/Applications/ApplicationsDockItem.vala:296
+msgid "Edit Menu"
+msgstr "メニューを編集"
+
+#: docklets/Applications/ApplicationsDockItem.vala:315
+msgid "Choose Custom Icon"
+msgstr "カスタムアイコンを選ぶ"
+
+#. If custom icon is set, add option to reset to default
+#: docklets/Applications/ApplicationsDockItem.vala:323
+msgid "Reset to Default Icon"
+msgstr "デフォルトアイコンに戻す"
+
+#: docklets/Applications/ApplicationsDockItem.vala:333
+msgid "Large Icons"
+msgstr "大きなアイコン"
+
+#: docklets/Applications/ApplicationsDockItem.vala:346
+msgid "Select Custom Icon"
+msgstr "カスタムアイコンを選択"
+
+#: docklets/Applications/ApplicationsDockItem.vala:349
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: docklets/Applications/ApplicationsDockItem.vala:350
+msgid "Select"
+msgstr "選択"
+
+#: docklets/Applications/ApplicationsDockItem.vala:368
+msgid "Image Files"
+msgstr "画像ファイル"
+
+#: docklets/Applications/ApplicationsDocklet.vala:29
+msgid "Simply start any of your applications."
+msgstr ""
+
+#: docklets/Battery/BatteryDockItem.vala:28
+#: docklets/Battery/BatteryUPowerDockItem.vala:42
+msgid "No battery"
+msgstr "バッテリーなし"
+
+#: docklets/Battery/BatteryDockItem.vala:132
+msgid "Batteries"
+msgstr "バッテリー"
+
+#: docklets/Battery/BatteryDockItem.vala:175
+msgid "No batteries found"
+msgstr "バッテリーが見つかりません"
+
+#: docklets/Battery/BatteryDockItem.vala:182
+msgid "Error finding batteries"
+msgstr "バッテリー検索のエラー"
+
+#: docklets/Battery/BatteryDocklet.vala:29
+msgid "Battery"
+msgstr "バッテリー"
+
+#: docklets/Battery/BatteryDocklet.vala:31
+msgid "Displays battery information"
+msgstr "バッテリー情報を表示"
+
+#: docklets/Clippy/ClippyDockItem.vala:22
+msgid "Clipboard is currently empty."
+msgstr "クリップボードは空です。"
+
+#: docklets/Clippy/ClippyDockItem.vala:23
+msgid "_Clear"
+msgstr "クリア(_C)"
+
+#: docklets/Clippy/ClippyDockItem.vala:26
+msgid "Track Mouse Selections"
+msgstr ""
+
+#: docklets/Clippy/ClippyDockItem.vala:27
+msgid "Track Images"
+msgstr ""
+
+#: docklets/Clippy/ClippyDockItem.vala:28
+msgid "Enable Clipboard Tracking"
+msgstr ""
+
+#: docklets/Clippy/ClippyDockItem.vala:29
+msgid "Maximum Entries"
+msgstr ""
+
+#: docklets/Clippy/ClippyDockItem.vala:180
+#: docklets/Clippy/ClippyClipboardItem.vala:153
+#: docklets/Clippy/ClippyClipboardItem.vala:249
+msgid "Image"
+msgstr "画像"
+
+#: docklets/Clippy/ClippyDocklet.vala:29
+msgid "Clippy"
+msgstr ""
+
+#: docklets/Clippy/ClippyDocklet.vala:31
+msgid "Keep recent clipboard entries."
+msgstr ""
+
+#: docklets/Clock/ClockDockItem.vala:348
+msgid "Di_gital Clock"
+msgstr "デジタル時計(_g)"
+
+#: docklets/Clock/ClockDockItem.vala:353
+msgid "24-Hour _Clock"
+msgstr "24時間時計(_C)"
+
+#: docklets/Clock/ClockDockItem.vala:358
+msgid "Show _Date"
+msgstr "日付を表示(_D)"
+
+#: docklets/Clock/ClockDocklet.vala:31
+msgid "Clock"
+msgstr "時計"
+
+#: docklets/Clock/ClockDocklet.vala:33
+msgid "What time is it?"
+msgstr "何時ですか?"
+
+#: docklets/Clock/ClockDockCalendar.vala:9
+msgid "Calendar"
+msgstr "カレンダー"
+
+#: docklets/CPUMonitor/CPUMonitorDocklet.vala:29
+msgid "CPU Monitor"
+msgstr ""
+
+#: docklets/CPUMonitor/CPUMonitorDocklet.vala:32
+msgid "Keep an eye on that CPU. And when it gets out of line..."
+msgstr ""
+
+#: docklets/Desktop/DesktopDockItem.vala:45
+msgid "Show Desktop"
+msgstr "デスクトップを表示"
+
+#: docklets/Desktop/DesktopDocklet.vala:33
+msgid "Desktop"
+msgstr "デスクトップ"
+
+#: docklets/Desktop/DesktopDocklet.vala:35
+msgid "Show your Desktop."
+msgstr ""
+
+#: docklets/Trash/TrashDockItem.vala:113
+msgid "No items in Trash"
+msgstr "ゴミ箱は空"
+
+#: docklets/Trash/TrashDockItem.vala:114
+#, c-format
+msgid "%u item in Trash"
+msgid_plural "%u items in Trash"
+msgstr[0] ""
+msgstr[1] ""
+
+#: docklets/Trash/TrashDockItem.vala:145
+msgid "Drop to move to Trash"
+msgstr ""
+
+#: docklets/Trash/TrashDockItem.vala:193
+msgid "Restore Files"
+msgstr "ファイルを戻す"
+
+#: docklets/Trash/TrashDockItem.vala:247
+msgid "_Open Trash"
+msgstr "ゴミ箱を開く(_O)"
+
+#: docklets/Trash/TrashDockItem.vala:251 docklets/Trash/TrashDockItem.vala:350
+msgid "Empty _Trash"
+msgstr "ゴミ箱を空にする(_T)"
+
+#: docklets/Trash/TrashDockItem.vala:345
+msgid "Empty all items from Trash?"
+msgstr "ゴミ箱の中のアイテムをすべて空にしますか?"
+
+#: docklets/Trash/TrashDockItem.vala:348
+msgid "All items in the Trash will be permanently deleted."
+msgstr "ゴミ箱の中のすべてのアイテムは永久に削除されるだろう。"
+
+#: docklets/Trash/TrashDockItem.vala:349
+msgid "_Cancel"
+msgstr "キャンセル(_C)"
+
+#: docklets/Trash/TrashDocklet.vala:29
+msgid "Trash"
+msgstr "ゴミ箱"
+
+#: docklets/Trash/TrashDocklet.vala:31
+msgid "Have a look at your trash!"
+msgstr ""
+
+#: docklets/Separator/SeparatorDockItem.vala:197
+#: docklets/Workspaces/WorkspacesDockItem.vala:556
+msgid "_Invert Color"
+msgstr ""
+
+#: docklets/Separator/SeparatorDocklet.vala:28
+msgid "Separator"
+msgstr ""
+
+#: docklets/Separator/SeparatorDocklet.vala:29
+msgid "Just a separator."
+msgstr ""
+
+#. *
+#. * Returns the display name for this docklet.
+#. *
+#. * @return the docklet's name
+#.
+#: docklets/Workspaces/WorkspacesDockItem.vala:48
+#: docklets/Workspaces/WorkspacesDocklet.vala:47
+msgid "Workspaces"
+msgstr ""
+
+#: docklets/Workspaces/WorkspacesDockItem.vala:177
+#: docklets/Workspaces/WorkspacesDockItem.vala:203
+#: docklets/Workspaces/WorkspacesDockItem.vala:215
+#, c-format
+msgid "Workspace %d of %d"
+msgstr ""
+
+#: docklets/Workspaces/WorkspacesDockItem.vala:536
+#, c-format
+msgid "Workspace %d"
+msgstr ""
+
+#: docklets/Workspaces/WorkspacesDockItem.vala:563
+msgid "_Live Previews"
+msgstr ""
+
+#. *
+#. * Returns the description of this docklet.
+#. *
+#. * @return the docklet's description
+#.
+#: docklets/Workspaces/WorkspacesDocklet.vala:54
+msgid "A graphical workspace switcher."
+msgstr ""
+
+#: lib/DragManager.vala:457 lib/Items/PlaceholderDockItem.vala:51
+msgid "Drop to add to dock"
+msgstr "ドロップしてドックに追加"
+
+#: lib/Factories/AbstractMain.vala:424 src/Main.vala:74
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Haruki Ota https://launchpad.net/~ootaharuki99-5\n"
+"  Rentaro YOSHIDUMI https://launchpad.net/~cmplstofb\n"
+"  Rico Tzschichholz https://launchpad.net/~ricotz\n"
+"  Ryo Nakano https://launchpad.net/~ryonakano-deactivatedaccount\n"
+"  Shota Shimazu https://launchpad.net/~hornet-live-mf\n"
+"  Shota Shimazu https://launchpad.net/~xylophone-project\n"
+"  Shushi Kurose https://launchpad.net/~kuromabo\n"
+"  Takefumi Nagata https://launchpad.net/~rago1975\n"
+"  night1ynx https://launchpad.net/~night1ynx\n"
+"  smp https://launchpad.net/~cheat-hc0-ms"
+
+#: lib/Items/ApplicationDockItem.vala:434 lib/Items/FileDockItem.vala:351
+#: lib/Items/FileDockItem.vala:372
+msgid "_Keep in Dock"
+msgstr "ドックに追加(_K)"
+
+#: lib/Items/ApplicationDockItem.vala:442
+msgid "_Close All"
+msgstr "すべて閉じる(_C)"
+
+#: lib/Items/ApplicationDockItem.vala:442
+msgid "_Close"
+msgstr "閉じる(_C)"
+
+#: lib/Items/ApplicationDockItem.vala:581
+#, c-format
+msgid "Drop to open with %s"
+msgstr "ドロップして %s で開く"
+
+#: lib/Items/FileDockItem.vala:285
+msgid "_Sort By"
+msgstr "で並べ替え(_S)"
+
+#: lib/Items/FileDockItem.vala:289
+msgid "Name"
+msgstr "名前"
+
+#: lib/Items/FileDockItem.vala:300
+msgid "Kind"
+msgstr "種類"
+
+#: lib/Items/FileDockItem.vala:311
+msgid "Size"
+msgstr "サイズ"
+
+#: lib/Items/FileDockItem.vala:322
+msgid "Date Created"
+msgstr "作成日時"
+
+#: lib/Items/FileDockItem.vala:333
+msgid "Date Modified"
+msgstr "修正日時"
+
+#: lib/Items/FileDockItem.vala:357
+msgid "_Open in File Browser"
+msgstr "ファイルブラウザーで開く(_O)"
+
+#: lib/Items/FileDockItem.vala:378
+msgid "_Open"
+msgstr "開く(_O)"
+
+#: lib/Items/FileDockItem.vala:382
+msgid "Open Containing _Folder"
+msgstr "親フォルダーを開く(_F)"
+
+#: lib/Items/PlaceholderDockItem.vala:37
+msgid "Drop applications or files here"
+msgstr "アプリケーションあるいはファイルをマウスでドロップする"
+
+#: lib/Items/PlankDockItem.vala:66
+msgid "Get _Help Online..."
+msgstr "オンラインでヘルプを表示(_H)..."
+
+#: lib/Items/PlankDockItem.vala:70
+msgid "_Translate This Application..."
+msgstr "このアプリケーションを翻訳する(_T)..."
+
+#: lib/Items/PlankDockItem.vala:76
+#, fuzzy
+msgid "_Preferences"
+msgstr "設定(_P)"
+
+#: lib/Items/PlankDockItem.vala:80
+msgid "_About"
+msgstr ""
+
+#: lib/Items/PlankDockItem.vala:88
+msgid "_Quit"
+msgstr "終了(_Q)"
+
+#: lib/Widgets/PreferencesWindow.vala:95
+msgid "Preferences"
+msgstr "設定"
+
+#~ msgid ""
+#~ "Plank is meant to be the simplest dock on the planet. The goal is to "
+#~ "provide just what a dock needs and absolutely nothing more."
+#~ msgstr ""
+#~ "\"Plank\"は地球上で最もシンプルなドックです。他に必要とする物が無いドック"
+#~ "を提供することが目標です。"
