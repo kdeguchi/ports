@@ -2,7 +2,7 @@ PORTNAME=	libgsf
 DISTVERSION=	1.14.54
 CATEGORIES=	devel
 #MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome
 
 MAINTAINER=	desktop@FreeBSD.org
 COMMENT=	Structured file library from GNOME
