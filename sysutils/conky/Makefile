@@ -1,11 +1,13 @@
 PORTNAME=	conky
-PORTVERSION=	1.22.1
+PORTVERSION=	1.22.2
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
 
 MAINTAINER=	fernape@FreeBSD.org
 COMMENT?=	Advanced, highly configurable system monitor for X11
 WWW=		https://github.com/brndnmtthws/conky
+
+CONFLICTS?=	conky-awesome
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
@@ -28,7 +30,6 @@ CMAKE_OFF=	BUILD_AUDACIOUS \
 		BUILD_IBM \
 		BUILD_IOSTATS \
 		BUILD_PORT_MONITORS
-CONFLICTS?=	conky-awesome
 
 PORTDOCS=	config_settings.yaml lua.yaml variables.yaml
 PORTEXAMPLES=	conky.conf conky_no_x11.conf convert.lua
@@ -39,8 +40,8 @@ OPTIONS_DEFINE=	APCUPSD CURL DOCS EXAMPLES HTTPD IPV6 MANPAGES METAR MOC MPD \
 OPTIONS_DEFAULT?=	ARGB DOUBLE_BUFFER IMLIB2 LUA_CAIRO LUA_IMLIB2 \
 			MANPAGES MOUSE_EVENTS WAYLAND X11 XFT
 
-OPTIONS_GROUP?=		VIM_FILES X11
-OPTIONS_GROUP_VIM_FILES=	NVIM VIM
+OPTIONS_GROUP?=		SYNTAX_FILES X11
+OPTIONS_GROUP_SYNTAX_FILES=	NANO NVIM VIM
 OPTIONS_GROUP_X11=	ARGB DOUBLE_BUFFER HSV IMLIB2 LUA_CAIRO LUA_IMLIB2 LUA_RSVG \
 			MOUSE_EVENTS XFT XINERAMA XSHAPE
 OPTIONS_SUB=	yes
@@ -56,11 +57,12 @@ METAR_DESC=		Display METAR weather reports
 MOC_DESC=		Control MOC (Music On Console)
 MOUSE_EVENTS_DESC=	Support generating mouse events
 MPD_DESC=		Control MPD (Music Player Daemon)
+NANO_DESC=	For nano
 NCURSES_DESC=		Use ncurses to draw on terminals
 NVIM_DESC=	For neovim
 RSS_DESC=		Display RSS feeds
 VIM_DESC=	For vim
-VIM_FILES_DESC=		Install vim syntax files
+SYNTAX_FILES_DESC=		Install syntax files for editors
 XMMS2_DESC=		Control XMMS2 media player
 XSHAPE_DESC=		Xshape support
 
@@ -169,6 +171,7 @@ post-patch:
 		${WRKSRC}/cmake/ConkyPlatformChecks.cmake
 	@${REINPLACE_CMD} -e 's,%%LOCALBASE%%,${LOCALBASE},' -e 's|-Werror||' \
 		${WRKSRC}/cmake/ConkyBuildOptions.cmake
+	@${REINPLACE_CMD} -e 's@^install@#install@' ${WRKSRC}/extras/CMakeLists.txt
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}
@@ -185,14 +188,25 @@ post-install-DOCS-on:
 	${INSTALL_MAN} ${WRKSRC}/doc/${FILE} ${STAGEDIR}${DOCSDIR}
 .endfor
 
+post-install-NANO-on:
+	${MKDIR} ${STAGEDIR}${PREFIX}/share/nano
+	${INSTALL_DATA} ${BUILD_WRKSRC}/extras/nano/conky.nanorc ${STAGEDIR}${PREFIX}/share/nano
+
 post-install-NVIM-on:
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/nvim/runtime
-	cd ${WRKSRC}/extras/vim && ${COPYTREE_SHARE} ftdetect ${STAGEDIR}${PREFIX}/share/nvim/runtime
-	cd ${CONFIGURE_WRKSRC}/extras/vim && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/nvim/runtime
+	cd ${WRKSRC}/extras/vim && \
+		${COPYTREE_SHARE} ftdetect ${STAGEDIR}${PREFIX}/share/nvim/runtime
+	cd ${BUILD_WRKSRC}/extras/vim && \
+		${COPYTREE_SHARE} syntax ${STAGEDIR}${PREFIX}/share/nvim/runtime
+
+post-install-NVIM-off:
+	${RM} -r ${STAGEDIR}${PREFIX}/share/nvim
 
 post-install-VIM-on:
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/vim/vimfiles
-	cd ${WRKSRC}/extras/vim && ${COPYTREE_SHARE} ftdetect ${STAGEDIR}${PREFIX}/share/vim/vimfiles
-	cd ${CONFIGURE_WRKSRC}/extras/vim && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/vim/vimfiles
+	cd ${WRKSRC}/extras/vim && \
+		${COPYTREE_SHARE} ftdetect ${STAGEDIR}${PREFIX}/share/vim/vimfiles
+	cd ${BUILD_WRKSRC}/extras/vim && \
+		${COPYTREE_SHARE} syntax ${STAGEDIR}${PREFIX}/share/vim/vimfiles
 
 .include <bsd.port.mk>

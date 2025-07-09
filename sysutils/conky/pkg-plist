@@ -7,8 +7,9 @@ bin/conky
 %%X11%%share/applications/conky.desktop
 %%X11%%share/icons/hicolor/scalable/apps/conky-logomark-violet.svg
 %%MANPAGES%%share/man/man1/conky.1.gz
-%%VIM%%share/vim/vimfiles/ftdetect/conkyrc.vim
-%%VIM%%share/vim/vimfiles/syntax/conkyrc.vim
+%%NANO%%share/nano/conky.nanorc
 %%NVIM%%share/nvim/runtime/ftdetect/conkyrc.vim
 %%NVIM%%share/nvim/runtime/syntax/conkyrc.vim
+%%VIM%%share/vim/vimfiles/ftdetect/conkyrc.vim
+%%VIM%%share/vim/vimfiles/syntax/conkyrc.vim
 @sample %%ETCDIR%%/conky.conf.sample
