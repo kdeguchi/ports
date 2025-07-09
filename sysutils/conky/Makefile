@@ -14,7 +14,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 BUILD_DEPENDS=	gperf:devel/gperf \
 		gsed:textproc/gsed
+
+.if ! exists(/usr/include/sys/inotify.h)
 LIB_DEPENDS=	libinotify.so:devel/libinotify
+.endif
 
 USES=		cmake compiler:c++11-lib cpe gettext-runtime iconv \
 		localbase:ldflags lua:flavors pkgconfig tar:bzip2
@@ -171,7 +174,12 @@ post-patch:
 		${WRKSRC}/cmake/ConkyPlatformChecks.cmake
 	@${REINPLACE_CMD} -e 's,%%LOCALBASE%%,${LOCALBASE},' -e 's|-Werror||' \
 		${WRKSRC}/cmake/ConkyBuildOptions.cmake
-	@${REINPLACE_CMD} -e 's@^install@#install@' ${WRKSRC}/extras/CMakeLists.txt
+	@${REINPLACE_CMD} -e 's@^install@#install@' \
+		${WRKSRC}/extras/CMakeLists.txt
+.if exists(/usr/include/sys/inotify.h)
+	@${REINPLACE_CMD} -e 's, -linotify,,' \
+		${WRKSRC}/cmake/ConkyPlatformChecks.cmake
+.endif
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}
