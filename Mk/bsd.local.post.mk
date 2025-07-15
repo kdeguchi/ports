@@ -151,10 +151,10 @@ remove-info-plist:
 
 # Support sys/inotify.h
 # libinotify.so is conflict with libc in FreeBSD 15
-#.if exists(/usr/include/sys/inotify.h)
-#. if defined(LIB_DEPENDS) && ${LIB_DEPENDS:Mlibinotify*}
-#LIB_DEPENDS:=	${LIB_DEPENDS:S@libinotify.so:devel/libinotify@@}
-#. endif
-#.endif
+.if exists(/usr/include/sys/inotify.h)
+. if defined(LIB_DEPENDS) && ${LIB_DEPENDS:Mlibinotify*}
+LIB_DEPENDS:=	${LIB_DEPENDS:S@libinotify.so:devel/libinotify@@}
+. endif
+.endif
 
 SCRIPTSDIR=	${OVERLAYS:[1]}/Mk/Scripts
