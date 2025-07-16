@@ -1,6 +1,6 @@
---- setup.py.orig	2024-05-08 04:55:54 UTC
+--- setup.py.orig	2025-07-16 03:26:48 UTC
 +++ setup.py
-@@ -740,6 +740,7 @@ def get_source_specific_defines(env: Env, src: str) ->
+@@ -780,6 +780,7 @@ def get_source_specific_defines(env: Env, src: str) ->
      if src == 'kitty/data-types.c':
          if not env.vcs_rev:
              env.vcs_rev = get_vcs_rev()
@@ -8,7 +8,7 @@
          return src, [], [f'KITTY_VCS_REV="{env.vcs_rev}"', f'WRAPPED_KITTENS="{wrapped_kittens()}"']
      if src.startswith('3rdparty/base64/'):
          return src, ['3rdparty/base64',], base64_defines(env.binary_arch.isa)
-@@ -1432,12 +1433,16 @@ def create_linux_bundle_gunk(ddir: str, args: Options)
+@@ -1489,12 +1490,16 @@ def create_linux_bundle_gunk(ddir: str, args: Options)
      in_src_launcher = base / (f'{libdir_name}/kitty/kitty/launcher/kitty')
      launcher = base / 'bin/kitty'
      skip_docs = False
@@ -26,7 +26,7 @@
          else:
              if args.skip_building_kitten:
                  skip_docs = True
-@@ -1448,7 +1453,8 @@ def create_linux_bundle_gunk(ddir: str, args: Options)
+@@ -1505,7 +1510,8 @@ def create_linux_bundle_gunk(ddir: str, args: Options)
                  raise SystemExit(f'kitten binary not found at: {kitten_exe}')
      if not skip_docs:
          copy_man_pages(ddir)
