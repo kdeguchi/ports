@@ -1,6 +1,5 @@
 PORTNAME=	audacious
-DISTVERSION=	4.4.2
-PORTREVISION=	1
+DISTVERSION=	4.5
 CATEGORIES=	multimedia audio
 MASTER_SITES=	https://distfiles.audacious-media-player.org/
 
@@ -12,18 +11,13 @@ LICENSE=	BSD2CLAUSE BSD3CLAUSE
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
-		libfreetype.so:print/freetype2
-
 FLAVORS=	qt6 qt5 gtk3 gtk2
 FLAVOR?=	${FLAVORS:[1]}
 
 gtk2_PKGNAMESUFFIX=	-gtk2
-gtk2_LIB_DEPENDS=	libharfbuzz.so:print/harfbuzz
 gtk2_CONFLICTS_INSTALL=	audacious audacious-gtk3 audacious-qt6
 
 gtk3_PKGNAMESUFFIX=	-gtk3
-gtk3_LIB_DEPENDS=	libharfbuzz.so:print/harfbuzz
 gtk3_CONFLICTS_INSTALL=	audacious audacious-gtk2 audacious-qt6
 
 qt5_PKGNAMESUFFIX=	-qt5
@@ -81,6 +75,7 @@ PLIST_SUB=	GTK="" \
 OPTIONS_DEFINE=		EXECINFO LIBARCHIVE NLS THUNAR
 OPTIONS_DEFAULT=	EXECINFO
 OPTIONS_SUB=		yes
+
 EXECINFO_DESC=		Build with libexecinfo support
 LIBARCHIVE_DESC=	Build with libarchive support
 THUNAR_DESC=		Build with thunar support
@@ -89,10 +84,6 @@ LIBARCHIVE_USES=	libarchive
 LIBARCHIVE_MESON_TRUE=	libarchive
 
 NLS_USES=	gettext-runtime
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
-		${WRKSRC}/src/libaudqt/meson.build
 
 post-patch-EXECINFO-on:
 	@${REINPLACE_CMD} 's|-lm |-lm -lexecinfo |' \
