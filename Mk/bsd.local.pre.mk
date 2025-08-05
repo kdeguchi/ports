@@ -24,6 +24,10 @@ LLDB_USES:=	${LLDB_USES:S/lua:53/lua:54/}
 USE_WX=	3.2
 .endif
 
+.if ${.CURDIR:M*/graphics/inkscape}
+USE_PYTHON=	cython3
+.endif
+
 ########################################
 # KDE & Qt
 ########################################
