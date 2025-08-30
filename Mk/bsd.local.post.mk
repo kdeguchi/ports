@@ -97,7 +97,7 @@ RUN_DEPENDS:=	${RUN_DEPENDS:C@.*/GentiumBasic/.*@${LOCALBASE}/share/fonts/Gentiu
 .if ${.CURDIR:M*/www/chromium*}
 LLVM_DEFAULT=	20
 BINARY_ALIAS:=	${BINARY_ALIAS:S@ld=@ld.lld=@}
-. if ! defined(NO_CCACHE) && exists(/usr/local/bin/ccache)
+. if ! defined(NO_CCACHE) && exists(${LOCALBASE}/bin/ccache)
 BINARY_ALIAS:=	${BINARY_ALIAS:S@cc=${LOCALBASE}/bin/clang${LLVM_DEFAULT}@cc=${LOCALBASE}/libexec/ccache/clang${LLVM_DEFAULT}@}
 BINARY_ALIAS:=	${BINARY_ALIAS:S@c++=${LOCALBASE}/bin/clang++${LLVM_DEFAULT}@c++=${LOCALBASE}/libexec/ccache/clang++${LLVM_DEFAULT}@}
 . endif
@@ -127,7 +127,7 @@ post-install-LLDB-on:
 . endif
 .endif
 
-.if exists(/usr/local/share/sccache/overlay/Mk/bsd.overlay.mk)
+.if exists(${LOCALBASE}/share/sccache/overlay/Mk/bsd.overlay.mk)
 . if ( defined(USES) && ${USES:Mcargo} || defined(BUILD_DEPENDS) && ${BUILD_DEPENDS:M*rust*} )
 .unexport NO_SCCACHE
 .undef NO_SCCACHE
