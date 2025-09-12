@@ -17,7 +17,7 @@ USES=		gettext gmake gnome lua:54 pkgconfig tar:xz
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	dsalt
-GH_TAGNAME=	9591509
+GH_TAGNAME=	b5354eb
 
 USE_GNOME=	glib20 gtk30 intltool
 MAKE_ENV+=	"PKG_CONFIG_PATH=${LOCALBASE}/libdata/pkgconfig"
