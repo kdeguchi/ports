@@ -95,7 +95,6 @@ RUN_DEPENDS:=	${RUN_DEPENDS:C@.*/GentiumBasic/.*@${LOCALBASE}/share/fonts/Gentiu
 .endif
 
 .if ${.CURDIR:M*/www/chromium*}
-LLVM_DEFAULT=	20
 BINARY_ALIAS:=	${BINARY_ALIAS:S@ld=@ld.lld=@}
 . if ! defined(NO_CCACHE) && exists(${LOCALBASE}/bin/ccache)
 BINARY_ALIAS:=	${BINARY_ALIAS:S@cc=${LOCALBASE}/bin/clang${LLVM_DEFAULT}@cc=${LOCALBASE}/libexec/ccache/clang${LLVM_DEFAULT}@}
@@ -105,25 +104,6 @@ BINARY_ALIAS:=	${BINARY_ALIAS:S@c++=${LOCALBASE}/bin/clang++${LLVM_DEFAULT}@c++=
 post-patch:
 	${REINPLACE_CMD} -e 's@fuse-ld=lld@fuse-ld=lld${LLVM_DEFAULT}@' \
 		${WRKSRC}/build/config/compiler/BUILD.gn
-. endif
-.endif
-
-.if ${.CURDIR:M*/devel/llvm*}
-USES:=	${USES:S/lua:53/lua:${LUA_VER_STR}/}
-. if !target(post-patch-LLDB-on)
-post-patch-LLDB-on:
-	${REINPLACE_CMD} -e 's/Lua 5\.3/Lua ${LUA_VER}/' \
-		${WRKSRC}/lldb/cmake/modules/FindLuaAndSwig.cmake
-	${REINPLACE_CMD} -e 's@lua/5\.3@lua/${LUA_VER}@' \
-		${WRKSRC}/lldb/test/API/lua_api/TestLuaAPI.py
-	${REINPLACE_CMD} -e 's@lua5\.3@lua${LUA_VER_STR}@;s@/lua/5\.3@/lua/${LUA_VER}@;' \
-		${WRKSRC}/lldb/CMakeLists.txt
-. endif
-. if !target(post-install-LLDB-on)
-post-install-LLDB-on:
-#	${MV} ${STAGEDIR}${PREFIX}/llvm${LLVM_SUFFIX}/lib/lua/5.3 \
-#		${STAGEDIR}${PREFIX}/llvm${LLVM_SUFFIX}/lib/lua/${LUA_VER}
-	${REINPLACE_CMD} -e 's|lua/5\.3|lua/${LUA_VER}|' ${TMPPLIST} || exit 0
 . endif
 .endif
 
