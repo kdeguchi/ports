@@ -95,7 +95,7 @@ RUN_DEPENDS:=	${RUN_DEPENDS:C@.*/GentiumBasic/.*@${LOCALBASE}/share/fonts/Gentiu
 .endif
 
 .if ${.CURDIR:M*/www/chromium*}
-BINARY_ALIAS:=	${BINARY_ALIAS:S@ld=@ld.lld=@}
+#BINARY_ALIAS:=	${BINARY_ALIAS:S@ld=@ld.lld=@}
 . if ! defined(NO_CCACHE) && exists(${LOCALBASE}/bin/ccache)
 BINARY_ALIAS:=	${BINARY_ALIAS:S@cc=${LOCALBASE}/bin/clang${LLVM_DEFAULT}@cc=${LOCALBASE}/libexec/ccache/clang${LLVM_DEFAULT}@}
 BINARY_ALIAS:=	${BINARY_ALIAS:S@c++=${LOCALBASE}/bin/clang++${LLVM_DEFAULT}@c++=${LOCALBASE}/libexec/ccache/clang++${LLVM_DEFAULT}@}
