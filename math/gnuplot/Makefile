@@ -1,6 +1,5 @@
 PORTNAME=	gnuplot
-PORTVERSION=	5.4.10
-PORTREVISION=	3
+PORTVERSION=	6.0.3
 CATEGORIES=	math graphics
 MASTER_SITES=	SF
 
@@ -15,7 +14,7 @@ LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 
 CONFLICTS_INSTALL?=	gnuplot-lite
 
-USES+=		compiler:c++11-lang cpe groff iconv pkgconfig readline
+USES+=		compiler:c++11-lang cpe iconv pkgconfig readline
 CPE_VENDOR=	gnuplot_project
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
@@ -86,12 +85,12 @@ post-patch:
 		's|luaL_checkint(|(int)luaL_checkinteger(|' ${WRKSRC}/term/lua.trm
 
 post-build-DOCS-on:
-	@cd ${WRKSRC}/docs && ${MAKE} groff
+	@cd ${WRKSRC}/docs && ${MAKE}
 
 pre-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}/5.4 ; \
+	${MKDIR} ${STAGEDIR}${DATADIR}/6.0 ; \
 		${INSTALL_DATA} ${WRKSRC}/share/gnuplotrc \
-		${STAGEDIR}${DATADIR}/5.4/gnuplotrc.sample
+		${STAGEDIR}${DATADIR}/6.0/gnuplotrc.sample
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
@@ -99,13 +98,13 @@ post-install:
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}/psdoc
-	cd ${WRKSRC}/docs && ${INSTALL_DATA} gnuplot.txt gnuplot.dvi \
-		gnuplot.ps ${STAGEDIR}${DOCSDIR}
+	cd ${WRKSRC}/docs && ${INSTALL_DATA} gnuplot.doc gnuplot.gih \
+		gnuplot.pdf ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC}/docs/psdoc && ${INSTALL_DATA} README ps_* ${STAGEDIR}${DOCSDIR}/psdoc
 
 .if defined(LITE)
 post-stage:
-	@cd ${STAGEDIR}${PREFIX} && ${RMDIR} libexec/gnuplot/5.4 libexec/gnuplot
+	@cd ${STAGEDIR}${PREFIX} && ${RMDIR} libexec/gnuplot/6.0 libexec/gnuplot
 .endif
 
 .include <bsd.port.mk>
