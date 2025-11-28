@@ -94,19 +94,6 @@ MESON_ARGS+=	-Dthumbnail_cache=disabled
 RUN_DEPENDS:=	${RUN_DEPENDS:C@.*/GentiumBasic/.*@${LOCALBASE}/share/fonts/Gentium/Gentium-Regular.ttf:x11-fonts/gentium@}
 .endif
 
-.if ${.CURDIR:M*/www/chromium*}
-#BINARY_ALIAS:=	${BINARY_ALIAS:S@ld=@ld.lld=@}
-. if ! defined(NO_CCACHE) && exists(${LOCALBASE}/bin/ccache)
-BINARY_ALIAS:=	${BINARY_ALIAS:S@cc=${LOCALBASE}/bin/clang${LLVM_DEFAULT}@cc=${LOCALBASE}/libexec/ccache/clang${LLVM_DEFAULT}@}
-BINARY_ALIAS:=	${BINARY_ALIAS:S@c++=${LOCALBASE}/bin/clang++${LLVM_DEFAULT}@c++=${LOCALBASE}/libexec/ccache/clang++${LLVM_DEFAULT}@}
-. endif
-. if !target(post-patch)
-post-patch:
-	${REINPLACE_CMD} -e 's@fuse-ld=lld@fuse-ld=lld${LLVM_DEFAULT}@' \
-		${WRKSRC}/build/config/compiler/BUILD.gn
-. endif
-.endif
-
 .if exists(${LOCALBASE}/share/sccache/overlay/Mk/bsd.overlay.mk)
 . if ( defined(USES) && ${USES:Mcargo} || defined(BUILD_DEPENDS) && ${BUILD_DEPENDS:M*rust*} )
 .unexport NO_SCCACHE
