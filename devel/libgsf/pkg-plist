@@ -62,7 +62,6 @@ share/man/man1/gsf.1.gz
 share/gir-1.0/Gsf-1.gir
 %%GTKDOC%%share/gtk-doc/html/gsf/annotation-glossary.html
 %%GTKDOC%%share/gtk-doc/html/gsf/api.html
-%%GTKDOC%%share/gtk-doc/html/gsf/dependencies.html
 %%GTKDOC%%share/gtk-doc/html/gsf/gsf-Compression.html
 %%GTKDOC%%share/gtk-doc/html/gsf/gsf-GIO.html
 %%GTKDOC%%share/gtk-doc/html/gsf/gsf-GIOChannel.html
@@ -81,13 +80,10 @@ share/gir-1.0/Gsf-1.gir
 %%GTKDOC%%share/gtk-doc/html/gsf/gsf-index.html
 %%GTKDOC%%share/gtk-doc/html/gsf/gsf-memory.html
 %%GTKDOC%%share/gtk-doc/html/gsf/gsf-metadata.html
-%%GTKDOC%%share/gtk-doc/html/gsf/gsf-users.html
 %%GTKDOC%%share/gtk-doc/html/gsf/gsf-Utilities.html
 %%GTKDOC%%share/gtk-doc/html/gsf/gsf.devhelp2
-%%GTKDOC%%share/gtk-doc/html/gsf/history.html
 %%GTKDOC%%share/gtk-doc/html/gsf/home.png
 %%GTKDOC%%share/gtk-doc/html/gsf/index.html
-%%GTKDOC%%share/gtk-doc/html/gsf/intro.html
 %%GTKDOC%%share/gtk-doc/html/gsf/io.html
 %%GTKDOC%%share/gtk-doc/html/gsf/left-insensitive.png
 %%GTKDOC%%share/gtk-doc/html/gsf/left.png
