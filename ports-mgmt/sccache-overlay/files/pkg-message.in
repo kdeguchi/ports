@@ -10,7 +10,7 @@ SCCACHE_DIR=	${HOME}/.sccache
 OVERLAYS+=	%%DATADIR%%/overlay
 
 During the build a sccache server is started, bound to
-${SCCACHE_UNIX_LISTEN} (default /tmp/sccache-overlay.socket).
+${SCCACHE_SERVER_UDS} (default /tmp/sccache-overlay.socket).
 Idle timeout has been disabled to make builds more reliable. To
 cleanly shut down the server after the build use
 
@@ -41,7 +41,7 @@ Additional configuration
 For additional configuration options please refer to
 %%DATADIR%%/overlay/Mk/bsd.overlay.mk
 
-The overlay can be disabled at any time by defining NO_SCCACHE.
+The overlay can be disabled at any time by defining NO_CCACHE.
 EOM
 }
 ]
