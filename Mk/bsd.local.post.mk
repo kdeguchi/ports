@@ -94,15 +94,6 @@ MESON_ARGS+=	-Dthumbnail_cache=disabled
 RUN_DEPENDS:=	${RUN_DEPENDS:C@.*/GentiumBasic/.*@${LOCALBASE}/share/fonts/Gentium/Gentium-Regular.ttf:x11-fonts/gentium@}
 .endif
 
-.if exists(${LOCALBASE}/share/sccache/overlay/Mk/bsd.overlay.mk)
-. if ( defined(USES) && ${USES:Mcargo} || defined(BUILD_DEPENDS) && ${BUILD_DEPENDS:M*rust*} )
-.unexport NO_SCCACHE
-.undef NO_SCCACHE
-. else
-.export NO_SCCACHE=	yes
-. endif
-.endif
-
 .if defined(PREFIX) && ${PREFIX} == /usr/local
 POST_PLIST+=	remove-info-plist
 . if ! ${.CURDIR:M*/math/maxima}
