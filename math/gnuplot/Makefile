@@ -20,6 +20,7 @@ GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 LDFLAGS+=	-L${LOCALBASE}/lib ${ICONV_LIB}
 CONFIGURE_ARGS+=--with-readline=gnu \
+		--without-libcerf \
 		--without-linux-vga \
 		--without-lisp-files \
 		--without-tutorial \
