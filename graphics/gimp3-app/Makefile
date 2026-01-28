@@ -1,6 +1,5 @@
 PORTNAME=	gimp
-DISTVERSION=	3.0.6
-PORTREVISION=	2
+DISTVERSION=	3.0.8
 CATEGORIES?=	graphics gnome
 MASTER_SITES=	GIMP/gimp/v${PORTVERSION:R}
 PKGNAMESUFFIX=	3-app
@@ -68,18 +67,16 @@ CONFLICTS_INSTALL=	gimp-app
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 INSTALL_TARGET=	install-strip
 
-#MESON_ARGS=	-Denable-console-bin=false \
-#		-Dwin32-debug-console=false \
-#		-Diff=disabled \
-
 MESON_ARGS=	-Dappdata-test=disabled \
 		-Dheadless-tests=disabled \
 		-Dicc-directory=${LOCALBASE}/share/color/icc \
 		-Dilbm=disabled \
 		-Dfits=disabled
 
-OPTIONS_DEFINE?=	AALIB GHOSTSCRIPT HEIF HELP OPENJPEG JS JXL LIBMNG WMF DOCS VALA CFITSIO
-OPTIONS_DEFAULT?=	AALIB GHOSTSCRIPT HEIF OPENJPEG JS JXL WMF DOCS VALA LUA CFITSIO
+OPTIONS_DEFINE?=	AALIB BASH CFITSIO DOCS GHOSTSCRIPT HEIF HELP JS JXL LIBMNG \
+		OPENJPEG VALA WMF
+OPTIONS_DEFAULT?=	AALIB BASH CFITSIO DOCS GHOSTSCRIPT HEIF JS JXL LUA \
+		OPENJPEG VALA WMF
 OPTIONS_SINGLE=		SCRIPTS
 OPTIONS_SINGLE_SCRIPTS=	LUA LUAJIT LUA_NONE
 OPTIONS_SUB=	yes
@@ -87,8 +84,14 @@ OPTIONS_SUB=	yes
 AALIB_LIB_DEPENDS=	libaa.so:graphics/aalib
 AALIB_MESON_ENABLED=	aa
 
+BASH_BUILD_DEPENDS=	bash-completion>0:shells/bash-completion
+BASH_MESON_ENABLED=	bash-completion
+
 CFITSIO_MESON_ENABLED=	fits
 CFITSIO_LIB_DEPENDS=	libcfitsio.so:astro/cfitsio
+
+DOCS_BUILD_DEPENDS=	gi-docgen:textproc/py-gi-docgen
+DOCS_MESON_ENABLED=	gi-docgen
 
 GHOSTSCRIPT_USES=		ghostscript
 GHOSTSCRIPT_MESON_ENABLED=	ghostscript
@@ -102,6 +105,17 @@ HELP_RUN_DEPENDS=	gimp-help-en>=0:misc/gimp-help-en
 LIBMNG_BROKEN=		require rewrired mng port
 LIBMNG_LIB_DEPENDS=	libmng.so:graphics/libmng
 LIBMNG_MESON_ENABLED=	mng
+
+LUA_USES=		lua:51
+LUA_BUILD_DEPENDS=	${LUA_REFMODLIBDIR}/lgi/corelgilua${LUA_VER_STR}.so:devel/lua-lgi@${LUA_FLAVOR}
+LUA_RUN_DEPENDS=	${LUA_REFMODLIBDIR}/lgi/corelgilua${LUA_VER_STR}.so:devel/lua-lgi@${LUA_FLAVOR}
+
+LUAJIT_DESC?=		Lua scripting language support via Luajit
+LUAJIT_USES=		luajit
+LUAJIT_BROKEN=		LuaJIT cannot use devel/lua-lgi module yet
+
+LUA_NONE_DESC?=		Disable Lua scripting language support
+LUA_NONE_MESON_FALSE=	lua
 
 OPENJPEG_LIB_DEPENDS=	libopenjp2.so:graphics/openjpeg
 OPENJPEG_MESON_ENABLED=	jpeg2000
@@ -118,23 +132,9 @@ JS_LIB_DEPENDS=		libgjs.so:lang/gjs
 JS_RUN_DEPENDS=		gjs-console:lang/gjs
 JS_MESON_ENABLED=	javascript
 
-DOCS_BUILD_DEPENDS=	gi-docgen:textproc/py-gi-docgen
-DOCS_MESON_ENABLED=	gi-docgen
-
 VALA_DESC=		Build VAPI and Vala plugins
 VALA_USES=		vala:build
 VALA_MESON_ENABLED=	vala
-
-LUA_USES=		lua:51
-LUA_BUILD_DEPENDS=	${LUA_REFMODLIBDIR}/lgi/corelgilua${LUA_VER_STR}.so:devel/lua-lgi@${LUA_FLAVOR}
-LUA_RUN_DEPENDS=	${LUA_REFMODLIBDIR}/lgi/corelgilua${LUA_VER_STR}.so:devel/lua-lgi@${LUA_FLAVOR}
-
-LUAJIT_DESC?=		Lua scripting language support via Luajit
-LUAJIT_USES=		luajit
-LUAJIT_BROKEN=		LuaJIT cannot use devel/lua-lgi module yet
-
-LUA_NONE_DESC?=		Disable Lua scripting language support
-LUA_NONE_MESON_FALSE=	lua
 
 LIBS+=		-lexecinfo -lm
 CPE_PRODUCT=	gimp
@@ -148,7 +148,8 @@ SHEBANG_FILES=	plug-ins/python/*.py \
 
 SHEBANG_LANG+=	gjs
 
-PLIST_SUB+=	BINVER=${PORTVERSION:R:R} ABIVER=${PORTVERSION:R} SHLIBVER=${PORTVERSION:R:E}.${PORTVERSION:E}.${PORTVERSION:R:E}
+#PLIST_SUB+=	BINVER=${PORTVERSION:R:R} ABIVER=${PORTVERSION:R} SHLIBVER=${PORTVERSION:R:E}.${PORTVERSION:E}.${PORTVERSION:R:E}
+PLIST_SUB+=	BINVER=3 ABIVER=3.0 APIVER=3.0 SHLIBVER=0.8.0
 
 .include <bsd.port.options.mk>
 
