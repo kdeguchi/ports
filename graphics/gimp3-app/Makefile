@@ -169,4 +169,7 @@ MESON_ARGS+=	-Dopenmp=disabled
 #.endfor
 #	@${CP} ${WRKSRC}/desktop/scalable/gimp.svg ${WRKSRC}/desktop/scalable/gimp3.svg
 
+post-patch:
+	${REINPLACE_CMD} 's@/proc/self/maps@/proc/self/map@;' ${WRKSRC}/libgimpbase/gimpreloc.[ch]
+
 .include <bsd.port.mk>

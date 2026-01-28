@@ -15,7 +15,7 @@
    have_lua_lgi = false
 
 -  foreach lua_bin : [ 'luajit', 'lua5.1', 'lua-5.1', 'lua' ]
-+  foreach lua_bin : [ 'luajit', 'lua51', 'lua-5.1', 'lua' ]
++  foreach lua_bin : [ 'lua51', 'lua-5.1', 'lua' ]
      lua = find_program(lua_bin, required: false)
 
      if lua.found() and meson.can_run_host_binaries()
