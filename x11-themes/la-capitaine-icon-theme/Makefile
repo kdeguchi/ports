@@ -38,7 +38,8 @@ do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine
 	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine
 	cd ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine && \
-	${RM} -r COPYING Credits.md LICENSE README.md Thanks.md configure scripts
+		${RM} -r COPYING Credits.md LICENSE README.md Thanks.md configure scripts; \
+		${RM} -r apps/scalable/xfsm-*
 
 do-install-DARK-on:
 	cd ${STAGEDIR}${PREFIX}/share/icons/La-Capitaine/actions && ${LN} -sfn 22x22-dark 22x22
