@@ -24,6 +24,10 @@ LLDB_USES:=	${LLDB_USES:S/lua:53/lua:54/}
 USE_WX=	3.2
 .endif
 
+.if ${.CURDIR:M*/emulators/virtualbox-ose-72}
+QT6_USE:=	${QT6_USE:S|tools,|tools:run,|}
+.endif
+
 ########################################
 # KDE & Qt
 ########################################
