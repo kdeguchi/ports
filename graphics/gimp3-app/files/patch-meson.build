@@ -2,22 +2,22 @@
 +++ meson.build
 @@ -168,7 +168,8 @@ platform_linux = (
  message('Host os: ' + host_os)
-
+ 
  platform_linux = (
 -  host_os.contains('linux')
 +  host_os.contains('linux') or
 +  host_os.contains('bsd')
  )
-
+ 
  platform_windows = (
 @@ -1127,7 +1128,7 @@ if have_lua
  if have_lua
    have_lua_lgi = false
-
+ 
 -  foreach lua_bin : [ 'luajit', 'lua5.1', 'lua-5.1', 'lua' ]
 +  foreach lua_bin : [ 'lua51', 'lua-5.1', 'lua' ]
      lua = find_program(lua_bin, required: false)
-
+ 
      if lua.found() and meson.can_run_host_binaries()
 @@ -1166,7 +1167,7 @@ if have_lua
        if is_supported_lua
