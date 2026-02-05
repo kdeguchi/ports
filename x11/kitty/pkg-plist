@@ -169,7 +169,7 @@ share/applications/kitty.desktop
 %%PORTDOCS%%%%DOCSDIR%%/_static/debug.css
 %%PORTDOCS%%%%DOCSDIR%%/_static/doctools.js
 %%PORTDOCS%%%%DOCSDIR%%/_static/documentation_options.js
- %%PORTDOCS%%%%DOCSDIR%%/_static/english-stemmer.js
+%%PORTDOCS%%%%DOCSDIR%%/_static/english-stemmer.js
 %%PORTDOCS%%%%DOCSDIR%%/_static/file.png
 %%PORTDOCS%%%%DOCSDIR%%/_static/kitty.svg
 %%PORTDOCS%%%%DOCSDIR%%/_static/language_data.js
