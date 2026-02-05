@@ -156,7 +156,7 @@ share/applications/kitty.desktop
 %%PORTDOCS%%%%DOCSDIR%%/_sources/text-sizing-protocol.rst.txt
 %%PORTDOCS%%%%DOCSDIR%%/_sources/underlines.rst.txt
 %%PORTDOCS%%%%DOCSDIR%%/_sources/unscroll.rst.txt
-%%PORTDOCS%%%%DOCSDIR%%/_static/_sphinx_javascript_frameworks_compat.js
+%%PORTDOCS%%%%DOCSDIR%%/_static/base-stemmer.js
 %%PORTDOCS%%%%DOCSDIR%%/_static/basic.css
 %%PORTDOCS%%%%DOCSDIR%%/_static/check-solid.svg
 %%PORTDOCS%%%%DOCSDIR%%/_static/clipboard.min.js
@@ -169,9 +169,8 @@ share/applications/kitty.desktop
 %%PORTDOCS%%%%DOCSDIR%%/_static/debug.css
 %%PORTDOCS%%%%DOCSDIR%%/_static/doctools.js
 %%PORTDOCS%%%%DOCSDIR%%/_static/documentation_options.js
+ %%PORTDOCS%%%%DOCSDIR%%/_static/english-stemmer.js
 %%PORTDOCS%%%%DOCSDIR%%/_static/file.png
-%%PORTDOCS%%%%DOCSDIR%%/_static/jquery-3.6.0.js
-%%PORTDOCS%%%%DOCSDIR%%/_static/jquery.js
 %%PORTDOCS%%%%DOCSDIR%%/_static/kitty.svg
 %%PORTDOCS%%%%DOCSDIR%%/_static/language_data.js
 %%PORTDOCS%%%%DOCSDIR%%/_static/minus.png
@@ -193,8 +192,6 @@ share/applications/kitty.desktop
 %%PORTDOCS%%%%DOCSDIR%%/_static/tabs.js
 %%PORTDOCS%%%%DOCSDIR%%/_static/timestamps.css
 %%PORTDOCS%%%%DOCSDIR%%/_static/timestamps.js
-%%PORTDOCS%%%%DOCSDIR%%/_static/underscore-1.13.1.js
-%%PORTDOCS%%%%DOCSDIR%%/_static/underscore.js
 %%PORTDOCS%%%%DOCSDIR%%/actions.html
 %%PORTDOCS%%%%DOCSDIR%%/binary.html
 %%PORTDOCS%%%%DOCSDIR%%/build.html
