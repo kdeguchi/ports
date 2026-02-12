@@ -36,8 +36,7 @@ CONFIGURE_ENV+=	${_SCCACHE_ENV}
 MAKE_ENV+=	${_SCCACHE_ENV}
 
 _USES_configure+=	250:sccache-start
-_USES_build+=	250:sccache-stats
-_USES_stage+=		996:sccache-stop
+_USES_stage+=		996:sccache-stats
 
 sccache-start:
 	@${ECHO_MSG} "==> Starting sccache"
