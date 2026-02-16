@@ -1,9 +1,0 @@
-PORTREVISION=	0
-DISTNAME=	BigBlueTerminal
-
-LICENSE=	CC-BY-SA-4.0
-LICENSE_FILE=	${WRKSRC}/LICENSE.TXT
-
-MASTERDIR=	${.CURDIR}/../nerd-fonts
-
-.include "${MASTERDIR}/Makefile"

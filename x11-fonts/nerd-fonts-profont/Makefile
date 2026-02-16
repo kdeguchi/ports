@@ -1,9 +1,0 @@
-PORTREVISION=	0
-DISTNAME=	ProFont
-
-LICENSE=	MIT
-LICENSE_FILE=	${WRKSRC}/LICENSE
-
-MASTERDIR=	${.CURDIR}/../nerd-fonts
-
-.include "${MASTERDIR}/Makefile"
