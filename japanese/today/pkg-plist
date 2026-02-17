@@ -36,7 +36,7 @@ bin/dayinfo
 %%DATADIR%%/magazine.tbl
 %%DATADIR%%/monthly.tbl
 %%DATADIR%%/schedule.tbl
-%%DATADIR%%/seiji.tbl
+%%SEIJI%%%%DATADIR%%/seiji.tbl
 %%DATADIR%%/sekki.tbl
 %%DATADIR%%/suffix.tbl
 %%DATADIR%%/week.tbl

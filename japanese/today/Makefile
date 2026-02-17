@@ -19,6 +19,7 @@ MAKEFILE=	${FILESDIR}/Makefile
 NO_WRKSUBDIR=	yes
 
 OPTIONS_DEFINE=	HISTDATA DOCS SEIJI
+OPTIONS_SUB=	yes
 
 HISTDATA_DESC=	More history data
 SEIJI_DESC=	Politian birthday data
