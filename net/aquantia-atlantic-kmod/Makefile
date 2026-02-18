@@ -1,11 +1,11 @@
 PORTNAME=	aquantia-atlantic-kmod
 PORTVERSION=	0.0.5
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	net
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Aquantia AQtion (Atlantic) Network Driver (Development Preview)
-WWW=		https://github.com/Aquantia/aqtion-freebsd
+WWW=		https://github.com/albb0920/aqtion-freebsd-aq2
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -13,9 +13,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 USES=		kmod uidfix
 USE_GITHUB=	yes
 
-GH_ACCOUNT=	Aquantia
-GH_PROJECT=	aqtion-freebsd
-GH_TAGNAME=	c61d27b
+GH_ACCOUNT=	albb0920
+GH_PROJECT=	aqtion-freebsd-aq2
+GH_TAGNAME=	95becb7
 
 PLIST_FILES=	${KMODDIR}/if_atlantic.ko
 
