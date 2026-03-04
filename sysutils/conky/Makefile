@@ -141,8 +141,9 @@ WAYLAND_CMAKE_BOOL=	BUILD_WAYLAND
 WAYLAND_LDFLAGS=	-Wl,--as-needed # pangoft2 deps: glib20, freetype2, harfbuzz
 
 X11_USES=	xorg
-X11_USE=	XORG=x11,xdamage,xext,xfixes,xi
+X11_USE=	XORG=x11,xcb,xdamage,xext,xfixes,xi
 X11_CMAKE_BOOL=	BUILD_X11 OWN_WINDOW
+X11_LIB_DEPENDS=	libxcb-errors.so:x11/xcb-util-errors
 X11_VARS=	EXAMPLE_CONF_FILE=${WRKSRC}/data/conky.conf
 X11_VARS_OFF=	EXAMPLE_CONF_FILE=${WRKSRC}/data/conky_no_x11.conf
 
