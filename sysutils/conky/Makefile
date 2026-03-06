@@ -1,5 +1,5 @@
 PORTNAME=	conky
-PORTVERSION=	1.22.2
+PORTVERSION=	1.22.3
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
 
@@ -14,10 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 BUILD_DEPENDS=	gperf:devel/gperf \
 		gsed:textproc/gsed
-
-.if ! exists(/usr/include/sys/inotify.h)
 LIB_DEPENDS=	libinotify.so:devel/libinotify
-.endif
 
 USES=		cmake compiler:c++11-lib cpe gettext-runtime iconv \
 		localbase:ldflags lua:flavors pkgconfig tar:bzip2

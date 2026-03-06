@@ -15,7 +15,7 @@ USE_GITHUB=	yes
 
 GH_ACCOUNT=	albb0920
 GH_PROJECT=	aqtion-freebsd-aq2
-GH_TAGNAME=	95becb7
+GH_TAGNAME=	6f338e6
 
 PLIST_FILES=	${KMODDIR}/if_atlantic.ko
 
