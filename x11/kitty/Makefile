@@ -1,7 +1,7 @@
 PORTNAME=	kitty
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.45.0
-PORTREVISION=	5
+DISTVERSION=	0.46.0
+PORTREVISION=	0
 CATEGORIES=	x11 wayland
 
 MAINTAINER=	nivit@FreeBSD.org
@@ -77,7 +77,7 @@ DOCS_MAKE_ENV=	BUILD_DOCS=yes
 .include <bsd.port.options.mk>
 
 .if ${OPSYS} == FreeBSD
-CFLAGS+=	-Wno-error=invalid-utf8 -Winvalid-utf8
+CFLAGS+=	-Wno-error=invalid-utf8 -Winvalid-utf8 -I/usr/include
 .endif
 
 .if ${ARCH:Mriscv64*}
