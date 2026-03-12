@@ -39,7 +39,7 @@ LIB_DEPENDS=	libcairo.so:graphics/cairo \
 		libxxhash.so:devel/xxhash
 
 USES=		compiler:c11 cpe desktop-file-utils gettext-runtime gl gmake \
-		go:modules magick pkgconfig python shebangfix ssl tar:xz \
+		go:modules,1.26 magick pkgconfig python shebangfix ssl tar:xz \
 		terminfo xorg
 CPE_VENDOR=	kitty_project
 
@@ -77,7 +77,7 @@ DOCS_MAKE_ENV=	BUILD_DOCS=yes
 .include <bsd.port.options.mk>
 
 .if ${OPSYS} == FreeBSD
-CFLAGS+=	-Wno-error=invalid-utf8 -Winvalid-utf8 -I/usr/include
+CFLAGS+=	-Wno-error=invalid-utf8 -Winvalid-utf8
 .endif
 
 .if ${ARCH:Mriscv64*}
