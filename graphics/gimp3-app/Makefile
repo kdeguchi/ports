@@ -1,6 +1,5 @@
 PORTNAME=	gimp
-DISTVERSION=	3.0.8
-PORTREVISION=	1
+DISTVERSION=	3.2.0
 CATEGORIES?=	graphics gnome
 MASTER_SITES=	GIMP/gimp/v${PORTVERSION:R}
 PKGNAMESUFFIX=	3-app
@@ -14,8 +13,9 @@ LICENSE_COMB=	multi
 
 BUILD_DEPENDS=	iso-codes>=0:misc/iso-codes \
 		glib-networking>=0:net/glib-networking \
-		mypaint-brushes>0:graphics/mypaint-brushes \
+		mypaint-brushes2>0:graphics/mypaint-brushes2 \
 		bash:shells/bash \
+		xdg-open:devel/xdg-utils \
 		${LOCALBASE}/include/linux/input.h:devel/evdev-proto \
 		appstreamcli:devel/appstream
 
@@ -42,15 +42,18 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 		libgudev-1.0.so:devel/libgudev \
 		${LIB_DEPENDS_${ARCH}}
 
+RUN_DEPENDS=	xdg-open:devel/xdg-utils \
+		mypaint-brushes2>0:graphics/mypaint-brushes2
+
 LIB_DEPENDS_aarch64=		libunwind.so:devel/libunwind
 LIB_DEPENDS_amd64=		libunwind.so:devel/libunwind
 LIB_DEPENDS_i386=		libunwind.so:devel/libunwind
 LIB_DEPENDS_powerpc64=		libunwind.so:devel/libunwind
 LIB_DEPENDS_powerpc64le=	libunwind.so:devel/libunwind
 
-RUN_DEPENDS=	iso-codes>=0:misc/iso-codes \
-		glib-networking>=0:net/glib-networking \
-		mypaint-brushes>0:graphics/mypaint-brushes
+#RUN_DEPENDS=	iso-codes>=0:misc/iso-codes \
+#		glib-networking>=0:net/glib-networking \
+#		mypaint-brushes>0:graphics/mypaint-brushes
 
 USES=		cpe desktop-file-utils gettext gnome jpeg libarchive \
 		localbase:ldflags meson ninja perl5 pkgconfig python:3.7+ \
@@ -150,7 +153,7 @@ SHEBANG_FILES=	plug-ins/python/*.py \
 SHEBANG_LANG+=	gjs
 
 #PLIST_SUB+=	BINVER=${PORTVERSION:R:R} ABIVER=${PORTVERSION:R} SHLIBVER=${PORTVERSION:R:E}.${PORTVERSION:E}.${PORTVERSION:R:E}
-PLIST_SUB+=	BINVER=3 ABIVER=3.0 APIVER=3.0 SHLIBVER=0.8.0
+PLIST_SUB+=	BINVER=3 ABIVER=3.2 APIVER=3.0 SHLIBVER=0.200.0
 
 .include <bsd.port.options.mk>
 
