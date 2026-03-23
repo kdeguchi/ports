@@ -18,9 +18,10 @@ LIB_DEPENDS=	libexiv2.so:graphics/exiv2 \
 		libmd4c.so:textproc/md4c \
 		libnlopt.so:math/nlopt@minimal
 
-USES=		cmake compiler:c++11-lang desktop-file-utils \
+USES=		cmake compiler:c++11-lang desktop-file-utils gl \
 		perl5 qt:6 shared-mime-info tar:xz
 USE_PERL5=	build
+USE_GL=	opengl
 USE_QT=		base charts tools:build
 
 PORTDOCS=	CREDITS.md ChangeLog README.md \
