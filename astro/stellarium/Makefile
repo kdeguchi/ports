@@ -15,6 +15,7 @@ LICENSE=	GPLv2+
 
 BUILD_DEPENDS=	${LOCALBASE}/include/fast_float/fast_float.h:math/fast_float
 LIB_DEPENDS=	libexiv2.so:graphics/exiv2 \
+		libmd4c.so:textproc/md4c \
 		libnlopt.so:math/nlopt@minimal
 
 USES=		cmake compiler:c++11-lang desktop-file-utils \
