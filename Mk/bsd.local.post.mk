@@ -78,6 +78,10 @@ MOZ_OPTIONS+=	--with-ccache
 NOUSERINIT_EXTRA_PATCHES_OFF=
 .endif
 
+.if defined(RUN_DEPENDS) && ${RUN_DEPENDS:M*math/py-numpy1*}
+RUN_DEPENDS:=	${RUN_DEPENDS:S,-numpy1,-numpy,g}
+.endif
+
 .if defined(RUN_DEPENDS) && ${RUN_DEPENDS:M*sudo\:security/sudo*}
 RUN_DEPENDS:=	${RUN_DEPENDS:S@sudo:security/sudo@sudo:security/doas-wrapper@}
 .endif
