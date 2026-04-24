@@ -53,11 +53,9 @@ OPTIONS_SUB=	yes
 
 GTK2_DESC=	Enable Gtk2 IM module
 GTK2_USE=	GNOME=gtk20
-GTK2_CMAKE_ON=	-DENABLE_GTK2_IM_MODULE=ON
 
 GTK3_DESC=	Enable Gtk3 IM module
 GTK3_USE=	GNOME=gtk30
-GTK3_CMAKE_ON=	-DENABLE_GTK3_IM_MODULE=ON
 
 OPENCC_DESC=	Enable OpenCC for Chinese Transform
 TPUNC_DESC=	Use traditional quotation marks
@@ -75,19 +73,21 @@ CMAKE_ARGS+=	-DENABLE_XDGAUTOSTART=OFF -DFORCE_ENCHANT=ON \
 		-DENABLE_QT=OFF -DENABLE_QT_IM_MODULE=OFF -DENABLE_QT_GUI=OFF
 
 .if ${PORT_OPTIONS:MGTK2}
+CMAKE_ON=	ENABLE_GTK2_IM_MODULE=ON
 SUB_LIST+=	GTK2_IM=fcitx
 .else
+CMAKE_OFF+=	ENABLE_GTK2_IM_MODULE=OFF
 SUB_LIST+=	GTK2_IM=xim
-CMAKE_OFF+=	-DENABLE_GTK2_IM_MODULE=OFF
 .endif
 
 .if ${PORT_OPTIONS:MGTK3}
+CMAKE_ON=	ENABLE_GTK3_IM_MODULE=ON
 PLIST_SUB+=	GTK3=""
 SUB_LIST+=	GTK3_IM=fcitx
 .else
+CMAKE_OFF+=	ENABLE_GTK3_IM_MODULE=OFF
 PLIST_SUB+=	GTK3="@comment "
 SUB_LIST+=	GTK3_IM=xim
-CMAKE_OFF+=	-DENABLE_GTK3_IM_MODULE=OFF
 .endif
 
 .if ${PORT_OPTIONS:MOPENCC}
@@ -109,6 +109,7 @@ _PYSTROKE_VER=	20121124
 _PYTABLE_VER=	20121124
 
 post-patch:
+	@${REINPLACE_CMD} -e 's@"Enable GTK2 IM Module" ON@"Enable GTK2 IM Module" OFF@' ${WRKSRC}/CMakeLists.txt
 	@${CP} ${_DISTDIR}/en_dict-${_DICT_VER}.tar.gz ${WRKSRC}/src/module/spell/dict/.
 	@${CP} ${_DISTDIR}/pinyin.tar.gz ${WRKSRC}/src/im/pinyin/data/.
 	@${CP} ${_DISTDIR}/py_stroke-${_PYSTROKE_VER}.tar.gz ${WRKSRC}/src/module/pinyin-enhance/data/.
