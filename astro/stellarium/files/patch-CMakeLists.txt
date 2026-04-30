@@ -1,10 +1,19 @@
---- CMakeLists.txt.orig	2024-12-22 10:38:06 UTC
+--- CMakeLists.txt.orig	2026-04-05 12:17:25 UTC
 +++ CMakeLists.txt
-@@ -1066,7 +1066,6 @@ include("cmake/Check-from_chars.cmake")
+@@ -316,7 +316,7 @@ IF(WIN32)
+           # MinGW requires enabling of exceptions
+           SET(STEL_MINGW_FLAGS "-fexceptions")
+           # -Og removes some symbols as otherwise the ordinal exceeds the maximum of the 16-bit range.
+-          SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Og") 
++          SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Og")
+           # MinGW clang compiler does not have these flags, but MinGW gcc requires MinGW-specific threading, version number storage
+           IF(NOT ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang"))
+                SET(STEL_MINGW_FLAGS "${STEL_MINGW_FLAGS} -fident -mthreads")
+@@ -1098,7 +1098,6 @@ IF(NOT FROM_CHARS_WORKS)
  IF(NOT FROM_CHARS_WORKS)
-     CPMFindPackage(NAME FastFloat
-                    GIT_REPOSITORY https://github.com/fastfloat/fast_float
--                   VERSION 6.1.0
-                    EXCLUDE_FROM_ALL yes)
-     GET_TARGET_PROPERTY(FastFloat_INCLUDE_DIRECTORIES
-                         FastFloat::fast_float INTERFACE_INCLUDE_DIRECTORIES)
+      CPMFindPackage(NAME FastFloat
+           GIT_REPOSITORY https://github.com/fastfloat/fast_float
+-          VERSION 6.1.0
+           EXCLUDE_FROM_ALL yes)
+      GET_TARGET_PROPERTY(FastFloat_INCLUDE_DIRECTORIES
+           FastFloat::fast_float INTERFACE_INCLUDE_DIRECTORIES)
