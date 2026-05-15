@@ -1,3 +1,12 @@
+.if exists(/usr/bin/pkgconf)
+. if defined(BUILD_DEPENDS)
+BUILD_DEPENDS:=	${BUILD_DEPENDS:C@pkgconf.*@@}
+. endif
+. if defined(RUN_DEPENDS)
+RUN_DEPENDS:=	${RUN_DEPENDS:C@pkgconf.*@@}
+. endif
+.endif
+
 # Maybe, many ports need this
 .if ${.CURDIR:N*/graphics/jbigkit} && ${.CURDIR:N*/security/veracrypt}
 USES+=	localbase
@@ -26,6 +35,10 @@ USE_WX=	3.2
 
 .if ${.CURDIR:M*/emulators/virtualbox-ose-72}
 QT6_USE:=	${QT6_USE:S|tools,|tools:run,|}
+.endif
+
+.if ${.CURDIR:M*/www/deno}
+LIB_DEPENDS:=	${LIB_DEPENDS:S@libonig.so:devel/oniguruma@@}
 .endif
 
 ########################################
