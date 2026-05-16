@@ -1,9 +1,9 @@
 .if exists(/usr/bin/pkgconf)
 . if defined(BUILD_DEPENDS)
-BUILD_DEPENDS:=	${BUILD_DEPENDS:C@pkgconf.*@@}
+BUILD_DEPENDS:=	${BUILD_DEPENDS:C@pkgconf>.*@@}
 . endif
 . if defined(RUN_DEPENDS)
-RUN_DEPENDS:=	${RUN_DEPENDS:C@pkgconf.*@@}
+RUN_DEPENDS:=	${RUN_DEPENDS:C@pkgconf>.*@@}
 . endif
 .endif
 
