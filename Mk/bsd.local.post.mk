@@ -1,14 +1,14 @@
 # this file is included by ${PORTSDIR}/Mk/bsd.local.mk
 # Local_Post_Include
 
-.if exists(/usr/bin/pkgconf)
-. if defined(BUILD_DEPENDS)
-BUILD_DEPENDS:=	${BUILD_DEPENDS:S@pkgconf>=1.3.0_1:devel/pkgconf@@}
-. endif
-. if defined(RUN_DEPENDS)
-RUN_DEPENDS:=	${RUN_DEPENDS:S@pkgconf>=1.3.0_1:devel/pkgconf@@}
-. endif
-.endif
+#.if exists(/usr/bin/pkgconf)
+#. if defined(BUILD_DEPENDS)
+#BUILD_DEPENDS:=	${BUILD_DEPENDS:S@pkgconf>=1.3.0_1:devel/pkgconf@@}
+#. endif
+#. if defined(RUN_DEPENDS)
+#RUN_DEPENDS:=	${RUN_DEPENDS:S@pkgconf>=1.3.0_1:devel/pkgconf@@}
+#. endif
+#.endif
 
 .if defined(_UNRAR_ICONV) && exists(${PORTSDIR}/archivers/unrar-iconv)
 EXTRACT_DEPENDS:=	${EXTRACT_DEPENDS:S@archivers/unrar$@archivers/unrar-iconv@}
