@@ -3,10 +3,10 @@
 
 .if exists(/usr/bin/pkgconf)
 . if defined(BUILD_DEPENDS)
-BUILD_DEPENDS:=	${BUILD_DEPENDS:C@pkgconf>.*@@}
+BUILD_DEPENDS:=	${BUILD_DEPENDS:S@pkgconf>=1.3.0_1:devel/pkgconf@@}
 . endif
 . if defined(RUN_DEPENDS)
-RUN_DEPENDS:=	${RUN_DEPENDS:C@pkgconf>.*@@}
+RUN_DEPENDS:=	${RUN_DEPENDS:S@pkgconf>=1.3.0_1:devel/pkgconf@@}
 . endif
 .endif
 
