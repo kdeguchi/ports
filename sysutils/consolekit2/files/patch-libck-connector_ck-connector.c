@@ -1,6 +1,6 @@
---- libck-connector/ck-connector.c.orig	2025-03-20 16:35:45 UTC
+--- libck-connector/ck-connector.c.orig	2026-04-17 08:41:44 UTC
 +++ libck-connector/ck-connector.c
-@@ -693,10 +693,10 @@ ck_connector_get_runtime_dir (CkConnector *connector,
+@@ -694,10 +694,10 @@ ck_connector_get_runtime_dir (CkConnector *connector,
  ck_connector_get_runtime_dir (CkConnector *connector,
                                DBusError   *error)
  {
@@ -14,7 +14,7 @@
  
          _ck_return_val_if_fail (connector != NULL, NULL);
  
-@@ -716,11 +716,11 @@ ck_connector_get_runtime_dir (CkConnector *connector,
+@@ -717,10 +717,11 @@ ck_connector_get_runtime_dir (CkConnector *connector,
                  }
          }
  
@@ -25,12 +25,11 @@
 +        //message = NULL;
 +        runtime_dir = getenv("XDG_RUNTIME_DIR");
  
--        if (!connector->session_created || connector->cookie == NULL) {
-+        /*if (!connector->session_created || connector->cookie == NULL) {
-                 return NULL;
-         }
- 
-@@ -758,7 +758,7 @@ ck_connector_get_runtime_dir (CkConnector *connector,
++        /*
+         dbus_error_init (&local_error);
+         message = dbus_message_new_method_call ("org.freedesktop.ConsoleKit",
+                                                 connector->ssid,
+@@ -755,7 +756,7 @@ ck_connector_get_runtime_dir (CkConnector *connector,
                                  local_error.message);
                  dbus_error_free (&local_error);
                  goto out;
@@ -39,7 +38,7 @@
  
          connector->runtime_dir = strdup (runtime_dir);
          if (connector->runtime_dir == NULL) {
-@@ -766,13 +766,13 @@ out:
+@@ -763,13 +764,13 @@ out:
          }
  
  out:
