@@ -1,6 +1,6 @@
 PORTNAME=	vlc
-DISTVERSION=	3.0.22
-PORTREVISION=	2
+DISTVERSION=	3.0.23
+PORTREVISION=	0
 PORTEPOCH=	4
 CATEGORIES=	multimedia audio net www
 MASTER_SITES=	https://get.videolan.org/${PORTNAME}/${DISTVERSION:S/a$//}/ \
@@ -27,8 +27,6 @@ LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
 		libgpg-error.so:security/libgpg-error \
 		libebml.so:textproc/libebml
 RUN_DEPENDS=	ffmpeg>=3.4.1,1:multimedia/ffmpeg
-
-EXTRA_PATCHES=	${FILESDIR}/vlc-3.0.22-ffmpeg8.patch:-p1
 
 USES=		compiler:c++17-lang cpe desktop-file-utils elfctl gettext-tools \
 		gl gmake gnome iconv:wchar_t libtool localbase pathfix pkgconfig \
@@ -291,6 +289,12 @@ QT5_USE=		QT=gui,core,svg,widgets,x11extras,buildtools:build
 QT6_IMPLIES=		X11
 QT6_USES=		qt:6
 QT6_USE=		QT=base,svg
+_QT6CORE_CFLAGS!=	pkgconf --cflags Qt6Core
+_QT6GUI_CFLAGS!=	pkgconf --cflags Qt6Gui
+_QT6SVG_CFLAGS!=	pkgconf --cflags Qt6Svg
+_QT6WIDGETS_CFLAGS!=	pkgconf --cflags Qt6Widgets
+QT6_CONFIGURE_ENV=	QT_CFLAGS="${_QT6CORE_CFLAGS} ${_QT6GUI_CFLAGS} ${_QT6SVG_CFLAGS} ${_QT6WIDGETS_CFLAGS}"
+QT6_MAKE_ENV=	QT_CFLAGS="${_QT6CORE_CFLAGS} ${_QT6GUI_CFLAGS} ${_QT6SVG_CFLAGS} ${_QT6WIDGETS_CFLAGS}"
 
 REALRTSP_CONFIGURE_ENABLE=	realrtsp
 
@@ -394,9 +398,7 @@ CXXFLAGS+=-g -O0
 
 post-patch:
 .if ${PORT_OPTIONS:MQT6}
-	${REINPLACE_CMD} -e 's@Qt5@Qt6@g' \
-		-e 's@QT_HOST_PATH=.*@QT_HOST_PATH=${QT_TOOLDIR}@' \
-		${WRKSRC}/configure
+	${REINPLACE_CMD} -E -e 's|\$$\(info (.*)\)|echo \1|' ${WRKSRC}/configure
 .endif
 	@${REINPLACE_CMD} \
 		-e '\|LIBS|s|-lrt||' \
