@@ -1,6 +1,6 @@
---- src/qdoc/qdoc/src/qdoc/clangcodeparser.cpp.orig	2026-01-20 08:51:38 UTC
+--- src/qdoc/qdoc/src/qdoc/clangcodeparser.cpp.orig	2026-05-08 01:19:07 UTC
 +++ src/qdoc/qdoc/src/qdoc/clangcodeparser.cpp
-@@ -39,7 +39,12 @@
+@@ -42,7 +42,12 @@
  #include <clang/Lex/Lexer.h>
  #include <llvm/Support/Casting.h>
  
