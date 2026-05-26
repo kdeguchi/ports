@@ -1,5 +1,5 @@
 PORTNAME=	vlc
-DISTVERSION=	3.0.23
+DISTVERSION=	4.0.0
 PORTREVISION=	0
 PORTEPOCH=	4
 CATEGORIES=	multimedia audio net www
@@ -28,12 +28,18 @@ LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
 		libebml.so:textproc/libebml
 RUN_DEPENDS=	ffmpeg>=3.4.1,1:multimedia/ffmpeg
 
-USES=		compiler:c++17-lang cpe desktop-file-utils elfctl gettext-tools \
+USES=		autoreconf compiler:c++17-lang cpe desktop-file-utils elfctl gettext-tools \
 		gl gmake gnome iconv:wchar_t libtool localbase pathfix pkgconfig \
 		tar:xz
 USE_GL=		opengl
 
 CPE_VENDOR=	videolan
+
+USE_GITLAB=	yes
+GL_SITE=		https://code.videolan.org
+GL_ACCOUNT=	videolan
+GL_PROJECT=	vlc
+GL_TAGNAME=	bd829f62f1c6d9ab5a955d48e416a929418f5646
 
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
@@ -65,7 +71,6 @@ CFLAGS_i386=	-fomit-frame-pointer
 ELF_FEATURES=	+noaslr:bin/.libs/vlc # See PR 270038
 BINARY_ALIAS=	sed=${LOCALBASE}/bin/gsed
 
-PORTDATA=	*
 PORTDOCS=	*
 
 OPTIONS_DEFINE=	A52 AALIB AOM ARIBSUB ASS AVAHI CACA CHROMECAST DAV1D DBUS DCA \
@@ -288,7 +293,7 @@ QT5_USE=		QT=gui,core,svg,widgets,x11extras,buildtools:build
 
 QT6_IMPLIES=		X11
 QT6_USES=		qt:6
-QT6_USE=		QT=base,svg
+QT6_USE=		QT=base,declarative,svg
 _QT6CORE_CFLAGS!=	pkgconf --cflags Qt6Core
 _QT6GUI_CFLAGS!=	pkgconf --cflags Qt6Gui
 _QT6SVG_CFLAGS!=	pkgconf --cflags Qt6Svg
@@ -397,10 +402,10 @@ CXXFLAGS+=-g -O0
 .endif
 
 post-patch:
-.if ${PORT_OPTIONS:MQT6}
-	${REINPLACE_CMD} -E -e 's|\$$\(info (.*)\)|echo \1|' ${WRKSRC}/configure
-.endif
-	@${REINPLACE_CMD} \
+#.if ${PORT_OPTIONS:MQT6}
+#	${REINPLACE_CMD} -E -e 's|\$$\(info (.*)\)|echo \1|' ${WRKSRC}/configure
+#.endif
+#	@${REINPLACE_CMD} \
 		-e '\|LIBS|s|-lrt||' \
 		-e 's|LIBS="-llirc_client|LIBS="$$LIBS_lirc|' \
 		-e '/PKG_CONFIG/s|\"gl\"|"opengl"|g' \
@@ -413,8 +418,6 @@ post-patch:
 	@${CP} ${WRKSRC}/src/android/error.c ${WRKSRC}/src/posix
 
 post-install:
-	@(cd ${STAGEDIR}${PREFIX} && ${FIND} -s lib/vlc -not -name '*.la' \
-		-type f -o -type l >> ${TMPPLIST})
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/vlc/plugins/*/*.so
 	# plugin cache becomes stale after strip. Regenerate it:
 	${WRKSRC}/bin/vlc-cache-gen ${STAGEDIR}${PREFIX}/lib/vlc/plugins

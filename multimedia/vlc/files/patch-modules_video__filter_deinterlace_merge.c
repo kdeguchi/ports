@@ -1,7 +1,7 @@
---- modules/video_filter/deinterlace/merge.c.orig	2019-09-12 13:33:43 UTC
+--- modules/video_filter/deinterlace/merge.c.orig	2026-05-24 15:35:12 UTC
 +++ modules/video_filter/deinterlace/merge.c
-@@ -39,7 +39,9 @@
- #endif
+@@ -34,7 +34,9 @@
+ #include "merge.h"
  
  #ifdef HAVE_ALTIVEC_H
 +#   undef bool
