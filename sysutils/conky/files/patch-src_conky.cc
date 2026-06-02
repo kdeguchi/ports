@@ -20,7 +20,7 @@
 +    int major_version;
 +    int minor_version;
 +    if (XShapeQueryVersion(display, &major_version, &minor_version) == 0) {
-+      NORM_ERR("Input shapes are not supported");
++      LOG_ERROR("Input shapes are not supported");
 +    } else {
 +      if (own_window.get(*state) &&
 +          (own_window_type.get(*state) != window_type::NORMAL ||
