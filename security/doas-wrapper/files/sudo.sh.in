@@ -7,6 +7,12 @@ export SUDO_UID=$(id -u)
 export SUDO_GID=$(id -g)
 export SUDO_USER=$(id -un)
 
-[ "$1" = "-e" ] && shift && DOAS=%%PREFIX%%/bin/doasedit
+for opt in $@; do
+  case $opt in
+    -e)  shift; DOAS=%%PREFIX%%/bin/doasedit ;;
+    -l)  shift ;;
+    *)  shift; set -- $@ "$opt" ;;
+  esac
+done
 
 exec ${DOAS} $@

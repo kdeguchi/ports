@@ -1,5 +1,5 @@
 PORTNAME=	doas-wrapper
-PORTVERSION=	0.5
+PORTVERSION=	0.6
 CATEGORIES=	security
 MASTER_SITES=	# none
 DISTFILES=	# none
