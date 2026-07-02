@@ -37,7 +37,7 @@ _USES_configure+=	100:sccache-start
 _USES_stage+=		950:sccache-stats
 
 sccache-start:
-	@if [ -S "${SCCACHE_UNIX_LISTEN}" ]; then \
+	@if [ ! -S "${SCCACHE_UNIX_LISTEN}" ]; then \
 		${ECHO_MSG} "==> Starting sccache"; \
 		${LN} -Fs ${_SCCACHE_LIBS} /tmp/sccache-overlay; \
 		${SETENV} ${_SCCACHE_ENV} ${SCCACHE_BIN} --start-server || ${TRUE}; \
