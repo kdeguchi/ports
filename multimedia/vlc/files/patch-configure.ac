@@ -1,0 +1,52 @@
+--- configure.ac.orig	2025-12-23 10:49:20 UTC
++++ configure.ac
+@@ -3142,7 +3142,7 @@ have_gl="no"
+ AM_CONDITIONAL([HAVE_EGL], [test "${have_egl}" = "yes"])
+ 
+ have_gl="no"
+-PKG_CHECK_MODULES([GL], [gl], [
++PKG_CHECK_MODULES([GL], [opengl], [
+   have_gl="yes"
+ ], [
+   AC_MSG_CHECKING([for OpenGL])
+@@ -3852,19 +3852,6 @@ AS_IF([test "${enable_qt}" != "no"], [
+ ])
+ have_qt5_x11="no"
+ AS_IF([test "${enable_qt}" != "no"], [
+-  PKG_CHECK_MODULES([QT], [Qt5Core >= 5.5.0 Qt5Widgets Qt5Gui Qt5Svg], [
+-      PKG_CHECK_MODULES([QT5_X11], [Qt5X11Extras], [
+-          have_qt5_x11="yes"
+-      ],[
+-          AC_MSG_WARN([Not building Qt Interface with X11 helpers.])
+-      ])
+-      QT_PATH="$(eval $PKG_CONFIG --variable=exec_prefix Qt5Core)"
+-      QT_HOST_PATH="$(eval $PKG_CONFIG --variable=host_bins Qt5Core)"
+-      QT_VERSION="$(eval $PKG_CONFIG --modversion Qt5Gui)"
+-      AC_PATH_PROGS(MOC, [moc-qt5 moc], moc, ["${QT_HOST_PATH}" "${QT_PATH}/bin"])
+-      AC_PATH_PROGS(RCC, [rcc-qt5 rcc], rcc, ["${QT_HOST_PATH}" "${QT_PATH}/bin"])
+-      AC_PATH_PROGS(UIC, [uic-qt5 uic], uic, ["${QT_HOST_PATH}" "${QT_PATH}/bin"])
+-    ], [
+       dnl use any qmake that is available, including from contrib tools
+       AC_PATH_PROGS(QMAKE6, [qmake6 qmake], qmake6, ["${CONTRIB_DIR}/../bin:$PATH"])
+ 
+@@ -3939,9 +3926,9 @@ AS_IF([test "${enable_qt}" != "no"], [
+         QT_HOST_LIBEXEC_DIRECTORY="$(${QT_PATHS} -query QT_HOST_LIBEXECS 2>/dev/null)"
+         QT_LIBEXEC_DIRECTORY="$(${QT_PATHS}      -query QT_INSTALL_LIBEXECS 2>/dev/null)"
+         QT_VERSION="$(${QT_PATHS}                -query QT_VERSION 2>/dev/null)"
+-        AC_PATH_PROGS(MOC, [moc-qt5 moc], moc, ["${QT_HOST_PATH}" "${QT_PATH}/bin" "${QT_HOST_LIBEXEC_DIRECTORY}" "${QT_LIBEXEC_DIRECTORY}"])
+-        AC_PATH_PROGS(RCC, [rcc-qt5 rcc], rcc, ["${QT_HOST_PATH}" "${QT_PATH}/bin" "${QT_HOST_LIBEXEC_DIRECTORY}" "${QT_LIBEXEC_DIRECTORY}"])
+-        AC_PATH_PROGS(UIC, [uic-qt5 uic], uic, ["${QT_HOST_PATH}" "${QT_PATH}/bin" "${QT_HOST_LIBEXEC_DIRECTORY}" "${QT_LIBEXEC_DIRECTORY}"])
++        AC_PATH_PROGS(MOC, [moc], moc, ["${QT_HOST_PATH}" "${QT_PATH}/bin" "${QT_HOST_LIBEXEC_DIRECTORY}" "${QT_LIBEXEC_DIRECTORY}"])
++        AC_PATH_PROGS(RCC, [rcc], rcc, ["${QT_HOST_PATH}" "${QT_PATH}/bin" "${QT_HOST_LIBEXEC_DIRECTORY}" "${QT_LIBEXEC_DIRECTORY}"])
++        AC_PATH_PROGS(UIC, [uic], uic, ["${QT_HOST_PATH}" "${QT_PATH}/bin" "${QT_HOST_LIBEXEC_DIRECTORY}" "${QT_LIBEXEC_DIRECTORY}"])
+ 
+         AC_MSG_CHECKING([for Qt GUI private])
+         (${QMAKE} ${srcdir}/modules/gui/qt/private-gui.pro -o ${ac_pwd}/modules/gui/qt/qmake-private-gui) 2>/dev/null
+@@ -3965,7 +3952,6 @@ AS_IF([test "${enable_qt}" != "no"], [
+         ])
+         enable_qt="no"
+       ])
+-    ])
+ ])
+ 
+ AS_IF([test "${enable_qt}" != "no"], [

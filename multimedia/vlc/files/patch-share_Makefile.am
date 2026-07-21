@@ -1,6 +1,6 @@
---- share/Makefile.in.orig	2017-04-06 14:40:37 UTC
-+++ share/Makefile.in
-@@ -1845,7 +1845,7 @@ skins2/default.vlt: $(skins2_default_vlt
+--- share/Makefile.am.orig	2026-07-20 10:13:40 UTC
++++ share/Makefile.am
+@@ -96,7 +96,7 @@ skins2/default.vlt: $(skins2_default_vlt_FILES)
  	GZIP=--no-name \
  	tar cvvzf skins2/default.vlt.tmp \
  		--format=ustar $$tarsort \
