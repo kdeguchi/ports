@@ -27,8 +27,6 @@ CPE_VENDOR=	gnome
 USE_LDCONFIG=	yes
 MESON_ARGS=	-Dselinux=disabled \
 		-Dsystemd=disabled
-#	-Dssh-agent=true \
-
 GLIB_SCHEMAS=	org.gnome.crypto.cache.gschema.xml
 
 SUB_FILES=	pkg-message
