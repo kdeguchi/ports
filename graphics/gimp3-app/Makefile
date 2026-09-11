@@ -1,5 +1,5 @@
 PORTNAME=	gimp
-DISTVERSION=	3.2.4
+DISTVERSION=	3.2.6
 CATEGORIES?=	graphics gnome
 MASTER_SITES=	GIMP/gimp/v${PORTVERSION:R}
 PKGNAMESUFFIX=	3-app
@@ -42,20 +42,20 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 		libgudev-1.0.so:devel/libgudev \
 		${LIB_DEPENDS_${ARCH}}
 
-RUN_DEPENDS=	xdg-open:devel/xdg-utils \
-		mypaint-brushes2>0:graphics/mypaint-brushes2
-
 LIB_DEPENDS_aarch64=		libunwind.so:devel/libunwind
 LIB_DEPENDS_amd64=		libunwind.so:devel/libunwind
+LIB_DEPENDS_armv7=		libunwind.so:devel/libunwind
 LIB_DEPENDS_i386=		libunwind.so:devel/libunwind
+LIB_DEPENDS_powerpc=		libunwind.so:devel/libunwind
 LIB_DEPENDS_powerpc64=		libunwind.so:devel/libunwind
 LIB_DEPENDS_powerpc64le=	libunwind.so:devel/libunwind
 
-RUN_DEPENDS+=	iso-codes>=0:misc/iso-codes \
+RUN_DEPENDS=	xdg-open:devel/xdg-utils \
+		iso-codes>=0:misc/iso-codes \
 		glib-networking>=0:net/glib-networking \
-		mypaint-brushes>0:graphics/mypaint-brushes
+		mypaint-brushes2>0:graphics/mypaint-brushes2
 
-USES=		cpe desktop-file-utils gettext gnome jpeg libarchive \
+USES=		bison cpe desktop-file-utils gettext gnome jpeg libarchive \
 		localbase:ldflags meson ninja perl5 pkgconfig python \
 		shebangfix tar:xz xorg
 USE_CXXSTD=	gnu++14
@@ -63,7 +63,6 @@ USE_GNOME=	gtk30 introspection cairo gdkpixbuf librsvg2 libxslt
 USE_XORG=	ice sm x11 xcursor xext xfixes xmu xpm xt
 USE_LDCONFIG=	yes
 
-#LDFLAGS+=	-L${LOCALBASE}/lib -Wl,--allow-shlib-undefined
 LDFLAGS+=	-Wl,--allow-shlib-undefined
 
 CONFLICTS_INSTALL=	gimp-app
@@ -144,15 +143,16 @@ LIBS+=		-lexecinfo -lm
 CPE_PRODUCT=	gimp
 CPE_VENDOR=	gimp
 
-SHEBANG_FILES=	plug-ins/python/*.py \
-		plug-ins/python/python-console/*.py \
-		extensions/goat-exercises/*.py \
+SHEBANG_GLOB=	*.py
+SHEBANG_FILES=	extensions/goat-exercises/*.py \
 		extensions/goat-exercises/*.js \
 		extensions/goat-exercises/*.lua
 
 SHEBANG_LANG+=	gjs
 
 PLIST_SUB+=	BINVER=${PORTVERSION:R:R} ABIVER=${PORTVERSION:R} APIVER=${PORTVERSION:R:R}.0 SHLIBVER=0.${PORTVERSION:R:E}0${PORTVERSION:E}.0
+#PLIST_SUB+=	BINVER=${PORTVERSION:R:R} ABIVER=${PORTVERSION:R} SHLIBVER=${PORTVERSION:R:E}.${PORTVERSION:E}.${PORTVERSION:R:E}
+#PLIST_SUB+=	BINVER=3 ABIVER=3.2 APIVER=3.0 SHLIBVER=0.204.0
 
 .include <bsd.port.options.mk>
 
@@ -171,8 +171,5 @@ MESON_ARGS+=	-Dopenmp=disabled
 #	@${CP} ${WRKSRC}/desktop/${s}x${s}/gimp.png ${WRKSRC}/desktop/${s}x${s}/gimp3.png
 #.endfor
 #	@${CP} ${WRKSRC}/desktop/scalable/gimp.svg ${WRKSRC}/desktop/scalable/gimp3.svg
-
-post-patch:
-	${REINPLACE_CMD} 's@/proc/self/maps@/proc/self/map@;' ${WRKSRC}/libgimpbase/gimpreloc.[ch]
 
 .include <bsd.port.mk>
