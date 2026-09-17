@@ -43,7 +43,7 @@ while [ $# -ge 6 ]; do
 		comment="$(cd "${dp_CURDIR}" && ${dp_MAKE} -VCOMMENT)"
 	fi
 
-	${dp_ECHO_CMD} "GenericName=${Name}" >> "${pathname}"
+	${dp_ECHO_CMD} "GenericName=${comment}" >> "${pathname}"
 	${dp_ECHO_CMD} "Comment=${comment}" >> "${pathname}"
 
 	if [ -n "${Icon}" ]; then
