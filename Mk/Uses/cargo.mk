@@ -68,7 +68,7 @@ _CARGO_CRATES:=		${_CARGO_CRATES:C/^([-_a-zA-Z0-9]+)-([0-9].*)/\0 \1 \2/}
 
 .  for _index _crate _name _version in ${_CARGO_CRATES}
 # Resolving CRATESIO alias is very inefficient with many MASTER_SITES, consume MASTER_SITE_CRATESIO directly
-MASTER_SITES+=	${MASTER_SITE_CRATESIO:S,%SUBDIR%,${_name}/${_version},:S,$,:_cargo_${_index},}
+MASTER_SITES+=	${MASTER_SITE_CRATESIO:S,%SUBDIR%,${_name}/${_crate}${CARGO_CRATE_EXT},:S,$,:_cargo_${_index},}
 DISTFILES+=	${CARGO_DIST_SUBDIR}/${_crate}${CARGO_CRATE_EXT}:_cargo_${_index}
 
 # Provide pointer to the crate's extraction dir
@@ -109,7 +109,7 @@ WRKSRC_crate_${_crate}=	${WRKDIR}/${_wrksrc}
 
 CARGO_BUILDDEP?=	yes
 .  if ${CARGO_BUILDDEP:tl} == "yes"
-BUILD_DEPENDS+=	${RUST_DEFAULT}>=1.93.0:lang/${RUST_DEFAULT}
+BUILD_DEPENDS+=	${RUST_DEFAULT}>=1.98.0:lang/${RUST_DEFAULT}
 .  elif ${CARGO_BUILDDEP:tl} == "any-version"
 BUILD_DEPENDS+=	${RUST_DEFAULT}>=0:lang/${RUST_DEFAULT}
 .  endif
@@ -142,7 +142,7 @@ CARGO_ENV+= \
 	RUSTDOC=${RUSTDOC} \
 	RUSTFLAGS="${RUSTFLAGS} -C linker=${CC} ${LDFLAGS:C/.+/-C link-args=&/}"
 
-.  if ${ARCH} != powerpc64le
+.  if ${ARCH} != powerpc64le || (${ARCH} == powerpc64le && ${OSVERSION} >= 1600019)
 CARGO_ENV+=	RUST_BACKTRACE=1
 .  endif
 
@@ -172,6 +172,7 @@ CARGO_BUILD_ARGS?=
 CARGO_INSTALL_ARGS?=
 CARGO_INSTALL_PATH?=	.
 CARGO_TEST_ARGS?=
+CARGO_TEST_AFTER_ARGS?=
 CARGO_UPDATE_ARGS?=
 
 # Use module targets ?
@@ -268,15 +269,19 @@ CARGO_ENV+=	ZSTD_SYS_USE_PKG_CONFIG=1
 # https://github.com/rust-lang/libc/commit/78f93220d70e
 # https://github.com/rust-lang/libc/commit/969ad2b73cdc
 .        if ${_name} == libc && ${_major} == 0 && (${_minor} < 2 || (${_minor} == 2 && ${_patch} < 38))
-DEV_ERROR+=	"CARGO_CRATES=${_crate} may be unstable on FreeBSD 12.0. Consider updating to the latest version \(higher than 0.2.37\)."
+DEV_ERROR+=	"CARGO_CRATES=${_crate} may be unstable on FreeBSD 12.0. Consider updating to the latest version (higher than 0.2.37)."
 .        endif
 .        if ${_name} == libc && ${_major} == 0 && (${_minor} < 2 || (${_minor} == 2 && ${_patch} < 49))
-DEV_ERROR+=	"CARGO_CRATES=${_crate} may be unstable on aarch64 or not build on armv6, armv7, powerpc64. Consider updating to the latest version \(higher than 0.2.49\)."
+DEV_ERROR+=	"CARGO_CRATES=${_crate} may be unstable on aarch64 or not build on armv6, armv7, powerpc64. Consider updating to the latest version (higher than 0.2.49)."
+.        endif
+.        if ${_name} == libc && ${_major} == 0 && (${_minor} < 2 || (${_minor} == 2 && ${_patch} < 176))
+DEV_WARNING+=	"CARGO_CRATES=${_crate} requires COMPAT_FREEBSD11 support, not present by default on riscv64. Consider updating to the latest version (higher than 0.2.175)."
+_CARGO_COMPAT11=
 .        endif
 # FreeBSD 12.0 updated base OpenSSL in r339270:
 # https://github.com/sfackler/rust-openssl/commit/276577553501
 .        if ${_name} == openssl && !exists(${PATCHDIR}/patch-openssl-1.1.1) && ${_major} == 0 && (${_minor} < 10 || (${_minor} == 10 && ${_patch} < 4))
-DEV_WARNING+=	"CARGO_CRATES=${_crate} does not support OpenSSL 1.1.1. Consider updating to the latest version \(higher than 0.10.3\)."
+DEV_WARNING+=	"CARGO_CRATES=${_crate} does not support OpenSSL 1.1.1. Consider updating to the latest version (higher than 0.10.3)."
 .        endif
 .      endfor
 .    endif
@@ -309,9 +314,11 @@ CARGO_DOT_DIR=	${WRKSRC}/${CARGO_SRC_SUBDIR}/../.cargo
 # configure hook.  Place a config file for overriding crates-io index
 # by local source directory.
 cargo-configure:
+.    if defined(_CARGO_COMPAT11)
 # Check that the running kernel has COMPAT_FREEBSD11 required by lang/rust post-ino64
 	@${SETENV} CC="${CC}" OPSYS="${OPSYS}" OSVERSION="${OSVERSION}" WRKDIR="${WRKDIR}" \
 		${SH} ${SCRIPTSDIR}/rust-compat11-canary.sh
+.    endif
 .    if defined(_CARGO_MSG)
 	@${ECHO_MSG} ${_CARGO_MSG}
 .    endif
@@ -364,13 +371,18 @@ do-install:
 .    endfor
 .  endif
 
+.  if !empty(CARGO_TEST_AFTER_ARGS)
+_CARGO_TEST_AFTER_ARGS=	-- ${CARGO_TEST_AFTER_ARGS}
+.  endif
+
 .  if !target(do-test) && ${CARGO_TEST:tl} == "yes"
 do-test:
 	@${CARGO_CARGO_RUN} test \
 		--manifest-path ${CARGO_CARGOTOML} \
 		--verbose \
 		--verbose \
-		${CARGO_TEST_ARGS}
+		${CARGO_TEST_ARGS} \
+		${_CARGO_TEST_AFTER_ARGS}
 .  endif
 
 #
