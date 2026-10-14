@@ -119,6 +119,12 @@ post-patch:
 .if ${.CURDIR:M*nvidia-drm-515-kmod*}
 	${REINPLACE_CMD} -e 's:defined(NV_LINUX_IOSYS_MAP_H_PRESENT):0:' ${WRKSRC}/nvidia-drm-gem.c
 .endif
+	# Workaround for graphics/drm-*-kmod failure affecting NVIDIA counterparts
+       # after commit src 9820afb99e6f.
+.if !${.CURDIR:M*nvidia-drm-515-kmod*}
+	${PATCH} -d ${WRKDIR}/drm-kmod-${DRM_KMOD_GH_TAGNAME} -i ${PORTSDIR}/graphics/drm-${DRM_VER}-kmod/files/patch-compiler_flags.mk
+	${PATCH} -d ${WRKDIR}/drm-kmod-${DRM_KMOD_GH_TAGNAME} -i ${PORTSDIR}/graphics/drm-${DRM_VER}-kmod/files/patch-fix_build_after_src_main_git_bbfd52dcbeb7
+.endif
 	# We should support -CURRENT: kill the check (first #if __FreeBSD_version)
 	linenum=$$(${SED} -ne '/^#if __FreeBSD_version/ { = ; q ; }' \
 			${WRKSRC}/../nvidia/nv-freebsd.h) ; ${REINPLACE_CMD} \
