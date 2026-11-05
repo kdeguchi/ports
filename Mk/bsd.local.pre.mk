@@ -96,4 +96,4 @@ USES+=	pkgconfig
 . endif
 .endif
 
-SCRITPTSDIR=	${OVERLAYS:[1]}/Mk/Scripts
+#SCRITPTSDIR=	${OVERLAYS:[1]}/Mk/Scripts

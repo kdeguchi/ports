@@ -128,4 +128,4 @@ remove-info-plist:
 #. endif
 #.endif
 
-SCRIPTSDIR=	${OVERLAYS:[1]}/Mk/Scripts
+#SCRIPTSDIR=	${OVERLAYS:[1]}/Mk/Scripts
