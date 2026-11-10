@@ -1,5 +1,5 @@
 PORTNAME=	stellarium
-PORTVERSION=	26.1
+PORTVERSION=	26.3
 PORTREVISION=	0
 CATEGORIES=	astro
 MASTER_SITES=	https://github.com/Stellarium/stellarium/releases/download/v${PORTVERSION}/ \
@@ -18,11 +18,14 @@ LIB_DEPENDS=	libexiv2.so:graphics/exiv2 \
 		libmd4c.so:textproc/md4c \
 		libnlopt.so:math/nlopt@minimal
 
+CONFIGURE_ENV=	QTDIR="${QT_ARCHDIR}" QMAKE="${QMAKE}" \
+		MOC="${MOC}" RCC="${RCC}" UIC="${UIC}"
+
 USES=		cmake compiler:c++11-lang desktop-file-utils gl \
 		perl5 qt:6 shared-mime-info tar:xz
 USE_PERL5=	build
 USE_GL=	opengl
-USE_QT=		base charts tools:build
+USE_QT=		base charts speech tools:build
 
 PORTDOCS=	CREDITS.md ChangeLog README.md \
 		stellarium_user_guide-${PORTVERSION}-1.pdf
