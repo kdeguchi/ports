@@ -1,6 +1,6 @@
---- kitty/shaders/slang.py.orig	1979-11-29 23:00:00 UTC
+--- kitty/shaders/slang.py.orig	2026-11-07 12:10:37 UTC
 +++ kitty/shaders/slang.py
-@@ -310,7 +310,7 @@ class LoadShaderPrograms:
+@@ -358,7 +358,7 @@ class LoadShaderPrograms:
                          # a bare "No such file or directory" gives no hint as to why.
                          err(
                              f'Failed to build custom shader for slot {slot} because the slang shader compiler'

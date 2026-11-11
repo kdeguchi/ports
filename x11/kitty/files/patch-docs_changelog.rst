@@ -1,6 +1,6 @@
---- docs/changelog.rst.orig	1979-11-29 23:00:00 UTC
+--- docs/changelog.rst.orig	1979-11-29 15:00:00 UTC
 +++ docs/changelog.rst
-@@ -4896,7 +4896,7 @@ - A :doc:`new kitten <kittens/panel>` to create dock p
+@@ -5298,7 +5298,7 @@ - A :doc:`new kitten <kittens/panel>` to create dock p
  - A :doc:`new kitten <kittens/panel>` to create dock panels on X11 desktops
    showing the output from arbitrary terminal programs.
  
@@ -9,7 +9,7 @@
  
  - Implement changing the font size for individual top level (OS) windows
    (:iss:`408`)
-@@ -5011,7 +5011,7 @@ - Implement support for the SGR *faint* escape code to
+@@ -5413,7 +5413,7 @@ - Implement support for the SGR *faint* escape code to
  - Implement support for the SGR *faint* escape code to make text blend
    into the background (:iss:`446`).
  
@@ -18,7 +18,7 @@
    so that URLs that stretch over multiple lines are detected. Also improve
    detection of surrounding brackets/quotes.
  
-@@ -5023,7 +5023,7 @@ - Expand environment variables in config file include 
+@@ -5425,7 +5425,7 @@ - Expand environment variables in config file include 
  
  - Expand environment variables in config file include directives
  

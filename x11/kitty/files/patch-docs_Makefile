@@ -1,6 +1,6 @@
---- docs/Makefile.orig	1979-11-29 23:00:00 UTC
+--- docs/Makefile.orig	1979-11-29 15:00:00 UTC
 +++ docs/Makefile
-@@ -6,7 +6,7 @@ endif
+@@ -16,7 +16,7 @@ endif
  endif
  
  # You can set these variables from the command line.

@@ -1,14 +1,14 @@
---- setup.py	2025-12-16 12:38:37 UTC
+--- setup.py.orig	2026-11-07 12:10:37 UTC
 +++ setup.py
-@@ -907,6 +907,7 @@ def get_source_specific_defines(env: Env, src: str) ->
+@@ -937,6 +937,7 @@ def get_source_specific_defines(env: Env, src: str) ->
      if src == 'kitty/data-types.c':
          if not env.vcs_rev:
              env.vcs_rev = get_vcs_rev()
 +            env.ldflags.append('-lutempter')
-         return src, [], [f'KITTY_VCS_REV="{env.vcs_rev}"', f'WRAPPED_KITTENS="{wrapped_kittens()}"']
-     if src.startswith('3rdparty/base64/'):
          return (
-@@ -1740,12 +1741,17 @@ def create_linux_bundle_gunk(ddir: str, args: Options)
+             src,
+             [],
+@@ -1791,12 +1792,17 @@ def create_linux_bundle_gunk(ddir: str, args: Options)
      in_src_launcher = base / (f'{libdir_name}/kitty/kitty/launcher/kitty')
      launcher = base / 'bin/kitty'
      skip_docs = False
@@ -27,7 +27,7 @@
          else:
              if args.skip_building_kitten:
                  skip_docs = True
-@@ -1758,8 +1764,10 @@ def create_linux_bundle_gunk(ddir: str, args: Options)
+@@ -1809,8 +1815,10 @@ def create_linux_bundle_gunk(ddir: str, args: Options)
              else:
                  raise SystemExit(f'kitten binary not found at: {kitten_exe}')
      if not skip_docs:
