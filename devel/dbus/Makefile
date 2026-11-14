@@ -1,6 +1,5 @@
 PORTNAME=	dbus
-DISTVERSION=	1.16.2
-PORTREVISION=	4
+DISTVERSION=	1.16.4
 PORTEPOCH=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	https://dbus.freedesktop.org/releases/dbus/
@@ -15,8 +14,7 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2
 
 USES=		cpe localbase meson pkgconfig python:build \
 		shebangfix tar:xz
-CPE_VENDOR=	d-bus_project
-CPE_PRODUCT=	d-bus
+CPE_VENDOR=	freedesktop
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	dbus
 SHEBANG_FILES=	tools/GetAllMatchRules.py \
@@ -51,7 +49,7 @@ PORTSCOUT=	limitw:1,even
 USERS=		messagebus
 GROUPS=		messagebus
 
-_LIBVERSION=	3.38.3
+_LIBVERSION=	3.38.5
 
 OPTIONS_SUB=	yes
 PLIST_SUB=	GROUPS=${GROUPS} \
