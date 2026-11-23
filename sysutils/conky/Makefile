@@ -114,10 +114,14 @@ MPD_CMAKE_BOOL=	BUILD_MPD
 NCURSES_USES=		ncurses:port
 NCURSES_CMAKE_BOOL=	BUILD_NCURSES
 
+NVIM_CMAKE_ON=	-DVIM_RUNTIME_DIR:STRING="share/nvim/runtime"
+
 RSS_IMPLIES=	CURL
 RSS_USES=	gnome
 RSS_USE=	GNOME=libxml2
 RSS_CMAKE_BOOL=	BUILD_RSS
+
+VIM_CMAKE_ON=	-DVIM_RUNTIME_DIR:STRING="share/vim/vimfiles"
 
 WAYLAND_CATEGORIES=	wayland
 WAYLAND_BUILD_DEPENDS=	wayland-protocols>=1.13:graphics/wayland-protocols
@@ -185,26 +189,5 @@ post-install-DOCS-on:
 .for FILE in ${PORTDOCS}
 	${INSTALL_MAN} ${WRKSRC}/doc/${FILE} ${STAGEDIR}${DOCSDIR}
 .endfor
-
-post-install-NANO-on:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/nano
-	${INSTALL_DATA} ${BUILD_WRKSRC}/extras/nano/conky.nanorc ${STAGEDIR}${PREFIX}/share/nano
-
-post-install-NVIM-on:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/nvim/runtime
-	cd ${WRKSRC}/extras/vim && \
-		${COPYTREE_SHARE} ftdetect ${STAGEDIR}${PREFIX}/share/nvim/runtime
-	cd ${BUILD_WRKSRC}/extras/vim && \
-		${COPYTREE_SHARE} syntax ${STAGEDIR}${PREFIX}/share/nvim/runtime
-
-post-install-NVIM-off:
-	${RM} -r ${STAGEDIR}${PREFIX}/share/nvim
-
-post-install-VIM-on:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/vim/vimfiles
-	cd ${WRKSRC}/extras/vim && \
-		${COPYTREE_SHARE} ftdetect ${STAGEDIR}${PREFIX}/share/vim/vimfiles
-	cd ${BUILD_WRKSRC}/extras/vim && \
-		${COPYTREE_SHARE} syntax ${STAGEDIR}${PREFIX}/share/vim/vimfiles
 
 .include <bsd.port.mk>
