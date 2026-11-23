@@ -12,25 +12,12 @@ LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${LOCALBASE}/include/glm/glm.hpp:math/glm
 
-FLAVORS=	qt6 qt5
-FLAVOR?=	${FLAVORS:[1]}
-
-USES=		cmake:testing eigen:3 localbase
-
-.if ${FLAVOR} == qt6
-USES+=		qt:6
-USE_QT=	base
-.elif ${FLAAVOR} == qt5
-USES+=		qt:5
-USE_QT=	buildtools:build qmake:build core gui opengl widgets
-.endif
-
+USES=		cmake:testing eigen:3 localbase qt:5
 USE_GITHUB=	yes
 GH_ACCOUNT=	10110111
 GH_PROJECT=	CalcMySky
+USE_QT=		buildtools:build qmake:build core gui opengl widgets
 
-CMAKE_ARGS=	-DQT_VERSION:STRING=${_QT_VER}
-
-PLIST_SUB=	QTVER=${_QT_VER}
+CMAKE_ARGS=	-DQT_VERSION:STRING=5
 
 .include <bsd.port.mk>
