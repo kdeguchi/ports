@@ -96,4 +96,10 @@ USES+=	pkgconfig
 . endif
 .endif
 
+.if ${.CURDIR:M*/devel/dbus}
+. if exists(/usr/lib/pam_xdg.so)
+MESON_ARGS+=	-Ddbus_session_bus_listen_address=unix:runtime=yes
+. endif
+.endif
+
 #SCRITPTSDIR=	${OVERLAYS:[1]}/Mk/Scripts
