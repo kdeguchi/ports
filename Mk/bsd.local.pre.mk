@@ -33,9 +33,9 @@ LLDB_USES:=	${LLDB_USES:S/lua:53/lua:54/}
 USE_WX=	3.2
 .endif
 
-.if ${.CURDIR:M*/emulators/virtualbox-ose-72}
-QT6_USE:=	${QT6_USE:S|tools,|tools:run,|}
-.endif
+#.if ${.CURDIR:M*/emulators/virtualbox-ose-72}
+#QT6_USE:=	${QT6_USE:S|tools,|tools:run,|}
+#.endif
 
 .if ${.CURDIR:M*/www/deno}
 LIB_DEPENDS:=	${LIB_DEPENDS:S@libonig.so:devel/oniguruma@@}
@@ -50,11 +50,11 @@ USE_KDE:=	${USE_KDE:S@ecm@ecm:build@}
 . endif
 .endif
 
-.if defined(USE_QT) && ${USE_QT:Mtools}
-. if defined(USE_QT) && ! ${USE_QT:Mtools\:build}
-USE_QT:=	${USE_QT:S@tools@tools:build@}
-. endif
-.endif
+#.if defined(USE_QT) && ${USE_QT:Mtools}
+#. if defined(USE_QT) && ! ${USE_QT:Mtools\:build}
+#USE_QT:=	${USE_QT:S@tools@tools:build@}
+#. endif
+#.endif
 
 ########################################
 # xorgproto
