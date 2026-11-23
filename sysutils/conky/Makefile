@@ -1,5 +1,5 @@
 PORTNAME=	conky
-PORTVERSION=	1.25.4
+PORTVERSION=	1.26.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
 
@@ -18,11 +18,11 @@ USES=		cmake compiler:c++11-lib cpe gettext-runtime iconv \
 		localbase:ldflags lua:flavors pkgconfig tar:bzip2
 USE_GITHUB=	yes
 GH_ACCOUNT=	brndnmtthws
-GH_TAGNAME=	184d4e16a98a02d5f27acc5543b5ab37e9790e7d
 
 CMAKE_ARGS=	-DAPP_SED=${LOCALBASE}/bin/gsed
 CMAKE_ON=	BUILD_EXTRAS \
-		BUILD_ICONV
+		BUILD_ICONV \
+		RELEASE
 CMAKE_OFF=	BUILD_AUDACIOUS \
 		BUILD_HDDTEMP \
 		BUILD_IBM \
@@ -39,7 +39,7 @@ OPTIONS_DEFINE=	APCUPSD CURL DOCS EXAMPLES HTTPD IPV6 MANPAGES METAR MOC MPD \
 OPTIONS_DEFAULT?=	DOUBLE_BUFFER IMLIB2 LUA_CAIRO LUA_IMLIB2 \
 			MANPAGES MOUSE_EVENTS WAYLAND X11 XFT
 
-OPTIONS_GROUP?=		SYNTAX_FILES X11
+OPTIONS_GROUP?=	SYNTAX_FILES X11
 OPTIONS_GROUP_SYNTAX_FILES=	NANO NVIM VIM
 OPTIONS_GROUP_X11=	DOUBLE_BUFFER IMLIB2 LUA_CAIRO LUA_IMLIB2 LUA_RSVG \
 			MOUSE_EVENTS XFT XINERAMA XSHAPE
@@ -54,12 +54,12 @@ METAR_DESC=		Display METAR weather reports
 MOC_DESC=		Control MOC (Music On Console)
 MOUSE_EVENTS_DESC=	Support generating mouse events
 MPD_DESC=		Control MPD (Music Player Daemon)
-NANO_DESC=	For nano
+NANO_DESC=		For nano
 NCURSES_DESC=		Use ncurses to draw on terminals
-NVIM_DESC=	For neovim
+NVIM_DESC=		For neovim
 RSS_DESC=		Display RSS feeds
-VIM_DESC=	For vim
-SYNTAX_FILES_DESC=		Install syntax files for editors
+VIM_DESC=		For vim
+SYNTAX_FILES_DESC=	Install syntax files for editors
 XMMS2_DESC=		Control XMMS2 media player
 XSHAPE_DESC=		Xshape support
 
@@ -130,7 +130,7 @@ WAYLAND_CMAKE_BOOL=	BUILD_WAYLAND
 WAYLAND_LDFLAGS=	-Wl,--as-needed # pangoft2 deps: glib20, freetype2, harfbuzz
 
 X11_USES=	xorg
-X11_USE=	XORG=x11,xcb,xdamage,xext,xfixes,xi
+X11_USE=	XORG=x11,xdamage,xext,xfixes,xi
 X11_CMAKE_BOOL=	BUILD_X11 OWN_WINDOW
 X11_LIB_DEPENDS=	libxcb-errors.so:x11/xcb-util-errors
 X11_VARS=	EXAMPLE_CONF_FILE=${WRKSRC}/data/conky.conf
