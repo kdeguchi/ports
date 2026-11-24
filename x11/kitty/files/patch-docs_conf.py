@@ -1,20 +1,21 @@
---- docs/conf.py.orig	1979-11-29 23:00:00 UTC
+--- docs/conf.py.orig	2026-11-23 09:02:42 UTC
 +++ docs/conf.py
-@@ -220,15 +220,10 @@ def commit_role(
-     name: str, rawtext: str, text: str, lineno: int, inliner: Any, options: Any = {}, content: Any = []
- ) -> Tuple[List[nodes.reference], List[nodes.problematic]]:
-     "Link to a github commit"
--    try:
--        commit_id = subprocess.check_output(f'git rev-list --max-count=1 {text}'.split()).decode('utf-8').strip()
--    except Exception:
--        msg = inliner.reporter.error(f'git commit id "{text}" not recognized.', line=lineno)
--        prb = inliner.problematic(rawtext, rawtext, msg)
--        return [prb], [msg]
-+    commit_id = text
-     url = f'https://github.com/kovidgoyal/kitty/commit/{commit_id}'
-     options = normalize_options(options)
--    short_id = subprocess.check_output(f'git rev-list --max-count=1 --abbrev-commit {commit_id}'.split()).decode('utf-8').strip()
-+    short_id = text[:9]
-     node = nodes.reference(rawtext, f'commit: {short_id}', refuri=url, **options)
-     return [node], []
+@@ -230,16 +230,8 @@ def commit_role(
+         return subprocess.check_output(('git',) + args, cwd=kitty_src, stderr=subprocess.DEVNULL).decode('utf-8').strip()
  
+     text = text.strip()
+-    if os.path.exists(os.path.join(kitty_src, '.git')):
+-        try:
+-            commit_id = git('rev-list', '--max-count=1', text)
+-            short_id = git('rev-list', '--max-count=1', '--abbrev-commit', commit_id)
+-        except FileNotFoundError:
+-            commit_id = short_id = ''  # git is not installed
+-        except subprocess.CalledProcessError:
+-            return error(f'git commit id "{text}" not recognized.')
+-    else:
+-        commit_id = short_id = ''  # no git history, for example, when building from a source archive
++    commit_id = text
++    short_id = text[:9]
+     if not commit_id:
+         # Without git history we cannot resolve the commit, so link to it
+         # using the id as written, GitHub resolves abbreviated commit ids.

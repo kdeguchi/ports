@@ -1,5 +1,5 @@
 PORTNAME=	osdlyrics
-PORTVERSION=	0.5.15
+PORTVERSION=	0.6.1
 CATEGORIES=	audio deskutils
 
 MAINTAINER=	kdeguchi@sz.tokoha-u.ac.jp

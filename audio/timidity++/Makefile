@@ -1,6 +1,6 @@
 PORTNAME=	timidity++
 PORTVERSION=	2.15.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES+=	audio
 MASTER_SITES=	SF/timidity/TiMidity%2B%2B/TiMidity%2B%2B-${PORTVERSION}
 DISTNAME=	TiMidity++-${PORTVERSION}
@@ -18,7 +18,8 @@ LIB_DEPENDS+=	libvorbis.so:audio/libvorbis \
 RUN_DEPENDS=	eawpats>0:audio/eawpats
 .endif
 
-USES=		gmake iconv:build localbase tar:bzip2
+USES=		cpe gmake iconv:build localbase tar:bzip2
+CPE_VENDOR=	timidity++_project
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	SHLD="${CC} -shared"
 
@@ -35,7 +36,7 @@ EAWPLUS_DESC=		Collection of Gravis Ultrasound MIDI patches
 EAWPLUS_RUN_DEPENDS=	eawplus>0:audio/eawplus
 X11_LIB_DEPENDS=	libpng.so:graphics/png
 X11_USES=		xorg
-X11_USE=		XORG=x11,xext,xft
+X11_USE=		xorg=x11,xext,xft
 X11_CONFIGURE_ON=	--with-x --enable-xft --enable-spectrogram --enable-wrd \
 			--enable-dynamic
 X11_CONFIGURE_OFF=	--without-x --disable-xft --disable-spectrogram --disable-wrd \
