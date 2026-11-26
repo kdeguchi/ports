@@ -48,7 +48,7 @@ GPS_LIB_DEPENDS=	libgps.so:astro/gpsd
 GPS_USE=		QT=serialport
 GPS_CMAKE_OFF=		-DENABLE_GPS:BOOL=OFF
 
-MULTIMEDIA_USE=		QT=multimedia
+MULTIMEDIA_USE=		QT=multimedia,speech
 MULTIMEDIA_CMAKE_OFF=	-DENABLE_MEDIA:BOOL=OFF
 
 NLS_USE=		QT=tools:build
