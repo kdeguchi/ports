@@ -1,5 +1,6 @@
 PORTNAME=	audacious
 DISTVERSION=	4.6.2
+PORTREVISION=	1
 CATEGORIES=	multimedia audio
 MASTER_SITES=	https://distfiles.audacious-media-player.org/
 
@@ -7,11 +8,11 @@ MAINTAINER=	madpilot@FreeBSD.org
 COMMENT=	Lightweight and versatile audio player
 WWW=		https://audacious-media-player.org/
 
-LICENSE=	BSD2CLAUSE BSD3CLAUSE
+LICENSE=	BSD-2-Clause BSD-3-Clause CC-BY-SA-4.0
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-FLAVORS=	qt6 qt5 gtk3 gtk2
+FLAVORS=	qt6 gtk3 qt5 gtk2
 FLAVOR?=	${FLAVORS:[1]}
 
 gtk2_PKGNAMESUFFIX=	-gtk2
@@ -37,6 +38,9 @@ MAKE_ENV=	LIBRARY_PATH="${LOCALBASE}/lib"
 SUB_FILES=	pkg-message
 
 .if ${FLAVOR} == qt5
+DEPRECATED=		Depends on unsupported Qt 5
+EXPIRATION_DATE=	2027-01-01
+
 MESON_ARGS+=	-Dgtk2=false \
 		-Dgtk=false \
 		-Dqt5=true \
